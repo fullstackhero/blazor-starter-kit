@@ -1,0 +1,51 @@
+﻿@page "/login"
+@page "/"
+@layout MainLayout
+@attribute [AllowAnonymous]
+    <EditForm Model="@model" OnValidSubmit="SubmitAsync">
+        <MudItem xs="12">
+            <MudText Typo="Typo.h4">Sign In</MudText>
+        </MudItem>
+        <MudItem xs="12">
+            <MudText>Don't have an account? <MudLink Href="/register">Sign Up</MudLink></MudText>
+        </MudItem>
+
+        <MudItem xs="12">
+            <MudTextField T="string" Label="E-mail" Variant="Variant.Outlined"
+                          @bind-Value="model.Email" For="@(() => model.Email)" Required="true" RequiredError="Email is required!"></MudTextField>
+        </MudItem>
+        <MudItem xs="12">
+            <MudTextField Label="Password" Variant="Variant.Outlined"
+                          @bind-Value="model.Password" For="@(() => model.Password)" Required="true" RequiredError="Password is required!"
+                          InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
+        </MudItem>
+        <MudItem xs="12" Class="d-flex justify-space-between align-center">
+            <MudCheckBox T="bool" Label="Remember me?" Color="Color.Primary" Class="ml-n1"></MudCheckBox> <MudLink Href="/pages/authentication/forgot-password">Forgot pwd?</MudLink>
+        </MudItem>
+        <MudItem xs="12" Class="d-flex justify-center">
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">Sign In</MudButton>
+        </MudItem>
+    </EditForm>
+@code {
+    string Password { get; set; }
+
+    bool PasswordVisibility;
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+    void TogglePasswordVisibility()
+    {
+        @if (PasswordVisibility)
+        {
+            PasswordVisibility = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else
+        {
+            PasswordVisibility = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+}

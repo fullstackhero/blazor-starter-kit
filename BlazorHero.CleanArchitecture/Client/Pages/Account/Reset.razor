@@ -1,0 +1,38 @@
+﻿@page "/authentication/reset-password"
+@layout LoginLayout
+
+
+
+<MudItem xs="12">
+    <MudText Typo="Typo.h4">Set new password</MudText>
+</MudItem>
+<MudItem xs="12">
+    <MudTextField @bind-Value="@Password" Label="New Password" Variant="Variant.Outlined" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
+</MudItem>
+<MudItem xs="12" Class="d-flex justify-center">
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Link="/pages/authentication/login" Size="Size.Large" FullWidth="true">Set New Password</MudButton>
+</MudItem>
+
+@code {
+    string Password { get; set; }
+
+    bool PasswordVisibility;
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+    void TogglePasswordVisibility()
+    {
+        @if (PasswordVisibility)
+        {
+            PasswordVisibility = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else
+        {
+            PasswordVisibility = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+}

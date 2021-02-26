@@ -1,0 +1,125 @@
+﻿@inherits LayoutComponentBase
+@inject BrowserService browserService;
+
+<MudThemeProvider Theme="currentTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<AuthorizeView>
+    <NotAuthorized>
+        <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center" Style="height: 100vh;">
+            <MudPaper Elevation="25" Class="pa-8" Style="width:500px;">
+                <MudGrid>
+                    <MudItem xs="12">
+                        <MudIcon Icon="@Icons.Custom.Brands.MudBlazor" Size="Size.Large" Style="width:100px; height:100px;" />
+                    </MudItem>
+                    @Body
+                </MudGrid>
+            </MudPaper>
+        </MudContainer>
+    </NotAuthorized>
+    <Authorized>
+
+        <MudLayout RightToLeft="@_rightToLeft">
+            <MudAppBar Elevation="4" Color="Color.Primary">
+                <MudIcon Icon="@Icons.Custom.Brands.MudBlazor" Size="Size.Large" />
+                <MudText Typo="Typo.h6" Class="ml-4">BlazorHero - Clean Architecture</MudText>
+                <MudAppBarSpacer />
+                <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                    <MudMenu EndIcon="@Icons.Filled.KeyboardArrowDown" Label="Support" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
+                        <MudText Typo="Typo.body2" Class="px-4 py-2"><b>Community Support</b></MudText>
+                        <MudMenuItem Link="https://discord.gg/mudblazor" Target="_blank">Discord</MudMenuItem>
+                        <MudMenuItem Link="https://gitter.im/MudBlazor/community" Target="_blank">Gitter</MudMenuItem>
+                        <MudText Typo="Typo.body2" Class="px-4 py-2"><b>Tools and resources</b></MudText>
+                        <MudMenuItem Link="https://try.mudblazor.com/snippet" Target="_blank">TryMudBlazor</MudMenuItem>
+                        <MudMenuItem Link="https://github.com/Garderoben/MudBlazor.Templates" Target="_blank">Templates</MudMenuItem>
+                    </MudMenu>
+                    <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" Class="mx-4 my-5" />
+                    <MudTooltip Text="Toggle light/dark theme">
+                        <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
+                    </MudTooltip>
+                    <MudTooltip Text="GitHub repository">
+                        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/Garderoben/MudBlazor" Target="_blank" />
+                    </MudTooltip>
+                    <MudTooltip Text="Toggle right-to-left/left-to-right">
+                        <MudIconButton Icon="@Icons.Material.Filled.FormatTextdirectionRToL" Color="Color.Inherit" OnClick="@((e) => RightToLeftToggle())" />
+                    </MudTooltip>
+                </MudHidden>
+                <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                    <MudMenu Icon="@Icons.Filled.Settings" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
+                        <div class="px-2">
+                            <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
+                            <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/Garderoben/MudBlazor" Target="_blank" />
+                            <MudIconButton Icon="@Icons.Material.Filled.FormatTextdirectionRToL" Color="Color.Inherit" OnClick="@((e) => RightToLeftToggle())" />
+                        </div>
+                        <MudText Typo="Typo.body2" Class="px-4 py-2"><b>Community Support</b></MudText>
+                        <MudMenuItem Link="https://discord.gg/mudblazor" Target="_blank">Discord</MudMenuItem>
+                        <MudMenuItem Link="https://gitter.im/MudBlazor/community" Target="_blank">Gitter</MudMenuItem>
+                        <MudText Typo="Typo.body2" Class="px-4 py-2"><b>Tools and resources</b></MudText>
+                        <MudMenuItem Link="https://try.mudblazor.com/snippet" Target="_blank">TryMudBlazor</MudMenuItem>
+                        <MudMenuItem Link="https://github.com/Garderoben/MudBlazor.Templates" Target="_blank">Templates</MudMenuItem>
+                    </MudMenu>
+                </MudHidden>
+                <MudMenu Direction="Direction.Left" OffsetX="true" Dense="true" Class="mt-1 ml-4">
+                    <ActivatorContent>
+                        <MudAvatar Color="Color.Secondary">M</MudAvatar>
+                    </ActivatorContent>
+                    <ChildContent>
+                        <PersonCard Class="mt-n2" />
+                        <MudDivider Class="mb-2" />
+                        <MudListItem Text="Account" Icon="@Icons.Material.Outlined.Person" />
+                        <MudListItem Text="Logout" Icon="@Icons.Material.Outlined.Login" />
+                    </ChildContent>
+                </MudMenu>
+            </MudAppBar>
+            <MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
+                <NavMenu />
+            </MudDrawer>
+            <MudMainContent>
+                <MudToolBar DisableGutters="true">
+                    <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
+                    <MudBreadcrumbs Items="_items"></MudBreadcrumbs>
+                </MudToolBar>
+                <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+                    @Body
+                </MudContainer>
+            </MudMainContent>
+        </MudLayout>
+
+    </Authorized>
+</AuthorizeView>
+@code {
+    MudTheme currentTheme;
+    private bool _drawerOpen = true;
+    private bool _rightToLeft = false;
+    protected override async Task OnInitializedAsync()
+    {
+        currentTheme = await browserService.GetCurrentThemeAsync();
+    }
+    private void RightToLeftToggle()
+    {
+        _rightToLeft = !_rightToLeft;
+    }
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem("Personal", href: "#"),
+        new BreadcrumbItem("Dashboard", href: "#"),
+    };
+
+    async Task DarkMode()
+    {
+        bool isDarkMode = await browserService.ToggleDarkMode();
+        if(isDarkMode)
+        {
+            currentTheme = BlazorHeroTheme.DefaultTheme;
+        }
+        else
+        {
+            currentTheme = BlazorHeroTheme.DarkTheme;
+        }
+    }
+
+}

@@ -1,0 +1,21 @@
+﻿@page "/account/forgot-password"
+@layout LoginLayout
+
+
+
+<MudItem xs="12">
+    <MudText Typo="Typo.h4">Forgot Password?</MudText>
+</MudItem>
+<MudItem xs="12">
+    <MudText Typo="Typo.subtitle2" Class="mb-n4">Enter the email address linked to your account and you will recieve an email containing a link to reset your password.</MudText>
+</MudItem>
+<MudItem xs="12">
+    <MudTextField T="string" Label="E-mail" Variant="Variant.Outlined"></MudTextField>
+</MudItem>
+<MudItem xs="12" Class="d-flex justify-center">
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Link="/authentication/reset-password" Size="Size.Large" FullWidth="true">Reset Password</MudButton>
+</MudItem>
+
+@code {
+
+}
