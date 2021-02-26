@@ -1,4 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using MudBlazor;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Account
         LoginRequest model = new LoginRequest();
         public bool ShowErrors { get; set; }
 
-        public IEnumerable<string> Errors { get; set; }
+        public IEnumerable<string> Errors { get; set; } = new List<string>();
         private async Task SubmitAsync()
         {
             var result = await this.AuthService.Login(this.model);
@@ -18,10 +19,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Account
             {
                 this.ShowErrors = false;
                 this.NavigationManager.NavigateTo("/");
+                SnackBar.Add("Logged In", Severity.Success);
             }
             else
             {
                 this.Errors = result.Errors;
+                foreach(string error in Errors)
+                {
+                    SnackBar.Add(error, Severity.Error);
+                }
                 this.ShowErrors = true;
             }
         }

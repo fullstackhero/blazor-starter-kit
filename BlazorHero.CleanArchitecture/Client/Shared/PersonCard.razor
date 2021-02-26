@@ -1,15 +1,33 @@
 ﻿<MudCard Elevation="0" Square="true" Class="@Class">
     <MudCardHeader>
         <CardHeaderAvatar>
-            <MudAvatar Color="Color.Secondary">M</MudAvatar>
+            <MudAvatar Color="Color.Secondary">@FirstLetterOfName</MudAvatar>
         </CardHeaderAvatar>
         <CardHeaderContent>
-            <MudText Typo="Typo.body2">Mukesh Murugan</MudText>
-            <MudText Typo="Typo.caption">Software Engineer</MudText>
+            <MudText Typo="Typo.body2">@FirstName @SecondName</MudText>
+            <MudText Typo="Typo.caption">@Email</MudText>
         </CardHeaderContent>
     </MudCardHeader>
 </MudCard>
 
 @code {
     [Parameter] public string Class { get; set; }
+    private string FirstName { get; set; }
+    private string SecondName { get; set; }
+    private string Email { get; set; }
+    private char FirstLetterOfName { get; set; }
+    protected override async Task OnInitializedAsync() => await this.LoadDataAsync();
+    private async Task LoadDataAsync()
+    {
+        var state = await this.AuthState.GetAuthenticationStateAsync();
+        var user = state.User;
+
+        this.Email = user.GetEmail();
+        this.FirstName = user.GetFirstName();
+        this.SecondName = user.GetSecondName();
+        if(this.FirstName.Length>0)
+        {
+            FirstLetterOfName = FirstName[0];
+        }
+    }
 }

@@ -4,6 +4,7 @@ using BlazorHero.CleanArchitecture.Client.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using MudBlazor;
 using MudBlazor.Services;
 using System;
 using System.Collections.Generic;
@@ -30,10 +31,17 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .Services
                 .AddAuthorizationCore()
                 .AddBlazoredLocalStorage()
-                .AddMudServices()
+                .AddMudServices(
+                configuration =>
+                {
+                    configuration.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomRight;
+                    configuration.SnackbarConfiguration.HideTransitionDuration = 100;
+                    configuration.SnackbarConfiguration.ShowTransitionDuration = 100;
+                    configuration.SnackbarConfiguration.VisibleStateDuration = 3000;
+                })
                 .AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) })
                 .AddScoped<BrowserService>()
-            .AddScoped<BlazorHeroStateProvider>()
+                .AddScoped<BlazorHeroStateProvider>()
                 .AddScoped<AuthenticationStateProvider, BlazorHeroStateProvider>()
                 .AddScoped(sp => sp
                 .GetRequiredService<IHttpClientFactory>()

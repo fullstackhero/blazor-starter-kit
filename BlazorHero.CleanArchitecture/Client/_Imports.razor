@@ -14,10 +14,14 @@
 @using BlazorHero.CleanArchitecture.Client.Services
 @using BlazorHero.CleanArchitecture.Application.Requests.Identity
 @using BlazorHero.CleanArchitecture.Client.Pages.Account
+@using BlazorHero.CleanArchitecture.Client.Authentication
+@using BlazorHero.CleanArchitecture.Client.Extensions
 
 @using MudBlazor
 
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
+@inject BlazorHeroStateProvider AuthState
+@inject ISnackbar SnackBar
 
 @attribute [Authorize]
