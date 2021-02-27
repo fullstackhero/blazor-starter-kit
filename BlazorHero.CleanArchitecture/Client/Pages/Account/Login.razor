@@ -3,16 +3,16 @@
 @attribute [AllowAnonymous]
 <EditForm Model="@model" OnValidSubmit="SubmitAsync">
     <MudGrid>
-        <MudItem xs="12">
+        <MudItem xs="12" Class="align-center">
             <MudIcon Icon="@Icons.Custom.Brands.MudBlazor" Size="Size.Large" Style="width:100px; height:100px;" />
         </MudItem>
 
         <DataAnnotationsValidator />
-        <MudItem xs="12">
+        <MudItem xs="12" Class="justify-center">
             <MudText Typo="Typo.h4">Sign In</MudText>
         </MudItem>
-        <MudItem xs="12">
-            <MudText>Don't have an account? <MudLink Href="/register">Sign Up</MudLink></MudText>
+        <MudItem xs="12"  Class="justify-center">
+            <MudText>Login with your Credentials. </MudText>
         </MudItem>
 
         <MudItem xs="12">
@@ -25,7 +25,7 @@
                           InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-space-between align-center">
-            <MudCheckBox T="bool" Label="Remember me?" Color="Color.Primary" Class="ml-n1"></MudCheckBox> <MudLink Href="/pages/authentication/forgot-password">Forgot pwd?</MudLink>
+            <MudCheckBox T="bool" Label="Remember me?" Color="Color.Primary" Class="ml-n1"></MudCheckBox> <MudLink Href="/account/forgot-password">Forgot password?</MudLink>
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-center">
             <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">Sign In</MudButton>

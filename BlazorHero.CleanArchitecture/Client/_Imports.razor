@@ -10,6 +10,7 @@
 @using Microsoft.JSInterop
 @using BlazorHero.CleanArchitecture.Client
 @using BlazorHero.CleanArchitecture.Client.Shared
+@using BlazorHero.CleanArchitecture.Client.Shared.Components
 @using BlazorHero.CleanArchitecture.Client.Settings
 @using BlazorHero.CleanArchitecture.Client.Services
 @using BlazorHero.CleanArchitecture.Application.Requests.Identity
@@ -23,5 +24,6 @@
 @inject NavigationManager NavigationManager
 @inject BlazorHeroStateProvider AuthState
 @inject ISnackbar SnackBar
+@inject IDialogService DialogService
 
 @attribute [Authorize]
