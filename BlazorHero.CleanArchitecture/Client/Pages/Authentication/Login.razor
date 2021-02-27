@@ -8,13 +8,12 @@
         </MudItem>
 
         <DataAnnotationsValidator />
-        <MudItem xs="12" Class="justify-center">
+        <MudItem xs="12">
             <MudText Typo="Typo.h4">Sign In</MudText>
         </MudItem>
-        <MudItem xs="12"  Class="justify-center">
+        <MudItem xs="12">
             <MudText>Login with your Credentials. </MudText>
         </MudItem>
-
         <MudItem xs="12">
             <MudTextField T="string" Label="E-mail" Variant="Variant.Outlined"
                           @bind-Value="model.Email" For="@(() => model.Email)" Required="true" RequiredError="Email is required!"></MudTextField>
@@ -30,9 +29,12 @@
         <MudItem xs="12" Class="d-flex justify-center">
             <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">Sign In</MudButton>
         </MudItem>
+        <MudItem xs="12">
+            <MudAlert Severity="Severity.Info">mukesh@blazorhero.com / 123Pa$$word!</MudAlert>
+        </MudItem>
     </MudGrid>
 </EditForm>
-<MudAlert Severity="Severity.Info">The reactor was fired up successfully</MudAlert>
+
 @code {
     string Password { get; set; }
 
