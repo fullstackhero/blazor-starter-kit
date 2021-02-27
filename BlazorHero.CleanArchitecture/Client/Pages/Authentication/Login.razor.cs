@@ -20,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             {
                 this.ShowErrors = false;
                 _navigationManager.NavigateTo("/");
-                _snackBar.Add("Logged In", Severity.Success);
+                _snackBar.Add($"Welcome {model.Email}", Severity.Success);
             }
             else
             {

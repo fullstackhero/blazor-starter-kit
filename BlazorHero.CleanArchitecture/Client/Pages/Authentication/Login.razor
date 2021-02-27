@@ -3,16 +3,23 @@
 @attribute [AllowAnonymous]
 <EditForm Model="@model" OnValidSubmit="SubmitAsync">
     <MudGrid>
-        <MudItem xs="12" Class="align-center">
-            <MudIcon Icon="@Icons.Custom.Brands.MudBlazor" Size="Size.Large" Style="width:100px; height:100px;" />
+
+        <MudItem xs="12">
+            <div class="d-flex justify-center">
+                <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width:100px; height:100px;" />
+            </div>
         </MudItem>
 
         <DataAnnotationsValidator />
         <MudItem xs="12">
-            <MudText Typo="Typo.h4">Sign In</MudText>
+            <div class="d-flex justify-center">
+                <MudText Typo="Typo.h4">Sign In</MudText>
+            </div>
         </MudItem>
         <MudItem xs="12">
-            <MudText>Login with your Credentials. </MudText>
+            <div class="d-flex justify-center">
+                <MudText>Login with your Credentials. </MudText>
+            </div>
         </MudItem>
         <MudItem xs="12">
             <MudTextField T="string" Label="E-mail" Variant="Variant.Outlined"

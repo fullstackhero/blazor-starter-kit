@@ -1,8 +1,28 @@
 ﻿@page "/home"
 @page "/"
 
-<h3>Home</h3>
-
-@code {
-
-}
+<MudContainer>
+    <MudGrid>
+        <MudItem xs="12" sm="12" md="12">
+            <div class="d-flex justify-center mt-4">
+                <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width: 250px; height: 250px;" />
+            </div>
+        </MudItem>
+        <MudItem xs="12" sm="12" md="12">
+            <MudText Align="Align.Center" Typo="Typo.h2" Class="mt-4">Blazor Hero</MudText>
+            <MudText Align="Align.Center" Typo="Typo.h5" Class="smaller">Clean Architecture Template For Blazor Web-Assembly</MudText>
+        </MudItem>
+        <MudItem xs="12" sm="12" md="12">
+            <MudText Align="Align.Center">
+                Blazor Hero is an All-In-One Clean Architecture Solution Template For Blazor Web-Assembly built with <MudLink Href="https://www.mudblazor.com" Target="_blank">MudBlazor</MudLink> Component Library.
+            </MudText>
+        </MudItem>
+        <MudItem xs="12" sm="12" md="12">
+            <div class="pa-4 justify-center my-4 mud-text-align-center">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Link="">Project Page</MudButton>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Link="">Features</MudButton>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Link="">Resources</MudButton>
+            </div>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
