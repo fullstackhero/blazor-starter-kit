@@ -45,6 +45,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .GetRequiredService<IHttpClientFactory>()
                 .CreateClient(ClientName))
                 .AddTransient<IAuthService, AuthService>()
+                .AddTransient<IAccountService, AccountService>()
                 .AddTransient<AuthenticationHeaderHandler>()
                 .AddHttpClient(ClientName, client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();

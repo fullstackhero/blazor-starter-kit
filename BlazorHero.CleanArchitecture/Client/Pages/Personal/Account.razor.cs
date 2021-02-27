@@ -14,6 +14,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Personal
 {
     public partial class Account
     {
+
         public Account()
         {
 
@@ -54,25 +55,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Personal
         private readonly ChangePasswordRequest model = new ChangePasswordRequest();
         private async Task ChangePasswordAsync()
         {
-            var response = await _httpClient.PutAsJsonAsync("api/identity/changepassword", model);
-
-            if (response.IsSuccessStatusCode)
-            {
-                model.Password = null;
-                model.NewPassword = null;
-                model.ConfirmNewPassword = null;
-                await _authService.Logout();
-                _snackBar.Add("Your password has been changed successfully.\n Please login.",Severity.Success);
-                _navigationManager.NavigateTo("/login");
-            }
-            else
-            {
-                Errors = await response.Content.ReadFromJsonAsync<string[]>();
-            }
-        }
-        async Task UpdateProfileAsync()
-        {
-            
+            await _accountService.ChangePasswordAsync(model);
         }
 
         MudForm form;
