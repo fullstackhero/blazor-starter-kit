@@ -16,10 +16,13 @@
 @using BlazorHero.CleanArchitecture.Client.Services
 @using BlazorHero.CleanArchitecture.Client.Interfaces
 @using BlazorHero.CleanArchitecture.Application.Requests.Identity
+@using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
+@using Microsoft.AspNetCore.Identity;
 
 @*Pages*@
 @using BlazorHero.CleanArchitecture.Client.Pages.Account
 @using BlazorHero.CleanArchitecture.Client.Pages.Authentication
+@using BlazorHero.CleanArchitecture.Client.Pages.Personal
 
 
 @using BlazorHero.CleanArchitecture.Client.Authentication
@@ -32,5 +35,6 @@
 @inject BlazorHeroStateProvider _authState
 @inject ISnackbar _snackBar
 @inject IDialogService _dialogService
+@inject HttpClient _httpClient
 
 @attribute [Authorize]

@@ -20,8 +20,6 @@ namespace BlazorHero.CleanArchitecture.Client.Services
         private readonly ILocalStorageService localStorage;
         private readonly AuthenticationStateProvider authenticationStateProvider;
 
-        private const string LoginPath = "api/identity/login";
-        private const string RegisterPath = "api/identity/register";
 
         public AuthService(
             HttpClient httpClient,
@@ -35,12 +33,12 @@ namespace BlazorHero.CleanArchitecture.Client.Services
 
         public async Task<Result> Register(RegisterRequest model)
             => await this.httpClient
-                .PostAsJsonAsync(RegisterPath, model)
+                .PostAsJsonAsync(Constants.APIRoutes.Register, model)
                 .ToResult();
 
         public async Task<Result> Login(LoginRequest model)
         {
-            var response = await this.httpClient.PostAsJsonAsync(LoginPath, model);
+            var response = await this.httpClient.PostAsJsonAsync(Constants.APIRoutes.Login, model);
 
             if (!response.IsSuccessStatusCode)
             {

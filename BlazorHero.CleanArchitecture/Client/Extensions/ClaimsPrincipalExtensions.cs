@@ -10,7 +10,11 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
         public static string GetFirstName(this ClaimsPrincipal claimsPrincipal)
             => claimsPrincipal.FindFirstValue(ClaimTypes.Name);
 
-        public static string GetSecondName(this ClaimsPrincipal claimsPrincipal)
+        public static string GetLastName(this ClaimsPrincipal claimsPrincipal)
             => claimsPrincipal.FindFirstValue(ClaimTypes.Surname);
+        public static string GetPhoneNumber(this ClaimsPrincipal claimsPrincipal)
+            => claimsPrincipal.FindFirstValue(ClaimTypes.MobilePhone);
+        public static string GetUserId(this ClaimsPrincipal claimsPrincipal)
+           => claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }

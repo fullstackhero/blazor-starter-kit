@@ -25,7 +25,7 @@
 
         this.Email = user.GetEmail().Replace(".com",string.Empty);
         this.FirstName = user.GetFirstName();
-        this.SecondName = user.GetSecondName();
+        this.SecondName = user.GetLastName();
         if(this.FirstName.Length>0)
         {
             FirstLetterOfName = FirstName[0];

@@ -49,8 +49,10 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
         [HttpPut(nameof(ChangePassword))]
         public async Task<ActionResult> ChangePassword(
             ChangePasswordRequest model)
-            => await this.identity
-                .ChangePasswordAsync(model, this.currentUser.UserId)
-                .ToActionResult();
+        {
+            return await this.identity
+                           .ChangePasswordAsync(model, this.currentUser.UserId)
+                           .ToActionResult();
+        }
     }
 }
