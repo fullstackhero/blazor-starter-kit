@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Security.Claims;
 
-namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
+namespace BlazorHero.CleanArchitecture.Server.Services
 {
     public class CurrentUserService : ICurrentUserService
     {
@@ -13,7 +13,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
             if (user == null)
             {
-                throw new InvalidOperationException("This request does not have an authenticated user.");
+                throw new InvalidOperationException("Not Authenticated.");
             }
 
             this.UserId = user.FindFirstValue(ClaimTypes.NameIdentifier);

@@ -1,8 +1,11 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
+using BlazorHero.CleanArchitecture.Server.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +32,8 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             IConfiguration configuration)
             => services
                 .AddDbContext<BlazorHeroContext>(options => options
-                    .UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                    .UseSqlServer(configuration.GetConnectionString("DefaultConnection")))
+            .AddTransient<IDatabaseSeeder, DatabaseSeeder>();
 
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {

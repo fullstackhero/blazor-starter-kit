@@ -4,6 +4,7 @@ using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Application.Wrapper;
 using BlazorHero.CleanArchitecture.Client.Authentication;
 using BlazorHero.CleanArchitecture.Client.Extensions;
+using BlazorHero.CleanArchitecture.Client.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http;
 using System.Net.Http.Headers;

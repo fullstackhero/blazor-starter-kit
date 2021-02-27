@@ -1,5 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using BlazorHero.CleanArchitecture.Client.Authentication;
+using BlazorHero.CleanArchitecture.Client.Interfaces;
 using BlazorHero.CleanArchitecture.Client.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

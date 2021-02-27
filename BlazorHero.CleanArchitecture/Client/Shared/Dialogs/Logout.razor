@@ -1,4 +1,5 @@
-﻿<MudDialog>
+﻿@namespace BlazorHero.CleanArchitecture.Client.Shared.Dialogs
+<MudDialog>
     <DialogContent>
         <MudText>@ContentText</MudText>
     </DialogContent>
@@ -18,7 +19,7 @@
 
     async Task Submit()
     {
-        await this.AuthService.Logout();
+        await _authService.Logout();
         MudDialog.Close(DialogResult.Ok(true));
     }
     void Cancel() => MudDialog.Cancel();

@@ -88,7 +88,7 @@
     private char FirstLetterOfName { get; set; }
     private async Task LoadDataAsync()
     {
-        var state = await this.AuthState.GetAuthenticationStateAsync();
+        var state = await _authState.GetAuthenticationStateAsync();
         var user = state.User;
         if (user == null) return;
         if (user.Identity.IsAuthenticated)
@@ -116,7 +116,7 @@
 
         var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Large };
 
-        DialogService.Show<Dialogs.Logout>("Logout", parameters, options);
+        _dialogService.Show<Dialogs.Logout>("Logout", parameters, options);
     }
     void DrawerToggle()
     {

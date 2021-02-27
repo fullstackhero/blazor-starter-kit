@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using BlazorHero.CleanArchitecture.Client.Interfaces;
 using BlazorHero.CleanArchitecture.Client.Settings;
 using MudBlazor;
 using System.Threading.Tasks;

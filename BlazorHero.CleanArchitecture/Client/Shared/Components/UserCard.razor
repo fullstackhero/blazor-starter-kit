@@ -20,10 +20,10 @@
     protected override async Task OnInitializedAsync() => await this.LoadDataAsync();
     private async Task LoadDataAsync()
     {
-        var state = await this.AuthState.GetAuthenticationStateAsync();
+        var state = await _authState.GetAuthenticationStateAsync();
         var user = state.User;
 
-        this.Email = user.GetEmail();
+        this.Email = user.GetEmail().Replace(".com",string.Empty);
         this.FirstName = user.GetFirstName();
         this.SecondName = user.GetSecondName();
         if(this.FirstName.Length>0)

@@ -3,7 +3,7 @@ using MudBlazor;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Account
+namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 {
     public partial class Login
     {
@@ -14,20 +14,20 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Account
 
         private async Task SubmitAsync()
         {
-            var result = await this.AuthService.Login(this.model);
+            var result = await _authService.Login(this.model);
 
             if (result.Succeeded)
             {
                 this.ShowErrors = false;
-                this.NavigationManager.NavigateTo("/");
-                SnackBar.Add("Logged In", Severity.Success);
+                _navigationManager.NavigateTo("/");
+                _snackBar.Add("Logged In", Severity.Success);
             }
             else
             {
                 this.Errors = result.Errors;
                 foreach (string error in Errors)
                 {
-                    SnackBar.Add(error, Severity.Error);
+                    _snackBar.Add(error, Severity.Error);
                 }
                 this.ShowErrors = true;
             }
