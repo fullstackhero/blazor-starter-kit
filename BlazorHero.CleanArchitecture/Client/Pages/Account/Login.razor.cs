@@ -7,10 +7,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Account
 {
     public partial class Login
     {
-        LoginRequest model = new LoginRequest();
+        private LoginRequest model = new LoginRequest();
         public bool ShowErrors { get; set; }
 
         public IEnumerable<string> Errors { get; set; } = new List<string>();
+
         private async Task SubmitAsync()
         {
             var result = await this.AuthService.Login(this.model);
@@ -24,7 +25,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Account
             else
             {
                 this.Errors = result.Errors;
-                foreach(string error in Errors)
+                foreach (string error in Errors)
                 {
                     SnackBar.Add(error, Severity.Error);
                 }

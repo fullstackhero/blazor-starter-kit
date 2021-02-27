@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Identity\" />
+    <Folder Include="Constants\" />
     <Folder Include="Persistence\" />
   </ItemGroup>
   <ItemGroup>

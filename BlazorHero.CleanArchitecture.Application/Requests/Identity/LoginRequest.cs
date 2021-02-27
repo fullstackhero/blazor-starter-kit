@@ -6,6 +6,7 @@ namespace BlazorHero.CleanArchitecture.Application.Requests.Identity
     {
         [Required]
         public string Email { get; set; }
+
         [Required]
         public string Password { get; set; }
     }

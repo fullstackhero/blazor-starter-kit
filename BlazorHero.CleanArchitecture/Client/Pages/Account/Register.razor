@@ -1,7 +1,5 @@
 ﻿@page "/register"
 
-
-
 <MudItem xs="12">
     <MudText Typo="Typo.h4">Sign Up</MudText>
 </MudItem>
@@ -23,8 +21,6 @@
 <MudItem xs="12" Class="d-flex justify-center">
     <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!AgreeToTerms)" Link="/pages/authentication/login" Size="Size.Large" Style="width: 100%;">Register</MudButton>
 </MudItem>
-
-
 
 @code {
     string Password { get; set; }

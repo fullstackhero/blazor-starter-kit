@@ -9,6 +9,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
         public BlazorHeroUser()
         {
         }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

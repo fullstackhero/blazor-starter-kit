@@ -23,17 +23,20 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             services.Configure<AppConfiguration>(applicationSettingsConfiguration);
             return applicationSettingsConfiguration.Get<AppConfiguration>();
         }
+
         public static IServiceCollection AddDatabase(
             this IServiceCollection services,
             IConfiguration configuration)
             => services
                 .AddDbContext<BlazorHeroContext>(options => options
                     .UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<IIdentityService, IdentityService>();
             return services;
         }
+
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services

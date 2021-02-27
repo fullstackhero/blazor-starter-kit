@@ -13,6 +13,7 @@ namespace BlazorHero.CleanArchitecture.Client.Services
         {
             _localStorageService = localStorageService;
         }
+
         public async Task<bool> ToggleDarkMode()
         {
             var preference = await GetPreference();
@@ -23,11 +24,11 @@ namespace BlazorHero.CleanArchitecture.Client.Services
             else
             {
                 preference.IsDarkMode = true;
-                
             }
             await SetPreference(preference);
             return !preference.IsDarkMode;
         }
+
         public async Task<MudTheme> GetCurrentThemeAsync()
         {
             var preference = await GetPreference();
@@ -39,6 +40,7 @@ namespace BlazorHero.CleanArchitecture.Client.Services
         {
             return await _localStorageService.GetItemAsync<Preference>("preference") ?? new Preference();
         }
+
         public async Task SetPreference(Preference preference)
         {
             await _localStorageService.SetItemAsync("preference", preference);

@@ -2,7 +2,7 @@
 using BlazorHero.CleanArchitecture.Application.Wrapper;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Services
+namespace BlazorHero.CleanArchitecture.Client.Interfaces
 {
     public interface IAuthService
     {

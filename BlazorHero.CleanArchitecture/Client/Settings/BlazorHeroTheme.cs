@@ -120,13 +120,13 @@ namespace BlazorHero.CleanArchitecture.Client.Settings
                 DefaultBorderRadius = "3px"
             }
         };
+
         public static MudTheme DarkTheme = new MudTheme()
         {
             Palette = new Palette()
             {
-                
                 Primary = Colors.Blue.Darken1,
-                
+
                 Black = "#27272f",
                 Background = "#32333d",
                 BackgroundGrey = "#27272f",

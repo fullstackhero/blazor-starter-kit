@@ -2,13 +2,16 @@
 using MudBlazor;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Services
+namespace BlazorHero.CleanArchitecture.Client.Interfaces
 {
     public interface IBrowserService
     {
         Task SetPreference(Preference preference);
+
         Task<Preference> GetPreference();
+
         Task<MudTheme> GetCurrentThemeAsync();
+
         Task<bool> ToggleDarkMode();
     }
 }

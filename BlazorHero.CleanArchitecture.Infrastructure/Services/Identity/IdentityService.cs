@@ -24,6 +24,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
         private readonly UserManager<BlazorHeroUser> userManager;
         private readonly AppConfiguration appConfig;
+
         public IdentityService(
             UserManager<BlazorHeroUser> userManager, IOptions<AppConfiguration> appConfig)
         {
@@ -72,11 +73,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             }
             catch
             {
-
                 throw;
             }
-            
         }
+
         private async Task<string> GenerateJwtAsync(BlazorHeroUser user)
         {
             var claims = new List<Claim>
@@ -108,6 +108,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
             return encryptedToken;
         }
+
         public async Task<Result> ChangeSettingsAsync(
             ChangeSettingsRequest model, string userId)
         {
