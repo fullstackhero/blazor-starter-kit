@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/blazorhero/CleanArchitecture">
-    <img src="https://codewithmukesh.com/wp-content/uploads/2021/02/blazorhero_logo_lightversion.jpg" alt="Logo">
+    <img src="https://codewithmukesh.com/wp-content/uploads/2021/02/blazorhero_light_logo.jpg" alt="Logo">
   </a>
 
   <h3 align="center">BlazorHero - Clean Architecture Template</h3>
