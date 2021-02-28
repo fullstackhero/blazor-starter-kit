@@ -7,6 +7,6 @@ namespace BlazorHero.CleanArchitecture.Client.Interfaces
     public interface IAccountService
     {
         Task ChangePasswordAsync(ChangePasswordRequest model);
-        Task<Result> UpdateProfiledAsync(ChangePasswordRequest model, string userId);
+        Task UpdateProfiledAsync(UpdateProfileRequest model);
     }
 }

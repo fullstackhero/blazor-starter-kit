@@ -1,0 +1,9 @@
+﻿@namespace BlazorHero.CleanArchitecture.Client.Shared.Components
+<MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-2">@Title</MudText>
+<MudText Color="Color.Surface" Class="mb-4">@Description</MudText>
+
+@code
+{
+    [Parameter] public string Title { get; set; }
+    [Parameter] public string Description { get; set; }
+}

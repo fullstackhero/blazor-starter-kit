@@ -56,22 +56,22 @@ namespace BlazorHero.CleanArchitecture.Client.Services
 
             var token = responseObject.Token;
 
-            await this.localStorage.SetItemAsync("authToken", token);
+            await localStorage.SetItemAsync("authToken", token);
 
             ((BlazorHeroStateProvider)this.authenticationStateProvider).MarkUserAsAuthenticated(model.Email);
 
-            this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             return Result.Success;
         }
 
         public async Task Logout()
         {
-            await this.localStorage.RemoveItemAsync("authToken");
+            await localStorage.RemoveItemAsync("authToken");
 
             ((BlazorHeroStateProvider)this.authenticationStateProvider).MarkUserAsLoggedOut();
 
-            this.httpClient.DefaultRequestHeaders.Authorization = null;
+            httpClient.DefaultRequestHeaders.Authorization = null;
         }
     }
 }

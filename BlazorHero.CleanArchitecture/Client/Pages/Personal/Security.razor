@@ -1,0 +1,27 @@
+﻿
+<EditForm Model="@passwordModel" OnValidSubmit="(async () => await ChangePasswordAsync())">
+    <DataAnnotationsValidator />
+    <MudCard>
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText>Change Password</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudGrid>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" @bind-Value="passwordModel.NewPassword" For="@(() => passwordModel.NewPassword)" Label="Password" Variant="Variant.Outlined" InputType="InputType.Password" @ref="pwField" Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" Required="true" RequiredError="Password is required!" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" @bind-Value="passwordModel.ConfirmNewPassword" For="@(() => passwordModel.ConfirmNewPassword)" Label="Password Confirmation" Variant="Variant.Outlined" InputType="InputType.Password" Validation="@(new Func<string, string>(PasswordMatch))" Required="true" RequiredError="Password Confirmation is required!" />
+                </MudItem>
+                <MudItem xs="12">
+                    <MudTextField T="string" @bind-Value="passwordModel.Password" For="@(() => passwordModel.Password)" Label="Current Password" Variant="Variant.Outlined" InputType="InputType.Password" Required="true" RequiredError="Current Password is required!" />
+                </MudItem>
+            </MudGrid>
+        </MudCardContent>
+        <MudCardActions Class="pb-4 pl-4">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit" Class="ml-auto">Change Password</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>

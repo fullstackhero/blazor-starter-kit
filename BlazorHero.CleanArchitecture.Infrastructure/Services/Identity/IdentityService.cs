@@ -22,14 +22,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
     {
         private const string InvalidErrorMessage = "Invalid email or password.";
 
-        private readonly UserManager<BlazorHeroUser> userManager;
-        private readonly AppConfiguration appConfig;
+        private readonly UserManager<BlazorHeroUser> _userManager;
+        private readonly AppConfiguration _appConfig;
 
         public IdentityService(
             UserManager<BlazorHeroUser> userManager, IOptions<AppConfiguration> appConfig)
         {
-            this.userManager = userManager;
-            this.appConfig = appConfig.Value;
+            _userManager = userManager;
+            _appConfig = appConfig.Value;
         }
 
         public async Task<Result> RegisterAsync(RegisterRequest model)
@@ -42,7 +42,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 UserName = model.Email
             };
 
-            var identityResult = await this.userManager.CreateAsync(user, model.Password);
+            var identityResult = await _userManager.CreateAsync(user, model.Password);
 
             var errors = identityResult.Errors.Select(e => e.Description);
 
@@ -55,13 +55,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         {
             try
             {
-                var user = await this.userManager.FindByEmailAsync(model.Email);
+                var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
                     return InvalidErrorMessage;
                 }
 
-                var passwordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
+                var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
                 if (!passwordValid)
                 {
                     return InvalidErrorMessage;
@@ -71,7 +71,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
                 return new LoginResponse { Token = token };
             }
-            catch
+            catch(Exception ex)
             {
                 throw;
             }
@@ -84,17 +84,18 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.FirstName),
-                new Claim(ClaimTypes.Surname, user.LastName)
+                new Claim(ClaimTypes.Surname, user.LastName),
+                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
             };
 
-            var isAdministrator = await this.userManager.IsInRoleAsync(user, AdministratorRole);
+            var isAdministrator = await _userManager.IsInRoleAsync(user, AdministratorRole);
 
             if (isAdministrator)
             {
                 claims.Add(new Claim(ClaimTypes.Role, AdministratorRole));
             }
 
-            var secret = Encoding.UTF8.GetBytes(this.appConfig.Secret);
+            var secret = Encoding.UTF8.GetBytes(_appConfig.Secret);
 
             var token = new JwtSecurityToken(
                 claims: claims,
@@ -109,10 +110,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             return encryptedToken;
         }
 
-        public async Task<Result> ChangeSettingsAsync(
-            ChangeSettingsRequest model, string userId)
+        public async Task<Result> UpdateProfileAsync(
+            UpdateProfileRequest model, string userId)
         {
-            var user = await this.userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
                 return InvalidErrorMessage;
@@ -120,8 +121,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
+            user.PhoneNumber = model.PhoneNumber;
 
-            var identityResult = await this.userManager.UpdateAsync(user);
+            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            if (model.PhoneNumber != phoneNumber)
+            {
+                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
+            }
+
+            var identityResult = await _userManager.UpdateAsync(user);
 
             var errors = identityResult.Errors.Select(e => e.Description);
 
@@ -133,13 +141,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         public async Task<Result> ChangePasswordAsync(
             ChangePasswordRequest model, string userId)
         {
-            var user = await this.userManager.FindByIdAsync(userId);
+            var user = await this._userManager.FindByIdAsync(userId);
             if (user == null)
             {
                 return InvalidErrorMessage;
             }
 
-            var identityResult = await this.userManager.ChangePasswordAsync(
+            var identityResult = await this._userManager.ChangePasswordAsync(
                 user,
                 model.Password,
                 model.NewPassword);

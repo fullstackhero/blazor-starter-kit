@@ -12,7 +12,7 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity
 
         Task<Result<LoginResponse>> LoginAsync(LoginRequest model);
 
-        Task<Result> ChangeSettingsAsync(ChangeSettingsRequest model, string userId);
+        Task<Result> UpdateProfileAsync(UpdateProfileRequest model, string userId);
 
         Task<Result> ChangePasswordAsync(ChangePasswordRequest model, string userId);
     }

@@ -29,7 +29,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 endpoints.MapFallbackToFile("index.html");
             });
 
-        public static IApplicationBuilder Initialize(this IApplicationBuilder app)
+        public static IApplicationBuilder Initialize(this IApplicationBuilder app, Microsoft.Extensions.Configuration.IConfiguration _configuration)
         {
             using var serviceScope = app.ApplicationServices.CreateScope();
 

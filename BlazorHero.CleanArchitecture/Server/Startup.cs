@@ -38,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Server
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints();
-            app.Initialize();
+            app.Initialize(_configuration);
         }
     }
 }

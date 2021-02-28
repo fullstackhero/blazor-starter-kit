@@ -38,11 +38,11 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
                 .ToActionResult();
 
         [Authorize]
-        [HttpPut(nameof(ChangeSettings))]
-        public async Task<ActionResult> ChangeSettings(
-            ChangeSettingsRequest model)
+        [HttpPut(nameof(UpdateProfile))]
+        public async Task<ActionResult> UpdateProfile(
+            UpdateProfileRequest model)
             => await this.identity
-                .ChangeSettingsAsync(model, this.currentUser.UserId)
+                .UpdateProfileAsync(model, this.currentUser.UserId)
                 .ToActionResult();
 
         [Authorize]

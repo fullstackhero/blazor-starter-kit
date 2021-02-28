@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Linq;
+using System.Security.Claims;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
 {

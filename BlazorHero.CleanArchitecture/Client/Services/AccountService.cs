@@ -38,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Client.Services
                 model.NewPassword = null;
                 model.ConfirmNewPassword = null;
                 await _authService.Logout();
-                _snackBar.Add("Your password has been changed successfully.\n Please login.", Severity.Success);
+                _snackBar.Add("Your password has been changed successfully.Please login.", Severity.Success);
                 _navigationManager.NavigateTo("/login");
             }
             else
@@ -51,9 +51,24 @@ namespace BlazorHero.CleanArchitecture.Client.Services
             }
         }
 
-        public Task<Result> UpdateProfiledAsync(ChangePasswordRequest model, string userId)
+        public async Task UpdateProfiledAsync(UpdateProfileRequest model)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.PutAsJsonAsync(Constants.APIRoutes.UpdateProfile, model);
+
+            if (response.IsSuccessStatusCode)
+            {
+                _snackBar.Add("Profile Updated.", Severity.Success);
+                await _authService.Logout();
+                _navigationManager.NavigateTo("/login");
+            }
+            else
+            {
+                Errors = await response.Content.ReadFromJsonAsync<string[]>();
+                foreach (string error in Errors)
+                {
+                    _snackBar.Add(error, Severity.Error);
+                }
+            }
         }
     }
 }
