@@ -26,14 +26,14 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
         [HttpPost(nameof(Register))]
         public async Task<ActionResult> Register(
             RegisterRequest model)
-            => await this.identity
+            => await identity
                 .RegisterAsync(model)
                 .ToActionResult();
 
         [HttpPost(nameof(Login))]
         public async Task<ActionResult<LoginResponse>> Login(
             LoginRequest model)
-            => await this.identity
+            => await identity
                 .LoginAsync(model)
                 .ToActionResult();
 
@@ -41,8 +41,8 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
         [HttpPut(nameof(UpdateProfile))]
         public async Task<ActionResult> UpdateProfile(
             UpdateProfileRequest model)
-            => await this.identity
-                .UpdateProfileAsync(model, this.currentUser.UserId)
+            => await identity
+                .UpdateProfileAsync(model, currentUser.UserId)
                 .ToActionResult();
 
         [Authorize]
@@ -50,8 +50,8 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
         public async Task<ActionResult> ChangePassword(
             ChangePasswordRequest model)
         {
-            return await this.identity
-                           .ChangePasswordAsync(model, this.currentUser.UserId)
+            return await identity
+                           .ChangePasswordAsync(model, currentUser.UserId)
                            .ToActionResult();
         }
     }

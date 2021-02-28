@@ -81,6 +81,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
         private async Task<string> GenerateJwtAsync(BlazorHeroUser user)
         {
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            var roles = await _userManager.GetRolesAsync(user);
+            var roleClaims = new List<Claim>();
+            for (int i = 0; i < roles.Count; i++)
+            {
+                roleClaims.Add(new Claim(ClaimTypes.Role, roles[i]));
+            }
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
@@ -88,12 +95,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 new Claim(ClaimTypes.Name, user.FirstName),
                 new Claim(ClaimTypes.Surname, user.LastName),
                 new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
-            };
-            var isAdministrator = await _userManager.IsInRoleAsync(user, AdministratorRole);
-            if (isAdministrator)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, AdministratorRole));
             }
+            .Union(userClaims)
+            .Union(roleClaims);
             var secret = Encoding.UTF8.GetBytes(_appConfig.Secret);
             var token = new JwtSecurityToken(
                 claims: claims,

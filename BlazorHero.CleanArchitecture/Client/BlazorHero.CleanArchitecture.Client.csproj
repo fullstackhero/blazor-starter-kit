@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\" />
-    <Folder Include="ViewModels\" />
+    <Folder Include="Mappings\" />
   </ItemGroup>
 
   <ItemGroup>

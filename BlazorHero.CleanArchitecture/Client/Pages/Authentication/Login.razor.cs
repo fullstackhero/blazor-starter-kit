@@ -15,8 +15,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             var result = await _authService.Login(model);
             if (result.Succeeded)
             {
-                _navigationManager.NavigateTo("/");
+               
                 _snackBar.Add($"Welcome {model.Email}", Severity.Success);
+                _navigationManager.NavigateTo("/",true);
             }
             else
             {

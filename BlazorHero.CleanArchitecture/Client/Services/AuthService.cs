@@ -38,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Client.Services
 
         public async Task<Result> Login(LoginRequest model)
         {
-            var response = await this.httpClient.PostAsJsonAsync(Constants.APIRoutes.Login, model);
+            var response = await httpClient.PostAsJsonAsync(Constants.APIRoutes.Login, model);
 
             if (!response.IsSuccessStatusCode)
             {

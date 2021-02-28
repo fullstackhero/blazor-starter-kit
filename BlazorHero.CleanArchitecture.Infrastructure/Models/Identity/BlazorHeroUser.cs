@@ -6,10 +6,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
 {
     public class BlazorHeroUser : IdentityUser, IAuditableEntity, IDeletableEntity
     {
-        public BlazorHeroUser()
-        {
-        }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

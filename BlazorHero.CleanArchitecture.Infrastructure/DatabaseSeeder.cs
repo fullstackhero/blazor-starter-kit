@@ -28,6 +28,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
         {
             _db.Database.Migrate();
             AddSuperUser();
+            AddBasicUser();
             _db.SaveChanges();
         }
 
@@ -62,6 +63,39 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     _logger.LogInformation("Seeded Super User.");
                 }
                 
+            }).GetAwaiter().GetResult();
+        }
+        private void AddBasicUser()
+        {
+            Task.Run(async () =>
+            {
+                //Check if Role Exists
+                var basicRole = new IdentityRole(Constants.BasicRole);
+                var basicRoleInDb = await _roleManager.FindByNameAsync(Constants.BasicRole);
+                if (basicRoleInDb == null)
+                {
+                    await _roleManager.CreateAsync(basicRole);
+                    _logger.LogInformation("Seeded Basic Role.");
+                }
+                //Check if User Exists
+                var basicUser = new BlazorHeroUser
+                {
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Email = "john@blazorhero.com",
+                    UserName = "johndoe",
+                    EmailConfirmed = true,
+                    PhoneNumberConfirmed = true,
+                    CreatedOn = DateTime.Now
+                };
+                var basicUserInDb = await _userManager.FindByEmailAsync(basicUser.Email);
+                if (basicUserInDb == null)
+                {
+                    await _userManager.CreateAsync(basicUser, Constants.DefaultPassword);
+                    await _userManager.AddToRoleAsync(basicUser, Constants.BasicRole);
+                    _logger.LogInformation("Seeded Basic User.");
+                }
+
             }).GetAwaiter().GetResult();
         }
     }

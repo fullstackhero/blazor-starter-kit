@@ -7,5 +7,10 @@
     <MudNavLink Href="/frequently-asked-questions" Icon="@Icons.Material.Outlined.QuestionAnswer">FAQs</MudNavLink>
     <MudListSubheader Class="mt-2 mb-n2">Personal</MudListSubheader>
     <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.Person">Account</MudNavLink>
-   
+    <AuthorizeView Roles="SuperAdmin">
+        <MudListSubheader Class="mt-2 mb-n2">Administrator</MudListSubheader>
+        <MudNavLink Href="/admin/users" Icon="@Icons.Material.Outlined.Person">Users</MudNavLink>
+        <MudNavLink Href="/admin/roles" Icon="@Icons.Material.Outlined.Person">Roles</MudNavLink>
+    </AuthorizeView>
+
 </MudNavMenu>
