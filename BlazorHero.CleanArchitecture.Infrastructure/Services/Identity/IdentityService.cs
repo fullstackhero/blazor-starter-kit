@@ -24,12 +24,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
         private readonly UserManager<BlazorHeroUser> _userManager;
         private readonly AppConfiguration _appConfig;
+        private readonly SignInManager<BlazorHeroUser> _signInManager;
 
         public IdentityService(
-            UserManager<BlazorHeroUser> userManager, IOptions<AppConfiguration> appConfig)
+            UserManager<BlazorHeroUser> userManager, IOptions<AppConfiguration> appConfig, SignInManager<BlazorHeroUser> signInManager)
         {
             _userManager = userManager;
             _appConfig = appConfig.Value;
+            _signInManager = signInManager;
         }
 
         public async Task<Result> RegisterAsync(RegisterRequest model)
@@ -71,7 +73,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
                 return new LoginResponse { Token = token };
             }
-            catch(Exception ex)
+            catch
             {
                 throw;
             }
@@ -87,26 +89,20 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 new Claim(ClaimTypes.Surname, user.LastName),
                 new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
             };
-
             var isAdministrator = await _userManager.IsInRoleAsync(user, AdministratorRole);
-
             if (isAdministrator)
             {
                 claims.Add(new Claim(ClaimTypes.Role, AdministratorRole));
             }
-
             var secret = Encoding.UTF8.GetBytes(_appConfig.Secret);
-
             var token = new JwtSecurityToken(
                 claims: claims,
                 expires: DateTime.UtcNow.AddDays(7),
                 signingCredentials: new SigningCredentials(
                     new SymmetricSecurityKey(secret),
                     SecurityAlgorithms.HmacSha256));
-
             var tokenHandler = new JwtSecurityTokenHandler();
             var encryptedToken = tokenHandler.WriteToken(token);
-
             return encryptedToken;
         }
 
@@ -118,21 +114,17 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             {
                 return InvalidErrorMessage;
             }
-
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.PhoneNumber = model.PhoneNumber;
-
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (model.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
             }
-
             var identityResult = await _userManager.UpdateAsync(user);
-
             var errors = identityResult.Errors.Select(e => e.Description);
-
+            await _signInManager.RefreshSignInAsync(user);
             return identityResult.Succeeded
                 ? Result.Success
                 : Result.Failure(errors);
@@ -151,9 +143,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 user,
                 model.Password,
                 model.NewPassword);
-
             var errors = identityResult.Errors.Select(e => e.Description);
-
             return identityResult.Succeeded
                 ? Result.Success
                 : Result.Failure(errors);

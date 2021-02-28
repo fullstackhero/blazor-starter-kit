@@ -11,6 +11,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Personal
     public partial class Security
     {
         private readonly ChangePasswordRequest passwordModel = new ChangePasswordRequest();
+        protected override async Task OnInitializedAsync()
+        {
+        }
         private async Task ChangePasswordAsync()
         {
             await _accountService.ChangePasswordAsync(passwordModel);

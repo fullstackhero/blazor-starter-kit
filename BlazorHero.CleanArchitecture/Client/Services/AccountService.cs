@@ -31,7 +31,6 @@ namespace BlazorHero.CleanArchitecture.Client.Services
         public async Task ChangePasswordAsync(ChangePasswordRequest model)
         {
             var response = await _httpClient.PutAsJsonAsync(Constants.APIRoutes.ChangePassword, model);
-
             if (response.IsSuccessStatusCode)
             {
                 model.Password = null;
@@ -50,15 +49,13 @@ namespace BlazorHero.CleanArchitecture.Client.Services
                 }
             }
         }
-
         public async Task UpdateProfiledAsync(UpdateProfileRequest model)
         {
             var response = await _httpClient.PutAsJsonAsync(Constants.APIRoutes.UpdateProfile, model);
-
             if (response.IsSuccessStatusCode)
             {
-                _snackBar.Add("Profile Updated.", Severity.Success);
                 await _authService.Logout();
+                _snackBar.Add("Profile Updated. Login to Continue", Severity.Success);
                 _navigationManager.NavigateTo("/login");
             }
             else

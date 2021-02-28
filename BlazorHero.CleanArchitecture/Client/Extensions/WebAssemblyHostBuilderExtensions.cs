@@ -36,6 +36,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                     configuration.SnackbarConfiguration.HideTransitionDuration = 100;
                     configuration.SnackbarConfiguration.ShowTransitionDuration = 100;
                     configuration.SnackbarConfiguration.VisibleStateDuration = 3000;
+                    configuration.SnackbarConfiguration.ShowCloseIcon = false;
                 })
                 .AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) })
                 .AddScoped<BrowserService>()

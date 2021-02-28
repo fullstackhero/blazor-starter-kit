@@ -69,7 +69,7 @@ namespace BlazorHero.CleanArchitecture.Client.Services
         {
             await localStorage.RemoveItemAsync("authToken");
 
-            ((BlazorHeroStateProvider)this.authenticationStateProvider).MarkUserAsLoggedOut();
+            ((BlazorHeroStateProvider)authenticationStateProvider).MarkUserAsLoggedOut();
 
             httpClient.DefaultRequestHeaders.Authorization = null;
         }

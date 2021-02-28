@@ -3,6 +3,8 @@ using BlazorHero.CleanArchitecture.Client.Extensions;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Personal
@@ -33,19 +35,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Personal
             if (profileModel.FirstName.Length > 0)
             {
                 FirstLetterOfName = profileModel.FirstName[0];
-            }
-        }
-        void DeletePicture()
-        {
-            if (!String.IsNullOrEmpty(AvatarImageLink))
-            {
-                AvatarImageLink = null;
-                AvatarIcon = Icons.Material.Outlined.SentimentVeryDissatisfied;
-                AvatarButtonText = "Upload Picture";
-                AvatarButtonColor = Color.Primary;
-            }
-            else
-            {
             }
         }
     }

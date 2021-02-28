@@ -13,15 +13,15 @@ namespace BlazorHero.CleanArchitecture.Client.Authentication
 {
     public class BlazorHeroStateProvider : AuthenticationStateProvider
     {
-        private readonly HttpClient httpClient;
-        private readonly ILocalStorageService localStorage;
+        private readonly HttpClient _httpClient;
+        private readonly ILocalStorageService _localStorage;
 
         public BlazorHeroStateProvider(
             HttpClient httpClient,
             ILocalStorageService localStorage)
         {
-            this.httpClient = httpClient;
-            this.localStorage = localStorage;
+            _httpClient = httpClient;
+            _localStorage = localStorage;
         }
 
         public void MarkUserAsAuthenticated(string userName)
@@ -47,23 +47,20 @@ namespace BlazorHero.CleanArchitecture.Client.Authentication
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var savedToken = await this.localStorage.GetItemAsync<string>("authToken");
-
+            var savedToken = await _localStorage.GetItemAsync<string>("authToken");
             if (string.IsNullOrWhiteSpace(savedToken))
             {
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
             }
-
-            this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", savedToken);
-
-            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(this.GetClaimsFromJwt(savedToken), "jwt")));
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", savedToken);
+            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(GetClaimsFromJwt(savedToken), "jwt")));
         }
 
         private IEnumerable<Claim> GetClaimsFromJwt(string jwt)
         {
             var claims = new List<Claim>();
             var payload = jwt.Split('.')[1];
-            var jsonBytes = this.ParseBase64WithoutPadding(payload);
+            var jsonBytes = ParseBase64WithoutPadding(payload);
             var keyValuePairs = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonBytes);
 
             keyValuePairs.TryGetValue(ClaimTypes.Role, out var roles);

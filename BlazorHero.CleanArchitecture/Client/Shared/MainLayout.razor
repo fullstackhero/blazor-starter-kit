@@ -113,7 +113,7 @@
         parameters.Add("ButtonText", "Logout");
         parameters.Add("Color", Color.Error);
 
-        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Large };
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth=true };
 
         _dialogService.Show<Dialogs.Logout>("Logout", parameters, options);
     }
@@ -138,10 +138,6 @@
         {
             currentTheme = BlazorHeroTheme.DarkTheme;
         }
-    }
-    private void DeleteUser()
-    {
-
     }
 
 }

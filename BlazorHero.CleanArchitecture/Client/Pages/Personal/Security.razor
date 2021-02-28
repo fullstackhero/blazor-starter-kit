@@ -1,6 +1,4 @@
-﻿
-<EditForm Model="@passwordModel" OnValidSubmit="(async () => await ChangePasswordAsync())">
-    <DataAnnotationsValidator />
+﻿<EditForm Model="@passwordModel" OnValidSubmit="ChangePasswordAsync">
     <MudCard>
         <MudCardHeader>
             <CardHeaderContent>
