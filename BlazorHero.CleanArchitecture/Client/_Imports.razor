@@ -23,6 +23,7 @@
 @using BlazorHero.CleanArchitecture.Client.Pages.Account
 @using BlazorHero.CleanArchitecture.Client.Pages.Authentication
 @using BlazorHero.CleanArchitecture.Client.Pages.Personal
+@using BlazorHero.CleanArchitecture.Client.ViewModels
 
 
 @using BlazorHero.CleanArchitecture.Client.Authentication
@@ -30,6 +31,7 @@
 
 @using MudBlazor
 
+@attribute [Authorize]
 @inject IAuthService _authService
 @inject IAccountService _accountService
 @inject NavigationManager _navigationManager
@@ -37,5 +39,4 @@
 @inject ISnackbar _snackBar
 @inject IDialogService _dialogService
 @inject HttpClient _httpClient
-
-@attribute [Authorize]
+@inject IAdminService _adminService

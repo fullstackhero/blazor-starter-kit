@@ -38,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Client.Services
 
         public async Task<Result> Login(LoginRequest model)
         {
-            var response = await httpClient.PostAsJsonAsync(Constants.APIRoutes.Login, model);
+            var response = await this.httpClient.PostAsJsonAsync(Constants.APIRoutes.Login, model);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -72,6 +72,14 @@ namespace BlazorHero.CleanArchitecture.Client.Services
             ((BlazorHeroStateProvider)authenticationStateProvider).MarkUserAsLoggedOut();
 
             httpClient.DefaultRequestHeaders.Authorization = null;
+        }
+
+        public async Task ResetToken(string newToken, string email)
+        {
+            await localStorage.RemoveItemAsync("authToken");
+            await localStorage.SetItemAsync("authToken", newToken);
+            ((BlazorHeroStateProvider)this.authenticationStateProvider).MarkUserAsAuthenticated(email);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", newToken);
         }
     }
 }

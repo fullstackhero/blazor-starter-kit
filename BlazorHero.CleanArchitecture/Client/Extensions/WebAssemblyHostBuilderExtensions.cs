@@ -38,7 +38,6 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                     configuration.SnackbarConfiguration.VisibleStateDuration = 3000;
                     configuration.SnackbarConfiguration.ShowCloseIcon = false;
                 })
-                .AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) })
                 .AddScoped<BrowserService>()
                 .AddScoped<BlazorHeroStateProvider>()
                 .AddScoped<AuthenticationStateProvider, BlazorHeroStateProvider>()
@@ -46,6 +45,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .GetRequiredService<IHttpClientFactory>()
                 .CreateClient(ClientName))
                 .AddTransient<IAuthService, AuthService>()
+                .AddTransient<IAdminService, AdminService>()
                 .AddTransient<IAccountService, AccountService>()
                 .AddTransient<AuthenticationHeaderHandler>()
                 .AddHttpClient(ClientName, client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
