@@ -41,6 +41,6 @@
 - [ ] File Upload
 - [ ] CRUD Functionalities
 - [ ] Profile Picture
-- [ ] Localization
+- [x] Localization
 - [ ] Role Management
 - [ ] User-Role Management
