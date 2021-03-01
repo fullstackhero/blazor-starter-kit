@@ -29,7 +29,12 @@ namespace BlazorHero.CleanArchitecture.Client.Services
             await SetPreference(preference);
             return !preference.IsDarkMode;
         }
-
+        public async Task ChangeLanguageAsync(string languageCode)
+        {
+            var preference = await GetPreference();
+            preference.LanguageCode = languageCode;
+            await SetPreference(preference);
+        }
         public async Task<MudTheme> GetCurrentThemeAsync()
         {
             var preference = await GetPreference();

@@ -42,3 +42,5 @@
 - [ ] CRUD Functionalities
 - [ ] Profile Picture
 - [ ] Localization
+- [ ] Role Management
+- [ ] User-Role Management

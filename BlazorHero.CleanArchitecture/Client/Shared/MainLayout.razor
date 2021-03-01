@@ -1,5 +1,4 @@
 ﻿@inherits LayoutComponentBase
-@inject BrowserService browserService;
 
 <MudThemeProvider Theme="currentTheme" />
 <MudDialogProvider />
@@ -30,7 +29,9 @@
                         <MudMenuItem Link="https://mudblazor.com/" Target="_blank">MudBlazor Documentation</MudMenuItem>
                         <MudMenuItem Link="https://github.com/blazorhero/CleanArchitecture" Target="_blank">Quick-Start Guide</MudMenuItem>
                     </MudMenu>
+
                     <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" Class="mx-4 my-5" />
+                    <LanguageSelector/>
                     <MudTooltip Text="Toggle Dark Mode">
                         <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
                     </MudTooltip>
@@ -104,7 +105,7 @@
     private bool _drawerOpen = true;
     protected override async Task OnInitializedAsync()
     {
-        currentTheme = await browserService.GetCurrentThemeAsync();
+        currentTheme = await _browserService.GetCurrentThemeAsync();
     }
     void Logout()
     {
@@ -129,7 +130,7 @@
 
     async Task DarkMode()
     {
-        bool isDarkMode = await browserService.ToggleDarkMode();
+        bool isDarkMode = await _browserService.ToggleDarkMode();
         if (isDarkMode)
         {
             currentTheme = BlazorHeroTheme.DefaultTheme;

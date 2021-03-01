@@ -1,6 +1,7 @@
 ﻿@page "/login"
 @layout MainLayout
 @attribute [AllowAnonymous]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Login> _localizer
 <EditForm Model="@model" OnValidSubmit="SubmitAsync">
     <MudGrid>
 
@@ -13,7 +14,7 @@
         <DataAnnotationsValidator />
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudText Typo="Typo.h4">Sign In</MudText>
+                <MudText Typo="Typo.h4">@_localizer["SignIn"]</MudText>
             </div>
         </MudItem>
         <MudItem xs="12">

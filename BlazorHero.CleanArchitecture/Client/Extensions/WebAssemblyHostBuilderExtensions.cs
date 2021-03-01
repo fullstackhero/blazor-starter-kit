@@ -9,6 +9,7 @@ using MudBlazor;
 using MudBlazor.Services;
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
 {
@@ -29,6 +30,10 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .Services
                 .AddAuthorizationCore()
                 .AddBlazoredLocalStorage()
+                .AddLocalization(options =>
+                {
+                    options.ResourcesPath = "Resources";
+                })
                 .AddMudServices(
                 configuration =>
                 {
