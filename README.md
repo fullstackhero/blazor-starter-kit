@@ -23,22 +23,22 @@
 - [x] Mudblazor Component Library
 - [x] .NET 5.0+
 - [x] Blazor Web-Assembly: ASP.NET Core Hosted
-- [] Onion Architecture
+- [ ] Onion Architecture
 - [x] Persistent Dark Mode (Local Storage)
 - [x] Service-Based Approach
-- [] AutoMapper
-- [] API Versioning
+- [ ] AutoMapper
+- [ ] API Versioning
 - [x] JWT Authentication
-- [] Serilog
-- [] Complete User Management
-- [] Chat
-- [] Charts
-- [] PDF Downloads
+- [ ] Serilog
+- [ ] Complete User Management
+- [ ] Chat
+- [ ] Charts
+- [ ] PDF Downloads
 - [x] Clean Fluid UI
-- [] Theme Manager
-- [] Custom Error Pages
-- [] Middlewares
-- [] File Upload
-- [] CRUD Functionalities
-- [] Profile Picture
-- [] Localization
+- [ ] Theme Manager
+- [ ] Custom Error Pages
+- [ ] Middlewares
+- [ ] File Upload
+- [ ] CRUD Functionalities
+- [ ] Profile Picture
+- [ ] Localization
