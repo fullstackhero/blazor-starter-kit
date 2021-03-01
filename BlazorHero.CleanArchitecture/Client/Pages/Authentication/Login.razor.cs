@@ -17,12 +17,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             var state = await _authState.GetAuthenticationStateAsync();
             if(state != new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())))
             {
-                _navigationManager.NavigateTo("");
+                _navigationManager.NavigateTo("/");
             }
         }
         private async Task SubmitAsync()
         {
-            var result = await _authService.Login(model).ConfigureAwait(true);
+            var result = await _authService.Login(model).ConfigureAwait(false);
             if (result.Succeeded)
             {
                

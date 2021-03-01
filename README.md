@@ -19,32 +19,26 @@
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#features-included">Features Included</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <ul>
-        <li><a href="#mukesh-murugan">Mukesh Murugan</a></li>
-    </ul>
-    <li><a href="#support">Support</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
+# Features To Be Included
+- [x] Mudblazor Component Library
+- [x] .NET 5.0+
+- [x] Blazor Web-Assembly: ASP.NET Core Hosted
+- [] Onion Architecture
+- [x] Persistent Dark Mode (Local Storage)
+- [x] Service-Based Approach
+- [] AutoMapper
+- [] API Versioning
+- [x] JWT Authentication
+- [] Serilog
+- [] Complete User Management
+- [] Chat
+- [] Charts
+- [] PDF Downloads
+- [x] Clean Fluid UI
+- [] Theme Manager
+- [] Custom Error Pages
+- [] Middlewares
+- [] File Upload
+- [] CRUD Functionalities
+- [] Profile Picture
+- [] Localization

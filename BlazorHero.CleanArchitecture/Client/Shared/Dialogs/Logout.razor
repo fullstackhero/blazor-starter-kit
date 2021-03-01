@@ -20,7 +20,7 @@
     async Task Submit()
     {
         await _authService.Logout();
-
+        _navigationManager.NavigateTo("/login");
         MudDialog.Close(DialogResult.Ok(true));
     }
     void Cancel() => MudDialog.Cancel();
