@@ -29,7 +29,7 @@
 - [ ] AutoMapper
 - [ ] API Versioning
 - [x] JWT Authentication
-- [ ] Serilog
+- [x] Serilog - Server-Side Only*
 - [ ] Complete User Management
 - [ ] Chat
 - [ ] Charts
