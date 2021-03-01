@@ -1,15 +1,28 @@
-﻿<UserCard />
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<NavMenu> localizer
+<UserCard />
 <MudDivider Class="mb-4" />
 <MudNavMenu>
-    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">Home</MudNavLink>
-    <MudNavLink Href="/features" Icon="@Icons.Material.Outlined.Widgets">Features</MudNavLink>
-    <MudNavLink Href="/resources" Icon="@Icons.Material.Outlined.ReadMore">Resources</MudNavLink>
-    <MudNavLink Href="/frequently-asked-questions" Icon="@Icons.Material.Outlined.QuestionAnswer">FAQs</MudNavLink>
-    <MudListSubheader Class="mt-2 mb-n2">Personal</MudListSubheader>
-    <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.Person">Account</MudNavLink>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">@localizer["Home"]</MudNavLink>
+    <MudNavLink Href="/features" Icon="@Icons.Material.Outlined.Widgets">
+        @localizer["Features"]
+    </MudNavLink>
+    <MudNavLink Href="/resources" Icon="@Icons.Material.Outlined.ReadMore">
+        @localizer["Resources"]
+    </MudNavLink>
+    <MudNavLink Href="/frequently-asked-questions" Icon="@Icons.Material.Outlined.QuestionAnswer">
+        @localizer["FAQs"]
+    </MudNavLink>
+    <MudListSubheader Class="mt-2 mb-n2">@localizer["Personal"]</MudListSubheader>
+    <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.Person">
+        @localizer["Account"]
+    </MudNavLink>
     <AuthorizeView Roles="SuperAdmin">
-        <MudListSubheader Class="mt-2 mb-n2">Administrator</MudListSubheader>
-        <MudNavLink Href="/admin/users" Icon="@Icons.Material.Outlined.Person">Users</MudNavLink>
-        <MudNavLink Href="/admin/roles" Icon="@Icons.Material.Outlined.Person">Roles</MudNavLink>
+        <MudListSubheader Class="mt-2 mb-n2">
+            @localizer["Administrator"]
+        </MudListSubheader>
+        <MudNavLink Href="/admin/users" Icon="@Icons.Material.Outlined.Person">
+            @localizer["Users"]
+        </MudNavLink>
+        <MudNavLink Href="/admin/roles" Icon="@Icons.Material.Outlined.Person">@localizer["Roles"]</MudNavLink>
     </AuthorizeView>
 </MudNavMenu>
