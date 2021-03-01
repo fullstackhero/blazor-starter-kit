@@ -23,10 +23,10 @@
         var state = await _authState.GetAuthenticationStateAsync();
         var user = state.User;
 
-        this.Email = user.GetEmail().Replace(".com",string.Empty);
+        this.Email = user.GetEmail().Replace(".com", string.Empty);
         this.FirstName = user.GetFirstName();
         this.SecondName = user.GetLastName();
-        if(this.FirstName.Length>0)
+        if (this.FirstName.Length > 0)
         {
             FirstLetterOfName = FirstName[0];
         }

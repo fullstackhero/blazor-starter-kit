@@ -62,9 +62,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     await _userManager.AddToRoleAsync(superUser, Constants.SuperAdminRole);
                     _logger.LogInformation("Seeded Super User.");
                 }
-                
             }).GetAwaiter().GetResult();
         }
+
         private void AddBasicUser()
         {
             Task.Run(async () =>
@@ -95,7 +95,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     await _userManager.AddToRoleAsync(basicUser, Constants.BasicRole);
                     _logger.LogInformation("Seeded Basic User.");
                 }
-
             }).GetAwaiter().GetResult();
         }
     }

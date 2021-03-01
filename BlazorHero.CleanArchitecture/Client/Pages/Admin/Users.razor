@@ -1,12 +1,12 @@
 ﻿@page "/admin/users"
 
-<HeroTitle Title="Users" Description="Manage Users."/>
+<HeroTitle Title="Users" Description="Manage Users." />
 <MudTable Elevation="25" Items="GetUsersAsync()" Filter="new Func<UserViewModel, bool>(Search)" @bind-user="user">
     <ToolBarContent>
 
         <MudButton Variant="Variant.Filled" Color="Color.Primary">Create</MudButton>
         <MudToolBarSpacer />
-        <MudTextField @bind-Value="searchString" FullWidth=false  Placeholder="Search for Users..." Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        <MudTextField @bind-Value="searchString" FullWidth=false Placeholder="Search for Users..." Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
         <MudTh>First Name</MudTh>

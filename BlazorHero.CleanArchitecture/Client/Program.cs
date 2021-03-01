@@ -1,5 +1,4 @@
 using BlazorHero.CleanArchitecture.Client.Extensions;
-using BlazorHero.CleanArchitecture.Client.Interfaces;
 using BlazorHero.CleanArchitecture.Client.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +17,7 @@ namespace BlazorHero.CleanArchitecture.Client
                           .AddClientServices();
             var host = builder.Build();
             var storageService = host.Services.GetRequiredService<BrowserService>();
-            if(storageService!=null)
+            if (storageService != null)
             {
                 CultureInfo culture;
                 var preference = await storageService.GetPreference();
@@ -29,8 +28,8 @@ namespace BlazorHero.CleanArchitecture.Client
                 CultureInfo.DefaultThreadCurrentCulture = culture;
                 CultureInfo.DefaultThreadCurrentUICulture = culture;
             }
-                          await builder.Build()
-                          .RunAsync();
+            await builder.Build()
+            .RunAsync();
         }
     }
 }

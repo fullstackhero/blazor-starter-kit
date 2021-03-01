@@ -14,7 +14,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using static BlazorHero.CleanArchitecture.Application.Configurations.Constants;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {

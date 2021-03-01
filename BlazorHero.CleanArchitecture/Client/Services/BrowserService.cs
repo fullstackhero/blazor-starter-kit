@@ -15,26 +15,21 @@ namespace BlazorHero.CleanArchitecture.Client.Services
             _localStorageService = localStorageService;
         }
 
-        public async Task<bool> ToggleDarkMode()
+        public async Task<bool> ToggleDarkModeAsync()
         {
             var preference = await GetPreference();
-            if (preference.IsDarkMode)
-            {
-                preference.IsDarkMode = false;
-            }
-            else
-            {
-                preference.IsDarkMode = true;
-            }
+            preference.IsDarkMode = !preference.IsDarkMode;
             await SetPreference(preference);
             return !preference.IsDarkMode;
         }
+
         public async Task ChangeLanguageAsync(string languageCode)
         {
             var preference = await GetPreference();
             preference.LanguageCode = languageCode;
             await SetPreference(preference);
         }
+
         public async Task<MudTheme> GetCurrentThemeAsync()
         {
             var preference = await GetPreference();

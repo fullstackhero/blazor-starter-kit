@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
 {
@@ -13,8 +12,10 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
 
         public static string GetLastName(this ClaimsPrincipal claimsPrincipal)
             => claimsPrincipal.FindFirstValue(ClaimTypes.Surname);
+
         public static string GetPhoneNumber(this ClaimsPrincipal claimsPrincipal)
             => claimsPrincipal.FindFirstValue(ClaimTypes.MobilePhone);
+
         public static string GetUserId(this ClaimsPrincipal claimsPrincipal)
            => claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
     }

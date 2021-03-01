@@ -1,18 +1,15 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Application.Wrapper;
 using BlazorHero.CleanArchitecture.Client.Interfaces;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Services
 {
-    public class AccountService :  IAccountService
+    public class AccountService : IAccountService
     {
         private readonly HttpClient _httpClient;
         private readonly IAuthService _authService;
@@ -43,12 +40,13 @@ namespace BlazorHero.CleanArchitecture.Client.Services
             else
             {
                 Errors = await response.Content.ReadFromJsonAsync<string[]>();
-                foreach(string error in Errors)
+                foreach (string error in Errors)
                 {
                     _snackBar.Add(error, Severity.Error);
                 }
             }
         }
+
         public async Task UpdateProfiledAsync(UpdateProfileRequest model)
         {
             var response = await _httpClient.PutAsJsonAsync(Constants.APIRoutes.UpdateProfile, model);

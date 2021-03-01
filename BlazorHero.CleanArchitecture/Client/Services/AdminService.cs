@@ -1,7 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Wrapper;
-using BlazorHero.CleanArchitecture.Client.Interfaces;
+﻿using BlazorHero.CleanArchitecture.Client.Interfaces;
 using BlazorHero.CleanArchitecture.Client.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -28,7 +26,6 @@ namespace BlazorHero.CleanArchitecture.Client.Services
                   new UserViewModel{ FirstName = "Max", Id="3" },
             };
             return users;
-
         }
     }
 }

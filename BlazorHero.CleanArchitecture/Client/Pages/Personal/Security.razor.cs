@@ -1,8 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using MudBlazor;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -11,13 +9,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Personal
     public partial class Security
     {
         private readonly ChangePasswordRequest passwordModel = new ChangePasswordRequest();
+
         protected override async Task OnInitializedAsync()
         {
         }
+
         private async Task ChangePasswordAsync()
         {
             await _accountService.ChangePasswordAsync(passwordModel);
         }
+
         private IEnumerable<string> PasswordStrength(string pw)
         {
             if (string.IsNullOrWhiteSpace(pw))
@@ -34,7 +35,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Personal
             if (!Regex.IsMatch(pw, @"[0-9]"))
                 yield return "Password must contain at least one digit";
         }
-        MudTextField<string> pwField;
+
+        private MudTextField<string> pwField;
 
         private string PasswordMatch(string arg)
         {

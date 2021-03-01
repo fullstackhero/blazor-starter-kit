@@ -1,10 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Client.Extensions;
 using MudBlazor;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Personal
@@ -19,11 +16,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Personal
         public Color AvatarButtonColor { get; set; } = Color.Error;
         public IEnumerable<string> Errors { get; set; }
         private readonly UpdateProfileRequest profileModel = new UpdateProfileRequest();
+
         private async Task UpdateProfileAsync()
         {
             await _accountService.UpdateProfiledAsync(profileModel);
         }
+
         protected override async Task OnInitializedAsync() => await LoadDataAsync();
+
         private async Task LoadDataAsync()
         {
             var state = await _authState.GetAuthenticationStateAsync();

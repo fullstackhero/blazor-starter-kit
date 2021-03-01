@@ -31,7 +31,7 @@
                     </MudMenu>
 
                     <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" Class="mx-4 my-5" />
-                    <LanguageSelector/>
+                    <LanguageSelector />
                     <MudTooltip Text="Toggle Dark Mode">
                         <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
                     </MudTooltip>
@@ -114,7 +114,7 @@
         parameters.Add("ButtonText", "Logout");
         parameters.Add("Color", Color.Error);
 
-        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth=true };
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
 
         _dialogService.Show<Dialogs.Logout>("Logout", parameters, options);
     }
@@ -130,7 +130,7 @@
 
     async Task DarkMode()
     {
-        bool isDarkMode = await _browserService.ToggleDarkMode();
+        bool isDarkMode = await _browserService.ToggleDarkModeAsync();
         if (isDarkMode)
         {
             currentTheme = BlazorHeroTheme.DefaultTheme;

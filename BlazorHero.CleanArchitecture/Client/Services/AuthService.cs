@@ -20,7 +20,6 @@ namespace BlazorHero.CleanArchitecture.Client.Services
         private readonly ILocalStorageService localStorage;
         private readonly AuthenticationStateProvider authenticationStateProvider;
 
-
         public AuthService(
             HttpClient httpClient,
             ILocalStorageService localStorage,
