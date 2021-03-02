@@ -14,10 +14,46 @@
 
 <body>
     <div id="app">
-        <div class="loader-mask">
-            <div class="loader">
-                <div></div>
-                <div></div>
+        <style>
+            @keyframes slide {
+                0% {
+                    transform: translateX(-25%);
+                }
+
+                100% {
+                    transform: translateX(25%);
+                }
+            }
+
+            .mud-wasm {
+                animation: slide 3s ease-in-out infinite alternate;
+                background-image: linear-gradient(-60deg,#594ae2 50%,#7467ef 50%);
+                bottom: 0;
+                left: -50%;
+                opacity: .5;
+                position: fixed;
+                right: -50%;
+                top: 0;
+                z-index: -1
+            }
+
+            .mud-wasm-cont {
+                left: 50%;
+                padding: 10vmin;
+                position: fixed;
+                text-align: center;
+                top: 50%;
+                transform: translate(-50%,-50%)
+            }
+        </style>
+        <div style="height:100%;width:100%;margin:0;position:fixed;">
+            <div class="mud-wasm"></div>
+            <div class="mud-wasm" style="animation-direction:alternate-reverse;animation-duration:4s;"></div>
+            <div class="mud-wasm" style="animation-duration:5s;"></div>
+            <div class="mud-wasm-cont ">
+                <svg width="100%" height="100%" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="white" d="M 37.00,90.00 C 37.00,90.00 328.90,90.00 328.90,90.00 328.90,90.00 328.90,410.00 328.90,410.00 328.90,410.00 37.00,410.00 37.00,410.00 37.00,410.00 37.00,90.00 37.00,90.00 Z M 381.49,90.75 C 381.49,90.75 464.00,90.75 464.00,90.75 464.00,90.75 464.00,410.00 464.00,410.00 464.00,410.00 381.49,410.00 381.49,410.00 381.49,410.00 381.49,280.80 381.49,280.80 381.49,280.80 337.37,280.80 337.37,280.80 337.37,280.80 337.37,220.44 337.37,220.44 337.37,220.44 381.49,220.44 381.49,220.44 381.49,220.44 381.49,90.75 381.49,90.75 Z M 119.51,150.36 C 119.51,150.36 119.51,220.44 119.51,220.44 119.51,220.44 236.91,220.44 236.91,220.44 236.91,220.44 236.91,280.80 236.91,280.80 236.91,280.80 119.51,280.80 119.51,280.80 119.51,280.80 119.51,349.64 119.51,349.64 119.51,349.64 246.39,349.64 246.39,349.64 246.39,349.64 246.39,150.36 246.39,150.36 246.39,150.36 119.51,150.36 119.51,150.36 Z"/>
+                </svg>
             </div>
         </div>
     </div>

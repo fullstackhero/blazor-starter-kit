@@ -44,3 +44,8 @@
 - [x] Localization
 - [ ] Role Management
 - [ ] User-Role Management
+- [ ] Import / Export to Excel
+- [ ] Swagger
+- [ ] Permission Based UI Rendering
+- [ ] Social Auth - Facebook, Google
+- [ ] Audit Trails
