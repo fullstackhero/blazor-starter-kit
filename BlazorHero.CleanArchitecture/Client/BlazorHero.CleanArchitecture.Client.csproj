@@ -23,11 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\" />
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Application\BlazorHero.CleanArchitecture.Application.csproj" />
     <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Infrastructure\BlazorHero.CleanArchitecture.Infrastructure.csproj" />
   </ItemGroup>

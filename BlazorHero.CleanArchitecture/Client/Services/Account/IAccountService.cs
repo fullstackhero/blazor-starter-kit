@@ -1,7 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Interfaces
+namespace BlazorHero.CleanArchitecture.Client.Services.Account
 {
     public interface IAccountService
     {

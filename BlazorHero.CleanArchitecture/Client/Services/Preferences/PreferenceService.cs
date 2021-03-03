@@ -4,7 +4,7 @@ using BlazorHero.CleanArchitecture.Client.Settings;
 using MudBlazor;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Services
+namespace BlazorHero.CleanArchitecture.Client.Services.Preferences
 {
     public class PreferenceService : IPreferenceService
     {

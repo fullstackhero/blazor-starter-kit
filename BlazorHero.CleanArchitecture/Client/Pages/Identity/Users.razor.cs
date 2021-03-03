@@ -11,7 +11,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private UserViewModel user = new UserViewModel();
         private string searchString = "";
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
             GetUsersAsync();
         }

@@ -1,5 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Client.Interfaces;
+using BlazorHero.CleanArchitecture.Client.Services.Authentication;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Collections.Generic;
@@ -7,17 +7,17 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Services
+namespace BlazorHero.CleanArchitecture.Client.Services.Account
 {
     public class AccountService : IAccountService
     {
         private readonly HttpClient _httpClient;
-        private readonly IAuthService _authService;
+        private readonly IAuthenticationService _authService;
         private readonly ISnackbar _snackBar;
         private readonly NavigationManager _navigationManager;
         public IEnumerable<string> Errors { get; set; }
 
-        public AccountService(HttpClient httpClient, IAuthService authService, ISnackbar snackBar, NavigationManager navigationManager)
+        public AccountService(HttpClient httpClient, IAuthenticationService authService, ISnackbar snackBar, NavigationManager navigationManager)
         {
             _httpClient = httpClient;
             _authService = authService;

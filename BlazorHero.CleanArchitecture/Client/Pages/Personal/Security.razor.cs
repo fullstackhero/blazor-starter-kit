@@ -10,7 +10,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Personal
     {
         private readonly ChangePasswordRequest passwordModel = new ChangePasswordRequest();
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
         }
 

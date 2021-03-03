@@ -12,7 +12,7 @@ namespace BlazorHero.CleanArchitecture.Client.Services.Roles
     public interface IRoleService
     {
         Task<Result<GetAllRolesResponse>> GetRolesAsync();
-        Task<IResult> SaveAsync(RoleRequest role);
-        Task<IResult> DeleteAsync(string id);
+        Task<IResult<string>> SaveAsync(RoleRequest role);
+        Task<IResult<string>> DeleteAsync(string id);
     }
 }

@@ -41,6 +41,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if (response.Succeeded)
             {
                 await Reset();
+                _snackBar.Add(response.Message, Severity.Success);
             }
             else
             {
@@ -54,6 +55,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if(response.Succeeded)
             {
                 await Reset();
+                _snackBar.Add("Role Saved.", Severity.Success);
             }
             else
             {

@@ -34,5 +34,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
                  _snackBar.Add(result.Message, Severity.Error);
             }
         }
+        private void FillAdminstratorCredentials()
+        {
+            model.Email = "mukesh@blazorhero.com";
+            model.Password = "123Pa$$word!";
+        }
+        private void FillBasicUserCredentials()
+        {
+            model.Email = "john@blazorhero.com";
+            model.Password = "123Pa$$word!";
+        }
     }
 }

@@ -46,7 +46,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Administrator
                 }
                 else
                 {
-                    return Result<string>.Fail($"Role is being Used by another User. Cannot Delete.");
+                    return Result<string>.Fail($"Not allowed to delete {existingRole.Name} Role as it is being used.");
                 }
             }
             else

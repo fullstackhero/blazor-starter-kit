@@ -2,6 +2,9 @@
 using BlazorHero.CleanArchitecture.Client.Authentication;
 using BlazorHero.CleanArchitecture.Client.Interfaces;
 using BlazorHero.CleanArchitecture.Client.Services;
+using BlazorHero.CleanArchitecture.Client.Services.Account;
+using BlazorHero.CleanArchitecture.Client.Services.Authentication;
+using BlazorHero.CleanArchitecture.Client.Services.Preferences;
 using BlazorHero.CleanArchitecture.Client.Services.Roles;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -50,7 +53,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .AddScoped(sp => sp
                 .GetRequiredService<IHttpClientFactory>()
                 .CreateClient(ClientName))
-                .AddTransient<IAuthService, AuthService>()
+                .AddTransient<IAuthenticationService, AuthenticationService>()
                 .AddTransient<IRoleService, RoleService>()
                 .AddTransient<IAdminService, AdminService>()
                 .AddTransient<IAccountService, AccountService>()

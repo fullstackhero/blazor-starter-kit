@@ -38,10 +38,10 @@
             <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">@localizer["Sign In"]</MudButton>
         </MudItem>
         <MudItem xs="12">
-            <MudAlert Severity="Severity.Info">Admin: mukesh@blazorhero.com / 123Pa$$word!</MudAlert>
+            <MudButton OnClick="FillAdminstratorCredentials">Fill Administrator Credentials</MudButton>
         </MudItem>
         <MudItem xs="12">
-            <MudAlert Severity="Severity.Info">Basic: john@blazorhero.com / 123Pa$$word!</MudAlert>
+            <MudButton OnClick="FillBasicUserCredentials">Fill Basic User Credentials</MudButton>
         </MudItem>
     </MudGrid>
 </EditForm>

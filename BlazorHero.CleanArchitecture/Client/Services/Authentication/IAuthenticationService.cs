@@ -2,14 +2,12 @@
 using BlazorHero.CleanArchitecture.Application.Wrapper;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Interfaces
+namespace BlazorHero.CleanArchitecture.Client.Services.Authentication
 {
-    public interface IAuthService
+    public interface IAuthenticationService
     {
-        //Task<Result> Register(RegisterRequest model);
-
         Task<IResult> Login(TokenRequest model);
 
-        Task Logout();
+        Task<IResult> Logout();
     }
 }

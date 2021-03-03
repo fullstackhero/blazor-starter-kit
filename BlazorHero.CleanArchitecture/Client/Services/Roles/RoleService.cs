@@ -22,10 +22,15 @@ namespace BlazorHero.CleanArchitecture.Client.Services.Roles
             _httpClient = httpClient;
         }
 
-        public async Task<IResult> DeleteAsync(string id)
+        public async Task<IResult<string>> DeleteAsync(string id)
         {
-            var reponse = await _httpClient.DeleteAsync($"{Routes.RolesEndpoint.Delete}/{id}");
-            return Result.Success();
+            var response = await _httpClient.DeleteAsync($"{Routes.RolesEndpoint.Delete}/{id}");
+            var responseAsString = await response.Content.ReadAsStringAsync();
+            var responseObject = JsonSerializer.Deserialize<Result<string>>(responseAsString, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return responseObject;
         }
 
         public async Task<Result<GetAllRolesResponse>> GetRolesAsync()
@@ -34,10 +39,15 @@ namespace BlazorHero.CleanArchitecture.Client.Services.Roles
             return response;
         }
 
-        public async Task<IResult> SaveAsync(RoleRequest role)
+        public async Task<IResult<string>> SaveAsync(RoleRequest role)
         {
-            await _httpClient.PostAsJsonAsync(Routes.RolesEndpoint.Save,role);
-            return Result.Success();
+            var response = await _httpClient.PostAsJsonAsync(Routes.RolesEndpoint.Save,role);
+            var responseAsString = await response.Content.ReadAsStringAsync();
+            var responseObject = JsonSerializer.Deserialize<Result<string>>(responseAsString, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return responseObject;
         }
     }
 }

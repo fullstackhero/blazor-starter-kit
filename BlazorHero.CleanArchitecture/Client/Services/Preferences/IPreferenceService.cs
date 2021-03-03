@@ -2,7 +2,7 @@
 using MudBlazor;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Interfaces
+namespace BlazorHero.CleanArchitecture.Client.Services.Preferences
 {
     public interface IPreferenceService
     {
