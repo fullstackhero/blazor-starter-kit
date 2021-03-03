@@ -16,16 +16,12 @@ namespace BlazorHero.CleanArchitecture.Client
                           .AddRootComponents()
                           .AddClientServices();
             var host = builder.Build();
-            var storageService = host.Services.GetRequiredService<BrowserService>();
+            var storageService = host.Services.GetRequiredService<PreferenceService>();
             if (storageService != null)
             {
                 CultureInfo culture;
                 var preference = await storageService.GetPreference();
-                if(preference==null)
-                {
-                    preference = new Settings.Preference();
-                }
-                if (preference.LanguageCode != null || preference.LanguageCode != string.Empty)
+                if(preference!=null)
                     culture = new CultureInfo(preference.LanguageCode);
                 else
                     culture = new CultureInfo("en-US");

@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Constants\" />
     <Folder Include="Infrastructure\" />
-    <Folder Include="Mappings\" />
   </ItemGroup>
 
   <ItemGroup>

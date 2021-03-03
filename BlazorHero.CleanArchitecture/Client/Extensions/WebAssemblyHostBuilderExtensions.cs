@@ -2,6 +2,7 @@
 using BlazorHero.CleanArchitecture.Client.Authentication;
 using BlazorHero.CleanArchitecture.Client.Interfaces;
 using BlazorHero.CleanArchitecture.Client.Services;
+using BlazorHero.CleanArchitecture.Client.Services.Roles;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,7 @@ using MudBlazor;
 using MudBlazor.Services;
 using System;
 using System.Net.Http;
+using System.Reflection;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
 {
@@ -42,16 +44,18 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                     configuration.SnackbarConfiguration.VisibleStateDuration = 3000;
                     configuration.SnackbarConfiguration.ShowCloseIcon = false;
                 })
-                .AddScoped<BrowserService>()
+                .AddScoped<PreferenceService>()
                 .AddScoped<BlazorHeroStateProvider>()
                 .AddScoped<AuthenticationStateProvider, BlazorHeroStateProvider>()
                 .AddScoped(sp => sp
                 .GetRequiredService<IHttpClientFactory>()
                 .CreateClient(ClientName))
                 .AddTransient<IAuthService, AuthService>()
+                .AddTransient<IRoleService, RoleService>()
                 .AddTransient<IAdminService, AdminService>()
                 .AddTransient<IAccountService, AccountService>()
                 .AddTransient<AuthenticationHeaderHandler>()
+                .AddAutoMapper(Assembly.GetExecutingAssembly())
                 .AddHttpClient(ClientName, client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
             return builder;

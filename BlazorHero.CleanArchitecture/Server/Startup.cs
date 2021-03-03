@@ -1,3 +1,4 @@
+using BlazorHero.CleanArchitecture.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Server.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +25,8 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddIdentity();
             services.AddJwtAuthentication(services.GetApplicationSettings(_configuration));
             services.AddApplicationServices();
+            services.RegisterSwagger();
+            services.AddInfrastructureMappings();
             services.AddControllers();
             services.AddRazorPages();
         }
@@ -38,6 +41,7 @@ namespace BlazorHero.CleanArchitecture.Server
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints();
+            app.ConfigureSwagger();
             app.Initialize(_configuration);
         }
     }

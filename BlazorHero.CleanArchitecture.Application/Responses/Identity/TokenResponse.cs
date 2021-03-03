@@ -1,6 +1,6 @@
 ﻿namespace BlazorHero.CleanArchitecture.Application.Responses.Identity
 {
-    public class LoginResponse
+    public class TokenResponse
     {
         public string Token { get; set; }
     }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Services
 {
-    public class BrowserService : IBrowserService
+    public class PreferenceService : IPreferenceService
     {
         private readonly ILocalStorageService _localStorageService;
 
-        public BrowserService(ILocalStorageService localStorageService)
+        public PreferenceService(ILocalStorageService localStorageService)
         {
             _localStorageService = localStorageService;
         }

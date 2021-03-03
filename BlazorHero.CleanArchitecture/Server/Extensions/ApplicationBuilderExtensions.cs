@@ -20,7 +20,16 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
             return app;
         }
-
+        public static void ConfigureSwagger(this IApplicationBuilder app)
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "BlazorHero.CleanArchitecture.Server");
+                options.RoutePrefix = "swagger";
+                options.DisplayRequestDuration();
+            });
+        }
         public static IApplicationBuilder UseEndpoints(this IApplicationBuilder app)
             => app.UseEndpoints(endpoints =>
             {

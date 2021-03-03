@@ -6,9 +6,9 @@ namespace BlazorHero.CleanArchitecture.Client.Interfaces
 {
     public interface IAuthService
     {
-        Task<Result> Register(RegisterRequest model);
+        //Task<Result> Register(RegisterRequest model);
 
-        Task<Result> Login(LoginRequest model);
+        Task<IResult> Login(TokenRequest model);
 
         Task Logout();
     }

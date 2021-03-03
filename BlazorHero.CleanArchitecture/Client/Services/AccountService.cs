@@ -27,7 +27,7 @@ namespace BlazorHero.CleanArchitecture.Client.Services
 
         public async Task ChangePasswordAsync(ChangePasswordRequest model)
         {
-            var response = await _httpClient.PutAsJsonAsync(Constants.APIRoutes.ChangePassword, model);
+            var response = await _httpClient.PutAsJsonAsync(Routes.AccountEndpoint.ChangePassword, model);
             if (response.IsSuccessStatusCode)
             {
                 model.Password = null;
@@ -49,7 +49,7 @@ namespace BlazorHero.CleanArchitecture.Client.Services
 
         public async Task UpdateProfiledAsync(UpdateProfileRequest model)
         {
-            var response = await _httpClient.PutAsJsonAsync(Constants.APIRoutes.UpdateProfile, model);
+            var response = await _httpClient.PutAsJsonAsync(Routes.AccountEndpoint.UpdateProfile, model);
             if (response.IsSuccessStatusCode)
             {
                 await _authService.Logout();

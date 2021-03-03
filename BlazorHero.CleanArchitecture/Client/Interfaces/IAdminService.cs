@@ -8,6 +8,6 @@ namespace BlazorHero.CleanArchitecture.Client.Interfaces
     {
         Task<List<UserViewModel>> GetUsersAsync();
 
-        Task<List<RoleViewModel>> GetRolesAsync();
+        
     }
 }

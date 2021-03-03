@@ -1,75 +1,126 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Application.Wrapper
 {
-    public class Result
+    public class Result : IResult
     {
-        private readonly List<string> errors;
-
-        internal Result(bool succeeded, List<string> errors)
+        public Result()
         {
-            this.Succeeded = succeeded;
-            this.errors = errors;
         }
 
-        public bool Succeeded { get; }
+        public bool Failed => !Succeeded;
 
-        public List<string> Errors
-            => this.Succeeded
-                ? new List<string>()
-                : this.errors;
+        public string Message { get; set; }
 
-        public static Result Success
-            => new Result(true, new List<string>());
+        public bool Succeeded { get; set; }
 
-        public static Result Failure(IEnumerable<string> errors)
-            => new Result(false, errors.ToList());
+        public static IResult Fail()
+        {
+            return new Result { Succeeded = false };
+        }
 
-        public static implicit operator Result(string error)
-            => Failure(new List<string> { error });
+        public static IResult Fail(string message)
+        {
+            return new Result { Succeeded = false, Message = message };
+        }
 
-        public static implicit operator Result(List<string> errors)
-            => Failure(errors.ToList());
+        public static Task<IResult> FailAsync()
+        {
+            return Task.FromResult(Fail());
+        }
 
-        public static implicit operator Result(bool success)
-            => success ? Success : Failure(new[] { "Unsuccessful operation." });
+        public static Task<IResult> FailAsync(string message)
+        {
+            return Task.FromResult(Fail(message));
+        }
 
-        public static implicit operator bool(Result result)
-            => result.Succeeded;
+        public static IResult Success()
+        {
+            return new Result { Succeeded = true };
+        }
+
+        public static IResult Success(string message)
+        {
+            return new Result { Succeeded = true, Message = message };
+        }
+
+        public static Task<IResult> SuccessAsync()
+        {
+            return Task.FromResult(Success());
+        }
+
+        public static Task<IResult> SuccessAsync(string message)
+        {
+            return Task.FromResult(Success(message));
+        }
     }
 
-    public class Result<TData> : Result
+    public class Result<T> : Result, IResult<T>
     {
-        private readonly TData data;
+        public Result()
+        {
+        }
 
-        private Result(bool succeeded, TData data, List<string> errors)
-            : base(succeeded, errors)
-            => this.data = data;
+        public T Data { get; set; }
 
-        public TData Data
-            => this.Succeeded
-                ? this.data
-                : throw new InvalidOperationException(
-                    $"{nameof(this.Data)} is not available with a failed result. Use {this.Errors} instead.");
+        public static new Result<T> Fail()
+        {
+            return new Result<T> { Succeeded = false };
+        }
 
-        public static Result<TData> SuccessWith(TData data)
-            => new Result<TData>(true, data, new List<string>());
+        public static new Result<T> Fail(string message)
+        {
+            return new Result<T> { Succeeded = false, Message = message };
+        }
 
-        public new static Result<TData> Failure(IEnumerable<string> errors)
-            => new Result<TData>(false, default, errors.ToList());
+        public static new Task<Result<T>> FailAsync()
+        {
+            return Task.FromResult(Fail());
+        }
 
-        public static implicit operator Result<TData>(string error)
-            => Failure(new List<string> { error });
+        public static new Task<Result<T>> FailAsync(string message)
+        {
+            return Task.FromResult(Fail(message));
+        }
 
-        public static implicit operator Result<TData>(List<string> errors)
-            => Failure(errors);
+        public static new Result<T> Success()
+        {
+            return new Result<T> { Succeeded = true };
+        }
 
-        public static implicit operator Result<TData>(TData data)
-            => SuccessWith(data);
+        public static new Result<T> Success(string message)
+        {
+            return new Result<T> { Succeeded = true, Message = message };
+        }
 
-        public static implicit operator bool(Result<TData> result)
-            => result.Succeeded;
+        public static Result<T> Success(T data)
+        {
+            return new Result<T> { Succeeded = true, Data = data };
+        }
+
+        public static Result<T> Success(T data, string message)
+        {
+            return new Result<T> { Succeeded = true, Data = data, Message = message };
+        }
+
+        public static new Task<Result<T>> SuccessAsync()
+        {
+            return Task.FromResult(Success());
+        }
+
+        public static new Task<Result<T>> SuccessAsync(string message)
+        {
+            return Task.FromResult(Success(message));
+        }
+
+        public static Task<Result<T>> SuccessAsync(T data)
+        {
+            return Task.FromResult(Success(data));
+        }
+
+        public static Task<Result<T>> SuccessAsync(T data, string message)
+        {
+            return Task.FromResult(Success(data, message));
+        }
     }
 }

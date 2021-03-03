@@ -33,49 +33,42 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             _signInManager = signInManager;
         }
 
-        public async Task<Result> RegisterAsync(RegisterRequest model)
+        //public async Task<Result> RegisterAsync(RegisterRequest model)
+        //{
+        //    var user = new BlazorHeroUser
+        //    {
+        //        FirstName = model.FirstName,
+        //        LastName = model.LastName,
+        //        Email = model.Email,
+        //        UserName = model.Email
+        //    };
+
+        //    var identityResult = await _userManager.CreateAsync(user, model.Password);
+
+        //    var errors = identityResult.Errors.Select(e => e.Description);
+
+        //    return identityResult.Succeeded
+        //        ? Result.Success
+        //        : Result.Failure(errors);
+        //}
+
+        public async Task<Result<TokenResponse>> LoginAsync(TokenRequest model)
         {
-            var user = new BlazorHeroUser
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
             {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                UserName = model.Email
-            };
-
-            var identityResult = await _userManager.CreateAsync(user, model.Password);
-
-            var errors = identityResult.Errors.Select(e => e.Description);
-
-            return identityResult.Succeeded
-                ? Result.Success
-                : Result.Failure(errors);
-        }
-
-        public async Task<Result<LoginResponse>> LoginAsync(LoginRequest model)
-        {
-            try
-            {
-                var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user == null)
-                {
-                    return InvalidErrorMessage;
-                }
-
-                var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
-                if (!passwordValid)
-                {
-                    return InvalidErrorMessage;
-                }
-
-                var token = await GenerateJwtAsync(user);
-
-                return new LoginResponse { Token = token };
+                return Result<TokenResponse>.Fail("User Not Found.");
             }
-            catch
+
+            var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
+            if (!passwordValid)
             {
-                throw;
+                return Result<TokenResponse>.Fail("Invalid Credentials.");
             }
+
+            var token = await GenerateJwtAsync(user);
+            var response = new TokenResponse { Token = token };
+            return Result<TokenResponse>.Success(response);
         }
 
         private async Task<string> GenerateJwtAsync(BlazorHeroUser user)
@@ -109,47 +102,47 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             return encryptedToken;
         }
 
-        public async Task<Result> UpdateProfileAsync(
-            UpdateProfileRequest model, string userId)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return InvalidErrorMessage;
-            }
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            user.PhoneNumber = model.PhoneNumber;
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (model.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
-            }
-            var identityResult = await _userManager.UpdateAsync(user);
-            var errors = identityResult.Errors.Select(e => e.Description);
-            await _signInManager.RefreshSignInAsync(user);
-            return identityResult.Succeeded
-                ? Result.Success
-                : Result.Failure(errors);
-        }
+    //    public async Task<Result> UpdateProfileAsync(
+    //        UpdateProfileRequest model, string userId)
+    //    {
+    //        var user = await _userManager.FindByIdAsync(userId);
+    //        if (user == null)
+    //        {
+    //            return InvalidErrorMessage;
+    //        }
+    //        user.FirstName = model.FirstName;
+    //        user.LastName = model.LastName;
+    //        user.PhoneNumber = model.PhoneNumber;
+    //        var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+    //        if (model.PhoneNumber != phoneNumber)
+    //        {
+    //            var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
+    //        }
+    //        var identityResult = await _userManager.UpdateAsync(user);
+    //        var errors = identityResult.Errors.Select(e => e.Description);
+    //        await _signInManager.RefreshSignInAsync(user);
+    //        return identityResult.Succeeded
+    //            ? Result.Success
+    //            : Result.Failure(errors);
+    //    }
 
-        public async Task<Result> ChangePasswordAsync(
-            ChangePasswordRequest model, string userId)
-        {
-            var user = await this._userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return InvalidErrorMessage;
-            }
+    //    public async Task<Result> ChangePasswordAsync(
+    //        ChangePasswordRequest model, string userId)
+    //    {
+    //        var user = await this._userManager.FindByIdAsync(userId);
+    //        if (user == null)
+    //        {
+    //            return InvalidErrorMessage;
+    //        }
 
-            var identityResult = await this._userManager.ChangePasswordAsync(
-                user,
-                model.Password,
-                model.NewPassword);
-            var errors = identityResult.Errors.Select(e => e.Description);
-            return identityResult.Succeeded
-                ? Result.Success
-                : Result.Failure(errors);
-        }
+    //        var identityResult = await this._userManager.ChangePasswordAsync(
+    //            user,
+    //            model.Password,
+    //            model.NewPassword);
+    //        var errors = identityResult.Errors.Select(e => e.Description);
+    //        return identityResult.Succeeded
+    //            ? Result.Success
+    //            : Result.Failure(errors);
+    //    }
     }
 }

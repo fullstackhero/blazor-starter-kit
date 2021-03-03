@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Admin
+namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Users
     {

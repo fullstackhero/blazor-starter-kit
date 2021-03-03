@@ -8,7 +8,7 @@ namespace BlazorHero.CleanArchitecture.Client.Settings
         {
             Palette = new Palette()
             {
-                Primary = Colors.Blue.Darken1,
+                Primary = "#594AE2",
                 Background = Colors.Grey.Lighten5,
                 DrawerBackground = "#FFF",
                 DrawerText = "rgba(0,0,0, 0.7)",
@@ -125,7 +125,7 @@ namespace BlazorHero.CleanArchitecture.Client.Settings
         {
             Palette = new Palette()
             {
-                Primary = Colors.Blue.Darken1,
+                Primary = "#594AE2",
 
                 Black = "#27272f",
                 Background = "#32333d",

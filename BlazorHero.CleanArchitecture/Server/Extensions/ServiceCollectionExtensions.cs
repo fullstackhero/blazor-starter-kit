@@ -1,9 +1,11 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Administrator;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure.Services.Administrator;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Server.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,6 +14,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
@@ -26,7 +31,51 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             services.Configure<AppConfiguration>(applicationSettingsConfiguration);
             return applicationSettingsConfiguration.Get<AppConfiguration>();
         }
-
+        public static void RegisterSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                //TODO - Lowercase Swagger Documents
+                //c.DocumentFilter<LowercaseDocumentFilter>();
+                //Refer - https://gist.github.com/rafalkasa/01d5e3b265e5aa075678e0adfd54e23f
+                c.IncludeXmlComments(string.Format(@"{0}\BlazorHero.CleanArchitecture.Server.xml", System.AppDomain.CurrentDomain.BaseDirectory));
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "BlazorHero.CleanArchitecture",
+                    License = new OpenApiLicense()
+                    {
+                        Name = "MIT License",
+                        Url = new Uri("https://opensource.org/licenses/MIT")
+                    }
+                });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    Description = "Input your Bearer token in this format - Bearer {your token here} to access this API",
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer",
+                            },
+                            Scheme = "Bearer",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                        }, new List<string>()
+                    },
+                });
+            });
+        }
         public static IServiceCollection AddDatabase(
             this IServiceCollection services,
             IConfiguration configuration)
@@ -38,6 +87,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IRoleService, RoleService>();
             return services;
         }
 

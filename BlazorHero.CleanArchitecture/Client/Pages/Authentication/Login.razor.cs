@@ -9,12 +9,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 {
     public partial class Login
     {
-        private LoginRequest model = new LoginRequest();
+        private TokenRequest model = new TokenRequest();
         public IEnumerable<string> Errors { get; set; } = new List<string>();
 
         protected override async Task OnInitializedAsync()
         {
-            // redirect to home if already logged in
             var state = await _authState.GetAuthenticationStateAsync();
             if (state != new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())))
             {
@@ -24,19 +23,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 
         private async Task SubmitAsync()
         {
-            var result = await _authService.Login(model).ConfigureAwait(false);
+            var result = await _authService.Login(model);
             if (result.Succeeded)
             {
-                _snackBar.Add($"Welcome {model.Email}", Severity.Success);
                 _navigationManager.NavigateTo("/", true);
+                _snackBar.Add($"Welcome {model.Email}", Severity.Success);
             }
             else
             {
-                Errors = result.Errors;
-                foreach (string error in Errors)
-                {
-                    _snackBar.Add(error, Severity.Error);
-                }
+                 _snackBar.Add(result.Message, Severity.Error);
             }
         }
     }

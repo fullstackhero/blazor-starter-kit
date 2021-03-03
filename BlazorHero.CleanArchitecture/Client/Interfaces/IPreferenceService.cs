@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Interfaces
 {
-    public interface IBrowserService
+    public interface IPreferenceService
     {
         Task SetPreference(Preference preference);
 

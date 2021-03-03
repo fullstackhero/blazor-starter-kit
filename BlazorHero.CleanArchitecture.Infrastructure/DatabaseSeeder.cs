@@ -27,18 +27,18 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
         public void Initialize()
         {
             _db.Database.Migrate();
-            AddSuperUser();
+            AddAdministrator();
             AddBasicUser();
             _db.SaveChanges();
         }
 
-        private void AddSuperUser()
+        private void AddAdministrator()
         {
             Task.Run(async () =>
             {
                 //Check if Role Exists
-                var adminRole = new IdentityRole(Constants.SuperAdminRole);
-                var adminRoleInDb = await _roleManager.FindByNameAsync(Constants.SuperAdminRole);
+                var adminRole = new IdentityRole(Constants.AdministratorRole);
+                var adminRoleInDb = await _roleManager.FindByNameAsync(Constants.AdministratorRole);
                 if (adminRoleInDb == null)
                 {
                     await _roleManager.CreateAsync(adminRole);
@@ -59,8 +59,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                 if (superUserInDb == null)
                 {
                     await _userManager.CreateAsync(superUser, Constants.DefaultPassword);
-                    await _userManager.AddToRoleAsync(superUser, Constants.SuperAdminRole);
-                    _logger.LogInformation("Seeded Super User.");
+                    await _userManager.AddToRoleAsync(superUser, Constants.AdministratorRole);
+                    _logger.LogInformation("Seeded Administrator.");
                 }
             }).GetAwaiter().GetResult();
         }

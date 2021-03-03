@@ -9,20 +9,30 @@
     <MudNavLink Href="/resources" Icon="@Icons.Material.Outlined.ReadMore">
         @localizer["Resources"]
     </MudNavLink>
-    <MudNavLink Href="/frequently-asked-questions" Icon="@Icons.Material.Outlined.QuestionAnswer">
-        @localizer["FAQs"]
+    <MudNavLink Href="/swagger/index.html" Icon="@Icons.Material.Outlined.LiveHelp">
+        @localizer["Swagger"]
     </MudNavLink>
     <MudListSubheader Class="mt-2 mb-n2">@localizer["Personal"]</MudListSubheader>
+    <MudNavLink Href="/dashboard" Icon="@Icons.Material.Outlined.Dashboard">
+        @localizer["Dashboard"]
+    </MudNavLink>
     <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.Person">
         @localizer["Account"]
     </MudNavLink>
-    <AuthorizeView Roles="SuperAdmin">
+    <AuthorizeView Roles="Administrator">
         <MudListSubheader Class="mt-2 mb-n2">
             @localizer["Administrator"]
         </MudListSubheader>
-        <MudNavLink Href="/admin/users" Icon="@Icons.Material.Outlined.Person">
+        <MudNavLink Href="/identity/users" Icon="@Icons.Material.Outlined.Person">
             @localizer["Users"]
         </MudNavLink>
-        <MudNavLink Href="/admin/roles" Icon="@Icons.Material.Outlined.Person">@localizer["Roles"]</MudNavLink>
+        <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Outlined.Person">@localizer["Roles"]</MudNavLink>
     </AuthorizeView>
+    <MudListSubheader Class="mt-2 mb-n2">@localizer["Communication"]</MudListSubheader>
+    <MudNavLink Href="/chat" Icon="@Icons.Material.Outlined.Chat">
+        @localizer["Chat"]
+    </MudNavLink>
+    <MudNavLink Href="/mail" Icon="@Icons.Material.Outlined.Mail">
+        @localizer["Mail"]
+    </MudNavLink>
 </MudNavMenu>
