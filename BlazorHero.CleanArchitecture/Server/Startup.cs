@@ -1,5 +1,6 @@
 using BlazorHero.CleanArchitecture.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Server.Extensions;
+using BlazorHero.CleanArchitecture.Server.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,7 @@ namespace BlazorHero.CleanArchitecture.Server
         {
             app.UseExceptionHandling(env);
             app.UseHttpsRedirection();
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
             app.UseRouting();

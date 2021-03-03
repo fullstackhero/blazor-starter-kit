@@ -42,8 +42,8 @@
 - [x] Localization
 - [x] Role Management
 - [ ] User-Role Management
-- [ ] Swagger
-
+- [x] Swagger
+- [x] Middlewares
 
 ## Version 2.0 - Down the Road
 
@@ -51,7 +51,6 @@
 - [ ] Charts
 - [ ] PDF Downloads
 - [ ] Theme Manager
-- [ ] Middlewares
 - [ ] File Upload
 - [ ] Import / Export to Excel
 - [ ] Permission Based UI Rendering
