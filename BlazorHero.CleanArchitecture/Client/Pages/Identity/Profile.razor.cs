@@ -22,7 +22,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var response = await _accountService.UpdateProfileAsync(profileModel);
             if (response.Succeeded)
             {
-                _snackBar.Add("Role Saved.", Severity.Success);
+                await _authService.Logout();
+                _snackBar.Add("Your Profile has been updated. Please Login to Continue.", Severity.Success);
+                _navigationManager.NavigateTo("/");
             }
             else
             {
