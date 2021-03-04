@@ -1,11 +1,9 @@
 ﻿using Blazored.LocalStorage;
-using BlazorHero.CleanArchitecture.Client.Authentication;
-using BlazorHero.CleanArchitecture.Client.Interfaces;
-using BlazorHero.CleanArchitecture.Client.Services;
-using BlazorHero.CleanArchitecture.Client.Services.Account;
-using BlazorHero.CleanArchitecture.Client.Services.Authentication;
-using BlazorHero.CleanArchitecture.Client.Services.Preferences;
-using BlazorHero.CleanArchitecture.Client.Services.Roles;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Account;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Authentication;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Roles;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Preferences;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +11,6 @@ using MudBlazor;
 using MudBlazor.Services;
 using System;
 using System.Net.Http;
-using System.Reflection;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
 {
@@ -55,10 +52,8 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .CreateClient(ClientName))
                 .AddTransient<IAuthenticationService, AuthenticationService>()
                 .AddTransient<IRoleService, RoleService>()
-                .AddTransient<IAdminService, AdminService>()
                 .AddTransient<IAccountService, AccountService>()
                 .AddTransient<AuthenticationHeaderHandler>()
-                .AddAutoMapper(Assembly.GetExecutingAssembly())
                 .AddHttpClient(ClientName, client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
             return builder;

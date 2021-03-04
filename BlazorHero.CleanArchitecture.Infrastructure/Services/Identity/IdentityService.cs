@@ -1,9 +1,9 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
-using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using BlazorHero.CleanArchitecture.Application.Wrapper;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
+using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
+using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
+using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
-    public class IdentityService : IIdentityService
+    public class IdentityService : ITokenService
     {
         private const string InvalidErrorMessage = "Invalid email or password.";
 
@@ -32,26 +32,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             _appConfig = appConfig.Value;
             _signInManager = signInManager;
         }
-
-        //public async Task<Result> RegisterAsync(RegisterRequest model)
-        //{
-        //    var user = new BlazorHeroUser
-        //    {
-        //        FirstName = model.FirstName,
-        //        LastName = model.LastName,
-        //        Email = model.Email,
-        //        UserName = model.Email
-        //    };
-
-        //    var identityResult = await _userManager.CreateAsync(user, model.Password);
-
-        //    var errors = identityResult.Errors.Select(e => e.Description);
-
-        //    return identityResult.Succeeded
-        //        ? Result.Success
-        //        : Result.Failure(errors);
-        //}
-
         public async Task<Result<TokenResponse>> LoginAsync(TokenRequest model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -102,47 +82,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             return encryptedToken;
         }
 
-    //    public async Task<Result> UpdateProfileAsync(
-    //        UpdateProfileRequest model, string userId)
-    //    {
-    //        var user = await _userManager.FindByIdAsync(userId);
-    //        if (user == null)
-    //        {
-    //            return InvalidErrorMessage;
-    //        }
-    //        user.FirstName = model.FirstName;
-    //        user.LastName = model.LastName;
-    //        user.PhoneNumber = model.PhoneNumber;
-    //        var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-    //        if (model.PhoneNumber != phoneNumber)
-    //        {
-    //            var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
-    //        }
-    //        var identityResult = await _userManager.UpdateAsync(user);
-    //        var errors = identityResult.Errors.Select(e => e.Description);
-    //        await _signInManager.RefreshSignInAsync(user);
-    //        return identityResult.Succeeded
-    //            ? Result.Success
-    //            : Result.Failure(errors);
-    //    }
-
-    //    public async Task<Result> ChangePasswordAsync(
-    //        ChangePasswordRequest model, string userId)
-    //    {
-    //        var user = await this._userManager.FindByIdAsync(userId);
-    //        if (user == null)
-    //        {
-    //            return InvalidErrorMessage;
-    //        }
-
-    //        var identityResult = await this._userManager.ChangePasswordAsync(
-    //            user,
-    //            model.Password,
-    //            model.NewPassword);
-    //        var errors = identityResult.Errors.Select(e => e.Description);
-    //        return identityResult.Succeeded
-    //            ? Result.Success
-    //            : Result.Failure(errors);
-    //    }
+    
     }
 }

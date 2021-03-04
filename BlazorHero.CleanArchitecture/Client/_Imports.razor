@@ -13,27 +13,25 @@
 @using MudBlazor
 
 @*Client Services*@
-@using BlazorHero.CleanArchitecture.Client.Services.Account
-@using BlazorHero.CleanArchitecture.Client.Services.Authentication
-@using BlazorHero.CleanArchitecture.Client.Services.Preferences
-@using BlazorHero.CleanArchitecture.Client.Services.Roles
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Account
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Authentication
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Roles
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Preferences
+
 
 @using BlazorHero.CleanArchitecture.Client
 @using BlazorHero.CleanArchitecture.Client.Shared
 @using BlazorHero.CleanArchitecture.Client.Shared.Components
 @using BlazorHero.CleanArchitecture.Client.Shared.Dialogs
-@using BlazorHero.CleanArchitecture.Client.Settings
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
 
-@using BlazorHero.CleanArchitecture.Client.Interfaces
-@using BlazorHero.CleanArchitecture.Application.Requests.Identity
-@using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
+@using BlazorHero.CleanArchitecture.Shared.Requests.Identity
+@using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 
 @using BlazorHero.CleanArchitecture.Client.Pages.Account
 @using BlazorHero.CleanArchitecture.Client.Pages.Authentication
-@using BlazorHero.CleanArchitecture.Client.Pages.Personal
-@using BlazorHero.CleanArchitecture.Client.ViewModels
 
-@using BlazorHero.CleanArchitecture.Client.Authentication
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
 @using BlazorHero.CleanArchitecture.Client.Extensions
 
 
@@ -45,6 +43,5 @@
 @inject ISnackbar _snackBar
 @inject IDialogService _dialogService
 @inject HttpClient _httpClient
-@inject IAdminService _adminService
 @inject PreferenceService _browserService
 @inject IRoleService _roleService

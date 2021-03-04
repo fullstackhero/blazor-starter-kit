@@ -5,7 +5,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Features\" />
-    <Folder Include="DTOs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Shared\BlazorHero.CleanArchitecture.Shared.csproj" />
   </ItemGroup>
 
 </Project>

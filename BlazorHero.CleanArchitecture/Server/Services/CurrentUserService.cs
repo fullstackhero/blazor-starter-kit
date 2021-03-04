@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Security.Claims;

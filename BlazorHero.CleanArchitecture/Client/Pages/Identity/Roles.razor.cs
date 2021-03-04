@@ -1,5 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Roles;
-using BlazorHero.CleanArchitecture.Application.Responses.Roles;
+﻿using BlazorHero.CleanArchitecture.Shared.Requests.Roles;
+using BlazorHero.CleanArchitecture.Shared.Responses.Roles;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
             else
             {
-                _snackBar.Add(response.Message, Severity.Error);
+                foreach(var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
+                
             }
         }
         private void Edit(string id)
@@ -41,11 +45,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if (response.Succeeded)
             {
                 await Reset();
-                _snackBar.Add(response.Message, Severity.Success);
+                _snackBar.Add(response.Messages[0], Severity.Success);
             }
             else
             {
-                _snackBar.Add(response.Message, Severity.Error);
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
             }
         }
         private async Task SaveAsync()
@@ -59,7 +66,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
             else
             {
-                _snackBar.Add(response.Message, Severity.Error);
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
             }
             
             

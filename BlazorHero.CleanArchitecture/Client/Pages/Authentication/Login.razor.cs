@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+﻿using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 using System.Collections.Generic;
@@ -31,7 +31,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             }
             else
             {
-                 _snackBar.Add(result.Message, Severity.Error);
+                foreach (var message in result.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
             }
         }
         private void FillAdminstratorCredentials()

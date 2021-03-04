@@ -1,11 +1,10 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Administrator;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
-using BlazorHero.CleanArchitecture.Infrastructure.Services.Administrator;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Server.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -86,8 +85,9 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<ITokenService, IdentityService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IAccountService, AccountService>();
             return services;
         }
 

@@ -1,7 +1,6 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Administrator;
-using BlazorHero.CleanArchitecture.Application.Requests.Roles;
-using BlazorHero.CleanArchitecture.Application.Responses.Roles;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
+using BlazorHero.CleanArchitecture.Shared.Requests.Roles;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

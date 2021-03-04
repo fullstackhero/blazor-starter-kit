@@ -1,6 +1,5 @@
 using BlazorHero.CleanArchitecture.Client.Extensions;
-using BlazorHero.CleanArchitecture.Client.Services;
-using BlazorHero.CleanArchitecture.Client.Services.Preferences;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Preferences;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
@@ -29,8 +28,7 @@ namespace BlazorHero.CleanArchitecture.Client
                 CultureInfo.DefaultThreadCurrentCulture = culture;
                 CultureInfo.DefaultThreadCurrentUICulture = culture;
             }
-            await builder.Build()
-            .RunAsync();
+            await builder.Build().RunAsync();
         }
     }
 }

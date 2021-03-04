@@ -1,11 +1,7 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
-using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using Microsoft.AspNetCore.Http;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
@@ -14,10 +10,10 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
     [ApiController]
     public class TokenController : ControllerBase
     {
-        private readonly IIdentityService _identityService;
+        private readonly ITokenService _identityService;
         private readonly ICurrentUserService currentUserService;
 
-        public TokenController(IIdentityService identityService, ICurrentUserService currentUserService)
+        public TokenController(ITokenService identityService, ICurrentUserService currentUserService)
         {
             _identityService = identityService;
             this.currentUserService = currentUserService;
