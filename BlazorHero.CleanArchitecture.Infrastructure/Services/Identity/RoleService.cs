@@ -57,7 +57,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
         public async Task<Result<GetAllRolesResponse>> GetAllAsync()
         {
-            var roles = await _roleManager.Roles.Where(a=>a.Name != Constants.AdministratorRole).ToListAsync();
+            var roles = await _roleManager.Roles.ToListAsync();
             var rolesResponse = _mapper.Map<List<RoleResponse>>(roles);
             var result = new GetAllRolesResponse { Roles = rolesResponse };
             return Result<GetAllRolesResponse>.Success(result);
@@ -73,6 +73,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             else
             {
                 var existingRole = await _roleManager.FindByIdAsync(request.Id);
+                if (existingRole.Name == "Administrator" || existingRole.Name == "Basic")
+                {
+                    return Result<string>.Fail($"Not allowed to modify {existingRole.Name} Role.");
+                }
                 existingRole.Name = request.Name;
                 existingRole.NormalizedName = request.Name.ToUpper();
                 await _roleManager.UpdateAsync(existingRole);

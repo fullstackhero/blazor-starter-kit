@@ -10,8 +10,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
     public partial class Login
     {
         private TokenRequest model = new TokenRequest();
-        public IEnumerable<string> Errors { get; set; } = new List<string>();
-
         protected override async Task OnInitializedAsync()
         {
             var state = await _authState.GetAuthenticationStateAsync();
@@ -20,14 +18,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
                 _navigationManager.NavigateTo("/");
             }
         }
-
         private async Task SubmitAsync()
         {
             var result = await _authService.Login(model);
             if (result.Succeeded)
             {
+                _snackBar.Add($"Welcome {model.Email}.", Severity.Success);
                 _navigationManager.NavigateTo("/", true);
-                _snackBar.Add($"Welcome {model.Email}", Severity.Success);
             }
             else
             {

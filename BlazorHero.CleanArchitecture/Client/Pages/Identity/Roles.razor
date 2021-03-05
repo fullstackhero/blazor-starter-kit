@@ -1,23 +1,23 @@
 ﻿@page "/identity/roles"
 @using BlazorHero.CleanArchitecture.Shared.Responses.Roles
 <HeroTitle Title="Roles" Description="Manage Roles." />
-        <MudCard Elevation="25">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.h6">Add / Edit Roles</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
-            <MudCardContent>
-                <EditForm Model="@role" OnValidSubmit="SaveAsync">
-                    <DataAnnotationsValidator />
-                    <MudTextField Disabled @bind-Value="role.Id" Label="Id" Variant="Variant.Text" Margin="Margin.Normal" For="@(() => role.Id)" Required="true"></MudTextField>
-                    <MudTextField @bind-Value="role.Name" Label="Role Name" For="@(() => role.Name)" Variant="Variant.Text" Margin="Margin.Normal" Required="true" RequiredError="Password is required!"></MudTextField>
-                    <br />
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit">Save Role</MudButton>
-                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="Reset">Reset</MudButton>
-                </EditForm>
-            </MudCardContent>
-        </MudCard>
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Add / Edit Roles</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <EditForm Model="@role" OnValidSubmit="SaveAsync">
+            <DataAnnotationsValidator />
+            <MudTextField Disabled @bind-Value="role.Id" Label="Id" Variant="Variant.Text" Margin="Margin.Normal" For="@(() => role.Id)" Required="true"></MudTextField>
+            <MudTextField @bind-Value="role.Name" Label="Role Name" For="@(() => role.Name)" Variant="Variant.Text" Margin="Margin.Normal" Required="true" RequiredError="Password is required!"></MudTextField>
+            <br />
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit">Save Role</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="Reset">Reset</MudButton>
+        </EditForm>
+    </MudCardContent>
+</MudCard>
 <br />
 <MudTable Elevation="25" Items="RoleList" Filter="new Func<RoleResponse, bool>(Search)" @bind-role="role">
     <ToolBarContent>
@@ -32,10 +32,10 @@
     <RowTemplate>
         <MudTd DataLabel="Id">@context.Id</MudTd>
         <MudTd DataLabel="Role">@context.Name</MudTd>
-        <MudTd DataLabel="">
-            <MudFab @onclick="@(()=>Edit(@context.Id))" Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" />
-            <MudFab @onclick="@(()=>Delete(@context.Id))"  Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
-        </MudTd>
+            <MudTd DataLabel="">
+                <MudFab @onclick="@(()=>Edit(@context.Id))" Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" />
+                <MudFab @onclick="@(()=>Delete(@context.Id))" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+            </MudTd>
     </RowTemplate>
     <PagerContent>
         <MudTablePager />
