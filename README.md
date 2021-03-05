@@ -44,6 +44,7 @@
 - [ ] User-Role Management
 - [x] Swagger
 - [x] Middlewares
+- [x] Favicon
 
 ## Version 2.0 - Down the Road
 
