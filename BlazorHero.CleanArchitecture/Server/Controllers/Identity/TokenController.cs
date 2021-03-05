@@ -17,7 +17,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             _identityService = identityService;
             this.currentUserService = currentUserService;
-        }  
+        }
 
         [HttpPost]
         public async Task<ActionResult> Get(TokenRequest model)

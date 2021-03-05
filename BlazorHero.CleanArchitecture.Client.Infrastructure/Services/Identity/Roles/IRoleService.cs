@@ -8,7 +8,9 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.R
     public interface IRoleService : IClientService
     {
         Task<IResult<GetAllRolesResponse>> GetRolesAsync();
+
         Task<IResult<string>> SaveAsync(RoleRequest role);
+
         Task<IResult<string>> DeleteAsync(string id);
     }
 }

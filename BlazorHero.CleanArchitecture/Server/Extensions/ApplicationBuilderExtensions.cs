@@ -20,6 +20,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
             return app;
         }
+
         public static void ConfigureSwagger(this IApplicationBuilder app)
         {
             app.UseSwagger();
@@ -30,6 +31,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 options.DisplayRequestDuration();
             });
         }
+
         public static IApplicationBuilder UseEndpoints(this IApplicationBuilder app)
             => app.UseEndpoints(endpoints =>
             {

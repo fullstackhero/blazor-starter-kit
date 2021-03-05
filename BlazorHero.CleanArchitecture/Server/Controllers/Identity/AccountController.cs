@@ -20,6 +20,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             _accountService = accountService;
             _currentUser = currentUser;
         }
+
         [Authorize]
         [HttpPut(nameof(UpdateProfile))]
         public async Task<ActionResult> UpdateProfile(UpdateProfileRequest model)

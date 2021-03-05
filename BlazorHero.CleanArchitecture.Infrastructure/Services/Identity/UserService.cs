@@ -5,10 +5,7 @@ using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
@@ -24,6 +21,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         }
 
         private IMapper _mapper;
+
         public async Task<Result<GetAllUsersReponse>> GetAllAsync()
         {
             var users = await _userManager.Users.ToListAsync();

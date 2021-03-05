@@ -16,6 +16,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions
             });
             return responseObject;
         }
+
         public static async Task<IResult> ToResult(this HttpResponseMessage response)
         {
             var responseAsString = await response.Content.ReadAsStringAsync();

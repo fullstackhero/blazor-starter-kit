@@ -17,12 +17,12 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             _userService = userService;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var users = await _userService.GetAllAsync();
             return Ok(users);
-
         }
     }
 }

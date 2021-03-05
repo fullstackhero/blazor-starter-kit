@@ -22,23 +22,24 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private async Task GetRolesAsync()
         {
             var response = await _roleService.GetRolesAsync();
-            if(response.Succeeded)
+            if (response.Succeeded)
             {
-                RoleList =  response.Data.Roles.ToList();
+                RoleList = response.Data.Roles.ToList();
             }
             else
             {
-                foreach(var message in response.Messages)
+                foreach (var message in response.Messages)
                 {
                     _snackBar.Add(message, Severity.Error);
                 }
-                
             }
         }
+
         private void Edit(string id)
         {
             role = RoleList.FirstOrDefault(c => c.Id == id);
         }
+
         private async Task Delete(string id)
         {
             var response = await _roleService.DeleteAsync(id);
@@ -56,11 +57,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
+
         private async Task SaveAsync()
         {
             var roleRequest = new RoleRequest() { Name = role.Name, Id = role.Id };
             var response = await _roleService.SaveAsync(roleRequest);
-            if(response.Succeeded)
+            if (response.Succeeded)
             {
                 await Reset();
                 _snackBar.Add("Role Saved.", Severity.Success);
@@ -73,14 +75,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     _snackBar.Add(message, Severity.Error);
                 }
             }
-            
-            
         }
+
         private async Task Reset()
         {
             role = new RoleResponse();
             await GetRolesAsync();
         }
+
         private bool Search(RoleResponse role)
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;

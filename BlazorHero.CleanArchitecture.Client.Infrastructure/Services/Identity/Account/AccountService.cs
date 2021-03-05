@@ -11,6 +11,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.A
     public class AccountService : IAccountService
     {
         private readonly HttpClient _httpClient;
+
         public AccountService(HttpClient httpClient)
         {
             _httpClient = httpClient;

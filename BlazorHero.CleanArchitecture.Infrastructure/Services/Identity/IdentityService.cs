@@ -32,6 +32,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             _appConfig = appConfig.Value;
             _signInManager = signInManager;
         }
+
         public async Task<Result<TokenResponse>> LoginAsync(TokenRequest model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -81,7 +82,5 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var encryptedToken = tokenHandler.WriteToken(token);
             return encryptedToken;
         }
-
-    
     }
 }

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BlazorHero.CleanArchitecture.Shared.Responses.Identity
 {
     public class GetAllUsersReponse
     {
         public IEnumerable<UserResponse> Users { get; set; }
-
     }
 }

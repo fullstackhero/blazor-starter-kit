@@ -31,7 +31,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.R
 
         public async Task<IResult<string>> SaveAsync(RoleRequest role)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.RolesEndpoint.Save,role);
+            var response = await _httpClient.PostAsJsonAsync(Routes.RolesEndpoint.Save, role);
             return await response.ToResult<string>();
         }
     }

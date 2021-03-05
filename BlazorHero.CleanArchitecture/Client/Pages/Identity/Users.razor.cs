@@ -17,6 +17,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             await GetUsersAsync();
         }
+
         private async Task GetUsersAsync()
         {
             var response = await _userService.GetAllAsync();
@@ -30,7 +31,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 {
                     _snackBar.Add(message, Severity.Error);
                 }
-
             }
         }
 
@@ -43,6 +43,5 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
             return false;
         }
-
     }
 }

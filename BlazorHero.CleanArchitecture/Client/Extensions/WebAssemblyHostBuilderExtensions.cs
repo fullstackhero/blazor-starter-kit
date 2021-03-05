@@ -1,9 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Services;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Account;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Authentication;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Roles;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Preferences;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -58,6 +55,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
             return builder;
         }
+
         public static IServiceCollection RegisterAllClientServices(this IServiceCollection services)
         {
             var clientServiceType = typeof(IClientService);

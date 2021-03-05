@@ -27,6 +27,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.A
             this.localStorage = localStorage;
             this.authenticationStateProvider = authenticationStateProvider;
         }
+
         public async Task<IResult> Login(TokenRequest model)
         {
             var response = await this._httpClient.PostAsJsonAsync("api/identity/token", model);
@@ -46,6 +47,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.A
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             return Result.Success();
         }
+
         public async Task<IResult> Logout()
         {
             await localStorage.RemoveItemAsync("authToken");

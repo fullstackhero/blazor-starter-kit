@@ -21,7 +21,7 @@ namespace BlazorHero.CleanArchitecture.Client
             {
                 CultureInfo culture;
                 var preference = await storageService.GetPreference();
-                if(preference!=null)
+                if (preference != null)
                     culture = new CultureInfo(preference.LanguageCode);
                 else
                     culture = new CultureInfo("en-US");

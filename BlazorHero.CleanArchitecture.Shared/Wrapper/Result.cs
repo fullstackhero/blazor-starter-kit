@@ -22,8 +22,9 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
 
         public static IResult Fail(string message)
         {
-            return new Result { Succeeded = false, Messages = new List<string> {message } };
+            return new Result { Succeeded = false, Messages = new List<string> { message } };
         }
+
         public static IResult Fail(List<string> messages)
         {
             return new Result { Succeeded = false, Messages = messages };
@@ -77,6 +78,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
         {
             return new Result<T> { Succeeded = false, Messages = new List<string> { message } };
         }
+
         public static new Result<T> Fail(List<string> messages)
         {
             return new Result<T> { Succeeded = false, Messages = messages };
@@ -101,6 +103,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
         {
             return new Result<T> { Succeeded = true, Messages = new List<string> { message } };
         }
+
         public static Result<T> Success(T data)
         {
             return new Result<T> { Succeeded = true, Data = data };
@@ -110,6 +113,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
         {
             return new Result<T> { Succeeded = true, Data = data, Messages = new List<string> { message } };
         }
+
         public static Result<T> Success(T data, List<string> messages)
         {
             return new Result<T> { Succeeded = true, Data = data, Messages = messages };

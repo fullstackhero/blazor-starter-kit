@@ -1,7 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -10,6 +9,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
     public partial class Login
     {
         private TokenRequest model = new TokenRequest();
+
         protected override async Task OnInitializedAsync()
         {
             var state = await _authState.GetAuthenticationStateAsync();
@@ -18,6 +18,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
                 _navigationManager.NavigateTo("/");
             }
         }
+
         private async Task SubmitAsync()
         {
             var result = await _authService.Login(model);
@@ -34,11 +35,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
                 }
             }
         }
+
         private void FillAdminstratorCredentials()
         {
             model.Email = "mukesh@blazorhero.com";
             model.Password = "123Pa$$word!";
         }
+
         private void FillBasicUserCredentials()
         {
             model.Email = "john@blazorhero.com";

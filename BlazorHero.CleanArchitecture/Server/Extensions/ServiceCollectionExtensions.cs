@@ -30,6 +30,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             services.Configure<AppConfiguration>(applicationSettingsConfiguration);
             return applicationSettingsConfiguration.Get<AppConfiguration>();
         }
+
         public static void RegisterSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -75,6 +76,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 });
             });
         }
+
         public static IServiceCollection AddDatabase(
             this IServiceCollection services,
             IConfiguration configuration)

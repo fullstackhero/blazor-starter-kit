@@ -16,6 +16,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<BlazorHeroUser> _userManager;
         private IMapper _mapper;
+
         public RoleService(RoleManager<IdentityRole> roleManager, IMapper mapper, UserManager<BlazorHeroUser> userManager)
         {
             _roleManager = roleManager;
