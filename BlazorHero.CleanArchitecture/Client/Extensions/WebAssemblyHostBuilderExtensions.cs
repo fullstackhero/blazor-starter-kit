@@ -1,5 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Services;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Account;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Authentication;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Roles;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MudBlazor;
 using MudBlazor.Services;
 using System;
+using System.Linq;
 using System.Net.Http;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
@@ -50,13 +52,36 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .AddScoped(sp => sp
                 .GetRequiredService<IHttpClientFactory>()
                 .CreateClient(ClientName))
-                .AddTransient<IAuthenticationService, AuthenticationService>()
-                .AddTransient<IRoleService, RoleService>()
-                .AddTransient<IAccountService, AccountService>()
+                .RegisterAllClientServices()
                 .AddTransient<AuthenticationHeaderHandler>()
                 .AddHttpClient(ClientName, client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
             return builder;
+        }
+        public static IServiceCollection RegisterAllClientServices(this IServiceCollection services)
+        {
+            var clientServiceType = typeof(IClientService);
+
+            var types = clientServiceType
+                .Assembly
+                .GetExportedTypes()
+                .Where(t => t.IsClass && !t.IsAbstract)
+                .Select(t => new
+                {
+                    Service = t.GetInterface($"I{t.Name}"),
+                    Implementation = t
+                })
+                .Where(t => t.Service != null);
+
+            foreach (var type in types)
+            {
+                if (clientServiceType.IsAssignableFrom(type.Service))
+                {
+                    services.AddTransient(type.Service, type.Implementation);
+                }
+            }
+
+            return services;
         }
     }
 }

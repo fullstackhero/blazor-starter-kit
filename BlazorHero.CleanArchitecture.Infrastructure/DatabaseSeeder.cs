@@ -1,6 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
-using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
+using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -42,7 +42,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                 if (adminRoleInDb == null)
                 {
                     await _roleManager.CreateAsync(adminRole);
-                    _logger.LogInformation("Seeded Role.");
+                    _logger.LogInformation("Seeded Administrator Role.");
                 }
                 //Check if User Exists
                 var superUser = new BlazorHeroUser
@@ -53,14 +53,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     UserName = "mukesh",
                     EmailConfirmed = true,
                     PhoneNumberConfirmed = true,
-                    CreatedOn = DateTime.Now
+                    CreatedOn = DateTime.Now,
+                    IsActive = true
                 };
                 var superUserInDb = await _userManager.FindByEmailAsync(superUser.Email);
                 if (superUserInDb == null)
                 {
                     await _userManager.CreateAsync(superUser, Constants.DefaultPassword);
                     await _userManager.AddToRoleAsync(superUser, Constants.AdministratorRole);
-                    _logger.LogInformation("Seeded Administrator.");
+                    _logger.LogInformation("Seeded User with Administrator Role.");
                 }
             }).GetAwaiter().GetResult();
         }
@@ -86,14 +87,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     UserName = "johndoe",
                     EmailConfirmed = true,
                     PhoneNumberConfirmed = true,
-                    CreatedOn = DateTime.Now
+                    CreatedOn = DateTime.Now,
+                    IsActive = true
                 };
                 var basicUserInDb = await _userManager.FindByEmailAsync(basicUser.Email);
                 if (basicUserInDb == null)
                 {
                     await _userManager.CreateAsync(basicUser, Constants.DefaultPassword);
                     await _userManager.AddToRoleAsync(basicUser, Constants.BasicRole);
-                    _logger.LogInformation("Seeded Basic User.");
+                    _logger.LogInformation("Seeded User with Basic Role.");
                 }
             }).GetAwaiter().GetResult();
         }

@@ -1,6 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Requests.Roles;
-using BlazorHero.CleanArchitecture.Shared.Responses.Roles;
+using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Net.Http;
 using System.Net.Http.Json;

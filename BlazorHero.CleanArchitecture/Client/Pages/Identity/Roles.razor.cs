@@ -1,5 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Shared.Requests.Roles;
-using BlazorHero.CleanArchitecture.Shared.Responses.Roles;
+using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
 using MudBlazor;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazorHero.CleanArchitecture.Shared.Responses.Roles
+namespace BlazorHero.CleanArchitecture.Shared.Responses.Identity
 {
     public class RoleResponse
     {

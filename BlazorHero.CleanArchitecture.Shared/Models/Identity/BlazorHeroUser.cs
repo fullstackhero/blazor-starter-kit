@@ -20,5 +20,6 @@ namespace BlazorHero.CleanArchitecture.Shared.Models.Identity
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+        public bool IsActive { get; set; }
     }
 }

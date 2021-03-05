@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Authentication
 {
-    public interface IAuthenticationService
+    public interface IAuthenticationService : IClientService
     {
         Task<IResult> Login(TokenRequest model);
 

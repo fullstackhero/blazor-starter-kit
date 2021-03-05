@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Account
 {
-    public interface IAccountService
+    public interface IAccountService : IClientService
     {
         Task<IResult> ChangePasswordAsync(ChangePasswordRequest model);
 

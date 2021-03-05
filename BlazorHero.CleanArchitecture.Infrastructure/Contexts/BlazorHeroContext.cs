@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
+﻿using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

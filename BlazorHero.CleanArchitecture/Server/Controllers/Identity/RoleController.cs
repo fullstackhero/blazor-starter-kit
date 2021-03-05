@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+﻿using AutoMapper;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Shared.Requests.Roles;
 using Microsoft.AspNetCore.Authorization;
@@ -13,6 +14,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
     public class RoleController : ControllerBase
     {
         private readonly IRoleService _roleService;
+        private IMapper _mapper;
 
         public RoleController(IRoleService roleService)
         {

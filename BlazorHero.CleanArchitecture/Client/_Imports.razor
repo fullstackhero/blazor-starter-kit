@@ -16,6 +16,7 @@
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Account
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Authentication
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Roles
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Users
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Preferences
 
 
@@ -45,3 +46,4 @@
 @inject HttpClient _httpClient
 @inject PreferenceService _browserService
 @inject IRoleService _roleService
+@inject IUserService _userService

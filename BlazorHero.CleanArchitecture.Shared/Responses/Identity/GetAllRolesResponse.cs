@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BlazorHero.CleanArchitecture.Shared.Responses.Roles
+namespace BlazorHero.CleanArchitecture.Shared.Responses.Identity
 {
     public class GetAllRolesResponse
     {
