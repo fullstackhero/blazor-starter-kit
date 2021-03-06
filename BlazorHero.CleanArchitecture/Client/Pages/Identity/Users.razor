@@ -1,26 +1,34 @@
 ﻿@page "/identity/users"
 @using BlazorHero.CleanArchitecture.Shared.Responses.Identity
-<HeroTitle Title="Users" Description="Manage Users." />
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Users> localizer
+<HeroTitle Title="@localizer["Users"]" Description="@localizer["Manage Users"]" />
 <MudTable Elevation="25" Items="UserList" Filter="new Func<UserResponse, bool>(Search)" @bind-user="user">
     <ToolBarContent>
 
-        <MudButton Variant="Variant.Filled" Color="Color.Primary">Create</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary">@localizer["Create"]</MudButton>
         <MudToolBarSpacer />
-        <MudTextField @bind-Value="searchString" FullWidth=false Placeholder="Search for Users..." Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        <MudTextField @bind-Value="searchString" FullWidth=false Placeholder="@localizer["Search For Users"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
-        <MudTh>First Name</MudTh>
-        <MudTh>Last Name</MudTh>
-        <MudTh>Email</MudTh>
-        <MudTh>Actions</MudTh>
+        <MudTh>@localizer["First Name"]</MudTh>
+        <MudTh>@localizer["Last Name"]</MudTh>
+        <MudTh>@localizer["Email"]</MudTh>
+        <MudTh>@localizer["Email Confirmation"]</MudTh>
+        <MudTh>@localizer["Active"]</MudTh>
+        <MudTh>@localizer["Actions"]</MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="FirstName">@context.FirstName</MudTd>
         <MudTd DataLabel="LastName">@context.LastName</MudTd>
         <MudTd DataLabel="PhoneNumber">@context.Email</MudTd>
+        <MudTd DataLabel="EmailConfirmed"><MudCheckBox @bind-Checked="@context.EmailConfirmed" Disabled="true"></MudCheckBox></MudTd>
+        <MudTd DataLabel="Active"><MudCheckBox @bind-Checked="@context.IsActive" Disabled="true"></MudCheckBox></MudTd>
         <MudTd DataLabel="">
-            <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" />
-            <MudFab Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+            <MudMenu Label="@localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary">
+                <MudMenuItem>@localizer["View Profile"]</MudMenuItem>
+                <MudMenuItem>@localizer["Manage Roles"]</MudMenuItem>
+            </MudMenu>
+
         </MudTd>
     </RowTemplate>
     <PagerContent>

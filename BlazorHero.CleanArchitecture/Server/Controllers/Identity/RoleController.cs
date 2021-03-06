@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
-using BlazorHero.CleanArchitecture.Shared.Requests.Roles;
+using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

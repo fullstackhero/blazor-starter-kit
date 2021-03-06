@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
-using BlazorHero.CleanArchitecture.Shared.Requests.Roles;
+using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
 using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;

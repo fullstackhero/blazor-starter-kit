@@ -48,6 +48,7 @@
 
 ## Version 2.0 - Down the Road
 
+- [ ] Caching
 - [ ] Chat
 - [ ] Charts
 - [ ] PDF Downloads
