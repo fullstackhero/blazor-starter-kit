@@ -87,7 +87,7 @@
     private char FirstLetterOfName { get; set; }
     private async Task LoadDataAsync()
     {
-        var state = await _authState.GetAuthenticationStateAsync();
+        var state = await _stateProvider.GetAuthenticationStateAsync();
         var user = state.User;
         if (user == null) return;
         if (user.Identity.IsAuthenticated)
@@ -104,7 +104,7 @@
     private bool _drawerOpen = true;
     protected override async Task OnInitializedAsync()
     {
-        currentTheme = await _browserService.GetCurrentThemeAsync();
+        currentTheme = await _preferenceManager.GetCurrentThemeAsync();
     }
     void Logout()
     {
@@ -129,7 +129,7 @@
 
     async Task DarkMode()
     {
-        bool isDarkMode = await _browserService.ToggleDarkModeAsync();
+        bool isDarkMode = await _preferenceManager.ToggleDarkModeAsync();
         if (isDarkMode)
         {
             currentTheme = BlazorHeroTheme.DefaultTheme;

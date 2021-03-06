@@ -12,7 +12,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 
         protected override async Task OnInitializedAsync()
         {
-            var state = await _authState.GetAuthenticationStateAsync();
+            var state = await _stateProvider.GetAuthenticationStateAsync();
             if (state != new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())))
             {
                 _navigationManager.NavigateTo("/");
@@ -21,7 +21,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 
         private async Task SubmitAsync()
         {
-            var result = await _authService.Login(model);
+            var result = await _authenticationManager.Login(model);
             if (result.Succeeded)
             {
                 _snackBar.Add($"Welcome {model.Email}.", Severity.Success);

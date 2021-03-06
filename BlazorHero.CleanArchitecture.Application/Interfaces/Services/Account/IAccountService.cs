@@ -1,11 +1,12 @@
-﻿using BlazorHero.CleanArchitecture.Application.Shared.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Common;
+using BlazorHero.CleanArchitecture.Application.Shared.Identity;
 using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account
 {
-    public interface IAccountService
+    public interface IAccountService : IService
     {
         Task<IResult> UpdateProfileAsync(UpdateProfileRequest model, string userId);
 

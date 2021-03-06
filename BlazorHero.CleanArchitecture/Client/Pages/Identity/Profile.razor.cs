@@ -19,10 +19,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task UpdateProfileAsync()
         {
-            var response = await _accountService.UpdateProfileAsync(profileModel);
+            var response = await _accountManager.UpdateProfileAsync(profileModel);
             if (response.Succeeded)
             {
-                await _authService.Logout();
+                await _authenticationManager.Logout();
                 _snackBar.Add("Your Profile has been updated. Please Login to Continue.", Severity.Success);
                 _navigationManager.NavigateTo("/");
             }
@@ -39,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task LoadDataAsync()
         {
-            var state = await _authState.GetAuthenticationStateAsync();
+            var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             profileModel.Email = user.GetEmail();
             profileModel.FirstName = user.GetFirstName();

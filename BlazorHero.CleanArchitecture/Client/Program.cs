@@ -1,5 +1,5 @@
 using BlazorHero.CleanArchitecture.Client.Extensions;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Preferences;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
@@ -16,7 +16,7 @@ namespace BlazorHero.CleanArchitecture.Client
                           .AddRootComponents()
                           .AddClientServices();
             var host = builder.Build();
-            var storageService = host.Services.GetRequiredService<PreferenceService>();
+            var storageService = host.Services.GetRequiredService<PreferenceManager>();
             if (storageService != null)
             {
                 CultureInfo culture;

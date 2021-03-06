@@ -9,7 +9,7 @@
 {
     private async Task ChangeLanguageAsync(string languageCode)
     {
-        await _browserService.ChangeLanguageAsync(languageCode);
+        await _preferenceManager.ChangeLanguageAsync(languageCode);
         _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
     }
     public class LanguageCodes

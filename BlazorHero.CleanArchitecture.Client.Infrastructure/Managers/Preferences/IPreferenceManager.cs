@@ -2,9 +2,9 @@
 using MudBlazor;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Preferences
+namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences
 {
-    public interface IPreferenceService
+    public interface IPreferenceManager
     {
         Task SetPreference(Preference preference);
 

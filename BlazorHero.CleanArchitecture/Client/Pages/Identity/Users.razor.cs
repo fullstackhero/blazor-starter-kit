@@ -20,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task GetUsersAsync()
         {
-            var response = await _userService.GetAllAsync();
+            var response = await _userManager.GetAllAsync();
             if (response.Succeeded)
             {
                 UserList = response.Data.Users.ToList();

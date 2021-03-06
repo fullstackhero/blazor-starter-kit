@@ -3,13 +3,13 @@ using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
 using MudBlazor;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Preferences
+namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences
 {
-    public class PreferenceService : IPreferenceService
+    public class PreferenceManager : IPreferenceManager
     {
         private readonly ILocalStorageService _localStorageService;
 
-        public PreferenceService(ILocalStorageService localStorageService)
+        public PreferenceManager(ILocalStorageService localStorageService)
         {
             _localStorageService = localStorageService;
         }

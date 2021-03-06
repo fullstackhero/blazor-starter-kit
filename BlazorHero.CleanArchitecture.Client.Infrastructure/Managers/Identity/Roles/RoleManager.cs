@@ -6,13 +6,13 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Roles
+namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Roles
 {
-    public class RoleService : IRoleService
+    public class RoleManager : IRoleManager
     {
         private readonly HttpClient _httpClient;
 
-        public RoleService(HttpClient httpClient)
+        public RoleManager(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

@@ -13,11 +13,11 @@
 @using MudBlazor
 
 @*Client Services*@
-@using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Account
-@using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Authentication
-@using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Roles
-@using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Users
-@using BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Preferences
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Account
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Authentication
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Roles
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Users
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences
 
 @using BlazorHero.CleanArchitecture.Client
 @using BlazorHero.CleanArchitecture.Client.Shared
@@ -35,13 +35,13 @@
 @using BlazorHero.CleanArchitecture.Client.Extensions
 
 @attribute [Authorize]
-@inject IAuthenticationService _authService
-@inject IAccountService _accountService
+@inject IAuthenticationManager _authenticationManager
+@inject IAccountManager _accountManager
 @inject NavigationManager _navigationManager
-@inject BlazorHeroStateProvider _authState
+@inject BlazorHeroStateProvider _stateProvider
 @inject ISnackbar _snackBar
 @inject IDialogService _dialogService
 @inject HttpClient _httpClient
-@inject PreferenceService _browserService
-@inject IRoleService _roleService
-@inject IUserService _userService
+@inject PreferenceManager _preferenceManager
+@inject IRoleManager _roleManager
+@inject IUserManager _userManager

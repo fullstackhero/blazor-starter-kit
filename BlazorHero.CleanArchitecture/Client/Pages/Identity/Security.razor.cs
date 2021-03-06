@@ -16,7 +16,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task ChangePasswordAsync()
         {
-            await _accountService.ChangePasswordAsync(passwordModel);
+            await _accountManager.ChangePasswordAsync(passwordModel);
         }
 
         private IEnumerable<string> PasswordStrength(string pw)

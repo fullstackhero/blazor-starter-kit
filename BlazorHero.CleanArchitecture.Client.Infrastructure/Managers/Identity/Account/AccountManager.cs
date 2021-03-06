@@ -6,13 +6,13 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Account
+namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Account
 {
-    public class AccountService : IAccountService
+    public class AccountManager : IAccountManager
     {
         private readonly HttpClient _httpClient;
 
-        public AccountService(HttpClient httpClient)
+        public AccountManager(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

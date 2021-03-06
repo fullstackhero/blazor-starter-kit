@@ -4,13 +4,13 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Services.Identity.Users
+namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Users
 {
-    public class UserService : IUserService
+    public class UserManager : IUserManager
     {
         private readonly HttpClient _httpClient;
 
-        public UserService(HttpClient httpClient)
+        public UserManager(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

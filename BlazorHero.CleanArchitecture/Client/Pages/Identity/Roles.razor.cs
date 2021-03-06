@@ -21,7 +21,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task GetRolesAsync()
         {
-            var response = await _roleService.GetRolesAsync();
+            var response = await _roleManager.GetRolesAsync();
             if (response.Succeeded)
             {
                 RoleList = response.Data.Roles.ToList();
@@ -42,7 +42,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task Delete(string id)
         {
-            var response = await _roleService.DeleteAsync(id);
+            var response = await _roleManager.DeleteAsync(id);
             if (response.Succeeded)
             {
                 await Reset();
@@ -61,7 +61,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private async Task SaveAsync()
         {
             var roleRequest = new RoleRequest() { Name = role.Name, Id = role.Id };
-            var response = await _roleService.SaveAsync(roleRequest);
+            var response = await _roleManager.SaveAsync(roleRequest);
             if (response.Succeeded)
             {
                 await Reset();
