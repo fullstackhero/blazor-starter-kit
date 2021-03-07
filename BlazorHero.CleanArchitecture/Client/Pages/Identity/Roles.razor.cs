@@ -34,49 +34,51 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
-
-        private void Edit(string id)
-        {
-            role = RoleList.FirstOrDefault(c => c.Id == id);
-        }
-
         private async Task Delete(string id)
         {
-            var response = await _roleManager.DeleteAsync(id);
-            if (response.Succeeded)
+            var parameters = new DialogParameters();
+            parameters.Add("ContentText", $"Do you want to delete the role with Id {id} ?");
+            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
+            var result = await dialog.Result;
+            if (!result.Cancelled)
             {
-                await Reset();
-                _snackBar.Add(response.Messages[0], Severity.Success);
-            }
-            else
-            {
-                await Reset();
-                foreach (var message in response.Messages)
+                var response = await _roleManager.DeleteAsync(id);
+                if (response.Succeeded)
                 {
-                    _snackBar.Add(message, Severity.Error);
+                    await Reset();
+                    _snackBar.Add(response.Messages[0], Severity.Success);
+                }
+                else
+                {
+                    await Reset();
+                    foreach (var message in response.Messages)
+                    {
+                        _snackBar.Add(message, Severity.Error);
+                    }
                 }
             }
-        }
 
-        private async Task SaveAsync()
+            
+        }
+        async Task InvokeModal(string id = null)
         {
-            var roleRequest = new RoleRequest() { Name = role.Name, Id = role.Id };
-            var response = await _roleManager.SaveAsync(roleRequest);
-            if (response.Succeeded)
+            var parameters = new DialogParameters();
+            if(id != null)
+            {
+                role = RoleList.FirstOrDefault(c => c.Id == id);
+                parameters.Add("Id", role.Id);
+                parameters.Add("Name", role.Name);
+            }
+            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<RoleModal>("Modal", parameters, options);
+            var result = await dialog.Result;
+            if (!result.Cancelled)
             {
                 await Reset();
-                _snackBar.Add("Role Saved.", Severity.Success);
             }
-            else
-            {
-                await Reset();
-                foreach (var message in response.Messages)
-                {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
-        }
 
+        }
         private async Task Reset()
         {
             role = new RoleResponse();

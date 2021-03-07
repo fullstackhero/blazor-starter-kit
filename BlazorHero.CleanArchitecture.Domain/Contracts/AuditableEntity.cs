@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace BlazorHero.CleanArchitecture.Application.Contracts
+namespace BlazorHero.CleanArchitecture.Domain.Contracts
 {
-    public class AuditableEntity : IAuditableEntity
+    public abstract class AuditableEntity : IAuditableEntity
     {
+        public int Id { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string LastModifiedBy { get; set; }

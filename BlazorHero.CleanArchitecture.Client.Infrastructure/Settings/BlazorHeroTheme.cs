@@ -12,7 +12,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
                 Background = Colors.Grey.Lighten5,
                 DrawerBackground = "#FFF",
                 DrawerText = "rgba(0,0,0, 0.7)",
-                Success = "#06d79c"
+                Success = "#007E33"
             },
 
             Typography = new Typography()
@@ -126,7 +126,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
             Palette = new Palette()
             {
                 Primary = "#594AE2",
-
+                Success = "#007E33",
                 Black = "#27272f",
                 Background = "#32333d",
                 BackgroundGrey = "#27272f",

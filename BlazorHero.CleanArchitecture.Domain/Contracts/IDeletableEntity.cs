@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BlazorHero.CleanArchitecture.Application.Contracts
+namespace BlazorHero.CleanArchitecture.Domain.Contracts
 {
     public interface IDeletableEntity
     {

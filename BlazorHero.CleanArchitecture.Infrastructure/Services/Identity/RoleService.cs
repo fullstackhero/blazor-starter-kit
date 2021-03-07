@@ -66,8 +66,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         {
             if (string.IsNullOrEmpty(request.Id))
             {
+                var existingRole = await _roleManager.FindByNameAsync(request.Name);
+                if(existingRole!=null) return Result<string>.Fail($"Similar Role already exists.");
                 var response = await _roleManager.CreateAsync(new IdentityRole(request.Name));
-                return Result<string>.Success(request.Id);
+                return Result<string>.Success("Role Created.");
             }
             else
             {
@@ -79,7 +81,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 existingRole.Name = request.Name;
                 existingRole.NormalizedName = request.Name.ToUpper();
                 await _roleManager.UpdateAsync(existingRole);
-                return Result<string>.Success(existingRole.Id);
+                return Result<string>.Success("Role Updated.");
             }
         }
     }

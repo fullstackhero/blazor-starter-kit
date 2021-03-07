@@ -9,14 +9,7 @@ namespace BlazorHero.CleanArchitecture.Server.Services
     {
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
-            var user = httpContextAccessor.HttpContext?.User;
-
-            if (user == null)
-            {
-                throw new InvalidOperationException("Not Authenticated.");
-            }
-
-            this.UserId = user.FindFirstValue(ClaimTypes.NameIdentifier);
+            UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
         }
 
         public string UserId { get; }

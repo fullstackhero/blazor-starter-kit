@@ -1,17 +1,52 @@
-﻿using BlazorHero.CleanArchitecture.Shared.Models.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
+using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 {
     public class BlazorHeroContext : IdentityDbContext<BlazorHeroUser, IdentityRole, string>
     {
-        public BlazorHeroContext(DbContextOptions<BlazorHeroContext> options)
+        private readonly ICurrentUserService _currentUserService;
+        private readonly IDateTimeService _dateTimeService;
+        public BlazorHeroContext(DbContextOptions<BlazorHeroContext> options, ICurrentUserService currentUserService, IDateTimeService dateTimeService)
             : base(options)
         {
+            _currentUserService = currentUserService;
+            _dateTimeService = dateTimeService;
         }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            foreach (var entry in ChangeTracker.Entries<DeletableEntity>().ToList())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreatedOn = _dateTimeService.NowUtc;
+                        entry.Entity.CreatedBy = _currentUserService.UserId;
+                        break;
 
+                    case EntityState.Modified:
+                        entry.Entity.LastModifiedOn = _dateTimeService.NowUtc;
+                        entry.Entity.LastModifiedBy = _currentUserService.UserId;
+                        break;
+
+                    case EntityState.Deleted:
+                        entry.Entity.DeletedOn = _dateTimeService.NowUtc;
+                        entry.Entity.IsDeleted = true;
+                        break;
+                }
+            }
+            return await base.SaveChangesAsync(cancellationToken);
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

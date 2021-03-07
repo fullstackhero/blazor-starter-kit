@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Contracts;
+﻿using BlazorHero.CleanArchitecture.Domain.Contracts;
 using Microsoft.AspNetCore.Identity;
 using System;
 

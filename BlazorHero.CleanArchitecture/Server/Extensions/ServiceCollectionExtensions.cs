@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Configurations;
+﻿using AspNetCoreHero.Boilerplate.Infrastructure.Shared.Services;
+using BlazorHero.CleanArchitecture.Application.Configurations;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
@@ -109,6 +110,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IDateTimeService, SystemDateTimeService>();
             return services;
         }
 
@@ -138,7 +140,6 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
             services.AddHttpContextAccessor();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
-
             return services;
         }
     }
