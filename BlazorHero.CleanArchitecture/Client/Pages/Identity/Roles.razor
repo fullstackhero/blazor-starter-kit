@@ -1,5 +1,6 @@
 ﻿@page "/identity/roles"
 @using BlazorHero.CleanArchitecture.Application.Responses.Identity
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Roles> localizer
 <HeroTitle Title="Roles" Description="Manage Roles." />
 <MudCard Elevation="25">
     <MudCardHeader>
@@ -33,8 +34,10 @@
         <MudTd DataLabel="Id">@context.Id</MudTd>
         <MudTd DataLabel="Role">@context.Name</MudTd>
         <MudTd DataLabel="">
-            <MudFab @onclick="@(()=>Edit(@context.Id))" Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" />
-            <MudFab @onclick="@(()=>Delete(@context.Id))" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+            <MudMenu Label="@localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary">
+                <MudMenuItem @onclick="@(()=>Edit(@context.Id))">@localizer["Edit"]</MudMenuItem>
+                <MudMenuItem @onclick="@(()=>Delete(@context.Id))">@localizer["Delete"]</MudMenuItem>
+            </MudMenu>
         </MudTd>
     </RowTemplate>
     <PagerContent>
