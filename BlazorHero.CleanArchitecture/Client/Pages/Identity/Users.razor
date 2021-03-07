@@ -1,5 +1,5 @@
 ﻿@page "/identity/users"
-@using BlazorHero.CleanArchitecture.Shared.Responses.Identity
+@using BlazorHero.CleanArchitecture.Application.Responses.Identity
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Users> localizer
 <HeroTitle Title="@localizer["Users"]" Description="@localizer["Manage Users"]" />
 <MudTable Elevation="25" Items="UserList" Filter="new Func<UserResponse, bool>(Search)" @bind-user="user">
@@ -28,7 +28,6 @@
                 <MudMenuItem>@localizer["View Profile"]</MudMenuItem>
                 <MudMenuItem>@localizer["Manage Roles"]</MudMenuItem>
             </MudMenu>
-
         </MudTd>
     </RowTemplate>
     <PagerContent>

@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var response = await _userManager.GetAllAsync();
             if (response.Succeeded)
             {
-                UserList = response.Data.Users.ToList();
+                UserList = response.Data.ToList();
             }
             else
             {

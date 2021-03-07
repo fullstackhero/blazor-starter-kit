@@ -1,5 +1,5 @@
 ﻿@page "/identity/roles"
-@using BlazorHero.CleanArchitecture.Shared.Responses.Identity
+@using BlazorHero.CleanArchitecture.Application.Responses.Identity
 <HeroTitle Title="Roles" Description="Manage Roles." />
 <MudCard Elevation="25">
     <MudCardHeader>
@@ -32,10 +32,10 @@
     <RowTemplate>
         <MudTd DataLabel="Id">@context.Id</MudTd>
         <MudTd DataLabel="Role">@context.Name</MudTd>
-            <MudTd DataLabel="">
-                <MudFab @onclick="@(()=>Edit(@context.Id))" Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" />
-                <MudFab @onclick="@(()=>Delete(@context.Id))" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
-            </MudTd>
+        <MudTd DataLabel="">
+            <MudFab @onclick="@(()=>Edit(@context.Id))" Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" />
+            <MudFab @onclick="@(()=>Delete(@context.Id))" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+        </MudTd>
     </RowTemplate>
     <PagerContent>
         <MudTablePager />

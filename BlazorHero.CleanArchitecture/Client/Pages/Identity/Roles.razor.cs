@@ -1,5 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
-using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var response = await _roleManager.GetRolesAsync();
             if (response.Succeeded)
             {
-                RoleList = response.Data.Roles.ToList();
+                RoleList = response.Data.ToList();
             }
             else
             {

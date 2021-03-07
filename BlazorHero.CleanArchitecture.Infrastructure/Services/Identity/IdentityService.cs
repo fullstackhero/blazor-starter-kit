@@ -1,8 +1,8 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
-using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
-using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;

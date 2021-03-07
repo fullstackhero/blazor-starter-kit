@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
+using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using Microsoft.AspNetCore.Identity;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Mappings

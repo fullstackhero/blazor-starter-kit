@@ -1,6 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Shared.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Net.Http;
 using System.Net.Http.Json;

@@ -1,6 +1,7 @@
-﻿using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -15,10 +16,10 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
             _httpClient = httpClient;
         }
 
-        public async Task<IResult<GetAllUsersReponse>> GetAllAsync()
+        public async Task<IResult<List<UserResponse>>> GetAllAsync()
         {
             var response = await _httpClient.GetAsync(Routes.UserEndpoint.GetAll);
-            return await response.ToResult<GetAllUsersReponse>();
+            return await response.ToResult<List<UserResponse>>();
         }
     }
 }

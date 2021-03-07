@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
-using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Mappings
 {

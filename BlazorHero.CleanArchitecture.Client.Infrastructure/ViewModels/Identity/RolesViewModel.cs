@@ -9,6 +9,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.ViewModels.Identity
         public RoleViewModel role = new RoleViewModel();
         public string searchString = "";
     }
+
     public class RoleViewModel
     {
         public string Id { get; set; }

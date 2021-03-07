@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
-using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -22,12 +22,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
         private IMapper _mapper;
 
-        public async Task<Result<GetAllUsersReponse>> GetAllAsync()
+        public async Task<Result<List<UserResponse>>> GetAllAsync()
         {
             var users = await _userManager.Users.ToListAsync();
-            var model = _mapper.Map<IEnumerable<UserResponse>>(users);
-            var result = new GetAllUsersReponse { Users = model };
-            return Result<GetAllUsersReponse>.Success(result);
+            var result = _mapper.Map<List<UserResponse>>(users);
+            return Result<List<UserResponse>>.Success(result);
         }
     }
 }

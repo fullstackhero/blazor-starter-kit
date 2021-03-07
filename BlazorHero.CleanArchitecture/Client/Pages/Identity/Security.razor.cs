@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using MudBlazor;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;

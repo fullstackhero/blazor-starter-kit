@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
-using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
-using BlazorHero.CleanArchitecture.Shared.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -55,12 +55,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             }
         }
 
-        public async Task<Result<GetAllRolesResponse>> GetAllAsync()
+        public async Task<Result<List<RoleResponse>>> GetAllAsync()
         {
             var roles = await _roleManager.Roles.ToListAsync();
             var rolesResponse = _mapper.Map<List<RoleResponse>>(roles);
-            var result = new GetAllRolesResponse { Roles = rolesResponse };
-            return Result<GetAllRolesResponse>.Success(result);
+            return Result<List<RoleResponse>>.Success(rolesResponse);
         }
 
         public async Task<Result<string>> SaveAsync(RoleRequest request)

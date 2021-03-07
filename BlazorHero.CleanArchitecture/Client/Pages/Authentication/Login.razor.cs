@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Shared.Requests.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 using System.Security.Claims;
