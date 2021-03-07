@@ -30,14 +30,14 @@
 - [x] Persistent Dark Mode (Local Storage)
 - [x] Service-Based Approach
 - [ ] MediatR at API Level
-- [ ] AutoMapper
+- [x] AutoMapper
 - [ ] API Versioning
 - [x] JWT Authentication
 - [x] Serilog - Server-Side Only*
 - [ ] Complete User Management
 - [ ] Profile Picture
 - [x] Clean Fluid UI
-- [ ] CRUD Functionalities
+- [x] CRUD Functionalities
 - [x] Custom Error Pages
 - [x] Localization
 - [x] Role Management
