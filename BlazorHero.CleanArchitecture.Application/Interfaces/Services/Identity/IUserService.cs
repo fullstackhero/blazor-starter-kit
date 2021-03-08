@@ -1,4 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Common;
+using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Collections.Generic;
@@ -9,5 +10,6 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity
     public interface IUserService : IService
     {
         Task<Result<List<UserResponse>>> GetAllAsync();
+        Task<IResult> RegisterAsync(RegisterRequest request,string origin);
     }
 }

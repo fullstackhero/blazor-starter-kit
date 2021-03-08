@@ -19,7 +19,6 @@
   <ItemGroup>
     <Folder Include="Constants\" />
     <Folder Include="Identity\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Persistence\" />
   </ItemGroup>
   <ItemGroup>

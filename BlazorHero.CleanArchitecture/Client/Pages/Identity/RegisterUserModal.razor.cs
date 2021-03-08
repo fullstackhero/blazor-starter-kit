@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
@@ -16,23 +17,27 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         MudForm form;
         [Parameter]
         [Required]
+        public string UserName { get; set; }
+        [Parameter]
+        [Required]
         public string FirstName { get; set; }
         [Parameter]
         [Required]
         public string LastName { get; set; }
         [Parameter]
         [Required]
-        public string Email { get; set; }
+        public string Email { get; set; } 
         [Parameter]
         [Required]
         public string Password { get; set; }
         [Parameter]
         [Required]
         public string ConfirmPassword { get; set; }
+        [Parameter]
+        public string PhoneNumber { get; set; }
         [CascadingParameter] MudDialogInstance MudDialog { get; set; }
-
         public void Cancel()
-        {
+        {            
             MudDialog.Cancel();
         }
         private async Task SaveAsync()
@@ -40,8 +45,30 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             form.Validate();
             if (form.IsValid)
             {
+                var request = new RegisterRequest()
+                {
+                    Email = Email,
+                    UserName = UserName,
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Password = Password,
+                    ConfirmPassword= ConfirmPassword,
+                    PhoneNumber = PhoneNumber
+                };
+                var response = await _userManager.RegisterUserAsync(request);
+                if (response.Succeeded)
+                {
+                    _snackBar.Add(response.Messages[0], Severity.Success);
+                    MudDialog.Close();
+                }
+                else
+                {
+                    foreach (var message in response.Messages)
+                    {
+                        _snackBar.Add(message, Severity.Error);
+                    }
+                }
                 
-                MudDialog.Close();
             }
 
         }
@@ -76,13 +103,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         void TogglePasswordVisibility()
         {
-            if(PasswordVisibility)
+            if (PasswordVisibility)
             {
                 PasswordVisibility = false;
                 PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
                 PasswordInput = InputType.Password;
             }
-        else
+            else
             {
                 PasswordVisibility = true;
                 PasswordInputIcon = Icons.Material.Filled.Visibility;

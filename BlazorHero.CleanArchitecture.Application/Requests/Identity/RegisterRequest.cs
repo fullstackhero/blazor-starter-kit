@@ -25,5 +25,7 @@ namespace BlazorHero.CleanArchitecture.Application.Requests.Identity
         [Required]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
+        [Required]
+        public string PhoneNumber { get; set; }
     }
 }

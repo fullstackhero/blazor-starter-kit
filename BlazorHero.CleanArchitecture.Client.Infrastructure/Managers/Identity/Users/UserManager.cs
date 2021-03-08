@@ -1,8 +1,10 @@
-﻿using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Users
@@ -22,9 +24,19 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
             return await response.ToResult<List<UserResponse>>();
         }
 
-        public Task<IResult> RegisterUserAsync()
+        public async Task<IResult> RegisterUserAsync(RegisterRequest request)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.Register, request);
+                return await response.ToResult();
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
+            
         }
     }
 }

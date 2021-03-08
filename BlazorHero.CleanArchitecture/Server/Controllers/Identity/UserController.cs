@@ -1,4 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,12 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             var users = await _userService.GetAllAsync();
             return Ok(users);
+        }
+        [HttpPost]
+        public async Task<IActionResult> RegisterAsync(RegisterRequest request)
+        {
+            var origin = Request.Headers["origin"];
+            return Ok(await _userService.RegisterAsync(request, origin));
         }
     }
 }

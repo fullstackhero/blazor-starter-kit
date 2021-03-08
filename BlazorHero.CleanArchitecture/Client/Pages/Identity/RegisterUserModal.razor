@@ -9,11 +9,13 @@
             }
         </TitleContent>
         <DialogContent>
-            <MudTextField For="@(() => FirstName)" @bind-Value="FirstName" Required="true" Label="First Name"  />
+            <MudTextField For="@(() => UserName)" @bind-Value="UserName" Required="true" Label="User Name" />
+            <MudTextField For="@(() => FirstName)" @bind-Value="FirstName" Required="true" Label="First Name" />
             <MudTextField For="@(() => LastName)" @bind-Value="LastName" Required="true" Label="Last Name" />
-            <MudTextField For="@(() => Email)" InputType="InputType.Email" Required="true" @bind-Value="Email" Label="Email"  />
-            <MudTextField For="@(() => Password)" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility"  @ref="pwField" Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" @bind-Value="Password" Required="true" Label="Password" />
-            <MudTextField For="@(() => ConfirmPassword)" Validation="@(new Func<string, string>(PasswordMatch))" InputType="InputType.Password" Required="true" @bind-Value="ConfirmPassword" Label="Confirm Password"  />
+            <MudTextField For="@(() => Email)" InputType="InputType.Email" Required="true" @bind-Value="Email" Label="Email" />
+            <MudTextField For="@(() => PhoneNumber)" @bind-Value="PhoneNumber" Required="true" Label="Phone Number" />
+            <MudTextField For="@(() => Password)" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" @ref="pwField" Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" @bind-Value="Password" Required="true" Label="Password" />
+            <MudTextField For="@(() => ConfirmPassword)" Validation="@(new Func<string, string>(PasswordMatch))" InputType="InputType.Password" Required="true" @bind-Value="ConfirmPassword" Label="Confirm Password" />
         </DialogContent>
         <DialogActions>
             <MudButton Variant="Variant.Filled" OnClick="Cancel">Cancel</MudButton>
