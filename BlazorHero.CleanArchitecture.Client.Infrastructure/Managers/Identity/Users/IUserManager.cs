@@ -8,5 +8,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
     public interface IUserManager : IManager
     {
         Task<IResult<List<UserResponse>>> GetAllAsync();
+        Task<IResult> RegisterUserAsync();
     }
 }

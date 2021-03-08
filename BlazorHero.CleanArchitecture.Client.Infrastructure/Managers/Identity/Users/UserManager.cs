@@ -21,5 +21,10 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
             var response = await _httpClient.GetAsync(Routes.UserEndpoint.GetAll);
             return await response.ToResult<List<UserResponse>>();
         }
+
+        public Task<IResult> RegisterUserAsync()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
