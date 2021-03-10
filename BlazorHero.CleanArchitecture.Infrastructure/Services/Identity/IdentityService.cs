@@ -40,7 +40,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             {
                 return Result<TokenResponse>.Fail("User Not Found.");
             }
-
+            if (!user.IsActive)
+            {
+                return Result<TokenResponse>.Fail("User Not Active. Please contact the administrator.");
+            }
+            if (!user.EmailConfirmed)
+            {
+                return Result<TokenResponse>.Fail("E-Mail not confirmed.");
+            }
             var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
             if (!passwordValid)
             {

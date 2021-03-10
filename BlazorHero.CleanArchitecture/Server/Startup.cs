@@ -36,7 +36,7 @@ namespace BlazorHero.CleanArchitecture.Server
         {
             app.UseExceptionHandling(env);
             app.UseHttpsRedirection();
-            app.UseMiddleware<ErrorHandlerMiddleware>();
+            //app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
             app.UseRouting();

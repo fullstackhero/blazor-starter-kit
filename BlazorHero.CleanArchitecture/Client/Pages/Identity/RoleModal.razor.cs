@@ -34,6 +34,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 if(response.Succeeded)
                 {
                     _snackBar.Add(response.Messages[0], Severity.Success);
+                    MudDialog.Close();
                 }
                 else
                 {
@@ -42,7 +43,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                         _snackBar.Add(message, Severity.Error);
                     }
                 }
-                MudDialog.Close();
             }
             
         }

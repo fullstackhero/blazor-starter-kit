@@ -4,7 +4,11 @@
 <HeroTitle Title="Roles" Description="Manage Roles." />
 <MudTable Elevation="25" Items="RoleList" Filter="new Func<RoleResponse, bool>(Search)" @bind-role="role">
     <ToolBarContent>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(()=>InvokeModal())">@localizer["Create"]</MudButton>
+        <div class="justify-center mud-text-align-center">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(()=>InvokeModal())">@localizer["Create"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="GetRolesAsync" Color="Color.Secondary">@localizer["Reload"]</MudButton>
+        </div>
+        
         <MudToolBarSpacer />
         <MudTextField @bind-Value="searchString" Placeholder="Search for Roles..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
     </ToolBarContent>

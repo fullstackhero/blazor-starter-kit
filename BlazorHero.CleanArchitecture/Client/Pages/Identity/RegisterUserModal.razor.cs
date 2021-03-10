@@ -17,6 +17,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         MudForm form;
         [Parameter]
         [Required]
+        [MinLength(6)]
         public string UserName { get; set; }
         [Parameter]
         [Required]
@@ -26,6 +27,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         public string LastName { get; set; }
         [Parameter]
         [Required]
+        [EmailAddress]
         public string Email { get; set; } 
         [Parameter]
         [Required]

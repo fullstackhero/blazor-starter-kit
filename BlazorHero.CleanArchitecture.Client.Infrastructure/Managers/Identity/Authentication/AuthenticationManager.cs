@@ -2,6 +2,7 @@
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http;
@@ -31,21 +32,20 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
         public async Task<IResult> Login(TokenRequest model)
         {
             var response = await this._httpClient.PostAsJsonAsync("api/identity/token", model);
-            if (!response.IsSuccessStatusCode)
+            var result = await response.ToResult<TokenResponse>();
+            if (result.Succeeded)
             {
-                var errors = await response.Content.ReadFromJsonAsync<string[]>();
-                return Result.Fail(errors.ToString());
+                var token = result.Data.Token;
+                await localStorage.SetItemAsync("authToken", token);
+                ((BlazorHeroStateProvider)this.authenticationStateProvider).MarkUserAsAuthenticated(model.Email);
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                return Result.Success();
             }
-            var responseAsString = await response.Content.ReadAsStringAsync();
-            var responseObject = JsonSerializer.Deserialize<Result<TokenResponse>>(responseAsString, new JsonSerializerOptions
+            else
             {
-                PropertyNameCaseInsensitive = true
-            });
-            var token = responseObject.Data.Token;
-            await localStorage.SetItemAsync("authToken", token);
-            ((BlazorHeroStateProvider)this.authenticationStateProvider).MarkUserAsAuthenticated(model.Email);
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            return Result.Success();
+                return Result.Fail(result.Messages);
+            }
+
         }
 
         public async Task<IResult> Logout()
