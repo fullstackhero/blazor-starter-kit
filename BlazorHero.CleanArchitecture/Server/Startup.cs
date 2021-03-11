@@ -1,8 +1,10 @@
+using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Server.Extensions;
 using BlazorHero.CleanArchitecture.Server.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,11 +27,18 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddDatabase(_configuration);
             services.AddIdentity();
             services.AddJwtAuthentication(services.GetApplicationSettings(_configuration));
+            services.AddApplicationLayer();
             services.AddApplicationServices();
             services.RegisterSwagger();
             services.AddInfrastructureMappings();
             services.AddControllers();
             services.AddRazorPages();
+            services.AddApiVersioning(config =>
+            {
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
+                config.ReportApiVersions = true;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

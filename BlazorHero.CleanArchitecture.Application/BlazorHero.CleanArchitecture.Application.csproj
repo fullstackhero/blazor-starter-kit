@@ -4,7 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Features\" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlazorHero.CleanArchitecture.Domain\BlazorHero.CleanArchitecture.Domain.csproj" />

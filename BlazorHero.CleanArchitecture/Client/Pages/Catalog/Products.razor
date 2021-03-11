@@ -1,0 +1,41 @@
+﻿@page "/catalog/products"
+@using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Products> localizer
+<HeroTitle Title="Products" Description="Manage Products." />
+<MudTable CurrentPage="currentPage" ServerData="@(new Func<TableState, Task<TableData<GetAllPagedProductsResponse>>>(ServerReload))"
+          Hover="true" @ref="table">
+    <ToolBarContent>
+        <div class="justify-center mud-text-align-center">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary">@localizer["Create"]</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Secondary">@localizer["Reload"]</MudButton>
+        </div>
+        <MudToolBarSpacer />
+        <MudToolBarSpacer />
+        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Id</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Name</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Description</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Barcode</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Rate</MudTableSortLabel></MudTh>
+        <MudTh Style="text-align:right">Actions</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Id">@context.Id</MudTd>
+        <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Description">@context.Description</MudTd>
+        <MudTd DataLabel="Barcode">@context.Barcode</MudTd>
+        <MudTd DataLabel="Rate">@context.Rate</MudTd>
+        <MudTd DataLabel="Actions" Style="text-align:right">
+            <MudMenu Label="@localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary">
+                <MudMenuItem>@localizer["Edit"]</MudMenuItem>
+                <MudMenuItem>@localizer["Delete"]</MudMenuItem>
+            </MudMenu>
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+</MudTable>

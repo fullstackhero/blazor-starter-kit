@@ -1,6 +1,6 @@
 ﻿namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
 {
-    public class BrandController : BaseApiController<BrandController>
+    public class BrandsController : BaseApiController<BrandsController>
     {
         //[HttpGet]
         //public async Task<IActionResult> GetAll()

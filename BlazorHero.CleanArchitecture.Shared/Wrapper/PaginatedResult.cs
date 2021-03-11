@@ -12,7 +12,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
 
         public List<T> Data { get; set; }
 
-        internal PaginatedResult(bool succeeded, List<T> data = default, List<string> messages = null, long count = 0, int page = 1, int pageSize = 10)
+        internal PaginatedResult(bool succeeded, List<T> data = default, List<string> messages = null, int count = 0, int page = 1, int pageSize = 10)
         {
             Data = data;
             Page = page;
@@ -26,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
             return new PaginatedResult<T>(false, default, messages);
         }
 
-        public static PaginatedResult<T> Success(List<T> data, long count, int page, int pageSize)
+        public static PaginatedResult<T> Success(List<T> data, int count, int page, int pageSize)
         {
             return new PaginatedResult<T>(true, data, null, count, page, pageSize);
         }
@@ -35,7 +35,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
 
         public int TotalPages { get; set; }
 
-        public long TotalCount { get; set; }
+        public int TotalCount { get; set; }
 
         public bool HasPreviousPage => Page > 1;
 
