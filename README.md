@@ -21,7 +21,7 @@
 
 # Features To Be Included
 
-##Version 1.0 - Upcoming Release
+## Version 1.0 - Upcoming Release
 
 - [x] Mudblazor Component Library
 - [x] .NET 5.0+
