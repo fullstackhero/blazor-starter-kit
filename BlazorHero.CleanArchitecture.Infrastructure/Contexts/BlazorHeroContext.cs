@@ -25,7 +25,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         public DbSet<Brand> Brands { get; set; }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (var entry in ChangeTracker.Entries<DeletableEntity>().ToList())
+            foreach (var entry in ChangeTracker.Entries<AuditableEntity>().ToList())
             {
                 switch (entry.State)
                 {
@@ -42,6 +42,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                     case EntityState.Deleted:
                         entry.Entity.DeletedOn = _dateTimeService.NowUtc;
                         entry.Entity.IsDeleted = true;
+                        entry.Entity.DeletedBy = _currentUserService.UserId;
                         break;
                 }
             }

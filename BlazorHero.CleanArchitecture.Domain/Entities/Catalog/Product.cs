@@ -2,7 +2,7 @@
 
 namespace BlazorHero.CleanArchitecture.Domain.Entities.Catalog
 {
-    public class Product : DeletableEntity
+    public class Product : AuditableEntity
     {
         public string Name { get; set; }
         public string Barcode { get; set; }
