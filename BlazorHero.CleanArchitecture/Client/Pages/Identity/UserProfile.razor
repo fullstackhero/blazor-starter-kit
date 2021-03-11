@@ -1,3 +1,72 @@
 ﻿@page "/user-profile/{Id}"
 @inject Microsoft.Extensions.Localization.IStringLocalizer<UserProfile> localizer
-<HeroTitle Title="@Title" Description="@Id" />
+<HeroTitle Title="@Title" Description="@Description" />
+
+<MudGrid>
+
+    <AuthorizeView Roles="Administrator">
+        <MudItem xs="12" sm="12" md="12">
+           @* <EditForm>*@
+                <MudCard Elevation="25">
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText>Administrator Only</MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudGrid>
+                            <MudItem xs="12" md="6">
+                                <MudCheckBox @bind-Checked="@Active" Label="Active" Color="Color.Primary"></MudCheckBox>
+                            </MudItem>
+                        </MudGrid>
+                    </MudCardContent>
+                    <MudCardActions Class="pb-4 pl-4">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" ButtonType="ButtonType.Submit">Save Changes</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            @*</EditForm>*@
+        </MudItem>
+    </AuthorizeView>
+    <MudItem xs="12" sm="4" md="3">
+        <MudCard Elevation="25">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText>Profile</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <div class="d-flex justify-center mb-4">
+                    <MudAvatar Size="Size.Large" Color="Color.Secondary">@FirstLetterOfName</MudAvatar>
+                </div>
+                <MudText Align="Align.Center">@FirstName @LastName</MudText>
+                <MudText Align="Align.Center">@Email</MudText>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="12" sm="8" md="9">
+        <MudCard Elevation="25">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText>Profile Details</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudGrid>
+                    <MudItem xs="12" md="6">
+                        <MudTextField @bind-Value="@FirstName" For="@(() => FirstName)" Label="First Name" Variant="Variant.Outlined" Required="true" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField @bind-Value="@LastName" For="@(() => LastName)" Label="Last Name" Variant="Variant.Outlined" Required="true" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField @bind-Value="@PhoneNumber" For="@(() => PhoneNumber)" Label="Phone Number" Variant="Variant.Outlined" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField @bind-Value="@Email" Label="Email" For="@(() => Email)" Variant="Variant.Outlined" InputType="InputType.Email" Disabled=true />
+                    </MudItem>
+                </MudGrid>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+
+</MudGrid>

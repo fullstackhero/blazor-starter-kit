@@ -23,6 +23,12 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var users = await _userService.GetAllAsync();
             return Ok(users);
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            var user = await _userService.GetAsync(id);
+            return Ok(user);
+        }
         [HttpPost]
         public async Task<IActionResult> RegisterAsync(RegisterRequest request)
         {

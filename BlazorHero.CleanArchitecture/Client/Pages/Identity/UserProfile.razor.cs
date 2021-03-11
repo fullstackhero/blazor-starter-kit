@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using MudBlazor;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
@@ -10,10 +12,40 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         [Parameter]
         public string Title { get; set; }
+        [Parameter]
+        public string Description { get; set; }
+
+        public bool Active { get; set; }
+        private char FirstLetterOfName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        public Color AvatarButtonColor { get; set; } = Color.Error;
+        public IEnumerable<string> Errors { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            Title = "Mukesh";
+            var userId = Id;
+            var result = await _userManager.GetAsync(userId);
+            if(result.Succeeded)
+            {
+                var user = result.Data;
+                if(user!=null)
+                {
+                    FirstName = user.FirstName;
+                    LastName = user.LastName;
+                    Email = user.Email;
+                    PhoneNumber = user.PhoneNumber;
+                }
+            }    
+            Title = $"{FirstName} {LastName}'s Profile";
+            Description = Email;
+            if (FirstName.Length > 0)
+            {
+                FirstLetterOfName = FirstName[0];
+            }
         }
     }
 }

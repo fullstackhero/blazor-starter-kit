@@ -10,6 +10,7 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity
     public interface IUserService : IService
     {
         Task<Result<List<UserResponse>>> GetAllAsync();
+        Task<IResult<UserResponse>> GetAsync(string userId);
         Task<IResult> RegisterAsync(RegisterRequest request,string origin);
     }
 }

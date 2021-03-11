@@ -55,5 +55,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
 
         }
+        async Task ViewProfile(string userId)
+        {
+            _navigationManager.NavigateTo($"/user-profile/{userId}");
+        }
     }
 }
