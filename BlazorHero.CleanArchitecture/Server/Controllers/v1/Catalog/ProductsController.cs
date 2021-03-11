@@ -11,9 +11,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
     public class ProductsController : BaseApiController<ProductsController>
     {
         [HttpGet]
-        public async Task<IActionResult> GetAll(int pageNumber, int pageSize)
+        public async Task<IActionResult> GetAll(int pageNumber, int pageSize, string searchString)
         {
-            var products = await _mediator.Send(new GetAllProductsQuery(pageNumber, pageSize));
+            var products = await _mediator.Send(new GetAllProductsQuery(pageNumber, pageSize, searchString));
             return Ok(products);
         }
     }

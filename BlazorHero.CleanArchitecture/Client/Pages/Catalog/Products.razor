@@ -2,17 +2,14 @@
 @using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Products> localizer
 <HeroTitle Title="Products" Description="Manage Products." />
-<MudTable CurrentPage="currentPage" ServerData="@(new Func<TableState, Task<TableData<GetAllPagedProductsResponse>>>(ServerReload))"
-          Hover="true" @ref="table">
+<MudTable ServerData="@(new Func<TableState, Task<TableData<GetAllPagedProductsResponse>>>(ServerReload))" Hover="true" @ref="table">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
             <MudButton Variant="Variant.Filled" Color="Color.Primary">@localizer["Create"]</MudButton>
-            <MudButton Variant="Variant.Filled" Color="Color.Secondary">@localizer["Reload"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="@(()=>LoadData(0,10))" Color="Color.Secondary">@localizer["Reload"]</MudButton>
         </div>
         <MudToolBarSpacer />
-        <MudToolBarSpacer />
-        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start"
-                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
         <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Id</MudTableSortLabel></MudTh>

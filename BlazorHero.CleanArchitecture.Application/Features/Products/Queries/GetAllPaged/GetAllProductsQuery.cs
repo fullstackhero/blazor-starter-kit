@@ -15,11 +15,12 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
-
-        public GetAllProductsQuery(int pageNumber, int pageSize)
+        public string SearchString { get; set; }
+        public GetAllProductsQuery(int pageNumber, int pageSize, string searchString)
         {
             PageNumber = pageNumber;
             PageSize = pageSize;
+            SearchString = searchString;
         }
     }
 
@@ -42,10 +43,19 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
                 Rate = e.Rate,
                 Barcode = e.Barcode
             };
-            var paginatedList = await _repository.Products
+            if(string.IsNullOrEmpty(request.SearchString))
+            {
+                return await _repository.Products
                 .Select(expression)
                 .ToPaginatedListAsync(request.PageNumber, request.PageSize);
-            return paginatedList;
+            }
+            else
+            {
+                return await _repository.Products
+                .Where(p => p.Name.Contains(request.SearchString) || p.Barcode.Contains(request.SearchString) || p.Description.Contains(request.SearchString))
+                .Select(expression)
+                .ToPaginatedListAsync(request.PageNumber, request.PageSize);
+            }
         }
     }
 }
