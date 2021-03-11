@@ -4,7 +4,7 @@ using System;
 
 namespace BlazorHero.CleanArchitecture.Shared.Models.Identity
 {
-    public class BlazorHeroUser : IdentityUser, IAuditableEntity, IDeletableEntity
+    public class BlazorHeroUser : IdentityUser, IAuditableEntity
     {
         public string FirstName { get; set; }
 
