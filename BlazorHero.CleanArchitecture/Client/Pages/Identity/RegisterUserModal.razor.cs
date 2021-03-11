@@ -37,6 +37,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         public string ConfirmPassword { get; set; }
         [Parameter]
         public string PhoneNumber { get; set; }
+        public bool ActivateUser { get; set; }
+        public bool AutoConfirmEmail { get; set; }
         [CascadingParameter] MudDialogInstance MudDialog { get; set; }
         public void Cancel()
         {            
@@ -55,7 +57,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     LastName = LastName,
                     Password = Password,
                     ConfirmPassword= ConfirmPassword,
-                    PhoneNumber = PhoneNumber
+                    PhoneNumber = PhoneNumber,
+                    ActivateUser = ActivateUser,
+                    AutoConfirmEmail = AutoConfirmEmail
                 };
                 var response = await _userManager.RegisterUserAsync(request);
                 if (response.Succeeded)

@@ -48,7 +48,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 UserName = request.UserName,
-                PhoneNumber = request.PhoneNumber
+                PhoneNumber = request.PhoneNumber,
+                IsActive = request.ActivateUser,
+                EmailConfirmed = request.AutoConfirmEmail
             };
             var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
             if (userWithSameEmail == null)
@@ -57,10 +59,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, Constants.BasicRole.ToString());
-                    var verificationUri = await SendVerificationEmail(user, origin);
-                    //TODO: Attach Email Service here and configure it via appsettings
-                    //await _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" });
-                    return Result<string>.Success(user.Id, message: $"User Registered. Confirmation Mail has been delivered to the Mailbox.");
+                    if(!request.AutoConfirmEmail)
+                    {
+                        var verificationUri = await SendVerificationEmail(user, origin);
+                        //TODO: Attach Email Service here and configure it via appsettings
+                        //await _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" });
+                        return Result<string>.Success(user.Id, message: $"User Registered. Confirmation Mail has been delivered to the Mailbox.");
+                    }
+                    return Result<string>.Success(user.Id, message: $"User Registered!");
                 }
                 else
                 {

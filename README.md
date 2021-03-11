@@ -45,6 +45,11 @@
 - [x] Swagger
 - [x] Middlewares
 - [x] Favicon
+- [ ] Fluent Validation
+- [x] Default User & Role Seeding
+- [x] Dynamic Service Registration (WASM)
+- [x] Auto DB Migrations
+- [ ] Paginated API Responses 
 
 ## Version 2.0 - Down the Road
 

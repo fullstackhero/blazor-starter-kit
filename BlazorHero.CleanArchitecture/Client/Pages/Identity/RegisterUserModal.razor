@@ -16,6 +16,8 @@
             <MudTextField For="@(() => PhoneNumber)" @bind-Value="PhoneNumber" Required="true" Label="Phone Number" />
             <MudTextField For="@(() => Password)" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" @ref="pwField" Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" @bind-Value="Password" Required="true" Label="Password" />
             <MudTextField For="@(() => ConfirmPassword)" Validation="@(new Func<string, string>(PasswordMatch))" InputType="InputType.Password" Required="true" @bind-Value="ConfirmPassword" Label="Confirm Password" />
+            <MudCheckBox @bind-Checked="@ActivateUser" Label="Activate User?" Color="Color.Primary"></MudCheckBox>
+            <MudCheckBox @bind-Checked="@AutoConfirmEmail" Label="Auto Confirm Email?" Color="Color.Primary"></MudCheckBox>
         </DialogContent>
         <DialogActions>
             <MudButton Variant="Variant.Filled" OnClick="Cancel">Cancel</MudButton>

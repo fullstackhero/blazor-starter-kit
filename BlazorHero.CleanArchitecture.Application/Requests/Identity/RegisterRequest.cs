@@ -27,5 +27,7 @@ namespace BlazorHero.CleanArchitecture.Application.Requests.Identity
         public string ConfirmPassword { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
+        public bool ActivateUser { get; set; } = false;
+        public bool AutoConfirmEmail { get; set; } = false;
     }
 }

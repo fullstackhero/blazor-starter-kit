@@ -26,17 +26,8 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
 
         public async Task<IResult> RegisterUserAsync(RegisterRequest request)
         {
-            try
-            {
-                var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.Register, request);
-                return await response.ToResult();
-            }
-            catch (System.Exception ex)
-            {
-
-                throw;
-            }
-            
+            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.Register, request);
+            return await response.ToResult();
         }
     }
 }
