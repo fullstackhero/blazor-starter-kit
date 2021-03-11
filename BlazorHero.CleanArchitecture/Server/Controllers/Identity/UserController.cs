@@ -35,5 +35,10 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var origin = Request.Headers["origin"];
             return Ok(await _userService.RegisterAsync(request, origin));
         }
+        [HttpPost("toggle-status")]
+        public async Task<IActionResult> ToggleUserStatusAsync(ToggleUserStatusRequest request)
+        {
+            return Ok(await _userService.ToggleUserStatusAsync(request));
+        }
     }
 }

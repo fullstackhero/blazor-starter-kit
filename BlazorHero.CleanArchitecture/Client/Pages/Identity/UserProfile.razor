@@ -1,31 +1,18 @@
 ﻿@page "/user-profile/{Id}"
 @inject Microsoft.Extensions.Localization.IStringLocalizer<UserProfile> localizer
 <HeroTitle Title="@Title" Description="@Description" />
-
 <MudGrid>
-
     <AuthorizeView Roles="Administrator">
         <MudItem xs="12" sm="12" md="12">
-           @* <EditForm>*@
-                <MudCard Elevation="25">
-                    <MudCardHeader>
-                        <CardHeaderContent>
-                            <MudText>Administrator Only</MudText>
-                        </CardHeaderContent>
-                    </MudCardHeader>
-                    <MudCardContent>
-                        <MudGrid>
-                            <MudItem xs="12" md="6">
-                                <MudCheckBox @bind-Checked="@Active" Label="Active" Color="Color.Primary"></MudCheckBox>
-                            </MudItem>
-                        </MudGrid>
-                    </MudCardContent>
-                    <MudCardActions Class="pb-4 pl-4">
-                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" ButtonType="ButtonType.Submit">Save Changes</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            @*</EditForm>*@
-        </MudItem>
+            <MudCard Elevation="25">
+                <MudCardContent Class="pa-46" Style="padding:26px!important">
+                    <MudGrid>
+                            <MudCheckBox @bind-Checked="@Active" Label="Active" Color="Color.Primary"></MudCheckBox>
+                            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="ToggleUserStatus" ButtonType="ButtonType.Submit">Save Changes</MudButton>
+                    </MudGrid>
+                </MudCardContent>
+            </MudCard>
+            </MudItem>
     </AuthorizeView>
     <MudItem xs="12" sm="4" md="3">
         <MudCard Elevation="25">
@@ -68,5 +55,4 @@
             </MudCardContent>
         </MudCard>
     </MudItem>
-
 </MudGrid>

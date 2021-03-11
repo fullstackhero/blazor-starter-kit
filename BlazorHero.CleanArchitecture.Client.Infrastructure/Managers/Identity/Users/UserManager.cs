@@ -35,5 +35,11 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
             var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.Register, request);
             return await response.ToResult();
         }
+
+        public async Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request)
+        {
+            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.ToggleUserStatus, request);
+            return await response.ToResult();
+        }
     }
 }

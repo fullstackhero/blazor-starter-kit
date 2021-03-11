@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -24,28 +25,45 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         public string Email { get; set; }
         public Color AvatarButtonColor { get; set; } = Color.Error;
         public IEnumerable<string> Errors { get; set; }
-
+        async Task ToggleUserStatus()
+        {
+            var request = new ToggleUserStatusRequest { ActivateUser = Active, UserId = Id };
+            var result = await _userManager.ToggleUserStatusAsync(request);
+            if (result.Succeeded)
+            {
+                _snackBar.Add("Updated User Status.", Severity.Success);
+            }
+            else
+            {
+                foreach(var error in result.Messages)
+                {
+                    _snackBar.Add(error, Severity.Error);
+                }
+            }
+        }
         protected override async Task OnInitializedAsync()
         {
             var userId = Id;
             var result = await _userManager.GetAsync(userId);
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 var user = result.Data;
-                if(user!=null)
+                if (user != null)
                 {
                     FirstName = user.FirstName;
                     LastName = user.LastName;
                     Email = user.Email;
                     PhoneNumber = user.PhoneNumber;
+                    Active = user.IsActive;
                 }
-            }    
-            Title = $"{FirstName} {LastName}'s Profile";
-            Description = Email;
-            if (FirstName.Length > 0)
-            {
-                FirstLetterOfName = FirstName[0];
+                Title = $"{FirstName} {LastName}'s Profile";
+                Description = Email;
+                if (FirstName.Length > 0)
+                {
+                    FirstLetterOfName = FirstName[0];
+                }
             }
+            
         }
     }
 }

@@ -8,5 +8,6 @@
             return $"api/identity/user/{userId}";
         }
         public static string Register = "api/identity/user";
+        public static string ToggleUserStatus = "api/identity/user/toggle-status";
     }
 }

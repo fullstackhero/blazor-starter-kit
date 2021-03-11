@@ -95,5 +95,21 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var result = _mapper.Map<UserResponse>(user);
             return Result<UserResponse>.Success(result);
         }
+
+        public async Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request)
+        {
+            var user = await _userManager.Users.Where(u => u.Id == request.UserId).FirstOrDefaultAsync();
+            var IsAdmin = await _userManager.IsInRoleAsync(user, Constants.AdministratorRole);
+            if(IsAdmin)
+            {
+                return Result.Fail("Administrators Profile's Status cannot be toggled");
+            }
+            if(user!=null)
+            {
+                user.IsActive = request.ActivateUser;
+                var identityResult = await _userManager.UpdateAsync(user);
+            }
+            return Result.Success();
+        }
     }
 }
