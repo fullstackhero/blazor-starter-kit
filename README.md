@@ -29,9 +29,9 @@
 - [x] Onion Architecture
 - [x] Persistent Dark Mode (Local Storage)
 - [x] Service-Based Approach
-- [ ] MediatR at API Level
+- [x] MediatR at API Level
 - [x] AutoMapper
-- [ ] API Versioning
+- [x] API Versioning
 - [x] JWT Authentication
 - [x] Serilog - Server-Side Only*
 - [ ] Complete User Management
@@ -49,7 +49,7 @@
 - [x] Default User & Role Seeding
 - [x] Dynamic Service Registration (WASM)
 - [x] Auto DB Migrations
-- [ ] Paginated API Responses
+- [x] Paginated API Responses
 - [ ] 403 Redirects
 
 ## Version 2.0 - Down the Road
@@ -70,5 +70,5 @@
 - [ ] Need someone to implement localization throughout every Razor Component of the solution under the WASM(Client) Project. You can take the Pages/Authentication/Login.razor as the point of reference. It is as simple as adding `@inject Microsoft.Extensions.Localization.IStringLocalizer<Login> localizer` to every page, changing the texts to `@localizer["Text Here"]` and finally adding resx files to the Resources Folder as per the folder structure.
 - [ ] Need few contributors to add in various language transalations as per the implemented Location. I got time to only add a few transalations for French as of now.
 - [ ] Need a UI contributor to look at the UX/UI of the entire project
-- [ ] Need someone to buildup a cool Material Logo for BlazorHero :D Do contact me on LinkedIn (https://www.linkedin.com/in/iammukeshm/).
+- [ ] Need someone to buildup a cool Material Logo for BlazorHero (BH):D Do contact me on LinkedIn (https://www.linkedin.com/in/iammukeshm/).
 - [ ] And finally, Stars from everyone! :D
