@@ -1,0 +1,44 @@
+﻿<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        Add Product
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        Update Product
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            @if (Id != 0)
+            {
+                <MudTextField Disabled For="@(() => Id)" @bind-Value="Id" Required="true" Label="Id" />
+            }
+            <MudTextField For="@(() => Name)" @bind-Value="Name" Required="true" Label="Name" />
+            <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="Description" />
+            <MudTextField For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="Barcode" />
+            <MudTextField For="@(() => Rate)" @bind-Value="Rate" Required="true" Label="Rate" />
+        </DialogContent>
+        <DialogActions>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">Cancel</MudButton>
+            @if (Id != 0)
+            {
+                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Secondary">Update</MudButton>
+            }
+            else
+            {
+                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Success">Save</MudButton>
+            }
+        </DialogActions>
+
+    </MudDialog>
+</MudForm>

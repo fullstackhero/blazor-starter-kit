@@ -46,5 +46,26 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             searchString = text;
             table.ReloadServerData();
         }
+        async Task InvokeModal(int id = 0)
+        {
+            var parameters = new DialogParameters();
+            if (id != 0)
+            {
+                var product = pagedData.FirstOrDefault(c => c.Id == id);
+                parameters.Add("Id", product.Id);
+                parameters.Add("Name", product.Name);
+                parameters.Add("Description", product.Description);
+                parameters.Add("Rate", product.Rate);
+                parameters.Add("Barcode", product.Barcode);
+            }
+            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<AddEditProductModal>("Modal", parameters, options);
+            var result = await dialog.Result;
+            if (!result.Cancelled)
+            {
+                await LoadData(0,10);
+            }
+
+        }
     }
 }
