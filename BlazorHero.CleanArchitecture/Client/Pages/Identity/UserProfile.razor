@@ -5,14 +5,20 @@
     <AuthorizeView Roles="Administrator">
         <MudItem xs="12" sm="12" md="12">
             <MudCard Elevation="25">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.body1">Administrator Settings.</MudText>
+                        <MudText Typo="Typo.body2">This is an Administrator Only View.</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
                 <MudCardContent Class="pa-46" Style="padding:26px!important">
                     <MudGrid>
-                            <MudCheckBox @bind-Checked="@Active" Label="Active" Color="Color.Primary"></MudCheckBox>
-                            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="ToggleUserStatus" ButtonType="ButtonType.Submit">Save Changes</MudButton>
+                        <MudCheckBox @bind-Checked="@Active" Label="Active?" Color="Color.Primary"></MudCheckBox>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="ToggleUserStatus" ButtonType="ButtonType.Submit">Save Changes</MudButton>
                     </MudGrid>
                 </MudCardContent>
             </MudCard>
-            </MudItem>
+        </MudItem>
     </AuthorizeView>
     <MudItem xs="12" sm="4" md="3">
         <MudCard Elevation="25">
@@ -34,22 +40,22 @@
         <MudCard Elevation="25">
             <MudCardHeader>
                 <CardHeaderContent>
-                    <MudText>Profile Details</MudText>
+                    <MudText>Public Profile</MudText>
                 </CardHeaderContent>
             </MudCardHeader>
             <MudCardContent>
                 <MudGrid>
                     <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="@FirstName" For="@(() => FirstName)" Label="First Name" Variant="Variant.Outlined" Required="true" />
+                        <MudField Label="First Name" Variant="Variant.Text">@FirstName</MudField>
                     </MudItem>
                     <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="@LastName" For="@(() => LastName)" Label="Last Name" Variant="Variant.Outlined" Required="true" />
+                        <MudField Label="Last Name" Variant="Variant.Text">@LastName</MudField>
                     </MudItem>
                     <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="@PhoneNumber" For="@(() => PhoneNumber)" Label="Phone Number" Variant="Variant.Outlined" />
+                        <MudField Label="Phone Number" Variant="Variant.Text">@PhoneNumber</MudField>
                     </MudItem>
                     <MudItem xs="12" md="6">
-                        <MudTextField @bind-Value="@Email" Label="Email" For="@(() => Email)" Variant="Variant.Outlined" InputType="InputType.Email" Disabled=true />
+                        <MudField Label="Email" Variant="Variant.Text">@Email</MudField>
                     </MudItem>
                 </MudGrid>
             </MudCardContent>
