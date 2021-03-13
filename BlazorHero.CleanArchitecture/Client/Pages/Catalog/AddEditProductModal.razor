@@ -1,4 +1,6 @@
-﻿<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditProductModal> localizer
+
+<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
     <MudDialog>
         <TitleContent>
             @{
@@ -6,14 +8,14 @@
                 {
                     <MudText Typo="Typo.h6">
                         <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
-                        Add Product
+                        @localizer["Add Product"]
                     </MudText>
                 }
                 else
                 {
                     <MudText Typo="Typo.h6">
                         <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
-                        Update Product
+                        @localizer["Update Product"]
                     </MudText>
                 }
             }
@@ -23,32 +25,32 @@
                 @if (Id != 0)
                 {
                     <MudItem xs="12" md="6">
-                        <MudTextField Disabled For="@(() => Id)" @bind-Value="Id" Required="true" Label="Id" />
+                        <MudTextField Disabled For="@(() => Id)" @bind-Value="Id" Required="true" Label="@localizer["Id"]" />
                     </MudItem>
                 }
                 <MudItem xs="12" md="6">
-                    <MudTextField For="@(() => Name)" @bind-Value="Name" Required="true" Label="Name" />
+                    <MudTextField For="@(() => Name)" @bind-Value="Name" Required="true" Label="@localizer["Name"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="Description" />
+                    <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="@localizer["Description"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudTextField For="@(() => Rate)" @bind-Value="Rate" Required="true" Label="Rate" />
+                    <MudTextField For="@(() => Rate)" @bind-Value="Rate" Required="true" Label="@localizer["Rate"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudTextField For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="Barcode" />
+                    <MudTextField For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="@localizer["Barcode"]" />
                 </MudItem>
             </MudGrid>
         </DialogContent>
         <DialogActions>
-            <MudButton Variant="Variant.Filled" OnClick="Cancel">Cancel</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@localizer["Cancel"]</MudButton>
             @if (Id != 0)
             {
-                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Secondary">Update</MudButton>
+                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Secondary">@localizer["Update"]</MudButton>
             }
             else
             {
-                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Success">Save</MudButton>
+                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Success">@localizer["Save"]</MudButton>
             }
         </DialogActions>
 

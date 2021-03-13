@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Account" xml:space="preserve">
-    <value>Account</value>
+    <value>Konto</value>
   </data>
   <data name="Administrator" xml:space="preserve">
     <value>Administrator</value>
   </data>
   <data name="Brands" xml:space="preserve">
-    <value>Brands</value>
+    <value>Marken</value>
   </data>
   <data name="Catalog Management" xml:space="preserve">
-    <value>Catalog Management</value>
+    <value>Katalogverwaltung</value>
   </data>
   <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+    <value>Kommunikation</value>
   </data>
   <data name="FAQs" xml:space="preserve">
     <value>FAQs</value>
@@ -139,21 +139,24 @@
     <value>Features</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Home</value>
+    <value>Start</value>
   </data>
   <data name="Personal" xml:space="preserve">
-    <value>Personal</value>
+    <value>Persönlich</value>
   </data>
   <data name="Products" xml:space="preserve">
-    <value>Products</value>
+    <value>Produkte</value>
   </data>
   <data name="Resources" xml:space="preserve">
-    <value>Resources</value>
+    <value>Ressourcen</value>
   </data>
   <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
+    <value>Rollen</value>
+  </data>
+  <data name="Swagger" xml:space="preserve">
+    <value>Swagger</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>Users</value>
+    <value>Nutzer</value>
   </data>
 </root>

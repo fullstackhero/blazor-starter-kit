@@ -1,25 +1,26 @@
 ﻿@page "/register"
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Register> localizer
 
 <MudItem xs="12">
-    <MudText Typo="Typo.h4">Sign Up</MudText>
+    <MudText Typo="Typo.h4">@localizer["Sign Up"]</MudText>
 </MudItem>
 <MudItem xs="12">
-    <MudText>Already have an account? <MudLink Href="/pages/authentication/login">Sign In</MudLink></MudText>
+    <MudText>@localizer["Already have an account?"] <MudLink Href="/pages/authentication/login">@localizer["Sign In"]</MudLink></MudText>
 </MudItem>
 <MudItem xs="12">
-    <MudTextField T="string" Label="Username" Variant="Variant.Outlined"></MudTextField>
+    <MudTextField T="string" Label="@localizer["Username"]" Variant="Variant.Outlined"></MudTextField>
 </MudItem>
 <MudItem xs="12">
-    <MudTextField T="string" Label="E-mail" Variant="Variant.Outlined"></MudTextField>
+    <MudTextField T="string" Label="@localizer["E-mail"]" Variant="Variant.Outlined"></MudTextField>
 </MudItem>
 <MudItem xs="12">
-    <MudTextField @bind-Value="@Password" Label="Password" Variant="Variant.Outlined" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
+    <MudTextField @bind-Value="@Password" Label="@localizer["Password"]" Variant="Variant.Outlined" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
 </MudItem>
 <MudItem xs="12" Class="d-flex justify-space-between align-center">
-    <MudCheckBox @bind-Checked="@AgreeToTerms" Label="I agree to the terms and privacy" Color="Color.Primary" Class="ml-n1"></MudCheckBox>
+    <MudCheckBox @bind-Checked="@AgreeToTerms" Label="@localizer["I agree to the terms and privacy"]" Color="Color.Primary" Class="ml-n1"></MudCheckBox>
 </MudItem>
 <MudItem xs="12" Class="d-flex justify-center">
-    <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!AgreeToTerms)" Link="/pages/authentication/login" Size="Size.Large" Style="width: 100%;">Register</MudButton>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!AgreeToTerms)" Link="/pages/authentication/login" Size="Size.Large" Style="width: 100%;">@localizer["Register"]</MudButton>
 </MudItem>
 
 @code {

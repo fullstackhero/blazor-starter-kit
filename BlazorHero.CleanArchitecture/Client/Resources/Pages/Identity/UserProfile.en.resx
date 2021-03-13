@@ -117,43 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
+  <data name="Active?" xml:space="preserve">
+    <value>Active?</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrator</value>
+  <data name="Administrator Settings." xml:space="preserve">
+    <value>Administrator Settings.</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Brands</value>
+  <data name="Email" xml:space="preserve">
+    <value>E-Mail</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Catalog Management</value>
+  <data name="First Name" xml:space="preserve">
+    <value>First Name</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>Last Name</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQs</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Phone Number</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Features</value>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="Public Profile" xml:space="preserve">
+    <value>Public Profile</value>
   </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personal</value>
+  <data name="Save Changes" xml:space="preserve">
+    <value>Save Changes</value>
   </data>
-  <data name="Products" xml:space="preserve">
-    <value>Products</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Resources</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Users</value>
+  <data name="This is an Administrator Only View." xml:space="preserve">
+    <value>This is an Administrator Only View.</value>
   </data>
 </root>

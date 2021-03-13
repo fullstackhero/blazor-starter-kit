@@ -117,43 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
+  <data name="Actions" xml:space="preserve">
+    <value>Aktionen</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrator</value>
+  <data name="Active" xml:space="preserve">
+    <value>Aktiv</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Brands</value>
+  <data name="Create" xml:space="preserve">
+    <value>Hinzufügen</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Catalog Management</value>
+  <data name="Email" xml:space="preserve">
+    <value>E-Mail</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+  <data name="Email Confirmation" xml:space="preserve">
+    <value>E-Mail bestätigt</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQs</value>
+  <data name="First Name" xml:space="preserve">
+    <value>Vorname</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Features</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>Nachname</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="Manage Roles" xml:space="preserve">
+    <value>Rollen verwalten</value>
   </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personal</value>
+  <data name="Manage Users" xml:space="preserve">
+    <value>Nutzer verwalten</value>
   </data>
-  <data name="Products" xml:space="preserve">
-    <value>Products</value>
+  <data name="Register New User" xml:space="preserve">
+    <value>Neuen Nutzer anlegen</value>
   </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Resources</value>
+  <data name="Reload" xml:space="preserve">
+    <value>Neu laden</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
+  <data name="Search For Users" xml:space="preserve">
+    <value>Nach Nutzern suchen</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>Users</value>
+    <value>Nutzer</value>
+  </data>
+  <data name="View Profile" xml:space="preserve">
+    <value>Profil anzeigen</value>
   </data>
 </root>

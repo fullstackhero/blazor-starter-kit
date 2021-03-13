@@ -117,43 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
+  <data name="Description" xml:space="preserve">
+    <value>Mit Zugangsdaten anmelden</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrator</value>
+  <data name="E-mail" xml:space="preserve">
+    <value>E-mail</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Brands</value>
+  <data name="Email is required!" xml:space="preserve">
+    <value>E-Mail wird benötigt.</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Catalog Management</value>
+  <data name="Forgot password?" xml:space="preserve">
+    <value>Passwort vergessen?</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQs</value>
+  <data name="Password is required!" xml:space="preserve">
+    <value>Passwort wird benötigt!</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Features</value>
+  <data name="Remember me?" xml:space="preserve">
+    <value>Zugangsaten speichern?</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="Sign In" xml:space="preserve">
+    <value>Anmelden</value>
   </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personal</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Products</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Resources</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Users</value>
+  <data name="Title" xml:space="preserve">
+    <value>Anmelden</value>
   </data>
 </root>

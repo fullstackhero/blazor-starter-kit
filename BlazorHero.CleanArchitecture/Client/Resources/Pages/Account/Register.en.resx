@@ -117,43 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
+  <data name="Already have an account?" xml:space="preserve">
+    <value>Already have an account?</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrator</value>
+  <data name="E-mail" xml:space="preserve">
+    <value>E-mail</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Brands</value>
+  <data name="I agree to the terms and privacy" xml:space="preserve">
+    <value>I agree to the terms and privacy</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Catalog Management</value>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQs</value>
+  <data name="Sign In" xml:space="preserve">
+    <value>Sign In</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Features</value>
+  <data name="Sign Up" xml:space="preserve">
+    <value>Sign Up</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personal</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Products</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Resources</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Users</value>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿@page "/catalog/products"
 @using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Products> localizer
-<HeroTitle Title="Products" Description="Manage Products." />
+<HeroTitle Title="@localizer["Products"]" Description="@localizer["Manage Products."]" />
 <MudTable ServerData="@(new Func<TableState, Task<TableData<GetAllPagedProductsResponse>>>(ServerReload))" Hover="true" @ref="table">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
@@ -9,15 +9,15 @@
             <MudButton Variant="Variant.Filled" OnClick="@(()=>LoadData(0,10))" Color="Color.Secondary">@localizer["Reload"]</MudButton>
         </div>
         <MudToolBarSpacer />
-        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@localizer["Search"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
-        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Id</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Name</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Description</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Barcode</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">Rate</MudTableSortLabel></MudTh>
-        <MudTh Style="text-align:right">Actions</MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Id"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Name"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Description"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Barcode"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Rate"]</MudTableSortLabel></MudTh>
+        <MudTh Style="text-align:right">@localizer["Actions"]</MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Id">@context.Id</MudTd>

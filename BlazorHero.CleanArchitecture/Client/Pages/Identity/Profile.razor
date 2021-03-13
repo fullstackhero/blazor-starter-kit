@@ -3,7 +3,7 @@
         <MudCard Elevation="25">
             <MudCardHeader>
                 <CardHeaderContent>
-                    <MudText>Profile</MudText>
+                    <MudText>@localizer["Profile"]</MudText>
                 </CardHeaderContent>
             </MudCardHeader>
             <MudCardContent>
@@ -20,27 +20,27 @@
             <MudCard Elevation="25">
                 <MudCardHeader>
                     <CardHeaderContent>
-                        <MudText>Profile Details</MudText>
+                        <MudText>@localizer["Profile Details"]</MudText>
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
                     <MudGrid>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@profileModel.FirstName" For="@(() => profileModel.FirstName)" Label="First Name" Variant="Variant.Outlined" Required="true" />
+                            <MudTextField @bind-Value="@profileModel.FirstName" For="@(() => profileModel.FirstName)" Label="@localizer["First Name"]" Variant="Variant.Outlined" Required="true" />
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@profileModel.LastName" For="@(() => profileModel.LastName)" Label="Last Name" Variant="Variant.Outlined" Required="true" />
+                            <MudTextField @bind-Value="@profileModel.LastName" For="@(() => profileModel.LastName)" Label="@localizer["Last Name"]" Variant="Variant.Outlined" Required="true" />
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@profileModel.PhoneNumber" For="@(() => profileModel.PhoneNumber)" Label="Phone Number" Variant="Variant.Outlined" />
+                            <MudTextField @bind-Value="@profileModel.PhoneNumber" For="@(() => profileModel.PhoneNumber)" Label="@localizer["Phone Number"]" Variant="Variant.Outlined" />
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@profileModel.Email" Label="Email" For="@(() => profileModel.Email)" Variant="Variant.Outlined" InputType="InputType.Email" Disabled=true />
+                            <MudTextField @bind-Value="@profileModel.Email" Label="@localizer["Email"]" For="@(() => profileModel.Email)" Variant="Variant.Outlined" InputType="InputType.Email" Disabled=true />
                         </MudItem>
                     </MudGrid>
                 </MudCardContent>
                 <MudCardActions Class="pb-4 pl-4">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" ButtonType="ButtonType.Submit">Save Changes</MudButton>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" ButtonType="ButtonType.Submit">@localizer["Save Changes"]</MudButton>
                 </MudCardActions>
             </MudCard>
         </EditForm>
