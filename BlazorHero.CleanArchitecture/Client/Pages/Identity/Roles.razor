@@ -2,7 +2,7 @@
 @using BlazorHero.CleanArchitecture.Application.Responses.Identity
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Roles> localizer
 <HeroTitle Title="Roles" Description="Manage Roles." />
-<MudTable Elevation="25" Items="RoleList" Filter="new Func<RoleResponse, bool>(Search)" @bind-role="role">
+<MudTable Hover="true" Elevation="25" Items="RoleList" Filter="new Func<RoleResponse, bool>(Search)" @bind-role="role">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
             <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(()=>InvokeModal())">@localizer["Create"]</MudButton>

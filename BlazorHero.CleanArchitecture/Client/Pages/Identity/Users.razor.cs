@@ -59,5 +59,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             _navigationManager.NavigateTo($"/user-profile/{userId}");
         }
+        async Task ManageRoles(string userId, string email)
+        {
+            if (email == "mukesh@blazorhero.com") _snackBar.Add("Not Allowed.",Severity.Error);
+            else _navigationManager.NavigateTo($"/identity/user-roles/{userId}");
+        }
     }
 }

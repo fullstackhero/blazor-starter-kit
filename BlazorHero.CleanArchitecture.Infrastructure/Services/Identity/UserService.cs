@@ -19,11 +19,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
     public class UserService : IUserService
     {
         private readonly UserManager<BlazorHeroUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserService(UserManager<BlazorHeroUser> userManager, IMapper mapper)
+        public UserService(UserManager<BlazorHeroUser> userManager, IMapper mapper, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _mapper = mapper;
+            _roleManager = roleManager;
         }
 
         private IMapper _mapper;
@@ -110,6 +112,40 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 var identityResult = await _userManager.UpdateAsync(user);
             }
             return Result.Success();
+        }
+
+        public async Task<IResult<UserRolesResponse>> GetRolesAsync(string userId)
+        {
+            var viewModel = new List<UserRoleModel>();
+            var user = await _userManager.FindByIdAsync(userId);
+            foreach (var role in _roleManager.Roles)
+            {
+                var userRolesViewModel = new UserRoleModel
+                {
+                    RoleName = role.Name
+                };
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                {
+                    userRolesViewModel.Selected = true;
+                }
+                else
+                {
+                    userRolesViewModel.Selected = false;
+                }
+                viewModel.Add(userRolesViewModel);               
+            }
+            var result = new UserRolesResponse { UserRoles = viewModel };
+            return Result<UserRolesResponse>.Success(result);
+        }
+
+        public async Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(request.UserId);
+            if (user.Email == "mukesh@blazorhero.com") return Result.Fail("Not Allowed.");
+            var roles = await _userManager.GetRolesAsync(user);
+            var result = await _userManager.RemoveFromRolesAsync(user, roles);
+            result = await _userManager.AddToRolesAsync(user, request.UserRoles.Where(x => x.Selected).Select(y => y.RoleName));
+            return Result.Success("Roles Updated.");
         }
     }
 }

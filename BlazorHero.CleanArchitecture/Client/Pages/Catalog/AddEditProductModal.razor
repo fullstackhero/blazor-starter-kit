@@ -19,14 +19,26 @@
             }
         </TitleContent>
         <DialogContent>
-            @if (Id != 0)
-            {
-                <MudTextField Disabled For="@(() => Id)" @bind-Value="Id" Required="true" Label="Id" />
-            }
-            <MudTextField For="@(() => Name)" @bind-Value="Name" Required="true" Label="Name" />
-            <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="Description" />
-            <MudTextField For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="Barcode" />
-            <MudTextField For="@(() => Rate)" @bind-Value="Rate" Required="true" Label="Rate" />
+            <MudGrid>
+                @if (Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => Id)" @bind-Value="Id" Required="true" Label="Id" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => Name)" @bind-Value="Name" Required="true" Label="Name" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="Description" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => Rate)" @bind-Value="Rate" Required="true" Label="Rate" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="Barcode" />
+                </MudItem>
+            </MudGrid>
         </DialogContent>
         <DialogActions>
             <MudButton Variant="Variant.Filled" OnClick="Cancel">Cancel</MudButton>

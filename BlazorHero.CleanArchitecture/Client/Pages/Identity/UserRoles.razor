@@ -1,3 +1,22 @@
-﻿@page "/user-roles/{Id}"
+﻿@page "/identity/user-roles/{Id}"
 @inject Microsoft.Extensions.Localization.IStringLocalizer<UserProfile> localizer
-<HeroTitle Title="@Title" Description="@Id" />
+<HeroTitle Title="@Title" Description="@Description" />
+<MudTable Hover="true" Elevation="25" Items="UserRolesList">
+    <ToolBarContent>
+        <div class="justify-center mud-text-align-center">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">Update User Roles</MudButton>
+        </div>
+        <MudToolBarSpacer />
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Role Name</MudTh>
+        <MudTh>Status</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Id">@context.RoleName</MudTd>
+        <MudTd DataLabel="Role"><MudCheckBox @bind-Checked="@context.Selected" Color="Color.Secondary"></MudCheckBox></MudTd>
+    </RowTemplate>
+    <PagerContent>
+       
+    </PagerContent>
+</MudTable>

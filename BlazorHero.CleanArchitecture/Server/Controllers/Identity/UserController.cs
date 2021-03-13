@@ -29,6 +29,17 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var user = await _userService.GetAsync(id);
             return Ok(user);
         }
+        [HttpGet("roles/{id}")]
+        public async Task<IActionResult> GetRolesAsync(string id)
+        {
+            var userRoles = await _userService.GetRolesAsync(id);
+            return Ok(userRoles);
+        }
+        [HttpPut("roles/{id}")]
+        public async Task<IActionResult> UpdateRolesAsync(UpdateUserRolesRequest request)
+        {
+            return Ok(await _userService.UpdateRolesAsync(request));
+        }
         [HttpPost]
         public async Task<IActionResult> RegisterAsync(RegisterRequest request)
         {

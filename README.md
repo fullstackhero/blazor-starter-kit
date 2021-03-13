@@ -41,7 +41,7 @@
 - [x] Custom Error Pages
 - [x] Localization
 - [x] Role Management
-- [ ] User-Role Management
+- [x] User-Role Management
 - [x] Swagger
 - [x] Middlewares
 - [x] Favicon

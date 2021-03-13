@@ -13,5 +13,7 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity
         Task<IResult<UserResponse>> GetAsync(string userId);
         Task<IResult> RegisterAsync(RegisterRequest request,string origin);
         Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request);
+        Task<IResult<UserRolesResponse>> GetRolesAsync(string id);
+        Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request);
     }
 }

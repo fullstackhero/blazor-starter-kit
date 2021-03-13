@@ -32,6 +32,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if (result.Succeeded)
             {
                 _snackBar.Add("Updated User Status.", Severity.Success);
+                _navigationManager.NavigateTo("/identity/users");
             }
             else
             {
