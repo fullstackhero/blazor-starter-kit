@@ -117,43 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
+  <data name="Activate User?" xml:space="preserve">
+    <value>Nutzer aktivieren?</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrator</value>
+  <data name="Auto Confirm Email?" xml:space="preserve">
+    <value>E-Mail automatisch bestätigen?</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Brands</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Catalog Management</value>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Passwort wiederholen</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+  <data name="Email" xml:space="preserve">
+    <value>E-Mail</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQs</value>
+  <data name="First Name" xml:space="preserve">
+    <value>Vorname</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Features</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>Nachname</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort</value>
   </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personal</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Telefon</value>
   </data>
-  <data name="Products" xml:space="preserve">
-    <value>Products</value>
+  <data name="Register" xml:space="preserve">
+    <value>Registrieren</value>
   </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Resources</value>
+  <data name="Register User" xml:space="preserve">
+    <value>Nutzer registrieren</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
+  <data name="Save Changes" xml:space="preserve">
+    <value>Änderungen speichern</value>
   </data>
-  <data name="Users" xml:space="preserve">
-    <value>Users</value>
+  <data name="User Name" xml:space="preserve">
+    <value>Nutzername</value>
   </data>
 </root>

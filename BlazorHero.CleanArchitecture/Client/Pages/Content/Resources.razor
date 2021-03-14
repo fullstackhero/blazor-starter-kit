@@ -1,6 +1,7 @@
 ﻿@page "/resources"
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Resources> localizer
 
-<HeroTitle Title="Resources" Description="Access Resources here." />
+<HeroTitle Title="@localizer["Resources"]" Description="@localizer["Access Resources here."]" />
 
 <MudGrid>
     <MudItem xs="12" md="6">
@@ -12,8 +13,8 @@
                     </MudAvatar>
                 </CardHeaderAvatar>
                 <CardHeaderContent>
-                    <MudText Typo="Typo.body1">Awesome Blazor</MudText>
-                    <MudText Typo="Typo.body2">Great place to learn, find information and projects/examples about Blazor.</MudText>
+                    <MudText Typo="Typo.body1">@localizer["Awesome Blazor"]</MudText>
+                    <MudText Typo="Typo.body2">@localizer["Awesome Blazor Description"]</MudText>
                 </CardHeaderContent>
                 <CardHeaderActions>
                     <MudIconButton Icon="@Icons.Material.Filled.ArrowForwardIos" Link="https://github.com/AdrienTorris/awesome-blazor" Color="Color.Surface" />
@@ -30,8 +31,8 @@
                     </MudAvatar>
                 </CardHeaderAvatar>
                 <CardHeaderContent>
-                    <MudText Typo="Typo.body1">Awesome Blazor</MudText>
-                    <MudText Typo="Typo.body2">Great place to learn, find information and projects/examples about Blazor.</MudText>
+                    <MudText Typo="Typo.body1">@localizer["Awesome Blazor"]</MudText>
+                    <MudText Typo="Typo.body2">@localizer["Awesome Blazor Description"]</MudText>
                 </CardHeaderContent>
                 <CardHeaderActions>
                     <MudIconButton Icon="@Icons.Material.Filled.ArrowForwardIos" Link="https://github.com/AdrienTorris/awesome-blazor" Color="Color.Surface" />

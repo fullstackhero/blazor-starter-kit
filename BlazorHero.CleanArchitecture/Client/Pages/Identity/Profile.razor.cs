@@ -1,5 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Client.Extensions;
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Profile
     {
+        [Inject] Microsoft.Extensions.Localization.IStringLocalizer<Profile> localizer { get; set; }
+
         private char FirstLetterOfName { get; set; }
 
         public string AvatarImageLink { get; set; } = string.Empty;

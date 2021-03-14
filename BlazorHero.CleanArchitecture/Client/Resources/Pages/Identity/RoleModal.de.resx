@@ -117,43 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
+  <data name="Add Role" xml:space="preserve">
+    <value>Rolle hinzufügen</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrator</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Brands</value>
+  <data name="Role ID" xml:space="preserve">
+    <value>Rollen ID</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Catalog Management</value>
+  <data name="Role Name" xml:space="preserve">
+    <value>Rollenname</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+  <data name="Save Role" xml:space="preserve">
+    <value>Rolle speichern</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQs</value>
-  </data>
-  <data name="Features" xml:space="preserve">
-    <value>Features</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personal</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Products</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Resources</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Users</value>
+  <data name="Update Role" xml:space="preserve">
+    <value>Rolle aktualisieren</value>
   </data>
 </root>
