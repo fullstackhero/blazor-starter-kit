@@ -55,7 +55,7 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] Paginated API Responses
 - [ ] 403 Redirects
 - [ ] Polly - Retry Pattern for HttpClient
-- [ ] Shared Email Service
+- [x] Shared Email Service
 - [ ] Hangfire Implementation - Secured
 
 ## Version 2.0 - Down the Road
