@@ -38,7 +38,7 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] JWT Authentication
 - [x] Serilog - Server-Side Only*
 - [ ] Complete User Management
-- [ ] Profile Picture
+- [x] Profile Picture
 - [x] Clean Fluid UI
 - [x] CRUD Functionalities
 - [x] Custom Error Pages

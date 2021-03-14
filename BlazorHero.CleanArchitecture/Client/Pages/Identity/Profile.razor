@@ -8,11 +8,21 @@
             </MudCardHeader>
             <MudCardContent>
                 <div class="d-flex justify-center mb-4">
-                    <MudAvatar Size="Size.Large" Color="Color.Secondary">@FirstLetterOfName</MudAvatar>
+                    <MudAvatar Image="@ImageDataUrl" Style="height:100px; width:100px;"> </MudAvatar>
                 </div>
                 <MudText Align="Align.Center">@profileModel.FirstName @profileModel.LastName</MudText>
                 <MudText Align="Align.Center">@profileModel.Email</MudText>
             </MudCardContent>
+            <MudCardActions Class="d-flex justify-center">
+                <InputFile id="fileInput" OnChange="UploadFiles" hidden />
+                <MudButton HtmlTag="label"
+                           Variant="Variant.Text"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Filled.CloudUpload"
+                           for="fileInput">
+                    Upload Image
+                </MudButton>
+            </MudCardActions>
         </MudCard>
     </MudItem>
     <MudItem xs="12" sm="8" md="9">

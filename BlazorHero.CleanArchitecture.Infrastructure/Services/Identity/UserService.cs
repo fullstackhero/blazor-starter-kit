@@ -166,5 +166,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 throw new ApiException($"An error occured while confirming {user.Email}.");
             }
         }
+
     }
 }
