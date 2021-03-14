@@ -46,6 +46,12 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var origin = Request.Headers["origin"];
             return Ok(await _userService.RegisterAsync(request, origin));
         }
+        [HttpGet("confirm-email")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmailAsync([FromQuery] string userId, [FromQuery] string code)
+        {
+            return Ok(await _userService.ConfirmEmailAsync(userId, code));
+        }
         [HttpPost("toggle-status")]
         public async Task<IActionResult> ToggleUserStatusAsync(ToggleUserStatusRequest request)
         {

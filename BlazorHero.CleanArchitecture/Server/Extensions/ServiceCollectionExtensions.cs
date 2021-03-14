@@ -1,13 +1,14 @@
-﻿using AspNetCoreHero.Boilerplate.Infrastructure.Shared.Services;
-using BlazorHero.CleanArchitecture.Application.Configurations;
+﻿using BlazorHero.CleanArchitecture.Application.Configurations;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Shared;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure.Shared.Services;
 using BlazorHero.CleanArchitecture.Server.Services;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -105,14 +106,20 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
             return services;
         }
+        public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
 
+            services.AddTransient<IDateTimeService, SystemDateTimeService>();
+            services.Configure<MailConfiguration>(configuration.GetSection("MailConfiguration"));
+            services.AddTransient<IMailService, SMTPMailService>();
+            return services;
+        }
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<ITokenService, IdentityService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IDateTimeService, SystemDateTimeService>();
 
             services.AddTransient(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
             services.AddTransient<IProductRepository, ProductRepository>();

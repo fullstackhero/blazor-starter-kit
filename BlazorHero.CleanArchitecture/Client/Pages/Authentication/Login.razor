@@ -4,13 +4,11 @@
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Login> localizer
 <EditForm Model="@model" OnValidSubmit="SubmitAsync">
     <MudGrid>
-
         <MudItem xs="12">
             <div class="d-flex justify-center">
                 <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width:100px; height:100px;" />
             </div>
         </MudItem>
-
         <DataAnnotationsValidator />
         <MudItem xs="12">
             <div class="d-flex justify-center">
