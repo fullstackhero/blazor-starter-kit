@@ -94,5 +94,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
             return false;
         }
+        async Task ManagePermissions(string roleId)
+        {
+            _navigationManager.NavigateTo($"/identity/role-permissions/{roleId}");
+        }
     }
 }

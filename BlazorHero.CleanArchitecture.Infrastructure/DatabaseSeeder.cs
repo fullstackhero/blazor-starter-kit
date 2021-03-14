@@ -1,5 +1,7 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+﻿using BlazorHero.CleanArchitecture.Application.Helpers;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -60,12 +62,19 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                 if (superUserInDb == null)
                 {
                     await _userManager.CreateAsync(superUser, Constants.DefaultPassword);
-                    await _userManager.AddToRoleAsync(superUser, Constants.AdministratorRole);
+                    var result = await _userManager.AddToRoleAsync(superUser, Constants.AdministratorRole);
+                    if (result.Succeeded)
+                    {
+                        await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Users);
+                        await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Roles);
+                        await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Products);
+                        await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Brands);
+                    }
                     _logger.LogInformation("Seeded User with Administrator Role.");
                 }
             }).GetAwaiter().GetResult();
         }
-
+       
         private void AddBasicUser()
         {
             Task.Run(async () =>
@@ -99,5 +108,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                 }
             }).GetAwaiter().GetResult();
         }
+
     }
 }

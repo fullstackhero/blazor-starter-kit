@@ -17,6 +17,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{39A93E2F-51DE-47C0-93AF-A24561630C18}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorHero.CleanArchitecture.Server", "BlazorHero.CleanArchitecture\Server\BlazorHero.CleanArchitecture.Server.csproj", "{E306E167-C5CB-470B-A55E-60843F143B05}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D22763DC-33FD-453E-AF00-A2028689F978} = {D22763DC-33FD-453E-AF00-A2028689F978}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorHero.CleanArchitecture.Client", "BlazorHero.CleanArchitecture\Client\BlazorHero.CleanArchitecture.Client.csproj", "{DB1309A5-3FAB-48EC-B5DF-582E8DFFE138}"
 EndProject
