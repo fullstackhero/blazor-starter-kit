@@ -8,7 +8,7 @@
             </MudCardHeader>
             <MudCardContent>
                 <div class="d-flex justify-center mb-4">
-                    <MudAvatar Image="@ImageDataUrl" Style="height:150px; width:150px;"> </MudAvatar>
+                    <MudAvatar Image="@ImageDataUrl" Square="true" Style="height:250px; width:250px;"> </MudAvatar>
                 </div>
                 <MudText Align="Align.Center">@profileModel.FirstName @profileModel.LastName</MudText>
                 <MudText Align="Align.Center">@profileModel.Email</MudText>
@@ -22,6 +22,15 @@
                            for="fileInput">
                     Upload Image
                 </MudButton>
+                @if (@ImageDataUrl != null)
+                {
+                    <MudButton Variant="Variant.Text"
+                               Color="Color.Error"
+                               StartIcon="@Icons.Filled.Delete"
+                               OnClick="DeleteAsync">
+                        Delete Image
+                    </MudButton>
+                }
             </MudCardActions>
         </MudCard>
     </MudItem>

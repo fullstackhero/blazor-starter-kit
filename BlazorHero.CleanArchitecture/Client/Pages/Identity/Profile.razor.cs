@@ -15,11 +15,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private char FirstLetterOfName { get; set; }
 
-        public string AvatarImageLink { get; set; }
-        public string AvatarIcon { get; set; }
-        public string AvatarButtonText { get; set; } = "Delete Picture";
-        public Color AvatarButtonColor { get; set; } = Color.Error;
-        public IEnumerable<string> Errors { get; set; }
         private readonly UpdateProfileRequest profileModel = new UpdateProfileRequest();
         public string UserId { get; set; }
         private async Task UpdateProfileAsync()
@@ -74,8 +69,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var buffer = new byte[imageFile.Size];
                 await imageFile.OpenReadStream().ReadAsync(buffer);
                 ImageDataUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-                var request = new UpdateProfilePictureRequest() { ProfilePictureDataUrl = ImageDataUrl, UserId = UserId };
-                var result = await _accountManager.UpdateProfilePictureAsync(request);
+                var request = new UpdateProfilePictureRequest() { ProfilePictureDataUrl = ImageDataUrl};
+                var result = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if(result.Succeeded)
                 {
                     _navigationManager.NavigateTo("/account", true);
@@ -87,9 +82,24 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                         _snackBar.Add(error, Severity.Success);
                     }
                 }
-                //TODO upload the files to the server
             }
 
+        }
+        private async Task DeleteAsync()
+        {
+            var request = new UpdateProfilePictureRequest() { ProfilePictureDataUrl = string.Empty};
+            var result = await _accountManager.UpdateProfilePictureAsync(request,UserId);
+            if (result.Succeeded)
+            {
+                _navigationManager.NavigateTo("/account", true);
+            }
+            else
+            {
+                foreach (var error in result.Messages)
+                {
+                    _snackBar.Add(error, Severity.Success);
+                }
+            }
         }
     }
 }

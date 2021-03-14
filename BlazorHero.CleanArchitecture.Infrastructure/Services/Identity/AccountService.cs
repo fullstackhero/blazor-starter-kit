@@ -63,9 +63,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             return Result<string>.Success(data: user.ProfilePictureDataUrl);
         }
 
-        public async Task<IResult> UpdateProfilePictureAsync(UpdateProfilePictureRequest request)
-        {
-            var user = await _userManager.FindByIdAsync(request.UserId);
+        public async Task<IResult> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId)
+        {            
+            var user = await _userManager.FindByIdAsync(userId);
             if (user == null) return Result.Fail("User Not Found");
             user.ProfilePictureDataUrl = request.ProfilePictureDataUrl;
             var identityResult = await _userManager.UpdateAsync(user);
