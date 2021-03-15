@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Exceptions;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Shared;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using BlazorHero.CleanArchitecture.Application.Requests.Mail;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
@@ -20,12 +22,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
     {
         private readonly UserManager<BlazorHeroUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IMailService _mailService;
 
-        public UserService(UserManager<BlazorHeroUser> userManager, IMapper mapper, RoleManager<IdentityRole> roleManager)
+        public UserService(UserManager<BlazorHeroUser> userManager, IMapper mapper, RoleManager<IdentityRole> roleManager, IMailService mailService)
         {
             _userManager = userManager;
             _mapper = mapper;
             _roleManager = roleManager;
+            _mailService = mailService;
         }
 
         private IMapper _mapper;
@@ -65,7 +69,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                     {
                         var verificationUri = await SendVerificationEmail(user, origin);
                         //TODO: Attach Email Service here and configure it via appsettings
-                        //await _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" });
+                        await _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" });
                         return Result<string>.Success(user.Id, message: $"User Registered. Confirmation Mail has been delivered to the Mailbox.");
                     }
                     return Result<string>.Success(user.Id, message: $"User Registered!");
@@ -147,5 +151,21 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             result = await _userManager.AddToRolesAsync(user, request.UserRoles.Where(x => x.Selected).Select(y => y.RoleName));
             return Result.Success("Roles Updated.");
         }
+
+        public async Task<IResult<string>> ConfirmEmailAsync(string userId, string code)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+            {
+                return Result<string>.Success(user.Id, message: $"Account Confirmed for {user.Email}. You can now use the /api/identity/token endpoint to generate JWT.");
+            }
+            else
+            {
+                throw new ApiException($"An error occured while confirming {user.Email}.");
+            }
+        }
+
     }
 }

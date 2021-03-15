@@ -38,7 +38,7 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] JWT Authentication
 - [x] Serilog - Server-Side Only*
 - [ ] Complete User Management
-- [ ] Profile Picture
+- [x] Profile Picture
 - [x] Clean Fluid UI
 - [x] CRUD Functionalities
 - [x] Custom Error Pages
@@ -54,11 +54,15 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] Auto DB Migrations
 - [x] Paginated API Responses
 - [ ] 403 Redirects
+- [ ] Polly - Retry Pattern for HttpClient
+- [x] Shared Email Service
+- [ ] Hangfire Implementation - Secured
 
 ## Version 2.0 - Down the Road
 
 - [ ] Caching
 - [ ] Chat
+- [ ] Notifications System using SignalR
 - [ ] Charts
 - [ ] PDF Downloads
 - [ ] Theme Manager

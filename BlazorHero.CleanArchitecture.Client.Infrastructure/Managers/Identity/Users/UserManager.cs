@@ -52,5 +52,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
             var response = await _httpClient.PutAsJsonAsync(Routes.UserEndpoint.GetUserRoles(request.UserId),request);
             return await response.ToResult<UserRolesResponse>();
         }
+
+        
     }
 }

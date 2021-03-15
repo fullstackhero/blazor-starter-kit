@@ -123,6 +123,15 @@
   <data name="Administrator" xml:space="preserve">
     <value>Administrator</value>
   </data>
+  <data name="Brands" xml:space="preserve">
+    <value>Brands</value>
+  </data>
+  <data name="Catalog Management" xml:space="preserve">
+    <value>Catalog Management</value>
+  </data>
+  <data name="Communication" xml:space="preserve">
+    <value>Communication</value>
+  </data>
   <data name="FAQs" xml:space="preserve">
     <value>FAQs</value>
   </data>
@@ -134,6 +143,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Personal</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
   </data>
   <data name="Resources" xml:space="preserve">
     <value>Resources</value>

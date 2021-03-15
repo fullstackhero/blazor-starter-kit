@@ -7,14 +7,14 @@
             <MudCard Elevation="25">
                 <MudCardHeader>
                     <CardHeaderContent>
-                        <MudText Typo="Typo.body1">Administrator Settings.</MudText>
-                        <MudText Typo="Typo.body2">This is an Administrator Only View.</MudText>
+                        <MudText Typo="Typo.body1">@localizer["Administrator Settings."]</MudText>
+                        <MudText Typo="Typo.body2">@localizer["This is an Administrator Only View."]</MudText>
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent Class="pa-46" Style="padding:26px!important">
                     <MudGrid>
-                        <MudCheckBox @bind-Checked="@Active" Label="Active?" Color="Color.Primary"></MudCheckBox>
-                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="ToggleUserStatus" ButtonType="ButtonType.Submit">Save Changes</MudButton>
+                        <MudCheckBox @bind-Checked="@Active" Label="@localizer["Active?"]" Color="Color.Primary"></MudCheckBox>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="ToggleUserStatus" ButtonType="ButtonType.Submit">@localizer["Save Changes"]</MudButton>
                     </MudGrid>
                 </MudCardContent>
             </MudCard>
@@ -24,14 +24,21 @@
         <MudCard Elevation="25">
             <MudCardHeader>
                 <CardHeaderContent>
-                    <MudText>Profile</MudText>
+                    <MudText>@localizer["Profile"]</MudText>
                 </CardHeaderContent>
             </MudCardHeader>
             <MudCardContent>
                 <div class="d-flex justify-center mb-4">
-                    <MudAvatar Size="Size.Large" Color="Color.Secondary">@FirstLetterOfName</MudAvatar>
+                    @if (!string.IsNullOrEmpty(@ImageDataUrl))
+                    {
+                        <MudAvatar Image="@ImageDataUrl" Style="height:250px; width:250px;"> </MudAvatar>
+                    }
+                    else
+                    {
+                        <MudAvatar Color="Color.Secondary" Style="height:250px; width:250px;">@FirstLetterOfName</MudAvatar>
+                    }
                 </div>
-                <MudText Align="Align.Center">@FirstName @LastName</MudText>
+                <MudText Typo="Typo.h6" Align="Align.Center">@FirstName @LastName</MudText>
                 <MudText Align="Align.Center">@Email</MudText>
             </MudCardContent>
         </MudCard>
@@ -40,22 +47,22 @@
         <MudCard Elevation="25">
             <MudCardHeader>
                 <CardHeaderContent>
-                    <MudText>Public Profile</MudText>
+                    <MudText>@localizer["Public Profile"]</MudText>
                 </CardHeaderContent>
             </MudCardHeader>
             <MudCardContent>
                 <MudGrid>
                     <MudItem xs="12" md="6">
-                        <MudField Label="First Name" Variant="Variant.Text">@FirstName</MudField>
+                        <MudField Label="@localizer["First Name"]" Variant="Variant.Text">@FirstName</MudField>
                     </MudItem>
                     <MudItem xs="12" md="6">
-                        <MudField Label="Last Name" Variant="Variant.Text">@LastName</MudField>
+                        <MudField Label="@localizer["Last Name"]" Variant="Variant.Text">@LastName</MudField>
                     </MudItem>
                     <MudItem xs="12" md="6">
-                        <MudField Label="Phone Number" Variant="Variant.Text">@PhoneNumber</MudField>
+                        <MudField Label="@localizer["Phone Number"]" Variant="Variant.Text">@PhoneNumber</MudField>
                     </MudItem>
                     <MudItem xs="12" md="6">
-                        <MudField Label="Email" Variant="Variant.Text">@Email</MudField>
+                        <MudField Label="@localizer["Email"]" Variant="Variant.Text">@Email</MudField>
                     </MudItem>
                 </MudGrid>
             </MudCardContent>

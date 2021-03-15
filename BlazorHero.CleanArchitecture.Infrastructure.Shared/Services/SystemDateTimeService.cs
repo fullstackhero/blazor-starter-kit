@@ -1,7 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using System;
 
-namespace AspNetCoreHero.Boilerplate.Infrastructure.Shared.Services
+namespace BlazorHero.CleanArchitecture.Infrastructure.Shared.Services
 {
     public class SystemDateTimeService : IDateTimeService
     {

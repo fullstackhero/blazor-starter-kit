@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
 {
+    [Authorize]
     [Route("api/identity/account")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -20,7 +21,6 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             _currentUser = currentUser;
         }
 
-        [Authorize]
         [HttpPut(nameof(UpdateProfile))]
         public async Task<ActionResult> UpdateProfile(UpdateProfileRequest model)
         {
@@ -28,12 +28,22 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             return Ok(response);
         }
 
-        [Authorize]
         [HttpPut(nameof(ChangePassword))]
         public async Task<ActionResult> ChangePassword(ChangePasswordRequest model)
         {
             var response = await _accountService.ChangePasswordAsync(model, _currentUser.UserId);
             return Ok(response);
+        }
+
+        [HttpGet("profile-picture/{userId}")]
+        public async Task<IActionResult> GetProfilePictureAsync(string userId)
+        {
+            return Ok(await _accountService.GetProfilePictureAsync(userId));
+        }
+        [HttpPost("profile-picture/{userId}")]
+        public async Task<IActionResult> UpdateProfilePictureAsync(UpdateProfilePictureRequest request)
+        {
+            return Ok(await _accountService.UpdateProfilePictureAsync(request, _currentUser.UserId));
         }
     }
 }

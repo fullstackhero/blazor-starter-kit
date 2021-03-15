@@ -10,5 +10,7 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account
         Task<IResult> UpdateProfileAsync(UpdateProfileRequest model, string userId);
 
         Task<IResult> ChangePasswordAsync(ChangePasswordRequest model, string userId);
+        Task<IResult<string>> GetProfilePictureAsync(string userId);
+        Task<IResult> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId);
     }
 }

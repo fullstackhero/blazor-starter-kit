@@ -1,4 +1,5 @@
-﻿<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<RoleModal> localizer
+<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
     <MudDialog>
         <TitleContent>
             @{
@@ -6,32 +7,32 @@
                 {
                     <MudText Typo="Typo.h6">
                         <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
-                        Add Role
+                        @localizer["Add Role"]
                     </MudText>
                 }
                 else
                 {
                     <MudText Typo="Typo.h6">
                         <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
-                        Update Role
+                        @localizer["Update Role"]
                     </MudText>
                 }
             }
         </TitleContent>
         <DialogContent>
-            <MudTextField For="@(() => Id)" @bind-Value="Id" Label="Role ID" Disabled />
-            <MudTextField For="@(() => Name)" @bind-Value="Name" Required="true" Label="Role Name" />
+            <MudTextField For="@(() => Id)" @bind-Value="Id" Label="@localizer["Role ID"]" Disabled />
+            <MudTextField For="@(() => Name)" @bind-Value="Name" Required="true" Label="@localizer["Role Name"]" />
         </DialogContent>
         <DialogActions>
-            <MudButton Variant="Variant.Filled" OnClick="Cancel">Cancel</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@localizer["Cancel"]</MudButton>
             @{
                 if (Id == null)
                 {
-                    <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Success">Save Role</MudButton>
+                    <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Success">@localizer["Save Role"]</MudButton>
                 }
                 else
                 {
-                    <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Secondary">Update Role</MudButton>
+                    <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Secondary">@localizer["Update Role"]</MudButton>
                 }
             }
         </DialogActions>

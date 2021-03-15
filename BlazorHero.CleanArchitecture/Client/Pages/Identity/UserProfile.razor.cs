@@ -25,6 +25,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         public string Email { get; set; }
         public Color AvatarButtonColor { get; set; } = Color.Error;
         public IEnumerable<string> Errors { get; set; }
+
         async Task ToggleUserStatus()
         {
             var request = new ToggleUserStatusRequest { ActivateUser = Active, UserId = Id };
@@ -42,6 +43,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
+        [Parameter]
+        public string ImageDataUrl { get; set; }
         protected override async Task OnInitializedAsync()
         {
             var userId = Id;
@@ -56,6 +59,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     Email = user.Email;
                     PhoneNumber = user.PhoneNumber;
                     Active = user.IsActive;
+                    var data = await _accountManager.GetProfilePictureAsync(userId);
+                    if (data.Succeeded)
+                    {
+                        ImageDataUrl = data.Data;
+                    }
                 }
                 Title = $"{FirstName} {LastName}'s Profile";
                 Description = Email;

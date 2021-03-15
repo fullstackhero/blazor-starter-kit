@@ -2,7 +2,14 @@
 <MudCard Elevation="0" Square="true" Class="@Class">
     <MudCardHeader>
         <CardHeaderAvatar>
-            <MudAvatar Color="Color.Secondary">@FirstLetterOfName</MudAvatar>
+            @if (string.IsNullOrEmpty(ImageDataUrl))
+            {
+                <MudAvatar Color="Color.Secondary">@FirstLetterOfName</MudAvatar>
+            }
+            else
+            {
+                <MudAvatar Image="@ImageDataUrl" Style="height:50px; width:50px;"> </MudAvatar>
+            }
         </CardHeaderAvatar>
         <CardHeaderContent>
             <MudText Typo="Typo.body2">@FirstName @SecondName</MudText>
@@ -17,6 +24,9 @@
     private string SecondName { get; set; }
     private string Email { get; set; }
     private char FirstLetterOfName { get; set; }
+
+    [Parameter]
+    public string ImageDataUrl { get; set; }
     protected override async Task OnInitializedAsync() => await this.LoadDataAsync();
     private async Task LoadDataAsync()
     {
@@ -29,6 +39,12 @@
         if (this.FirstName.Length > 0)
         {
             FirstLetterOfName = FirstName[0];
+        }
+        var UserId = user.GetUserId();
+        var imageResponse = await _accountManager.GetProfilePictureAsync(UserId);
+        if (imageResponse.Succeeded)
+        {
+            ImageDataUrl = imageResponse.Data;
         }
     }
 }
