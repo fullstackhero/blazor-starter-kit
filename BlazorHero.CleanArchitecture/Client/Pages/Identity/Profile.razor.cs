@@ -87,19 +87,30 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         }
         private async Task DeleteAsync()
         {
-            var request = new UpdateProfilePictureRequest() { ProfilePictureDataUrl = string.Empty};
-            var result = await _accountManager.UpdateProfilePictureAsync(request,UserId);
-            if (result.Succeeded)
+            var parameters = new DialogParameters();
+            parameters.Add("ContentText", $"Do you want to delete the profile picture of {profileModel.Email} ?");
+            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
+            var result = await dialog.Result;
+            if (!result.Cancelled)
             {
-                _navigationManager.NavigateTo("/account", true);
-            }
-            else
-            {
-                foreach (var error in result.Messages)
+                
+                var request = new UpdateProfilePictureRequest() { ProfilePictureDataUrl = string.Empty };
+                var data = await _accountManager.UpdateProfilePictureAsync(request, UserId);
+                if (data.Succeeded)
                 {
-                    _snackBar.Add(error, Severity.Success);
+                    ImageDataUrl = string.Empty;
+                    _navigationManager.NavigateTo("/account", true);
+                }
+                else
+                {
+                    foreach (var error in data.Messages)
+                    {
+                        _snackBar.Add(error, Severity.Success);
+                    }
                 }
             }
+                
         }
     }
 }

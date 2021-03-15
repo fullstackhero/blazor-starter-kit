@@ -29,9 +29,16 @@
             </MudCardHeader>
             <MudCardContent>
                 <div class="d-flex justify-center mb-4">
-                    <MudAvatar Image="@ImageDataUrl" Square="true" Style="height:250px; width:250px;"> </MudAvatar>
+                    @if (!string.IsNullOrEmpty(@ImageDataUrl))
+                    {
+                        <MudAvatar Image="@ImageDataUrl" Style="height:250px; width:250px;"> </MudAvatar>
+                    }
+                    else
+                    {
+                        <MudAvatar Color="Color.Secondary" Style="height:250px; width:250px;">@FirstLetterOfName</MudAvatar>
+                    }
                 </div>
-                <MudText Align="Align.Center">@FirstName @LastName</MudText>
+                <MudText Typo="Typo.h6" Align="Align.Center">@FirstName @LastName</MudText>
                 <MudText Align="Align.Center">@Email</MudText>
             </MudCardContent>
         </MudCard>

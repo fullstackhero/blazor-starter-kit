@@ -1,16 +1,18 @@
 ﻿<MudGrid>
     <MudItem xs="12" sm="4" md="3">
         <MudCard Elevation="25">
-            <MudCardHeader>
-                <CardHeaderContent>
-                    <MudText>@localizer["Profile"]</MudText>
-                </CardHeaderContent>
-            </MudCardHeader>
             <MudCardContent>
                 <div class="d-flex justify-center mb-4">
-                    <MudAvatar Image="@ImageDataUrl" Square="true" Style="height:250px; width:250px;"> </MudAvatar>
+                    @if (!string.IsNullOrEmpty(@ImageDataUrl))
+                    {
+                        <MudAvatar Image="@ImageDataUrl" Style="height:250px; width:250px;"> </MudAvatar>
+                    }
+                    else
+                    {
+                        <MudAvatar Color="Color.Secondary"  Style="height:250px; width:250px;">@FirstLetterOfName</MudAvatar>
+                    }
                 </div>
-                <MudText Align="Align.Center">@profileModel.FirstName @profileModel.LastName</MudText>
+                <MudText Typo="Typo.h6" Align="Align.Center">@profileModel.FirstName @profileModel.LastName</MudText>
                 <MudText Align="Align.Center">@profileModel.Email</MudText>
             </MudCardContent>
             <MudCardActions Class="d-flex justify-center">
@@ -18,15 +20,17 @@
                 <MudButton HtmlTag="label"
                            Variant="Variant.Text"
                            Color="Color.Primary"
+                           Size="Size.Small"
                            StartIcon="@Icons.Filled.CloudUpload"
                            for="fileInput">
                     Upload Image
                 </MudButton>
-                @if (@ImageDataUrl != null)
+                @if (!string.IsNullOrEmpty(@ImageDataUrl))
                 {
                     <MudButton Variant="Variant.Text"
                                Color="Color.Error"
                                StartIcon="@Icons.Filled.Delete"
+                               Size="Size.Small"
                                OnClick="DeleteAsync">
                         Delete Image
                     </MudButton>
