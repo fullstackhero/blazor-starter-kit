@@ -1,17 +1,18 @@
 ﻿@namespace BlazorHero.CleanArchitecture.Client.Shared.Dialogs
+@inject Microsoft.Extensions.Localization.IStringLocalizer<DeleteConfirmation> localizer
 <MudDialog>
     <TitleContent>
         <MudText Typo="Typo.h6">
             <MudIcon Icon="@Icons.Material.Filled.Delete" Class="mr-3 mb-n1" />
-            Delete Confirmation
+            @localizer["Delete Confirmation"]
         </MudText>
     </TitleContent>
     <DialogContent>
         <MudText>@ContentText</MudText>
     </DialogContent>
     <DialogActions>
-        <MudButton OnClick="Cancel">Cancel</MudButton>
-        <MudButton Color="Color.Error" Variant="Variant.Filled" OnClick="Submit">Confirm</MudButton>
+        <MudButton OnClick="Cancel">@localizer["Cancel"]</MudButton>
+        <MudButton Color="Color.Error" Variant="Variant.Filled" OnClick="Submit">@localizer["Confirm"]</MudButton>
     </DialogActions>
 </MudDialog>
 @code {

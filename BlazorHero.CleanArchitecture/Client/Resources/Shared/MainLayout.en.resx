@@ -117,16 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description" xml:space="preserve">
-    <value>Clean Architecture Template para Blazor Web-Assembly</value>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
   </data>
-  <data name="Project Page" xml:space="preserve">
-    <value>Página del proyecto</value>
+  <data name="Community" xml:space="preserve">
+    <value>Community</value>
   </data>
-  <data name="Support Me" xml:space="preserve">
-    <value>Apoyarme!</value>
+  <data name="Facebook Group" xml:space="preserve">
+    <value>Facebook Group</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Blazor Hero</value>
+  <data name="Facebook Page" xml:space="preserve">
+    <value>Facebook Page</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Logout Confirmation" xml:space="preserve">
+    <value>Do you really want to Logout?</value>
+  </data>
+  <data name="MudBlazor Documentation" xml:space="preserve">
+    <value>MudBlazor Documentation</value>
+  </data>
+  <data name="Quick-Start Guide" xml:space="preserve">
+    <value>Quick-Start Guide</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="Toggle Dark Mode" xml:space="preserve">
+    <value>Toggle Dark Mode</value>
   </data>
 </root>
