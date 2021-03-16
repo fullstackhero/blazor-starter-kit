@@ -40,7 +40,7 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] Complete User Management
 - [x] Profile Picture
 - [x] Clean Fluid UI
-- [x] CRUD Functionalities
+- [ ] CRUD Functionalities
 - [x] Custom Error Pages
 - [x] Localization
 - [x] Role Management
@@ -57,6 +57,7 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [ ] Polly - Retry Pattern for HttpClient
 - [x] Shared Email Service
 - [x] Hangfire Implementation
+- [x] Custom API Response for 500,401,403
 
 ## Version 2.0 - Down the Road
 
