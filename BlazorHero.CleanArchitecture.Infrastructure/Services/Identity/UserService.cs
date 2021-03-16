@@ -7,6 +7,7 @@ using BlazorHero.CleanArchitecture.Application.Requests.Mail;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
+using Hangfire;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
@@ -70,7 +71,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                     {
                         var verificationUri = await SendVerificationEmail(user, origin);
                         //TODO: Attach Email Service here and configure it via appsettings
-                        await _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" });
+                        BackgroundJob.Enqueue(() => _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" }));
                         return Result<string>.Success(user.Id, message: $"User Registered. Confirmation Mail has been delivered to the Mailbox.");
                     }
                     return Result<string>.Success(user.Id, message: $"User Registered!");
@@ -189,7 +190,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 Subject = "Reset Password",
                 To = emailId
             };
-            await _mailService.SendAsync(request);
+            BackgroundJob.Enqueue(() => _mailService.SendAsync(request));
             return Result.Success("Password Reset Mail has been sent to your authorized EmailId.");
         }
 
