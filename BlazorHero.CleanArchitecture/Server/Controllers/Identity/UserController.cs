@@ -57,5 +57,18 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             return Ok(await _userService.ToggleUserStatusAsync(request));
         }
+        [HttpPost("forgot-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgotPasswordAsync(ForgotPasswordRequest request)
+        {
+            var origin = Request.Headers["origin"];
+            return Ok(await _userService.ForgotPasswordAsync(request.Email, origin));
+        }
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPasswordAsync(ResetPasswordRequest request)
+        {
+            return Ok(await _userService.ResetPasswordAsync(request));
+        }
     }
 }
