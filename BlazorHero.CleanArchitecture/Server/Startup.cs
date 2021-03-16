@@ -50,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Server
             app.UseExceptionHandling(env);
             app.UseHttpsRedirection();
             app.UseHangfireDashboard("/jobs");
-            //app.UseMiddleware<ErrorHandlerMiddleware>();
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
             app.UseRouting();
