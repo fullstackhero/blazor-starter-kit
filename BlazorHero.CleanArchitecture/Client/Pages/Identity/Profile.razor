@@ -23,7 +23,7 @@
                            Size="Size.Small"
                            StartIcon="@Icons.Filled.CloudUpload"
                            for="fileInput">
-                    Upload Image
+                    @localizer["Upload Image"]
                 </MudButton>
                 @if (!string.IsNullOrEmpty(@ImageDataUrl))
                 {
@@ -32,7 +32,7 @@
                                StartIcon="@Icons.Filled.Delete"
                                Size="Size.Small"
                                OnClick="DeleteAsync">
-                        Delete Image
+                        @localizer["Delete Image"]
                     </MudButton>
                 }
             </MudCardActions>
