@@ -4,11 +4,7 @@ using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllP
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetProductImage;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
@@ -22,6 +18,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             var products = await _mediator.Send(new GetAllProductsQuery(pageNumber, pageSize, searchString));
             return Ok(products);
         }
+
         [Authorize(Policy = Permissions.Products.View)]
         [HttpGet("image/{id}")]
         public async Task<IActionResult> GetProductImageAsync(int id)
@@ -29,12 +26,14 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             var result = await _mediator.Send(new GetProductImageQuery(id));
             return Ok(result);
         }
+
         [Authorize(Policy = Permissions.Products.Create)]
         [HttpPost]
         public async Task<IActionResult> Post(AddEditProductCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
+
         [Authorize(Policy = Permissions.Products.Delete)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

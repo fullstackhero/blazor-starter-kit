@@ -20,6 +20,7 @@ namespace BlazorHero.CleanArchitecture.Application.Helpers
                 allPermissions.Add(new RoleClaimsResponse { Value = fi.GetValue(null).ToString(), Type = "Permission" });
             }
         }
+
         public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string permission)
         {
             var allClaims = await roleManager.GetClaimsAsync(role);

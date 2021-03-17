@@ -70,12 +70,16 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         {
             var model = new PermissionResponse();
             var allPermissions = new List<RoleClaimsResponse>();
+
             #region GetPermissions
+
             allPermissions.GetPermissions(typeof(Permissions.Users), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Roles), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Products), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Brands), roleId);
-            #endregion
+
+            #endregion GetPermissions
+
             var role = await _roleManager.FindByIdAsync(roleId);
             if (role != null)
             {
@@ -95,7 +99,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             }
             model.RoleClaims = allPermissions;
             return Result<PermissionResponse>.Success(model);
-            
         }
 
         public async Task<Result<RoleResponse>> GetByIdAsync(string id)
@@ -110,7 +113,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             if (string.IsNullOrEmpty(request.Id))
             {
                 var existingRole = await _roleManager.FindByNameAsync(request.Name);
-                if(existingRole!=null) return Result<string>.Fail($"Similar Role already exists.");
+                if (existingRole != null) return Result<string>.Fail($"Similar Role already exists.");
                 var response = await _roleManager.CreateAsync(new IdentityRole(request.Name));
                 return Result<string>.Success("Role Created.");
             }
@@ -148,7 +151,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                     await _roleManager.AddPermissionClaim(role, claim.Value);
                 }
                 return Result<string>.Success("Permission Updated.");
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return Result<string>.Fail(ex.Message);
             }

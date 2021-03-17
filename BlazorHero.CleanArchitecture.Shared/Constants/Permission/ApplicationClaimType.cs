@@ -4,6 +4,4 @@
     {
         public const string Permission = "Permission";
     }
-
-
 }

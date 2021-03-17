@@ -43,7 +43,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             return Result<List<UserResponse>>.Success(result);
         }
 
-        public async Task<IResult> RegisterAsync(RegisterRequest request,string origin)
+        public async Task<IResult> RegisterAsync(RegisterRequest request, string origin)
         {
             var userWithSameUserName = await _userManager.FindByNameAsync(request.UserName);
             if (userWithSameUserName != null)
@@ -67,7 +67,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, Constants.BasicRole.ToString());
-                    if(!request.AutoConfirmEmail)
+                    if (!request.AutoConfirmEmail)
                     {
                         var verificationUri = await SendVerificationEmail(user, origin);
                         //TODO: Attach Email Service here and configure it via appsettings
@@ -78,7 +78,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 }
                 else
                 {
-                    return Result.Fail(result.Errors.Select(a=>a.Description).ToList());
+                    return Result.Fail(result.Errors.Select(a => a.Description).ToList());
                 }
             }
             else
@@ -86,6 +86,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 return Result.Fail($"Email {request.Email } is already registered.");
             }
         }
+
         private async Task<string> SendVerificationEmail(BlazorHeroUser user, string origin)
         {
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -99,7 +100,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
         public async Task<IResult<UserResponse>> GetAsync(string userId)
         {
-            var user =  await _userManager.Users.Where(u=>u.Id == userId).FirstOrDefaultAsync();
+            var user = await _userManager.Users.Where(u => u.Id == userId).FirstOrDefaultAsync();
             var result = _mapper.Map<UserResponse>(user);
             return Result<UserResponse>.Success(result);
         }
@@ -108,11 +109,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         {
             var user = await _userManager.Users.Where(u => u.Id == request.UserId).FirstOrDefaultAsync();
             var IsAdmin = await _userManager.IsInRoleAsync(user, Constants.AdministratorRole);
-            if(IsAdmin)
+            if (IsAdmin)
             {
                 return Result.Fail("Administrators Profile's Status cannot be toggled");
             }
-            if(user!=null)
+            if (user != null)
             {
                 user.IsActive = request.ActivateUser;
                 var identityResult = await _userManager.UpdateAsync(user);
@@ -138,7 +139,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 {
                     userRolesViewModel.Selected = false;
                 }
-                viewModel.Add(userRolesViewModel);               
+                viewModel.Add(userRolesViewModel);
             }
             var result = new UserRolesResponse { UserRoles = viewModel };
             return Result<UserRolesResponse>.Success(result);
@@ -169,7 +170,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             }
         }
 
-        public async Task<IResult> ForgotPasswordAsync(string emailId,string origin)
+        public async Task<IResult> ForgotPasswordAsync(string emailId, string origin)
         {
             var user = await _userManager.FindByEmailAsync(emailId);
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))

@@ -9,7 +9,9 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Br
     public interface IBrandManager : IManager
     {
         Task<IResult<List<GetAllBrandsResponse>>> GetAllAsync();
+
         Task<IResult<int>> SaveAsync(AddEditBrandCommand request);
+
         Task<IResult<int>> DeleteAsync(int id);
     }
 }

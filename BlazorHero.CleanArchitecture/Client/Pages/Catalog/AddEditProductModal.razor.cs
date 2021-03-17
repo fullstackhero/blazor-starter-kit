@@ -6,48 +6,57 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
     public partial class AddEditProductModal
     {
-        bool success;
-        string[] errors = { };
-        MudForm form;
+        private bool success;
+        private string[] errors = { };
+        private MudForm form;
+
         [Parameter]
         public int Id { get; set; }
+
         [Parameter]
         [Required]
         public string Name { get; set; }
+
         [Parameter]
         [Required]
         public string Barcode { get; set; }
+
         [Parameter]
         [Required]
         public string Description { get; set; }
+
         [Parameter]
         [Required]
         public string Brand { get; set; }
+
         [Parameter]
         [Required]
         public int BrandId { get; set; }
+
         [Parameter]
         [Required]
         public decimal Rate { get; set; }
-        [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
         private List<GetAllBrandsResponse> Brands = new List<GetAllBrandsResponse>();
+
         public void Cancel()
         {
             MudDialog.Cancel();
         }
+
         private async Task SaveAsync()
         {
             form.Validate();
             if (form.IsValid)
             {
-                var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = BrandId, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id  };
+                var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = BrandId, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id };
                 var response = await _productManager.SaveAsync(request);
                 if (response.Succeeded)
                 {
@@ -62,14 +71,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     }
                 }
             }
-
         }
+
         protected override async Task OnInitializedAsync() => await LoadDataAsync();
+
         private async Task LoadDataAsync()
         {
             await LoadImageAsync();
             await LoadBrandsAsync();
         }
+
         private async Task LoadBrandsAsync()
         {
             var data = await _brandManager.GetAllAsync();
@@ -78,26 +89,30 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 Brands = data.Data;
             }
         }
+
         private async Task LoadImageAsync()
         {
             var data = await _productManager.GetProductImageAsync(Id);
             if (data.Succeeded)
             {
                 var imageData = data.Data;
-                if(!string.IsNullOrEmpty(imageData))
+                if (!string.IsNullOrEmpty(imageData))
                 {
                     ImageDataUrl = imageData;
                 }
             }
-
         }
+
         private void DeleteAsync()
         {
             ImageDataUrl = null;
         }
+
         public IBrowserFile file { get; set; }
+
         [Parameter]
         public string ImageDataUrl { get; set; }
+
         private async Task UploadFiles(InputFileChangeEventArgs e)
         {
             file = e.File;
@@ -109,7 +124,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 await imageFile.OpenReadStream().ReadAsync(buffer);
                 ImageDataUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
             }
-
         }
     }
 }

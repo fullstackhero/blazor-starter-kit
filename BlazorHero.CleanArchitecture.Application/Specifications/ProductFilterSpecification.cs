@@ -10,7 +10,7 @@ namespace BlazorHero.CleanArchitecture.Application.Specifications
             Includes.Add(a => a.Brand);
             if (!string.IsNullOrEmpty(searchString))
             {
-                Criteria = p=> p.Barcode != null && (p.Name.Contains(searchString) || p.Description.Contains(searchString) || p.Barcode.Contains(searchString) || p.Brand.Name.Contains(searchString));
+                Criteria = p => p.Barcode != null && (p.Name.Contains(searchString) || p.Description.Contains(searchString) || p.Barcode.Contains(searchString) || p.Brand.Name.Contains(searchString));
             }
             else
             {

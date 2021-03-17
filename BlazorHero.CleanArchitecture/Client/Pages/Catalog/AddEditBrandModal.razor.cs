@@ -1,35 +1,39 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
     public partial class AddEditBrandModal
     {
-        bool success;
-        string[] errors = { };
-        MudForm form;
+        private bool success;
+        private string[] errors = { };
+        private MudForm form;
+
         [Parameter]
         public int Id { get; set; }
+
         [Parameter]
         [Required]
         public string Name { get; set; }
+
         [Parameter]
         [Required]
         public decimal Tax { get; set; }
+
         [Parameter]
         [Required]
         public string Description { get; set; }
-        [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+
         public void Cancel()
         {
             MudDialog.Cancel();
         }
+
         private async Task SaveAsync()
         {
             form.Validate();
@@ -50,9 +54,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     }
                 }
             }
-
         }
+
         protected override async Task OnInitializedAsync() => await LoadDataAsync();
+
         private async Task LoadDataAsync()
         {
             await Task.CompletedTask;

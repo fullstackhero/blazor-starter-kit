@@ -18,6 +18,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             var brands = await _mediator.Send(new GetAllBrandsQuery());
             return Ok(brands);
         }
+
         [Authorize(Policy = Permissions.Brands.View)]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)

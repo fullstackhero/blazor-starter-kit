@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 using MudBlazor;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,22 +13,26 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Reset
     {
-        bool success;
-        string[] errors = { };
-        MudForm form;
+        private bool success;
+        private string[] errors = { };
+        private MudForm form;
+
         [Parameter]
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
         [Parameter]
         [Required]
         public string Password { get; set; }
+
         [Parameter]
         [Required]
         public string ConfirmPassword { get; set; }
 
         [Parameter]
         public string Token { get; set; }
+
         protected override void OnInitialized()
         {
             var uri = _navigationManager.ToAbsoluteUri(_navigationManager.Uri);
@@ -39,9 +42,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 Token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(queryToken));
             }
         }
+
         private async Task SubmitAsync()
         {
-            if(!string.IsNullOrEmpty(Token))
+            if (!string.IsNullOrEmpty(Token))
             {
                 form.Validate();
                 if (form.IsValid)
@@ -66,13 +70,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 _snackBar.Add("Token Not Found!", Severity.Error);
             }
-            
         }
-        bool PasswordVisibility;
-        InputType PasswordInput = InputType.Password;
-        string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
-        void TogglePasswordVisibility()
+        private bool PasswordVisibility;
+        private InputType PasswordInput = InputType.Password;
+        private string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+        private void TogglePasswordVisibility()
         {
             if (PasswordVisibility)
             {
@@ -87,6 +91,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 PasswordInput = InputType.Text;
             }
         }
+
         private IEnumerable<string> PasswordStrength(string pw)
         {
             if (string.IsNullOrWhiteSpace(pw))

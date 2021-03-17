@@ -12,16 +12,18 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
     {
         private IEnumerable<GetAllPagedProductsResponse> pagedData;
         private MudTable<GetAllPagedProductsResponse> table;
-       
+
         private int totalItems;
         private int currentPage;
         private string searchString = null;
+
         private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
-        {            
+        {
             await LoadData(state.Page, state.PageSize);
             return new TableData<GetAllPagedProductsResponse>() { TotalItems = totalItems, Items = pagedData };
         }
-        async Task LoadData(int pageNumber, int pageSize)
+
+        private async Task LoadData(int pageNumber, int pageSize)
         {
             var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
             var response = await _productManager.GetProductsAsync(request);
@@ -43,7 +45,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     return false;
                 }).ToList();
                 pagedData = data;
-
             }
             else
             {
@@ -53,12 +54,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 }
             }
         }
+
         private void OnSearch(string text)
         {
             searchString = text;
             table.ReloadServerData();
         }
-        async Task InvokeModal(int id = 0)
+
+        private async Task InvokeModal(int id = 0)
         {
             var parameters = new DialogParameters();
             if (id != 0)
@@ -79,8 +82,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             {
                 OnSearch("");
             }
-
         }
+
         private async Task Delete(int id)
         {
             string deleteContent = localizer["Delete Content"];
@@ -106,8 +109,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     }
                 }
             }
-
-
         }
     }
 }

@@ -4,7 +4,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
 {
     public class BlazorHeroTheme
     {
-        static Typography DefaultTypography = new Typography()
+        private static Typography DefaultTypography = new Typography()
         {
             Default = new Default()
             {
@@ -104,10 +104,11 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
             }
         };
 
-        static LayoutProperties DefaultLayoutProperties = new LayoutProperties()
+        private static LayoutProperties DefaultLayoutProperties = new LayoutProperties()
         {
             DefaultBorderRadius = "3px"
         };
+
         public static MudTheme DefaultTheme = new MudTheme()
         {
             Palette = new Palette()
@@ -143,7 +144,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
                 ActionDisabledBackground = "rgba(255,255,255, 0.12)",
                 DrawerIcon = "rgba(255,255,255, 0.50)"
             },
-           Typography = DefaultTypography,
+            Typography = DefaultTypography,
             LayoutProperties = DefaultLayoutProperties
         };
     }

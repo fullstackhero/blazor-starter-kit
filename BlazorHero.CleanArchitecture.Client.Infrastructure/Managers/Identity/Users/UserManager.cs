@@ -41,6 +41,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
             var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.ToggleUserStatus, request);
             return await response.ToResult();
         }
+
         public async Task<IResult<UserRolesResponse>> GetRolesAsync(string userId)
         {
             var response = await _httpClient.GetAsync(Routes.UserEndpoint.GetUserRoles(userId));
@@ -49,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
 
         public async Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request)
         {
-            var response = await _httpClient.PutAsJsonAsync(Routes.UserEndpoint.GetUserRoles(request.UserId),request);
+            var response = await _httpClient.PutAsJsonAsync(Routes.UserEndpoint.GetUserRoles(request.UserId), request);
             return await response.ToResult<UserRolesResponse>();
         }
 
@@ -58,6 +59,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
             var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.ForgotPassword, model);
             return await response.ToResult();
         }
+
         public async Task<IResult> ResetPasswordAsync(ResetPasswordRequest request)
         {
             var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.ResetPassword, request);

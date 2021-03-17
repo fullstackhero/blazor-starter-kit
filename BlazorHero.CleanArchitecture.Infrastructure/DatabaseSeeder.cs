@@ -74,7 +74,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                 }
             }).GetAwaiter().GetResult();
         }
-       
+
         private void AddBasicUser()
         {
             Task.Run(async () =>
@@ -108,6 +108,5 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                 }
             }).GetAwaiter().GetResult();
         }
-
     }
 }

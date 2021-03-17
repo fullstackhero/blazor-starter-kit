@@ -35,6 +35,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.R
             var response = await _httpClient.PostAsJsonAsync(Routes.RolesEndpoint.Save, role);
             return await response.ToResult<string>();
         }
+
         public async Task<IResult<PermissionResponse>> GetPermissionsAsync(string roleId)
         {
             var response = await _httpClient.GetAsync(Routes.RolesEndpoint.GetPermissions + roleId);

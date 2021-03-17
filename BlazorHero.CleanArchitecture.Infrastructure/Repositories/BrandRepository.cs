@@ -1,7 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +10,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
     public class BrandRepository : IBrandRepository
     {
         private readonly IRepositoryAsync<Brand> _repository;
+
         public BrandRepository(IRepositoryAsync<Brand> repository)
         {
             _repository = repository;

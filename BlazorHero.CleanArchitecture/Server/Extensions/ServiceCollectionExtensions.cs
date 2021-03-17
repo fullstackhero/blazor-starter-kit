@@ -116,14 +116,15 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
             return services;
         }
+
         public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-
             services.AddTransient<IDateTimeService, SystemDateTimeService>();
             services.Configure<MailConfiguration>(configuration.GetSection("MailConfiguration"));
             services.AddTransient<IMailService, SMTPMailService>();
             return services;
         }
+
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<ITokenService, IdentityService>();

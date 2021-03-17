@@ -15,14 +15,17 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTimeService _dateTimeService;
+
         public BlazorHeroContext(DbContextOptions<BlazorHeroContext> options, ICurrentUserService currentUserService, IDateTimeService dateTimeService)
             : base(options)
         {
             _currentUserService = currentUserService;
             _dateTimeService = dateTimeService;
         }
+
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>().ToList())
@@ -42,9 +45,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             }
             return await base.SaveChangesAsync(cancellationToken);
         }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);        
+            base.OnModelCreating(builder);
             builder.Entity<BlazorHeroUser>(entity =>
             {
                 entity.ToTable(name: "Users", "Identity");
@@ -71,12 +75,12 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 
             builder.Entity<IdentityRoleClaim<string>>(entity =>
             {
-                entity.ToTable("RoleClaims","Identity");
+                entity.ToTable("RoleClaims", "Identity");
             });
 
             builder.Entity<IdentityUserToken<string>>(entity =>
             {
-                entity.ToTable("UserTokens","Identity");
+                entity.ToTable("UserTokens", "Identity");
             });
         }
     }

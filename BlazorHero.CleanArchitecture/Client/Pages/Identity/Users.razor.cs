@@ -43,7 +43,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
             return false;
         }
-        async Task InvokeModal()
+
+        private async Task InvokeModal()
         {
             var parameters = new DialogParameters();
             var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
@@ -53,15 +54,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 await GetUsersAsync();
             }
-
         }
-        void ViewProfile(string userId)
+
+        private void ViewProfile(string userId)
         {
             _navigationManager.NavigateTo($"/user-profile/{userId}");
         }
-        void ManageRoles(string userId, string email)
+
+        private void ManageRoles(string userId, string email)
         {
-            if (email == "mukesh@blazorhero.com") _snackBar.Add("Not Allowed.",Severity.Error);
+            if (email == "mukesh@blazorhero.com") _snackBar.Add("Not Allowed.", Severity.Error);
             else _navigationManager.NavigateTo($"/identity/user-roles/{userId}");
         }
     }

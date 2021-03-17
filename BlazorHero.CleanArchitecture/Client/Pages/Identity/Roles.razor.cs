@@ -1,5 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
@@ -34,6 +33,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
+
         private async Task Delete(string id)
         {
             string deleteContent = localizer["Delete Content"];
@@ -59,13 +59,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     }
                 }
             }
-
-            
         }
-        async Task InvokeModal(string id = null)
+
+        private async Task InvokeModal(string id = null)
         {
             var parameters = new DialogParameters();
-            if(id != null)
+            if (id != null)
             {
                 role = RoleList.FirstOrDefault(c => c.Id == id);
                 parameters.Add("Id", role.Id);
@@ -78,8 +77,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 await Reset();
             }
-
         }
+
         private async Task Reset()
         {
             role = new RoleResponse();
@@ -95,7 +94,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
             return false;
         }
-        void ManagePermissions(string roleId)
+
+        private void ManagePermissions(string roleId)
         {
             _navigationManager.NavigateTo($"/identity/role-permissions/{roleId}");
         }

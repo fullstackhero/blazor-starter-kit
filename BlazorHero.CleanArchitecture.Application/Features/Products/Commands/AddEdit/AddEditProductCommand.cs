@@ -35,8 +35,8 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
 
         public async Task<Result<int>> Handle(AddEditProductCommand command, CancellationToken cancellationToken)
         {
-            var product = _mapper.Map<Product>(command);            
-            if(product.Id == 0)
+            var product = _mapper.Map<Product>(command);
+            if (product.Id == 0)
             {
                 await _productRepository.InsertAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
@@ -48,7 +48,6 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
                 await _unitOfWork.Commit(cancellationToken);
                 return Result<int>.Success(product.Id, "Product Updated!");
             }
-           
         }
     }
 }

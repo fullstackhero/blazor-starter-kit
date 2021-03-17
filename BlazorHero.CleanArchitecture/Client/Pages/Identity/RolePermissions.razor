@@ -7,8 +7,8 @@
     <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
 }
 else
-{ 
-    <MudTable Hover="true"  Elevation="25" Items="@model.RoleClaims">
+{
+    <MudTable Hover="true" Elevation="25" Items="@model.RoleClaims">
         <ToolBarContent>
             <div class="justify-center mud-text-align-center">
                 <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">Update Role Permissions</MudButton>

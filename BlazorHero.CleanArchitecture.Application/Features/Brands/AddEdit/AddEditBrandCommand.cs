@@ -3,10 +3,6 @@ using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -49,7 +45,6 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
                 await _unitOfWork.Commit(cancellationToken);
                 return Result<int>.Success(brand.Id, "Brand Updated!");
             }
-
         }
     }
 }

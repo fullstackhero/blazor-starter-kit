@@ -1,10 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Delete
             public async Task<Result<int>> Handle(DeleteBrandCommand command, CancellationToken cancellationToken)
             {
                 var isBrandUsed = await _productRepository.IsBrandUsed(command.Id);
-                if(!isBrandUsed)
+                if (!isBrandUsed)
                 {
                     var brand = await _brandRepository.GetByIdAsync(command.Id);
                     await _brandRepository.DeleteAsync(brand);

@@ -89,8 +89,8 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
                 {
                     var parsedPermissions = JsonSerializer.Deserialize<string[]>(permissions.ToString());
                     claims.AddRange(parsedPermissions.Select(permission => new Claim(ApplicationClaimType.Permission, permission)));
-
-                }else
+                }
+                else
                 {
                     claims.Add(new Claim(ApplicationClaimType.Permission, permissions.ToString()));
                 }

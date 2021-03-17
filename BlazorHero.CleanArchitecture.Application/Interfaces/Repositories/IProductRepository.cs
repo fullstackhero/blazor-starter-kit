@@ -18,6 +18,7 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Repositories
         Task UpdateAsync(Product product);
 
         Task DeleteAsync(Product product);
+
         Task<bool> IsBrandUsed(int brandId);
     }
 }
