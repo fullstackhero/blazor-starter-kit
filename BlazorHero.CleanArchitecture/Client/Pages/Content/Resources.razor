@@ -41,16 +41,3 @@
         </MudCard>
     </MudItem>
 </MudGrid>
-
-<AuthorizeView>
-    <Authorized>
-        <h1>Hello @context.User.Identity.Name !!</h1>
-        @foreach (var claims in context.User.Claims)
-        {
-            <h6>Type: @claims.Type + Value:  @claims.Value</h6>
-        }
-    </Authorized>
-</AuthorizeView>
-
-@code {
-}
