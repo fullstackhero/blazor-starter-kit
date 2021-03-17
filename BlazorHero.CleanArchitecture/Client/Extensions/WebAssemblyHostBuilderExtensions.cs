@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor;
 using MudBlazor.Services;
+using Polly;
 using System;
 using System.Linq;
 using System.Net.Http;
@@ -56,12 +57,13 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .AddScoped<PreferenceManager>()
                 .AddScoped<BlazorHeroStateProvider>()
                 .AddScoped<AuthenticationStateProvider, BlazorHeroStateProvider>()
+                .AddManagers()
+                .AddTransient<AuthenticationHeaderHandler>()
                 .AddScoped(sp => sp
                 .GetRequiredService<IHttpClientFactory>()
                 .CreateClient(ClientName))
-                .AddManagers()
-                .AddTransient<AuthenticationHeaderHandler>()
                 .AddHttpClient(ClientName, client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+                .AddTransientHttpErrorPolicy(policy=>policy.WaitAndRetryAsync(3,_=> TimeSpan.FromSeconds(2)))
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
             return builder;
         }
