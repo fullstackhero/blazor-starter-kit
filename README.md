@@ -54,7 +54,7 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] Auto DB Migrations
 - [x] Paginated API Responses
 - [ ] 403 Redirects
-- [ ] Polly - Retry Pattern for HttpClient
+- [x] Polly - Retry Pattern for HttpClient
 - [x] Shared Email Service
 - [x] Hangfire Implementation
 - [x] Custom API Response for 500,401,403
