@@ -1,20 +1,25 @@
-﻿namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
+﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAllCached;
+using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetById;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
+namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
 {
     public class BrandsController : BaseApiController<BrandsController>
     {
-        //[HttpGet]
-        //public async Task<IActionResult> GetAll()
-        //{
-        //    var brands = await _mediator.Send(new GetAllBrandsCachedQuery());
-        //    return Ok(brands);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var brands = await _mediator.Send(new GetAllBrandsQuery());
+            return Ok(brands);
+        }
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> GetById(int id)
-        //{
-        //    var brand = await _mediator.Send(new GetBrandByIdQuery() { Id = id });
-        //    return Ok(brand);
-        //}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var brand = await _mediator.Send(new GetBrandByIdQuery() { Id = id });
+            return Ok(brand);
+        }
 
         //// POST api/<controller>
         //[HttpPost]
