@@ -133,6 +133,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             try
             {
                 var role = await _roleManager.FindByIdAsync(request.RoleId);
+                if (role.Name == "Administrator")
+                {
+                    return Result<string>.Fail($"Not allowed to modify Permissions for this Role.");
+                }
                 var claims = await _roleManager.GetClaimsAsync(role);
                 foreach (var claim in claims)
                 {

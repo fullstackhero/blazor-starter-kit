@@ -28,7 +28,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             return Ok(roles);
         }
 
-        //[Authorize(Policy = Permissions.Roles.Create)]
+        [Authorize(Policy = Permissions.Roles.Create)]
         [HttpPost]
         public async Task<IActionResult> Post(RoleRequest request)
         {
@@ -36,7 +36,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             return Ok(response);
         }
 
-        //[Authorize(Policy = Permissions.Roles.Delete)]
+        [Authorize(Policy = Permissions.Roles.Delete)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -44,7 +44,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             return Ok(response);
         }
 
-        //[Authorize(Policy = Permissions.Roles.Edit)]
+        [Authorize(Policy = Permissions.Roles.Edit)]
         [HttpGet("permissions/{roleId}")]
         public async Task<IActionResult> GetPermissionsByRoleId([FromRoute] string roleId)
         {
@@ -52,7 +52,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             return Ok(response);
         }
 
-        //[Authorize(Policy = Permissions.Roles.Edit)]
+        [Authorize(Policy = Permissions.Roles.Edit)]
         [HttpPut("permissions/update")]
         public async Task<IActionResult> Update(PermissionRequest model)
         {

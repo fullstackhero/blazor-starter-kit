@@ -24,22 +24,33 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         {
             var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
             var response = await _productManager.GetProductsAsync(request);
-            totalItems = response.TotalCount;
-            currentPage = response.CurrentPage;
-            var data = response.Data;
-            data = data.Where(element =>
+            if (response.Succeeded)
             {
-                if (string.IsNullOrWhiteSpace(searchString))
-                    return true;
-                if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-                if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-                if (element.Barcode.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-                return false;
-            }).ToList();
-            pagedData = data;
+                totalItems = response.TotalCount;
+                currentPage = response.CurrentPage;
+                var data = response.Data;
+                data = data.Where(element =>
+                {
+                    if (string.IsNullOrWhiteSpace(searchString))
+                        return true;
+                    if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                    if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                    if (element.Barcode.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                    return false;
+                }).ToList();
+                pagedData = data;
+
+            }
+            else
+            {
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
+            }
         }
         private void OnSearch(string text)
         {

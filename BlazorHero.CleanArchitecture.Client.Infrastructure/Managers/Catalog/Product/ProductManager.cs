@@ -30,8 +30,8 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Pr
 
         public async Task<PaginatedResult<GetAllPagedProductsResponse>> GetProductsAsync(GetAllPagedProductsRequest request)
         {
-            var response = await _httpClient.GetFromJsonAsync<PaginatedResult<GetAllPagedProductsResponse>>(Routes.ProductsEndpoint.GetAllPaged(request.PageNumber,request.PageSize));
-            return response;
+            var response = await _httpClient.GetAsync(Routes.ProductsEndpoint.GetAllPaged(request.PageNumber, request.PageSize));
+            return await response.ToPaginatedResult<GetAllPagedProductsResponse>();
         }
     }
 }
