@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAllCached;
+using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
 using MudBlazor;
 using System;
@@ -12,6 +13,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
     {
         private IEnumerable<GetAllPagedProductsResponse> pagedData;
         private MudTable<GetAllPagedProductsResponse> table;
+       
         private int totalItems;
         private int currentPage;
         private string searchString = null;
@@ -67,6 +69,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 parameters.Add("Name", product.Name);
                 parameters.Add("Description", product.Description);
                 parameters.Add("Rate", product.Rate);
+                parameters.Add("Brand", product.Brand);
+                parameters.Add("BrandId", product.BrandId);
                 parameters.Add("Barcode", product.Barcode);
             }
             var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };

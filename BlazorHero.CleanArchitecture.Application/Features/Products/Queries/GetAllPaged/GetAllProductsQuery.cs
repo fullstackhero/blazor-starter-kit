@@ -42,7 +42,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
                 Name = e.Name,
                 Description = e.Description,
                 Rate = e.Rate,
-                Barcode = e.Barcode
+                Barcode = e.Barcode,
+                Brand = e.Brand.Name,
+                BrandId = e.BrandId
             };
             var productFilterSpec = new ProductFilterSpecification(request.SearchString);
             var data = await _repository.Products               

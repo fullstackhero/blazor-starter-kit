@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAllCached;
+using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
@@ -28,8 +29,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         public string Description { get; set; }
         [Parameter]
         [Required]
+        public string Brand { get; set; }
+        [Parameter]
+        [Required]
+        public int BrandId { get; set; }
+        [Parameter]
+        [Required]
         public decimal Rate { get; set; }
         [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+        private List<GetAllBrandsResponse> Brands = new List<GetAllBrandsResponse>();
         public void Cancel()
         {
             MudDialog.Cancel();
@@ -39,7 +47,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             form.Validate();
             if (form.IsValid)
             {
-                var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = 1, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id };
+                var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = BrandId, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id  };
                 var response = await _productManager.SaveAsync(request);
                 if (response.Succeeded)
                 {
@@ -56,8 +64,20 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             }
 
         }
-        protected override async Task OnInitializedAsync() => await LoadImageAsync();
-
+        protected override async Task OnInitializedAsync() => await LoadDataAsync();
+        private async Task LoadDataAsync()
+        {
+            await LoadImageAsync();
+            await LoadBrandsAsync();
+        }
+        private async Task LoadBrandsAsync()
+        {
+            var data = await _brandManager.GetAllAsync();
+            if (data.Succeeded)
+            {
+                Brands = data.Data;
+            }
+        }
         private async Task LoadImageAsync()
         {
             var data = await _productManager.GetProductImageAsync(Id);
