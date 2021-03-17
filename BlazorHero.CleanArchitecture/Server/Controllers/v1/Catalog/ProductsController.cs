@@ -1,4 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Delete;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetProductImage;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
@@ -33,6 +34,12 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         public async Task<IActionResult> Post(AddEditProductCommand command)
         {
             return Ok(await _mediator.Send(command));
+        }
+        [Authorize(Policy = Permissions.Products.Delete)]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await _mediator.Send(new DeleteProductCommand { Id = id }));
         }
     }
 }

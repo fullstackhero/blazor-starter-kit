@@ -1,4 +1,4 @@
-﻿namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAllCached
+﻿namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll
 {
     public class GetAllBrandsResponse
     {

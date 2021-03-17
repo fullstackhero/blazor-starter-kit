@@ -38,52 +38,45 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                         entry.Entity.LastModifiedOn = _dateTimeService.NowUtc;
                         entry.Entity.LastModifiedBy = _currentUserService.UserId;
                         break;
-
-                    case EntityState.Deleted:
-                        entry.Entity.DeletedOn = _dateTimeService.NowUtc;
-                        entry.Entity.IsDeleted = true;
-                        entry.Entity.DeletedBy = _currentUserService.UserId;
-                        break;
                 }
             }
             return await base.SaveChangesAsync(cancellationToken);
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
-            builder.HasDefaultSchema("Identity");
+            base.OnModelCreating(builder);        
             builder.Entity<BlazorHeroUser>(entity =>
             {
-                entity.ToTable(name: "Users");
+                entity.ToTable(name: "Users", "Identity");
             });
 
             builder.Entity<IdentityRole>(entity =>
             {
-                entity.ToTable(name: "Roles");
+                entity.ToTable(name: "Roles", "Identity");
             });
             builder.Entity<IdentityUserRole<string>>(entity =>
             {
-                entity.ToTable("UserRoles");
+                entity.ToTable("UserRoles", "Identity");
             });
 
             builder.Entity<IdentityUserClaim<string>>(entity =>
             {
-                entity.ToTable("UserClaims");
+                entity.ToTable("UserClaims", "Identity");
             });
 
             builder.Entity<IdentityUserLogin<string>>(entity =>
             {
-                entity.ToTable("UserLogins");
+                entity.ToTable("UserLogins", "Identity");
             });
 
             builder.Entity<IdentityRoleClaim<string>>(entity =>
             {
-                entity.ToTable("RoleClaims");
+                entity.ToTable("RoleClaims","Identity");
             });
 
             builder.Entity<IdentityUserToken<string>>(entity =>
             {
-                entity.ToTable("UserTokens");
+                entity.ToTable("UserTokens","Identity");
             });
         }
     }

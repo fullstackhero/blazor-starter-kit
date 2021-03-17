@@ -35,7 +35,7 @@
                     <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="@localizer["Description"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudSelect T="int" Label="Brand" For="@(() => BrandId)" Required="true" @bind-Value="BrandId" Text="@Brand">
+                    <MudSelect T="int" Label="Brand" For="@(() => BrandId)" Required="true" @bind-Value="BrandId" Variant="Variant.Filled" Text="@Brand">
                         @foreach (var brand in Brands)
                         {
                             <MudSelectItem T="int" Value="@(brand.Id)">@brand.Name</MudSelectItem>

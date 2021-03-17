@@ -23,6 +23,12 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Pr
             _httpClient = httpClient;
         }
 
+        public async Task<IResult<int>> DeleteAsync(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"{Routes.ProductsEndpoint.Delete}/{id}");
+            return await response.ToResult<int>();
+        }
+
         public async Task<IResult<string>> GetProductImageAsync(int id)
         {
             var response = await _httpClient.GetAsync(Routes.ProductsEndpoint.GetProductImage(id));

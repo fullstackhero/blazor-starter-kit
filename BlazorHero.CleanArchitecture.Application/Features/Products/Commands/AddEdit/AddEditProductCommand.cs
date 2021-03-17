@@ -38,7 +38,6 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
             var product = _mapper.Map<Product>(command);            
             if(product.Id == 0)
             {
-                product.IsDeleted = false;
                 await _productRepository.InsertAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
                 return Result<int>.Success(product.Id, "Product Saved!");

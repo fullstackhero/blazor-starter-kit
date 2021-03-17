@@ -1,5 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAllCached;
-using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
 using MudBlazor;
 using System;
@@ -80,6 +79,34 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             {
                 OnSearch("");
             }
+
+        }
+        private async Task Delete(int id)
+        {
+            string deleteContent = localizer["Delete Content"];
+            var parameters = new DialogParameters();
+            parameters.Add("ContentText", string.Format(deleteContent, id));
+            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
+            var result = await dialog.Result;
+            if (!result.Cancelled)
+            {
+                var response = await _productManager.DeleteAsync(id);
+                if (response.Succeeded)
+                {
+                    OnSearch("");
+                    _snackBar.Add(response.Messages[0], Severity.Success);
+                }
+                else
+                {
+                    OnSearch("");
+                    foreach (var message in response.Messages)
+                    {
+                        _snackBar.Add(message, Severity.Error);
+                    }
+                }
+            }
+
 
         }
     }

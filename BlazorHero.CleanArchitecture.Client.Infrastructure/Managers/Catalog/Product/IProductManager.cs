@@ -12,5 +12,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Pr
         Task<PaginatedResult<GetAllPagedProductsResponse>> GetProductsAsync(GetAllPagedProductsRequest request);
         Task<IResult<string>> GetProductImageAsync(int id);
         Task<IResult<int>> SaveAsync(AddEditProductCommand request);
+        Task<IResult<int>> DeleteAsync(int id);
     }
 }
