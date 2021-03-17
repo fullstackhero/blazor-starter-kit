@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Create;
+using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetProductImage;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
@@ -26,6 +27,12 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         {
             var result = await _mediator.Send(new GetProductImageQuery(id));
             return Ok(result);
+        }
+        [Authorize(Policy = Permissions.Products.Create)]
+        [HttpPost]
+        public async Task<IActionResult> Post(CreateProductCommand command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }

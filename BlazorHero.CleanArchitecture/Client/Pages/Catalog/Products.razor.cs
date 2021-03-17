@@ -74,7 +74,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                await LoadData(0,10);
+                OnSearch("");
             }
 
         }

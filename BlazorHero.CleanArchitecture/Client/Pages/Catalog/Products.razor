@@ -6,7 +6,7 @@
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
             <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="@(()=>InvokeModal(0))">@localizer["Create"]</MudButton>
-            <MudButton Variant="Variant.Filled" OnClick="@(()=>LoadData(0,10))" Color="Color.Secondary">@localizer["Reload"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="@(()=>OnSearch(""))" Color="Color.Secondary">@localizer["Reload"]</MudButton>
         </div>
         <MudToolBarSpacer />
         <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@localizer["Search"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetProductImage
 {
-    public class GetProductImageQuery : IRequest<Result<GetProductImageResponse>>
+    public class GetProductImageQuery : IRequest<Result<string>>
     {
         public int Id { get; set; }
         public GetProductImageQuery(int productId)
@@ -22,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
             Id = productId;
         }
     }
-    public class GetProductImageQueryHandler : IRequestHandler<GetProductImageQuery, Result<GetProductImageResponse>>
+    public class GetProductImageQueryHandler : IRequestHandler<GetProductImageQuery, Result<string>>
     {
         private readonly IProductRepository _repository;
 
@@ -31,14 +31,10 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
             _repository = repository;
         }
 
-        public async Task<Result<GetProductImageResponse>> Handle(GetProductImageQuery request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(GetProductImageQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<Product, GetProductImageResponse>> expression = e => new GetProductImageResponse
-            {
-                ImageDataURL = e.ImageDataURL
-            };
-            var data = await _repository.Products.Where(p=>p.Id == request.Id).Select(expression).FirstOrDefaultAsync();
-            return Result<GetProductImageResponse>.Success(data);
+            var data = await _repository.Products.Where(p=>p.Id == request.Id).Select(a=>a.ImageDataURL).FirstOrDefaultAsync();
+            return Result<string>.Success(data:data);
         }
     }
 }

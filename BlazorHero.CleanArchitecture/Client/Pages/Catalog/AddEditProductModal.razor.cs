@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Create;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using System;
@@ -38,20 +39,20 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             form.Validate();
             if (form.IsValid)
             {
-                //var roleRequest = new RoleRequest() { Name = Name, Id = Id };
-                //var response = await _roleManager.SaveAsync(roleRequest);
-                //if (response.Succeeded)
-                //{
-                //    _snackBar.Add(response.Messages[0], Severity.Success);
-                //    MudDialog.Close();
-                //}
-                //else
-                //{
-                //    foreach (var message in response.Messages)
-                //    {
-                //        _snackBar.Add(message, Severity.Error);
-                //    }
-                //}
+                var request = new CreateProductCommand() { Name = Name, Barcode = Barcode, BrandId = 1, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate };
+                var response = await _productManager.SaveAsync(request);
+                if (response.Succeeded)
+                {
+                    _snackBar.Add(response.Messages[0], Severity.Success);
+                    MudDialog.Close();
+                }
+                else
+                {
+                    foreach (var message in response.Messages)
+                    {
+                        _snackBar.Add(message, Severity.Error);
+                    }
+                }
             }
 
         }
@@ -62,9 +63,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             var data = await _productManager.GetProductImageAsync(Id);
             if (data.Succeeded)
             {
-                ImageDataUrl = data.Data.ImageDataURL;
+                var imageData = data.Data;
+                if(!string.IsNullOrEmpty(imageData))
+                {
+                    ImageDataUrl = imageData;
+                }
             }
 
+        }
+        private async Task DeleteAsync()
+        {
+            ImageDataUrl = null;
         }
         public IBrowserFile file { get; set; }
         [Parameter]

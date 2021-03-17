@@ -49,14 +49,26 @@
                     </MudItem>
                     <MudItem xs="12" md="6">
                         <InputFile id="fileInput" hidden OnChange="UploadFiles" />
-                        <MudButton HtmlTag="label"
-                                   Variant="Variant.Filled"
-                                   Color="Color.Primary"
-                                   Size="Size.Small"
-                                   StartIcon="@Icons.Filled.CloudUpload"
-                                   for="fileInput">
-                            @localizer["Upload Image"]
-                        </MudButton>
+                        <div>
+                            <MudButton HtmlTag="label"
+                                       Variant="Variant.Text"
+                                       Color="Color.Primary"
+                                       Size="Size.Small"
+                                       StartIcon="@Icons.Filled.CloudUpload"
+                                       for="fileInput">
+                                @localizer["Upload"]
+                            </MudButton>
+                            @if (!string.IsNullOrEmpty(@ImageDataUrl))
+                            {
+                                <MudButton Variant="Variant.Text"
+                                           Color="Color.Error"
+                                           StartIcon="@Icons.Filled.Delete"
+                                           Size="Size.Small"
+                                           OnClick="DeleteAsync">
+                                    @localizer["Delete"]
+                                </MudButton>
+                            }
+                        </div>
                     </MudItem>
                 </MudItem>
 
