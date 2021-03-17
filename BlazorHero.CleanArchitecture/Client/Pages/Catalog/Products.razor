@@ -6,7 +6,7 @@
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
             <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="@(()=>InvokeModal(0))">@localizer["Create"]</MudButton>
-            <MudButton Variant="Variant.Filled" OnClick="@(()=>LoadData(0,10))" Color="Color.Secondary">@localizer["Reload"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="@(()=>OnSearch(""))" Color="Color.Secondary">@localizer["Reload"]</MudButton>
         </div>
         <MudToolBarSpacer />
         <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@localizer["Search"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
@@ -14,6 +14,7 @@
     <HeaderContent>
         <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Id"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Name"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Brand"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Description"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Barcode"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse">@localizer["Rate"]</MudTableSortLabel></MudTh>
@@ -22,6 +23,7 @@
     <RowTemplate>
         <MudTd DataLabel="Id">@context.Id</MudTd>
         <MudTd DataLabel="Name">@context.Name</MudTd>
+        <MudTd DataLabel="Brand">@context.Brand</MudTd>
         <MudTd DataLabel="Description">@context.Description</MudTd>
         <MudTd DataLabel="Barcode">@context.Barcode</MudTd>
         <MudTd DataLabel="Rate">@context.Rate</MudTd>

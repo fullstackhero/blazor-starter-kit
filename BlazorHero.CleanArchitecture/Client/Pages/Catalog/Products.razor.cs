@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAllCached;
+using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
 using MudBlazor;
 using System;
@@ -12,6 +13,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
     {
         private IEnumerable<GetAllPagedProductsResponse> pagedData;
         private MudTable<GetAllPagedProductsResponse> table;
+       
         private int totalItems;
         private int currentPage;
         private string searchString = null;
@@ -24,22 +26,33 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         {
             var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
             var response = await _productManager.GetProductsAsync(request);
-            totalItems = response.TotalCount;
-            currentPage = response.CurrentPage;
-            var data = response.Data;
-            data = data.Where(element =>
+            if (response.Succeeded)
             {
-                if (string.IsNullOrWhiteSpace(searchString))
-                    return true;
-                if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-                if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-                if (element.Barcode.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-                return false;
-            }).ToList();
-            pagedData = data;
+                totalItems = response.TotalCount;
+                currentPage = response.CurrentPage;
+                var data = response.Data;
+                data = data.Where(element =>
+                {
+                    if (string.IsNullOrWhiteSpace(searchString))
+                        return true;
+                    if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                    if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                    if (element.Barcode.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                    return false;
+                }).ToList();
+                pagedData = data;
+
+            }
+            else
+            {
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
+            }
         }
         private void OnSearch(string text)
         {
@@ -56,6 +69,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 parameters.Add("Name", product.Name);
                 parameters.Add("Description", product.Description);
                 parameters.Add("Rate", product.Rate);
+                parameters.Add("Brand", product.Brand);
+                parameters.Add("BrandId", product.BrandId);
                 parameters.Add("Barcode", product.Barcode);
             }
             var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
@@ -63,7 +78,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                await LoadData(0,10);
+                OnSearch("");
             }
 
         }

@@ -26,5 +26,14 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions
             });
             return responseObject;
         }
+        public static async Task<PaginatedResult<T>> ToPaginatedResult<T>(this HttpResponseMessage response)
+        {
+            var responseAsString = await response.Content.ReadAsStringAsync();
+            var responseObject = JsonSerializer.Deserialize<PaginatedResult<T>>(responseAsString, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return responseObject;
+        }
     }
 }

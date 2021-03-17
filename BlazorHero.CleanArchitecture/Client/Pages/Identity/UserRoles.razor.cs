@@ -3,6 +3,7 @@ using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
@@ -17,8 +18,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         [Parameter]
         public string Description { get; set; }
         public List<UserRoleModel> UserRolesList { get; set; } = new List<UserRoleModel>();
+        public ClaimsPrincipal CurrentUser { get; set; }
         protected override async Task OnInitializedAsync()
         {
+            CurrentUser = await _authenticationManager.CurrentUser();
+
             var userId = Id;
             var result = await _userManager.GetAsync(userId);
             if (result.Succeeded)

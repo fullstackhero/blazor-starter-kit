@@ -35,11 +35,48 @@
                     <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="@localizer["Description"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
+                    <MudSelect T="int" Label="Brand" For="@(() => BrandId)" Required="true" @bind-Value="BrandId" Text="@Brand">
+                        @foreach (var brand in Brands)
+                        {
+                            <MudSelectItem T="int" Value="@(brand.Id)">@brand.Name</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+                <MudItem xs="12" md="6">
                     <MudTextField For="@(() => Rate)" @bind-Value="Rate" Required="true" Label="@localizer["Rate"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
                     <MudTextField For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="@localizer["Barcode"]" />
                 </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudItem xs="12" md="6">
+                        <MudAvatar Image="@ImageDataUrl" Square="true" Style="height:250px; width:250px;"> </MudAvatar>
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <InputFile id="fileInput" hidden OnChange="UploadFiles" />
+                        <div>
+                            <MudButton HtmlTag="label"
+                                       Variant="Variant.Text"
+                                       Color="Color.Primary"
+                                       Size="Size.Small"
+                                       StartIcon="@Icons.Filled.CloudUpload"
+                                       for="fileInput">
+                                @localizer["Upload"]
+                            </MudButton>
+                            @if (!string.IsNullOrEmpty(@ImageDataUrl))
+                            {
+                                <MudButton Variant="Variant.Text"
+                                           Color="Color.Error"
+                                           StartIcon="@Icons.Filled.Delete"
+                                           Size="Size.Small"
+                                           OnClick="DeleteAsync">
+                                    @localizer["Delete"]
+                                </MudButton>
+                            }
+                        </div>
+                    </MudItem>
+                </MudItem>
+
             </MudGrid>
         </DialogContent>
         <DialogActions>

@@ -12,6 +12,11 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Routes
         {
             return $"api/v1/products?pageNumber={pageNumber}&pageSize={pageSize}";
         }
+        public static string GetProductImage(int productId)
+        {
+            return $"api/v1/products/image/{productId}";
+        }
+        public static string Save = "api/v1/products";
         public static string ChangePassword = "api/identity/account/changepassword";
         public static string UpdateProfile = "api/identity/account/updateprofile";
     }

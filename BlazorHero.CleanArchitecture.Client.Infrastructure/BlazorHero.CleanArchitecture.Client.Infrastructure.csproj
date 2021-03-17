@@ -4,9 +4,11 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.4" />
-    <PackageReference Include="MudBlazor" Version="5.0.5" />
+    <PackageReference Include="MudBlazor" Version="5.0.6" />
     <PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Exceptions;
+using BlazorHero.CleanArchitecture.Application.Specifications.Base;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -18,6 +19,16 @@ namespace BlazorHero.CleanArchitecture.Application.Extensions
             pageNumber = pageNumber <= 0 ? 1 : pageNumber;
             List<T> items = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
             return PaginatedResult<T>.Success(items, count, pageNumber, pageSize);
+        }
+        public static IQueryable<T> Specify<T>(this IQueryable<T> query, ISpecification<T> spec) where T : class
+        {
+            var queryableResultWithIncludes = spec.Includes
+                .Aggregate(query,
+                    (current, include) => current.Include(include));
+            var secondaryResult = spec.IncludeStrings
+                .Aggregate(queryableResultWithIncludes,
+                    (current, include) => current.Include(include));
+            return secondaryResult.Where(spec.Criteria);
         }
     }
 }

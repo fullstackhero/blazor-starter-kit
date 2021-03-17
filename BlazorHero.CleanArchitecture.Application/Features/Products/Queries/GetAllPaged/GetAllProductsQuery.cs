@@ -1,5 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Application.Specifications;
 using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
@@ -41,21 +42,16 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
                 Name = e.Name,
                 Description = e.Description,
                 Rate = e.Rate,
-                Barcode = e.Barcode
+                Barcode = e.Barcode,
+                Brand = e.Brand.Name,
+                BrandId = e.BrandId
             };
-            if(string.IsNullOrEmpty(request.SearchString))
-            {
-                return await _repository.Products
-                .Select(expression)
-                .ToPaginatedListAsync(request.PageNumber, request.PageSize);
-            }
-            else
-            {
-                return await _repository.Products
-                .Where(p => p.Name.Contains(request.SearchString) || p.Barcode.Contains(request.SearchString) || p.Description.Contains(request.SearchString))
-                .Select(expression)
-                .ToPaginatedListAsync(request.PageNumber, request.PageSize);
-            }
+            var productFilterSpec = new ProductFilterSpecification(request.SearchString);
+            var data = await _repository.Products               
+               .Specify(productFilterSpec)
+               .Select(expression)
+               .ToPaginatedListAsync(request.PageNumber, request.PageSize);
+            return data;
         }
     }
 }

@@ -54,7 +54,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
 
         public Task UpdateAsync(T entity)
         {
-            _dbContext.Entry(entity).CurrentValues.SetValues(entity);
+            _dbContext.Attach(entity);
+            _dbContext.Entry(entity).State = EntityState.Modified;
             return Task.CompletedTask;
         }
     }

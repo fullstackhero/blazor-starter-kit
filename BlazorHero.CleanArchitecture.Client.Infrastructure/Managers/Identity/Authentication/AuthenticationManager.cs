@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -27,6 +28,12 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
             this._httpClient = httpClient;
             this.localStorage = localStorage;
             this.authenticationStateProvider = authenticationStateProvider;
+        }
+
+        public async Task<ClaimsPrincipal> CurrentUser()
+        {
+            var state = await authenticationStateProvider.GetAuthenticationStateAsync();
+            return state.User;
         }
 
         public async Task<IResult> Login(TokenRequest model)

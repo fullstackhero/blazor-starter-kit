@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
+using BlazorHero.CleanArchitecture.Application.Helpers;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
@@ -62,6 +66,45 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             return Result<List<RoleResponse>>.Success(rolesResponse);
         }
 
+        public async Task<Result<PermissionResponse>> GetAllPermissionsAsync(string roleId)
+        {
+            var model = new PermissionResponse();
+            var allPermissions = new List<RoleClaimsResponse>();
+            #region GetPermissions
+            allPermissions.GetPermissions(typeof(Permissions.Users), roleId);
+            allPermissions.GetPermissions(typeof(Permissions.Roles), roleId);
+            allPermissions.GetPermissions(typeof(Permissions.Products), roleId);
+            allPermissions.GetPermissions(typeof(Permissions.Brands), roleId);
+            #endregion
+            var role = await _roleManager.FindByIdAsync(roleId);
+            if (role != null)
+            {
+                model.RoleId = role.Id;
+                model.RoleName = role.Name;
+                var claims = await _roleManager.GetClaimsAsync(role);
+                var allClaimValues = allPermissions.Select(a => a.Value).ToList();
+                var roleClaimValues = claims.Select(a => a.Value).ToList();
+                var authorizedClaims = allClaimValues.Intersect(roleClaimValues).ToList();
+                foreach (var permission in allPermissions)
+                {
+                    if (authorizedClaims.Any(a => a == permission.Value))
+                    {
+                        permission.Selected = true;
+                    }
+                }
+            }
+            model.RoleClaims = allPermissions;
+            return Result<PermissionResponse>.Success(model);
+            
+        }
+
+        public async Task<Result<RoleResponse>> GetByIdAsync(string id)
+        {
+            var roles = await _roleManager.Roles.SingleOrDefaultAsync(x => x.Id == id);
+            var rolesResponse = _mapper.Map<RoleResponse>(roles);
+            return Result<RoleResponse>.Success(rolesResponse);
+        }
+
         public async Task<Result<string>> SaveAsync(RoleRequest request)
         {
             if (string.IsNullOrEmpty(request.Id))
@@ -82,6 +125,32 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 existingRole.NormalizedName = request.Name.ToUpper();
                 await _roleManager.UpdateAsync(existingRole);
                 return Result<string>.Success("Role Updated.");
+            }
+        }
+
+        public async Task<Result<string>> UpdatePermissionsAsync(PermissionRequest request)
+        {
+            try
+            {
+                var role = await _roleManager.FindByIdAsync(request.RoleId);
+                if (role.Name == "Administrator")
+                {
+                    return Result<string>.Fail($"Not allowed to modify Permissions for this Role.");
+                }
+                var claims = await _roleManager.GetClaimsAsync(role);
+                foreach (var claim in claims)
+                {
+                    await _roleManager.RemoveClaimAsync(role, claim);
+                }
+                var selectedClaims = request.RoleClaims.Where(a => a.Selected).ToList();
+                foreach (var claim in selectedClaims)
+                {
+                    await _roleManager.AddPermissionClaim(role, claim.Value);
+                }
+                return Result<string>.Success("Permission Updated.");
+            } catch (Exception ex)
+            {
+                return Result<string>.Fail(ex.Message);
             }
         }
     }
