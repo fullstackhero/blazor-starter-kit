@@ -20,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             _roleService = roleService;
         }
 
-        //[Authorize(Policy = Permissions.Roles.View)]
+        [Authorize(Policy = Permissions.Roles.View)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

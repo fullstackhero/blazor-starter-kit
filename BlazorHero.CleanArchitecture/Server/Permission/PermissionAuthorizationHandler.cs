@@ -18,15 +18,15 @@ namespace BlazorHero.CleanArchitecture.Server.Permission
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionRequirement requirement)
         {
 
-            if (context.User == null) // roleclaims is not accessible - TODO: 
+            if (context.User == null)
             {
                 return;
             }
         
-            var permissionss = context.User.Claims.Where(x => x.Type == "Permission" &&
+            var permissions = context.User.Claims.Where(x => x.Type == ApplicationClaimType.Permission &&
                                                                 x.Value == requirement.Permission &&
                                                                 x.Issuer == "LOCAL AUTHORITY");
-            if (permissionss.Any())
+            if (permissions.Any())
             {
                 context.Succeed(requirement);
                 return;

@@ -2,6 +2,8 @@
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +12,7 @@ using MudBlazor.Services;
 using System;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
 {
@@ -28,7 +31,13 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
         {
             builder
                 .Services
-                .AddAuthorizationCore()
+                .AddAuthorizationCore(options =>
+                {
+                    foreach (var permissionModule in PermissionModules.GetAllPermissionsModules())
+                    {
+                        RegisterPermissionClaimPolicyByModule(options, permissionModule);
+                    }
+                })
                 .AddBlazoredLocalStorage()
                 .AddLocalization(options =>
                 {
@@ -81,6 +90,14 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
             }
 
             return services;
+        }
+        private static void RegisterPermissionClaimPolicyByModule(AuthorizationOptions options, string module)
+        {
+            var allPermissions = PermissionModules.GeneratePermissionsForModule(module);
+            foreach (var permission in allPermissions)
+            {
+                options.AddPolicy(permission, policy => policy.RequireClaim(ApplicationClaimType.Permission, permission));
+            }
         }
     }
 }

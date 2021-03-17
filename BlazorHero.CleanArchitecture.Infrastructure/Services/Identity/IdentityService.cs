@@ -2,6 +2,7 @@
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
@@ -22,13 +23,16 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private const string InvalidErrorMessage = "Invalid email or password.";
 
         private readonly UserManager<BlazorHeroUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly AppConfiguration _appConfig;
         private readonly SignInManager<BlazorHeroUser> _signInManager;
 
         public IdentityService(
-            UserManager<BlazorHeroUser> userManager, IOptions<AppConfiguration> appConfig, SignInManager<BlazorHeroUser> signInManager)
+            UserManager<BlazorHeroUser> userManager, RoleManager<IdentityRole> roleManager,
+            IOptions<AppConfiguration> appConfig, SignInManager<BlazorHeroUser> signInManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _appConfig = appConfig.Value;
             _signInManager = signInManager;
         }
@@ -64,10 +68,18 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
             var roleClaims = new List<Claim>();
+            var permissionClaims = new List<Claim>();
             for (int i = 0; i < roles.Count; i++)
             {
                 roleClaims.Add(new Claim(ClaimTypes.Role, roles[i]));
+                var thisRole = await _roleManager.FindByNameAsync(roles[i]);
+                var allPermissionsForThisRoles = await _roleManager.GetClaimsAsync(thisRole);
+                foreach (var permission in allPermissionsForThisRoles)
+                {
+                    permissionClaims.Add(permission);
+                }
             }
+
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
@@ -77,7 +89,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
             }
             .Union(userClaims)
-            .Union(roleClaims);
+            .Union(roleClaims)
+            .Union(permissionClaims);
             var secret = Encoding.UTF8.GetBytes(_appConfig.Secret);
             var token = new JwtSecurityToken(
                 claims: claims,

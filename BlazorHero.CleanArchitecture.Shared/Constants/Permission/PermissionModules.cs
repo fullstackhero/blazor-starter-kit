@@ -15,6 +15,18 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             };
         }
 
+        public static List<string> GetAllPermissionsModules()
+        {
+            return new List<string>()
+            {
+                Users,
+                Roles,
+                Products,
+                Brands
+            };
+        }
+
+
         public const string Users = "Users";
         public const string Roles = "Roles";
         public const string Products = "Products";
