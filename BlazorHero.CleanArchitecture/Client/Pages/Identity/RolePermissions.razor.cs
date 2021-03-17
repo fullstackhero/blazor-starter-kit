@@ -23,7 +23,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         protected override async Task OnInitializedAsync()
         {
             _mapper = new MapperConfiguration(c => { c.AddProfile<RoleProfile>(); }).CreateMapper();
-
             var roleId = Id;
             var result = await _roleManager.GetPermissionsAsync(roleId);
             if (result.Succeeded)
