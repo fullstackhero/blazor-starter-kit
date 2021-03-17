@@ -58,6 +58,7 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] Shared Email Service
 - [x] Hangfire Implementation
 - [x] Custom API Response for 500,401,403
+- [x] Specification Pattern
 
 ## Version 2.0 - Down the Road
 
