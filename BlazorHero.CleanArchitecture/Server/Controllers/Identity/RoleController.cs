@@ -13,7 +13,6 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
     public class RoleController : ControllerBase
     {
         private readonly IRoleService _roleService;
-        private IMapper _mapper;
 
         public RoleController(IRoleService roleService)
         {

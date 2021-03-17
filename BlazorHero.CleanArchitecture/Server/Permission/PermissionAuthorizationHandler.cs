@@ -20,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Server.Permission
 
             if (context.User == null)
             {
-                return;
+                await Task.CompletedTask;
             }
         
             var permissions = context.User.Claims.Where(x => x.Type == ApplicationClaimType.Permission &&
@@ -29,7 +29,7 @@ namespace BlazorHero.CleanArchitecture.Server.Permission
             if (permissions.Any())
             {
                 context.Succeed(requirement);
-                return;
+                await Task.CompletedTask;
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Create;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetProductImage;
 using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
@@ -35,7 +35,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Pr
             return await response.ToPaginatedResult<GetAllPagedProductsResponse>();
         }
 
-        public async Task<IResult<int>> SaveAsync(CreateProductCommand request)
+        public async Task<IResult<int>> SaveAsync(AddEditProductCommand request)
         {
             var response = await _httpClient.PostAsJsonAsync(Routes.ProductsEndpoint.Save, request);
             return await response.ToResult<int>();

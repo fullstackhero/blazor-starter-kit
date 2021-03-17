@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Create;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
@@ -39,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             form.Validate();
             if (form.IsValid)
             {
-                var request = new CreateProductCommand() { Name = Name, Barcode = Barcode, BrandId = 1, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate };
+                var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = 1, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id };
                 var response = await _productManager.SaveAsync(request);
                 if (response.Succeeded)
                 {
@@ -71,7 +71,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             }
 
         }
-        private async Task DeleteAsync()
+        private void DeleteAsync()
         {
             ImageDataUrl = null;
         }

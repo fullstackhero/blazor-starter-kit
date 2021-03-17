@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Create;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetProductImage;
 using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
@@ -11,6 +11,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Pr
     {
         Task<PaginatedResult<GetAllPagedProductsResponse>> GetProductsAsync(GetAllPagedProductsRequest request);
         Task<IResult<string>> GetProductImageAsync(int id);
-        Task<IResult<int>> SaveAsync(CreateProductCommand request);
+        Task<IResult<int>> SaveAsync(AddEditProductCommand request);
     }
 }
