@@ -117,31 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Actions</value>
+  <data name="Activate User?" xml:space="preserve">
+    <value>¿Activar usuario?</value>
   </data>
-  <data name="Create" xml:space="preserve">
-    <value>Create</value>
+  <data name="Auto Confirm Email?" xml:space="preserve">
+    <value>¿Auto confirmar correo?</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
   </data>
-  <data name="Delete Content" xml:space="preserve">
-    <value>Do you want to delete the role with Id {0}?</value>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Confirmar contraseña</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+  <data name="Email" xml:space="preserve">
+    <value>Correo</value>
   </data>
-  <data name="Manage Roles." xml:space="preserve">
-    <value>Manage Roles.</value>
+  <data name="First Name" xml:space="preserve">
+    <value>Nombre</value>
   </data>
-  <data name="Reload" xml:space="preserve">
-    <value>Reload</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>Apellido</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
   </data>
-  <data name="Search for Roles..." xml:space="preserve">
-    <value>Search for Roles...</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="Profile Details" xml:space="preserve">
+    <value>Detalle del perfil</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="Register User" xml:space="preserve">
+    <value>Usuario registrado</value>
+  </data>
+  <data name="Save Changes" xml:space="preserve">
+    <value>Guardar cambios</value>
+  </data>
+  <data name="User Name" xml:space="preserve">
+    <value>Usuario</value>
   </data>
 </root>

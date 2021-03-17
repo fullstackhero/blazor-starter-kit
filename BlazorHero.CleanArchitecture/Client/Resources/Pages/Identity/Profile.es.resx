@@ -117,31 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Actions</value>
+  <data name="Delete Image" xml:space="preserve">
+    <value>Borrar Imagen</value>
   </data>
-  <data name="Create" xml:space="preserve">
-    <value>Create</value>
+  <data name="Delete Picture" xml:space="preserve">
+    <value>Borrar Imagen</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+  <data name="Email" xml:space="preserve">
+    <value>Correo</value>
   </data>
-  <data name="Delete Content" xml:space="preserve">
-    <value>Do you want to delete the role with Id {0}?</value>
+  <data name="First Name" xml:space="preserve">
+    <value>Nombre</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>Apellido</value>
   </data>
-  <data name="Manage Roles." xml:space="preserve">
-    <value>Manage Roles.</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Teléfono</value>
   </data>
-  <data name="Reload" xml:space="preserve">
-    <value>Reload</value>
+  <data name="Profile" xml:space="preserve">
+    <value>Perfil</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
+  <data name="Profile Details" xml:space="preserve">
+    <value>Detalle del perfil</value>
   </data>
-  <data name="Search for Roles..." xml:space="preserve">
-    <value>Search for Roles...</value>
+  <data name="Save Changes" xml:space="preserve">
+    <value>Guardar cambios</value>
+  </data>
+  <data name="Upload Image" xml:space="preserve">
+    <value>Cargar Imagen</value>
+  </data>
+  <data name="Your Profile has been updated. Please Login to Continue." xml:space="preserve">
+    <value>Tu perfil fue actualizado, por favor ingrese para continuar.</value>
   </data>
 </root>

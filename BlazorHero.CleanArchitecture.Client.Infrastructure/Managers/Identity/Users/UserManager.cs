@@ -53,6 +53,15 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
             return await response.ToResult<UserRolesResponse>();
         }
 
-        
+        public async Task<IResult> ForgotPasswordAsync(ForgotPasswordRequest model)
+        {
+            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.ForgotPassword, model);
+            return await response.ToResult();
+        }
+        public async Task<IResult> ResetPasswordAsync(ResetPasswordRequest request)
+        {
+            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.ResetPassword, request);
+            return await response.ToResult();
+        }
     }
 }

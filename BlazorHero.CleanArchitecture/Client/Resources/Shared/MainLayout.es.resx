@@ -117,31 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Actions</value>
+  <data name="Account" xml:space="preserve">
+    <value>Cuenta</value>
   </data>
-  <data name="Create" xml:space="preserve">
-    <value>Create</value>
+  <data name="Community" xml:space="preserve">
+    <value>Comunidad</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+  <data name="Facebook Group" xml:space="preserve">
+    <value>Grupo de Facebook</value>
   </data>
-  <data name="Delete Content" xml:space="preserve">
-    <value>Do you want to delete the role with Id {0}?</value>
+  <data name="Facebook Page" xml:space="preserve">
+    <value>Página de Facebook</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+  <data name="Logout" xml:space="preserve">
+    <value>Desconectar</value>
   </data>
-  <data name="Manage Roles." xml:space="preserve">
-    <value>Manage Roles.</value>
+  <data name="Logout Confirmation" xml:space="preserve">
+    <value>¿Realmente quieres desconectarte?</value>
   </data>
-  <data name="Reload" xml:space="preserve">
-    <value>Reload</value>
+  <data name="MudBlazor Documentation" xml:space="preserve">
+    <value>Documentación de MudBlazor</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
+  <data name="Quick-Start Guide" xml:space="preserve">
+    <value>Guía de Inicio Rápido</value>
   </data>
-  <data name="Search for Roles..." xml:space="preserve">
-    <value>Search for Roles...</value>
+  <data name="Resources" xml:space="preserve">
+    <value>Recursos</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Soporte</value>
+  </data>
+  <data name="Toggle Dark Mode" xml:space="preserve">
+    <value>Alternar modo oscuro</value>
   </data>
 </root>

@@ -117,31 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Actions</value>
+  <data name="Add Role" xml:space="preserve">
+    <value>Agregar Rol</value>
   </data>
-  <data name="Create" xml:space="preserve">
-    <value>Create</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+  <data name="Role ID" xml:space="preserve">
+    <value>Rol Id</value>
   </data>
-  <data name="Delete Content" xml:space="preserve">
-    <value>Do you want to delete the role with Id {0}?</value>
+  <data name="Role Name" xml:space="preserve">
+    <value>Nombre Rol</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+  <data name="Save Role" xml:space="preserve">
+    <value>Guardar Rol</value>
   </data>
-  <data name="Manage Roles." xml:space="preserve">
-    <value>Manage Roles.</value>
-  </data>
-  <data name="Reload" xml:space="preserve">
-    <value>Reload</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
-  </data>
-  <data name="Search for Roles..." xml:space="preserve">
-    <value>Search for Roles...</value>
+  <data name="Update Role" xml:space="preserve">
+    <value>Actualizar Rol</value>
   </data>
 </root>

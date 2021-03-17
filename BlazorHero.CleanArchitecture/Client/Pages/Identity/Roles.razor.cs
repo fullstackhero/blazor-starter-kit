@@ -36,8 +36,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         }
         private async Task Delete(string id)
         {
+            string deleteContent = localizer["Delete Content"];
             var parameters = new DialogParameters();
-            parameters.Add("ContentText", $"Do you want to delete the role with Id {id} ?");
+            parameters.Add("ContentText", string.Format(deleteContent, id));
             var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
             var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
             var result = await dialog.Result;

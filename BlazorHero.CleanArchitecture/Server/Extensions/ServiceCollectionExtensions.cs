@@ -11,14 +11,15 @@ using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Server.Services;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
+using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -154,6 +155,31 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         RoleClaimType = ClaimTypes.Role
+                    };
+                    bearer.Events = new JwtBearerEvents()
+                    {
+                        OnAuthenticationFailed = c =>
+                        {
+                            c.NoResult();
+                            c.Response.StatusCode = 500;
+                            c.Response.ContentType = "text/plain";
+                            return c.Response.WriteAsync(c.Exception.ToString());
+                        },
+                        OnChallenge = context =>
+                        {
+                            context.HandleResponse();
+                            context.Response.StatusCode = 401;
+                            context.Response.ContentType = "application/json";
+                            var result = JsonConvert.SerializeObject(Result.Fail("You are not Authorized."));
+                            return context.Response.WriteAsync(result);
+                        },
+                        OnForbidden = context =>
+                        {
+                            context.Response.StatusCode = 403;
+                            context.Response.ContentType = "application/json";
+                            var result = JsonConvert.SerializeObject(Result.Fail("You are not authorized to access this resource."));
+                            return context.Response.WriteAsync(result);
+                        },
                     };
                 });
             services.AddAuthorization(options =>

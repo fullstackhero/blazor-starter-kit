@@ -7,6 +7,7 @@ using BlazorHero.CleanArchitecture.Application.Requests.Mail;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
+using Hangfire;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
@@ -69,7 +71,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                     {
                         var verificationUri = await SendVerificationEmail(user, origin);
                         //TODO: Attach Email Service here and configure it via appsettings
-                        await _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" });
+                        BackgroundJob.Enqueue(() => _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" }));
                         return Result<string>.Success(user.Id, message: $"User Registered. Confirmation Mail has been delivered to the Mailbox.");
                     }
                     return Result<string>.Success(user.Id, message: $"User Registered!");
@@ -167,5 +169,49 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             }
         }
 
+        public async Task<IResult> ForgotPasswordAsync(string emailId,string origin)
+        {
+            var user = await _userManager.FindByEmailAsync(emailId);
+            if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+            {
+                // Don't reveal that the user does not exist or is not confirmed
+                return Result.Fail("An Error has occured!");
+            }
+            // For more information on how to enable account confirmation and password reset please
+            // visit https://go.microsoft.com/fwlink/?LinkID=532713
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            var route = "account/reset-password";
+            var _enpointUri = new Uri(string.Concat($"{origin}/", route));
+            var passwordResetURL = QueryHelpers.AddQueryString(_enpointUri.ToString(), "Token", code);
+            var request = new MailRequest()
+            {
+                Body = $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(passwordResetURL)}'>clicking here</a>.",
+                Subject = "Reset Password",
+                To = emailId
+            };
+            BackgroundJob.Enqueue(() => _mailService.SendAsync(request));
+            return Result.Success("Password Reset Mail has been sent to your authorized EmailId.");
+        }
+
+        public async Task<IResult> ResetPasswordAsync(ResetPasswordRequest request)
+        {
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                return Result.Fail("An Error has occured!");
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, request.Token, request.Password);
+            if (result.Succeeded)
+            {
+                return Result.Success("Password Reset Successful!");
+            }
+            else
+            {
+                return Result.Fail("An Error has occured!");
+            }
+        }
     }
 }
