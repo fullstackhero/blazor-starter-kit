@@ -35,5 +35,16 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.R
             var response = await _httpClient.PostAsJsonAsync(Routes.RolesEndpoint.Save, role);
             return await response.ToResult<string>();
         }
+        public async Task<IResult<PermissionResponse>> GetPermissionsAsync(string roleId)
+        {
+            var response = await _httpClient.GetAsync(Routes.RolesEndpoint.GetPermissions + roleId);
+            return await response.ToResult<PermissionResponse>();
+        }
+
+        public async Task<IResult<string>> UpdatePermissionsAsync(PermissionRequest request)
+        {
+            var response = await _httpClient.PutAsJsonAsync(Routes.RolesEndpoint.UpdatePermissions, request);
+            return await response.ToResult<string>();
+        }
     }
 }

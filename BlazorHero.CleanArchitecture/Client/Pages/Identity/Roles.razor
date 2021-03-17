@@ -22,6 +22,7 @@
         <MudTd DataLabel="Role">@context.Name</MudTd>
         <MudTd DataLabel="Actions" Style="text-align:right">
             <MudMenu Label="@localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary">
+                <MudMenuItem @onclick="@(()=>ManagePermissions(@context.Id))">@localizer["Manage Permission"]</MudMenuItem>
                 <MudMenuItem @onclick="@(()=>InvokeModal(@context.Id))">@localizer["Edit"]</MudMenuItem>
                 <MudMenuItem @onclick="@(()=>Delete(@context.Id))">@localizer["Delete"]</MudMenuItem>
             </MudMenu>

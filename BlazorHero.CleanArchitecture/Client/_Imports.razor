@@ -20,6 +20,9 @@
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Product
 
+@*Shared Libraries*@
+@using BlazorHero.CleanArchitecture.Shared.Constants.Permission
+
 @using BlazorHero.CleanArchitecture.Client
 @using BlazorHero.CleanArchitecture.Client.Shared
 @using BlazorHero.CleanArchitecture.Client.Shared.Components
@@ -39,6 +42,7 @@
 @inject IAccountManager _accountManager
 @inject NavigationManager _navigationManager
 @inject BlazorHeroStateProvider _stateProvider
+@inject IAuthorizationService _authorizationService
 @inject ISnackbar _snackBar
 @inject IDialogService _dialogService
 @inject HttpClient _httpClient

@@ -1,5 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
+using Microsoft.AspNetCore.Components.Authorization;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Authentication
@@ -9,5 +11,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
         Task<IResult> Login(TokenRequest model);
 
         Task<IResult> Logout();
+
+        Task<ClaimsPrincipal> CurrentUser();
     }
 }

@@ -9,10 +9,13 @@ using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Shared.Services;
+using BlazorHero.CleanArchitecture.Server.Permission;
 using BlazorHero.CleanArchitecture.Server.Services;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +26,8 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Security.Claims;
 using System.Text;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
@@ -95,6 +100,8 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services
+                .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
+                .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>()
                 .AddIdentity<BlazorHeroUser, IdentityRole>(options =>
                 {
                     options.Password.RequiredLength = 6;
@@ -135,7 +142,6 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             this IServiceCollection services, AppConfiguration config)
         {
             var key = Encoding.ASCII.GetBytes(config.Secret);
-
             services
                 .AddAuthentication(authentication =>
                 {
@@ -151,7 +157,8 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(key),
                         ValidateIssuer = false,
-                        ValidateAudience = false
+                        ValidateAudience = false,
+                        RoleClaimType = ClaimTypes.Role
                     };
                     bearer.Events = new JwtBearerEvents()
                     {
@@ -179,7 +186,14 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                         },
                     };
                 });
-
+            services.AddAuthorization(options =>
+            {
+                // Here I stored necessary permissions/roles in a constant
+                foreach (var prop in typeof(Permissions).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy))
+                {
+                    options.AddPolicy(prop.GetValue(null).ToString(), policy => policy.RequireClaim(ApplicationClaimType.Permission, prop.GetValue(null).ToString()));
+                }
+            });
             services.AddHttpContextAccessor();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             return services;
