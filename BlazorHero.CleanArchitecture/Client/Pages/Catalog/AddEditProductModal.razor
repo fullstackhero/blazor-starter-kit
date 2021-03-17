@@ -35,11 +35,31 @@
                     <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="@localizer["Description"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="@localizer["Brand"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
                     <MudTextField For="@(() => Rate)" @bind-Value="Rate" Required="true" Label="@localizer["Rate"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
                     <MudTextField For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="@localizer["Barcode"]" />
                 </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudItem xs="12" md="6">
+                        <MudAvatar Image="@ImageDataUrl" Square="true" Style="height:250px; width:250px;"> </MudAvatar>
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <InputFile id="fileInput" hidden OnChange="UploadFiles" />
+                        <MudButton HtmlTag="label"
+                                   Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   Size="Size.Small"
+                                   StartIcon="@Icons.Filled.CloudUpload"
+                                   for="fileInput">
+                            @localizer["Upload Image"]
+                        </MudButton>
+                    </MudItem>
+                </MudItem>
+
             </MudGrid>
         </DialogContent>
         <DialogActions>
