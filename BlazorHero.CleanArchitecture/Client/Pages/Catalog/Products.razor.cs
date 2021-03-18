@@ -1,9 +1,12 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
@@ -22,7 +25,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             await LoadData(state.Page, state.PageSize);
             return new TableData<GetAllPagedProductsResponse>() { TotalItems = totalItems, Items = pagedData };
         }
+        private ClaimsPrincipal AuthenticationStateProviderUser { get; set; }
 
+        protected override async Task OnParametersSetAsync()
+        {
+            AuthenticationStateProviderUser = await _stateProvider.GetAuthenticationStateProviderUserAsync();
+        }
         private async Task LoadData(int pageNumber, int pageSize)
         {
             var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };

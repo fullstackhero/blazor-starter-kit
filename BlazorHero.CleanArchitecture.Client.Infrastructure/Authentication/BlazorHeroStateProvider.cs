@@ -45,7 +45,14 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
 
             NotifyAuthenticationStateChanged(authState);
         }
-
+        public async  Task<ClaimsPrincipal> GetAuthenticationStateProviderUserAsync()
+        {
+            ClaimsPrincipal AuthenticationStateProviderUser = new ClaimsPrincipal();
+            var state = await this.GetAuthenticationStateAsync();
+            AuthenticationStateProviderUser = state.User;
+            return AuthenticationStateProviderUser;
+        }
+        public ClaimsPrincipal AuthenticationStateUser { get; set; }
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var savedToken = await _localStorage.GetItemAsync<string>("authToken");
@@ -54,7 +61,9 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
             }
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", savedToken);
-            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(GetClaimsFromJwt(savedToken), "jwt")));
+            var state = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(GetClaimsFromJwt(savedToken), "jwt")));
+            AuthenticationStateUser = state.User;
+            return state;
         }
 
         private IEnumerable<Claim> GetClaimsFromJwt(string jwt)

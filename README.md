@@ -57,6 +57,7 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] Hangfire Implementation
 - [x] Custom API Response for 500,401,403
 - [x] Specification Pattern
+- [x] Permission Based UI Rendering
 
 ## Version 2.0 - Down the Road
 
@@ -68,7 +69,6 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [ ] Theme Manager
 - [ ] File Upload
 - [ ] Import / Export to Excel
-- [ ] Permission Based UI Rendering
 - [ ] Social Auth - Facebook, Google
 - [ ] Audit Trails
 
