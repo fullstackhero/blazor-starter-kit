@@ -53,9 +53,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task SaveAsync()
         {
+           
             form.Validate();
             if (form.IsValid)
             {
+                if (BrandId == 0)
+                {
+                    _snackBar.Add("Select a Brand.", Severity.Error);
+                    return;
+                }
                 var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = BrandId, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id };
                 var response = await _productManager.SaveAsync(request);
                 if (response.Succeeded)
