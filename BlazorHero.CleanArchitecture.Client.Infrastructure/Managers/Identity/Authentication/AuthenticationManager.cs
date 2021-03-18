@@ -9,7 +9,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Claims;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Authentication
@@ -52,7 +51,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
             {
                 return Result.Fail(result.Messages);
             }
-
         }
 
         public async Task<IResult> Logout()

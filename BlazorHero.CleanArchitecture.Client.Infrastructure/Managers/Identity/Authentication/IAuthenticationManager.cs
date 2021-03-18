@@ -1,6 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
-using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

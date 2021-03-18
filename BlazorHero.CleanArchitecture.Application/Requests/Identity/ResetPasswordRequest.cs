@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BlazorHero.CleanArchitecture.Application.Requests.Identity
+﻿namespace BlazorHero.CleanArchitecture.Application.Requests.Identity
 {
     public class ResetPasswordRequest
     {

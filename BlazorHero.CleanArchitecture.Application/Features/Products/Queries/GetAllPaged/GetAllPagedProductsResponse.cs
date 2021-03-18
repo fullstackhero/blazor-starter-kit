@@ -1,6 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
-
-namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged
+﻿namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged
 {
     public class GetAllPagedProductsResponse
     {

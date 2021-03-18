@@ -9,7 +9,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Security
     {
-        [Inject] Microsoft.Extensions.Localization.IStringLocalizer<Security> localizer { get; set; }
+        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Security> localizer { get; set; }
 
         private readonly ChangePasswordRequest passwordModel = new ChangePasswordRequest();
 
@@ -19,7 +19,21 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task ChangePasswordAsync()
         {
-            await _accountManager.ChangePasswordAsync(passwordModel);
+            var response = await _accountManager.ChangePasswordAsync(passwordModel);
+            if(response.Succeeded)
+            {
+                _snackBar.Add("Password Changed!",Severity.Success);
+                passwordModel.Password = string.Empty;
+                passwordModel.NewPassword = string.Empty;
+                passwordModel.ConfirmNewPassword = string.Empty;
+            }
+            else
+            {
+                foreach(var error in response.Messages)
+                {
+                    _snackBar.Add(error, Severity.Error);
+                }
+            }
         }
 
         private IEnumerable<string> PasswordStrength(string pw)

@@ -1,4 +1,7 @@
 ﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<NavMenu> localizer
+@using System.Security.Claims
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using Microsoft.AspNetCore.Components.Authorization
 <UserCard />
 <MudDivider Class="mb-4" />
 <MudNavMenu>
@@ -19,15 +22,23 @@
     <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.SupervisorAccount">
         @localizer["Account"]
     </MudNavLink>
-    <AuthorizeView Roles="Administrator">
+    @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Roles.View).Result.Succeeded || _authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Users.View).Result.Succeeded)
+    {
         <MudListSubheader Class="mt-2 mb-n2">
             @localizer["Administrator"]
         </MudListSubheader>
-        <MudNavLink Href="/identity/users" Icon="@Icons.Material.Outlined.Person">
-            @localizer["Users"]
-        </MudNavLink>
-        <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Outlined.Person">@localizer["Roles"]</MudNavLink>
-    </AuthorizeView>
+        @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Users.View).Result.Succeeded)
+        {
+            <MudNavLink Href="/identity/users" Icon="@Icons.Material.Outlined.Person">
+                @localizer["Users"]
+            </MudNavLink>
+        }
+        @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Roles.View).Result.Succeeded)
+        {
+            <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Outlined.Person">@localizer["Roles"]</MudNavLink>
+        }
+    }
+
     <MudListSubheader Class="mt-2 mb-n2">@localizer["Communication"]</MudListSubheader>
     <MudNavLink Href="/chat" Icon="@Icons.Material.Outlined.Chat">
         @localizer["Chat"]
@@ -35,11 +46,29 @@
     <MudNavLink Href="/mail" Icon="@Icons.Material.Outlined.Mail">
         @localizer["Mail"]
     </MudNavLink>
-    <MudListSubheader Class="mt-2 mb-n2">@localizer["Catalog Management"]</MudListSubheader>
-    <MudNavLink Href="/catalog/products" Icon="@Icons.Material.Outlined.CallToAction">
-        @localizer["Products"]
-    </MudNavLink>
-    <MudNavLink Href="/catalog/brands" Icon="@Icons.Material.Outlined.CallToAction">
-        @localizer["Brands"]
-    </MudNavLink>
+    @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Products.View).Result.Succeeded || _authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Brands.View).Result.Succeeded)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">@localizer["Catalog Management"]</MudListSubheader>
+        @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Products.View).Result.Succeeded)
+        {
+            <MudNavLink Href="/catalog/products" Icon="@Icons.Material.Outlined.CallToAction">
+                @localizer["Products"]
+            </MudNavLink>
+        }
+        @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Brands.View).Result.Succeeded)
+        {
+            <MudNavLink Href="/catalog/brands" Icon="@Icons.Material.Outlined.CallToAction">
+                @localizer["Brands"]
+            </MudNavLink>
+        }
+    }
 </MudNavMenu>
+
+@code {
+    private ClaimsPrincipal AuthenticationStateProviderUser { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        AuthenticationStateProviderUser = await _stateProvider.GetAuthenticationStateProviderUserAsync();
+    }
+}

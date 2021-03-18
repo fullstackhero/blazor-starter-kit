@@ -30,7 +30,7 @@
             <MudTextField T="string" Label="@localizer["Confirm Password"]" @bind-Value="ConfirmPassword" For="@(() => ConfirmPassword)" Required="true" Variant="Variant.Outlined" Validation="@(new Func<string, string>(PasswordMatch))" InputType="InputType.Password"></MudTextField>
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-center">
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SubmitAsync"  Size="Size.Large" FullWidth="true">@localizer["Reset Password"]</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SubmitAsync" Size="Size.Large" FullWidth="true">@localizer["Reset Password"]</MudButton>
         </MudItem>
     </MudGrid>
-    </MudForm>
+</MudForm>

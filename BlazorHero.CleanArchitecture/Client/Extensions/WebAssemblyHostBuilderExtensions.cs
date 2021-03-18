@@ -13,7 +13,6 @@ using Polly;
 using System;
 using System.Linq;
 using System.Net.Http;
-using System.Reflection;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
 {
@@ -63,7 +62,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .GetRequiredService<IHttpClientFactory>()
                 .CreateClient(ClientName))
                 .AddHttpClient(ClientName, client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
-                .AddTransientHttpErrorPolicy(policy=>policy.WaitAndRetryAsync(3,_=> TimeSpan.FromSeconds(2)))
+                .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(3, _ => TimeSpan.FromSeconds(2)))
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
             return builder;
         }
@@ -93,12 +92,13 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
 
             return services;
         }
+
         private static void RegisterPermissionClaimPolicyByModule(AuthorizationOptions options, string module)
         {
             var allPermissions = PermissionModules.GeneratePermissionsForModule(module);
             foreach (var permission in allPermissions)
             {
-                options.AddPolicy(permission, policy => policy.RequireClaim(ApplicationClaimType.Permission, permission));
+                options.AddPolicy(permission, policy => policy.RequireClaim(ApplicationClaimTypes.Permission, permission));
             }
         }
     }

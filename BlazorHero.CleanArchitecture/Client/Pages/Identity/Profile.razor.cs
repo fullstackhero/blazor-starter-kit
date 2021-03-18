@@ -4,19 +4,19 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Profile
     {
-        [Inject] Microsoft.Extensions.Localization.IStringLocalizer<Profile> localizer { get; set; }
+        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Profile> localizer { get; set; }
 
         private char FirstLetterOfName { get; set; }
 
         private readonly UpdateProfileRequest profileModel = new UpdateProfileRequest();
         public string UserId { get; set; }
+
         private async Task UpdateProfileAsync()
         {
             var response = await _accountManager.UpdateProfileAsync(profileModel);
@@ -47,7 +47,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             profileModel.PhoneNumber = user.GetPhoneNumber();
             UserId = user.GetUserId();
             var data = await _accountManager.GetProfilePictureAsync(UserId);
-            if(data.Succeeded)
+            if (data.Succeeded)
             {
                 ImageDataUrl = data.Data;
             }
@@ -56,35 +56,38 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 FirstLetterOfName = profileModel.FirstName[0];
             }
         }
+
         public IBrowserFile file { get; set; }
+
         [Parameter]
         public string ImageDataUrl { get; set; }
+
         private async Task UploadFiles(InputFileChangeEventArgs e)
         {
             file = e.File;
-            if(file!=null)
+            if (file != null)
             {
                 var format = "image/png";
                 var imageFile = await e.File.RequestImageFileAsync(format, 250, 250);
                 var buffer = new byte[imageFile.Size];
                 await imageFile.OpenReadStream().ReadAsync(buffer);
                 ImageDataUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-                var request = new UpdateProfilePictureRequest() { ProfilePictureDataUrl = ImageDataUrl};
+                var request = new UpdateProfilePictureRequest() { ProfilePictureDataUrl = ImageDataUrl };
                 var result = await _accountManager.UpdateProfilePictureAsync(request, UserId);
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     _navigationManager.NavigateTo("/account", true);
                 }
                 else
                 {
-                    foreach(var error in result.Messages)
+                    foreach (var error in result.Messages)
                     {
                         _snackBar.Add(error, Severity.Success);
                     }
                 }
             }
-
         }
+
         private async Task DeleteAsync()
         {
             var parameters = new DialogParameters();
@@ -94,7 +97,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                
                 var request = new UpdateProfilePictureRequest() { ProfilePictureDataUrl = string.Empty };
                 var data = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (data.Succeeded)
@@ -110,7 +112,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     }
                 }
             }
-                
         }
     }
 }

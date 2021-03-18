@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System.Threading;
@@ -13,18 +14,18 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetBy
 
         public class GetProductByIdQueryHandler : IRequestHandler<GetBrandByIdQuery, Result<GetBrandByIdResponse>>
         {
-            private readonly IBrandRepository _brandRepository;
+            private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
 
-            public GetProductByIdQueryHandler(IBrandRepository brandRepository, IMapper mapper)
+            public GetProductByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
             {
-                _brandRepository = brandRepository;
+                _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
 
             public async Task<Result<GetBrandByIdResponse>> Handle(GetBrandByIdQuery query, CancellationToken cancellationToken)
             {
-                var product = await _brandRepository.GetByIdAsync(query.Id);
+                var product = await _unitOfWork.Repository<Brand>().GetByIdAsync(query.Id);
                 var mappedProduct = _mapper.Map<GetBrandByIdResponse>(product);
                 return Result<GetBrandByIdResponse>.Success(mappedProduct);
             }

@@ -7,7 +7,7 @@
     <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
 }
 else
-{ 
+{
     <MudTable Hover="true" Elevation="25" Items="@model.RoleClaims">
         <ToolBarContent>
             <div class="justify-center mud-text-align-center">
@@ -26,7 +26,7 @@ else
             <MudTd DataLabel="Status"><MudCheckBox @bind-Checked="@context.Selected" Color="Color.Secondary" /></MudTd>
         </RowTemplate>
         <PagerContent>
-
+            <TablePager />
         </PagerContent>
     </MudTable>
 }

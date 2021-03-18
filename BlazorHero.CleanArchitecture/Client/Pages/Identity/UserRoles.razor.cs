@@ -15,10 +15,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         [Parameter]
         public string Title { get; set; }
+
         [Parameter]
         public string Description { get; set; }
+
         public List<UserRoleModel> UserRolesList { get; set; } = new List<UserRoleModel>();
         public ClaimsPrincipal CurrentUser { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             CurrentUser = await _authenticationManager.CurrentUser();
@@ -37,7 +40,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
-        async Task SaveAsync()
+
+        private async Task SaveAsync()
         {
             var request = new UpdateUserRolesRequest()
             {
@@ -52,12 +56,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
             else
             {
-                foreach(var error in result.Messages)
+                foreach (var error in result.Messages)
                 {
                     _snackBar.Add(error, Severity.Error);
                 }
             }
         }
     }
-    
 }

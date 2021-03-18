@@ -1,10 +1,10 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAllCached;
-using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
@@ -13,16 +13,25 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
     {
         private IEnumerable<GetAllPagedProductsResponse> pagedData;
         private MudTable<GetAllPagedProductsResponse> table;
-       
+
         private int totalItems;
         private int currentPage;
         private string searchString = null;
+
         private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
-        {            
+        {
             await LoadData(state.Page, state.PageSize);
             return new TableData<GetAllPagedProductsResponse>() { TotalItems = totalItems, Items = pagedData };
         }
-        async Task LoadData(int pageNumber, int pageSize)
+
+        private ClaimsPrincipal AuthenticationStateProviderUser { get; set; }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            AuthenticationStateProviderUser = await _stateProvider.GetAuthenticationStateProviderUserAsync();
+        }
+
+        private async Task LoadData(int pageNumber, int pageSize)
         {
             var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
             var response = await _productManager.GetProductsAsync(request);
@@ -44,7 +53,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     return false;
                 }).ToList();
                 pagedData = data;
-
             }
             else
             {
@@ -54,12 +62,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 }
             }
         }
+
         private void OnSearch(string text)
         {
             searchString = text;
             table.ReloadServerData();
         }
-        async Task InvokeModal(int id = 0)
+
+        private async Task InvokeModal(int id = 0)
         {
             var parameters = new DialogParameters();
             if (id != 0)
@@ -80,7 +90,33 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             {
                 OnSearch("");
             }
+        }
 
+        private async Task Delete(int id)
+        {
+            string deleteContent = localizer["Delete Content"];
+            var parameters = new DialogParameters();
+            parameters.Add("ContentText", string.Format(deleteContent, id));
+            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
+            var result = await dialog.Result;
+            if (!result.Cancelled)
+            {
+                var response = await _productManager.DeleteAsync(id);
+                if (response.Succeeded)
+                {
+                    OnSearch("");
+                    _snackBar.Add(response.Messages[0], Severity.Success);
+                }
+                else
+                {
+                    OnSearch("");
+                    foreach (var message in response.Messages)
+                    {
+                        _snackBar.Add(message, Severity.Error);
+                    }
+                }
+            }
         }
     }
 }

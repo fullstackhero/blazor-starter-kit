@@ -21,35 +21,30 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
 
     public class AddEditProductCommandHandler : IRequestHandler<AddEditProductCommand, Result<int>>
     {
-        private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
-
         private readonly IUnitOfWork _unitOfWork;
 
-        public AddEditProductCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        public AddEditProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _productRepository = productRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         public async Task<Result<int>> Handle(AddEditProductCommand command, CancellationToken cancellationToken)
         {
-            var product = _mapper.Map<Product>(command);            
-            if(product.Id == 0)
+            var product = _mapper.Map<Product>(command);
+            if (product.Id == 0)
             {
-                product.IsDeleted = false;
-                await _productRepository.InsertAsync(product);
+                await _unitOfWork.Repository<Product>().AddAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
                 return Result<int>.Success(product.Id, "Product Saved!");
             }
             else
             {
-                await _productRepository.UpdateAsync(product);
+                await _unitOfWork.Repository<Product>().UpdateAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
                 return Result<int>.Success(product.Id, "Product Updated!");
             }
-           
         }
     }
 }

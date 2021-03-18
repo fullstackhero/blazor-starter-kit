@@ -9,6 +9,7 @@
             public const string Edit = "Permissions.Products.Edit";
             public const string Delete = "Permissions.Products.Delete";
         }
+
         public static class Brands
         {
             public const string View = "Permissions.Brands.View";
@@ -16,6 +17,7 @@
             public const string Edit = "Permissions.Brands.Edit";
             public const string Delete = "Permissions.Brands.Delete";
         }
+
         public static class Users
         {
             public const string View = "Permissions.Users.View";

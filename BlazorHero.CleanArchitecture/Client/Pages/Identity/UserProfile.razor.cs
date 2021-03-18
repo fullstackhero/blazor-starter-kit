@@ -13,6 +13,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         [Parameter]
         public string Title { get; set; }
+
         [Parameter]
         public string Description { get; set; }
 
@@ -26,7 +27,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         public Color AvatarButtonColor { get; set; } = Color.Error;
         public IEnumerable<string> Errors { get; set; }
 
-        async Task ToggleUserStatus()
+        private async Task ToggleUserStatus()
         {
             var request = new ToggleUserStatusRequest { ActivateUser = Active, UserId = Id };
             var result = await _userManager.ToggleUserStatusAsync(request);
@@ -37,14 +38,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
             else
             {
-                foreach(var error in result.Messages)
+                foreach (var error in result.Messages)
                 {
                     _snackBar.Add(error, Severity.Error);
                 }
             }
         }
+
         [Parameter]
         public string ImageDataUrl { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             var userId = Id;
@@ -72,7 +75,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     FirstLetterOfName = FirstName[0];
                 }
             }
-            
         }
     }
 }

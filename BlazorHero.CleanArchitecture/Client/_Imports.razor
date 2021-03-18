@@ -20,6 +20,7 @@
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Product
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Brand
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard
 
 @*Shared Libraries*@
 @using BlazorHero.CleanArchitecture.Shared.Constants.Permission
@@ -52,3 +53,4 @@
 @inject IUserManager _userManager
 @inject IProductManager _productManager
 @inject IBrandManager _brandManager
+@inject IDashboardManager _dashboardManager

@@ -1,10 +1,8 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -12,38 +10,48 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class RegisterUserModal
     {
-        bool success;
-        string[] errors = { };
-        MudForm form;
+        private bool success;
+        private string[] errors = { };
+        private MudForm form;
+
         [Parameter]
         [Required]
         [MinLength(6)]
         public string UserName { get; set; }
+
         [Parameter]
         [Required]
         public string FirstName { get; set; }
+
         [Parameter]
         [Required]
         public string LastName { get; set; }
+
         [Parameter]
         [Required]
         [EmailAddress]
-        public string Email { get; set; } 
+        public string Email { get; set; }
+
         [Parameter]
         [Required]
         public string Password { get; set; }
+
         [Parameter]
         [Required]
         public string ConfirmPassword { get; set; }
+
         [Parameter]
         public string PhoneNumber { get; set; }
+
         public bool ActivateUser { get; set; }
         public bool AutoConfirmEmail { get; set; }
-        [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+
         public void Cancel()
-        {            
+        {
             MudDialog.Cancel();
         }
+
         private async Task SaveAsync()
         {
             form.Validate();
@@ -56,7 +64,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     FirstName = FirstName,
                     LastName = LastName,
                     Password = Password,
-                    ConfirmPassword= ConfirmPassword,
+                    ConfirmPassword = ConfirmPassword,
                     PhoneNumber = PhoneNumber,
                     ActivateUser = ActivateUser,
                     AutoConfirmEmail = AutoConfirmEmail
@@ -74,10 +82,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                         _snackBar.Add(message, Severity.Error);
                     }
                 }
-                
             }
-
         }
+
         private IEnumerable<string> PasswordStrength(string pw)
         {
             if (string.IsNullOrWhiteSpace(pw))
@@ -103,11 +110,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 return "Passwords don't match";
             return null;
         }
-        bool PasswordVisibility;
-        InputType PasswordInput = InputType.Password;
-        string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
-        void TogglePasswordVisibility()
+        private bool PasswordVisibility;
+        private InputType PasswordInput = InputType.Password;
+        private string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+        private void TogglePasswordVisibility()
         {
             if (PasswordVisibility)
             {

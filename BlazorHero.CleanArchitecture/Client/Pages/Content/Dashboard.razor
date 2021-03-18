@@ -1,0 +1,75 @@
+﻿@page "/dashboard"
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Dashboard> localizer
+<HeroTitle Title="@localizer["Dashboard"]" Description="@localizer["Quick Insights."]" />
+<MudGrid>
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+            <MudIcon Icon="@Icons.Material.Filled.ViewCarousel" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+            <div>
+                <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Products</MudText>
+                <MudText Typo="Typo.h5">@ProductCount</MudText>
+            </div>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+            <MudIcon Icon="@Icons.Material.Filled.PanoramaPhotosphereSelect" Color="Color.Secondary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+            <div>
+                <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Brands</MudText>
+                <MudText Typo="Typo.h5">@BrandCount</MudText>
+            </div>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+            <MudIcon Icon="@Icons.Material.Filled.Face" Color="Color.Success" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+            <div>
+                <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Registered Users</MudText>
+                <MudText Typo="Typo.h5">@UserCount</MudText>
+            </div>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+            <MudIcon Icon="@Icons.Material.Filled.Groups" Color="Color.Warning" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+            <div>
+                <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Registered Roles</MudText>
+                <MudText Typo="Typo.h5">@RoleCount</MudText>
+            </div>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="8">
+        <MudPaper Elevation="25" Class="pa-4" Style="height:300px;">
+            Charts comming soon ish...
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="4">
+        <MudPaper Elevation="25" Class="pa-4" Style="height:300px;">
+            Charts comming soon ish...
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+@code{
+
+    [Parameter]
+    public int ProductCount { get; set; }
+    [Parameter]
+    public int BrandCount { get; set; }
+    [Parameter]
+    public int UserCount { get; set; }
+    [Parameter]
+    public int RoleCount { get; set; }
+    protected override async Task OnInitializedAsync() => await LoadDataAsync();
+
+    private async Task LoadDataAsync()
+    {
+        var data = await _dashboardManager.GetDataAsync();
+        if (data.Succeeded)
+        {
+            ProductCount = data.Data.ProductCount;
+            BrandCount = data.Data.BrandCount;
+            UserCount = data.Data.UserCount;
+            RoleCount = data.Data.RoleCount;
+        }
+    }
+}

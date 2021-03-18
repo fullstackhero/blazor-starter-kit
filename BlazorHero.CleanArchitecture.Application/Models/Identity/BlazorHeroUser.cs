@@ -11,6 +11,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Models.Identity
 
         public string LastName { get; set; }
         public string CreatedBy { get; set; }
+
         [Column(TypeName = "text")]
         public string ProfilePictureDataUrl { get; set; }
 

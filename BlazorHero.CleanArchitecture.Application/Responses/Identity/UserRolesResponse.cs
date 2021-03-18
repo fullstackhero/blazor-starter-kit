@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BlazorHero.CleanArchitecture.Application.Responses.Identity
 {
@@ -10,6 +6,7 @@ namespace BlazorHero.CleanArchitecture.Application.Responses.Identity
     {
         public List<UserRoleModel> UserRoles { get; set; } = new List<UserRoleModel>();
     }
+
     public class UserRoleModel
     {
         public string RoleName { get; set; }

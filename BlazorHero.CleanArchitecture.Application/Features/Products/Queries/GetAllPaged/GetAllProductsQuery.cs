@@ -17,6 +17,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public string SearchString { get; set; }
+
         public GetAllProductsQuery(int pageNumber, int pageSize, string searchString)
         {
             PageNumber = pageNumber;
@@ -27,11 +28,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
 
     public class GGetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, PaginatedResult<GetAllPagedProductsResponse>>
     {
-        private readonly IProductRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GGetAllProductsQueryHandler(IProductRepository repository)
+        public GGetAllProductsQueryHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<PaginatedResult<GetAllPagedProductsResponse>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
@@ -47,7 +48,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
                 BrandId = e.BrandId
             };
             var productFilterSpec = new ProductFilterSpecification(request.SearchString);
-            var data = await _repository.Products               
+            var data = await _unitOfWork.Repository<Product>().Entities
                .Specify(productFilterSpec)
                .Select(expression)
                .ToPaginatedListAsync(request.PageNumber, request.PageSize);

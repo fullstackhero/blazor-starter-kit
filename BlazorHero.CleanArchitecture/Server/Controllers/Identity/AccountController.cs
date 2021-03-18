@@ -40,6 +40,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             return Ok(await _accountService.GetProfilePictureAsync(userId));
         }
+
         [HttpPost("profile-picture/{userId}")]
         public async Task<IActionResult> UpdateProfilePictureAsync(UpdateProfilePictureRequest request)
         {

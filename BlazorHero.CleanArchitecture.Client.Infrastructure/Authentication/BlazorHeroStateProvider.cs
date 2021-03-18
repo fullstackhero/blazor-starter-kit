@@ -46,6 +46,16 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
             NotifyAuthenticationStateChanged(authState);
         }
 
+        public async Task<ClaimsPrincipal> GetAuthenticationStateProviderUserAsync()
+        {
+            ClaimsPrincipal AuthenticationStateProviderUser = new ClaimsPrincipal();
+            var state = await this.GetAuthenticationStateAsync();
+            AuthenticationStateProviderUser = state.User;
+            return AuthenticationStateProviderUser;
+        }
+
+        public ClaimsPrincipal AuthenticationStateUser { get; set; }
+
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var savedToken = await _localStorage.GetItemAsync<string>("authToken");
@@ -54,7 +64,9 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
             }
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", savedToken);
-            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(GetClaimsFromJwt(savedToken), "jwt")));
+            var state = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(GetClaimsFromJwt(savedToken), "jwt")));
+            AuthenticationStateUser = state.User;
+            return state;
         }
 
         private IEnumerable<Claim> GetClaimsFromJwt(string jwt)
@@ -82,19 +94,19 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
                 keyValuePairs.Remove(ClaimTypes.Role);
             }
 
-            keyValuePairs.TryGetValue(ApplicationClaimType.Permission, out var permissions);
+            keyValuePairs.TryGetValue(ApplicationClaimTypes.Permission, out var permissions);
             if (permissions != null)
             {
                 if (permissions.ToString().Trim().StartsWith("["))
                 {
                     var parsedPermissions = JsonSerializer.Deserialize<string[]>(permissions.ToString());
-                    claims.AddRange(parsedPermissions.Select(permission => new Claim(ApplicationClaimType.Permission, permission)));
-
-                }else
-                {
-                    claims.Add(new Claim(ApplicationClaimType.Permission, permissions.ToString()));
+                    claims.AddRange(parsedPermissions.Select(permission => new Claim(ApplicationClaimTypes.Permission, permission)));
                 }
-                keyValuePairs.Remove(ApplicationClaimType.Permission);
+                else
+                {
+                    claims.Add(new Claim(ApplicationClaimTypes.Permission, permissions.ToString()));
+                }
+                keyValuePairs.Remove(ApplicationClaimTypes.Permission);
             }
 
             claims.AddRange(keyValuePairs.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString())));
