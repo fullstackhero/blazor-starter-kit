@@ -17,7 +17,7 @@ namespace BlazorHero.CleanArchitecture.Server.Permission
                 await Task.CompletedTask;
             }
 
-            var permissions = context.User.Claims.Where(x => x.Type == ApplicationClaimType.Permission &&
+            var permissions = context.User.Claims.Where(x => x.Type == ApplicationClaimTypes.Permission &&
                                                                 x.Value == requirement.Permission &&
                                                                 x.Issuer == "LOCAL AUTHORITY");
             if (permissions.Any())

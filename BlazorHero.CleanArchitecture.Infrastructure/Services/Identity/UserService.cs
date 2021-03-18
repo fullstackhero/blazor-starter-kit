@@ -5,6 +5,7 @@ using BlazorHero.CleanArchitecture.Application.Interfaces.Shared;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Requests.Mail;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+using BlazorHero.CleanArchitecture.Shared.Constants.Role;
 using BlazorHero.CleanArchitecture.Shared.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Hangfire;
@@ -66,7 +67,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 var result = await _userManager.CreateAsync(user, request.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, Constants.BasicRole.ToString());
+                    await _userManager.AddToRoleAsync(user, RoleConstant.BasicRole.ToString());
                     if (!request.AutoConfirmEmail)
                     {
                         var verificationUri = await SendVerificationEmail(user, origin);
@@ -108,7 +109,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         public async Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request)
         {
             var user = await _userManager.Users.Where(u => u.Id == request.UserId).FirstOrDefaultAsync();
-            var IsAdmin = await _userManager.IsInRoleAsync(user, Constants.AdministratorRole);
+            var IsAdmin = await _userManager.IsInRoleAsync(user, RoleConstant.AdministratorRole);
             if (IsAdmin)
             {
                 return Result.Fail("Administrators Profile's Status cannot be toggled");

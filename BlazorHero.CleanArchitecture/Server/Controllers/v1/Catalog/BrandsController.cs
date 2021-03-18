@@ -27,14 +27,14 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             return Ok(brand);
         }
 
-        [Authorize(Policy = Permissions.Brands.View)]
+        [Authorize(Policy = Permissions.Brands.Create)]
         [HttpPost]
         public async Task<IActionResult> Post(AddEditBrandCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
 
-        [Authorize(Policy = Permissions.Brands.View)]
+        [Authorize(Policy = Permissions.Brands.Delete)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

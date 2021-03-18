@@ -22,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
             TotalCount = count;
         }
 
-        public static new PaginatedResult<T> Failure(List<string> messages)
+        public static PaginatedResult<T> Failure(List<string> messages)
         {
             return new PaginatedResult<T>(false, default, messages);
         }

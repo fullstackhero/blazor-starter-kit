@@ -98,7 +98,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
             var allPermissions = PermissionModules.GeneratePermissionsForModule(module);
             foreach (var permission in allPermissions)
             {
-                options.AddPolicy(permission, policy => policy.RequireClaim(ApplicationClaimType.Permission, permission));
+                options.AddPolicy(permission, policy => policy.RequireClaim(ApplicationClaimTypes.Permission, permission));
             }
         }
     }
