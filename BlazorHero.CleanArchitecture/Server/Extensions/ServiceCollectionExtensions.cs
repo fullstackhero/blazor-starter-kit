@@ -192,7 +192,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 // Here I stored necessary permissions/roles in a constant
                 foreach (var prop in typeof(Permissions).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy))
                 {
-                    options.AddPolicy(prop.GetValue(null).ToString(), policy => policy.RequireClaim(ApplicationClaimType.Permission, prop.GetValue(null).ToString()));
+                    options.AddPolicy(prop.GetValue(null).ToString(), policy => policy.RequireClaim(ApplicationClaimTypes.Permission, prop.GetValue(null).ToString()));
                 }
             });
             services.AddHttpContextAccessor();

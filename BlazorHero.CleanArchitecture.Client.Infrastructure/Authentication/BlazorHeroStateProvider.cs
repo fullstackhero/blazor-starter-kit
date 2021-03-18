@@ -91,19 +91,19 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
                 keyValuePairs.Remove(ClaimTypes.Role);
             }
 
-            keyValuePairs.TryGetValue(ApplicationClaimType.Permission, out var permissions);
+            keyValuePairs.TryGetValue(ApplicationClaimTypes.Permission, out var permissions);
             if (permissions != null)
             {
                 if (permissions.ToString().Trim().StartsWith("["))
                 {
                     var parsedPermissions = JsonSerializer.Deserialize<string[]>(permissions.ToString());
-                    claims.AddRange(parsedPermissions.Select(permission => new Claim(ApplicationClaimType.Permission, permission)));
+                    claims.AddRange(parsedPermissions.Select(permission => new Claim(ApplicationClaimTypes.Permission, permission)));
                 }
                 else
                 {
-                    claims.Add(new Claim(ApplicationClaimType.Permission, permissions.ToString()));
+                    claims.Add(new Claim(ApplicationClaimTypes.Permission, permissions.ToString()));
                 }
-                keyValuePairs.Remove(ApplicationClaimType.Permission);
+                keyValuePairs.Remove(ApplicationClaimTypes.Permission);
             }
 
             claims.AddRange(keyValuePairs.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString())));

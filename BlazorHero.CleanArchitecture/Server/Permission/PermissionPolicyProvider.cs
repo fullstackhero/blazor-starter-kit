@@ -19,7 +19,7 @@ namespace BlazorHero.CleanArchitecture.Server.Permission
 
         public Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
         {
-            if (policyName.StartsWith(ApplicationClaimType.Permission, StringComparison.OrdinalIgnoreCase))
+            if (policyName.StartsWith(ApplicationClaimTypes.Permission, StringComparison.OrdinalIgnoreCase))
             {
                 var policy = new AuthorizationPolicyBuilder();
                 policy.AddRequirements(new PermissionRequirement(policyName));

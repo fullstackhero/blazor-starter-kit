@@ -17,16 +17,16 @@ namespace BlazorHero.CleanArchitecture.Application.Helpers
             FieldInfo[] fields = policy.GetFields(BindingFlags.Static | BindingFlags.Public);
             foreach (FieldInfo fi in fields)
             {
-                allPermissions.Add(new RoleClaimsResponse { Value = fi.GetValue(null).ToString(), Type = "Permission" });
+                allPermissions.Add(new RoleClaimsResponse { Value = fi.GetValue(null).ToString(), Type = ApplicationClaimTypes.Permission });
             }
         }
 
         public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string permission)
         {
             var allClaims = await roleManager.GetClaimsAsync(role);
-            if (!allClaims.Any(a => a.Type == "Permission" && a.Value == permission))
+            if (!allClaims.Any(a => a.Type == ApplicationClaimTypes.Permission && a.Value == permission))
             {
-                await roleManager.AddClaimAsync(role, new Claim("Permission", permission));
+                await roleManager.AddClaimAsync(role, new Claim(ApplicationClaimTypes.Permission, permission));
             }
         }
 
@@ -36,9 +36,9 @@ namespace BlazorHero.CleanArchitecture.Application.Helpers
             var allPermissions = PermissionModules.GeneratePermissionsForModule(module);
             foreach (var permission in allPermissions)
             {
-                if (!allClaims.Any(a => a.Type == "Permission" && a.Value == permission))
+                if (!allClaims.Any(a => a.Type == ApplicationClaimTypes.Permission && a.Value == permission))
                 {
-                    await roleManager.AddClaimAsync(role, new Claim("Permission", permission));
+                    await roleManager.AddClaimAsync(role, new Claim(ApplicationClaimTypes.Permission, permission));
                 }
             }
         }
