@@ -26,6 +26,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             var result = await _mediator.Send(new GetProductImageQuery(id));
             return Ok(result);
         }
+
         [Authorize(Policy = Permissions.Products.Create)]
         [HttpPost]
         public async Task<IActionResult> Post(AddEditProductCommand command)

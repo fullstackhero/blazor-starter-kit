@@ -4,10 +4,6 @@ using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,6 +23,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
                 _userService = userService;
                 _roleService = roleService;
             }
+
             public async Task<Result<DashboardDataResponse>> Handle(GetDashboardDataQuery query, CancellationToken cancellationToken)
             {
                 var response = new DashboardDataResponse();

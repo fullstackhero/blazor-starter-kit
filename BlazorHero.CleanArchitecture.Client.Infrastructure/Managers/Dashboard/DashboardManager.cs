@@ -2,10 +2,7 @@
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard
@@ -29,10 +26,8 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard
             }
             catch (Exception ex)
             {
-
                 throw;
             }
-            
         }
     }
 }

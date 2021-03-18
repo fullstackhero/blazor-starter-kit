@@ -6,7 +6,9 @@
         {
             return $"api/v1/products?pageNumber={pageNumber}&pageSize={pageSize}";
         }
+
         public static string GetCount = "api/v1/products/count";
+
         public static string GetProductImage(int productId)
         {
             return $"api/v1/products/image/{productId}";

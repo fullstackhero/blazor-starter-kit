@@ -4,7 +4,7 @@
 <MudGrid>
     <MudItem xs="12" sm="6" md="3">
         <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
-            <MudIcon Icon="@Icons.Material.Filled.Euro" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+            <MudIcon Icon="@Icons.Material.Filled.ViewCarousel" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
             <div>
                 <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Products</MudText>
                 <MudText Typo="Typo.h5">@ProductCount</MudText>
@@ -13,7 +13,7 @@
     </MudItem>
     <MudItem xs="12" sm="6" md="3">
         <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
-            <MudIcon Icon="@Icons.Material.Filled.Home" Color="Color.Secondary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+            <MudIcon Icon="@Icons.Material.Filled.PanoramaPhotosphereSelect" Color="Color.Secondary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
             <div>
                 <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Brands</MudText>
                 <MudText Typo="Typo.h5">@BrandCount</MudText>
@@ -22,7 +22,7 @@
     </MudItem>
     <MudItem xs="12" sm="6" md="3">
         <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
-            <MudIcon Icon="@Icons.Material.Filled.Public" Color="Color.Success" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+            <MudIcon Icon="@Icons.Material.Filled.Face" Color="Color.Success" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
             <div>
                 <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Registered Users</MudText>
                 <MudText Typo="Typo.h5">@UserCount</MudText>
@@ -31,7 +31,7 @@
     </MudItem>
     <MudItem xs="12" sm="6" md="3">
         <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
-            <MudIcon Icon="@Icons.Custom.Uncategorized.Radioactive" Color="Color.Warning" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+            <MudIcon Icon="@Icons.Material.Filled.Groups" Color="Color.Warning" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
             <div>
                 <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Registered Roles</MudText>
                 <MudText Typo="Typo.h5">@RoleCount</MudText>
@@ -64,7 +64,7 @@
     private async Task LoadDataAsync()
     {
         var data = await _dashboardManager.GetDataAsync();
-        if(data.Succeeded)
+        if (data.Succeeded)
         {
             ProductCount = data.Data.ProductCount;
             BrandCount = data.Data.BrandCount;

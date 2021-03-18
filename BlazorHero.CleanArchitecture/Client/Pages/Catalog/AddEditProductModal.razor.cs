@@ -53,7 +53,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task SaveAsync()
         {
-           
             form.Validate();
             if (form.IsValid)
             {

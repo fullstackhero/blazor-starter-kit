@@ -26,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             var brand = await _mediator.Send(new GetBrandByIdQuery() { Id = id });
             return Ok(brand);
         }
-        
+
         [Authorize(Policy = Permissions.Brands.Create)]
         [HttpPost]
         public async Task<IActionResult> Post(AddEditBrandCommand command)
