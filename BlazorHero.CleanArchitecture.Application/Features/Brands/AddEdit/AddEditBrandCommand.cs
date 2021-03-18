@@ -18,14 +18,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
 
     public class AddEditBrandCommandHandler : IRequestHandler<AddEditBrandCommand, Result<int>>
     {
-        private readonly IBrandRepository _brandRepository;
         private readonly IMapper _mapper;
-
         private readonly IUnitOfWork _unitOfWork;
 
-        public AddEditBrandCommandHandler(IBrandRepository brandRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        public AddEditBrandCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _brandRepository = brandRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -35,13 +32,13 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
             var brand = _mapper.Map<Brand>(command);
             if (brand.Id == 0)
             {
-                await _brandRepository.InsertAsync(brand);
+                await _unitOfWork.Repository<Brand>().AddAsync(brand);
                 await _unitOfWork.Commit(cancellationToken);
                 return Result<int>.Success(brand.Id, "Brand Saved!");
             }
             else
             {
-                await _brandRepository.UpdateAsync(brand);
+                await _unitOfWork.Repository<Brand>().UpdateAsync(brand);
                 await _unitOfWork.Commit(cancellationToken);
                 return Result<int>.Success(brand.Id, "Brand Updated!");
             }
