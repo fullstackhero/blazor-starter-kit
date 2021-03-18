@@ -4,6 +4,7 @@ using BlazorHero.CleanArchitecture.Domain.Contracts;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using System;
 using System.Collections;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -48,7 +49,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
 
         public Task Rollback()
         {
-            //todo
+            _dbContext.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
             return Task.CompletedTask;
         }
 
