@@ -10,6 +10,7 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity
     public interface IRoleService : IService
     {
         Task<Result<List<RoleResponse>>> GetAllAsync();
+        Task<int> GetCountAsync();
 
         Task<Result<RoleResponse>> GetByIdAsync(string id);
 

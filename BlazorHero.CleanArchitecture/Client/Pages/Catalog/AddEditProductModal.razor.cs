@@ -57,6 +57,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             form.Validate();
             if (form.IsValid)
             {
+                //TODO: Try to integrate validation with Mudblazor component - Select
                 if (BrandId == 0)
                 {
                     _snackBar.Add("Select a Brand.", Severity.Error);

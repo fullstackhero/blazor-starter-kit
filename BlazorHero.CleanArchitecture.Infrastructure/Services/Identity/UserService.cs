@@ -215,5 +215,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 return Result.Fail("An Error has occured!");
             }
         }
+
+        public async Task<int> GetCountAsync()
+        {
+            var count = await _userManager.Users.CountAsync();
+            return count;
+        }
     }
 }

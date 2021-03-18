@@ -157,5 +157,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 return Result<string>.Fail(ex.Message);
             }
         }
+        public async Task<int> GetCountAsync()
+        {
+            var count = await _roleManager.Roles.CountAsync();
+            return count;
+        }
     }
 }
