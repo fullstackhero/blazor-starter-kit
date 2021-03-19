@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/blazorhero/CleanArchitecture">
-    <img src="https://codewithmukesh.com/wp-content/uploads/2021/02/Wide-Logo.jpg" alt="Logo">
+    <img src="https://codewithmukesh.com/wp-content/uploads/2021/03/BlazorHeroBanner.png" alt="Logo">
   </a>
 
   <h3 align="center">BlazorHero - Clean Architecture Template</h3>
@@ -10,7 +10,7 @@
   <p align="center">
     For Blazor Web-Assembly
     <br />
-    <a href=""><strong>Explore the docs »</strong></a>
+    <a href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/blazorhero/CleanArchitecture/issues">Report Bug</a>
@@ -19,12 +19,16 @@
   </p>
 </p>
 
+# Detailed Quick Start Guide
+
+Getting started with Blazor Hero – A Clean Architecture Template built for Blazor WebAssembly using MudBlazor Components. This project will make your Blazor Learning Process much easier than you anticipate. Blazor Hero is meant to be an Enterprise Level Boilerplate, which comes free of cost, completely open sourced. 
+
+<a href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/"><strong>Read the Quick Start Guide</strong></a>
+
 # Video Preview
 Here is a quick video preview of this Open Soure Project - (https://www.facebook.com/codewithmukesh/posts/269621381402304)
 
-# Features To Be Included
-
-## Version 1.0 - Upcoming Release
+## Version 1.0.1 - Current Release - Features
 
 - [x] Mudblazor Component Library
 - [x] .NET 5.0+
@@ -61,6 +65,9 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] Refresh Tokens
 - [x] HTTP Interceptor
 - [x] Logout User if Refresh Token Fails
+
+
+# Features To Be Included
 
 ## Version 2.0 - Down the Road
 
