@@ -58,6 +58,8 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] Custom API Response for 500,401,403
 - [x] Specification Pattern
 - [x] Permission Based UI Rendering
+- [x] Refresh Tokens
+- [x] HTTP Interceptor
 
 ## Version 2.0 - Down the Road
 
@@ -74,6 +76,7 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 
 ## Contribution Needed
 
+- [ ] Need someone to add in the API Documentation for Swagger.
 - [ ] Need someone to implement localization throughout every Razor Component of the solution under the WASM(Client) Project. You can take the Pages/Authentication/Login.razor as the point of reference. It is as simple as adding `@inject Microsoft.Extensions.Localization.IStringLocalizer<Login> localizer` to every page, changing the texts to `@localizer["Text Here"]` and finally adding resx files to the Resources Folder as per the folder structure.
 - [ ] Need few contributors to add in various language transalations as per the implemented Location. I got time to only add a few transalations for French as of now.
 - [ ] Need a UI contributor to look at the UX/UI of the entire project

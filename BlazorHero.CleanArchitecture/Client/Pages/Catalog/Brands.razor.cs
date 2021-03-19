@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
-    public partial class Brands
+    public partial class Brands : IDisposable
     {
         public List<GetAllBrandsResponse> BrandList = new List<GetAllBrandsResponse>();
         private GetAllBrandsResponse brand = new GetAllBrandsResponse();
@@ -15,8 +15,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         protected override async Task OnInitializedAsync()
         {
+            _interceptor.RegisterEvent();
             await GetBrandsAsync();
         }
+        public void Dispose() => _interceptor.DisposeEvent();
 
         private async Task GetBrandsAsync()
         {

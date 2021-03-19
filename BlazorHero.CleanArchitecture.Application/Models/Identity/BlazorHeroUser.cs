@@ -25,5 +25,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Models.Identity
 
         public DateTime? DeletedOn { get; set; }
         public bool IsActive { get; set; }
+        public string RefreshToken { get; set; }
+        public DateTime RefreshTokenExpiryTime { get; set; }
     }
 }
