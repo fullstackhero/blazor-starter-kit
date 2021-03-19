@@ -34,13 +34,13 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
             {
                 await _unitOfWork.Repository<Brand>().AddAsync(brand);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(brand.Id, "Brand Saved!");
+                return Result<int>.Success(brand.Id, "Brand Saved");
             }
             else
             {
                 await _unitOfWork.Repository<Brand>().UpdateAsync(brand);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(brand.Id, "Brand Updated!");
+                return Result<int>.Success(brand.Id, "Brand Updated");
             }
         }
     }

@@ -123,8 +123,14 @@
   <data name="Barcode" xml:space="preserve">
     <value>Strichcode</value>
   </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
@@ -134,6 +140,12 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="Product Saved" xml:space="preserve">
+    <value>Product Saved</value>
+  </data>
+  <data name="Product Updated" xml:space="preserve">
+    <value>Product Updated</value>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Bewertung</value>
@@ -146,5 +158,8 @@
   </data>
   <data name="Update Product" xml:space="preserve">
     <value>Produkt aktualisieren</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
   </data>
 </root>

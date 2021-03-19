@@ -141,6 +141,12 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="Product Saved" xml:space="preserve">
+    <value>Product Saved!</value>
+  </data>
+  <data name="Product Updated" xml:space="preserve">
+    <value>Product Updated!</value>
+  </data>
   <data name="Rate" xml:space="preserve">
     <value>Rate</value>
   </data>

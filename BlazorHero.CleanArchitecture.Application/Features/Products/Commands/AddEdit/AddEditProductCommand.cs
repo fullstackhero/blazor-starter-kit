@@ -37,13 +37,13 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
             {
                 await _unitOfWork.Repository<Product>().AddAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(product.Id, "Product Saved!");
+                return Result<int>.Success(product.Id, "Product Saved");
             }
             else
             {
                 await _unitOfWork.Repository<Product>().UpdateAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(product.Id, "Product Updated!");
+                return Result<int>.Success(product.Id, "Product Updated");
             }
         }
     }
