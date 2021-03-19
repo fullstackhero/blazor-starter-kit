@@ -4,11 +4,12 @@ using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Mappings;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using System;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class RolePermissions
+    public partial class RolePermissions : IDisposable
     {
         [Parameter]
         public string Id { get; set; }

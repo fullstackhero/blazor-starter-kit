@@ -1,6 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class RegisterUserModal
+    public partial class RegisterUserModal : IDisposable
     {
         private bool success;
         private string[] errors = { };
@@ -51,7 +52,33 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             MudDialog.Cancel();
         }
+        [Parameter]
+        public int ProductCount { get; set; }
+        [Parameter]
+        public int BrandCount { get; set; }
+        [Parameter]
+        public int UserCount { get; set; }
+        [Parameter]
+        public int RoleCount { get; set; }
 
+        protected override void OnInitialized()
+        {
+            _interceptor.RegisterEvent();
+        }
+
+        public void Dispose() => _interceptor.DisposeEvent();
+
+        private async Task LoadDataAsync()
+        {
+            var data = await _dashboardManager.GetDataAsync();
+            if (data.Succeeded)
+            {
+                ProductCount = data.Data.ProductCount;
+                BrandCount = data.Data.BrandCount;
+                UserCount = data.Data.UserCount;
+                RoleCount = data.Data.RoleCount;
+            }
+        }
         private async Task SaveAsync()
         {
             form.Validate();

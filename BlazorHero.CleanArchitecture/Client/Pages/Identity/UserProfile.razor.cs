@@ -1,12 +1,13 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class UserProfile
+    public partial class UserProfile : IDisposable
     {
         [Parameter]
         public string Id { get; set; }
@@ -47,9 +48,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         [Parameter]
         public string ImageDataUrl { get; set; }
-
+        public void Dispose() => _interceptor.DisposeEvent();
         protected override async Task OnInitializedAsync()
         {
+            _interceptor.RegisterEvent();
             var userId = Id;
             var result = await _userManager.GetAsync(userId);
             if (result.Succeeded)

@@ -1,12 +1,13 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
-    public partial class AddEditBrandModal
+    public partial class AddEditBrandModal : IDisposable
     {
         private bool success;
         private string[] errors = { };
@@ -28,7 +29,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         public string Description { get; set; }
 
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
-
+        protected override void OnInitialized()
+        {
+            _interceptor.RegisterEvent();
+        }
+        public void Dispose() => _interceptor.DisposeEvent();
         public void Cancel()
         {
             MudDialog.Cancel();

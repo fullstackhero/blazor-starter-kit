@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
-    public partial class AddEditProductModal
+    public partial class AddEditProductModal : IDisposable
     {
         private bool success;
         private string[] errors = { };
@@ -79,7 +79,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             }
         }
 
-        protected override async Task OnInitializedAsync() => await LoadDataAsync();
+        protected override async Task OnInitializedAsync()
+        {
+            _interceptor.RegisterEvent();
+            await LoadDataAsync();
+        }
+        public void Dispose() => _interceptor.DisposeEvent();
 
         private async Task LoadDataAsync()
         {

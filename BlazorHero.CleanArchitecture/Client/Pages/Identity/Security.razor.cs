@@ -1,13 +1,14 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class Security
+    public partial class Security : IDisposable
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Security> localizer { get; set; }
 
@@ -15,7 +16,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         protected override void OnInitialized()
         {
+            _interceptor.RegisterEvent();
         }
+        public void Dispose() => _interceptor.DisposeEvent();
 
         private async Task ChangePasswordAsync()
         {
