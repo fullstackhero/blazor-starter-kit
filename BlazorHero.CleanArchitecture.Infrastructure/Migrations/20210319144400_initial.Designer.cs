@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(BlazorHeroContext))]
-    [Migration("20210319033256_UpdatedBlazorHeroUserModelToSupportRefreshToken")]
-    partial class UpdatedBlazorHeroUserModelToSupportRefreshToken
+    [Migration("20210319144400_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
