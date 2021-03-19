@@ -30,11 +30,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Delete
                     var brand = await _unitOfWork.Repository<Brand>().GetByIdAsync(command.Id);
                     await _unitOfWork.Repository<Brand>().DeleteAsync(brand);
                     await _unitOfWork.Commit(cancellationToken);
-                    return Result<int>.Success(brand.Id, "Brand Deleted!");
+                    return Result<int>.Success(brand.Id, "Brand Deleted");
                 }
                 else
                 {
-                    return Result<int>.Fail("Deletion Not Allowed!");
+                    return Result<int>.Fail("Deletion Not Allowed");
                 }
             }
         }

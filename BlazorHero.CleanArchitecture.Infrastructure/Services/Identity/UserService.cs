@@ -73,9 +73,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                         var verificationUri = await SendVerificationEmail(user, origin);
                         //TODO: Attach Email Service here and configure it via appsettings
                         BackgroundJob.Enqueue(() => _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" }));
-                        return Result<string>.Success(user.Id, message: $"User Registered. Confirmation Mail has been delivered to the Mailbox.");
+                        return Result<string>.Success(user.Id, message: $"User Registered Mailbox");
                     }
-                    return Result<string>.Success(user.Id, message: $"User Registered!");
+                    return Result<string>.Success(user.Id, message: $"User Registered");
                 }
                 else
                 {
@@ -153,7 +153,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var roles = await _userManager.GetRolesAsync(user);
             var result = await _userManager.RemoveFromRolesAsync(user, roles);
             result = await _userManager.AddToRolesAsync(user, request.UserRoles.Where(x => x.Selected).Select(y => y.RoleName));
-            return Result.Success("Roles Updated.");
+            return Result.Success("Roles Updated");
         }
 
         public async Task<IResult<string>> ConfirmEmailAsync(string userId, string code)

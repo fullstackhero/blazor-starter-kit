@@ -120,6 +120,12 @@
   <data name="Add Brand" xml:space="preserve">
     <value>បន្ថែមម៉ាក</value>
   </data>
+  <data name="Brand Saved" xml:space="preserve">
+    <value>Brand Saved!</value>
+  </data>
+  <data name="Brand Updated" xml:space="preserve">
+    <value>Brand Updated!</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>បោះបង់</value>
   </data>

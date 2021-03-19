@@ -144,6 +144,12 @@
   <data name="Manage Users" xml:space="preserve">
     <value>Manage Users</value>
   </data>
+  <data name="Register New User" xml:space="preserve">
+    <value>Register New User</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Reload</value>
+  </data>
   <data name="Search For Users" xml:space="preserve">
     <value>Search For Users</value>
   </data>

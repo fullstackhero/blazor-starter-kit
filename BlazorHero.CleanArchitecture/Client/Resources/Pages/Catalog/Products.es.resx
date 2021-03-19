@@ -144,6 +144,9 @@
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
   </data>
+  <data name="Product Deleted" xml:space="preserve">
+    <value>Producto Borrado</value>
+  </data>
   <data name="Products" xml:space="preserve">
     <value>Productos</value>
   </data>

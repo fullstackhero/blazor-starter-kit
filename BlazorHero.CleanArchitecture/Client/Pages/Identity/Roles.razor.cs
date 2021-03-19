@@ -50,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 if (response.Succeeded)
                 {
                     await Reset();
-                    _snackBar.Add(response.Messages[0], Severity.Success);
+                    _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
                 }
                 else
                 {

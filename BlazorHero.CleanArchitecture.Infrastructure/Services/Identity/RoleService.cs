@@ -115,7 +115,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 var existingRole = await _roleManager.FindByNameAsync(request.Name);
                 if (existingRole != null) return Result<string>.Fail($"Similar Role already exists.");
                 var response = await _roleManager.CreateAsync(new IdentityRole(request.Name));
-                return Result<string>.Success("Role Created.");
+                return Result<string>.Success("Role Created");
             }
             else
             {

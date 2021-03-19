@@ -54,7 +54,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     var result = await _userManager.ResetPasswordAsync(request);
                     if (result.Succeeded)
                     {
-                        _snackBar.Add(result.Messages[0], Severity.Success);
+                        _snackBar.Add(localizer[result.Messages[0]], Severity.Success);
                         _navigationManager.NavigateTo("/");
                     }
                     else

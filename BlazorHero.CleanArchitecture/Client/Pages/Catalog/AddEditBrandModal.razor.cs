@@ -48,7 +48,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 var response = await _brandManager.SaveAsync(request);
                 if (response.Succeeded)
                 {
-                    _snackBar.Add(response.Messages[0], Severity.Success);
+                    _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
                     MudDialog.Close();
                 }
                 else

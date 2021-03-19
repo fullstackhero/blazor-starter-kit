@@ -162,4 +162,10 @@
   <data name="User Name" xml:space="preserve">
     <value>ឈ្មោះអ្នកប្រើប្រាស់</value>
   </data>
+  <data name="User Registered" xml:space="preserve">
+    <value>User Registered!</value>
+  </data>
+  <data name="User Registered Mailbox" xml:space="preserve">
+    <value>User Registered. Confirmation Mail has been delivered to the Mailbox.</value>
+  </data>
 </root>

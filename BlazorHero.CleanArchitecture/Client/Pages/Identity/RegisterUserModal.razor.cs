@@ -99,7 +99,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var response = await _userManager.RegisterUserAsync(request);
                 if (response.Succeeded)
                 {
-                    _snackBar.Add(response.Messages[0], Severity.Success);
+                    _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
                     MudDialog.Close();
                 }
                 else

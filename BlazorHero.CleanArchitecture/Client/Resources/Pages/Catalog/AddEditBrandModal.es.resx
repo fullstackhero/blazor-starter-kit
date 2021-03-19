@@ -120,6 +120,12 @@
   <data name="Add Brand" xml:space="preserve">
     <value>Agregar Marca</value>
   </data>
+  <data name="Brand Saved" xml:space="preserve">
+    <value>Marca Guardada!</value>
+  </data>
+  <data name="Brand Updated" xml:space="preserve">
+    <value>Marca Actualizada!</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>

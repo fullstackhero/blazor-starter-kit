@@ -120,6 +120,9 @@
   <data name="Role Name" xml:space="preserve">
     <value>Role Name</value>
   </data>
+  <data name="Roles Updated" xml:space="preserve">
+    <value>Roles Updated!</value>
+  </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
