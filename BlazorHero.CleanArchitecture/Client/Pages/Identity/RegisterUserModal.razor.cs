@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class RegisterUserModal : IDisposable
+    public partial class RegisterUserModal
     {
         private bool success;
         private string[] errors = { };
@@ -52,33 +52,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             MudDialog.Cancel();
         }
-        [Parameter]
-        public int ProductCount { get; set; }
-        [Parameter]
-        public int BrandCount { get; set; }
-        [Parameter]
-        public int UserCount { get; set; }
-        [Parameter]
-        public int RoleCount { get; set; }
-
-        protected override void OnInitialized()
-        {
-            _interceptor.RegisterEvent();
-        }
-
-        public void Dispose() => _interceptor.DisposeEvent();
-
-        private async Task LoadDataAsync()
-        {
-            var data = await _dashboardManager.GetDataAsync();
-            if (data.Succeeded)
-            {
-                ProductCount = data.Data.ProductCount;
-                BrandCount = data.Data.BrandCount;
-                UserCount = data.Data.UserCount;
-                RoleCount = data.Data.RoleCount;
-            }
-        }
         private async Task SaveAsync()
         {
             form.Validate();
@@ -111,7 +84,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
-
         private IEnumerable<string> PasswordStrength(string pw)
         {
             if (string.IsNullOrWhiteSpace(pw))

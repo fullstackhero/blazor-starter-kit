@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class RoleModal : IDisposable
+    public partial class RoleModal
     {
         private bool success;
         private string[] errors = { };
@@ -26,11 +26,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             MudDialog.Cancel();
         }
-        protected override void OnInitialized()
-        {
-            _interceptor.RegisterEvent();
-        }
-        public void Dispose() => _interceptor.DisposeEvent();
         private async Task SaveAsync()
         {
             form.Validate();

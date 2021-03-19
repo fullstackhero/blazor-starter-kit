@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
-    public partial class AddEditBrandModal : IDisposable
+    public partial class AddEditBrandModal
     {
         private bool success;
         private string[] errors = { };
@@ -29,11 +29,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         public string Description { get; set; }
 
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
-        protected override void OnInitialized()
-        {
-            _interceptor.RegisterEvent();
-        }
-        public void Dispose() => _interceptor.DisposeEvent();
         public void Cancel()
         {
             MudDialog.Cancel();

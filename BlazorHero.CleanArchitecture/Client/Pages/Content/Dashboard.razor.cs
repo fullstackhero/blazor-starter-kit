@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 {
-    public partial class Dashboard : IDisposable
+    public partial class Dashboard 
     {
         [Parameter]
         public int ProductCount { get; set; }
@@ -19,11 +19,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 
         protected override async Task OnInitializedAsync()
         {
-            _interceptor.RegisterEvent();
             await LoadDataAsync();
         }
-
-        public void Dispose() => _interceptor.DisposeEvent();
 
         private async Task LoadDataAsync()
         {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class RolePermissions : IDisposable
+    public partial class RolePermissions
     {
         [Parameter]
         public string Id { get; set; }
@@ -25,7 +25,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         protected override async Task OnInitializedAsync()
         {
-            _interceptor.RegisterEvent();
             _mapper = new MapperConfiguration(c => { c.AddProfile<RoleProfile>(); }).CreateMapper();
             var roleId = Id;
             var result = await _roleManager.GetPermissionsAsync(roleId);
@@ -38,7 +37,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
-        public void Dispose() => _interceptor.DisposeEvent();
         private async Task SaveAsync()
         {
             var request = _mapper.Map<PermissionResponse, PermissionRequest>(model);

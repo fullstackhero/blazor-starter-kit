@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 {
-    public partial class UserCard : IDisposable
+    public partial class UserCard 
     {
         [Parameter] public string Class { get; set; }
         private string FirstName { get; set; }
@@ -19,10 +19,8 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         public string ImageDataUrl { get; set; }
         protected override async Task OnInitializedAsync()
         {
-            _interceptor.RegisterEvent();
             await LoadDataAsync();
         }
-        public void Dispose() => _interceptor.DisposeEvent();
         private async Task LoadDataAsync()
         {
             var state = await _stateProvider.GetAuthenticationStateAsync();

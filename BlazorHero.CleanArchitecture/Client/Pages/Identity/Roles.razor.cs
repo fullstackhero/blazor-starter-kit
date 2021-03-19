@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class Roles : IDisposable
+    public partial class Roles
     {
         public List<RoleResponse> RoleList = new List<RoleResponse>();
         private RoleResponse role = new RoleResponse();
@@ -15,11 +15,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         protected override async Task OnInitializedAsync()
         {
-            _interceptor.RegisterEvent();
             await GetRolesAsync();
         }
-        public void Dispose() => _interceptor.DisposeEvent();
-
         private async Task GetRolesAsync()
         {
             var response = await _roleManager.GetRolesAsync();

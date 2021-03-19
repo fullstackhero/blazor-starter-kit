@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class UserRoles : IDisposable
+    public partial class UserRoles
     {
         [Parameter]
         public string Id { get; set; }
@@ -25,7 +25,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         protected override async Task OnInitializedAsync()
         {
-            _interceptor.RegisterEvent();
             CurrentUser = await _authenticationManager.CurrentUser();
 
             var userId = Id;
@@ -42,7 +41,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
-        public void Dispose() => _interceptor.DisposeEvent();
         private async Task SaveAsync()
         {
             var request = new UpdateUserRolesRequest()

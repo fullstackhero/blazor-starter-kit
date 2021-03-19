@@ -8,31 +8,24 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class Security : IDisposable
+    public partial class Security
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Security> localizer { get; set; }
 
         private readonly ChangePasswordRequest passwordModel = new ChangePasswordRequest();
-
-        protected override void OnInitialized()
-        {
-            _interceptor.RegisterEvent();
-        }
-        public void Dispose() => _interceptor.DisposeEvent();
-
         private async Task ChangePasswordAsync()
         {
             var response = await _accountManager.ChangePasswordAsync(passwordModel);
-            if(response.Succeeded)
+            if (response.Succeeded)
             {
-                _snackBar.Add("Password Changed!",Severity.Success);
+                _snackBar.Add("Password Changed!", Severity.Success);
                 passwordModel.Password = string.Empty;
                 passwordModel.NewPassword = string.Empty;
                 passwordModel.ConfirmNewPassword = string.Empty;
             }
             else
             {
-                foreach(var error in response.Messages)
+                foreach (var error in response.Messages)
                 {
                     _snackBar.Add(error, Severity.Error);
                 }
