@@ -43,7 +43,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var result = await _roleManager.UpdatePermissionsAsync(request);
             if (result.Succeeded)
             {
-                _snackBar.Add(result.Messages[0], Severity.Success);
+                _snackBar.Add(localizer[result.Messages[0]], Severity.Success);
                 _navigationManager.NavigateTo("/identity/roles");
             }
             else

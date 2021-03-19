@@ -144,6 +144,12 @@
   <data name="Phone Number" xml:space="preserve">
     <value>Telefon</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Profile Details" xml:space="preserve">
+    <value>Profile Details</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Registrieren</value>
   </data>
@@ -155,5 +161,11 @@
   </data>
   <data name="User Name" xml:space="preserve">
     <value>Nutzername</value>
+  </data>
+  <data name="User Registered" xml:space="preserve">
+    <value>User Registered!</value>
+  </data>
+  <data name="User Registered Mailbox" xml:space="preserve">
+    <value>User Registered. Confirmation Mail has been delivered to the Mailbox.</value>
   </data>
 </root>

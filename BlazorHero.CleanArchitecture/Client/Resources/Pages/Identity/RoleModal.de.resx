@@ -123,6 +123,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
+  <data name="Role Created" xml:space="preserve">
+    <value>Role Created!</value>
+  </data>
   <data name="Role ID" xml:space="preserve">
     <value>Rollen ID</value>
   </data>

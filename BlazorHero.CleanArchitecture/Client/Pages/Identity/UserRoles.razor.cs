@@ -51,7 +51,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var result = await _userManager.UpdateRolesAsync(request);
             if (result.Succeeded)
             {
-                _snackBar.Add(result.Messages[0], Severity.Success);
+                _snackBar.Add(localizer[result.Messages[0]], Severity.Success);
                 _navigationManager.NavigateTo("/identity/users");
             }
             else
