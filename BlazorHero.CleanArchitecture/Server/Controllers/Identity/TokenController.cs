@@ -25,5 +25,12 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var response = await _identityService.LoginAsync(model);
             return Ok(response);
         }
+
+        [HttpPost("refresh")]
+        public async Task<ActionResult> Refresh([FromBody] RefreshTokenRequest model)
+        {
+            var response = await _identityService.GetRefreshTokenAsync(model);
+            return Ok(response);
+        }
     }
 }
