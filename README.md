@@ -79,3 +79,8 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [ ] Need a UI contributor to look at the UX/UI of the entire project
 - [ ] Need someone to buildup a cool Material Logo for BlazorHero (BH):D Do contact me on LinkedIn (https://www.linkedin.com/in/iammukeshm/).
 - [ ] And finally, Stars from everyone! :D
+
+### Open Bugs
+
+- [ ] JWT Expiration - On Expiration, throws 500 Exception. Viable Solution - Implement Refresh Tokens & HTTP Interceptor throughout the applicaion. Issue #20
+- [ ] Some Validation Messages are lost in the UI - Need to implement Fluent Validations . Issue #19
