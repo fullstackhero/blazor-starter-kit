@@ -18,6 +18,7 @@
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Roles
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Users
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Interceptors
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Product
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Brand
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard
@@ -48,6 +49,7 @@
 @inject ISnackbar _snackBar
 @inject IDialogService _dialogService
 @inject HttpClient _httpClient
+@inject IHttpInterceptorManager _interceptor
 @inject PreferenceManager _preferenceManager
 @inject IRoleManager _roleManager
 @inject IUserManager _userManager
