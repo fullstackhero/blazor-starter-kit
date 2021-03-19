@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class Users
+    public partial class Users : IDisposable
     {
         public List<UserResponse> UserList = new List<UserResponse>();
         private UserResponse user = new UserResponse();
@@ -15,9 +15,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         protected override async Task OnInitializedAsync()
         {
+            _interceptor.RegisterEvent();
             await GetUsersAsync();
         }
-
+        public void Dispose() => _interceptor.DisposeEvent();
         private async Task GetUsersAsync()
         {
             var response = await _userManager.GetAllAsync();

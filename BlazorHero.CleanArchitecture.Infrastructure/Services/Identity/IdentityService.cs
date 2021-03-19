@@ -82,7 +82,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             user.RefreshToken = GenerateRefreshToken();
             await _userManager.UpdateAsync(user);
 
-            var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken };
+            var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken, RefreshTokenExpiryTime = user.RefreshTokenExpiryTime };
             return Result<TokenResponse>.Success(response);
         }
         private async Task<string> GenerateJwtAsync(BlazorHeroUser user)
@@ -135,9 +135,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private string GenerateEncryptedToken(SigningCredentials signingCredentials, IEnumerable<Claim> claims)
         {
             var token = new JwtSecurityToken(
-            //   issuer: _appConfig.Issuer,
                claims: claims,
-               expires: DateTime.UtcNow.AddMinutes(1),
+               expires: DateTime.UtcNow.AddMinutes(2),
                signingCredentials: signingCredentials);
             var tokenHandler = new JwtSecurityTokenHandler();
             var encryptedToken = tokenHandler.WriteToken(token);
