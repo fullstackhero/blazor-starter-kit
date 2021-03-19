@@ -34,6 +34,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Intercepto
                     var token = await _authenticationManager.TryRefreshToken();
                     if (!string.IsNullOrEmpty(token))
                     {
+                        _snackBar.Add("Refreshed Token.", Severity.Success);
                         e.Request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
                     }
                 }
