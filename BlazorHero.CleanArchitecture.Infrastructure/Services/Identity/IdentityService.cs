@@ -136,7 +136,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         {
             var token = new JwtSecurityToken(
                claims: claims,
-               expires: DateTime.UtcNow.AddMinutes(2),
+               expires: DateTime.UtcNow.AddDays(7),
                signingCredentials: signingCredentials);
             var tokenHandler = new JwtSecurityTokenHandler();
             var encryptedToken = tokenHandler.WriteToken(token);
