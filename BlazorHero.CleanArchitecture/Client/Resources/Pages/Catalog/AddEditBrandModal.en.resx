@@ -117,20 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Product" xml:space="preserve">
-    <value>Add Product</value>
-  </data>
-  <data name="Barcode" xml:space="preserve">
-    <value>Barcode</value>
-  </data>
-  <data name="Brand" xml:space="preserve">
-    <value>Brand</value>
+  <data name="Add Brand" xml:space="preserve">
+    <value>Add Brand</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Eliminar</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -141,19 +132,16 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="Rate" xml:space="preserve">
-    <value>Rate</value>
-  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>Tax</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
-  <data name="Update Product" xml:space="preserve">
-    <value>Update Product</value>
-  </data>
-  <data name="Upload" xml:space="preserve">
-    <value>Upload</value>
+  <data name="Update Brand" xml:space="preserve">
+    <value>Update Brand</value>
   </data>
 </root>

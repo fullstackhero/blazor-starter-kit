@@ -123,8 +123,14 @@
   <data name="Barcode" xml:space="preserve">
     <value>Código de barra</value>
   </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Marca</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
@@ -146,5 +152,8 @@
   </data>
   <data name="Update Product" xml:space="preserve">
     <value>Actualizar Producto</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Cargar</value>
   </data>
 </root>

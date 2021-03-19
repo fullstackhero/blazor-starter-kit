@@ -11,13 +11,13 @@
         </div>
 
         <MudToolBarSpacer />
-        <MudTextField @bind-Value="searchString" Placeholder="@localizer["Search for Roles..."]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        <MudTextField @bind-Value="searchString" Placeholder="@localizer["Search for Brands"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
-        <MudTh>Id</MudTh>
-        <MudTh>Name</MudTh>
-        <MudTh>Description</MudTh>
-        <MudTh>Tax</MudTh>
+        <MudTh>@localizer["Id"]</MudTh>
+        <MudTh>@localizer["Name"]</MudTh>
+        <MudTh>@localizer["Description"]</MudTh>
+        <MudTh>@localizer["Tax"]</MudTh>
         <MudTh Style="text-align:right">@localizer["Actions"]</MudTh>
     </HeaderContent>
     <RowTemplate>
