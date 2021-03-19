@@ -60,9 +60,11 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [x] Permission Based UI Rendering
 - [x] Refresh Tokens
 - [x] HTTP Interceptor
+- [x] Logout User if Refresh Token Fails
 
 ## Version 2.0 - Down the Road
 
+- [ ] Breadcrumbs
 - [ ] Caching
 - [ ] Chat
 - [ ] Notifications System using SignalR
@@ -73,6 +75,7 @@ Here is a quick video preview of this Open Soure Project - (https://www.facebook
 - [ ] Import / Export to Excel
 - [ ] Social Auth - Facebook, Google
 - [ ] Audit Trails
+- [ ] SEO
 
 ## Contribution Needed
 

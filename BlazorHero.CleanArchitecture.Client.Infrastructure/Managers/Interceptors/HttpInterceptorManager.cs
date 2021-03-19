@@ -39,6 +39,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Intercepto
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     _snackBar.Add("You are Logged Out.", Severity.Error);
                     await _authenticationManager.Logout();
                     _navigationManager.NavigateTo("/");
