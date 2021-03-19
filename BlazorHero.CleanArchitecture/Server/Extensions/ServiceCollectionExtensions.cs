@@ -159,6 +159,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                         IssuerSigningKey = new SymmetricSecurityKey(key),
                         ValidateIssuer = false,
                         ValidateAudience = false,
+                        RoleClaimType = ClaimTypes.Role,
                         ClockSkew = TimeSpan.Zero
                     };
                     bearer.Events = new JwtBearerEvents()

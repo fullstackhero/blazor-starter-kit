@@ -145,12 +145,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
         {
             var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateAudience = false,
-                ValidateIssuer = false,
+            {              
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appConfig.Secret)),
-                ValidateLifetime = false,
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                RoleClaimType = ClaimTypes.Role,
+                ClockSkew = TimeSpan.Zero
             };
             var tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken securityToken;
