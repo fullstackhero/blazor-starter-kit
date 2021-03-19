@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
-    public partial class Products
+    public partial class Products : IDisposable
     {
         private IEnumerable<GetAllPagedProductsResponse> pagedData;
         private MudTable<GetAllPagedProductsResponse> table;
@@ -18,12 +18,19 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private int currentPage;
         private string searchString = null;
 
+        protected override async Task OnInitializedAsync()
+        {
+            _interceptor.RegisterEvent();
+            await Task.CompletedTask;
+        }
+
+        public void Dispose() => _interceptor.DisposeEvent();
         private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
         {
             await LoadData(state.Page, state.PageSize);
             return new TableData<GetAllPagedProductsResponse>() { TotalItems = totalItems, Items = pagedData };
         }
-
+        
         private ClaimsPrincipal AuthenticationStateProviderUser { get; set; }
 
         protected override async Task OnParametersSetAsync()

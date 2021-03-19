@@ -2,13 +2,14 @@
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
-    public partial class UserRoles
+    public partial class UserRoles : IDisposable
     {
         [Parameter]
         public string Id { get; set; }
@@ -24,6 +25,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         protected override async Task OnInitializedAsync()
         {
+            _interceptor.RegisterEvent();
             CurrentUser = await _authenticationManager.CurrentUser();
 
             var userId = Id;
@@ -40,7 +42,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
-
+        public void Dispose() => _interceptor.DisposeEvent();
         private async Task SaveAsync()
         {
             var request = new UpdateUserRolesRequest()
