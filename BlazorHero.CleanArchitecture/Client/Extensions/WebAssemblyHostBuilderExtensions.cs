@@ -63,7 +63,6 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                     .GetRequiredService<IHttpClientFactory>()
                     .CreateClient(ClientName).EnableIntercept(sp))
                 .AddHttpClient(ClientName, client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
-                .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(3, _ => TimeSpan.FromSeconds(2)))
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
             builder.Services.AddHttpClientInterceptor();
             return builder;
