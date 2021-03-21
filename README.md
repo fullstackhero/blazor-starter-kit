@@ -1,3 +1,25 @@
+﻿<!-- PROJECT SHIELDS -->
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+[contributors-shield]: https://img.shields.io/github/contributors/blazorhero/CleanArchitecture.svg?style=flat-square
+[contributors-url]: https://github.com/blazorhero/CleanArchitecture/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/blazorhero/CleanArchitecture?style=flat-square
+[forks-url]: https://github.com/blazorhero/CleanArchitecture/network/members
+[stars-shield]: https://img.shields.io/github/stars/blazorhero/CleanArchitecture.svg?style=flat-square
+[stars-url]: https://img.shields.io/github/stars/blazorhero/CleanArchitecture?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/blazorhero/CleanArchitecture?style=flat-square
+[issues-url]: https://github.com/blazorhero/CleanArchitecture/issues
+[license-shield]: https://img.shields.io/github/license/blazorhero/CleanArchitecture?style=flat-square
+[license-url]: https://github.com/blazorhero/CleanArchitecture/blob/master/LICENSE
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/iammukeshm/
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
