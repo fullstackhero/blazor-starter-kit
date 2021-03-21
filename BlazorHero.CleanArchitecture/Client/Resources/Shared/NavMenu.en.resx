@@ -129,8 +129,14 @@
   <data name="Catalog Management" xml:space="preserve">
     <value>Catalog Management</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
   <data name="Communication" xml:space="preserve">
     <value>Communication</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
   </data>
   <data name="FAQs" xml:space="preserve">
     <value>FAQs</value>
@@ -141,17 +147,26 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Mail</value>
+  </data>
   <data name="Personal" xml:space="preserve">
     <value>Personal</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>Products</value>
   </data>
+  <data name="Quick Start Guide" xml:space="preserve">
+    <value>Quick Start Guide</value>
+  </data>
   <data name="Resources" xml:space="preserve">
     <value>Resources</value>
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Roles</value>
+  </data>
+  <data name="Swagger" xml:space="preserve">
+    <value>Swagger</value>
   </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>

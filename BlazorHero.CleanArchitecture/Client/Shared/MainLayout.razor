@@ -37,23 +37,27 @@
                     <MudTooltip Text="@localizer["Toggle Dark Mode"]">
                         <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
                     </MudTooltip>
-                    <MudTooltip Text="Fork Repository">
+                    <MudTooltip Text="@localizer["Fork Repository"]">
                         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/blazorhero/CleanArchitecture" Target="_blank" />
                     </MudTooltip>
                 </MudHidden>
                 <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
                     <MudMenu Icon="@Icons.Filled.Settings" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
                         <div class="px-2">
-                            <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
-                            <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/blazorhero/CleanArchitecture" Target="_blank" />
+                            <MudTooltip Text="@localizer["Toggle Dark Mode"]">
+                                <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
+                            </MudTooltip>
+                            <MudTooltip Text="@localizer["Fork Repository"]">
+                                <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/blazorhero/CleanArchitecture" Target="_blank" />
+                            </MudTooltip>
                         </div>
-                        <MudText Typo="Typo.body2" Class="px-4 py-2"><b>Community</b></MudText>
-                        <MudMenuItem Link="https://www.facebook.com/groups/about.asp.net.core" Target="_blank">Facebook Group</MudMenuItem>
-                        <MudMenuItem Link="https://www.facebook.com/codewithmukesh" Target="_blank">Facebook Page</MudMenuItem>
+                        <MudText Typo="Typo.body2" Class="px-4 py-2"><b>@localizer["Community"]</b></MudText>
+                        <MudMenuItem Link="https://www.facebook.com/groups/about.asp.net.core" Target="_blank">@localizer["Facebook Group"]</MudMenuItem>
+                        <MudMenuItem Link="https://www.facebook.com/codewithmukesh" Target="_blank">@localizer["Facebook Page"]</MudMenuItem>
                         <MudMenuItem Link="https://www.linkedin.com/in/iammukeshm/" Target="_blank">LinkedIn</MudMenuItem>
-                        <MudText Typo="Typo.body2" Class="px-4 py-2"><b>Resources</b></MudText>
-                        <MudMenuItem Link="https://mudblazor.com/getting-started/installation" Target="_blank">MudBlazor Documentation</MudMenuItem>
-                        <MudMenuItem Link="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/" Target="_blank">Quick-Start Guide</MudMenuItem>
+                        <MudText Typo="Typo.body2" Class="px-4 py-2"><b>@localizer["Resources"]</b></MudText>
+                        <MudMenuItem Link="https://mudblazor.com/getting-started/installation" Target="_blank">@localizer["MudBlazor Documentation"]</MudMenuItem>
+                        <MudMenuItem Link="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/" Target="_blank">@localizer["Quick-Start Guide"]</MudMenuItem>
                     </MudMenu>
                 </MudHidden>
                 <MudMenu Direction="Direction.Left" OffsetX="true" Dense="true" Class="mt-1 ml-4">

@@ -144,6 +144,9 @@
   <data name="Manage Users" xml:space="preserve">
     <value>Manage Users</value>
   </data>
+  <data name="Not Allowed." xml:space="preserve">
+    <value>Not Allowed.</value>
+  </data>
   <data name="Register New User" xml:space="preserve">
     <value>Register New User</value>
   </data>

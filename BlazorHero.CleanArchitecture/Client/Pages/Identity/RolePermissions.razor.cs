@@ -33,7 +33,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 model = result.Data;
                 if (model != null)
                 {
-                    Description = $"Manage {model.RoleId} {model.RoleName}'s Permissions";
+                    Description = $"{localizer["Manage"]} {model.RoleId} {model.RoleName}'s {localizer["Permissions"]}";
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 foreach (var error in result.Messages)
                 {
-                    _snackBar.Add(error, Severity.Error);
+                    _snackBar.Add(localizer[error], Severity.Error);
                 }
             }
         }

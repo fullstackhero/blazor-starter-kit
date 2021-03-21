@@ -24,14 +24,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             var result = await _authenticationManager.Login(model);
             if (result.Succeeded)
             {
-                _snackBar.Add($"Welcome {model.Email}.", Severity.Success);
+                _snackBar.Add($"{localizer["Welcome"]} {model.Email}.", Severity.Success);
                 _navigationManager.NavigateTo("/", true);
             }
             else
             {
                 foreach (var message in result.Messages)
                 {
-                    _snackBar.Add(message, Severity.Error);
+                    _snackBar.Add(localizer[message], Severity.Error);
                 }
             }
         }

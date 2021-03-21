@@ -129,6 +129,9 @@
   <data name="Facebook Page" xml:space="preserve">
     <value>Facebook Page</value>
   </data>
+  <data name="Fork Repository" xml:space="preserve">
+    <value>Fork Repository</value>
+  </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>

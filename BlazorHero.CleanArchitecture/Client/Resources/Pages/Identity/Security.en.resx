@@ -123,8 +123,14 @@
   <data name="Current Password" xml:space="preserve">
     <value>Current Password</value>
   </data>
+  <data name="Incorrect Password." xml:space="preserve">
+    <value>Incorrect Password.</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="Password Changed!" xml:space="preserve">
+    <value>Password Changed!</value>
   </data>
   <data name="Password Confirmation" xml:space="preserve">
     <value>Password Confirmation</value>

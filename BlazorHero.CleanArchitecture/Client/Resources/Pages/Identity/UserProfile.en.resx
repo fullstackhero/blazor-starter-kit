@@ -147,4 +147,7 @@
   <data name="This is an Administrator Only View." xml:space="preserve">
     <value>This is an Administrator Only View.</value>
   </data>
+  <data name="Updated User Status." xml:space="preserve">
+    <value>Updated User Status.</value>
+  </data>
 </root>

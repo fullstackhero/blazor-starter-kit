@@ -1,6 +1,6 @@
 ﻿@page "/identity/role-permissions/{Id}"
 @inject Microsoft.Extensions.Localization.IStringLocalizer<RolePermissions> localizer
-<HeroTitle Title="Manage Permission" Description="@Description" />
+<HeroTitle Title="@localizer["Manage Permission"]" Description="@Description" />
 
 @if (model == null)
 {
@@ -11,14 +11,14 @@ else
     <MudTable Hover="true" Elevation="25" Items="@model.RoleClaims">
         <ToolBarContent>
             <div class="justify-center mud-text-align-center">
-                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">Update Role Permissions</MudButton>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">@localizer["Update Role Permissions"]</MudButton>
             </div>
             <MudToolBarSpacer />
         </ToolBarContent>
         <HeaderContent>
-            <MudTh>Type</MudTh>
-            <MudTh>Role Name</MudTh>
-            <MudTh>Status</MudTh>
+            <MudTh>@localizer["Type"]</MudTh>
+            <MudTh>@localizer["Role Name"]</MudTh>
+            <MudTh>@localizer["Status"]</MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Type">@context.Type</MudTd>
