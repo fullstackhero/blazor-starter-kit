@@ -2,15 +2,13 @@
 <br />
 <p align="center">
   <a href="https://github.com/blazorhero/CleanArchitecture">
-    <img src="https://codewithmukesh.com/wp-content/uploads/2021/03/BlazorHeroBanner.png" alt="Logo">
+    <img src="https://codewithmukesh.com/wp-content/uploads/2021/03/BlazorHeroBanner.png" alt="Blazor Hero">
   </a>
-
   <h3 align="center">BlazorHero - Clean Architecture Template</h3>
-
   <p align="center">
-    For Blazor Web-Assembly
+    Open Sourced Solution Template For Blazor Web-Assembly 5.0 built with MudBlazor Components
     <br />
-    <a href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/"><strong>Explore the docs »</strong></a>
+    <a href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/"><strong>Read the Documentation »</strong></a>
     <br />
     <br />
     <a href="https://github.com/blazorhero/CleanArchitecture/issues">Report Bug</a>
@@ -19,9 +17,20 @@
   </p>
 </p>
 
-# Detailed Quick Start Guide
+## About The Project :zap:
+
+Clean Architecture Solution Template for ASP.NET Core 5.0. Built with Onion/Hexagonal Architecture and incorporates the most essential Packages your projects will ever need. Includes both WebApi and Web(MVC) Projects.
+
+### Tech Stack :muscle:
+
+- Blazor WebAssembly 5.0 - ASP.NET Core Hosted Model
+- [Entity Framework Core 5.0](https://docs.microsoft.com/en-us/ef/core/)
+
+# Getting Started - Complete Documentation :rocket:
 
 Getting started with Blazor Hero – A Clean Architecture Template built for Blazor WebAssembly using MudBlazor Components. This project will make your Blazor Learning Process much easier than you anticipate. Blazor Hero is meant to be an Enterprise Level Boilerplate, which comes free of cost, completely open sourced. 
+
+The provided documentation / guide will get you started with BlazorHero in no-time. It provides a complete walkthrough about the project with to-the-point guides and notes.
 
 <a href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/"><strong>Read the Quick Start Guide</strong></a>
 
