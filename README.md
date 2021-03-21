@@ -90,7 +90,7 @@ Here are a few ways by which you can support.
 -   Leave a star! :star:
 -   Recommend this awesome project to your colleagues. 🥇
 -   Leave your feedback / comments regarding this project in the comments section on my blog [Blazor Hero Blog](https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/)
--   Do consider endorsing me on LinkedIn for ASP.NET Core - [Connect via LinkedIn](linkedin-url) 🦸
+-   Do consider endorsing me on LinkedIn for ASP.NET Core - [Connect via LinkedIn](https://codewithmukesh.com/linkedin) 🦸
 -   Or, If you want to support this project on the long run, [consider buying me a coffee](https://www.buymeacoffee.com/codewithmukesh)! ☕
 
 <a href="https://www.buymeacoffee.com/codewithmukesh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="200"  style="height: 60px !important;width: 200px !important;" ></a>
