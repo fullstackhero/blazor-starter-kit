@@ -28,6 +28,9 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 
 # Quick Preview
 
+Youtube Preview Video Coming Soon!
+Meanwhile here is a quick video uploaded to my Facebook page (https://www.facebook.com/codewithmukesh/posts/269621381402304)
+
 # Getting Started - Complete Documentation :rocket:
 
 Getting started with Blazor Hero – A Clean Architecture Template built for Blazor WebAssembly using MudBlazor Components. This project will make your Blazor Learning Process much easier than you anticipate. Blazor Hero is meant to be an Enterprise Level Boilerplate, which comes free of cost, completely open sourced. 
@@ -47,11 +50,6 @@ The provided documentation / guide will get you started with BlazorHero in no-ti
     ```.NET Core CLI
     dotnet tool install --global dotnet-ef
     ```
-
-
-# Video Preview
-Here is a quick video preview of this Open Soure Project - (https://www.facebook.com/codewithmukesh/posts/269621381402304)
-
 ## Contributing
 
 Contributions are what make the open-source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
