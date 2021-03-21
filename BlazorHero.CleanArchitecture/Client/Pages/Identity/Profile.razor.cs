@@ -23,14 +23,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if (response.Succeeded)
             {
                 await _authenticationManager.Logout();
-                _snackBar.Add("Your Profile has been updated. Please Login to Continue.", Severity.Success);
+                _snackBar.Add(localizer["Your Profile has been updated. Please Login to Continue."], Severity.Success);
                 _navigationManager.NavigateTo("/");
             }
             else
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(message, Severity.Error);
+                    _snackBar.Add(localizer[message], Severity.Error);
                 }
             }
         }
@@ -84,7 +84,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 {
                     foreach (var error in result.Messages)
                     {
-                        _snackBar.Add(error, Severity.Success);
+                        _snackBar.Add(localizer[error], Severity.Error);
                     }
                 }
             }
@@ -110,7 +110,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 {
                     foreach (var error in data.Messages)
                     {
-                        _snackBar.Add(error, Severity.Success);
+                        _snackBar.Add(localizer[error], Severity.Error);
                     }
                 }
             }

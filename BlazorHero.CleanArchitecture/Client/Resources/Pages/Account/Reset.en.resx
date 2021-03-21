@@ -126,4 +126,7 @@
   <data name="Set new password" xml:space="preserve">
     <value>Set new password</value>
   </data>
+  <data name="Token Not Found!" xml:space="preserve">
+    <value>Token Not Found!</value>
+  </data>
 </root>

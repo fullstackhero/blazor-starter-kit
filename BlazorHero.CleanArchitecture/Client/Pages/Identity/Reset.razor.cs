@@ -61,14 +61,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     {
                         foreach (var message in result.Messages)
                         {
-                            _snackBar.Add(message, Severity.Error);
+                            _snackBar.Add(localizer[message], Severity.Error);
                         }
                     }
                 }
             }
             else
             {
-                _snackBar.Add("Token Not Found!", Severity.Error);
+                _snackBar.Add(localizer["Token Not Found!"], Severity.Error);
             }
         }
 

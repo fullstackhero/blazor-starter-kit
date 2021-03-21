@@ -34,14 +34,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var result = await _userManager.ToggleUserStatusAsync(request);
             if (result.Succeeded)
             {
-                _snackBar.Add("Updated User Status.", Severity.Success);
+                _snackBar.Add(localizer["Updated User Status."], Severity.Success);
                 _navigationManager.NavigateTo("/identity/users");
             }
             else
             {
                 foreach (var error in result.Messages)
                 {
-                    _snackBar.Add(error, Severity.Error);
+                    _snackBar.Add(localizer[error], Severity.Error);
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                         ImageDataUrl = data.Data;
                     }
                 }
-                Title = $"{FirstName} {LastName}'s Profile";
+                Title = $"{FirstName} {LastName}'s {localizer["Profile"]}";
                 Description = Email;
                 if (FirstName.Length > 0)
                 {

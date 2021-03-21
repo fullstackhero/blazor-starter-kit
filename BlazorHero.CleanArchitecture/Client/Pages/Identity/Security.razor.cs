@@ -18,7 +18,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var response = await _accountManager.ChangePasswordAsync(passwordModel);
             if (response.Succeeded)
             {
-                _snackBar.Add("Password Changed!", Severity.Success);
+                _snackBar.Add(localizer["Password Changed!"], Severity.Success);
                 passwordModel.Password = string.Empty;
                 passwordModel.NewPassword = string.Empty;
                 passwordModel.ConfirmNewPassword = string.Empty;
@@ -27,7 +27,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 foreach (var error in response.Messages)
                 {
-                    _snackBar.Add(error, Severity.Error);
+                    _snackBar.Add(localizer[error], Severity.Error);
                 }
             }
         }

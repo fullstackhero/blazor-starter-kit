@@ -132,11 +132,17 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="Manage Permission" xml:space="preserve">
+    <value>Manage Permission</value>
+  </data>
   <data name="Manage Roles." xml:space="preserve">
     <value>Manage Roles.</value>
   </data>
   <data name="Reload" xml:space="preserve">
     <value>Reload</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Roles</value>

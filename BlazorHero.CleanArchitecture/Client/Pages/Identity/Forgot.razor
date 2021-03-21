@@ -1,7 +1,8 @@
 ﻿@page "/account/forgot-password"
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Forgot> localizer
 @layout MainLayout
 @attribute [AllowAnonymous]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Forgot> localizer
+
 <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
     <MudGrid>
         <MudItem xs="12">

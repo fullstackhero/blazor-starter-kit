@@ -27,14 +27,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var result = await _userManager.ForgotPasswordAsync(request);
                 if (result.Succeeded)
                 {
-                    _snackBar.Add($"Done!", Severity.Success);
+                    _snackBar.Add(localizer["Done!"], Severity.Success);
                     _navigationManager.NavigateTo("/");
                 }
                 else
                 {
                     foreach (var message in result.Messages)
                     {
-                        _snackBar.Add(message, Severity.Error);
+                        _snackBar.Add(localizer[message], Severity.Error);
                     }
                 }
             }

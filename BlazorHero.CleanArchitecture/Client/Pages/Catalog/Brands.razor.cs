@@ -27,7 +27,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(message, Severity.Error);
+                    _snackBar.Add(localizer[message], Severity.Error);
                 }
             }
         }
@@ -53,7 +53,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     await Reset();
                     foreach (var message in response.Messages)
                     {
-                        _snackBar.Add(message, Severity.Error);
+                        _snackBar.Add(localizer[message], Severity.Error);
                     }
                 }
             }
