@@ -75,6 +75,10 @@ The provided documentation / guide will get you started with BlazorHero in no-ti
 
 <a href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/"><strong>Read the Quick Start Guide</strong></a>
 
+# Features
+
+All the completed and the upcoming features are mentioned in the [Features.MD File}(https://github.com/blazorhero/CleanArchitecture/blob/master/Features.md)
+
 ## Contributing
 
 Contributions are what make the open-source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
