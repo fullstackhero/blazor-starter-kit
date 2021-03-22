@@ -53,7 +53,21 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 Youtube Preview Video Coming Soon!
 Meanwhile here is a quick video uploaded to my Facebook page (https://www.facebook.com/codewithmukesh/posts/269621381402304)
 
-# Getting Started - Complete Documentation :rocket:
+# Getting Started 🦸
+
+The easiest way to get started with Blazor Hero is to install the [NuGet package](https://www.nuget.org/packages/BlazorHero.CleanArchitecture/) and run `dotnet new BlazorHero.CleanArchitecture`:
+
+1. Install the latest [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
+2. Install the latest DOTNET & EF CLI Tools by using this command `dotnet tool install –global dotnet-ef` 
+3. Install the latest version of Visual Studio IDE 2019 (v16.8 and above) 🚀
+4. Open up Command Prompt and run `dotnet new --install BlazorHero.CleanArchitecture` to install the project template
+5. Create a folder for your solution and cd into it (the template will use it as project name)
+6. Run `dotnet new BlazorHero.CleanArchitecture` to create a new Solution with all the Awsomeness 🕶️ of BlazorHero 🦸
+
+Read what to do next from here on my [blog post](https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/).
+
+
+# Complete Documentation :rocket:
 
 Getting started with Blazor Hero – A Clean Architecture Template built for Blazor WebAssembly using MudBlazor Components. This project will make your Blazor Learning Process much easier than you anticipate. Blazor Hero is meant to be an Enterprise Level Boilerplate, which comes free of cost, completely open sourced. 
 
