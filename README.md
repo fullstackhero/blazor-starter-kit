@@ -77,7 +77,7 @@ The provided documentation / guide will get you started with BlazorHero in no-ti
 
 # Features
 
-All the completed and the upcoming features are mentioned in the [Features.MD File}(https://github.com/blazorhero/CleanArchitecture/blob/master/Features.md)
+All the completed and the upcoming features are mentioned in the [Features.MD File](https://github.com/blazorhero/CleanArchitecture/blob/master/Features.md)
 
 ## Contributing
 
