@@ -64,7 +64,7 @@ The easiest way to get started with Blazor Hero is to install the [NuGet package
 5. Create a folder for your solution and cd into it (the template will use it as project name)
 6. Run `dotnet new BlazorHero.CleanArchitecture` to create a new Solution with all the Awsomeness 🕶️ of BlazorHero 🦸
 
-Read what to do next from here on my [blog post](https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/).
+What to do next? Read the [entire guide on my blog](https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/).
 
 
 # Complete Documentation :rocket:
@@ -75,17 +75,6 @@ The provided documentation / guide will get you started with BlazorHero in no-ti
 
 <a href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/"><strong>Read the Quick Start Guide</strong></a>
 
-### Prerequisites
-
--   Make sure you are running on the latest .NET 5 SDK (SDK 5.0 and above only). [Get the latest one here.](https://dotnet.microsoft.com/download/dotnet/5.0)
-
--   Visual Studio 2019 (v16.8+) (You can check out my Installation Guide of [Visual Studio 2019 Community](https://codewithmukesh.com/blog/install-visual-studio-2019-community/) which is completely Free to use.) Make sure that ASP.NET and web development workload is installed.
-
--   Install the latest [.NET & EF CLI Tools](https://docs.microsoft.com/en-us/ef/core/cli/dotnet) by using this command :
-
-    ```.NET Core CLI
-    dotnet tool install --global dotnet-ef
-    ```
 ## Contributing
 
 Contributions are what make the open-source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
