@@ -1,5 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Shared;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Requests.Mail;
 using MailKit.Net.Smtp;
 using MailKit.Security;
