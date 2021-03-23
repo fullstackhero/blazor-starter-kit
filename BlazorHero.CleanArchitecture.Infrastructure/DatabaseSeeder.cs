@@ -29,14 +29,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
         }
 
         public void Initialize()
-        {
-            try
-            {
-                _db.Database.Migrate();
-            }
-            catch
-            {
-            }            
+        {     
             AddAdministrator();
             AddBasicUser();
             _db.SaveChanges();

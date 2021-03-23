@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{0317DF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{275B08FA-6837-4A32-B890-0ADE2DE4C3F7}"
 	ProjectSection(SolutionItems) = preProject
+		Features.md = Features.md
+		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
