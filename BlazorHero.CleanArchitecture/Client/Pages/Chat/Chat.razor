@@ -4,9 +4,6 @@
 <div class="d-flex flex-grow-1 flex-row">
     <MudPaper Elevation="25" Class="py-4 flex-grow-1">
         <MudToolBar Dense="true">
-            <MudHidden Breakpoint="Breakpoint.MdAndUp">
-                <MudIconButton OnClick="@(() => OpenDrawer(Anchor.Left))" Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" Class="mr-2 ml-n2" />
-            </MudHidden>
             <MudText Typo="Typo.h6" Inline="true" Class="mr-2">#</MudText>
             <MudText Typo="Typo.h6">chat</MudText>
             <MudToolBarSpacer />
@@ -27,12 +24,18 @@
         </MudPaper>
     </MudPaper>
     <MudHidden Breakpoint="Breakpoint.SmAndDown">
-        <MudPaper Elevation="25" Class="pa-3 pb-16 ml-6" MinWidth="250px" style="max-height:80vh; overflow:scroll;">
-            <ChatUsers chatUsers="chatUsers" />
+        <MudPaper Elevation="25" Class="pa-3 ml-6" MinWidth="350px">
+            <MudToolBar Dense="true">
+                <MudText Typo="Typo.h6" Inline="true" Class="mr-2">#</MudText>
+                <MudText Typo="Typo.h6">contacts</MudText>
+            </MudToolBar>
+            <div class="d-flex flex-column px-4" style="max-height:70vh; overflow:scroll;">
+                <ChatUsers chatUsers="chatUsers" />
+            </div>
+
         </MudPaper>
     </MudHidden>
 </div>
-
 <MudDrawer @bind-Open="@open" Anchor="@ChatDrawer" Elevation="1" Variant="@DrawerVariant.Temporary">
     <div class="pa-3">
         <ChatUsers chatUsers="chatUsers" />
