@@ -124,13 +124,13 @@
     <value>រដ្ឋបាល</value>
   </data>
   <data name="Brands" xml:space="preserve">
-    <value>Brands</value>
+    <value>ផលិតផល</value>
   </data>
   <data name="Catalog Management" xml:space="preserve">
-    <value>Catalog Management</value>
+    <value>គ្រប់គ្រងកាតាឡុក</value>
   </data>
   <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+    <value>ទំនាក់ទំនង</value>
   </data>
   <data name="FAQs" xml:space="preserve">
     <value>កម្រងសំណួរចម្លើយ</value>
@@ -145,7 +145,7 @@
     <value>ឯកជន</value>
   </data>
   <data name="Products" xml:space="preserve">
-    <value>Products</value>
+    <value>ផលិតផល</value>
   </data>
   <data name="Resources" xml:space="preserve">
     <value>ធនធាន</value>
