@@ -117,25 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Role" xml:space="preserve">
-    <value>បន្ថែមតួនាទី</value>
+  <data name="Brands" xml:space="preserve">
+    <value>ម៉ាក</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>បោះបង់</value>
+  <data name="Charts comming soon ish..." xml:space="preserve">
+    <value>ផ្ទាំងឆាតនឹងមកដល់ឆាប់ៗនេះ</value>
   </data>
-  <data name="Role Created" xml:space="preserve">
-    <value>តួនាទីត្រូវបានបង្កើតរួចរាល់</value>
+  <data name="Dashboard" xml:space="preserve">
+    <value>ផ្ទាំងទិន្នន័យ</value>
   </data>
-  <data name="Role ID" xml:space="preserve">
-    <value>លេខសម្គាល់តួនាទី</value>
+  <data name="Products" xml:space="preserve">
+    <value>ផលិតផល</value>
   </data>
-  <data name="Role Name" xml:space="preserve">
-    <value>ឈ្មោះតួនាទី</value>
+  <data name="Quick Insights." xml:space="preserve">
+    <value>ផ្ទាំងទិន្នន័យសង្ខេប</value>
   </data>
-  <data name="Save Role" xml:space="preserve">
-    <value>រក្សាទុកតួនាទី</value>
+  <data name="Registered Roles" xml:space="preserve">
+    <value>ចំនួនតួនាទីសរុប</value>
   </data>
-  <data name="Update Role" xml:space="preserve">
-    <value>ធ្វើបច្ចុប្បន្នភាពតួនាទី</value>
+  <data name="Registered Users" xml:space="preserve">
+    <value>ចំនួនអ្នកប្រើប្រាស់សរុប</value>
   </data>
 </root>
