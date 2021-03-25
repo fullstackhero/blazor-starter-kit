@@ -25,6 +25,7 @@ namespace BlazorHero.CleanArchitecture.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
             services.AddDatabase(_configuration);
             services.AddIdentity();
             services.AddJwtAuthentication(services.GetApplicationSettings(_configuration));

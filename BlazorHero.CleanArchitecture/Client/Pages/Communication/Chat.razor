@@ -20,23 +20,23 @@
             </MudHidden>
         </MudToolBar>
         <div class="d-flex flex-column px-4" style="max-height:65vh;min-height:65vh; overflow:scroll;">
-            @foreach (var message in chatMessages)
+            @foreach (var message in messages)
             {
                 <div class="d-flex flex-row my-4">
                     <div class="mr-4">
-                        <MudAvatar Color="Color.Secondary">@message.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                        <MudAvatar Color="Color.Secondary">@message.userName.ToUpper().FirstOrDefault()</MudAvatar>
                     </div>
                     <div>
-                        <MudText Typo="Typo.body1"><b>@message.UserName</b></MudText>
-                        <MudText Typo="Typo.body2">@message.Message</MudText>
+                        <MudText Typo="Typo.body1">@message.userName</MudText>
+                        <MudText Typo="Typo.body2">@message.message</MudText>
                     </div>
                 </div>
             }
         </div>
         <MudPaper Elevation="25" Class="d-flex flex-row px-2 mx-4" Style="background-color: var(--mud-palette-background-grey);">
-            <MudIconButton Icon="@Icons.Material.Filled.AddCircle"></MudIconButton>
-            <MudTextField T="string" Placeholder="Enter your message..." DisableUnderLine="true" Class="mt-n2 mx-4"></MudTextField>
-            <MudButton StartIcon="@Icons.Material.Outlined.Send" Color="Color.Secondary">Send</MudButton>
+            <MudTextField T="string" Placeholder="Enter your message..." DisableUnderLine="true" Class="mt-n2 mx-4"
+                          @bind-Value="CurrentMessage" For="@(()=> CurrentMessage)" />
+            <MudButton OnClick="SubmitAsync" StartIcon="@Icons.Material.Outlined.Send" ButtonType="ButtonType.Submit" Disabled="@(!isConnected)">@localizer["Send"]</MudButton>
         </MudPaper>
     </MudPaper>
     <MudHidden Breakpoint="Breakpoint.SmAndDown">
