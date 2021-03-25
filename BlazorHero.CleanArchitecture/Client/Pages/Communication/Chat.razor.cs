@@ -1,6 +1,8 @@
 ﻿using AdminDashboard.Wasm.Models;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.Collections.Generic;
@@ -30,9 +32,20 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         {
             if(!string.IsNullOrEmpty(CurrentMessage))
             {
-                await hubConnection.SendAsync("SendMessageAsync", "Mukesh Murugan", CurrentMessage);
+                var state = await _stateProvider.GetAuthenticationStateAsync();
+                var user = state.User;
+                var UserId = user.GetUserId();
+                var userName = $"{user.GetFirstName()} {user.GetLastName()}";
+                await hubConnection.SendAsync("SendMessageAsync", userName, CurrentMessage);
                 CurrentMessage = string.Empty;
             }            
+        }
+        private async Task OnKeyPressInChat(KeyboardEventArgs e)
+        {
+            if (e.Code == "Enter" || e.Code == "NumpadEnter")
+            {
+                await SubmitAsync();
+            }
         }
         protected override async Task OnInitializedAsync()
         {

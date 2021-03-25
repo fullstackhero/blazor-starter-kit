@@ -19,7 +19,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             _userService = userService;
         }
 
-        [Authorize(Policy = Permissions.Users.View)]
+        //[Authorize(Policy = Permissions.Users.View)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
