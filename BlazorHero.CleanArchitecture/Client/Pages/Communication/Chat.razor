@@ -1,0 +1,97 @@
+﻿@page "/chat"
+@using AdminDashboard.Wasm.Models
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Chat> localizer
+<div class="d-flex flex-grow-1 flex-row">
+    <MudPaper Elevation="25" Class="py-4 flex-grow-1">
+        <MudToolBar Dense="true">
+            <MudText Typo="Typo.h6" Inline="true" Class="mr-2">#</MudText>
+            @if (string.IsNullOrEmpty(CurrentlyChattingWith))
+            {
+                <MudText Typo="Typo.h6">chat - coming soon!</MudText>
+            }
+            else
+            {
+                <MudText Typo="Typo.h6">@CurrentlyChattingWith</MudText>
+            }
+
+            <MudToolBarSpacer />
+            <MudHidden Breakpoint="Breakpoint.MdAndUp">
+                <MudIconButton OnClick="@(() => OpenDrawer(Anchor.Right))" Icon="@Icons.Material.Outlined.PeopleAlt" Color="Color.Inherit" Class="ml-3" />
+            </MudHidden>
+        </MudToolBar>
+        <div class="d-flex flex-column px-4" style="max-height:65vh;min-height:65vh; overflow:scroll;">
+            @foreach (var message in chatMessages)
+            {
+                <div class="d-flex flex-row my-4">
+                    <div class="mr-4">
+                        <MudAvatar Color="Color.Secondary">@message.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                    </div>
+                    <div>
+                        <MudText Typo="Typo.body1"><b>@message.UserName</b></MudText>
+                        <MudText Typo="Typo.body2">@message.Message</MudText>
+                    </div>
+                </div>
+            }
+        </div>
+        <MudPaper Elevation="25" Class="d-flex flex-row px-2 mx-4" Style="background-color: var(--mud-palette-background-grey);">
+            <MudIconButton Icon="@Icons.Material.Filled.AddCircle"></MudIconButton>
+            <MudTextField T="string" Placeholder="Enter your message..." DisableUnderLine="true" Class="mt-n2 mx-4"></MudTextField>
+            <MudButton StartIcon="@Icons.Material.Outlined.Send" Color="Color.Secondary">Send</MudButton>
+        </MudPaper>
+    </MudPaper>
+    <MudHidden Breakpoint="Breakpoint.SmAndDown">
+        <MudPaper Elevation="25" Class="pa-3 ml-6" MinWidth="350px">
+            <MudToolBar Dense="true">
+                <MudText Typo="Typo.h6" Inline="true" Class="mr-2">#</MudText>
+                <MudText Typo="Typo.h6">contacts</MudText>
+            </MudToolBar>
+            <div class="d-flex flex-column px-4" style="max-height:70vh;min-height:70vh; overflow:scroll;">
+                <MudList Clickable="true">
+                    @foreach (var user in UserList)
+                    {
+                        <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.FirstName))">
+                            <div class="d-flex flex-row mt-n1 mb-n1">
+                                <div class="mr-4">
+                                    <MudBadge Bottom="true" Dot="true" Overlap="true" Bordered="true" Class="my-2">
+                                        <MudAvatar Color="Color.Secondary">@user.FirstName.ToUpper().FirstOrDefault()</MudAvatar>
+                                    </MudBadge>
+                                </div>
+                                <div>
+                                    <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>
+                                    <MudText Typo="Typo.caption">@user.Email</MudText>
+                                </div>
+                            </div>
+                        </MudListItem>
+                    }
+                </MudList>
+            </div>
+        </MudPaper>
+    </MudHidden>
+</div>
+@*<MudDrawer @bind-Open="@open" Anchor="@ChatDrawer" Elevation="1" Variant="@DrawerVariant.Temporary">
+        <div class="pa-3">
+            <MudList Clickable="true">
+                @foreach (var user in chatUsers)
+                {
+                    <MudListItem Class="pa-0 px-2">
+                        <div class="d-flex flex-row mt-n1 mb-n1">
+                            <div class="mr-4">
+                                <MudBadge Bottom="true" Dot="true" Overlap="true" Bordered="true" Class="my-2">
+                                    <MudAvatar Color="Color.Secondary">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                </MudBadge>
+                            </div>
+                            <div>
+                                <MudText Typo="Typo.body2" Class="mt-3 mb-n2"><b>@user.UserName</b></MudText>
+                                <MudText Typo="Typo.caption">@user.UserName</MudText>
+                            </div>
+                        </div>
+                    </MudListItem>
+                }
+            </MudList>
+        </div>
+    </MudDrawer>*@
+
+@code
+{
+
+}
