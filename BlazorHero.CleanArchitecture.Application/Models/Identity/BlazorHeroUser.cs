@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BlazorHero.CleanArchitecture.Shared.Models.Identity
+namespace BlazorHero.CleanArchitecture.Application.Models.Identity
 {
     public class BlazorHeroUser : IdentityUser, IAuditableEntity
     {

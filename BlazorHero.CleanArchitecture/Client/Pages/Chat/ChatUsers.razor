@@ -1,0 +1,13 @@
+﻿@using AdminDashboard.Wasm.Models
+
+<MudList Clickable="true">
+    <MudListSubheader Class="ml-n2 mb-n4"><b>Contacts - 10</b></MudListSubheader>
+    @foreach (var user in chatUsers)
+    {
+        <User UserName="@user.UserName" UserRoleColor="@user.UserRoleColor" OnlineStatus="@user.OnlineStatus" ListeningToSpotify="@user.Spotify" AvatarUrl="@user.AvatarUrl" AvatarColor="@user.AvatarColor" />
+    }
+</MudList>
+
+@code {
+    [Parameter] public ChatUser[] chatUsers { get; set; }
+}
