@@ -117,40 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description" xml:space="preserve">
-    <value>Accedi con le tue credenziali.</value>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
   </data>
-  <data name="E-mail" xml:space="preserve">
-    <value>E-Mail</value>
+  <data name="Administrator" xml:space="preserve">
+    <value>Amministratore</value>
   </data>
-  <data name="Email is required!" xml:space="preserve">
-    <value>È richiesto un indirizzo E-Mail</value>
+  <data name="Brands" xml:space="preserve">
+    <value>Marche</value>
   </data>
-  <data name="Fill Administrator Credentials" xml:space="preserve">
-    <value>Utilizza credenziali amministrative</value>
+  <data name="Catalog Management" xml:space="preserve">
+    <value>Gestione catalogo</value>
   </data>
-  <data name="Fill Basic User Credentials" xml:space="preserve">
-    <value>Utilizza credenziali utente base</value>
+  <data name="Chat" xml:space="preserve">
+    <value>Chat</value>
   </data>
-  <data name="Forgot password?" xml:space="preserve">
-    <value>Password dimenticata?</value>
+  <data name="Communication" xml:space="preserve">
+    <value>Comunicazione</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
   </data>
-  <data name="Password is required!" xml:space="preserve">
-    <value>È richiesta una password!</value>
+  <data name="FAQs" xml:space="preserve">
+    <value>FAQs</value>
   </data>
-  <data name="Remember me?" xml:space="preserve">
-    <value>Ricordati di me?</value>
+  <data name="Features" xml:space="preserve">
+    <value>Features</value>
   </data>
-  <data name="Sign In" xml:space="preserve">
-    <value>Accedi</value>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Accedi</value>
+  <data name="Mail" xml:space="preserve">
+    <value>Mail</value>
   </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Benvenuto</value>
+  <data name="Personal" xml:space="preserve">
+    <value>Personale</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Prodotti</value>
+  </data>
+  <data name="Quick Start Guide" xml:space="preserve">
+    <value>Guida rapida</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Risorse</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Ruoli</value>
+  </data>
+  <data name="Swagger" xml:space="preserve">
+    <value>Swagger</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Utenti</value>
   </data>
 </root>

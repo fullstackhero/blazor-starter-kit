@@ -117,40 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description" xml:space="preserve">
-    <value>Accedi con le tue credenziali.</value>
+  <data name="GoHome" xml:space="preserve">
+    <value>Go Home!</value>
   </data>
-  <data name="E-mail" xml:space="preserve">
-    <value>E-Mail</value>
-  </data>
-  <data name="Email is required!" xml:space="preserve">
-    <value>È richiesto un indirizzo E-Mail</value>
-  </data>
-  <data name="Fill Administrator Credentials" xml:space="preserve">
-    <value>Utilizza credenziali amministrative</value>
-  </data>
-  <data name="Fill Basic User Credentials" xml:space="preserve">
-    <value>Utilizza credenziali utente base</value>
-  </data>
-  <data name="Forgot password?" xml:space="preserve">
-    <value>Password dimenticata?</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="Password is required!" xml:space="preserve">
-    <value>È richiesta una password!</value>
-  </data>
-  <data name="Remember me?" xml:space="preserve">
-    <value>Ricordati di me?</value>
-  </data>
-  <data name="Sign In" xml:space="preserve">
-    <value>Accedi</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Accedi</value>
-  </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Benvenuto</value>
+  <data name="Message" xml:space="preserve">
+    <value>La pagina che stavi cercando non esiste.</value>
   </data>
 </root>

@@ -117,40 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description" xml:space="preserve">
-    <value>Accedi con le tue credenziali.</value>
+  <data name="Change Password" xml:space="preserve">
+    <value>Cambia password</value>
   </data>
-  <data name="E-mail" xml:space="preserve">
-    <value>E-Mail</value>
+  <data name="Current Password" xml:space="preserve">
+    <value>Password corrente</value>
   </data>
-  <data name="Email is required!" xml:space="preserve">
-    <value>È richiesto un indirizzo E-Mail</value>
-  </data>
-  <data name="Fill Administrator Credentials" xml:space="preserve">
-    <value>Utilizza credenziali amministrative</value>
-  </data>
-  <data name="Fill Basic User Credentials" xml:space="preserve">
-    <value>Utilizza credenziali utente base</value>
-  </data>
-  <data name="Forgot password?" xml:space="preserve">
-    <value>Password dimenticata?</value>
+  <data name="Incorrect Password." xml:space="preserve">
+    <value>Password non corretta.</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Password Changed!" xml:space="preserve">
+    <value>Password cambiata!</value>
+  </data>
+  <data name="Password Confirmation" xml:space="preserve">
+    <value>Conferma password</value>
+  </data>
+  <data name="Password Confirmation is required!" xml:space="preserve">
+    <value>È richiesta la conferma della password!</value>
+  </data>
   <data name="Password is required!" xml:space="preserve">
-    <value>È richiesta una password!</value>
+    <value>E 'richiesta la password!</value>
   </data>
-  <data name="Remember me?" xml:space="preserve">
-    <value>Ricordati di me?</value>
+  <data name="Password must be at least of length 8" xml:space="preserve">
+    <value>La password deve essere composta da almeno 8 carattteri</value>
   </data>
-  <data name="Sign In" xml:space="preserve">
-    <value>Accedi</value>
+  <data name="Password must contain at least one capital letter" xml:space="preserve">
+    <value>La password deve contenere almeno una lettera maiuscola</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Accedi</value>
+  <data name="Password must contain at least one digit" xml:space="preserve">
+    <value>La password deve contenere almeno un numero</value>
   </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Benvenuto</value>
+  <data name="Password must contain at least one lowercase letter" xml:space="preserve">
+    <value>La password deve contenere almeno una lettera minuscola</value>
+  </data>
+  <data name="Passwords don't match" xml:space="preserve">
+    <value>Le password non corrispondono</value>
   </data>
 </root>

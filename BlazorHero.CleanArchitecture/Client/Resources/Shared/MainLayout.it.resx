@@ -117,40 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description" xml:space="preserve">
-    <value>Accedi con le tue credenziali.</value>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
   </data>
-  <data name="E-mail" xml:space="preserve">
-    <value>E-Mail</value>
+  <data name="Community" xml:space="preserve">
+    <value>Community</value>
   </data>
-  <data name="Email is required!" xml:space="preserve">
-    <value>È richiesto un indirizzo E-Mail</value>
+  <data name="Facebook Group" xml:space="preserve">
+    <value>Gruppo Facebook</value>
   </data>
-  <data name="Fill Administrator Credentials" xml:space="preserve">
-    <value>Utilizza credenziali amministrative</value>
+  <data name="Facebook Page" xml:space="preserve">
+    <value>Pagina Facebook</value>
   </data>
-  <data name="Fill Basic User Credentials" xml:space="preserve">
-    <value>Utilizza credenziali utente base</value>
+  <data name="Fork Repository" xml:space="preserve">
+    <value>Fork Repository</value>
   </data>
-  <data name="Forgot password?" xml:space="preserve">
-    <value>Password dimenticata?</value>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>Password</value>
+  <data name="Logout Confirmation" xml:space="preserve">
+    <value>Vuoi effettuare il Logout?</value>
   </data>
-  <data name="Password is required!" xml:space="preserve">
-    <value>È richiesta una password!</value>
+  <data name="MudBlazor Documentation" xml:space="preserve">
+    <value>Documentazione MudBlazor</value>
   </data>
-  <data name="Remember me?" xml:space="preserve">
-    <value>Ricordati di me?</value>
+  <data name="Quick-Start Guide" xml:space="preserve">
+    <value>Guida rapida</value>
   </data>
-  <data name="Sign In" xml:space="preserve">
-    <value>Accedi</value>
+  <data name="Resources" xml:space="preserve">
+    <value>Risorse</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Accedi</value>
+  <data name="Support" xml:space="preserve">
+    <value>Supporto</value>
   </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Benvenuto</value>
+  <data name="Toggle Dark Mode" xml:space="preserve">
+    <value>Attiva la modalità scura</value>
   </data>
 </root>
