@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Models.Chat;
+using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communicat
     public interface IChatManager : IManager
     {
         Task<IResult<IEnumerable<ChatUserResponse>>> GetChatUsersAsync();
+        Task<IResult> SaveMessageAsync(ChatHistory chatHistory);
+        Task<IResult<IEnumerable<ChatHistory>>> GetChatHistoryAsync(string cId);
     }
 }

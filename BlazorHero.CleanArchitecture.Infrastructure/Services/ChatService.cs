@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using BlazorHero.CleanArchitecture.Application.Exceptions;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Application.Models.Chat;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
@@ -16,17 +19,52 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
     {
         private readonly BlazorHeroContext _context;
         private readonly IMapper _mapper;
+        private readonly IUserService _userService;
 
-        public ChatService(BlazorHeroContext context, IMapper mapper)
+        public ChatService(BlazorHeroContext context, IMapper mapper, IUserService userService)
         {
             _context = context;
             _mapper = mapper;
+            _userService = userService;
         }
+
+        public async Task<Result<IEnumerable<ChatHistory>>> GetChatHistoryAsync(string userId, string contactId)
+        {
+            var response = await _userService.GetAsync(userId);
+            if(response.Succeeded)
+            {
+                var user = response.Data;
+                var userMessagesWithContact = await _context.ChatHistories.Where(h=>h.FromUserId == userId || h.FromUserId == contactId || h.ToUserId == contactId || h.ToUserId ==userId).OrderBy(a=>a.CreatedDate).ToListAsync();
+                return Result<IEnumerable<ChatHistory>>.Success(userMessagesWithContact);
+            }
+            else
+            {
+                throw new ApiException("User Not Found!");
+            }
+        }
+
         public async Task<Result<IEnumerable<ChatUserResponse>>> GetChatUsersAsync(string userId)
         {
             var allUsers = await _context.Users.Where(user=>user.Id != userId).ToListAsync();
             var chatUsers = _mapper.Map<IEnumerable<ChatUserResponse>>(allUsers);
             return Result<IEnumerable<ChatUserResponse>>.Success(chatUsers);
+        }
+
+        public async Task<IResult> SaveMessageAsync(ChatHistory message)
+        {
+            try
+            {
+                message.ToUser = await _context.Users.Where(user => user.Id == message.ToUserId).FirstOrDefaultAsync();
+                await _context.ChatHistories.AddAsync(message);
+                await _context.SaveChangesAsync();
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BlazorHero.CleanArchitecture.Application.Models.Chat
 {
@@ -12,7 +13,9 @@ namespace BlazorHero.CleanArchitecture.Application.Models.Chat
         public string Message { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        [JsonIgnore]
         public virtual BlazorHeroUser FromUser { get; set; }
+        [JsonIgnore]
         public virtual BlazorHeroUser ToUser { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace BlazorHero.CleanArchitecture.Application.Responses.Identity
     public class ChatUserResponse
     {
         public string Id { get; set; }
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }

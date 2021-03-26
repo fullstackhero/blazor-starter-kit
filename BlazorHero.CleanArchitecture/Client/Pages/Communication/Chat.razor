@@ -1,17 +1,17 @@
-﻿@page "/chat"
-@using AdminDashboard.Wasm.Models
+﻿@page "/chat/{CUserName}"
+@page "/chat"
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Chat> localizer
 <div class="d-flex flex-grow-1 flex-row">
     <MudPaper Elevation="25" Class="py-4 flex-grow-1">
         <MudToolBar Dense="true">
             <MudText Typo="Typo.h6" Inline="true" Class="mr-2">#</MudText>
-            @if (string.IsNullOrEmpty(CurrentlyChattingWith))
+            @if (string.IsNullOrEmpty(CFullName))
             {
                 <MudText Typo="Typo.h6">chat - coming soon!</MudText>
             }
             else
             {
-                <MudText Typo="Typo.h6">@CurrentlyChattingWith</MudText>
+                <MudText Typo="Typo.h6">@CFullName</MudText>
             }
 
             <MudToolBarSpacer />
@@ -24,11 +24,11 @@
             {
                 <div class="d-flex flex-row my-4">
                     <div class="mr-4">
-                        <MudAvatar Color="Color.Secondary">@message.userName.ToUpper().FirstOrDefault()</MudAvatar>
+                        <MudAvatar Color="Color.Secondary">@message.FromUserId.ToUpper().FirstOrDefault()</MudAvatar>
                     </div>
                     <div>
-                        <MudText Typo="Typo.body1">@message.userName</MudText>
-                        <MudText Typo="Typo.body2">@message.message</MudText>
+                        <MudText Typo="Typo.body1">@message.FromUserId</MudText>
+                        <MudText Typo="Typo.body2">@message.Message</MudText>
                     </div>
                 </div>
             }
@@ -49,11 +49,11 @@
                 <MudList Clickable="true">
                     @foreach (var user in UserList)
                     {
-                        <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.FirstName))">
+                        <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
                             <div class="d-flex flex-row mt-n1 mb-n1">
                                 <div class="mr-4">
                                     <MudBadge Bottom="true" Dot="true" Overlap="true" Bordered="true" Class="my-2">
-                                        <MudAvatar Color="Color.Secondary">@user.FirstName.ToUpper().FirstOrDefault()</MudAvatar>
+                                        <MudAvatar Color="Color.Secondary">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
                                     </MudBadge>
                                 </div>
                                 <div>
@@ -73,11 +73,11 @@
         <MudList Clickable="true">
             @foreach (var user in UserList)
             {
-                <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.FirstName))">
+                <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
                     <div class="d-flex flex-row mt-n1 mb-n1">
                         <div class="mr-4">
                             <MudBadge Bottom="true" Dot="true" Overlap="true" Bordered="true" Class="my-2">
-                                <MudAvatar Color="Color.Secondary">@user.FirstName.ToUpper().FirstOrDefault()</MudAvatar>
+                                <MudAvatar Color="Color.Secondary">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
                             </MudBadge>
                         </div>
                         <div>
