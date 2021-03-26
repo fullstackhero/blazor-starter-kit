@@ -35,7 +35,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
             {
                 var user = response.Data;
                 var query = await _context.ChatHistories
-                    .Where(h => h.FromUserId == userId || h.FromUserId == contactId || h.ToUserId == contactId || h.ToUserId == userId)
+                    .Where(h => (h.FromUserId == userId && h.ToUserId == contactId) || (h.FromUserId == contactId && h.ToUserId == userId))
                     .OrderBy(a => a.CreatedDate)
                     .Include(a => a.FromUser)
                     .Include(a => a.ToUser)

@@ -17,6 +17,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
     {
         private HubConnection hubConnection;
         [Parameter] public string CurrentMessage { get; set; }
+        [Parameter] public string CurrentUserId { get; set; }
         private bool isConnected => hubConnection.State == HubConnectionState.Connected;
         private List<ChatHistoryResponse> messages = new List<ChatHistoryResponse>();
         private class MessageRequest
@@ -27,8 +28,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         MessageRequest model = new MessageRequest();
         private async Task SubmitAsync()
         {
-            if(!string.IsNullOrEmpty(CurrentMessage) && !string.IsNullOrEmpty(CId))
-            {               
+            if (!string.IsNullOrEmpty(CurrentMessage) && !string.IsNullOrEmpty(CId))
+            {
                 //Save Message to DB
                 var chatHistory = new ChatHistory()
                 {
@@ -42,9 +43,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 {
                     var state = await _stateProvider.GetAuthenticationStateAsync();
                     var user = state.User;
-                    var UserId = user.GetUserId();
+                    CurrentUserId = user.GetUserId();
+                    chatHistory.FromUserId = CurrentUserId;
                     var userName = $"{user.GetFirstName()} {user.GetLastName()}";
-                    await hubConnection.SendAsync("SendMessageAsync", chatHistory,userName);
+                    await hubConnection.SendAsync("SendMessageAsync", chatHistory, userName);
                     CurrentMessage = string.Empty;
                 }
                 else
@@ -55,7 +57,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                     }
                 }
 
-            }            
+            }
         }
         private async Task OnKeyPressInChat(KeyboardEventArgs e)
         {
@@ -65,17 +67,24 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             }
         }
         protected override async Task OnInitializedAsync()
-        {         
-           
+        {
+            
             hubConnection = new HubConnectionBuilder().WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
             .Build();
-            hubConnection.On<ChatHistory,string>("ReceiveMessage", (chatHistory, userName) =>
-            {
-                messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate});
-                StateHasChanged();
-            });
+            hubConnection.On<ChatHistory, string>("ReceiveMessage", (chatHistory, userName) =>
+             {
+                 if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
+                 {
+                     messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate });
+                     StateHasChanged();
+                 }
+
+             });
             await hubConnection.StartAsync();
             await GetUsersAsync();
+            var state = await _stateProvider.GetAuthenticationStateAsync();
+            var user = state.User;
+            CurrentUserId = user.GetUserId();
         }
         public List<ChatUserResponse> UserList = new List<ChatUserResponse>();
         [Parameter] public string CFullName { get; set; }
@@ -83,7 +92,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         [Parameter] public string CUserName { get; set; }
         async Task LoadUserChat(string userId)
         {
-            var response = await _userManager.GetAsync(userId);        
+            var response = await _userManager.GetAsync(userId);
             if (response.Succeeded)
             {
                 var contact = response.Data;
@@ -94,7 +103,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 //Load messages from db here
                 messages = new List<ChatHistoryResponse>();
                 var historyResponse = await _chatManager.GetChatHistoryAsync(CId);
-                if(historyResponse.Succeeded)
+                if (historyResponse.Succeeded)
                 {
                     messages = historyResponse.Data.ToList();
                 }
@@ -114,7 +123,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                     _snackBar.Add(localizer[message], Severity.Error);
                 }
             }
-            
+
         }
         private async Task GetUsersAsync()
         {
