@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Models.Chat;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 {
@@ -22,7 +23,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             _currentUserService = currentUserService;
             _dateTimeService = dateTimeService;
         }
-
+        public DbSet<ChatHistory> ChatHistories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
 
@@ -49,6 +50,20 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<ChatHistory>(entity =>
+            {
+                entity.ToTable("ChatHistory");
+
+                entity.HasOne(d => d.FromUser)
+                    .WithMany(p => p.ChatHistoryFromUsers)
+                    .HasForeignKey(d => d.FromUserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.ToUser)
+                    .WithMany(p => p.ChatHistoryToUsers)
+                    .HasForeignKey(d => d.ToUserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+            });
             builder.Entity<BlazorHeroUser>(entity =>
             {
                 entity.ToTable(name: "Users", "Identity");

@@ -58,7 +58,7 @@
                                 </div>
                                 <div>
                                     <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>
-                                    <MudText Typo="Typo.caption">@user.Email</MudText>
+                                    <MudText Typo="Typo.caption">@user.EmailAddress</MudText>
                                 </div>
                             </div>
                         </MudListItem>
@@ -69,29 +69,24 @@
     </MudHidden>
 </div>
 <MudDrawer @bind-Open="@open" Anchor="@ChatDrawer" Elevation="1" Variant="@DrawerVariant.Temporary">
-        <div class="pa-3">
-            <MudList Clickable="true">
-                @foreach (var user in UserList)
-                {
-                    <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.FirstName))">
-                        <div class="d-flex flex-row mt-n1 mb-n1">
-                            <div class="mr-4">
-                                <MudBadge Bottom="true" Dot="true" Overlap="true" Bordered="true" Class="my-2">
-                                    <MudAvatar Color="Color.Secondary">@user.FirstName.ToUpper().FirstOrDefault()</MudAvatar>
-                                </MudBadge>
-                            </div>
-                            <div>
-                                <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>
-                                <MudText Typo="Typo.caption">@user.Email</MudText>
-                            </div>
+    <div class="pa-3">
+        <MudList Clickable="true">
+            @foreach (var user in UserList)
+            {
+                <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.FirstName))">
+                    <div class="d-flex flex-row mt-n1 mb-n1">
+                        <div class="mr-4">
+                            <MudBadge Bottom="true" Dot="true" Overlap="true" Bordered="true" Class="my-2">
+                                <MudAvatar Color="Color.Secondary">@user.FirstName.ToUpper().FirstOrDefault()</MudAvatar>
+                            </MudBadge>
                         </div>
-                    </MudListItem>
-                }
-            </MudList>
-        </div>
-    </MudDrawer>
-
-@code
-{
-
-}
+                        <div>
+                            <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>
+                            <MudText Typo="Typo.caption">@user.EmailAddress</MudText>
+                        </div>
+                    </div>
+                </MudListItem>
+            }
+        </MudList>
+    </div>
+</MudDrawer>

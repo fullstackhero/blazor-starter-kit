@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using BlazorHero.CleanArchitecture.Infrastructure.Services;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
@@ -130,6 +131,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IChatService, ChatService>();
 
             services.AddTransient(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
             services.AddTransient<IProductRepository, ProductRepository>();

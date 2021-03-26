@@ -61,7 +61,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             await hubConnection.StartAsync();
             await GetUsersAsync();
         }
-        public List<UserResponse> UserList = new List<UserResponse>();
+        public List<ChatUserResponse> UserList = new List<ChatUserResponse>();
         [Parameter] public string CurrentlyChattingWith { get; set; }
         void LoadUserChat(string userName)
         {
@@ -72,7 +72,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         private async Task GetUsersAsync()
         {
             //add get chat history from chat controller / manager
-            var response = await _userManager.GetAllAsync();
+            var response = await _chatManager.GetChatUsersAsync();
             if (response.Succeeded)
             {
                 UserList = response.Data.ToList();

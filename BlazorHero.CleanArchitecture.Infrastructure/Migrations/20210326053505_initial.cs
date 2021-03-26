@@ -134,6 +134,36 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ChatHistory",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FromUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ToUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChatHistory", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ChatHistory_Users_FromUserId",
+                        column: x => x.FromUserId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ChatHistory_Users_ToUserId",
+                        column: x => x.ToUserId,
+                        principalSchema: "Identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserClaims",
                 schema: "Identity",
                 columns: table => new
@@ -228,6 +258,16 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ChatHistory_FromUserId",
+                table: "ChatHistory",
+                column: "FromUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChatHistory_ToUserId",
+                table: "ChatHistory",
+                column: "ToUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
                 table: "Products",
                 column: "BrandId");
@@ -281,6 +321,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ChatHistory");
+
             migrationBuilder.DropTable(
                 name: "Products");
 

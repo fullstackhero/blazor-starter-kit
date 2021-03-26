@@ -1,6 +1,8 @@
-﻿using BlazorHero.CleanArchitecture.Domain.Contracts;
+﻿using BlazorHero.CleanArchitecture.Application.Models.Chat;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
 using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorHero.CleanArchitecture.Application.Models.Identity
@@ -27,5 +29,12 @@ namespace BlazorHero.CleanArchitecture.Application.Models.Identity
         public bool IsActive { get; set; }
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
+        public virtual ICollection<ChatHistory> ChatHistoryFromUsers { get; set; }
+        public virtual ICollection<ChatHistory> ChatHistoryToUsers { get; set; }
+        public BlazorHeroUser()
+        {
+            ChatHistoryFromUsers = new HashSet<ChatHistory>();
+            ChatHistoryToUsers = new HashSet<ChatHistory>();
+        }
     }
 }
