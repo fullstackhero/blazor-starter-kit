@@ -13,6 +13,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communicat
     {
         Task<IResult<IEnumerable<ChatUserResponse>>> GetChatUsersAsync();
         Task<IResult> SaveMessageAsync(ChatHistory chatHistory);
-        Task<IResult<IEnumerable<ChatHistory>>> GetChatHistoryAsync(string cId);
+        Task<IResult<IEnumerable<ChatHistoryResponse>>> GetChatHistoryAsync(string cId);
     }
 }

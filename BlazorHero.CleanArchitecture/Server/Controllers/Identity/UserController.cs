@@ -27,7 +27,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             return Ok(users);
         }
 
-        [Authorize(Policy = Permissions.Users.View)]
+        //[Authorize(Policy = Permissions.Users.View)]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string id)
         {

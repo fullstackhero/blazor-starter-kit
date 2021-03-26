@@ -21,10 +21,10 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communicat
             _httpClient = httpClient;
         }
 
-        public async Task<IResult<IEnumerable<ChatHistory>>> GetChatHistoryAsync(string cId)
+        public async Task<IResult<IEnumerable<ChatHistoryResponse>>> GetChatHistoryAsync(string cId)
         {
             var response = await _httpClient.GetAsync(Routes.ChatEndpoint.GetChatHistory(cId));
-            var data = await response.ToResult<IEnumerable<ChatHistory>>();
+            var data = await response.ToResult<IEnumerable<ChatHistoryResponse>>();
             return data;
         }
 

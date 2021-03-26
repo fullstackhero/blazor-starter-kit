@@ -28,14 +28,28 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
             _userService = userService;
         }
 
-        public async Task<Result<IEnumerable<ChatHistory>>> GetChatHistoryAsync(string userId, string contactId)
+        public async Task<Result<IEnumerable<ChatHistoryResponse>>> GetChatHistoryAsync(string userId, string contactId)
         {
             var response = await _userService.GetAsync(userId);
-            if(response.Succeeded)
+            if (response.Succeeded)
             {
                 var user = response.Data;
-                var userMessagesWithContact = await _context.ChatHistories.Where(h=>h.FromUserId == userId || h.FromUserId == contactId || h.ToUserId == contactId || h.ToUserId ==userId).OrderBy(a=>a.CreatedDate).ToListAsync();
-                return Result<IEnumerable<ChatHistory>>.Success(userMessagesWithContact);
+                var query = await _context.ChatHistories
+                    .Where(h => h.FromUserId == userId || h.FromUserId == contactId || h.ToUserId == contactId || h.ToUserId == userId)
+                    .OrderBy(a => a.CreatedDate)
+                    .Include(a => a.FromUser)
+                    .Include(a => a.ToUser)
+                    .Select(x => new ChatHistoryResponse
+                    {
+                        FromUserId = x.FromUserId,
+                        FromUserFullName = $"{x.FromUser.FirstName} {x.FromUser.LastName}",
+                        Message = x.Message,
+                        CreatedDate = x.CreatedDate,
+                        Id = x.Id,
+                        ToUserId = x.ToUserId,
+                        ToUserFullName = $"{x.ToUser.FirstName} {x.ToUser.LastName}"
+                    }).ToListAsync();
+                return Result<IEnumerable<ChatHistoryResponse>>.Success(query);
             }
             else
             {
@@ -45,7 +59,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 
         public async Task<Result<IEnumerable<ChatUserResponse>>> GetChatUsersAsync(string userId)
         {
-            var allUsers = await _context.Users.Where(user=>user.Id != userId).ToListAsync();
+            var allUsers = await _context.Users.Where(user => user.Id != userId).ToListAsync();
             var chatUsers = _mapper.Map<IEnumerable<ChatUserResponse>>(allUsers);
             return Result<IEnumerable<ChatUserResponse>>.Success(chatUsers);
         }
@@ -64,7 +78,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 
                 throw;
             }
-            
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using BlazorHero.CleanArchitecture.Application.Models.Chat;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ namespace BlazorHero.CleanArchitecture.Server.Hubs
 {
     public class ChatHub : Hub
     {
-        public async Task SendMessageAsync(string user, string message)
+        public async Task SendMessageAsync(ChatHistory chatHistory, string userName)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            await Clients.All.SendAsync("ReceiveMessage", chatHistory, userName);
         }
     }
 }

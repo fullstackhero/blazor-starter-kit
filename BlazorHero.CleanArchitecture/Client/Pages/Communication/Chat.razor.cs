@@ -18,7 +18,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         private HubConnection hubConnection;
         [Parameter] public string CurrentMessage { get; set; }
         private bool isConnected => hubConnection.State == HubConnectionState.Connected;
-        private List<ChatHistory> messages = new List<ChatHistory>();
+        private List<ChatHistoryResponse> messages = new List<ChatHistoryResponse>();
         private class MessageRequest
         {
             public string userName { get; set; }
@@ -44,7 +44,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                     var user = state.User;
                     var UserId = user.GetUserId();
                     var userName = $"{user.GetFirstName()} {user.GetLastName()}";
-                    await hubConnection.SendAsync("SendMessageAsync", userName, CurrentMessage);
+                    await hubConnection.SendAsync("SendMessageAsync", chatHistory,userName);
                     CurrentMessage = string.Empty;
                 }
                 else
@@ -69,9 +69,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
            
             hubConnection = new HubConnectionBuilder().WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
             .Build();
-            hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+            hubConnection.On<ChatHistory,string>("ReceiveMessage", (chatHistory, userName) =>
             {
-                messages.Add(new ChatHistory { Message = message, FromUserId = user });
+                messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate});
                 StateHasChanged();
             });
             await hubConnection.StartAsync();
@@ -92,7 +92,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 CUserName = contact.UserName;
                 _navigationManager.NavigateTo($"chat/{CUserName}");
                 //Load messages from db here
-                messages = new List<ChatHistory>();
+                messages = new List<ChatHistoryResponse>();
                 var historyResponse = await _chatManager.GetChatHistoryAsync(CId);
                 if(historyResponse.Succeeded)
                 {

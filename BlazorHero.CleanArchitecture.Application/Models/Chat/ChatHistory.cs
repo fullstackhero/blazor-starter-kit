@@ -12,10 +12,7 @@ namespace BlazorHero.CleanArchitecture.Application.Models.Chat
         public string ToUserId { get; set; }
         public string Message { get; set; }
         public DateTime CreatedDate { get; set; }
-
-        [JsonIgnore]
         public virtual BlazorHeroUser FromUser { get; set; }
-        [JsonIgnore]
         public virtual BlazorHeroUser ToUser { get; set; }
     }
 }

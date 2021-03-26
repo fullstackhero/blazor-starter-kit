@@ -24,10 +24,11 @@
             {
                 <div class="d-flex flex-row my-4">
                     <div class="mr-4">
-                        <MudAvatar Color="Color.Secondary">@message.FromUserId.ToUpper().FirstOrDefault()</MudAvatar>
+                        <MudAvatar Color="Color.Secondary">@message.FromUserFullName.ToUpper().FirstOrDefault()</MudAvatar>
                     </div>
                     <div>
-                        <MudText Typo="Typo.body1">@message.FromUserId</MudText>
+                        <MudText Typo="Typo.body1">@message.FromUserFullName</MudText>
+                        <MudText Typo="Typo.caption">@message.CreatedDate</MudText>
                         <MudText Typo="Typo.body2">@message.Message</MudText>
                     </div>
                 </div>
