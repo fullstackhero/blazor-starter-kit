@@ -4,7 +4,7 @@
 
 - [ ] Breadcrumbs
 - [ ] Caching - Changes to Application & Infrastructure Layer
-- [ ] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
+- [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
 - [ ] Notifications System using SignalR
 - [ ] Charts
 - [ ] PDF Downloads
