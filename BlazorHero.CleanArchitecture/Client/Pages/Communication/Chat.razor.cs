@@ -15,7 +15,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
 {
     public partial class Chat
     {
-        [CascadingParameter] public Microsoft.AspNetCore.SignalR.Client.HubConnection hubConnection { get; set; }
+        [CascadingParameter] public HubConnection hubConnection { get; set; }
         [Parameter] public string CurrentMessage { get; set; }
         [Parameter] public string CurrentUserId { get; set; }
         [CascadingParameter] private bool IsConnected { get; set; }
@@ -68,11 +68,19 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         }
         protected override async Task OnInitializedAsync()
         {
+            if (hubConnection == null)
+            {
+                hubConnection = new HubConnectionBuilder()
+           .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
+           .Build();
+                await hubConnection.StartAsync();
+            }
             hubConnection.On<ChatHistory, string>("ReceiveMessage", (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
                      messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate });
+                     hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId);
                      StateHasChanged();
                  }
 

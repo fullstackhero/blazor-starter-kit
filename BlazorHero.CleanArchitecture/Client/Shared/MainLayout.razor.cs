@@ -9,6 +9,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 {
     public partial class MainLayout : IDisposable
     {
+        private string CurrentUserId { get; set; }
         private string FirstName { get; set; }
         private string SecondName { get; set; }
         private string Email { get; set; }
@@ -20,6 +21,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             if (user == null) return;
             if (user.Identity.IsAuthenticated)
             {
+                CurrentUserId = user.GetUserId();
                 this.FirstName = user.GetFirstName();
                 if (this.FirstName.Length > 0)
                 {
@@ -39,6 +41,13 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             hubConnection = new HubConnectionBuilder()
             .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
             .Build();
+            hubConnection.On<string, string>("ReceiveChatNotification", (message, userId) =>
+            {
+                if (CurrentUserId == userId)
+                {
+                    _snackBar.Add(message, Severity.Info, options => options.BackgroundBlurred = true);
+                }
+            });
             await hubConnection.StartAsync();
         }
         void Logout()
