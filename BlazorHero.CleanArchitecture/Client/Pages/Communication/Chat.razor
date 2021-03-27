@@ -28,16 +28,16 @@
                     </div>
                     <div>
                         <MudText Typo="Typo.body1">@message.FromUserFullName</MudText>
-                        <MudText Typo="Typo.caption">@message.CreatedDate</MudText>
-                        <MudText Typo="Typo.body2">@message.Message</MudText>
+                        <MudText Typo="Typo.caption" Style="font-size: xx-small!important;">@message.CreatedDate.ToString("dd MMM, yyyy hh:mm tt")</MudText>
+                        <MudText Typo="Typo.body2" Style=" padding: 15px;background-color: var(--mud-palette-background-grey);border-radius: 5px;margin-top:5px">@message.Message</MudText>
                     </div>
                 </div>
             }
         </div>
-        <MudPaper Elevation="25" Class="d-flex flex-row px-2 mx-4" Style="background-color: var(--mud-palette-background-grey);">
+        <MudPaper Elevation="25" Class="d-flex flex-row px-2 mx-4" Style="">
             <MudTextField T="string" Placeholder="Enter your message..." @onkeydown="OnKeyPressInChat" DisableUnderLine="true" Class="mt-n2 mx-4"
                           @bind-Value="CurrentMessage" For="@(()=> CurrentMessage)" />
-            <MudButton OnClick="SubmitAsync" StartIcon="@Icons.Material.Outlined.Send" ButtonType="ButtonType.Submit" Disabled="@(!isConnected)">@localizer["Send"]</MudButton>
+            <MudButton OnClick="SubmitAsync" StartIcon="@Icons.Material.Outlined.Send" Color="Color.Secondary" ButtonType="ButtonType.Submit" Disabled="@(!isConnected)">@localizer["Send"]</MudButton>
         </MudPaper>
     </MudPaper>
     <MudHidden Breakpoint="Breakpoint.SmAndDown">
@@ -59,7 +59,7 @@
                                 </div>
                                 <div>
                                     <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>
-                                    <MudText Typo="Typo.caption">@user.EmailAddress</MudText>
+                                    <MudText Typo="Typo.caption"  Style="font-size: xx-small!important;">@user.EmailAddress</MudText>
                                 </div>
                             </div>
                         </MudListItem>
@@ -83,7 +83,7 @@
                         </div>
                         <div>
                             <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>
-                            <MudText Typo="Typo.caption">@user.EmailAddress</MudText>
+                            <MudText Typo="Typo.caption"  Style="font-size: xx-small!important;">@user.EmailAddress</MudText>
                         </div>
                     </div>
                 </MudListItem>
