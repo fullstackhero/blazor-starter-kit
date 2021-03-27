@@ -8,11 +8,12 @@
     <NotAuthorized>
         <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center" Style="height: 100vh;">
             <MudPaper Elevation="25" Class="pa-8" Style="width:500px;">
-                @Body
+                <CascadingValue Value="hubConnection">
+                    @Body
+                </CascadingValue>
             </MudPaper>
         </MudContainer>
     </NotAuthorized>
-
     <Authorized>
         @(LoadDataAsync())
         <MudLayout>
@@ -80,7 +81,9 @@
                     <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
                 </MudToolBar>
                 <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
-                    @Body
+                    <CascadingValue Value="hubConnection">
+                        @Body
+                    </CascadingValue>
                 </MudContainer>
             </MudMainContent>
         </MudLayout>

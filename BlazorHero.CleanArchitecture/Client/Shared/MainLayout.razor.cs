@@ -1,5 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
+using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System;
 using System.Threading.Tasks;
@@ -34,6 +35,11 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         {
             _interceptor.RegisterEvent();
             currentTheme = await _preferenceManager.GetCurrentThemeAsync();
+
+            hubConnection = new HubConnectionBuilder()
+            .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
+            .Build();
+            await hubConnection.StartAsync();
         }
         void Logout()
         {
@@ -64,6 +70,14 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 currentTheme = BlazorHeroTheme.DarkTheme;
             }
         }
-        public void Dispose() => _interceptor.DisposeEvent();
+        public void Dispose()
+        {
+            _interceptor.DisposeEvent();
+            _ = hubConnection.DisposeAsync();
+        }
+
+        private HubConnection hubConnection;
+        public bool IsConnected =>
+        hubConnection.State == HubConnectionState.Connected;
     }
 }

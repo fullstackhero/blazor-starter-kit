@@ -15,10 +15,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
 {
     public partial class Chat
     {
-        private HubConnection hubConnection;
+        [CascadingParameter] public Microsoft.AspNetCore.SignalR.Client.HubConnection hubConnection { get; set; }
         [Parameter] public string CurrentMessage { get; set; }
         [Parameter] public string CurrentUserId { get; set; }
-        private bool isConnected => hubConnection.State == HubConnectionState.Connected;
+        [CascadingParameter] private bool IsConnected { get; set; }
         private List<ChatHistoryResponse> messages = new List<ChatHistoryResponse>();
         private class MessageRequest
         {
@@ -68,9 +68,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         }
         protected override async Task OnInitializedAsync()
         {
-            
-            hubConnection = new HubConnectionBuilder().WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
-            .Build();
             hubConnection.On<ChatHistory, string>("ReceiveMessage", (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
@@ -80,7 +77,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                  }
 
              });
-            await hubConnection.StartAsync();
             await GetUsersAsync();
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
