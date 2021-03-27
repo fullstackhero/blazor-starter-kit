@@ -28,10 +28,23 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
         }
 
         public void Initialize()
-        {     
+        {
+            AddCustomerPermissionClaims();
             AddAdministrator();
             AddBasicUser();
             _db.SaveChanges();
+        }
+
+        private void AddCustomerPermissionClaims()
+        {
+            Task.Run(async () =>
+            {
+                var adminRoleInDb = await _roleManager.FindByNameAsync(RoleConstant.AdministratorRole);
+                if (adminRoleInDb != null)
+                {
+                    await _roleManager.AddCustomPermissionClaim(adminRoleInDb, "Permissions.Communication.Chat");                    
+                }               
+            }).GetAwaiter().GetResult();
         }
 
         private void AddAdministrator()
@@ -69,6 +82,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                         await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Roles);
                         await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Products);
                         await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Brands);
+                       
                     }
                     _logger.LogInformation("Seeded User with Administrator Role.");
                 }

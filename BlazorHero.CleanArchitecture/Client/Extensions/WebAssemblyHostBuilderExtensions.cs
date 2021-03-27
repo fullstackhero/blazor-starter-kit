@@ -101,6 +101,8 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
             {
                 options.AddPolicy(permission, policy => policy.RequireClaim(ApplicationClaimTypes.Permission, permission));
             }
+            //Test
+            options.AddPolicy("Permissions.Communication.Chat", policy => policy.RequireClaim(ApplicationClaimTypes.Permission, "Permissions.Communication.Chat"));
         }
     }
 }
