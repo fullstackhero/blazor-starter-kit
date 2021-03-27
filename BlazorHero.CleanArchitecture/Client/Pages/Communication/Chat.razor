@@ -24,7 +24,15 @@
             {
                 <div class="d-flex flex-row my-4">
                     <div class="mr-4">
-                        <MudAvatar Color="Color.Secondary">@message.FromUserFullName.ToUpper().FirstOrDefault()</MudAvatar>
+                        @if (message.FromUserId == CId)
+                        {
+                            <MudAvatar Color="Color.Secondary">@message.FromUserFullName.ToUpper().FirstOrDefault()</MudAvatar>
+                        }
+                        else
+                        {
+                            <MudAvatar Color="Color.Primary">@message.FromUserFullName.ToUpper().FirstOrDefault()</MudAvatar>
+                        }
+
                     </div>
                     <div>
                         <MudText Typo="Typo.body1">@message.FromUserFullName</MudText>
@@ -50,16 +58,24 @@
                 <MudList Clickable="true">
                     @foreach (var user in UserList)
                     {
-                        <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
+                        <MudListItem  Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
                             <div class="d-flex flex-row mt-n1 mb-n1">
                                 <div class="mr-4">
                                     <MudBadge Bottom="true" Dot="true" Overlap="true" Bordered="true" Class="my-2">
-                                        <MudAvatar Color="Color.Secondary">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                        @if (user.Id == CId)
+                                        {
+                                            <MudAvatar Color="Color.Primary">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                        }
+                                        else
+                                        {
+                                            <MudAvatar Color="Color.Secondary">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                        }
+
                                     </MudBadge>
                                 </div>
                                 <div>
                                     <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>
-                                    <MudText Typo="Typo.caption"  Style="font-size: xx-small!important;">@user.EmailAddress</MudText>
+                                    <MudText Typo="Typo.caption" Style="font-size: xx-small!important;">@user.EmailAddress</MudText>
                                 </div>
                             </div>
                         </MudListItem>
@@ -83,7 +99,7 @@
                         </div>
                         <div>
                             <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>
-                            <MudText Typo="Typo.caption"  Style="font-size: xx-small!important;">@user.EmailAddress</MudText>
+                            <MudText Typo="Typo.caption" Style="font-size: xx-small!important;">@user.EmailAddress</MudText>
                         </div>
                     </div>
                 </MudListItem>
