@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
         protected override async Task OnInitializedAsync()
         {
             await LoadDataAsync();
+            hubConnection = new HubConnectionBuilder()
+            .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
+            .WithUrl(_navigationManager.ToAbsoluteUri("/realtimeHub"))
+            .Build();            
+            hubConnection.On("UpdateDashboard", async () =>
+            {
+                await LoadDataAsync();
+                StateHasChanged();
+            });
+            await hubConnection.StartAsync();
         }
 
         private async Task LoadDataAsync()
@@ -33,5 +44,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
                 RoleCount = data.Data.RoleCount;
             }
         }
+        [CascadingParameter] public HubConnection hubConnection { get; set; }
+        
     }
 }

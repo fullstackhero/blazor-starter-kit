@@ -1,4 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         protected override async Task OnInitializedAsync()
         {
             await GetBrandsAsync();
+            hubConnection = new HubConnectionBuilder()
+          .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
+          .WithUrl(_navigationManager.ToAbsoluteUri("/realtimeHub"))
+          .Build();
         }
         private async Task GetBrandsAsync()
         {
@@ -31,7 +37,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 }
             }
         }
-
+        [CascadingParameter] public HubConnection hubConnection { get; set; }
         private async Task Delete(int id)
         {
             string deleteContent = localizer["Delete Content"];
@@ -46,6 +52,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 if (response.Succeeded)
                 {
                     await Reset();
+                    await hubConnection.SendAsync("UpdateDashboardAsync");
                     _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
                 }
                 else

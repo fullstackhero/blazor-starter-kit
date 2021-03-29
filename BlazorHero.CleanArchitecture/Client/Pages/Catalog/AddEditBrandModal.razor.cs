@@ -1,5 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -29,6 +30,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         public string Description { get; set; }
 
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+        [CascadingParameter] public HubConnection hubConnection { get; set; }
         public void Cancel()
         {
             MudDialog.Cancel();
@@ -53,10 +55,19 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                         _snackBar.Add(localizer[message], Severity.Error);
                     }
                 }
+                await hubConnection.SendAsync("UpdateDashboardAsync");
             }
         }
 
-        protected override async Task OnInitializedAsync() => await LoadDataAsync();
+        protected override async Task OnInitializedAsync()
+        {
+            await LoadDataAsync();
+            hubConnection = new HubConnectionBuilder()
+            .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
+            .WithUrl(_navigationManager.ToAbsoluteUri("/realtimeHub"))
+            .Build();
+            await hubConnection.StartAsync();
+        }
 
         private async Task LoadDataAsync()
         {

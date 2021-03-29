@@ -15,8 +15,8 @@
         <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
             <MudIcon Icon="@Icons.Material.Filled.PanoramaPhotosphereSelect" Color="Color.Secondary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
             <div>
-                <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@localizer["Brands"]</MudText>
-                <MudText Typo="Typo.h5">@BrandCount</MudText>
+                <MudText Typo="Typo.subtitle1"  Class="mud-text-secondary mb-n1">@localizer["Brands"]</MudText>
+                <MudText @bind-Value="@BrandCount" Typo="Typo.h5">@BrandCount</MudText>
             </div>
         </MudPaper>
     </MudItem>

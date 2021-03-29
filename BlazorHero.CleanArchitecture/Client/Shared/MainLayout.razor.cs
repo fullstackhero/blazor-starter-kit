@@ -40,6 +40,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
             hubConnection = new HubConnectionBuilder()
             .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
+            .WithUrl(_navigationManager.ToAbsoluteUri("/realtimeHub"))
             .Build();
             hubConnection.On<string, string>("ReceiveChatNotification", (message, userId) =>
             {
@@ -82,7 +83,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         public void Dispose()
         {
             _interceptor.DisposeEvent();
-            _ = hubConnection.DisposeAsync();
+            //_ = hubConnection.DisposeAsync();
         }
 
         private HubConnection hubConnection;
