@@ -9,7 +9,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
 {
     public static class HubExtensions
     {
-        public static HubConnection TryConnect(this HubConnection hubConnection, NavigationManager navigationManager)
+        public static HubConnection TryInitialize(this HubConnection hubConnection, NavigationManager navigationManager)
         {
             if (hubConnection == null)
             {

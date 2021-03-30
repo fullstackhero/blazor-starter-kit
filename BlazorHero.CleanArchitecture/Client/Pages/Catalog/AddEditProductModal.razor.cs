@@ -1,7 +1,9 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
     public partial class AddEditProductModal 
     {
+        [CascadingParameter] public HubConnection hubConnection { get; set; }
         private bool success;
         private string[] errors = { };
         private MudForm form;
@@ -67,6 +70,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 if (response.Succeeded)
                 {
                     _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
+                    await hubConnection.SendAsync("UpdateDashboardAsync");
                     MudDialog.Close();
                 }
                 else
@@ -82,6 +86,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         protected override async Task OnInitializedAsync()
         {
             await LoadDataAsync();
+            hubConnection = hubConnection.TryInitialize(_navigationManager);
+            if (hubConnection.State == HubConnectionState.Disconnected)
+            {
+                await hubConnection.StartAsync();
+            }
         }
 
         private async Task LoadDataAsync()

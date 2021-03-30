@@ -37,13 +37,13 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         {
             _interceptor.RegisterEvent();
             currentTheme = await _preferenceManager.GetCurrentThemeAsync();
-            hubConnection = hubConnection.TryConnect(_navigationManager);
+            hubConnection = hubConnection.TryInitialize(_navigationManager);
             await hubConnection.StartAsync();
             hubConnection.On<string, string>("ReceiveChatNotification", (message, userId) =>
             {
                 if (CurrentUserId == userId)
                 {
-                    _snackBar.Add(message, Severity.Info,options=> { options. });
+                    _snackBar.Add(message, Severity.Info);
                 }
             });
         }

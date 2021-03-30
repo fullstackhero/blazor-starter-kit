@@ -18,7 +18,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         protected override async Task OnInitializedAsync()
         {
             await GetBrandsAsync();
-            hubConnection = hubConnection.TryConnect(_navigationManager);
+            hubConnection = hubConnection.TryInitialize(_navigationManager);
             if (hubConnection.State == HubConnectionState.Disconnected)
             {
                 await hubConnection.StartAsync();

@@ -1,5 +1,8 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
+using BlazorHero.CleanArchitecture.Client.Extensions;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
@@ -17,6 +20,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private int totalItems;
         private int currentPage;
         private string searchString = null;
+        [CascadingParameter] public HubConnection hubConnection { get; set; }
+        protected override async Task OnInitializedAsync()
+        {
+            hubConnection = hubConnection.TryInitialize(_navigationManager);
+            if (hubConnection.State == HubConnectionState.Disconnected)
+            {
+                await hubConnection.StartAsync();
+            }
+        }
         private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
         {
             await LoadData(state.Page, state.PageSize);
@@ -105,6 +117,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 if (response.Succeeded)
                 {
                     OnSearch("");
+                    await hubConnection.SendAsync("UpdateDashboardAsync");
                     _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
                 }
                 else

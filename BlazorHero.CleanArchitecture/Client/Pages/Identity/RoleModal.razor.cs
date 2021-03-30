@@ -1,5 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -26,6 +28,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             MudDialog.Cancel();
         }
+        [CascadingParameter] public HubConnection hubConnection { get; set; }
+        protected override async Task OnInitializedAsync()
+        {
+            hubConnection = hubConnection.TryInitialize(_navigationManager);
+            if (hubConnection.State == HubConnectionState.Disconnected)
+            {
+                await hubConnection.StartAsync();
+            }
+        }
         private async Task SaveAsync()
         {
             form.Validate();
@@ -36,6 +47,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 if (response.Succeeded)
                 {
                     _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
+                    await hubConnection.SendAsync("UpdateDashboardAsync");
                     MudDialog.Close();
                 }
                 else
