@@ -20,17 +20,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 
         protected override async Task OnInitializedAsync()
         {
-            await LoadDataAsync();
-            hubConnection = new HubConnectionBuilder()
-            .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
-            .WithUrl(_navigationManager.ToAbsoluteUri("/realtimeHub"))
-            .Build();            
+            await LoadDataAsync();        
+            if (hubConnection.State == HubConnectionState.Disconnected)
+            {
+                await hubConnection.StartAsync();
+            }
             hubConnection.On("UpdateDashboard", async () =>
             {
                 await LoadDataAsync();
                 StateHasChanged();
             });
-            await hubConnection.StartAsync();
+
         }
 
         private async Task LoadDataAsync()

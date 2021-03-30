@@ -68,11 +68,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         }
         protected override async Task OnInitializedAsync()
         {
-            if (hubConnection == null)
+            if (hubConnection.State == HubConnectionState.Disconnected)
             {
-                hubConnection = new HubConnectionBuilder()
-           .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
-           .Build();
                 await hubConnection.StartAsync();
             }
             hubConnection.On<ChatHistory, string>("ReceiveMessage", (chatHistory, userName) =>
