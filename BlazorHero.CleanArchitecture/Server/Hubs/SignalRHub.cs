@@ -21,5 +21,9 @@ namespace BlazorHero.CleanArchitecture.Server.Hubs
         {
             await Clients.All.SendAsync("UpdateDashboard");
         }
+        public async Task RegenerateTokensAsync()
+        {
+            await Clients.All.SendAsync("RegenerateTokens");
+        }
     }
 }

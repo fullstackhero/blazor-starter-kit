@@ -51,7 +51,7 @@
             }
         </div>
         <MudPaper Elevation="25" Class="d-flex flex-row px-2 mx-4" Style="">
-            <MudTextField T="string" Placeholder="Enter your message..." @onkeydown="OnKeyPressInChat" DisableUnderLine="true" Class="mt-n2 mx-4"
+            <MudTextField T="string" Placeholder="Enter your message..." @onkeypress="OnKeyPressInChat" DisableUnderLine="true" Class="mt-n2 mx-4"
                           @bind-Value="CurrentMessage" For="@(()=> CurrentMessage)" />
             <MudButton OnClick="SubmitAsync" StartIcon="@Icons.Material.Outlined.Send" Color="Color.Secondary" ButtonType="ButtonType.Submit">@localizer["Send"]</MudButton>
         </MudPaper>
