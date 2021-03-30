@@ -50,6 +50,8 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 
 # Upcoming Features For BlazorHero v2.0
 
+- [x] Play Notification Tone when a new Chat Message is received.
+- [x] Auto Scroll to Last Message when a new Chat Message is received.
 - [ ] Registration Page for Unauthorized User (Currently only Admins can register new users)
 - [x] Realtime Notifications - Dashboard Updates Realtime
 - [x] Logout Users / Regenerate Token from Multiple Client Browsers when Permission Changes

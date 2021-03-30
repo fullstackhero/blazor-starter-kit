@@ -5,16 +5,20 @@ using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.JSInterop;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
 {
     public partial class Chat
     {
+        [Inject]
+        IJSRuntime _jsRuntime { get; set; }
         [CascadingParameter] public HubConnection hubConnection { get; set; }
         [Parameter] public string CurrentMessage { get; set; }
         [Parameter] public string CurrentUserId { get; set; }
@@ -61,7 +65,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         }
         private async Task OnKeyPressInChat(KeyboardEventArgs e)
         {
-            if (e.Code == "Enter" || e.Code == "NumpadEnter")
+            if (e.Key == "Enter")
             {
                 await SubmitAsync();
             }
@@ -73,15 +77,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 await hubConnection.StartAsync();
             }            
-            hubConnection.On<ChatHistory, string>("ReceiveMessage", (chatHistory, userName) =>
+            hubConnection.On<ChatHistory, string>("ReceiveMessage", async (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
                      messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate });
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
-                         hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId);
-                     }                     
+                         await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId);
+                         await _jsRuntime.InvokeAsync<string>("PlayAudio", "notification");                        
+                     }
+                     await _jsRuntime.InvokeAsync<string>("ScrollToBottom", "chatContainer");
                      StateHasChanged();
                  }
 
