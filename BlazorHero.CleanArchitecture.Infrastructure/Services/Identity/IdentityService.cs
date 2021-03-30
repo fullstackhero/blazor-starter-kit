@@ -73,12 +73,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 return Result<TokenResponse>.Fail("Invalid Client Token.");
             }
             var userPrincipal = GetPrincipalFromExpiredToken(model.Token);
-            var userName = userPrincipal.Identity.Name;
-            var user = await _userManager.FindByNameAsync(userName);
-            if (user == null || user.RefreshToken != model.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
+            var userEmail = userPrincipal.FindFirstValue(ClaimTypes.Email);
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user == null)
+                return Result<TokenResponse>.Fail("User Not Found.");
+            if (user.RefreshToken != model.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
                 return Result<TokenResponse>.Fail("Invalid Client Token.");
             var token = GenerateEncryptedToken(GetSigningCredentials(), await GetClaimsAsync(user));
-
             user.RefreshToken = GenerateRefreshToken();
             await _userManager.UpdateAsync(user);
 

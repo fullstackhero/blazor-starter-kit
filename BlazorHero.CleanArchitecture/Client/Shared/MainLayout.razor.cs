@@ -3,6 +3,7 @@ using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Shared
@@ -44,6 +45,25 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 if (CurrentUserId == userId)
                 {
                     _snackBar.Add(message, Severity.Info);
+                }
+            });
+            hubConnection.On("RegenerateTokens", async () =>
+            {
+                try
+                {
+                    var token = await _authenticationManager.TryForceRefreshToken();                    
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        _snackBar.Add("Refreshed Token.", Severity.Success);
+                        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    _snackBar.Add("You are Logged Out.", Severity.Error);
+                    await _authenticationManager.Logout();
+                    _navigationManager.NavigateTo("/");
                 }
             });
         }

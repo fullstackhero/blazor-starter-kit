@@ -80,7 +80,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
 
             if (!result.Succeeded)
             {
-                throw new ApplicationException("Something went wrong during the refresh token action");
+                throw new ApplicationException($"Something went wrong during the refresh token action");
             }
 
             token = result.Data.Token;
@@ -102,6 +102,10 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
             if (diff.TotalMinutes <= 1)
                 return await RefreshToken();
             return string.Empty;
+        }
+        public async Task<string> TryForceRefreshToken()
+        {
+            return await RefreshToken();
         }
     }
 }
