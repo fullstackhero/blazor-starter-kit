@@ -52,6 +52,7 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 
 - [ ] Registration Page for Unauthorized User (Currently only Admins can register new users)
 - [x] Realtime Notifications - Dashboard Updates Realtime
+- [ ] Logout Users / Regenerate Token from Multiple Client Browsers when Permission Changes
 - [ ] Advanced Notifications - Notifications like Facebook
 - [ ] Caching - Changes to Application & Infrastructure Layer
 - [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)

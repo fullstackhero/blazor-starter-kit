@@ -22,8 +22,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
         {
             await LoadDataAsync();
             hubConnection = new HubConnectionBuilder()
-            .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
-            .WithUrl(_navigationManager.ToAbsoluteUri("/realtimeHub"))
+            .WithUrl(_navigationManager.ToAbsoluteUri("/signalRHub"))
+            .WithUrl(_navigationManager.ToAbsoluteUri("/signalRHub"))
             .Build();            
             hubConnection.On("UpdateDashboard", async () =>
             {

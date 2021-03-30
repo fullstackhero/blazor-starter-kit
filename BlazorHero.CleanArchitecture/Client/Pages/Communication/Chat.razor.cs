@@ -68,23 +68,24 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         }
         protected override async Task OnInitializedAsync()
         {
-            if (hubConnection == null)
+            hubConnection = hubConnection.TryConnect(_navigationManager);
+            if(hubConnection.State == HubConnectionState.Disconnected)
             {
-                hubConnection = new HubConnectionBuilder()
-           .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
-           .Build();
                 await hubConnection.StartAsync();
-            }
+            }            
             hubConnection.On<ChatHistory, string>("ReceiveMessage", (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
                      messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate });
-                     hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId);
+                     if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
+                     {
+                         hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId);
+                     }                     
                      StateHasChanged();
                  }
 
-             });
+             });           
             await GetUsersAsync();
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;

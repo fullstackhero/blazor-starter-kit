@@ -37,19 +37,15 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         {
             _interceptor.RegisterEvent();
             currentTheme = await _preferenceManager.GetCurrentThemeAsync();
-
-            hubConnection = new HubConnectionBuilder()
-            .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
-            .WithUrl(_navigationManager.ToAbsoluteUri("/realtimeHub"))
-            .Build();
+            hubConnection = hubConnection.TryConnect(_navigationManager);
+            await hubConnection.StartAsync();
             hubConnection.On<string, string>("ReceiveChatNotification", (message, userId) =>
             {
                 if (CurrentUserId == userId)
                 {
-                    _snackBar.Add(message, Severity.Info, options => options.BackgroundBlurred = true);
+                    _snackBar.Add(message, Severity.Info,options=> { options. });
                 }
             });
-            await hubConnection.StartAsync();
         }
         void Logout()
         {
@@ -87,7 +83,6 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         }
 
         private HubConnection hubConnection;
-        public bool IsConnected =>
-        hubConnection.State == HubConnectionState.Connected;
+        public bool IsConnected => hubConnection.State == HubConnectionState.Connected;
     }
 }

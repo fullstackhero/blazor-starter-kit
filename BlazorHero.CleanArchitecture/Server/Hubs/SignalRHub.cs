@@ -7,16 +7,19 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Server.Hubs
 {
-    public class ChatHub : Hub
+    public class SignalRHub : Hub
     {
         public async Task SendMessageAsync(ChatHistory chatHistory, string userName)
         {
             await Clients.All.SendAsync("ReceiveMessage", chatHistory, userName);
         }
-        // hubConnection.SendAsync("SendNotificationAsync", $"New Message From {userName}", Severity.Normal);
         public async Task ChatNotificationAsync(string message, string severity)
         {
             await Clients.All.SendAsync("ReceiveChatNotification", message, severity);
+        }
+        public async Task UpdateDashboardAsync()
+        {
+            await Clients.All.SendAsync("UpdateDashboard");
         }
     }
 }

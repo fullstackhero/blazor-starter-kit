@@ -1,4 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit;
+using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
@@ -62,11 +63,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         protected override async Task OnInitializedAsync()
         {
             await LoadDataAsync();
-            hubConnection = new HubConnectionBuilder()
-            .WithUrl(_navigationManager.ToAbsoluteUri("/chatHub"))
-            .WithUrl(_navigationManager.ToAbsoluteUri("/realtimeHub"))
-            .Build();
-            await hubConnection.StartAsync();
+            hubConnection = hubConnection.TryConnect(_navigationManager);
+            if (hubConnection.State == HubConnectionState.Disconnected)
+            {
+                await hubConnection.StartAsync();
+            }
         }
 
         private async Task LoadDataAsync()
