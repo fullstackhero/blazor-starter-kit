@@ -20,17 +20,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 
         protected override async Task OnInitializedAsync()
         {
-            await LoadDataAsync();        
-            if (hubConnection.State == HubConnectionState.Disconnected)
-            {
-                await hubConnection.StartAsync();
-            }
+            await LoadDataAsync();
+            hubConnection = new HubConnectionBuilder()
+            .WithUrl(_navigationManager.ToAbsoluteUri("/signalRHub"))
+            .WithUrl(_navigationManager.ToAbsoluteUri("/signalRHub"))
+            .Build();            
             hubConnection.On("UpdateDashboard", async () =>
             {
                 await LoadDataAsync();
                 StateHasChanged();
             });
-
+            await hubConnection.StartAsync();
         }
 
         private async Task LoadDataAsync()

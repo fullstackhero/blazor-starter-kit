@@ -39,8 +39,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
-                endpoints.MapHub<ChatHub>("/chatHub");
-                endpoints.MapHub<RealtimeHub>("/realtimeHub");
+                endpoints.MapHub<SignalRHub>("/signalRHub");
             });
 
         public static IApplicationBuilder Initialize(this IApplicationBuilder app, Microsoft.Extensions.Configuration.IConfiguration _configuration)

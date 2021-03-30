@@ -1,4 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+using BlazorHero.CleanArchitecture.Client.Extensions;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
@@ -13,9 +16,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private RoleResponse role = new RoleResponse();
         private string searchString = "";
 
+        [CascadingParameter] public HubConnection hubConnection { get; set; }
         protected override async Task OnInitializedAsync()
         {
             await GetRolesAsync();
+            hubConnection = hubConnection.TryInitialize(_navigationManager);
+            if (hubConnection.State == HubConnectionState.Disconnected)
+            {
+                await hubConnection.StartAsync();
+            }
         }
         private async Task GetRolesAsync()
         {
@@ -47,6 +56,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 if (response.Succeeded)
                 {
                     await Reset();
+                    await hubConnection.SendAsync("UpdateDashboardAsync");
                     _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
                 }
                 else
