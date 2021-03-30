@@ -32,18 +32,9 @@
                         {
                             <MudAvatar Color="Color.Primary">@message.FromUserFullName.ToUpper().FirstOrDefault()</MudAvatar>
                         }
-
                     </div>
                     <div>
-                        @if (message.FromUserId == CId)
-                        {
-                            <MudText Typo="Typo.body1">@message.FromUserFullName</MudText>
-                        }
-                        else
-                        {
-                            <MudText Typo="Typo.body1">you</MudText>
-                        }
-
+                        <MudText Typo="Typo.body1">@message.FromUserFullName</MudText>
                         <MudText Typo="Typo.caption" Style="font-size: xx-small!important;">@message.CreatedDate.ToString("dd MMM, yyyy hh:mm tt")</MudText>
                         <MudText Typo="Typo.body2" Style=" padding: 15px;background-color: var(--mud-palette-background-grey);border-radius: 5px;margin-top:5px">@message.Message</MudText>
                     </div>
