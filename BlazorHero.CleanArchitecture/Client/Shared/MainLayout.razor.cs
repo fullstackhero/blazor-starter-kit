@@ -45,12 +45,24 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             currentTheme = await _preferenceManager.GetCurrentThemeAsync();
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             await hubConnection.StartAsync();
-            hubConnection.On<string, string>("ReceiveChatNotification", (message, userId) =>
+            hubConnection.On<string, string, string>("ReceiveChatNotification", (message, receiverUserId, senderUserId) =>
             {
-                if (CurrentUserId == userId)
+                if (CurrentUserId == receiverUserId)
                 {
                     _jsRuntime.InvokeAsync<string>("PlayAudio", "notification");
-                    _snackBar.Add(message, Severity.Info);
+                    _snackBar.Add(message, Severity.Info, config =>
+                    {
+                        config.VisibleStateDuration = 10000;
+                        config.HideTransitionDuration = 500;
+                        config.ShowTransitionDuration = 500;
+                        config.Action = "Chat?";
+                        config.ActionColor = Color.Primary;
+                        config.Onclick = snackbar =>
+                        {
+                            _navigationManager.NavigateTo($"chat/{senderUserId}");
+                            return Task.CompletedTask;
+                        };
+                    });
                     
                 }
             });

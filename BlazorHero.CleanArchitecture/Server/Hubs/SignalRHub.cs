@@ -13,9 +13,9 @@ namespace BlazorHero.CleanArchitecture.Server.Hubs
         {
             await Clients.All.SendAsync("ReceiveMessage", chatHistory, userName);
         }
-        public async Task ChatNotificationAsync(string message, string severity)
+        public async Task ChatNotificationAsync(string message, string receiverUserId, string senderUserId)
         {
-            await Clients.All.SendAsync("ReceiveChatNotification", message, severity);
+            await Clients.All.SendAsync("ReceiveChatNotification", message, receiverUserId, senderUserId);
         }
         public async Task UpdateDashboardAsync()
         {

@@ -90,7 +90,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
                          
-                         await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId);                                             
+                         await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId, CurrentUserId);                                             
                      }
                      await _jsRuntime.InvokeAsync<string>("ScrollToBottom", "chatContainer");
                      StateHasChanged();
@@ -101,6 +101,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             CurrentUserId = user.GetUserId();
+            if(!string.IsNullOrEmpty(CId))
+            {
+                await LoadUserChat(CId);
+            }
         }
         public List<ChatUserResponse> UserList = new List<ChatUserResponse>();
         [Parameter] public string CFullName { get; set; }
@@ -116,7 +120,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 CId = contact.Id;
                 CFullName = $"{contact.FirstName} {contact.LastName}";
                 CUserName = contact.UserName;
-                _navigationManager.NavigateTo($"chat/{CUserName}");
+                _navigationManager.NavigateTo($"chat/{CId}");
                 //Load messages from db here
                 messages = new List<ChatHistoryResponse>();
                 var historyResponse = await _chatManager.GetChatHistoryAsync(CId);
