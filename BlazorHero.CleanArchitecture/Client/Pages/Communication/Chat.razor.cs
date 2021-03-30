@@ -10,6 +10,7 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -30,6 +31,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             public string message { get; set; }
         }
         MessageRequest model = new MessageRequest();
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await _jsRuntime.InvokeAsync<string>("ScrollToBottom", "chatContainer");
+        }
         private async Task SubmitAsync()
         {
             if (!string.IsNullOrEmpty(CurrentMessage) && !string.IsNullOrEmpty(CId))
@@ -84,8 +89,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                      messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate });
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
-                         await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId);
-                         await _jsRuntime.InvokeAsync<string>("PlayAudio", "notification");                        
+                         
+                         await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId);                                             
                      }
                      await _jsRuntime.InvokeAsync<string>("ScrollToBottom", "chatContainer");
                      StateHasChanged();
@@ -103,6 +108,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         [Parameter] public string CUserName { get; set; }
         async Task LoadUserChat(string userId)
         {
+            open = false;
             var response = await _userManager.GetAsync(userId);
             if (response.Succeeded)
             {
@@ -117,6 +123,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 if (historyResponse.Succeeded)
                 {
                     messages = historyResponse.Data.ToList();
+                   
                 }
                 else
                 {
@@ -125,7 +132,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                         _snackBar.Add(localizer[message], Severity.Error);
                     }
                 }
-
+                
             }
             else
             {
@@ -134,7 +141,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                     _snackBar.Add(localizer[message], Severity.Error);
                 }
             }
-
         }
         private async Task GetUsersAsync()
         {

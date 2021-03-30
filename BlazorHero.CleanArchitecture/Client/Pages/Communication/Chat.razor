@@ -1,14 +1,13 @@
 ﻿@page "/chat/{CUserName}"
 @page "/chat"
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Chat> localizer
-<div class="d-flex flex-grow-1 flex-row">
-    <audio id="notification" src="/media/notification.mp3" />
+<div class="d-flex flex-grow-1 flex-row">    
     <MudPaper Elevation="25" Class="py-4 flex-grow-1">
-        <MudToolBar Dense="false">
+        <MudToolBar Dense="true">
             <MudIcon Icon="@Icons.Material.Outlined.Person" Style="margin-right:10px">  </MudIcon>
             @if (string.IsNullOrEmpty(CFullName))
             {
-                <MudText Typo="Typo.h6">chat - coming soon!</MudText>
+                <MudText Typo="Typo.h6">chat</MudText>
             }
             else
             {
@@ -51,10 +50,10 @@
     <MudHidden Breakpoint="Breakpoint.SmAndDown">
         <MudPaper Elevation="25" Class="pa-3 ml-6" MinWidth="350px">
             <MudToolBar Dense="true">
-                <MudIcon Icon="@Icons.Material.Filled.Contacts" Style="margin-right:10px">  </MudIcon>
+                <MudText Typo="Typo.h6" Inline="true" Class="mr-2">#</MudText>
                 <MudText Typo="Typo.h6">contacts</MudText>
             </MudToolBar>
-            <div class="d-flex flex-column px-4" style="max-height:70vh;min-height:70vh; overflow:scroll;" id="chatContainer">
+            <div class="d-flex flex-column px-4" style="max-height:70vh;min-height:70vh; overflow:scroll;">
                 <MudList Clickable="true">
                     @foreach (var user in UserList)
                     {
@@ -93,17 +92,14 @@
                 <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
                     <div class="d-flex flex-row mt-n1 mb-n1">
                         <div class="mr-4">
-                            <MudBadge Overlap="true" Bordered="true" Class="my-2">
-                                @if (user.Id == CId)
-                                {
-                                    <MudAvatar Color="Color.Secondary">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
-                                }
-                                else
-                                {
-                                    <MudAvatar Color="Color.Dark">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
-                                }
-
-                            </MudBadge>
+                            @if (user.Id == CId)
+                            {
+                                <MudAvatar Color="Color.Secondary">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                            }
+                            else
+                            {
+                                <MudAvatar Color="Color.Dark">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                            }
                         </div>
                         <div>
                             <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>

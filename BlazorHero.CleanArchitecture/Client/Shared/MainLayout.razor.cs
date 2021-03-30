@@ -1,6 +1,8 @@
 ﻿using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.JSInterop;
 using MudBlazor;
 using System;
 using System.Net.Http.Headers;
@@ -10,6 +12,9 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 {
     public partial class MainLayout : IDisposable
     {
+
+        [Inject]
+        IJSRuntime _jsRuntime { get; set; }
         private string CurrentUserId { get; set; }
         private string FirstName { get; set; }
         private string SecondName { get; set; }
@@ -44,7 +49,9 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             {
                 if (CurrentUserId == userId)
                 {
+                    _jsRuntime.InvokeAsync<string>("PlayAudio", "notification");
                     _snackBar.Add(message, Severity.Info);
+                    
                 }
             });
             hubConnection.On("RegenerateTokens", async () =>
