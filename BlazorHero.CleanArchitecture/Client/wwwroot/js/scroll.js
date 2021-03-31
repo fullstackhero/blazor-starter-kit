@@ -1,4 +1,4 @@
 ﻿window.ScrollToBottom = (elementName) => {
-    scrollingElement = document.getElementById(elementName);
-    scrollingElement.scrollTop = scrollingElement.scrollHeight;
+    element = document.getElementById(elementName);
+    element.scrollTop = element.scrollHeight - element.clientHeight;
 }
