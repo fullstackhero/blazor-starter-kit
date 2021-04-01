@@ -57,13 +57,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             {
                 return Result<TokenResponse>.Fail("Invalid Credentials.");
             }
-
+           
             user.RefreshToken = GenerateRefreshToken();
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
             await _userManager.UpdateAsync(user);
 
             var token = await GenerateJwtAsync(user);
-            var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken };
+            var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken, UserImageURL = user.ProfilePictureDataUrl };
             return Result<TokenResponse>.Success(response);
         }
         public async Task<Result<TokenResponse>> GetRefreshTokenAsync(RefreshTokenRequest model)

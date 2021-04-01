@@ -23,6 +23,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         [CascadingParameter] public HubConnection hubConnection { get; set; }
         [Parameter] public string CurrentMessage { get; set; }
         [Parameter] public string CurrentUserId { get; set; }
+        [Parameter] public string CurrentUserImageURL { get; set; }
         [CascadingParameter] private bool IsConnected { get; set; }
         private List<ChatHistoryResponse> messages = new List<ChatHistoryResponse>();
         private class MessageRequest
@@ -86,10 +87,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
-                     messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate });
+                     messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
-                     {
-                         
+                     {                         
                          await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId, CurrentUserId);                                             
                      }
                      await _jsRuntime.InvokeAsync<string>("ScrollToBottom", "chatContainer");
@@ -101,7 +101,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             CurrentUserId = user.GetUserId();
-            if(!string.IsNullOrEmpty(CId))
+            CurrentUserImageURL = await _localStorage.GetItemAsync<string>("userImageURL");
+            if (!string.IsNullOrEmpty(CId))
             {
                 await LoadUserChat(CId);
             }

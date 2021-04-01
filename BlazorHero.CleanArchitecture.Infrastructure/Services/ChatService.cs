@@ -47,7 +47,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
                         CreatedDate = x.CreatedDate,
                         Id = x.Id,
                         ToUserId = x.ToUserId,
-                        ToUserFullName = $"{x.ToUser.FirstName} {x.ToUser.LastName}"
+                        ToUserFullName = $"{x.ToUser.FirstName} {x.ToUser.LastName}",
+                        ToUserImageURL = x.ToUser.ProfilePictureDataUrl,
+                        FromUserImageURL = x.FromUser.ProfilePictureDataUrl
                     }).ToListAsync();
                 return Result<IEnumerable<ChatHistoryResponse>>.Success(query);
             }
@@ -66,19 +68,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 
         public async Task<IResult> SaveMessageAsync(ChatHistory message)
         {
-            try
-            {
-                message.ToUser = await _context.Users.Where(user => user.Id == message.ToUserId).FirstOrDefaultAsync();
-                await _context.ChatHistories.AddAsync(message);
-                await _context.SaveChangesAsync();
-                return Result.Success();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
+            message.ToUser = await _context.Users.Where(user => user.Id == message.ToUserId).FirstOrDefaultAsync();
+            await _context.ChatHistories.AddAsync(message);
+            await _context.SaveChangesAsync();
+            return Result.Success();
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
@@ -69,12 +70,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             file = e.File;
             if (file != null)
             {
+                var extension = Path.GetExtension(file.Name);
+                var fileName = $"{UserId}-{Guid.NewGuid()}{extension}";
+                
                 var format = "image/png";
-                var imageFile = await e.File.RequestImageFileAsync(format, 250, 250);
+                var imageFile = await e.File.RequestImageFileAsync(format,400,400);
                 var buffer = new byte[imageFile.Size];
                 await imageFile.OpenReadStream().ReadAsync(buffer);
-                ImageDataUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-                var request = new UpdateProfilePictureRequest() { ProfilePictureDataUrl = ImageDataUrl };
+                var request = new UpdateProfilePictureRequest() { Data = buffer, FileName = fileName, UploadType = Application.Enums.UploadType.ProfilePicture };
                 var result = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (result.Succeeded)
                 {
@@ -87,6 +90,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                         _snackBar.Add(localizer[error], Severity.Error);
                     }
                 }
+
             }
         }
 
@@ -99,7 +103,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                var request = new UpdateProfilePictureRequest() { ProfilePictureDataUrl = string.Empty };
+                var request = new UpdateProfilePictureRequest() { Data = null, FileName = string.Empty, UploadType = Application.Enums.UploadType.ProfilePicture };
                 var data = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (data.Succeeded)
                 {

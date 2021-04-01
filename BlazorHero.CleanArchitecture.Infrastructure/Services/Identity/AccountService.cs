@@ -5,6 +5,7 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
@@ -12,11 +13,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
     {
         private readonly UserManager<BlazorHeroUser> _userManager;
         private readonly SignInManager<BlazorHeroUser> _signInManager;
+        private readonly IUploadService _uploadService;
 
-        public AccountService(UserManager<BlazorHeroUser> userManager, SignInManager<BlazorHeroUser> signInManager)
+        public AccountService(UserManager<BlazorHeroUser> userManager, SignInManager<BlazorHeroUser> signInManager, IUploadService uploadService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _uploadService = uploadService;
         }
 
         public async Task<IResult> ChangePasswordAsync(ChangePasswordRequest model, string userId)
@@ -67,7 +70,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null) return Result.Fail("User Not Found");
-            user.ProfilePictureDataUrl = request.ProfilePictureDataUrl;
+            var filePath = _uploadService.UploadAsync(request);
+            user.ProfilePictureDataUrl = filePath;
             var identityResult = await _userManager.UpdateAsync(user);
             var errors = identityResult.Errors.Select(e => e.Description).ToList();
             return identityResult.Succeeded ? Result.Success() : Result.Fail(errors);
