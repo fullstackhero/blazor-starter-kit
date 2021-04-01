@@ -93,6 +93,9 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
 
         public async Task<string> TryRefreshToken()
         {
+            //check if token exists
+            var availableToken = await _localStorage.GetItemAsync<string>("refreshToken");
+            if (string.IsNullOrEmpty(availableToken)) return string.Empty;
             var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
             var user = authState.User;
             var exp = user.FindFirst(c => c.Type.Equals("exp")).Value;

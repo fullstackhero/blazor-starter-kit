@@ -10,6 +10,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class RegisterUserModal
     {
+        private bool success;
+        private string[] errors = { };
+        private MudForm form;
         private RegisterUserModel Model { get; set; } = new RegisterUserModel();
 
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
@@ -19,30 +22,41 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             MudDialog.Cancel();
         }
 
-        private async Task OnValidSubmit()
+        private async Task SubmitAsync()
         {
-            var request = new RegisterRequest()
+            form.Validate();
+            if (form.IsValid)
             {
-                Email = Model.Email,
-                UserName = Model.UserName,
-                FirstName = Model.FirstName,
-                LastName = Model.LastName,
-                Password = Model.Password,
-                ConfirmPassword = Model.ConfirmPassword,
-                PhoneNumber = Model.PhoneNumber,
-                ActivateUser = Model.ActivateUser,
-                AutoConfirmEmail = Model.AutoConfirmEmail
-            };
+                var request = new RegisterRequest()
+                {
+                    Email = Model.Email,
+                    UserName = Model.UserName,
+                    FirstName = Model.FirstName,
+                    LastName = Model.LastName,
+                    Password = Model.Password,
+                    ConfirmPassword = Model.ConfirmPassword,
+                    PhoneNumber = Model.PhoneNumber,
+                    ActivateUser = Model.ActivateUser,
+                    AutoConfirmEmail = Model.AutoConfirmEmail
+                };
 
-            var response = await _userManager.RegisterUserAsync(request);
-            if (response.Succeeded)
-            {
-                _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
-                MudDialog.Close();
+                var response = await _userManager.RegisterUserAsync(request);
+                if (response.Succeeded)
+                {
+                    _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
+                    MudDialog.Close();
+                }
+                else
+                {
+                    foreach (var message in response.Messages)
+                    {
+                        _snackBar.Add(localizer[message], Severity.Error);
+                    }
+                }
             }
             else
             {
-                foreach (var message in response.Messages)
+                foreach (var message in form.Errors)
                 {
                     _snackBar.Add(localizer[message], Severity.Error);
                 }

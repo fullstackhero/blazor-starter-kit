@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -11,11 +10,42 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 {
     public partial class Register
     {
+        private bool success;
+        private string[] errors = { };
+        private MudForm form;
         private async Task SubmitAsync()
         {
-            //return Task.CompletedTask;
+            form.Validate();
+            if (form.IsValid)
+            {
+                var request = new RegisterRequest()
+                {
+                    Email = model.Email,
+                    UserName = model.UserName,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Password = model.Password,
+                    ConfirmPassword = model.ConfirmPassword,
+                    ActivateUser = true,
+                    AutoConfirmEmail = false
+                };
+                var response = await _userManager.RegisterUserAsync(request);
+                if (response.Succeeded)
+                {
+                    _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
+                    _navigationManager.NavigateTo("/login");
+                    model = new RegisterUsermodel();
+                }
+            }
+            else
+            {
+                foreach (var message in form.Errors)
+                {
+                    _snackBar.Add(localizer[message], Severity.Error);
+                }
+            }
         }
-        private RegisterUserModel model { get; set; } = new RegisterUserModel();
+        private RegisterUsermodel model { get; set; } = new RegisterUsermodel();
         private IEnumerable<string> PasswordStrength(string pw)
         {
             if (string.IsNullOrWhiteSpace(pw))
@@ -63,7 +93,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             }
         }
 
-        private class RegisterUserModel
+        private class RegisterUsermodel
         {
             [Parameter] [Required] [MinLength(6)] public string UserName { get; set; }
 
@@ -76,8 +106,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             [Parameter] [Required] public string Password { get; set; }
 
             [Parameter] [Required] public string ConfirmPassword { get; set; }
-
-            [Parameter] public string PhoneNumber { get; set; }
         }
     }
 }

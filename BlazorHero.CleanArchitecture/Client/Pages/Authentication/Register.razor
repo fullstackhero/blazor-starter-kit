@@ -2,14 +2,13 @@
 @layout MainLayout
 @attribute [AllowAnonymous]
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Register> localizer
-<EditForm Model="@model" OnValidSubmit="SubmitAsync">
+<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
     <MudGrid>
         <MudItem xs="12">
             <div class="d-flex justify-center">
                 <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width:100px; height:100px;" />
             </div>
         </MudItem>
-        <DataAnnotationsValidator />
         <MudItem xs="12">
             <div class="d-flex justify-center">
                 <MudText Typo="Typo.h4">@localizer["Register"]</MudText>
@@ -41,7 +40,7 @@
 
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-center">
-            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">@localizer["Register"]</MudButton>
+            <MudButton ButtonType="ButtonType.Button" OnClick="SubmitAsync" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">@localizer["Register"]</MudButton>
         </MudItem>
     </MudGrid>
-</EditForm>
+</MudForm>
