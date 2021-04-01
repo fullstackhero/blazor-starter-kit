@@ -56,6 +56,7 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 - [x] Realtime Notifications - Dashboard Updates Realtime
 - [x] Logout Users / Regenerate Token from Multiple Client Browsers when Permission Changes
 - [x] FIX: Token Issue Fixed from v1.0.1
+- [x] User Images in Chat Component
 - [ ] Advanced Notifications - Notifications like Facebook
 - [ ] Caching - Changes to Application & Infrastructure Layer
 - [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
@@ -67,7 +68,7 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 - [ ] Import / Export to Excel
 - [ ] Audit Trails
 - [ ] SEO
-- [ ] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
+- [x] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
 - [x] FIX: Code Cleanup.
 - [x] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
 - [x] FIX: Remove AutoMigrations - Causes SQL Exceptions at times.

@@ -87,10 +87,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
-                     messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
+                    
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
-                     {                         
+                     {
+                         messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
                          await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId, CurrentUserId);                                             
+                     }
+                     else if ((CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
+                     {
+                         messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CImageURL });
                      }
                      await _jsRuntime.InvokeAsync<string>("ScrollToBottom", "chatContainer");
                      StateHasChanged();
@@ -111,6 +116,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         [Parameter] public string CFullName { get; set; }
         [Parameter] public string CId { get; set; }
         [Parameter] public string CUserName { get; set; }
+        [Parameter] public string CImageURL { get; set; }
         async Task LoadUserChat(string userId)
         {
             open = false;
@@ -121,6 +127,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 CId = contact.Id;
                 CFullName = $"{contact.FirstName} {contact.LastName}";
                 CUserName = contact.UserName;
+                CImageURL = contact.ProfilePictureDataUrl;
                 _navigationManager.NavigateTo($"chat/{CId}");
                 //Load messages from db here
                 messages = new List<ChatHistoryResponse>();
