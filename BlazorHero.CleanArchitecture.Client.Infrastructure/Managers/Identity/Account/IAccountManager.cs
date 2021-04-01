@@ -12,6 +12,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
 
         Task<IResult<string>> GetProfilePictureAsync(string userId);
 
-        Task<IResult> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId);
+        Task<IResult<string>> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId);
     }
 }

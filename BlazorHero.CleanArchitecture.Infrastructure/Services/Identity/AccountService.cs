@@ -66,15 +66,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             return Result<string>.Success(data: user.ProfilePictureDataUrl);
         }
 
-        public async Task<IResult> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId)
+        public async Task<IResult<string>> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return Result.Fail("User Not Found");
+            if (user == null) return Result<string>.Fail(message:"User Not Found");
             var filePath = _uploadService.UploadAsync(request);
             user.ProfilePictureDataUrl = filePath;
             var identityResult = await _userManager.UpdateAsync(user);
             var errors = identityResult.Errors.Select(e => e.Description).ToList();
-            return identityResult.Succeeded ? Result.Success() : Result.Fail(errors);
+            return identityResult.Succeeded ? Result<string>.Success(data: filePath) : Result<string>.Fail(errors);
         }
     }
 }

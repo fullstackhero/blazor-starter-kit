@@ -71,8 +71,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if (file != null)
             {
                 var extension = Path.GetExtension(file.Name);
-                var fileName = $"{UserId}-{Guid.NewGuid()}{extension}";
-                
+                var fileName = $"{UserId}-{Guid.NewGuid()}{extension}";                
                 var format = "image/png";
                 var imageFile = await e.File.RequestImageFileAsync(format,400,400);
                 var buffer = new byte[imageFile.Size];
@@ -81,6 +80,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var result = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (result.Succeeded)
                 {
+                    await _localStorage.SetItemAsync("userImageURL", result.Data);
                     _navigationManager.NavigateTo("/account", true);
                 }
                 else
@@ -107,6 +107,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var data = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (data.Succeeded)
                 {
+                    await _localStorage.RemoveItemAsync("userImageURL");
                     ImageDataUrl = string.Empty;
                     _navigationManager.NavigateTo("/account", true);
                 }
