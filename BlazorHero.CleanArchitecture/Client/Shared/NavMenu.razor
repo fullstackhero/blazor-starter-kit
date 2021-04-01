@@ -22,6 +22,9 @@
     <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.SupervisorAccount">
         @localizer["Account"]
     </MudNavLink>
+    <MudNavLink Href="/document-store" Icon="@Icons.Material.Outlined.AttachFile">
+        @localizer["Document Store"]
+    </MudNavLink>
     @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Roles.View).Result.Succeeded || _authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Users.View).Result.Succeeded)
     {
         <MudListSubheader Class="mt-2 mb-n2">
