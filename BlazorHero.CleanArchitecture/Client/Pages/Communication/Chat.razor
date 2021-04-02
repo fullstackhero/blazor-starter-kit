@@ -1,6 +1,7 @@
 ﻿@page "/chat/{CId}"
 @page "/chat"
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Chat> localizer
+
 <div class="d-flex flex-grow-1 flex-row">
     <MudPaper Elevation="25" Class="py-4 flex-grow-1">
         <MudToolBar Dense="true">
@@ -126,3 +127,4 @@
         </MudList>
     </div>
 </MudDrawer>
+<MudAlert Style="margin-top:10px;margin-bottom:20px" Severity="Severity.Success">Want to understand how Chat is implemented in BlazorHero ? Refer this <MudLink Href="https://codewithmukesh.com/blog/realtime-chat-application-with-blazor">detailed guide for more.</MudLink></MudAlert>

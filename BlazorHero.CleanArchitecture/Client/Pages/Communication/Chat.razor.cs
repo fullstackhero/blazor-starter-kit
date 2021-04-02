@@ -79,19 +79,19 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         protected override async Task OnInitializedAsync()
         {
             hubConnection = hubConnection.TryInitialize(_navigationManager);
-            if(hubConnection.State == HubConnectionState.Disconnected)
+            if (hubConnection.State == HubConnectionState.Disconnected)
             {
                 await hubConnection.StartAsync();
-            }            
+            }
             hubConnection.On<ChatHistory, string>("ReceiveMessage", async (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
-                    
+
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
                          messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
-                         await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId, CurrentUserId);                                             
+                         await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId, CurrentUserId);
                      }
                      else if ((CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                      {
@@ -101,7 +101,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                      StateHasChanged();
                  }
 
-             });           
+             });
             await GetUsersAsync();
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
@@ -135,7 +135,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 if (historyResponse.Succeeded)
                 {
                     messages = historyResponse.Data.ToList();
-                   
+
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                         _snackBar.Add(localizer[message], Severity.Error);
                     }
                 }
-                
+
             }
             else
             {
