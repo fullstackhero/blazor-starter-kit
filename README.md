@@ -57,17 +57,17 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 - [x] Logout Users / Regenerate Token from Multiple Client Browsers when Permission Changes
 - [x] FIX: Token Issue Fixed from v1.0.1
 - [x] User Images in Chat Component
-- [ ] Advanced Notifications - Notifications like Facebook
-- [ ] Caching - Changes to Application & Infrastructure Layer
+- [ ] Advanced Notifications - Notifications like Facebook (will be a part of v2.1)
 - [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
 - [x] Notifications System using SignalR
 - [ ] Charts
 - [ ] PDF Downloads
-- [ ] Theme Manager
+- [ ] Theme Manager (will be a part of v2.1)
 - [ ] File Upload
+- [ ] Document Management
 - [ ] Import / Export to Excel
 - [ ] Audit Trails
-- [ ] SEO
+- [ ] SEO (will be a part of v2.1)
 - [x] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
 - [x] FIX: Code Cleanup.
 - [x] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
