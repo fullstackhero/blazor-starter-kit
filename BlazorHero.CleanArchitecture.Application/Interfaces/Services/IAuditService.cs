@@ -10,7 +10,6 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services
 {
     public interface IAuditService
     {
-        Task<IResult> SaveTrailAsync();
-        Task<IResult<IEnumerable<AuditResponse>>> GetUserTrailsAsync(string userId);
+        Task<IResult<IEnumerable<AuditResponse>>> GetCurrentUserTrailsAsync(string userId);
     }
 }
