@@ -1,0 +1,110 @@
+﻿@page "/audit-trails"
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AuditTrails> localizer
+@using BlazorHero.CleanArchitecture.Application.Responses.Audit;
+<HeroTitle Title="@localizer["Audit Trails"]" Description="@localizer["Your Recent Activities."]" />
+<MudTable Hover="false" Elevation="25" Items="Trails" Filter="new Func<RelatedAuditTrail, bool>(Search)" @bind-trail="Trail">
+    <ToolBarContent>
+        <MudToolBarSpacer />
+        <MudTextField @bind-Value="searchString" Placeholder="@localizer["Search for Trails"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>@localizer["Id"]</MudTh>
+        <MudTh>@localizer["Table Name"]</MudTh>
+        <MudTh>@localizer["Date"]</MudTh>
+        <MudTh>@localizer["Type"]</MudTh>
+        <MudTh Style="text-align:right"></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Id">@context.Id</MudTd>
+        <MudTd DataLabel="Name">@context.TableName</MudTd>
+        <MudTd DataLabel="Date">
+            <MudItem>
+                <MudChip Icon="@Icons.Material.Filled.Watch" IconColor="Color.Secondary" Label="true" Color="Color.Surface">Local : @context.LocalTime.ToString("dd MMM, yyyy hh:mm tt")</MudChip>                
+            </MudItem>
+            <MudItem>
+                <MudChip Icon="@Icons.Material.Filled.Watch" IconColor="Color.Secondary" Label="true" Color="Color.Surface">UTC : @context.DateTime.ToString("dd MMM, yyyy hh:mm tt")</MudChip>
+            </MudItem>
+        </MudTd>
+        <MudTd DataLabel="Tax">@context.Type</MudTd>
+        <MudTd Style="text-align:right">
+            <MudButton Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" OnClick="@(() => ShowBtnPress(context.Id))">@((context.ShowDetails == true)? "Hide" : "Show") Trail Details</MudButton>
+        </MudTd>
+    </RowTemplate>
+    <ChildRowContent>
+        @if (context.ShowDetails)
+        {
+            <MudTr>
+                <td colspan="5">
+                    <MudCard Elevation="25">
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudAlert Severity="Severity.Info" Typo="Typo.body1">Details for Trail ID : <strong>@context.Id</strong></MudAlert>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <table class="mud-table-root">
+                                <tbody class="mud-table-body">
+                                    @if (!string.IsNullOrEmpty(context.AffectedColumns))
+                                    {
+                                        <tr class="mud-table-row" style="padding:10px!important">
+                                            <td>Columns Affected</td>
+                                            <td>
+                                                <MudItem>
+                                                    @foreach (var column in context.AffectedColumns.Trim('[').Trim(']').Split(','))
+                                                    {
+                                                        <MudChip Label="true" Color="Color.Surface">@column.Replace('"', ' ').Trim()</MudChip>
+                                                    }
+                                                </MudItem>
+                                            </td>
+                                        </tr>
+                                    }
+                                    <tr class="mud-table-row">
+                                        <td>Primary Key</td>
+                                        <td>
+                                            <MudItem>
+                                                <MudChip Label="true" Color="Color.Surface">@context.PrimaryKey.Trim('{').Trim('}').Replace('"', ' ').Trim()</MudChip>
+                                            </MudItem>
+                                        </td>
+                                    </tr>
+
+                                    @if (!string.IsNullOrEmpty(context.OldValues))
+                                    {
+                                        <tr class="mud-table-row">
+                                            <td>Old Values</td>
+                                            <td>
+
+                                                <MudItem>
+                                                    @foreach (var value in context.OldValues.Trim('{').Trim('}').Split(','))
+                                                    {
+                                                        <MudChip Label="true" Color="Color.Warning">@value.Replace('"', ' ').Trim()</MudChip>
+                                                    }
+                                                </MudItem>
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (!string.IsNullOrEmpty(context.NewValues))
+                                    {
+                                        <tr class="mud-table-row">
+                                            <td>New Values</td>
+                                            <td>
+
+                                                <MudItem>
+                                                    @foreach (var value in context.NewValues.Trim('{').Trim('}').Split(','))
+                                                    {
+                                                        <MudChip Label="true" Color="Color.Success">@value.Replace('"', ' ').Trim()</MudChip>
+                                                    }
+                                                </MudItem>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </MudCardContent>
+                    </MudCard>
+                </td>
+            </MudTr>}
+    </ChildRowContent>
+    <PagerContent>
+        <TablePager />
+    </PagerContent>
+</MudTable>

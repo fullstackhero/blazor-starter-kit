@@ -25,6 +25,9 @@
     <MudNavLink Href="/document-store" Icon="@Icons.Material.Outlined.AttachFile">
         @localizer["Document Store"]
     </MudNavLink>
+    <MudNavLink Href="/audit-trails" Icon="@Icons.Material.Outlined.Security">
+        @localizer["Audit Trails"]
+    </MudNavLink>
     @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Roles.View).Result.Succeeded || _authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Users.View).Result.Succeeded)
     {
         <MudListSubheader Class="mt-2 mb-n2">
@@ -45,9 +48,6 @@
     <MudListSubheader Class="mt-2 mb-n2">@localizer["Communication"]</MudListSubheader>
     <MudNavLink Href="/chat" Icon="@Icons.Material.Outlined.Chat">
         @localizer["Chat"]
-    </MudNavLink>
-    <MudNavLink Href="/mail" Icon="@Icons.Material.Outlined.Mail">
-        @localizer["Mail"]
     </MudNavLink>
     @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Products.View).Result.Succeeded || _authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Brands.View).Result.Succeeded)
     {
