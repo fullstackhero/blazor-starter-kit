@@ -45,14 +45,23 @@
                 <MudItem xs="12" md="6">
                     <MudTextField For="@(() => Rate)" @bind-Value="Rate" Required="true" Label="@localizer["Rate"]" />
                 </MudItem>
-                <MudItem xs="12" md="6">
-                    <MudTextField For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="@localizer["Barcode"]" />
-                </MudItem>
-                <MudItem xs="12" md="6">
+                @if (Id == 0)
+                {
                     <MudItem xs="12" md="6">
-                        <MudAvatar Image="@ImageDataUrl" Square="true" Style="height:250px; width:250px;"> </MudAvatar>
+                        <MudTextField For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="@localizer["Barcode"]" />
                     </MudItem>
+                }
+                else
+                {
                     <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => Barcode)" Required="true" @bind-Value="Barcode" Label="@localizer["Barcode"]" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudItem>
+                        <MudAvatar Image="@ImageDataUrl" Square="true" Style="height:auto; width:auto; max-height:100%"> </MudAvatar>
+                    </MudItem>
+                    <MudItem>
                         <InputFile id="fileInput" hidden OnChange="UploadFiles" />
                         <div>
                             <MudButton HtmlTag="label"
@@ -66,12 +75,20 @@
                             @if (!string.IsNullOrEmpty(@ImageDataUrl))
                             {
                                 <MudButton Variant="Variant.Text"
+                                           Color="Color.Info"
+                                           StartIcon="@Icons.Filled.RemoveRedEye"
+                                           Size="Size.Small"
+                                           Link="@ImageDataUrl" Target="_blank">
+                                    @localizer["View"]
+                                </MudButton>
+                                <MudButton Variant="Variant.Text"
                                            Color="Color.Error"
                                            StartIcon="@Icons.Filled.Delete"
                                            Size="Size.Small"
                                            OnClick="DeleteAsync">
                                     @localizer["Delete"]
                                 </MudButton>
+
                             }
                         </div>
                     </MudItem>

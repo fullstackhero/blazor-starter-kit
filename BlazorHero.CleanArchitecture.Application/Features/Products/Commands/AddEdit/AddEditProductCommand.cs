@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Application.Requests;
 using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,33 +20,63 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
         public string ImageDataURL { get; set; }
         public decimal Rate { get; set; }
         public int BrandId { get; set; }
+        public UploadRequest UploadRequest { get; set; }
     }
 
     public class AddEditProductCommandHandler : IRequestHandler<AddEditProductCommand, Result<int>>
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUploadService _uploadService;
 
-        public AddEditProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public AddEditProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IUploadService uploadService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _uploadService = uploadService;
         }
 
         public async Task<Result<int>> Handle(AddEditProductCommand command, CancellationToken cancellationToken)
         {
-            var product = _mapper.Map<Product>(command);
-            if (product.Id == 0)
+            var uploadRequest = command.UploadRequest;
+            if (uploadRequest != null)
             {
+                uploadRequest.FileName = $"P-{command.Barcode}{uploadRequest.Extension}";
+            }
+
+            if (command.Id == 0)
+            {
+                var product = _mapper.Map<Product>(command);
+                if (uploadRequest != null)
+                {
+                    product.ImageDataURL = _uploadService.UploadAsync(uploadRequest);
+                }
                 await _unitOfWork.Repository<Product>().AddAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
                 return Result<int>.Success(product.Id, "Product Saved");
             }
             else
             {
-                await _unitOfWork.Repository<Product>().UpdateAsync(product);
-                await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(product.Id, "Product Updated");
+                var product = await _unitOfWork.Repository<Product>().GetByIdAsync(command.Id);
+                if (product != null)
+                {
+                    product.Name = command.Name ?? product.Name;
+                    product.Description = command.Description ?? product.Description;
+                    if (uploadRequest != null)
+                    {
+                        product.ImageDataURL = _uploadService.UploadAsync(uploadRequest);
+                    }
+                    product.Rate = (command.Rate == 0) ? product.Rate : command.Rate;
+                    product.BrandId = (command.BrandId == 0) ? product.BrandId : command.BrandId;
+                    await _unitOfWork.Repository<Product>().UpdateAsync(product);
+                    await _unitOfWork.Commit(cancellationToken);
+                    return Result<int>.Success(product.Id, "Product Updated");
+                }
+                else
+                {
+                    return Result<int>.Fail("Product Not Found!");
+                }
+
             }
         }
     }

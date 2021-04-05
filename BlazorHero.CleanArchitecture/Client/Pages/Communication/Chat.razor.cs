@@ -18,8 +18,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
 {
     public partial class Chat
     {
-        [Inject]
-        IJSRuntime _jsRuntime { get; set; }
         [CascadingParameter] public HubConnection hubConnection { get; set; }
         [Parameter] public string CurrentMessage { get; set; }
         [Parameter] public string CurrentUserId { get; set; }

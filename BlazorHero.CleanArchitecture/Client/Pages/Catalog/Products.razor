@@ -2,7 +2,7 @@
 @using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Products> localizer
 <HeroTitle Title="@localizer["Products"]" Description="@localizer["Manage Products."]" />
-<MudTable ServerData="@(new Func<TableState, Task<TableData<GetAllPagedProductsResponse>>>(ServerReload))" Hover="true" @ref="table">
+<MudTable Elevation="25" ServerData="@(new Func<TableState, Task<TableData<GetAllPagedProductsResponse>>>(ServerReload))" Hover="true" @ref="table">
     <ToolBarContent>
 
         @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Products.Create).Result.Succeeded)

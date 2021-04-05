@@ -1,5 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Requests;
 using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -8,6 +9,7 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
@@ -65,7 +67,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     _snackBar.Add("Select a Brand.", Severity.Error);
                     return;
                 }
-                var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = BrandId, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id };
+                var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = BrandId, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id, UploadRequest = UploadRequest};
                 var response = await _productManager.SaveAsync(request);
                 if (response.Succeeded)
                 {
@@ -124,23 +126,28 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private void DeleteAsync()
         {
             ImageDataUrl = null;
+            UploadRequest = new UploadRequest();
         }
 
         public IBrowserFile file { get; set; }
 
         [Parameter]
         public string ImageDataUrl { get; set; }
+        [Parameter]
+        public UploadRequest UploadRequest{ get; set; }
 
         private async Task UploadFiles(InputFileChangeEventArgs e)
         {
             file = e.File;
             if (file != null)
             {
+                var extension = Path.GetExtension(file.Name);
                 var format = "image/png";
-                var imageFile = await e.File.RequestImageFileAsync(format, 500, 500);
+                var imageFile = await e.File.RequestImageFileAsync(format, 400, 400);
                 var buffer = new byte[imageFile.Size];
                 await imageFile.OpenReadStream().ReadAsync(buffer);
                 ImageDataUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+                UploadRequest = new UploadRequest() { Data = buffer, UploadType = Application.Enums.UploadType.Product, Extension = extension };
             }
         }
     }
