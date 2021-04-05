@@ -138,6 +138,9 @@
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
+  <data name="Document Store" xml:space="preserve">
+    <value>Хранилище документов</value>
+  </data>
   <data name="FAQs" xml:space="preserve">
     <value>FAQ</value>
   </data>
