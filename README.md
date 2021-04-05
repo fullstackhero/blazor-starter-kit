@@ -83,7 +83,7 @@ Meanwhile here is a quick video uploaded to my Facebook page (https://www.facebo
 The easiest way to get started with Blazor Hero is to install the [NuGet package](https://www.nuget.org/packages/BlazorHero.CleanArchitecture/) and run `dotnet new BlazorHero.CleanArchitecture`:
 
 1. Install the latest [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
-2. Install the latest DOTNET & EF CLI Tools by using this command `dotnet tool install –global dotnet-ef` 
+2. Install the latest DOTNET & EF CLI Tools by using this command `dotnet tool install --global dotnet-ef` 
 3. Install the latest version of Visual Studio IDE 2019 (v16.8 and above) 🚀
 4. Open up Command Prompt and run `dotnet new --install BlazorHero.CleanArchitecture` to install the project template
 5. Create a folder for your solution and cd into it (the template will use it as project name)
