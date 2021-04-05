@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Manage" xml:space="preserve">
+    <value>Управление</value>
+  </data>
   <data name="Role Name" xml:space="preserve">
     <value>Имя роли</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Ролями</value>
   </data>
   <data name="Roles Updated" xml:space="preserve">
     <value>Роли обновлены!</value>
