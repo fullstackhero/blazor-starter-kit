@@ -23,6 +23,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         [CascadingParameter] public HubConnection hubConnection { get; set; }
         [Parameter] public string CurrentMessage { get; set; }
         [Parameter] public string CurrentUserId { get; set; }
+        [Parameter] public string CurrentUserImageURL { get; set; }
         [CascadingParameter] private bool IsConnected { get; set; }
         private List<ChatHistoryResponse> messages = new List<ChatHistoryResponse>();
         private class MessageRequest
@@ -78,30 +79,35 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         protected override async Task OnInitializedAsync()
         {
             hubConnection = hubConnection.TryInitialize(_navigationManager);
-            if(hubConnection.State == HubConnectionState.Disconnected)
+            if (hubConnection.State == HubConnectionState.Disconnected)
             {
                 await hubConnection.StartAsync();
-            }            
+            }
             hubConnection.On<ChatHistory, string>("ReceiveMessage", async (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
-                     messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate });
+
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
-                         
-                         await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId, CurrentUserId);                                             
+                         messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
+                         await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId, CurrentUserId);
+                     }
+                     else if ((CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
+                     {
+                         messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CImageURL });
                      }
                      await _jsRuntime.InvokeAsync<string>("ScrollToBottom", "chatContainer");
                      StateHasChanged();
                  }
 
-             });           
+             });
             await GetUsersAsync();
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             CurrentUserId = user.GetUserId();
-            if(!string.IsNullOrEmpty(CId))
+            CurrentUserImageURL = await _localStorage.GetItemAsync<string>("userImageURL");
+            if (!string.IsNullOrEmpty(CId))
             {
                 await LoadUserChat(CId);
             }
@@ -110,6 +116,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         [Parameter] public string CFullName { get; set; }
         [Parameter] public string CId { get; set; }
         [Parameter] public string CUserName { get; set; }
+        [Parameter] public string CImageURL { get; set; }
         async Task LoadUserChat(string userId)
         {
             open = false;
@@ -120,6 +127,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 CId = contact.Id;
                 CFullName = $"{contact.FirstName} {contact.LastName}";
                 CUserName = contact.UserName;
+                CImageURL = contact.ProfilePictureDataUrl;
                 _navigationManager.NavigateTo($"chat/{CId}");
                 //Load messages from db here
                 messages = new List<ChatHistoryResponse>();
@@ -127,7 +135,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 if (historyResponse.Succeeded)
                 {
                     messages = historyResponse.Data.ToList();
-                   
+
                 }
                 else
                 {
@@ -136,7 +144,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                         _snackBar.Add(localizer[message], Severity.Error);
                     }
                 }
-                
+
             }
             else
             {

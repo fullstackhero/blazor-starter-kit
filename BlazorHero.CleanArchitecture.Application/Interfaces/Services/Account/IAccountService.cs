@@ -13,6 +13,6 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account
 
         Task<IResult<string>> GetProfilePictureAsync(string userId);
 
-        Task<IResult> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId);
+        Task<IResult<string>> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId);
     }
 }

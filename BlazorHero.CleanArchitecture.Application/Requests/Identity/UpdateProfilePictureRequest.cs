@@ -1,7 +1,7 @@
 ﻿namespace BlazorHero.CleanArchitecture.Application.Requests.Identity
 {
-    public class UpdateProfilePictureRequest
+    public class UpdateProfilePictureRequest : UploadRequest
     {
-        public string ProfilePictureDataUrl { get; set; }
+
     }
 }

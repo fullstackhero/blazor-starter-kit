@@ -52,24 +52,25 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 
 - [x] Play Notification Tone when a new Chat Message is received.
 - [x] Auto Scroll to Last Message when a new Chat Message is received.
-- [ ] Registration Page for Unauthorized User (Currently only Admins can register new users)
+- [x] Registration Page for Unauthorized User (Currently only Admins can register new users)
 - [x] Realtime Notifications - Dashboard Updates Realtime
 - [x] Logout Users / Regenerate Token from Multiple Client Browsers when Permission Changes
 - [x] FIX: Token Issue Fixed from v1.0.1
-- [ ] Advanced Notifications - Notifications like Facebook
-- [ ] Caching - Changes to Application & Infrastructure Layer
+- [x] User Images in Chat Component
+- [ ] Advanced Notifications - Notifications like Facebook (will be a part of v2.1)
 - [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
 - [x] Notifications System using SignalR
 - [ ] Charts
 - [ ] PDF Downloads
-- [ ] Theme Manager
+- [ ] Theme Manager (will be a part of v2.1)
 - [ ] File Upload
+- [ ] Document Management
 - [ ] Import / Export to Excel
 - [ ] Audit Trails
-- [ ] SEO
-- [ ] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
+- [ ] SEO (will be a part of v2.1)
+- [x] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
 - [x] FIX: Code Cleanup.
-- [ ] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
+- [x] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
 - [x] FIX: Remove AutoMigrations - Causes SQL Exceptions at times.
 
 # Quick Preview

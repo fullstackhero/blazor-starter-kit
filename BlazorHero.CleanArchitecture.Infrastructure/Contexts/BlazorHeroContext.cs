@@ -12,7 +12,7 @@ using BlazorHero.CleanArchitecture.Application.Models.Chat;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 {
-    public class BlazorHeroContext : IdentityDbContext<BlazorHeroUser, IdentityRole, string>
+    public class BlazorHeroContext : AuditableContext 
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTimeService _dateTimeService;
@@ -44,11 +44,24 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                         break;
                 }
             }
-            return await base.SaveChangesAsync(cancellationToken);
+            if (_currentUserService.UserId == null)
+            {
+                return await base.SaveChangesAsync(cancellationToken);
+            }
+            else
+            {
+                return await base.SaveChangesAsync(_currentUserService.UserId);
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            foreach (var property in builder.Model.GetEntityTypes()
+            .SelectMany(t => t.GetProperties())
+            .Where(p => p.ClrType == typeof(decimal) || p.ClrType == typeof(decimal?)))
+            {
+                property.SetColumnType("decimal(18,2)");
+            }
             base.OnModelCreating(builder);
             builder.Entity<ChatHistory>(entity =>
             {

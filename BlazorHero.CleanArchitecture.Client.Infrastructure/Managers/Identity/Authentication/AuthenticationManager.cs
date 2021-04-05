@@ -46,8 +46,10 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
             {
                 var token = result.Data.Token;
                 var refreshToken = result.Data.RefreshToken;
+                var userImageURL = result.Data.UserImageURL;
                 await _localStorage.SetItemAsync("authToken", token);
                 await _localStorage.SetItemAsync("refreshToken", refreshToken);
+                await _localStorage.SetItemAsync("userImageURL", userImageURL);
                 ((BlazorHeroStateProvider)this._authenticationStateProvider).MarkUserAsAuthenticated(model.Email);
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 return Result.Success();
@@ -93,6 +95,9 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
 
         public async Task<string> TryRefreshToken()
         {
+            //check if token exists
+            var availableToken = await _localStorage.GetItemAsync<string>("refreshToken");
+            if (string.IsNullOrEmpty(availableToken)) return string.Empty;
             var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
             var user = authState.User;
             var exp = user.FindFirst(c => c.Type.Equals("exp")).Value;

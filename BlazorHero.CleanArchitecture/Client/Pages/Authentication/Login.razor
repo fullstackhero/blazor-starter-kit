@@ -21,6 +21,11 @@
             </div>
         </MudItem>
         <MudItem xs="12">
+            <div class="d-flex justify-center">
+                <MudText>Don't have an account? <MudLink Href="/register">Register here</MudLink></MudText>
+            </div>
+        </MudItem>
+        <MudItem xs="12">
             <MudTextField T="string" Label="@localizer["E-mail"]" Variant="Variant.Outlined"
                           @bind-Value="model.Email" For="@(() => model.Email)" Required="true" RequiredError="@localizer["Email is required!"]"></MudTextField>
         </MudItem>

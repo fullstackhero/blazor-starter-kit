@@ -11,6 +11,26 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                 name: "Identity");
 
             migrationBuilder.CreateTable(
+                name: "AuditTrails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TableName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OldValues = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NewValues = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AffectedColumns = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PrimaryKey = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditTrails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Brands",
                 columns: table => new
                 {
@@ -321,6 +341,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AuditTrails");
+
             migrationBuilder.DropTable(
                 name: "ChatHistory");
 
