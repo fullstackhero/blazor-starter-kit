@@ -123,6 +123,9 @@
   <data name="Administrator" xml:space="preserve">
     <value>Администрирование</value>
   </data>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>Журналы аудита</value>
+  </data>
   <data name="Brands" xml:space="preserve">
     <value>Бренды</value>
   </data>
