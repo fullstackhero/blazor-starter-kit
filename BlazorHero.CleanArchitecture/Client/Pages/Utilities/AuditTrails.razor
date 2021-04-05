@@ -4,6 +4,10 @@
 <HeroTitle Title="@localizer["Audit Trails"]" Description="@localizer["Your Recent Activities."]" />
 <MudTable Hover="false" Elevation="25" Items="Trails" Filter="new Func<RelatedAuditTrail, bool>(Search)" @bind-trail="Trail">
     <ToolBarContent>
+        <div class="justify-center mud-text-align-center">
+            <MudButton DisableElevation IconColor="Color.Secondary" Variant="Variant.Filled" OnClick="ExportToExcelAsync" StartIcon="@Icons.Custom.FileFormats.FileExcel" Color="Color.Surface">@localizer["Export To Excel"]</MudButton>
+        </div>
+
         <MudToolBarSpacer />
         <MudTextField @bind-Value="searchString" Placeholder="@localizer["Search for Trails"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
     </ToolBarContent>

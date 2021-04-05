@@ -56,7 +56,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
         private void ShowBtnPress(int id)
         {
             Trail = Trails.First(f => f.Id == id);
+            foreach(var trial in Trails.Where(a=>a.Id != id))
+            {
+                trial.ShowDetails = false;
+            }
             Trail.ShowDetails = !Trail.ShowDetails;
+        }
+        private void ExportToExcelAsync()
+        {
+            _snackBar.Add("Not Yet Implemented.");
         }
         public class RelatedAuditTrail : AuditResponse
         {

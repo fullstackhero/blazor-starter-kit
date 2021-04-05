@@ -29,18 +29,30 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
 
         public async Task<Result<int>> Handle(AddEditBrandCommand command, CancellationToken cancellationToken)
         {
-            var brand = _mapper.Map<Brand>(command);
-            if (brand.Id == 0)
+            
+            if (command.Id == 0)
             {
+                var brand = _mapper.Map<Brand>(command);
                 await _unitOfWork.Repository<Brand>().AddAsync(brand);
                 await _unitOfWork.Commit(cancellationToken);
                 return Result<int>.Success(brand.Id, "Brand Saved");
             }
             else
             {
-                await _unitOfWork.Repository<Brand>().UpdateAsync(brand);
-                await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(brand.Id, "Brand Updated");
+                var brand = await _unitOfWork.Repository<Brand>().GetByIdAsync(command.Id);
+                if(brand != null)
+                {
+                    brand.Name = command.Name ?? brand.Name;
+                    brand.Tax = (command.Tax == 0) ? brand.Tax : command.Tax;
+                    brand.Description = command.Description ?? brand.Description;
+                    await _unitOfWork.Repository<Brand>().UpdateAsync(brand);
+                    await _unitOfWork.Commit(cancellationToken);
+                    return Result<int>.Success(brand.Id, "Brand Updated");
+                }
+                else
+                {
+                    return Result<int>.Fail("Brand Not Found!");
+                }
             }
         }
     }

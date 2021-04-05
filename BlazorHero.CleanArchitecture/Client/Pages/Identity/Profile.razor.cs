@@ -76,7 +76,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var imageFile = await e.File.RequestImageFileAsync(format,400,400);
                 var buffer = new byte[imageFile.Size];
                 await imageFile.OpenReadStream().ReadAsync(buffer);
-                var request = new UpdateProfilePictureRequest() { Data = buffer, FileName = fileName, UploadType = Application.Enums.UploadType.ProfilePicture };
+                var request = new UpdateProfilePictureRequest() { Data = buffer, FileName = fileName, Extension = extension, UploadType = Application.Enums.UploadType.ProfilePicture };
                 var result = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (result.Succeeded)
                 {

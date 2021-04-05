@@ -65,8 +65,8 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 - [ ] Theme Manager (will be a part of v2.1)
 - [ ] File Upload
 - [ ] Document Management
-- [ ] Import / Export to Excel
-- [ ] Audit Trails
+- [ ] Export to Excel
+- [x] Audit Trails
 - [ ] SEO (will be a part of v2.1)
 - [x] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
 - [x] FIX: Code Cleanup.

@@ -1,4 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
 {
-    public class RepositoryAsync<T> : IRepositoryAsync<T> where T : class
+    public class RepositoryAsync<T> : IRepositoryAsync<T> where T : AuditableEntity
     {
         private readonly BlazorHeroContext _dbContext;
 
@@ -54,8 +55,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
 
         public Task UpdateAsync(T entity)
         {
-            _dbContext.Attach(entity);
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            T exist = _dbContext.Set<T>().Find(entity.Id);
+            _dbContext.Entry(exist).CurrentValues.SetValues(entity);
             return Task.CompletedTask;
         }
     }

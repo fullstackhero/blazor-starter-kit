@@ -12,9 +12,6 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 {
     public partial class MainLayout : IDisposable
     {
-
-        [Inject]
-        IJSRuntime _jsRuntime { get; set; }
         private string CurrentUserId { get; set; }
         private string FirstName { get; set; }
         private string SecondName { get; set; }
