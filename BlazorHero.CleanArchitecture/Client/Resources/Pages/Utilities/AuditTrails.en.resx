@@ -117,22 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Manage" xml:space="preserve">
-    <value>Управление</value>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>Audit Trails</value>
   </data>
-  <data name="Role Name" xml:space="preserve">
-    <value>Имя роли</value>
+  <data name="Columns Affected" xml:space="preserve">
+    <value>Columns Affected</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Ролями</value>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="Roles Updated" xml:space="preserve">
-    <value>Роли обновлены!</value>
+  <data name="Details for Trail ID" xml:space="preserve">
+    <value>Details for Trail ID</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Статус</value>
+  <data name="Export To Excel" xml:space="preserve">
+    <value>Export To Excel</value>
   </data>
-  <data name="Update User Roles" xml:space="preserve">
-    <value>Обновить роли пользователя</value>
+  <data name="Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="New Values" xml:space="preserve">
+    <value>New Values</value>
+  </data>
+  <data name="Old Values" xml:space="preserve">
+    <value>Old Values</value>
+  </data>
+  <data name="Primary Key" xml:space="preserve">
+    <value>Primary Key</value>
+  </data>
+  <data name="Search for Trails" xml:space="preserve">
+    <value>Search for Trails</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Table Name" xml:space="preserve">
+    <value>Table Name</value>
+  </data>
+  <data name="Trail Details" xml:space="preserve">
+    <value>Trail Details</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="UTC" xml:space="preserve">
+    <value>UTC</value>
+  </data>
+  <data name="Your Recent Activities." xml:space="preserve">
+    <value>Your Recent Activities.</value>
   </data>
 </root>
