@@ -23,15 +23,15 @@
         <MudTd DataLabel="Name">@context.TableName</MudTd>
         <MudTd DataLabel="Date">
             <MudItem>
-                <MudChip Icon="@Icons.Material.Filled.Watch" IconColor="Color.Secondary" Label="true" Color="Color.Surface">Local : @context.LocalTime.ToString("dd MMM, yyyy hh:mm tt")</MudChip>                
+                <MudChip Icon="@Icons.Material.Filled.Watch" IconColor="Color.Secondary" Label="true" Color="Color.Surface">@localizer["Local"] : @context.LocalTime.ToString("dd MMM, yyyy hh:mm tt")</MudChip>
             </MudItem>
             <MudItem>
-                <MudChip Icon="@Icons.Material.Filled.Watch" IconColor="Color.Secondary" Label="true" Color="Color.Surface">UTC : @context.DateTime.ToString("dd MMM, yyyy hh:mm tt")</MudChip>
+                <MudChip Icon="@Icons.Material.Filled.Watch" IconColor="Color.Secondary" Label="true" Color="Color.Surface">@localizer["UTC"] : @context.DateTime.ToString("dd MMM, yyyy hh:mm tt")</MudChip>
             </MudItem>
         </MudTd>
         <MudTd DataLabel="Tax">@context.Type</MudTd>
         <MudTd Style="text-align:right">
-            <MudButton Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" OnClick="@(() => ShowBtnPress(context.Id))">@((context.ShowDetails == true)? "Hide" : "Show") Trail Details</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" OnClick="@(() => ShowBtnPress(context.Id))">@((context.ShowDetails == true)? @localizer["Hide"] : @localizer["Show"]) @localizer["Trail Details"]</MudButton>
         </MudTd>
     </RowTemplate>
     <ChildRowContent>
@@ -42,7 +42,7 @@
                     <MudCard Elevation="25">
                         <MudCardHeader>
                             <CardHeaderContent>
-                                <MudAlert Severity="Severity.Info" Typo="Typo.body1">Details for Trail ID : <strong>@context.Id</strong></MudAlert>
+                                <MudAlert Severity="Severity.Info" Typo="Typo.body1">@localizer["Details for Trail ID"] : <strong>@context.Id</strong></MudAlert>
                             </CardHeaderContent>
                         </MudCardHeader>
                         <MudCardContent>
@@ -51,7 +51,7 @@
                                     @if (!string.IsNullOrEmpty(context.AffectedColumns))
                                     {
                                         <tr class="mud-table-row" style="padding:10px!important">
-                                            <td>Columns Affected</td>
+                                            <td>@localizer["Columns Affected"]</td>
                                             <td>
                                                 <MudItem>
                                                     @foreach (var column in context.AffectedColumns.Trim('[').Trim(']').Split(','))
@@ -63,7 +63,7 @@
                                         </tr>
                                     }
                                     <tr class="mud-table-row">
-                                        <td>Primary Key</td>
+                                        <td>@localizer["Primary Key"]</td>
                                         <td>
                                             <MudItem>
                                                 <MudChip Label="true" Color="Color.Surface">@context.PrimaryKey.Trim('{').Trim('}').Replace('"', ' ').Trim()</MudChip>
@@ -74,7 +74,7 @@
                                     @if (!string.IsNullOrEmpty(context.OldValues))
                                     {
                                         <tr class="mud-table-row">
-                                            <td>Old Values</td>
+                                            <td>@localizer["Old Values"]</td>
                                             <td>
 
                                                 <MudItem>
@@ -89,7 +89,7 @@
                                     @if (!string.IsNullOrEmpty(context.NewValues))
                                     {
                                         <tr class="mud-table-row">
-                                            <td>New Values</td>
+                                            <td>@localizer["New Values"]</td>
                                             <td>
 
                                                 <MudItem>
