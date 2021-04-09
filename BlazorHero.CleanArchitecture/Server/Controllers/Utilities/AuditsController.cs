@@ -22,5 +22,11 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
         {
             return Ok(await _auditService.GetCurrentUserTrailsAsync(_currentUserService.UserId));
         }
+
+        [HttpGet]
+        public IActionResult ExportExcel()
+        {
+            return null;
+        }
     }
 }
