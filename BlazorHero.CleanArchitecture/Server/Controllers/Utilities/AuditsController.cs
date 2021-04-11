@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Server.Utils;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
 {
@@ -23,10 +24,11 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
             return Ok(await _auditService.GetCurrentUserTrailsAsync(_currentUserService.UserId));
         }
 
-        [HttpGet]
-        public IActionResult ExportExcel()
+        [HttpGet("export")]
+        public async Task<IActionResult> ExportExcel()
         {
-            return null;
+            var data = await _auditService.ExportToExcelAsync();
+            return Ok(data);
         }
     }
 }

@@ -3,9 +3,8 @@ using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit
@@ -18,10 +17,19 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit
         {
             _httpClient = httpClient;
         }
+
         public async Task<IResult<IEnumerable<AuditResponse>>> GetCurrentUserTrailsAsync()
         {
             var response = await _httpClient.GetAsync(Routes.AuditEndpoints.GetCurrentUserTrails);
             var data = await response.ToResult<IEnumerable<AuditResponse>>();
+            return data;
+        }
+
+
+        public async Task<byte[]> DownloadFileAsync()
+        {
+            var response = await _httpClient.GetAsync(Routes.AuditEndpoints.DownloadFile);
+            var data = await response.Content.ReadAsByteArrayAsync();
             return data;
         }
     }

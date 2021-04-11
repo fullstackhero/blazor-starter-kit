@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Responses.Audit;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
@@ -31,15 +32,16 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
             return Result<IEnumerable<AuditResponse>>.Success(mappedLogs);
         }
 
-        public async Task ExportToExcelAsync()
+        public async Task<byte[]> ExportToExcelAsync()
         {
             var trails = await _context.AuditTrails.OrderByDescending(a => a.DateTime).ToListAsync();
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             try
             {
                 using var p = new ExcelPackage();
                 p.Workbook.Properties.Author = "BlazorHero";
                 p.Workbook.Worksheets.Add("Audit Trails");
-                var ws = p.Workbook.Worksheets[1];
+                var ws = p.Workbook.Worksheets[0];
                 ws.Name = "Audit Trails";
                 ws.Cells.Style.Font.Size = 11;
                 ws.Cells.Style.Font.Name = "Calibri";
@@ -90,10 +92,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
                     ws.Cells[rowIndex, colIndex++].Value = item.NewValues;
                 }
 
-                var bin = await p.GetAsByteArrayAsync();
-                await File.WriteAllBytesAsync("test.xlsx", bin);
+                return await p.GetAsByteArrayAsync();
+                //await File.WriteAllBytesAsync("test.xlsx", bin);
             }
-            catch
+            catch (Exception ex)
             {
                 throw;
             }
