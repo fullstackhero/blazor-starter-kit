@@ -66,10 +66,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
         }
         private async Task ExportToExcelAsync()
         {
-            var data = await _auditManager.DownloadFileAsync();
+            var base64 = await _auditManager.DownloadFileAsync();
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
-                ByteArray = data,
+                ByteArray = base64,
                 FileName = $"audit_trails_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
