@@ -66,14 +66,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
         }
         private async Task ExportToExcelAsync()
         {
-            var metaBuffer = await _auditManager.DownloadFileAsync();
-            await _jsRuntime.InvokeVoidAsync("Test");
-            //await _jsRuntime.InvokeVoidAsync("Download", new
-            //{
-            //    BufferArray = metaBuffer,
-            //    FileName = $"audit_trails_{DateTime.Now:ddMMyyyyHHmmss}",
-            //    ContentType = "application/octet-stream"
-            //});
+            var data = await _auditManager.DownloadFileAsync();
+            await _jsRuntime.InvokeVoidAsync("Download", new
+            {
+                ByteArray = data,
+                FileName = $"audit_trails_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            });
         }
         public class RelatedAuditTrail : AuditResponse
         {

@@ -11,6 +11,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit
     public interface IAuditManager : IManager
     {
         Task<IResult<IEnumerable<AuditResponse>>> GetCurrentUserTrailsAsync();
-        Task<byte[]> DownloadFileAsync();
+        Task<string> DownloadFileAsync();
     }
 }

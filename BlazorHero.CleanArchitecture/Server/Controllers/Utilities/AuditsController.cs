@@ -1,8 +1,8 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+﻿using System;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Server.Utils;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
 {
@@ -28,7 +28,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
         public async Task<IActionResult> ExportExcel()
         {
             var data = await _auditService.ExportToExcelAsync();
-            return Ok(data);
+            return Ok(Convert.ToBase64String(data));
         }
     }
 }

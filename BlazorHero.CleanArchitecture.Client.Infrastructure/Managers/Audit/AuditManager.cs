@@ -26,10 +26,10 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit
         }
 
 
-        public async Task<byte[]> DownloadFileAsync()
+        public async Task<string> DownloadFileAsync()
         {
             var response = await _httpClient.GetAsync(Routes.AuditEndpoints.DownloadFile);
-            var data = await response.Content.ReadAsByteArrayAsync();
+            var data = await response.Content.ReadAsStringAsync();
             return data;
         }
     }
