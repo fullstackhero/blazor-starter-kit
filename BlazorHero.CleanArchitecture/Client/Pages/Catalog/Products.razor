@@ -7,10 +7,11 @@
 
         @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Products.Create).Result.Succeeded)
         {
-            <div class="justify-center mud-text-align-center">
-                <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="@(()=>InvokeModal(0))">@localizer["Create"]</MudButton>
-                <MudButton Variant="Variant.Filled" OnClick="@(()=>OnSearch(""))" Color="Color.Secondary">@localizer["Reload"]</MudButton>
-            </div>
+        <div class="justify-center mud-text-align-center">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="@(()=>InvokeModal(0))">@localizer["Create"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="@(()=>OnSearch(""))" Color="Color.Secondary">@localizer["Reload"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="@(ExportToExcel)" Color="Color.Surface">@localizer["Export"]</MudButton>
+        </div>
         }
         <MudToolBarSpacer />
         <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@localizer["Search"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>

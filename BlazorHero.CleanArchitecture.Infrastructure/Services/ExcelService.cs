@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
@@ -34,6 +35,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 
                 var fill = cell.Style.Fill;
                 fill.PatternType = ExcelFillStyle.Solid;
+                fill.BackgroundColor.SetColor(Color.LightBlue);
 
                 var border = cell.Style.Border;
                 border.Bottom.Style =

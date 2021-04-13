@@ -141,6 +141,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
