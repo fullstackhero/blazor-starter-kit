@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Models.Chat;
+using BlazorHero.CleanArchitecture.Domain.Entities;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 {
@@ -26,6 +27,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         public DbSet<ChatHistory> ChatHistories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Document> Documents { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
