@@ -15,5 +15,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Pr
         Task<IResult<int>> SaveAsync(AddEditProductCommand request);
 
         Task<IResult<int>> DeleteAsync(int id);
+
+        Task<string> ExportToExcelAsync();
     }
 }
