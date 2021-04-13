@@ -24,7 +24,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/blazorhero/CleanArchitecture">
-    <img src="https://codewithmukesh.com/wp-content/uploads/2021/03/BlazorHeroBanner.png" alt="Blazor Hero">
+    <img src="https://codewithmukesh.com/wp-content/uploads/2021/04/BlazorHeroBannerv2.jpg" alt="Blazor Hero">
   </a>
   <h3 align="center">BlazorHero - Clean Architecture Template</h3>
   <p align="center">
@@ -48,7 +48,7 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 - Blazor WebAssembly 5.0 - ASP.NET Core Hosted Model
 - [Entity Framework Core 5.0](https://docs.microsoft.com/en-us/ef/core/)
 
-# Upcoming Features For BlazorHero v2.0
+# New Features of BlazorHero v2.0
 
 - [x] Play Notification Tone when a new Chat Message is received.
 - [x] Auto Scroll to Last Message when a new Chat Message is received.
@@ -66,11 +66,6 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 - [x] FIX: Code Cleanup.
 - [x] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
 - [x] FIX: Remove AutoMigrations - Causes SQL Exceptions at times.
-- [ ] SEO (will be a part of v2.1)
-- [ ] Charts (will be a part of v2.1)
-- [ ] PDF Downloads (will be a part of v2.1)
-- [ ] Theme Manager (will be a part of v2.1)
-- [ ] Advanced Notifications - Notifications like Facebook (will be a part of v2.1)
 
 # Quick Preview
 
@@ -78,6 +73,9 @@ Youtube Preview Video Coming Soon!
 Meanwhile here is a quick video uploaded to my Facebook page (https://www.facebook.com/codewithmukesh/posts/269621381402304)
 
 # Getting Started 🦸
+
+> **Important**
+If you are already using Blazor v1.x, make sure that you drop your existing database and re-update your database using the CLI as there are couple of new migrations added that may clash with your existing schema. Also, install the latest version of BlazorHero.
 
 The easiest way to get started with Blazor Hero is to install the [NuGet package](https://www.nuget.org/packages/BlazorHero.CleanArchitecture/) and run `dotnet new BlazorHero.CleanArchitecture`:
 
