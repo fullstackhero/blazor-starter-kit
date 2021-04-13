@@ -11,10 +11,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
     public class ExcelService : IExcelService
     {
         public async Task<string> ExportAsync<TData>(IEnumerable<TData> data
-            , string[] headers = null
-            , string sheetName = "Sheet1"
-            , string[] valueIgnore = null
-            , Dictionary<string, Func<TData, object>> converters = null)
+            , Dictionary<string, Func<TData, object>> mappers
+            , string sheetName = "Sheet1")
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using var p = new ExcelPackage();
@@ -27,11 +25,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 
             var colIndex = 1;
             var rowIndex = 1;
-            var props = typeof(TData).GetProperties();
 
-            headers ??= props.Select(x => x.Name.ToString()).ToArray();
+            var headers = mappers.Keys.Select(x => x).ToList();
 
-            foreach (var item in headers)
+            foreach (var header in headers)
             {
                 var cell = ws.Cells[rowIndex, colIndex];
 
@@ -44,7 +41,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
                         border.Left.Style =
                             border.Right.Style = ExcelBorderStyle.Thin;
 
-                cell.Value = item;
+                cell.Value = header;
 
                 colIndex++;
             }
@@ -53,17 +50,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
             {
                 colIndex = 1;
                 rowIndex++;
-                foreach (var propInfo in props)
-                {
-                    if (valueIgnore != null && valueIgnore.Contains(propInfo.Name))
-                    {
-                        continue;
-                    }
 
-                    var value = converters != null && converters.TryGetValue(propInfo.Name, out var funcConvert) 
-                        ? funcConvert(item)
-                        : propInfo.GetValue(item);
-   
+                var result = headers.Select(header => mappers[header](item));
+
+                foreach (var value in result)
+                {
                     ws.Cells[rowIndex, colIndex++].Value = value;
                 }
             }
