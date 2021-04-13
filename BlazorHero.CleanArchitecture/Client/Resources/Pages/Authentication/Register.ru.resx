@@ -117,73 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Activate User?" xml:space="preserve">
-    <value>Activate User?</value>
-  </data>
-  <data name="Auto Confirm Email?" xml:space="preserve">
-    <value>Auto Confirm Email?</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="Already have an account?" xml:space="preserve">
+    <value>У вас уже есть аккаунт?</value>
   </data>
   <data name="Confirm Password" xml:space="preserve">
-    <value>Confirm Password</value>
+    <value>Подтверждение пароля</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
+  <data name="E-mail" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Email is required!" xml:space="preserve">
+    <value>Email обязателен!</value>
   </data>
   <data name="First Name" xml:space="preserve">
-    <value>First Name</value>
+    <value>Имя</value>
   </data>
   <data name="Last Name" xml:space="preserve">
-    <value>Last Name</value>
+    <value>Фамилия</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Пароль</value>
   </data>
   <data name="Password is required!" xml:space="preserve">
-    <value>Password is required!</value>
+    <value>Пароль обязателен!</value>
   </data>
   <data name="Password must be at least of length 8" xml:space="preserve">
-    <value>Password must be at least of length 8</value>
+    <value>Пароль должен быть не короче 8 символов</value>
   </data>
   <data name="Password must contain at least one capital letter" xml:space="preserve">
-    <value>Password must contain at least one capital letter</value>
+    <value>Пароль должен содержать хотя бы одну заглавную букву</value>
   </data>
   <data name="Password must contain at least one digit" xml:space="preserve">
-    <value>Password must contain at least one digit</value>
+    <value>Пароль должен содержать хотя бы одну цифру</value>
   </data>
   <data name="Password must contain at least one lowercase letter" xml:space="preserve">
-    <value>Password must contain at least one lowercase letter</value>
+    <value>Пароль должен содержать хотя бы одну строчную букву</value>
   </data>
   <data name="Passwords don't match" xml:space="preserve">
-    <value>Passwords don't match</value>
-  </data>
-  <data name="Phone Number" xml:space="preserve">
-    <value>Phone Number</value>
-  </data>
-  <data name="Profile" xml:space="preserve">
-    <value>Profile</value>
-  </data>
-  <data name="Profile Details" xml:space="preserve">
-    <value>Profile Details</value>
+    <value>Пароли не совпадают</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Register</value>
+    <value>Зарегистрировать</value>
   </data>
-  <data name="Register User" xml:space="preserve">
-    <value>Register User</value>
-  </data>
-  <data name="Save Changes" xml:space="preserve">
-    <value>Save Changes</value>
+  <data name="Sign In" xml:space="preserve">
+    <value>Авторизоваться</value>
   </data>
   <data name="User Name" xml:space="preserve">
     <value>User Name</value>
-  </data>
-  <data name="User Registered" xml:space="preserve">
-    <value>User Registered!</value>
-  </data>
-  <data name="User Registered Mailbox" xml:space="preserve">
-    <value>User Registered. Confirmation Mail has been delivered to the Mailbox.</value>
   </data>
 </root>
