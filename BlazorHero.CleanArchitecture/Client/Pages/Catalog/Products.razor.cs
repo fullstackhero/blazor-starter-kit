@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
@@ -78,6 +79,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         {
             searchString = text;
             table.ReloadServerData();
+        }
+
+        private async Task ExportToExcel()
+        {
+            var base64 = await _productManager.ExportToExcelAsync();
+            await _jsRuntime.InvokeVoidAsync("Download", new
+            {
+                ByteArray = base64,
+                FileName = $"products_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            });
         }
 
         private async Task InvokeModal(int id = 0)
