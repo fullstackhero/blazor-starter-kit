@@ -8,15 +8,15 @@
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Hangfire" Version="1.7.20" />
+    <PackageReference Include="Hangfire" Version="1.7.22" />
     <PackageReference Include="MediatR" Version="9.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
