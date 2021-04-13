@@ -3,7 +3,9 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
 {
@@ -62,9 +64,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
             }
             Trail.ShowDetails = !Trail.ShowDetails;
         }
-        private void ExportToExcelAsync()
+        private async Task ExportToExcelAsync()
         {
-            _snackBar.Add("Not Yet Implemented.");
+            var base64 = await _auditManager.DownloadFileAsync();
+            await _jsRuntime.InvokeVoidAsync("Download", new
+            {
+                ByteArray = base64,
+                FileName = $"audit_trails_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            });
         }
         public class RelatedAuditTrail : AuditResponse
         {
