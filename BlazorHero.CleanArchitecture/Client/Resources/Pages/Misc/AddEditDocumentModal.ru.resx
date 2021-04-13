@@ -117,49 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Actions</value>
+  <data name="Add Document" xml:space="preserve">
+    <value>Добавить документ</value>
   </data>
-  <data name="Browse Available Documents." xml:space="preserve">
-    <value>Browse Available Documents.</value>
-  </data>
-  <data name="Create" xml:space="preserve">
-    <value>Create</value>
-  </data>
-  <data name="Date Created" xml:space="preserve">
-    <value>Date Created</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Document Store</value>
+    <value>Описание</value>
   </data>
   <data name="Download" xml:space="preserve">
-    <value>Download</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Скачать</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
-  <data name="Is Public" xml:space="preserve">
-    <value>Is Public</value>
+  <data name="Is Public?" xml:space="preserve">
+    <value>Публичный?</value>
   </data>
-  <data name="Owner" xml:space="preserve">
-    <value>Owner</value>
-  </data>
-  <data name="Reload" xml:space="preserve">
-    <value>Reload</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Search</value>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Title</value>
+    <value>Заголовок</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="Update Document" xml:space="preserve">
+    <value>Обновить документ</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Загрузить</value>
   </data>
 </root>
