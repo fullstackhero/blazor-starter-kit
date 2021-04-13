@@ -40,7 +40,6 @@
     <ProjectReference Include="..\Client\BlazorHero.CleanArchitecture.Client.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Files\Images\Products\" />
     <Folder Include="Files\Images\ProfilePictures\" />
   </ItemGroup>
 
