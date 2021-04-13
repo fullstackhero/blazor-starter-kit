@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 /BlazorHero.CleanArchitecture/Server/Logs
 /BlazorHero.CleanArchitecture/Server/Files/Images/ProfilePictures
+/BlazorHero.CleanArchitecture/Server/Files/Documents

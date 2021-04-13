@@ -1,4 +1,6 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetAll;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.Delete;
+using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetAll;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -13,6 +15,17 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
         {
             var docs = await _mediator.Send(new GetAllDocumentsQuery(pageNumber, pageSize, searchString));
             return Ok(docs);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Post(AddEditDocumentCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await _mediator.Send(new DeleteDocumentCommand { Id = id }));
         }
     }
 }

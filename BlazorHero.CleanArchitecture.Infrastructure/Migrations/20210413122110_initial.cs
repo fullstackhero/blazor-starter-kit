@@ -50,6 +50,26 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Documents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsPublic = table.Column<bool>(type: "bit", nullable: false),
+                    URL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Documents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 schema: "Identity",
                 columns: table => new
@@ -346,6 +366,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "ChatHistory");
+
+            migrationBuilder.DropTable(
+                name: "Documents");
 
             migrationBuilder.DropTable(
                 name: "Products");

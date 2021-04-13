@@ -59,7 +59,7 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 - [x] User Images in Chat Component
 - [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
 - [x] Notifications System using SignalR
-- [ ] Document Management
+- [x] Document Management
 - [x] Export to Excel
 - [x] Audit Trails
 - [x] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)

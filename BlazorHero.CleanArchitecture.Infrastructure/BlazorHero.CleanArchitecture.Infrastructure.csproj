@@ -34,5 +34,8 @@
     <ProjectReference Include="..\BlazorHero.CleanArchitecture.Application\BlazorHero.CleanArchitecture.Application.csproj" />
     <ProjectReference Include="..\BlazorHero.CleanArchitecture.Shared\BlazorHero.CleanArchitecture.Shared.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 
 </Project>

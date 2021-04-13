@@ -274,13 +274,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte[]>("Data")
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Extension")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsPublic")
@@ -295,7 +289,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Type")
+                    b.Property<string>("URL")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

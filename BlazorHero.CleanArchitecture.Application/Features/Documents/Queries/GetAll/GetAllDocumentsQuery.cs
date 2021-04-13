@@ -48,9 +48,8 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.Ge
                 CreatedBy = e.CreatedBy,
                 IsPublic = e.IsPublic,
                 CreatedOn = e.CreatedOn,
-                Extension = e.Extension,
                 Description = e.Description,
-                Type = e.Type
+                URL = e.URL
             };
             var docSpec = new DocumentFilterSpecification(request.SearchString, _currentUserService.UserId);
             var data = await _unitOfWork.Repository<Document>().Entities

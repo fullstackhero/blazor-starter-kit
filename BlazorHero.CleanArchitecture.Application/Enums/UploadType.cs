@@ -12,6 +12,8 @@ namespace BlazorHero.CleanArchitecture.Application.Enums
         [Description(@"Images\Products")]
         Product,
         [Description(@"Images\ProfilePictures")]
-        ProfilePicture
+        ProfilePicture,
+        [Description(@"Documents")]
+        Document
     }
 }
