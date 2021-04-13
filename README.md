@@ -57,21 +57,20 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 - [x] Logout Users / Regenerate Token from Multiple Client Browsers when Permission Changes
 - [x] FIX: Token Issue Fixed from v1.0.1
 - [x] User Images in Chat Component
-- [ ] Advanced Notifications - Notifications like Facebook (will be a part of v2.1)
 - [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
 - [x] Notifications System using SignalR
-- [ ] Charts
-- [ ] PDF Downloads
-- [ ] Theme Manager (will be a part of v2.1)
-- [ ] File Upload
 - [ ] Document Management
-- [ ] Export to Excel
+- [x] Export to Excel
 - [x] Audit Trails
-- [ ] SEO (will be a part of v2.1)
 - [x] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
 - [x] FIX: Code Cleanup.
 - [x] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
 - [x] FIX: Remove AutoMigrations - Causes SQL Exceptions at times.
+- [ ] SEO (will be a part of v2.1)
+- [ ] Charts (will be a part of v2.1)
+- [ ] PDF Downloads (will be a part of v2.1)
+- [ ] Theme Manager (will be a part of v2.1)
+- [ ] Advanced Notifications - Notifications like Facebook (will be a part of v2.1)
 
 # Quick Preview
 
@@ -83,7 +82,7 @@ Meanwhile here is a quick video uploaded to my Facebook page (https://www.facebo
 The easiest way to get started with Blazor Hero is to install the [NuGet package](https://www.nuget.org/packages/BlazorHero.CleanArchitecture/) and run `dotnet new BlazorHero.CleanArchitecture`:
 
 1. Install the latest [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
-2. Install the latest DOTNET & EF CLI Tools by using this command `dotnet tool install –global dotnet-ef` 
+2. Install the latest DOTNET & EF CLI Tools by using this command `dotnet tool install --global dotnet-ef` 
 3. Install the latest version of Visual Studio IDE 2019 (v16.8 and above) 🚀
 4. Open up Command Prompt and run `dotnet new --install BlazorHero.CleanArchitecture` to install the project template
 5. Create a folder for your solution and cd into it (the template will use it as project name)
@@ -147,4 +146,4 @@ Here are a few ways by which you can support.
 -   Do consider endorsing me on LinkedIn for ASP.NET Core - [Connect via LinkedIn](https://codewithmukesh.com/linkedin) 🦸
 -   Or, If you want to support this project on the long run, [consider buying me a coffee](https://www.buymeacoffee.com/codewithmukesh)! ☕
 
-<a href="https://www.buymeacoffee.com/codewithmukesh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="200"  style="height: 60px !important;width: 200px !important;" ></a>
+<a href="https://www.buymeacoffee.com/codewithmukesh" target="_blank"><img src="https://codewithmukesh.com/wp-content/uploads/2021/04/bmclogo.jpg" alt="Buy Me A Coffee" width="200"  style="height: 60px !important;width: 200px !important;" ></a>

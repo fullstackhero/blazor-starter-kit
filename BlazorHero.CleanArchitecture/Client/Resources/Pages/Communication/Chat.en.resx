@@ -117,22 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Manage" xml:space="preserve">
-    <value>Управление</value>
+  <data name="chat" xml:space="preserve">
+    <value>chat</value>
   </data>
-  <data name="Role Name" xml:space="preserve">
-    <value>Имя роли</value>
+  <data name="contacts" xml:space="preserve">
+    <value>contacts</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Ролями</value>
+  <data name="detailed guide for more." xml:space="preserve">
+    <value>detailed guide for more.</value>
   </data>
-  <data name="Roles Updated" xml:space="preserve">
-    <value>Роли обновлены!</value>
+  <data name="Enter your message..." xml:space="preserve">
+    <value>Enter your message...</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Статус</value>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
   </data>
-  <data name="Update User Roles" xml:space="preserve">
-    <value>Обновить роли пользователя</value>
+  <data name="Want to understand how Chat is implemented in BlazorHero ? Refer this" xml:space="preserve">
+    <value>Want to understand how Chat is implemented in BlazorHero ? Refer this</value>
   </data>
 </root>

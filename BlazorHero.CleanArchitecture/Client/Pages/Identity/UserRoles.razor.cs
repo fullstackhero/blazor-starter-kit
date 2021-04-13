@@ -35,7 +35,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 if (user != null)
                 {
                     Title = $"{user.FirstName} {user.LastName}";
-                    Description = $"Manage {user.FirstName} {user.LastName}'s Roles";
+                    Description = $"{localizer["Manage"]} {user.FirstName} {user.LastName}'s {localizer["Roles"]}";
                     var response = await _userManager.GetRolesAsync(user.Id);
                     UserRolesList = response.Data.UserRoles;
                 }
