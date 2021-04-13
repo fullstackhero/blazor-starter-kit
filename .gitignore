@@ -339,5 +339,5 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /BlazorHero.CleanArchitecture/Server/Logs
-/BlazorHero.CleanArchitecture/Server/Files/Images/ProfilePictures
+/BlazorHero.CleanArchitecture/Server/Files/Images
 /BlazorHero.CleanArchitecture/Server/Files/Documents
