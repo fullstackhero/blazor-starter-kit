@@ -32,15 +32,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
             return Result<IEnumerable<AuditResponse>>.Success(mappedLogs);
         }
 
-        public async Task<string> ExportToExcelAsync()
+        public async Task<string> ExportToExcelAsync(string userId)
         {
-            var trails = await _context.AuditTrails.OrderByDescending(a => a.DateTime).ToListAsync();
+            var trails = await _context.AuditTrails.Where(x => x.UserId == userId)
+                .OrderByDescending(a => a.DateTime).ToListAsync();
             var result = await _excelService.ExportAsync(trails, sheetName: "Audit trails",
                 mappers: new Dictionary<string, Func<Audit, object>>()
                 {
                     { "Table Name", item => item.TableName },
                     { "Type", item => item.Type },
-                    { "Actor", item => item.UserId },
                     { "Date Time (Local)", item => DateTime.SpecifyKind(item.DateTime, DateTimeKind.Utc).ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss") },
                     { "Date Time (UTC)", item => item.DateTime.ToString("dd/MM/yyyy HH:mm:ss") },
                     { "Primary Key", item => item.PrimaryKey },
