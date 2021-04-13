@@ -99,11 +99,11 @@
             <MudButton Variant="Variant.Filled" OnClick="Cancel">@localizer["Cancel"]</MudButton>
             @if (Id != 0)
             {
-                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Secondary">@localizer["Update"]</MudButton>
+                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Disabled="@(!success)"  Color="Color.Secondary">@localizer["Update"]</MudButton>
             }
             else
             {
-                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Success">@localizer["Save"]</MudButton>
+                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Disabled="@(!success)" Color="Color.Success">@localizer["Save"]</MudButton>
             }
         </DialogActions>
     </MudDialog>
