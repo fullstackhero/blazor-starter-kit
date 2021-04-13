@@ -2,22 +2,27 @@
 
 ## Version 2.0 - Down the Road
 
-- [ ] Breadcrumbs
-- [ ] Caching - Changes to Application & Infrastructure Layer
+- [x] Play Notification Tone when a new Chat Message is received.
+- [x] Auto Scroll to Last Message when a new Chat Message is received.
+- [x] Registration Page for Unauthorized User (Currently only Admins can register new users)
+- [x] Realtime Notifications - Dashboard Updates Realtime
+- [x] Logout Users / Regenerate Token from Multiple Client Browsers when Permission Changes
+- [x] FIX: Token Issue Fixed from v1.0.1
+- [x] User Images in Chat Component
 - [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
-- [ ] Notifications System using SignalR
-- [ ] Charts
-- [ ] PDF Downloads
-- [ ] Theme Manager
-- [ ] File Upload
-- [ ] Import / Export to Excel
-- [ ] Social Auth - Facebook, Google
-- [ ] Audit Trails
-- [ ] SEO
-- [ ] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
-- [ ] FIX: Code Cleanup.
-- [ ] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
+- [x] Notifications System using SignalR
+- [x] Document Management
+- [x] Export to Excel
+- [x] Audit Trails
+- [x] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
+- [x] FIX: Code Cleanup.
+- [x] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
 - [x] FIX: Remove AutoMigrations - Causes SQL Exceptions at times.
+- [ ] SEO (will be a part of v2.1)
+- [ ] Charts (will be a part of v2.1)
+- [ ] PDF Downloads (will be a part of v2.1)
+- [ ] Theme Manager (will be a part of v2.1)
+- [ ] Advanced Notifications - Notifications like Facebook (will be a part of v2.1)
 
 ## Version 1.0.1 - Current Release - Features
 
