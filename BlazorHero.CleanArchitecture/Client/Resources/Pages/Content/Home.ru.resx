@@ -117,17 +117,62 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Blazor For Beginners – Getting Started With Blazor" xml:space="preserve">
+    <value>Blazor For Beginners – Getting Started With Blazor</value>
+  </data>
   <data name="Blazor Hero Description" xml:space="preserve">
     <value>Blazor Hero - это All-In-One шаблон решения с применением "чистой" архитектуры для Blazor Web-Assembly, построенный с помощью</value>
+  </data>
+  <data name="Building A Chat Application With Blazor, Identity, And SignalR" xml:space="preserve">
+    <value>Building A Chat Application With Blazor, Identity, And SignalR</value>
   </data>
   <data name="Component Library" xml:space="preserve">
     <value>библиотеки компонентов</value>
   </data>
+  <data name="Custom Authentication In Blazor WebAssembly – Detailed" xml:space="preserve">
+    <value>Custom Authentication In Blazor WebAssembly – Detailed</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Шаблон "чистой" архитектуры для Blazor Web-Assembly</value>
   </data>
+  <data name="Exploring Blazor Project Structure" xml:space="preserve">
+    <value>Exploring Blazor Project Structure</value>
+  </data>
+  <data name="Getting Started" xml:space="preserve">
+    <value>Начало работы</value>
+  </data>
+  <data name="Github Repository : Do Not Forget to Leave a Star ;)" xml:space="preserve">
+    <value>Репозиторий Github : не забудьте поставить звезду ;)</value>
+  </data>
+  <data name="Here are few articles that should help you get started with Blazor." xml:space="preserve">
+    <value>Вот несколько статей, которые должны помочь вам начать работу с Blazor.</value>
+  </data>
+  <data name="How To Implement Blazor CRUD Using Entity Framework Core?" xml:space="preserve">
+    <value>How To Implement Blazor CRUD Using Entity Framework Core?</value>
+  </data>
+  <data name="Implementing Blazor CRUD Using Mudblazor Component Library In .NET 5" xml:space="preserve">
+    <value>Implementing Blazor CRUD Using Mudblazor Component Library In .NET 5</value>
+  </data>
+  <data name="Important Links" xml:space="preserve">
+    <value>Важные ссылки</value>
+  </data>
+  <data name="Increase you are stuck anywhere or have any queries regarding this implementation, I have compiled a Quick Start Guide for you reference." xml:space="preserve">
+    <value>Если вы где-то застряли или у вас есть какие-либо вопросы относительно этой реализации, я составил для вас краткое руководство по началу работы.</value>
+  </data>
+  <data name="Learning Resources" xml:space="preserve">
+    <value>Учебные ресурсы</value>
+  </data>
+  <data name="Onion Architecture In ASP.NET Core With CQRS – Detailed" xml:space="preserve">
+    <value>Onion Architecture In ASP.NET Core With CQRS – Detailed</value>
+  </data>
   <data name="Project Page" xml:space="preserve">
     <value>Страница проекта</value>
+  </data>
+  <data name="Quick Start Guide" xml:space="preserve">
+    <value>Краткое руководство по началу работы</value>
+  </data>
+  <data name="Read The Guide" xml:space="preserve">
+    <value>Прочитать руководство</value>
   </data>
   <data name="Support Me" xml:space="preserve">
     <value>Поддержать меня!</value>

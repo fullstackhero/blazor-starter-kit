@@ -120,6 +120,9 @@
   <data name="Description" xml:space="preserve">
     <value>Авторизуйтесь с помощью ваших учётных данных.</value>
   </data>
+  <data name="Don't have an account?" xml:space="preserve">
+    <value>У вас ещё нет аккаунта?</value>
+  </data>
   <data name="E-mail" xml:space="preserve">
     <value>E-mail</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="Password is required!" xml:space="preserve">
     <value>Пароль обязателен!</value>
+  </data>
+  <data name="Register here" xml:space="preserve">
+    <value>Зарегистрируйтесь здесь</value>
   </data>
   <data name="Remember me?" xml:space="preserve">
     <value>Запомнить меня?</value>
