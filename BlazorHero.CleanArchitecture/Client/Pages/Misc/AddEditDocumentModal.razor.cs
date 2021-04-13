@@ -3,11 +3,8 @@ using BlazorHero.CleanArchitecture.Application.Requests;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
@@ -24,6 +21,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         [Parameter]
         [Required]
         public string Title { get; set; }
+
         [Parameter]
         [Required]
         public string URL { get; set; }
@@ -36,6 +34,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         public string Description { get; set; }
 
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+
         public void Cancel()
         {
             MudDialog.Cancel();
@@ -72,7 +71,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         {
             await Task.CompletedTask;
         }
+
         public IBrowserFile file { get; set; }
+
         [Parameter]
         public UploadRequest UploadRequest { get; set; }
 

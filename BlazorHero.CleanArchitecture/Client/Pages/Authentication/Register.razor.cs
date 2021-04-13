@@ -13,6 +13,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
         private bool success;
         private string[] errors = { };
         private MudForm form;
+
         private async Task SubmitAsync()
         {
             form.Validate();
@@ -45,7 +46,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
                 }
             }
         }
+
         private RegisterUsermodel model { get; set; } = new RegisterUsermodel();
+
         private IEnumerable<string> PasswordStrength(string pw)
         {
             if (string.IsNullOrWhiteSpace(pw))

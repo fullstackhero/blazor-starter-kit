@@ -6,9 +6,6 @@ using BlazorHero.CleanArchitecture.Domain.Entities;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -76,7 +73,6 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
                 {
                     return Result<int>.Fail("Document Not Found!");
                 }
-
             }
         }
     }

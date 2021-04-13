@@ -1,7 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using System;
-using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace BlazorHero.CleanArchitecture.Application.Models.Chat
 {

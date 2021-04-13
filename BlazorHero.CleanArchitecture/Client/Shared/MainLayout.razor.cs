@@ -1,6 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.JSInterop;
 using MudBlazor;
@@ -17,6 +16,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         private string SecondName { get; set; }
         private string Email { get; set; }
         private char FirstLetterOfName { get; set; }
+
         private async Task LoadDataAsync()
         {
             var state = await _stateProvider.GetAuthenticationStateAsync();
@@ -30,12 +30,12 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 {
                     FirstLetterOfName = FirstName[0];
                 }
-
             }
-
         }
-        MudTheme currentTheme;
+
+        private MudTheme currentTheme;
         private bool _drawerOpen = true;
+
         protected override async Task OnInitializedAsync()
         {
             _interceptor.RegisterEvent();
@@ -60,14 +60,13 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                             return Task.CompletedTask;
                         };
                     });
-                    
                 }
             });
             hubConnection.On("RegenerateTokens", async () =>
             {
                 try
                 {
-                    var token = await _authenticationManager.TryForceRefreshToken();                    
+                    var token = await _authenticationManager.TryForceRefreshToken();
                     if (!string.IsNullOrEmpty(token))
                     {
                         _snackBar.Add("Refreshed Token.", Severity.Success);
@@ -83,7 +82,8 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 }
             });
         }
-        void Logout()
+
+        private void Logout()
         {
             string logoutConfirmationText = localizer["Logout Confirmation"];
             string logoutText = localizer["Logout"];
@@ -96,11 +96,13 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
             _dialogService.Show<Dialogs.Logout>("Logout", parameters, options);
         }
-        void DrawerToggle()
+
+        private void DrawerToggle()
         {
             _drawerOpen = !_drawerOpen;
         }
-        async Task DarkMode()
+
+        private async Task DarkMode()
         {
             bool isDarkMode = await _preferenceManager.ToggleDarkModeAsync();
             if (isDarkMode)
@@ -112,6 +114,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 currentTheme = BlazorHeroTheme.DarkTheme;
             }
         }
+
         public void Dispose()
         {
             _interceptor.DisposeEvent();

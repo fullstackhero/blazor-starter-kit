@@ -31,6 +31,7 @@ namespace BlazorHero.CleanArchitecture.Application.Models.Identity
         public DateTime RefreshTokenExpiryTime { get; set; }
         public virtual ICollection<ChatHistory> ChatHistoryFromUsers { get; set; }
         public virtual ICollection<ChatHistory> ChatHistoryToUsers { get; set; }
+
         public BlazorHeroUser()
         {
             ChatHistoryFromUsers = new HashSet<ChatHistory>();

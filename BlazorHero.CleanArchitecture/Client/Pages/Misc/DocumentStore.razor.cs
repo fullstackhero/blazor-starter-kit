@@ -17,6 +17,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private int totalItems;
         private int currentPage;
         private string searchString = null;
+
         protected override async Task OnInitializedAsync()
         {
             var state = await _stateProvider.GetAuthenticationStateAsync();
@@ -25,14 +26,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             if (user.Identity.IsAuthenticated)
             {
                 CurrentUserId = user.GetUserId();
-
             }
         }
+
         private async Task<TableData<GetAllDocumentsResponse>> ServerReload(TableState state)
         {
             await LoadData(state.Page, state.PageSize);
             return new TableData<GetAllDocumentsResponse>() { TotalItems = totalItems, Items = pagedData };
         }
+
         private async Task LoadData(int pageNumber, int pageSize)
         {
             var request = new GetAllPagedDocumentsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
@@ -89,6 +91,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                 OnSearch("");
             }
         }
+
         private async Task Delete(int id)
         {
             string deleteContent = localizer["Delete Content"];

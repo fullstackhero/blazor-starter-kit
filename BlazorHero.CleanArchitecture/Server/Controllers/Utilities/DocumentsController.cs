@@ -16,6 +16,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
             var docs = await _mediator.Send(new GetAllDocumentsQuery(pageNumber, pageSize, searchString));
             return Ok(docs);
         }
+
         [HttpPost]
         public async Task<IActionResult> Post(AddEditDocumentCommand command)
         {

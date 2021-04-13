@@ -1,11 +1,11 @@
-﻿using System;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using OfficeOpenXml;
-using OfficeOpenXml.Style;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 {

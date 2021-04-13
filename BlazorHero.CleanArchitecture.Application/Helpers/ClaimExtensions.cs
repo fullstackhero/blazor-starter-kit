@@ -42,6 +42,7 @@ namespace BlazorHero.CleanArchitecture.Application.Helpers
                 }
             }
         }
+
         public static async Task AddCustomPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string permission)
         {
             var allClaims = await roleManager.GetClaimsAsync(role);

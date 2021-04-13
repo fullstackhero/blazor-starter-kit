@@ -5,7 +5,6 @@ using BlazorHero.CleanArchitecture.Application.Requests;
 using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -76,7 +75,6 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
                 {
                     return Result<int>.Fail("Product Not Found!");
                 }
-
             }
         }
     }

@@ -49,10 +49,10 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
                 var userImageURL = result.Data.UserImageURL;
                 await _localStorage.SetItemAsync("authToken", token);
                 await _localStorage.SetItemAsync("refreshToken", refreshToken);
-                if(!string.IsNullOrEmpty(userImageURL))
+                if (!string.IsNullOrEmpty(userImageURL))
                 {
                     await _localStorage.SetItemAsync("userImageURL", userImageURL);
-                }               
+                }
                 ((BlazorHeroStateProvider)this._authenticationStateProvider).MarkUserAsAuthenticated(model.Email);
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 return Result.Success();
@@ -72,6 +72,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
             _httpClient.DefaultRequestHeaders.Authorization = null;
             return Result.Success();
         }
+
         public async Task<string> RefreshToken()
         {
             var token = await _localStorage.GetItemAsync<string>("authToken");
@@ -112,6 +113,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
                 return await RefreshToken();
             return string.Empty;
         }
+
         public async Task<string> TryForceRefreshToken()
         {
             return await RefreshToken();

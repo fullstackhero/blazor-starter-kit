@@ -130,6 +130,4 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             public bool AutoConfirmEmail { get; set; }
         }
     }
-
-
 }

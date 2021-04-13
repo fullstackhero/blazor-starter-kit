@@ -12,11 +12,13 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IAuditService _auditService;
+
         public AuditsController(ICurrentUserService currentUserService, IAuditService auditService)
         {
             _currentUserService = currentUserService;
             _auditService = auditService;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetUserTrailsAsync()
         {

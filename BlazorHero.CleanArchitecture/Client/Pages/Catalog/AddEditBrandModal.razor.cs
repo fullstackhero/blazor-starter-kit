@@ -3,7 +3,6 @@ using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
@@ -32,6 +31,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
         [CascadingParameter] public HubConnection hubConnection { get; set; }
+
         public void Cancel()
         {
             MudDialog.Cancel();

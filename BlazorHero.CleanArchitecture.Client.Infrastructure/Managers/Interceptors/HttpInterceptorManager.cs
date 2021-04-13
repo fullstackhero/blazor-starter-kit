@@ -1,9 +1,7 @@
-﻿using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Authentication;
+﻿using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Authentication;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Toolbelt.Blazor;
@@ -16,6 +14,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Intercepto
         private readonly IAuthenticationManager _authenticationManager;
         private readonly NavigationManager _navigationManager;
         private readonly ISnackbar _snackBar;
+
         public HttpInterceptorManager(HttpClientInterceptor interceptor, IAuthenticationManager authenticationManager, NavigationManager navigationManager, ISnackbar snackBar)
         {
             _interceptor = interceptor;
@@ -23,7 +22,9 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Intercepto
             _navigationManager = navigationManager;
             _snackBar = snackBar;
         }
+
         public void RegisterEvent() => _interceptor.BeforeSendAsync += InterceptBeforeHttpAsync;
+
         public async Task InterceptBeforeHttpAsync(object sender, HttpClientInterceptorEventArgs e)
         {
             var absPath = e.Request.RequestUri.AbsolutePath;
@@ -45,9 +46,9 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Intercepto
                     await _authenticationManager.Logout();
                     _navigationManager.NavigateTo("/");
                 }
-                
             }
         }
+
         public void DisposeEvent() => _interceptor.BeforeSendAsync -= InterceptBeforeHttpAsync;
     }
 }

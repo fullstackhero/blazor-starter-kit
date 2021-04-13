@@ -10,7 +10,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
         public string UploadAsync(UploadRequest request)
         {
             if (request.Data == null) return string.Empty;
-            var streamData = new MemoryStream(request.Data);           
+            var streamData = new MemoryStream(request.Data);
             if (streamData.Length > 0)
             {
                 var folder = request.UploadType.ToDescriptionString();
@@ -20,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
                 if (!exists)
                     System.IO.Directory.CreateDirectory(pathToSave);
                 var fileName = request.FileName.Trim('"');
-                var fullPath = Path.Combine(pathToSave, fileName);                
+                var fullPath = Path.Combine(pathToSave, fileName);
                 var dbPath = Path.Combine(folderName, fileName);
                 if (File.Exists(dbPath))
                 {
@@ -38,6 +38,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
                 return string.Empty;
             }
         }
+
         private static string numberPattern = " ({0})";
 
         public static string NextAvailableFilename(string path)
@@ -58,7 +59,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
         {
             string tmp = string.Format(pattern, 1);
             //if (tmp == pattern)
-                //throw new ArgumentException("The pattern must include an index place-holder", "pattern");
+            //throw new ArgumentException("The pattern must include an index place-holder", "pattern");
 
             if (!File.Exists(tmp))
                 return tmp; // short-circuit if no matches

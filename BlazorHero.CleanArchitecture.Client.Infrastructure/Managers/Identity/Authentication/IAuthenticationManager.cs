@@ -10,8 +10,11 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
         Task<IResult> Login(TokenRequest model);
 
         Task<IResult> Logout();
+
         Task<string> RefreshToken();
+
         Task<string> TryRefreshToken();
+
         Task<string> TryForceRefreshToken();
 
         Task<ClaimsPrincipal> CurrentUser();

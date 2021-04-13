@@ -1,13 +1,10 @@
 ﻿using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 {
-    public partial class UserCard 
+    public partial class UserCard
     {
         [Parameter] public string Class { get; set; }
         private string FirstName { get; set; }
@@ -17,10 +14,12 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 
         [Parameter]
         public string ImageDataUrl { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             await LoadDataAsync();
         }
+
         private async Task LoadDataAsync()
         {
             var state = await _stateProvider.GetAuthenticationStateAsync();

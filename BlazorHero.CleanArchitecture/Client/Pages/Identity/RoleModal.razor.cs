@@ -3,7 +3,6 @@ using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
@@ -28,7 +27,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             MudDialog.Cancel();
         }
+
         [CascadingParameter] public HubConnection hubConnection { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             hubConnection = hubConnection.TryInitialize(_navigationManager);
@@ -37,6 +38,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 await hubConnection.StartAsync();
             }
         }
+
         private async Task SaveAsync()
         {
             form.Validate();

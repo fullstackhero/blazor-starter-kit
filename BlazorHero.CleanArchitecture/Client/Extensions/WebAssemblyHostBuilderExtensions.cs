@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor;
 using MudBlazor.Services;
-using Polly;
 using System;
 using System.Linq;
 using System.Net.Http;

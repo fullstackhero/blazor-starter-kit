@@ -2,7 +2,6 @@
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -41,6 +40,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
+
         private async Task SaveAsync()
         {
             var request = new UpdateUserRolesRequest()

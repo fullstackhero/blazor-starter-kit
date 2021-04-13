@@ -8,6 +8,7 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services
     public interface IAuditService
     {
         Task<IResult<IEnumerable<AuditResponse>>> GetCurrentUserTrailsAsync(string userId);
+
         Task<string> ExportToExcelAsync(string userId);
     }
 }

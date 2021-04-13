@@ -17,6 +17,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             await GetUsersAsync();
         }
+
         private async Task GetUsersAsync()
         {
             var response = await _userManager.GetAllAsync();

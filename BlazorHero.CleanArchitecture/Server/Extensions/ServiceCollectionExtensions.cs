@@ -3,15 +3,16 @@ using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
+using BlazorHero.CleanArchitecture.Infrastructure.Services;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Shared.Services;
 using BlazorHero.CleanArchitecture.Server.Permission;
 using BlazorHero.CleanArchitecture.Server.Services;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
-using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -28,7 +29,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
-using BlazorHero.CleanArchitecture.Infrastructure.Services;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {

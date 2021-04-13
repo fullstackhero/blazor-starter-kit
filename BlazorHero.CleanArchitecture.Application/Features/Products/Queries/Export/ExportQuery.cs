@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Export
 {

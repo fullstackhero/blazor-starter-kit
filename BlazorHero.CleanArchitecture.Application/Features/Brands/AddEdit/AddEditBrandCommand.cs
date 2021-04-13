@@ -29,7 +29,6 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
 
         public async Task<Result<int>> Handle(AddEditBrandCommand command, CancellationToken cancellationToken)
         {
-            
             if (command.Id == 0)
             {
                 var brand = _mapper.Map<Brand>(command);
@@ -40,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
             else
             {
                 var brand = await _unitOfWork.Repository<Brand>().GetByIdAsync(command.Id);
-                if(brand != null)
+                if (brand != null)
                 {
                     brand.Name = command.Name ?? brand.Name;
                     brand.Tax = (command.Tax == 0) ? brand.Tax : command.Tax;

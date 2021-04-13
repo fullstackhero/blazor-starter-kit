@@ -1,11 +1,11 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
-using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Models.Identity;
+using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
@@ -69,7 +69,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         public async Task<IResult<string>> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return Result<string>.Fail(message:"User Not Found");
+            if (user == null) return Result<string>.Fail(message: "User Not Found");
             var filePath = _uploadService.UploadAsync(request);
             user.ProfilePictureDataUrl = filePath;
             var identityResult = await _userManager.UpdateAsync(user);

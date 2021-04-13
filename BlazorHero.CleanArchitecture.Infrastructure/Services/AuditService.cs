@@ -1,14 +1,14 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Application.Models.Audit;
 using BlazorHero.CleanArchitecture.Application.Responses.Audit;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Models.Audit;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 {
