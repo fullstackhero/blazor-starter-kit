@@ -25,6 +25,7 @@
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communication
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document
 
 @*Shared Libraries*@
 @using BlazorHero.CleanArchitecture.Shared.Constants.Permission
@@ -63,3 +64,4 @@
 @inject IAuditManager _auditManager
 @inject ILocalStorageService _localStorage;
 @inject IJSRuntime _jsRuntime;
+@inject IDocumentManager _documentManager;

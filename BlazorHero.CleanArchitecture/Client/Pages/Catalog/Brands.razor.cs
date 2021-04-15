@@ -15,6 +15,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         public List<GetAllBrandsResponse> BrandList = new List<GetAllBrandsResponse>();
         private GetAllBrandsResponse brand = new GetAllBrandsResponse();
         private string searchString = "";
+
         protected override async Task OnInitializedAsync()
         {
             await GetBrandsAsync();
@@ -24,6 +25,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 await hubConnection.StartAsync();
             }
         }
+
         private async Task GetBrandsAsync()
         {
             var response = await _brandManager.GetAllAsync();
@@ -39,7 +41,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 }
             }
         }
+
         [CascadingParameter] public HubConnection hubConnection { get; set; }
+
         private async Task Delete(int id)
         {
             string deleteContent = localizer["Delete Content"];

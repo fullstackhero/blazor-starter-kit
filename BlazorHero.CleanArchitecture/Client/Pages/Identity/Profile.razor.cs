@@ -40,6 +40,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             await LoadDataAsync();
         }
+
         private async Task LoadDataAsync()
         {
             var state = await _stateProvider.GetAuthenticationStateAsync();
@@ -71,9 +72,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if (file != null)
             {
                 var extension = Path.GetExtension(file.Name);
-                var fileName = $"{UserId}-{Guid.NewGuid()}{extension}";                
+                var fileName = $"{UserId}-{Guid.NewGuid()}{extension}";
                 var format = "image/png";
-                var imageFile = await e.File.RequestImageFileAsync(format,400,400);
+                var imageFile = await e.File.RequestImageFileAsync(format, 400, 400);
                 var buffer = new byte[imageFile.Size];
                 await imageFile.OpenReadStream().ReadAsync(buffer);
                 var request = new UpdateProfilePictureRequest() { Data = buffer, FileName = fileName, Extension = extension, UploadType = Application.Enums.UploadType.ProfilePicture };
@@ -90,7 +91,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                         _snackBar.Add(localizer[error], Severity.Error);
                     }
                 }
-
             }
         }
 

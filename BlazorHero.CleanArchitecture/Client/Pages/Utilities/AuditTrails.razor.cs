@@ -1,11 +1,10 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Responses.Audit;
+using Microsoft.JSInterop;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.JSInterop;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
 {
@@ -14,6 +13,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
         public List<RelatedAuditTrail> Trails = new List<RelatedAuditTrail>();
         private RelatedAuditTrail Trail = new RelatedAuditTrail();
         private string searchString = "";
+
         private bool Search(AuditResponse response)
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
@@ -23,10 +23,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
             }
             return false;
         }
+
         protected override async Task OnInitializedAsync()
         {
             await GetDataAsync();
         }
+
         private async Task GetDataAsync()
         {
             var response = await _auditManager.GetCurrentUserTrailsAsync();
@@ -55,15 +57,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
                 }
             }
         }
+
         private void ShowBtnPress(int id)
         {
             Trail = Trails.First(f => f.Id == id);
-            foreach(var trial in Trails.Where(a=>a.Id != id))
+            foreach (var trial in Trails.Where(a => a.Id != id))
             {
                 trial.ShowDetails = false;
             }
             Trail.ShowDetails = !Trail.ShowDetails;
         }
+
         private async Task ExportToExcelAsync()
         {
             var base64 = await _auditManager.DownloadFileAsync();
@@ -74,11 +78,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
         }
+
         public class RelatedAuditTrail : AuditResponse
         {
             public bool ShowDetails { get; set; } = false;
             public DateTime LocalTime { get; set; }
-
         }
     }
 }

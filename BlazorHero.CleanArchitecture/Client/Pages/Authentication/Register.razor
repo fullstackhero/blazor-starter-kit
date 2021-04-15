@@ -16,7 +16,7 @@
         </MudItem>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudText>Already have an account? <MudLink Href="/login">Sign In</MudLink></MudText>
+                <MudText>@localizer["Already have an account?"] <MudLink Href="/login">@localizer["Sign In"]</MudLink></MudText>
             </div>
         </MudItem>
         <MudItem xs="12">
@@ -37,7 +37,6 @@
         </MudItem>
         <MudItem xs="12">
             <MudTextField For="@(() => model.ConfirmPassword)" Validation="@(new Func<string, string>(PasswordMatch))" InputType="InputType.Password" Required="true" @bind-Value="model.ConfirmPassword" Label="@localizer["Confirm Password"]" />
-
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-center">
             <MudButton ButtonType="ButtonType.Button" OnClick="SubmitAsync" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">@localizer["Register"]</MudButton>

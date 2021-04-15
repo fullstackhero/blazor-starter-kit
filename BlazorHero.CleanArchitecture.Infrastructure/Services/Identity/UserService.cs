@@ -71,9 +71,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                     if (!request.AutoConfirmEmail)
                     {
                         var verificationUri = await SendVerificationEmail(user, origin);
-                        //TODO: Attach Email Service here and configure it via appsettings
                         BackgroundJob.Enqueue(() => _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" }));
-                        return Result<string>.Success(user.Id, message: $"User Registered Mailbox");
+                        return Result<string>.Success(user.Id, message: $"User Registered. Please check your Mailbox to verify!");
                     }
                     return Result<string>.Success(user.Id, message: $"User Registered");
                 }

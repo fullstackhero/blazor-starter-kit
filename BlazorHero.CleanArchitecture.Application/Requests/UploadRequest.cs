@@ -1,5 +1,4 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Enums;
-using System.IO;
 
 namespace BlazorHero.CleanArchitecture.Application.Requests
 {
@@ -10,5 +9,4 @@ namespace BlazorHero.CleanArchitecture.Application.Requests
         public UploadType UploadType { get; set; }
         public byte[] Data { get; set; }
     }
-   
 }

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
-    public partial class AddEditProductModal 
+    public partial class AddEditProductModal
     {
         [CascadingParameter] public HubConnection hubConnection { get; set; }
         private bool success;
@@ -67,7 +67,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     _snackBar.Add("Select a Brand.", Severity.Error);
                     return;
                 }
-                var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = BrandId, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id, UploadRequest = UploadRequest};
+                var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = BrandId, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id, UploadRequest = UploadRequest };
                 var response = await _productManager.SaveAsync(request);
                 if (response.Succeeded)
                 {
@@ -133,8 +133,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         [Parameter]
         public string ImageDataUrl { get; set; }
+
         [Parameter]
-        public UploadRequest UploadRequest{ get; set; }
+        public UploadRequest UploadRequest { get; set; }
 
         private async Task UploadFiles(InputFileChangeEventArgs e)
         {

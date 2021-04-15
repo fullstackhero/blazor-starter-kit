@@ -1,0 +1,92 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditDocumentModal> localizer
+
+<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @localizer["Add Document"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @localizer["Update Document"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @if (Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => Id)" @bind-Value="Id" Required="true" Label="@localizer["Id"]" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => Title)" @bind-Value="Title" Required="true" Label="@localizer["Title"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="@localizer["Description"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudCheckBox For="@(() => IsPublic)" @bind-Checked="IsPublic" Label="@localizer["Is Public?"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudItem>
+                        @if (file != null)
+                        {
+                            <MudAlert>@file.Name</MudAlert>
+                        }
+                        @if (!string.IsNullOrEmpty(URL))
+                        {
+                            <MudAlert>@URL</MudAlert>
+                        }
+                        <InputFile id="fileInput" hidden OnChange="UploadFiles" />
+                        <div>
+                            @if (Id == 0)
+                            {
+                                <MudButton HtmlTag="label"
+                                           Variant="Variant.Text"
+                                           Color="Color.Primary"
+                                           Size="Size.Small"
+                                           StartIcon="@Icons.Filled.CloudUpload"
+                                           for="fileInput">
+                                    @localizer["Upload"]
+                                </MudButton>
+                            }
+
+                            @if (!string.IsNullOrEmpty(URL))
+                            {
+                                <MudButton Variant="Variant.Text"
+                                           Color="Color.Secondary"
+                                           StartIcon="@Icons.Filled.CloudDownload"
+                                           Size="Size.Small"
+                                           Link="@URL" Target="_blank">
+                                    @localizer["Download"]
+                                </MudButton>
+
+                            }
+                        </div>
+                    </MudItem>
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@localizer["Cancel"]</MudButton>
+            @if (Id != 0)
+            {
+                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Secondary">@localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Success">@localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</MudForm>

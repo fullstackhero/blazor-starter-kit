@@ -1,8 +1,8 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -57,7 +57,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             {
                 return Result<TokenResponse>.Fail("Invalid Credentials.");
             }
-           
+
             user.RefreshToken = GenerateRefreshToken();
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
             await _userManager.UpdateAsync(user);
@@ -66,6 +66,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken, UserImageURL = user.ProfilePictureDataUrl };
             return Result<TokenResponse>.Success(response);
         }
+
         public async Task<Result<TokenResponse>> GetRefreshTokenAsync(RefreshTokenRequest model)
         {
             if (model is null)
@@ -86,12 +87,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken, RefreshTokenExpiryTime = user.RefreshTokenExpiryTime };
             return Result<TokenResponse>.Success(response);
         }
+
         private async Task<string> GenerateJwtAsync(BlazorHeroUser user)
         {
             var token = GenerateEncryptedToken(GetSigningCredentials(), await GetClaimsAsync(user));
             return token;
-
         }
+
         private async Task<IEnumerable<Claim>> GetClaimsAsync(BlazorHeroUser user)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
@@ -121,9 +123,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             .Union(roleClaims)
             .Union(permissionClaims);
 
-
             return claims;
         }
+
         private string GenerateRefreshToken()
         {
             var randomNumber = new byte[32];
@@ -133,6 +135,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 return Convert.ToBase64String(randomNumber);
             }
         }
+
         private string GenerateEncryptedToken(SigningCredentials signingCredentials, IEnumerable<Claim> claims)
         {
             var token = new JwtSecurityToken(
@@ -143,10 +146,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var encryptedToken = tokenHandler.WriteToken(token);
             return encryptedToken;
         }
+
         private ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
         {
             var tokenValidationParameters = new TokenValidationParameters
-            {              
+            {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appConfig.Secret)),
                 ValidateIssuer = false,
@@ -166,12 +170,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
             return principal;
         }
+
         private SigningCredentials GetSigningCredentials()
         {
             var secret = Encoding.UTF8.GetBytes(_appConfig.Secret);
             return new SigningCredentials(new SymmetricSecurityKey(secret), SecurityAlgorithms.HmacSha256);
         }
-
-
     }
 }

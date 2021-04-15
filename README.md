@@ -24,7 +24,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/blazorhero/CleanArchitecture">
-    <img src="https://codewithmukesh.com/wp-content/uploads/2021/03/BlazorHeroBanner.png" alt="Blazor Hero">
+    <img src="https://codewithmukesh.com/wp-content/uploads/2021/04/BlazorHeroBannerv2.jpg" alt="Blazor Hero">
   </a>
   <h3 align="center">BlazorHero - Clean Architecture Template</h3>
   <p align="center">
@@ -43,12 +43,20 @@
 
 BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 built with MudBlazor Components.
 
+## Complete Overview - Youtube Video 🆕 📈
+
+So, here is an in-depth video that takes you through the BlazorHero Project! Do Like & Subscribe to my Youtube channel! It would be great if you could leave behind your valuable feedback in the comments section of the Video. This helps me reach a much wider audience with time :)
+
+<a href="https://www.youtube.com/watch?v=j7BxKN7HYjk&lc=Ugy1SjDcmP0pboRxJe94AaABAg">Watch it here!</a>
+
+[![Blazor Hero - Clean Architecture Solution Template for Blazor WebAssembly](http://img.youtube.com/vi/j7BxKN7HYjk/0.jpg)](http://www.youtube.com/watch?v=j7BxKN7HYjk "Blazor Hero - Clean Architecture Solution Template for Blazor WebAssembly")
+
 ### Tech Stack :muscle:
 
 - Blazor WebAssembly 5.0 - ASP.NET Core Hosted Model
 - [Entity Framework Core 5.0](https://docs.microsoft.com/en-us/ef/core/)
 
-# Upcoming Features For BlazorHero v2.0
+# New Features of BlazorHero v2.0
 
 - [x] Play Notification Tone when a new Chat Message is received.
 - [x] Auto Scroll to Last Message when a new Chat Message is received.
@@ -59,18 +67,13 @@ BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 
 - [x] User Images in Chat Component
 - [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
 - [x] Notifications System using SignalR
-- [ ] Document Management
+- [x] Document Management
 - [x] Export to Excel
 - [x] Audit Trails
 - [x] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
 - [x] FIX: Code Cleanup.
 - [x] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
 - [x] FIX: Remove AutoMigrations - Causes SQL Exceptions at times.
-- [ ] SEO (will be a part of v2.1)
-- [ ] Charts (will be a part of v2.1)
-- [ ] PDF Downloads (will be a part of v2.1)
-- [ ] Theme Manager (will be a part of v2.1)
-- [ ] Advanced Notifications - Notifications like Facebook (will be a part of v2.1)
 
 # Quick Preview
 
@@ -78,6 +81,9 @@ Youtube Preview Video Coming Soon!
 Meanwhile here is a quick video uploaded to my Facebook page (https://www.facebook.com/codewithmukesh/posts/269621381402304)
 
 # Getting Started 🦸
+
+> **Important**
+If you are already using Blazor Hero v1.x, make sure that you drop your existing database and re-update your database using the CLI as there are couple of new migrations added that may clash with your existing schema. Also, install the latest version of BlazorHero.
 
 The easiest way to get started with Blazor Hero is to install the [NuGet package](https://www.nuget.org/packages/BlazorHero.CleanArchitecture/) and run `dotnet new BlazorHero.CleanArchitecture`:
 

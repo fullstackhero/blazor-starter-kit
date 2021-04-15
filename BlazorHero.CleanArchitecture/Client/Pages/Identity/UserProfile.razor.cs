@@ -1,7 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -48,6 +47,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         [Parameter]
         public string ImageDataUrl { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             var userId = Id;

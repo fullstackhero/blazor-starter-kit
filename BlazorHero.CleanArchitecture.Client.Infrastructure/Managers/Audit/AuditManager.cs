@@ -1,9 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Responses.Audit;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -24,7 +22,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit
             var data = await response.ToResult<IEnumerable<AuditResponse>>();
             return data;
         }
-
 
         public async Task<string> DownloadFileAsync()
         {

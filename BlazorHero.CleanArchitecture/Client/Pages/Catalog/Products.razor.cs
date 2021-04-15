@@ -3,6 +3,7 @@ using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
 using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.JSInterop;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
-    public partial class Products 
+    public partial class Products
     {
         private IEnumerable<GetAllPagedProductsResponse> pagedData;
         private MudTable<GetAllPagedProductsResponse> table;
@@ -21,6 +22,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private int currentPage;
         private string searchString = null;
         [CascadingParameter] public HubConnection hubConnection { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             hubConnection = hubConnection.TryInitialize(_navigationManager);
@@ -29,12 +31,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 await hubConnection.StartAsync();
             }
         }
+
         private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
         {
             await LoadData(state.Page, state.PageSize);
             return new TableData<GetAllPagedProductsResponse>() { TotalItems = totalItems, Items = pagedData };
         }
-        
+
         private ClaimsPrincipal AuthenticationStateProviderUser { get; set; }
 
         protected override async Task OnParametersSetAsync()
@@ -78,6 +81,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         {
             searchString = text;
             table.ReloadServerData();
+        }
+
+        private async Task ExportToExcel()
+        {
+            var base64 = await _productManager.ExportToExcelAsync();
+            await _jsRuntime.InvokeVoidAsync("Download", new
+            {
+                ByteArray = base64,
+                FileName = $"products_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            });
         }
 
         private async Task InvokeModal(int id = 0)

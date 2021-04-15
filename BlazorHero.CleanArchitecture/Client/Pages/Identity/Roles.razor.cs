@@ -17,6 +17,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private string searchString = "";
 
         [CascadingParameter] public HubConnection hubConnection { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             await GetRolesAsync();
@@ -26,6 +27,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 await hubConnection.StartAsync();
             }
         }
+
         private async Task GetRolesAsync()
         {
             var response = await _roleManager.GetRolesAsync();

@@ -1,4 +1,6 @@
 ﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditBrandModal> localizer
+@using System.Text.RegularExpressions
+@using System.ComponentModel.DataAnnotations
 
 <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
     <MudDialog>
@@ -29,7 +31,7 @@
                     </MudItem>
                 }
                 <MudItem xs="12" md="6">
-                    <MudTextField For="@(() => Name)" @bind-Value="Name" Required="true" Label="@localizer["Name"]" />
+                    <MudTextField T="string" For="@(() => Name)" @bind-Value="Name" Required="true" Label="@localizer["Name"]" RequiredError="User name is required!" />
                 </MudItem>
                 <MudItem xs="12" md="6">
                     <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="@localizer["Description"]" />
@@ -43,11 +45,11 @@
             <MudButton Variant="Variant.Filled" OnClick="Cancel">@localizer["Cancel"]</MudButton>
             @if (Id != 0)
             {
-                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Secondary">@localizer["Update"]</MudButton>
+                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Disabled="@(!success)" Color="Color.Secondary">@localizer["Update"]</MudButton>
             }
             else
             {
-                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Success">@localizer["Save"]</MudButton>
+                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Disabled="@(!success)" Color="Color.Success">@localizer["Save"]</MudButton>
             }
         </DialogActions>
     </MudDialog>

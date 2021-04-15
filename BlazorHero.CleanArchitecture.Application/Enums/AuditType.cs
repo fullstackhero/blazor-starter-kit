@@ -1,5 +1,5 @@
 ﻿namespace BlazorHero.CleanArchitecture.Application.Enums
-{ 
+{
     public enum AuditType
     {
         None = 0,

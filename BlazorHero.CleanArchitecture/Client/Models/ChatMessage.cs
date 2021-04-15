@@ -1,5 +1,4 @@
-﻿
-namespace AdminDashboard.Wasm.Models
+﻿namespace AdminDashboard.Wasm.Models
 {
     public class ChatMessage
     {

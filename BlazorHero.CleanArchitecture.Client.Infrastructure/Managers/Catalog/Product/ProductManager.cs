@@ -24,6 +24,13 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Pr
             return await response.ToResult<int>();
         }
 
+        public async Task<string> ExportToExcelAsync()
+        {
+            var response = await _httpClient.GetAsync(Routes.ProductsEndpoint.Export);
+            var data = await response.Content.ReadAsStringAsync();
+            return data;
+        }
+
         public async Task<IResult<string>> GetProductImageAsync(int id)
         {
             var response = await _httpClient.GetAsync(Routes.ProductsEndpoint.GetProductImage(id));

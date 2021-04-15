@@ -1,18 +1,18 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Domain.Contracts;
-using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+using BlazorHero.CleanArchitecture.Application.Models.Chat;
 using BlazorHero.CleanArchitecture.Application.Models.Identity;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
+using BlazorHero.CleanArchitecture.Domain.Entities;
+using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Models.Chat;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 {
-    public class BlazorHeroContext : AuditableContext 
+    public class BlazorHeroContext : AuditableContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTimeService _dateTimeService;
@@ -23,9 +23,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             _currentUserService = currentUserService;
             _dateTimeService = dateTimeService;
         }
+
         public DbSet<ChatHistory> ChatHistories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Document> Documents { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

@@ -2,12 +2,9 @@
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communication
@@ -37,7 +34,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communicat
 
         public async Task<IResult> SaveMessageAsync(ChatHistory chatHistory)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.ChatEndpoint.SaveMessage,chatHistory);
+            var response = await _httpClient.PostAsJsonAsync(Routes.ChatEndpoint.SaveMessage, chatHistory);
             var data = await response.ToResult();
             return data;
         }

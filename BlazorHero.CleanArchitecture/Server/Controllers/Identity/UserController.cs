@@ -49,6 +49,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             return Ok(await _userService.UpdateRolesAsync(request));
         }
+
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> RegisterAsync(RegisterRequest request)
