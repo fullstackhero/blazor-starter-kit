@@ -117,37 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Brand" xml:space="preserve">
-    <value>បន្ថែមម៉ាក</value>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>កំណត់ត្រាប្រព័ន្ធ</value>
   </data>
-  <data name="Brand Saved" xml:space="preserve">
-    <value>ម៉ាកបានរក្សាទុក!</value>
+  <data name="Columns Affected" xml:space="preserve">
+    <value>ជួរឈរដែលបានកែប្រែ</value>
   </data>
-  <data name="Brand Updated" xml:space="preserve">
-    <value>ម៉ាកបានធ្វើបច្ចុប្បន្នភាព</value>
+  <data name="Date" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>បោះបង់</value>
+  <data name="Details for Trail ID" xml:space="preserve">
+    <value>កំណត់ត្រាលម្អិតសម្រាប់កំណត់ត្រាដែលមានលេខសម្ងាល់</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>ការពិពណ៌នា</value>
+  <data name="Export To Excel" xml:space="preserve">
+    <value>បម្លែងជា​ Excel</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>បិទ</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>លេខកូដសម្ងាល់</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>ឈ្មោះ</value>
+  <data name="Local" xml:space="preserve">
+    <value>ខាងក្នុង</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>រក្សាទុក</value>
+  <data name="New Values" xml:space="preserve">
+    <value>តម្លៃថ្មី</value>
   </data>
-  <data name="Tax" xml:space="preserve">
-    <value>ពន្ធ</value>
+  <data name="Old Values" xml:space="preserve">
+    <value>តម្លៃចាស់</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>បច្ចុប្បន្នភាព</value>
+  <data name="Primary Key" xml:space="preserve">
+    <value>Primary Key</value>
   </data>
-  <data name="Update Brand" xml:space="preserve">
-    <value>បច្ចុប្បន្នភាពម៉ាក</value>
+  <data name="Search for Trails" xml:space="preserve">
+    <value>ស្វែងរកកំណត់ត្រាប្រព័ន្ធ</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>បង្ហាញ</value>
+  </data>
+  <data name="Table Name" xml:space="preserve">
+    <value>ឈ្មោះតារាង</value>
+  </data>
+  <data name="Trail Details" xml:space="preserve">
+    <value>កំណត់ត្រាលម្អិត</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>ប្រភេទ</value>
+  </data>
+  <data name="UTC" xml:space="preserve">
+    <value>ម៉ោងសកល</value>
+  </data>
+  <data name="Your Recent Activities." xml:space="preserve">
+    <value>សកម្មភាពរបស់អ្នកចុងក្រោយ</value>
   </data>
 </root>

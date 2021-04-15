@@ -117,37 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Brand" xml:space="preserve">
-    <value>បន្ថែមម៉ាក</value>
+  <data name="Done!" xml:space="preserve">
+    <value>រួចរាល់!</value>
   </data>
-  <data name="Brand Saved" xml:space="preserve">
-    <value>ម៉ាកបានរក្សាទុក!</value>
+  <data name="E-mail" xml:space="preserve">
+    <value>អ៊ីម៉ែល</value>
   </data>
-  <data name="Brand Updated" xml:space="preserve">
-    <value>ម៉ាកបានធ្វើបច្ចុប្បន្នភាព</value>
+  <data name="Enter email for password reset" xml:space="preserve">
+    <value>សូមបញ្ចូលអ៊ីម៉ែលដើម្បីកំណត់លេខកូដសម្ងាត់ឡើងវិញ</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>បោះបង់</value>
+  <data name="Forgot password?" xml:space="preserve">
+    <value>ភ្លេចលេខកូដសម្ងាត់?</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>ការពិពណ៌នា</value>
-  </data>
-  <data name="Id" xml:space="preserve">
-    <value>លេខកូដសម្ងាល់</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>ឈ្មោះ</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>រក្សាទុក</value>
-  </data>
-  <data name="Tax" xml:space="preserve">
-    <value>ពន្ធ</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>បច្ចុប្បន្នភាព</value>
-  </data>
-  <data name="Update Brand" xml:space="preserve">
-    <value>បច្ចុប្បន្នភាពម៉ាក</value>
+  <data name="Reset Password" xml:space="preserve">
+    <value>កំណត់លេខកូដសម្ងាត់ឡើងវិញ</value>
   </data>
 </root>
