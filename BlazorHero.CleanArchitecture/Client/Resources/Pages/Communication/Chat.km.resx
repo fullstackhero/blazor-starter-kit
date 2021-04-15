@@ -117,37 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Brand" xml:space="preserve">
-    <value>បន្ថែមម៉ាក</value>
+  <data name="chat" xml:space="preserve">
+    <value>ជជែក</value>
   </data>
-  <data name="Brand Saved" xml:space="preserve">
-    <value>ម៉ាកបានរក្សាទុក!</value>
+  <data name="contacts" xml:space="preserve">
+    <value>ឈ្មោះទំនាក់ទំនង</value>
   </data>
-  <data name="Brand Updated" xml:space="preserve">
-    <value>ម៉ាកបានធ្វើបច្ចុប្បន្នភាព</value>
+  <data name="detailed guide for more." xml:space="preserve">
+    <value>ការណែនាំលំអិត</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>បោះបង់</value>
+  <data name="Enter your message..." xml:space="preserve">
+    <value>វាយបញ្ចូលសាររបស់អ្នក</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>ការពិពណ៌នា</value>
+  <data name="Send" xml:space="preserve">
+    <value>ផ្ញើ</value>
   </data>
-  <data name="Id" xml:space="preserve">
-    <value>លេខកូដសម្ងាល់</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>ឈ្មោះ</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>រក្សាទុក</value>
-  </data>
-  <data name="Tax" xml:space="preserve">
-    <value>ពន្ធ</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>បច្ចុប្បន្នភាព</value>
-  </data>
-  <data name="Update Brand" xml:space="preserve">
-    <value>បច្ចុប្បន្នភាពម៉ាក</value>
+  <data name="Want to understand how Chat is implemented in BlazorHero ? Refer this" xml:space="preserve">
+    <value>ចង់ដឹងអំពីរបៀបសរសេរកូដមុខងារជជែកក្នុងប្លេហ្សឺហេរ៉ូ ចូលទៅកាន់តំណភ្ជាប់នេះ</value>
   </data>
 </root>

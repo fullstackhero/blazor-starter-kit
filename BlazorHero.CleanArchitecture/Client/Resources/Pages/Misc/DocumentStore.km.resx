@@ -117,37 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Brand" xml:space="preserve">
-    <value>បន្ថែមម៉ាក</value>
+  <data name="Actions" xml:space="preserve">
+    <value>សកម្មភាព</value>
   </data>
-  <data name="Brand Saved" xml:space="preserve">
-    <value>ម៉ាកបានរក្សាទុក!</value>
+  <data name="Browse Available Documents." xml:space="preserve">
+    <value>រកមើលឯកសារមានទាំងអស់</value>
   </data>
-  <data name="Brand Updated" xml:space="preserve">
-    <value>ម៉ាកបានធ្វើបច្ចុប្បន្នភាព</value>
+  <data name="Create" xml:space="preserve">
+    <value>បង្កើត</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>បោះបង់</value>
+  <data name="Date Created" xml:space="preserve">
+    <value>កាលបរិឆ្ឆេទបង្កើត</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>លុប</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>ការពិពណ៌នា</value>
   </data>
+  <data name="Document Store" xml:space="preserve">
+    <value>តំបន់រក្សាទុកឯកសារ</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>ទាញយក</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>កែប្រែ</value>
+  </data>
   <data name="Id" xml:space="preserve">
-    <value>លេខកូដសម្ងាល់</value>
+    <value>លេខកូដសម្ងាត់</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>ឈ្មោះ</value>
+  <data name="Is Public" xml:space="preserve">
+    <value>ធ្វើអោយជាសាធារណះ</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>រក្សាទុក</value>
+  <data name="Owner" xml:space="preserve">
+    <value>ម្ខាស់</value>
   </data>
-  <data name="Tax" xml:space="preserve">
-    <value>ពន្ធ</value>
+  <data name="Reload" xml:space="preserve">
+    <value>ផ្ទុកឡើងវិញ</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>បច្ចុប្បន្នភាព</value>
+  <data name="Search" xml:space="preserve">
+    <value>ស្វែងរក</value>
   </data>
-  <data name="Update Brand" xml:space="preserve">
-    <value>បច្ចុប្បន្នភាពម៉ាក</value>
+  <data name="Title" xml:space="preserve">
+    <value>ចំណងជើង</value>
   </data>
 </root>

@@ -117,37 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Brand" xml:space="preserve">
-    <value>បន្ថែមម៉ាក</value>
+  <data name="Already have an account?" xml:space="preserve">
+    <value>មានគណនីរួចហើយ?</value>
   </data>
-  <data name="Brand Saved" xml:space="preserve">
-    <value>ម៉ាកបានរក្សាទុក!</value>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>បញ្ជាក់លេខកូដសម្ងាត់</value>
   </data>
-  <data name="Brand Updated" xml:space="preserve">
-    <value>ម៉ាកបានធ្វើបច្ចុប្បន្នភាព</value>
+  <data name="E-mail" xml:space="preserve">
+    <value>អ៊ីម៉ែល</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>បោះបង់</value>
+  <data name="Email is required!" xml:space="preserve">
+    <value>តម្រូវបញ្ចូលអ៊ីម៉ែល</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>ការពិពណ៌នា</value>
+  <data name="First Name" xml:space="preserve">
+    <value>នាមខ្លួន</value>
   </data>
-  <data name="Id" xml:space="preserve">
-    <value>លេខកូដសម្ងាល់</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>នាមត្រកូល</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>ឈ្មោះ</value>
+  <data name="Password" xml:space="preserve">
+    <value>លេខកូដសម្ងាត់</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>រក្សាទុក</value>
+  <data name="Password is required!" xml:space="preserve">
+    <value>តម្រូវបញ្ចូលលេខកូដសម្ងាត់</value>
   </data>
-  <data name="Tax" xml:space="preserve">
-    <value>ពន្ធ</value>
+  <data name="Password must be at least of length 8" xml:space="preserve">
+    <value>លេខកូដសម្ងាត់ត្រូវតែមានយ៉ាងតិច៨តួអក្សរ</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>បច្ចុប្បន្នភាព</value>
+  <data name="Password must contain at least one capital letter" xml:space="preserve">
+    <value>លេខកូដសម្ងាត់ត្រូវតែមានអក្សរធំយ៉ាងតិចមួយ</value>
   </data>
-  <data name="Update Brand" xml:space="preserve">
-    <value>បច្ចុប្បន្នភាពម៉ាក</value>
+  <data name="Password must contain at least one digit" xml:space="preserve">
+    <value>លេខកូដសម្ងាត់ត្រូវតែមានតួលេខ</value>
+  </data>
+  <data name="Password must contain at least one lowercase letter" xml:space="preserve">
+    <value>លេខកូដសម្ងាត់ត្រូវតែមានអក្សរតូចយ៉ាងតិចមួយ</value>
+  </data>
+  <data name="Passwords don't match" xml:space="preserve">
+    <value>លេខកូដសម្ងាត់មិនដូចគ្នា</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>ចុះឈ្មោះ</value>
+  </data>
+  <data name="Sign In" xml:space="preserve">
+    <value>ឡុកចូល</value>
+  </data>
+  <data name="User Name" xml:space="preserve">
+    <value>ឈ្មោះអ្នកប្រើប្រាស់</value>
   </data>
 </root>
