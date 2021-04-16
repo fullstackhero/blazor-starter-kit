@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
+using MudBlazor;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Content
@@ -17,6 +19,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 
         [Parameter]
         public int RoleCount { get; set; }
+
+        public string[] DataEnterBarChartXAxisLabels = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+        public List<ChartSeries> DataEnterBarChartSeries = new List<ChartSeries>();
+
 
         protected override async Task OnInitializedAsync()
         {
@@ -42,6 +48,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
                 BrandCount = data.Data.BrandCount;
                 UserCount = data.Data.UserCount;
                 RoleCount = data.Data.RoleCount;
+                DataEnterBarChartSeries = data.Data.DataEnterBarChart;
             }
         }
 
