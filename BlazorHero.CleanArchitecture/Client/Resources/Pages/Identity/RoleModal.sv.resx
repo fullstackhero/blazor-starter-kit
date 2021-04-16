@@ -123,9 +123,6 @@
   <data name="Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>
-  <data name="Role Created" xml:space="preserve">
-    <value>Roll Skapad!</value>
-  </data>
   <data name="Role ID" xml:space="preserve">
     <value>Roll ID</value>
   </data>

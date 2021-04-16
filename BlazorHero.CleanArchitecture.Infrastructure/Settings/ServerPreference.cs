@@ -1,9 +1,17 @@
-﻿using BlazorHero.CleanArchitecture.Shared.Settings;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Shared.Settings;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Settings
 {
     public record ServerPreference : IPreference
     {
-        public string LanguageCode { get; set; } = "en-US";
+        private readonly ICurrentUserService _currentUserService;
+
+        public ServerPreference(ICurrentUserService currentUserService)
+        {
+            _currentUserService = currentUserService;
+        }
+
+        //TODO - add server preferences
     }
 }

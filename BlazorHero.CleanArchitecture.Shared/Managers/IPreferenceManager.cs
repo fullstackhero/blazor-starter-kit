@@ -8,7 +8,5 @@ namespace BlazorHero.CleanArchitecture.Shared.Managers
         Task SetPreference(IPreference preference);
 
         Task<IPreference> GetPreference();
-
-        Task ChangeLanguageAsync(string languageCode);
     }
 }

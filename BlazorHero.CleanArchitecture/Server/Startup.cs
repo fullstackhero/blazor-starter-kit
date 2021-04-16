@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Server.Extensions;
@@ -11,8 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
-using Blazored.LocalStorage;
-using BlazorHero.CleanArchitecture.Infrastructure.Managers.Preferences;
+using System.Linq;
+using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
+using Microsoft.AspNetCore.Localization;
 
 namespace BlazorHero.CleanArchitecture.Server
 {
@@ -34,8 +38,9 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddDatabase(_configuration);
             services.AddIdentity();
             services.AddJwtAuthentication(services.GetApplicationSettings(_configuration));
-            services.AddBlazoredLocalStorage();
-            services.AddScoped<ServerPreferenceManager>();
+            //TODO - add CustomServerLocalStorageService
+            //services.AddScoped<ILocalStorageService, CustomServerLocalStorageService>();
+            //services.AddScoped<IServerPreferenceManager, ServerPreferenceManager>();
             services.AddSharedLocalization();
             services.AddApplicationLayer();
             services.AddApplicationServices();
@@ -54,7 +59,7 @@ namespace BlazorHero.CleanArchitecture.Server
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
         {
             app.UseExceptionHandling(env);
             app.UseHttpsRedirection();
@@ -67,6 +72,17 @@ namespace BlazorHero.CleanArchitecture.Server
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Files")),
                 RequestPath = new PathString("/Files")
             });
+
+            // add requests localization
+            var supportedCultures = LocalizationConstants.SupportedLanguages.Select(l => new CultureInfo(l.Code)).ToArray();
+            app.UseRequestLocalization(options =>
+            {
+                options.SupportedUICultures = supportedCultures;
+                options.SupportedCultures = supportedCultures;
+                options.DefaultRequestCulture = new RequestCulture(supportedCultures.First());
+                options.ApplyCurrentCultureToResponseHeaders = true;
+            });
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

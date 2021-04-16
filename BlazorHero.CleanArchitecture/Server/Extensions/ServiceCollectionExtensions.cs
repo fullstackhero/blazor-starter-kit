@@ -26,12 +26,9 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
@@ -122,10 +119,6 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
         public static IServiceCollection AddSharedLocalization(this IServiceCollection services)
         {
-            //TODO - get culture from PreferenceManager
-            var culture = new CultureInfo("en-US");
-            CultureInfo.DefaultThreadCurrentCulture = culture;
-            CultureInfo.DefaultThreadCurrentUICulture = culture;
             services.AddLocalization(options =>
             {
                 options.ResourcesPath = "Resources";

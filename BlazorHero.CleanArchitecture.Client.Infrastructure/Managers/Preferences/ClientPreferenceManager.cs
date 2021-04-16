@@ -1,22 +1,18 @@
-﻿using System.Net.Http;
-using Blazored.LocalStorage;
+﻿using Blazored.LocalStorage;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
 using MudBlazor;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Shared.Settings;
-using System.Net.Http.Json;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences
 {
     public class ClientPreferenceManager : IClientPreferenceManager
     {
         private readonly ILocalStorageService _localStorageService;
-        private readonly HttpClient _httpClient;
 
-        public ClientPreferenceManager(ILocalStorageService localStorageService, HttpClient httpClient)
+        public ClientPreferenceManager(ILocalStorageService localStorageService)
         {
             _localStorageService = localStorageService;
-            _httpClient = httpClient;
         }
 
         public async Task<bool> ToggleDarkModeAsync()
@@ -40,9 +36,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preference
                 preference.LanguageCode = languageCode;
                 await SetPreference(preference);
             }
-
-            // change language on the server side
-            await _httpClient.PostAsJsonAsync(Routes.PreferencesEndpoint.ChangeLanguage, languageCode);
         }
 
         public async Task<MudTheme> GetCurrentThemeAsync()
@@ -62,7 +55,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preference
 
         public async Task SetPreference(IPreference preference)
         {
-            await _localStorageService.SetItemAsync("clientPreference", preference);
+            await _localStorageService.SetItemAsync("clientPreference", preference as ClientPreference);
         }
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MudBlazor;
 using MudBlazor.Services;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
@@ -43,8 +44,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                     }
                 })
                 .AddBlazoredLocalStorage()
-                .AddMudServices(
-                configuration =>
+                .AddMudServices(configuration =>
                 {
                     configuration.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomRight;
                     configuration.SnackbarConfiguration.HideTransitionDuration = 100;
@@ -58,10 +58,19 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .AddScoped<AuthenticationStateProvider, BlazorHeroStateProvider>()
                 .AddManagers()
                 .AddTransient<AuthenticationHeaderHandler>()
-                .AddScoped(sp => sp
-                    .GetRequiredService<IHttpClientFactory>()
-                    .CreateClient(ClientName).EnableIntercept(sp))
-                .AddHttpClient(ClientName, client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+                .AddScoped(sp =>
+                {
+                    var httpClient = sp
+                        .GetRequiredService<IHttpClientFactory>()
+                        .CreateClient(ClientName);
+                    //httpClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd(CultureInfo.DefaultThreadCurrentCulture?.TwoLetterISOLanguageName);
+                    return httpClient.EnableIntercept(sp);
+                })
+                .AddHttpClient(ClientName, client =>
+                {
+                    //client.DefaultRequestHeaders.AcceptLanguage.ParseAdd(CultureInfo.DefaultThreadCurrentCulture?.TwoLetterISOLanguageName);
+                    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
+                })
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
             builder.Services.AddHttpClientInterceptor();
             return builder;

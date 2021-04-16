@@ -4,7 +4,6 @@ using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Infrastructure.Managers.Preferences;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers
 {
@@ -14,7 +13,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
     {
         private readonly IRoleService _roleService;
 
-        public RoleController(IRoleService roleService, IServerPreferenceManager serverPreferenceManager)
+        public RoleController(IRoleService roleService)
         {
             _roleService = roleService;
         }

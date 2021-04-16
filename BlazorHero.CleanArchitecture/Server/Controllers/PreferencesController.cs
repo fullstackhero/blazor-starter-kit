@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Infrastructure.Managers.Preferences;
-using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
-using Microsoft.AspNetCore.Authorization;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers
@@ -10,18 +8,23 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
     [ApiController]
     public class PreferencesController : ControllerBase
     {
-        private readonly IServerPreferenceManager _serverPreferenceManager;
+        //private readonly IServerPreferenceManager _serverPreferenceManager;
+        private readonly IRoleService _roleService;
 
-        public PreferencesController(IServerPreferenceManager serverPreferenceManager)
+        public PreferencesController(
+            //IServerPreferenceManager serverPreferenceManager,
+            IRoleService roleService)
         {
-            _serverPreferenceManager = serverPreferenceManager;
+            //_serverPreferenceManager = serverPreferenceManager;
+            _roleService = roleService;
         }
 
-        [Authorize(Policy = Permissions.Preferences.ChangeLanguage)]
-        [HttpPost("language/change")]
-        public async Task ChangeLanguage(string languageCode)
+        //TODO - add actions
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
-            await _serverPreferenceManager.ChangeLanguageAsync(languageCode);
+            //var response = await _identityService.LoginAsync(model);
+            return Ok(_roleService.Test());
         }
     }
 }
