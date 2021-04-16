@@ -1,5 +1,4 @@
-﻿using MudBlazor;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
 {
@@ -12,4 +11,13 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
         public List<ChartSeries> DataEnterBarChart { get; set; } = new List<ChartSeries>();
         public Dictionary<string, double> ProductByBrandTypePieChart { get; set; }
     }
+
+    public class ChartSeries
+    {
+        public ChartSeries() { }
+
+        public string Name { get; set; }
+        public double[] Data { get; set; }
+    }
+
 }

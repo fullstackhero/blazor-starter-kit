@@ -4,7 +4,6 @@ using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MudBlazor;
 using System;
 using System.Linq;
 using System.Threading;

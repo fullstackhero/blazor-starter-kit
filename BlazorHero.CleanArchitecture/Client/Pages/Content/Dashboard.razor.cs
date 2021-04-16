@@ -48,7 +48,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
                 BrandCount = data.Data.BrandCount;
                 UserCount = data.Data.UserCount;
                 RoleCount = data.Data.RoleCount;
-                DataEnterBarChartSeries = data.Data.DataEnterBarChart;
+                foreach (var item in data.Data.DataEnterBarChart)
+                {
+                    DataEnterBarChartSeries.Add(new ChartSeries { Name = item.Name, Data = item.Data });
+                }
             }
         }
 
