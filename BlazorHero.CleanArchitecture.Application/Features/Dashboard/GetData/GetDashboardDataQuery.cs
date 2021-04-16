@@ -4,6 +4,8 @@ using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,6 +33,27 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
                 response.BrandCount = await _unitOfWork.Repository<Brand>().Entities.CountAsync();
                 response.UserCount = await _userService.GetCountAsync();
                 response.RoleCount = await _roleService.GetCountAsync();
+
+
+
+
+                var selectedYear = DateTime.Now.Year;
+                double[] productsFigure = new double[13];
+                double[] brandsFigure = new double[13];
+                for (int i=1; i<=12; i++)
+                {
+                    var month = i;
+                    var filterStartDate = new DateTime(selectedYear, month, 01);
+                    var filterEndDate = new DateTime(selectedYear, month, DateTime.DaysInMonth(selectedYear, month), 23, 59, 59); // Monthly Based
+
+                    productsFigure[i-1] = await _unitOfWork.Repository<Product>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync();
+                    brandsFigure[i-1] = await _unitOfWork.Repository<Brand>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync();
+
+                }
+
+                response.DataEnterBarChart.Add(new ChartSeries { Name = "Products", Data = productsFigure });
+                response.DataEnterBarChart.Add(new ChartSeries { Name = "Brands", Data = brandsFigure });
+
                 return Result<DashboardDataResponse>.Success(response);
             }
         }
