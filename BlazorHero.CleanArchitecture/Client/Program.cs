@@ -16,7 +16,7 @@ namespace BlazorHero.CleanArchitecture.Client
                           .AddRootComponents()
                           .AddClientServices();
             var host = builder.Build();
-            var storageService = host.Services.GetRequiredService<PreferenceManager>();
+            var storageService = host.Services.GetRequiredService<ClientPreferenceManager>();
             if (storageService != null)
             {
                 CultureInfo culture;

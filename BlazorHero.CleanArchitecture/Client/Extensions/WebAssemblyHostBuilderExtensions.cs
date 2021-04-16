@@ -31,6 +31,10 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
         {
             builder
                 .Services
+                .AddLocalization(options =>
+                {
+                    options.ResourcesPath = "Resources";
+                })
                 .AddAuthorizationCore(options =>
                 {
                     foreach (var permissionModule in PermissionModules.GetAllPermissionsModules())
@@ -39,10 +43,6 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                     }
                 })
                 .AddBlazoredLocalStorage()
-                .AddLocalization(options =>
-                {
-                    options.ResourcesPath = "Resources";
-                })
                 .AddMudServices(
                 configuration =>
                 {
@@ -53,7 +53,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                     configuration.SnackbarConfiguration.ShowCloseIcon = false;
                 })
                 .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies())
-                .AddScoped<PreferenceManager>()
+                .AddScoped<ClientPreferenceManager>()
                 .AddScoped<BlazorHeroStateProvider>()
                 .AddScoped<AuthenticationStateProvider, BlazorHeroStateProvider>()
                 .AddManagers()

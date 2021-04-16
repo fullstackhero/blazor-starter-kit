@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Blazored.LocalStorage;
+using BlazorHero.CleanArchitecture.Infrastructure.Managers.Preferences;
 
 namespace BlazorHero.CleanArchitecture.Server
 {
@@ -32,6 +34,9 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddDatabase(_configuration);
             services.AddIdentity();
             services.AddJwtAuthentication(services.GetApplicationSettings(_configuration));
+            services.AddBlazoredLocalStorage();
+            services.AddScoped<ServerPreferenceManager>();
+            services.AddSharedLocalization();
             services.AddApplicationLayer();
             services.AddApplicationServices();
             services.AddSharedInfrastructure(_configuration);

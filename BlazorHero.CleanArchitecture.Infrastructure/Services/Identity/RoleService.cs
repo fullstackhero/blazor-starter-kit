@@ -5,13 +5,16 @@ using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+using BlazorHero.CleanArchitecture.Shared.Constants.Role;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
@@ -19,19 +22,21 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<BlazorHeroUser> _userManager;
+        private readonly IStringLocalizer<RoleService> _localizer;
         private IMapper _mapper;
 
-        public RoleService(RoleManager<IdentityRole> roleManager, IMapper mapper, UserManager<BlazorHeroUser> userManager)
+        public RoleService(RoleManager<IdentityRole> roleManager, IMapper mapper, UserManager<BlazorHeroUser> userManager, IStringLocalizer<RoleService> localizer)
         {
             _roleManager = roleManager;
             _mapper = mapper;
             _userManager = userManager;
+            _localizer = localizer;
         }
 
         public async Task<Result<string>> DeleteAsync(string id)
         {
             var existingRole = await _roleManager.FindByIdAsync(id);
-            if (existingRole.Name != "Administrator" && existingRole.Name != "Basic")
+            if (existingRole.Name != RoleConstant.AdministratorRole && existingRole.Name != RoleConstant.BasicRole)
             {
                 //TODO Check if Any Users already uses this Role
                 bool roleIsNotUsed = true;
@@ -77,6 +82,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             allPermissions.GetPermissions(typeof(Permissions.Roles), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Products), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Brands), roleId);
+            allPermissions.GetPermissions(typeof(Permissions.Preferences), roleId);
             //You could have your own method to refactor the below line, maybe by using Reflection and fetch directly from a class, else assume that Admin has all the roles assigned and retreive the Admin's roles here via the DB/Identity.RoleClaims table.
             allPermissions.Add(new RoleClaimsResponse { Value = "Permissions.Communication.Chat", Type = ApplicationClaimTypes.Permission });
 
@@ -117,12 +123,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 var existingRole = await _roleManager.FindByNameAsync(request.Name);
                 if (existingRole != null) return Result<string>.Fail($"Similar Role already exists.");
                 var response = await _roleManager.CreateAsync(new IdentityRole(request.Name));
-                return Result<string>.Success("Role Created");
+                var tt = CultureInfo.DefaultThreadCurrentCulture;
+                var t = _localizer["Role Created"];
+                return Result<string>.Success(_localizer["Role Created"]);
             }
             else
             {
                 var existingRole = await _roleManager.FindByIdAsync(request.Id);
-                if (existingRole.Name == "Administrator" || existingRole.Name == "Basic")
+                if (existingRole.Name == RoleConstant.AdministratorRole || existingRole.Name == RoleConstant.BasicRole)
                 {
                     return Result<string>.Fail($"Not allowed to modify {existingRole.Name} Role.");
                 }
@@ -138,7 +146,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             try
             {
                 var role = await _roleManager.FindByIdAsync(request.RoleId);
-                if (role.Name == "Administrator")
+                if (role.Name == RoleConstant.AdministratorRole)
                 {
                     return Result<string>.Fail($"Not allowed to modify Permissions for this Role.");
                 }

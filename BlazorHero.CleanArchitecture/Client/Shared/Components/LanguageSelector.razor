@@ -9,7 +9,9 @@
 {
     private async Task ChangeLanguageAsync(string languageCode)
     {
-        await _preferenceManager.ChangeLanguageAsync(languageCode);
+        await _clientPreferenceManager.ChangeLanguageAsync(languageCode);
+        //TODO - как сделать?
+        //await _serverPreferenceManager.ChangeLanguageAsync(languageCode);
         _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
     }
     public class LanguageCodes
@@ -49,7 +51,7 @@
             Code = "ru-RU",
             DisplayName = "Русский"
         },
-                new LanguageCodes
+        new LanguageCodes
         {
             Code = "sv-SE",
             DisplayName = "Swedish"

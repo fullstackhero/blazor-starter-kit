@@ -1,8 +1,9 @@
 ﻿@page "/user-profile/{Id}"
+@using BlazorHero.CleanArchitecture.Shared.Constants.Role
 @inject Microsoft.Extensions.Localization.IStringLocalizer<UserProfile> localizer
 <HeroTitle Title="@Title" Description="@Description" />
 <MudGrid>
-    <AuthorizeView Roles="Administrator">
+    <AuthorizeView Roles="@RoleConstant.AdministratorRole">
         <MudItem xs="12" sm="12" md="12">
             <MudCard Elevation="25">
                 <MudCardHeader>

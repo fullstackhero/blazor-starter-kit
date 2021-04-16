@@ -1,6 +1,8 @@
-﻿namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
+﻿using BlazorHero.CleanArchitecture.Shared.Settings;
+
+namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
 {
-    public record Preference
+    public record ClientPreference : IPreference
     {
         public bool IsDarkMode { get; set; }
         public bool IsRTL { get; set; }
