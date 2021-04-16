@@ -40,7 +40,7 @@
     </MudItem>
     <MudItem xs="12" sm="8">
         <MudPaper Elevation="25" Class="pa-4" Style="height:400px;">
-            <MudChart ChartType="ChartType.Bar" ChartSeries="@DataEnterBarChartSeries" XAxisLabels="@DataEnterBarChartXAxisLabels" Width="100%" Height="300px"></MudChart>
+            <MudChart ChartType="ChartType.Bar" ChartSeries="@DataEnterBarChartSeries" XAxisLabels="@DataEnterBarChartXAxisLabels.Select(a => localizer[a].Value).ToArray()" Width="100%" Height="300px"></MudChart>
         </MudPaper>
     </MudItem>
     <MudItem xs="12" sm="4">
