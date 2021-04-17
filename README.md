@@ -75,11 +75,6 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 - [x] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
 - [x] FIX: Remove AutoMigrations - Causes SQL Exceptions at times.
 
-# Quick Preview
-
-Youtube Preview Video Coming Soon!
-Meanwhile here is a quick video uploaded to my Facebook page (https://www.facebook.com/codewithmukesh/posts/269621381402304)
-
 # Getting Started 🦸
 
 > **Important**
