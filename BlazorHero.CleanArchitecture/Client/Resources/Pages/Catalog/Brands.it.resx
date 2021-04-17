@@ -123,9 +123,6 @@
   <data name="Add Brand" xml:space="preserve">
     <value>Aggiungi marca</value>
   </data>
-  <data name="Brand Deleted" xml:space="preserve">
-    <value>Marca eliminata!</value>
-  </data>
   <data name="Brands" xml:space="preserve">
     <value>Marche</value>
   </data>

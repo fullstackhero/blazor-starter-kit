@@ -8,6 +8,7 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit
 {
@@ -26,12 +27,14 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUploadService _uploadService;
+        private readonly IStringLocalizer<AddEditDocumentCommandHandler> _localizer;
 
-        public AddEditDocumentCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IUploadService uploadService)
+        public AddEditDocumentCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditDocumentCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _uploadService = uploadService;
+            _localizer = localizer;
         }
 
         public async Task<Result<int>> Handle(AddEditDocumentCommand command, CancellationToken cancellationToken)
@@ -51,7 +54,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
                 }
                 await _unitOfWork.Repository<Document>().AddAsync(doc);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(doc.Id, "Document Saved");
+                return Result<int>.Success(doc.Id, _localizer["Document Saved"]);
             }
             else
             {
@@ -67,11 +70,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
                     }
                     await _unitOfWork.Repository<Document>().UpdateAsync(doc);
                     await _unitOfWork.Commit(cancellationToken);
-                    return Result<int>.Success(doc.Id, "Document Updated");
+                    return Result<int>.Success(doc.Id, _localizer["Document Updated"]);
                 }
                 else
                 {
-                    return Result<int>.Fail("Document Not Found!");
+                    return Result<int>.Fail(_localizer["Document Not Found!"]);
                 }
             }
         }

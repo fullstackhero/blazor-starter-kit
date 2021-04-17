@@ -5,6 +5,7 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
 {
@@ -19,12 +20,14 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
     public class AddEditBrandCommandHandler : IRequestHandler<AddEditBrandCommand, Result<int>>
     {
         private readonly IMapper _mapper;
+        private readonly IStringLocalizer<AddEditBrandCommandHandler> _localizer;
         private readonly IUnitOfWork _unitOfWork;
 
-        public AddEditBrandCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public AddEditBrandCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IStringLocalizer<AddEditBrandCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _localizer = localizer;
         }
 
         public async Task<Result<int>> Handle(AddEditBrandCommand command, CancellationToken cancellationToken)
@@ -34,7 +37,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
                 var brand = _mapper.Map<Brand>(command);
                 await _unitOfWork.Repository<Brand>().AddAsync(brand);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(brand.Id, "Brand Saved");
+                return Result<int>.Success(brand.Id, _localizer["Brand Saved"]);
             }
             else
             {
@@ -46,11 +49,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
                     brand.Description = command.Description ?? brand.Description;
                     await _unitOfWork.Repository<Brand>().UpdateAsync(brand);
                     await _unitOfWork.Commit(cancellationToken);
-                    return Result<int>.Success(brand.Id, "Brand Updated");
+                    return Result<int>.Success(brand.Id, _localizer["Brand Updated"]);
                 }
                 else
                 {
-                    return Result<int>.Fail("Brand Not Found!");
+                    return Result<int>.Fail(_localizer["Brand Not Found!"]);
                 }
             }
         }
