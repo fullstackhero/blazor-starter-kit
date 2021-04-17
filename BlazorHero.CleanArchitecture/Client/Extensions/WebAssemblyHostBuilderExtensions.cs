@@ -58,17 +58,13 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .AddScoped<AuthenticationStateProvider, BlazorHeroStateProvider>()
                 .AddManagers()
                 .AddTransient<AuthenticationHeaderHandler>()
-                .AddScoped(sp =>
-                {
-                    var httpClient = sp
-                        .GetRequiredService<IHttpClientFactory>()
-                        .CreateClient(ClientName);
-                    //httpClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd(CultureInfo.DefaultThreadCurrentCulture?.TwoLetterISOLanguageName);
-                    return httpClient.EnableIntercept(sp);
-                })
+                .AddScoped(sp => sp
+                    .GetRequiredService<IHttpClientFactory>()
+                    .CreateClient(ClientName).EnableIntercept(sp))
                 .AddHttpClient(ClientName, client =>
                 {
-                    //client.DefaultRequestHeaders.AcceptLanguage.ParseAdd(CultureInfo.DefaultThreadCurrentCulture?.TwoLetterISOLanguageName);
+                    client.DefaultRequestHeaders.AcceptLanguage.Clear();
+                    client.DefaultRequestHeaders.AcceptLanguage.ParseAdd(CultureInfo.DefaultThreadCurrentCulture?.TwoLetterISOLanguageName);
                     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
                 })
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();

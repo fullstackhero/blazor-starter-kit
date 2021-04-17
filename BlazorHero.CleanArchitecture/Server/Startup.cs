@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Server.Extensions;
@@ -14,9 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
-using System.Linq;
-using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
-using Microsoft.AspNetCore.Localization;
 
 namespace BlazorHero.CleanArchitecture.Server
 {
@@ -41,7 +36,10 @@ namespace BlazorHero.CleanArchitecture.Server
             //TODO - add CustomServerLocalStorageService
             //services.AddScoped<ILocalStorageService, CustomServerLocalStorageService>();
             //services.AddScoped<IServerPreferenceManager, ServerPreferenceManager>();
-            services.AddSharedLocalization();
+            services.AddLocalization(options =>
+            {
+                options.ResourcesPath = "Resources";
+            });
             services.AddApplicationLayer();
             services.AddApplicationServices();
             services.AddSharedInfrastructure(_configuration);
@@ -72,17 +70,7 @@ namespace BlazorHero.CleanArchitecture.Server
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Files")),
                 RequestPath = new PathString("/Files")
             });
-
-            // add requests localization
-            var supportedCultures = LocalizationConstants.SupportedLanguages.Select(l => new CultureInfo(l.Code)).ToArray();
-            app.UseRequestLocalization(options =>
-            {
-                options.SupportedUICultures = supportedCultures;
-                options.SupportedCultures = supportedCultures;
-                options.DefaultRequestCulture = new RequestCulture(supportedCultures.First());
-                options.ApplyCurrentCultureToResponseHeaders = true;
-            });
-
+            app.UseRequestLocalizationByCulture();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

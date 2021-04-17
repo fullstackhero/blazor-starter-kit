@@ -165,6 +165,9 @@
   <data name="Quick Insights." xml:space="preserve">
     <value>Quick Insights.</value>
   </data>
+  <data name="Realtime Updates &amp; Insights with SignalR." xml:space="preserve">
+    <value>Realtime Updates &amp; Insights with SignalR.</value>
+  </data>
   <data name="Registered Roles" xml:space="preserve">
     <value>Registered Roles</value>
   </data>

@@ -36,11 +36,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             _localizer = localizer;
         }
 
-        public Result<string> Test()
-        {
-            return Result<string>.Success(_localizer["Role"]);
-        }
-
         public async Task<Result<string>> DeleteAsync(string id)
         {
             var existingRole = await _roleManager.FindByIdAsync(id);

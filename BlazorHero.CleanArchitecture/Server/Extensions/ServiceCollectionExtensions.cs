@@ -117,15 +117,6 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return services;
         }
 
-        public static IServiceCollection AddSharedLocalization(this IServiceCollection services)
-        {
-            services.AddLocalization(options =>
-            {
-                options.ResourcesPath = "Resources";
-            });
-            return services;
-        }
-
         public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IDateTimeService, SystemDateTimeService>();

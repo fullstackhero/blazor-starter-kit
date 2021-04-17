@@ -1,15 +1,16 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Shared.Settings;
+﻿using BlazorHero.CleanArchitecture.Shared.Settings;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Settings
 {
     public record ServerPreference : IPreference
     {
-        private readonly ICurrentUserService _currentUserService;
+        //private readonly ICurrentUserService _currentUserService;
 
-        public ServerPreference(ICurrentUserService currentUserService)
+        public ServerPreference(
+            //ICurrentUserService currentUserService
+            )
         {
-            _currentUserService = currentUserService;
+            //_currentUserService = currentUserService;
         }
 
         //TODO - add server preferences

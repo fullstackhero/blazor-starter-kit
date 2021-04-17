@@ -15,6 +15,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
@@ -26,15 +27,18 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly AppConfiguration _appConfig;
         private readonly SignInManager<BlazorHeroUser> _signInManager;
+        private readonly IStringLocalizer<IdentityService> _localizer;
 
         public IdentityService(
             UserManager<BlazorHeroUser> userManager, RoleManager<IdentityRole> roleManager,
-            IOptions<AppConfiguration> appConfig, SignInManager<BlazorHeroUser> signInManager)
+            IOptions<AppConfiguration> appConfig, SignInManager<BlazorHeroUser> signInManager,
+            IStringLocalizer<IdentityService> localizer)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _appConfig = appConfig.Value;
             _signInManager = signInManager;
+            _localizer = localizer;
         }
 
         public async Task<Result<TokenResponse>> LoginAsync(TokenRequest model)
@@ -42,20 +46,20 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
-                return Result<TokenResponse>.Fail("User Not Found.");
+                return Result<TokenResponse>.Fail(_localizer["User Not Found."]);
             }
             if (!user.IsActive)
             {
-                return Result<TokenResponse>.Fail("User Not Active. Please contact the administrator.");
+                return Result<TokenResponse>.Fail(_localizer["User Not Active. Please contact the administrator."]);
             }
             if (!user.EmailConfirmed)
             {
-                return Result<TokenResponse>.Fail("E-Mail not confirmed.");
+                return Result<TokenResponse>.Fail(_localizer["E-Mail not confirmed."]);
             }
             var passwordValid = await _userManager.CheckPasswordAsync(user, model.Password);
             if (!passwordValid)
             {
-                return Result<TokenResponse>.Fail("Invalid Credentials.");
+                return Result<TokenResponse>.Fail(_localizer["Invalid Credentials."]);
             }
 
             user.RefreshToken = GenerateRefreshToken();
@@ -71,15 +75,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         {
             if (model is null)
             {
-                return Result<TokenResponse>.Fail("Invalid Client Token.");
+                return Result<TokenResponse>.Fail(_localizer["Invalid Client Token."]);
             }
             var userPrincipal = GetPrincipalFromExpiredToken(model.Token);
             var userEmail = userPrincipal.FindFirstValue(ClaimTypes.Email);
             var user = await _userManager.FindByEmailAsync(userEmail);
             if (user == null)
-                return Result<TokenResponse>.Fail("User Not Found.");
+                return Result<TokenResponse>.Fail(_localizer["User Not Found."]);
             if (user.RefreshToken != model.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
-                return Result<TokenResponse>.Fail("Invalid Client Token.");
+                return Result<TokenResponse>.Fail(_localizer["Invalid Client Token."]);
             var token = GenerateEncryptedToken(GetSigningCredentials(), await GetClaimsAsync(user));
             user.RefreshToken = GenerateRefreshToken();
             await _userManager.UpdateAsync(user);
@@ -165,7 +169,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256,
                 StringComparison.InvariantCultureIgnoreCase))
             {
-                throw new SecurityTokenException("Invalid token");
+                throw new SecurityTokenException(_localizer["Invalid token"]);
             }
 
             return principal;

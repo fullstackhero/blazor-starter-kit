@@ -6,11 +6,19 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 {
     public class ExcelService : IExcelService
     {
+        private readonly IStringLocalizer<ExcelService> _localizer;
+
+        public ExcelService(IStringLocalizer<ExcelService> localizer)
+        {
+            _localizer = localizer;
+        }
+
         public async Task<string> ExportAsync<TData>(IEnumerable<TData> data
             , Dictionary<string, Func<TData, object>> mappers
             , string sheetName = "Sheet1")
@@ -18,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using var p = new ExcelPackage();
             p.Workbook.Properties.Author = "BlazorHero";
-            p.Workbook.Worksheets.Add("Audit Trails");
+            p.Workbook.Worksheets.Add(_localizer["Audit Trails"]);
             var ws = p.Workbook.Worksheets[0];
             ws.Name = sheetName;
             ws.Cells.Style.Font.Size = 11;

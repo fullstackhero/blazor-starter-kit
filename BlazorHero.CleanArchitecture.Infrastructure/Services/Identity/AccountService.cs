@@ -6,6 +6,7 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
@@ -14,12 +15,18 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private readonly UserManager<BlazorHeroUser> _userManager;
         private readonly SignInManager<BlazorHeroUser> _signInManager;
         private readonly IUploadService _uploadService;
+        private readonly IStringLocalizer<AccountService> _localizer;
 
-        public AccountService(UserManager<BlazorHeroUser> userManager, SignInManager<BlazorHeroUser> signInManager, IUploadService uploadService)
+        public AccountService(
+            UserManager<BlazorHeroUser> userManager,
+            SignInManager<BlazorHeroUser> signInManager,
+            IUploadService uploadService,
+            IStringLocalizer<AccountService> localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _uploadService = uploadService;
+            _localizer = localizer;
         }
 
         public async Task<IResult> ChangePasswordAsync(ChangePasswordRequest model, string userId)
@@ -27,7 +34,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var user = await this._userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return Result.Fail("User Not Found.");
+                return Result.Fail(_localizer["User Not Found."]);
             }
 
             var identityResult = await this._userManager.ChangePasswordAsync(
@@ -43,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return Result.Fail("User Not Found.");
+                return Result.Fail(_localizer["User Not Found."]);
             }
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
@@ -62,14 +69,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         public async Task<IResult<string>> GetProfilePictureAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return Result<string>.Fail("User Not Found");
+            if (user == null) return Result<string>.Fail(_localizer["User Not Found"]);
             return Result<string>.Success(data: user.ProfilePictureDataUrl);
         }
 
         public async Task<IResult<string>> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return Result<string>.Fail(message: "User Not Found");
+            if (user == null) return Result<string>.Fail(message: _localizer["User Not Found"]);
             var filePath = _uploadService.UploadAsync(request);
             user.ProfilePictureDataUrl = filePath;
             var identityResult = await _userManager.UpdateAsync(user);
