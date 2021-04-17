@@ -57,7 +57,7 @@ namespace BlazorHero.CleanArchitecture.Server
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseExceptionHandling(env);
             app.UseHttpsRedirection();
