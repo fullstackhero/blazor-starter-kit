@@ -37,6 +37,11 @@
             {
                 Code = "sv-SE",
                 DisplayName = "Swedish"
+            },
+            new LanguageCode
+            {
+                Code = "id-ID",
+                DisplayName = "Indonesia"
             }
         };
     }
