@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Apr" xml:space="preserve">
+    <value>Апр</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>Авг</value>
+  </data>
   <data name="Brands" xml:space="preserve">
     <value>Брендов</value>
   </data>
@@ -126,16 +132,49 @@
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
+  <data name="Dec" xml:space="preserve">
+    <value>Дек</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>Фев</value>
+  </data>
+  <data name="Jan" xml:space="preserve">
+    <value>Янв</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>Июл</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>Июн</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>Мрт</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Май</value>
+  </data>
+  <data name="Nov" xml:space="preserve">
+    <value>Ноя</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>Окт</value>
+  </data>
   <data name="Products" xml:space="preserve">
     <value>Продуктов</value>
   </data>
   <data name="Quick Insights." xml:space="preserve">
     <value>Быстрая информация.</value>
   </data>
+  <data name="Realtime Updates &amp; Insights with SignalR." xml:space="preserve">
+    <value>Обновления и аналитика в реальном времени с помощью SignalR.</value>
+  </data>
   <data name="Registered Roles" xml:space="preserve">
     <value>Ролей</value>
   </data>
   <data name="Registered Users" xml:space="preserve">
     <value>Пользователей</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>Сен</value>
   </data>
 </root>

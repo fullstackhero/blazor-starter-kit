@@ -1,15 +1,11 @@
-﻿using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
+﻿using BlazorHero.CleanArchitecture.Shared.Managers;
 using MudBlazor;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences
 {
-    public interface IPreferenceManager
+    public interface IClientPreferenceManager : IPreferenceManager
     {
-        Task SetPreference(Preference preference);
-
-        Task<Preference> GetPreference();
-
         Task<MudTheme> GetCurrentThemeAsync();
 
         Task<bool> ToggleDarkModeAsync();

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 {
@@ -18,12 +19,18 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
         private readonly BlazorHeroContext _context;
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
+        private readonly IStringLocalizer<ChatService> _localizer;
 
-        public ChatService(BlazorHeroContext context, IMapper mapper, IUserService userService)
+        public ChatService(
+            BlazorHeroContext context,
+            IMapper mapper,
+            IUserService userService,
+            IStringLocalizer<ChatService> localizer)
         {
             _context = context;
             _mapper = mapper;
             _userService = userService;
+            _localizer = localizer;
         }
 
         public async Task<Result<IEnumerable<ChatHistoryResponse>>> GetChatHistoryAsync(string userId, string contactId)
@@ -53,7 +60,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
             }
             else
             {
-                throw new ApiException("User Not Found!");
+                throw new ApiException(_localizer["User Not Found!"]);
             }
         }
 

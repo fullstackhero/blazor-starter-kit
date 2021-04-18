@@ -4,6 +4,7 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Delete
 {
@@ -14,10 +15,12 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.De
         public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, Result<int>>
         {
             private readonly IUnitOfWork _unitOfWork;
+            private readonly IStringLocalizer<DeleteProductCommandHandler> _localizer;
 
-            public DeleteProductCommandHandler(IUnitOfWork unitOfWork)
+            public DeleteProductCommandHandler(IUnitOfWork unitOfWork, IStringLocalizer<DeleteProductCommandHandler> localizer)
             {
                 _unitOfWork = unitOfWork;
+                _localizer = localizer;
             }
 
             public async Task<Result<int>> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
@@ -25,7 +28,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.De
                 var product = await _unitOfWork.Repository<Product>().GetByIdAsync(command.Id);
                 await _unitOfWork.Repository<Product>().DeleteAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(product.Id, "Product Deleted");
+                return Result<int>.Success(product.Id, _localizer["Product Deleted"]);
             }
         }
     }

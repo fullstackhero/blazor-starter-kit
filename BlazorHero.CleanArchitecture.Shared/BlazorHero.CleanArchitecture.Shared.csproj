@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="5.0.5" />
   </ItemGroup>
 
 </Project>

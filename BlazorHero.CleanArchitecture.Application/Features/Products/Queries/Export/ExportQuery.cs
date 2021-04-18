@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Export
 {
@@ -17,12 +18,15 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Exp
     {
         private readonly IExcelService _excelService;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IStringLocalizer<ExportQueryHandler> _localizer;
 
         public ExportQueryHandler(IExcelService excelService
-            , IUnitOfWork unitOfWork)
+            , IUnitOfWork unitOfWork
+            , IStringLocalizer<ExportQueryHandler> localizer)
         {
             _excelService = excelService;
             _unitOfWork = unitOfWork;
+            _localizer = localizer;
         }
 
         public async Task<string> Handle(ExportQuery request, CancellationToken cancellationToken)
@@ -30,12 +34,12 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Exp
             var products = await _unitOfWork.Repository<Product>().GetAllAsync();
             var data = await _excelService.ExportAsync(products, mappers: new Dictionary<string, Func<Product, object>>()
             {
-                { "Id", item => item.Id },
-                { "Name", item => item.Name },
-                { "Barcode", item => item.Barcode },
-                { "Description", item => item.Description },
-                { "Rate", item => item.Rate }
-            }, sheetName: "Products");
+                { _localizer["Id"], item => item.Id },
+                { _localizer["Name"], item => item.Name },
+                { _localizer["Barcode"], item => item.Barcode },
+                { _localizer["Description"], item => item.Description },
+                { _localizer["Rate"], item => item.Rate }
+            }, sheetName: _localizer["Products"]);
 
             return data;
         }

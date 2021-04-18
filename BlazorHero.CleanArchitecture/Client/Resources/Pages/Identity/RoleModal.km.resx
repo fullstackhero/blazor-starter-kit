@@ -123,9 +123,6 @@
   <data name="Cancel" xml:space="preserve">
     <value>បោះបង់</value>
   </data>
-  <data name="Role Created" xml:space="preserve">
-    <value>តួនាទីត្រូវបានបង្កើតរួចរាល់</value>
-  </data>
   <data name="Role ID" xml:space="preserve">
     <value>លេខសម្គាល់តួនាទី</value>
   </data>

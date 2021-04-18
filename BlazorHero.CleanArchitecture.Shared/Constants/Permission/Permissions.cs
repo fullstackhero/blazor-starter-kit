@@ -33,5 +33,10 @@
             public const string Edit = "Permissions.Roles.Edit";
             public const string Delete = "Permissions.Roles.Delete";
         }
+
+        public static class Preferences
+        {
+            //TODO: add permissions
+        }
     }
 }

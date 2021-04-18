@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
 {
@@ -18,12 +19,14 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
             private readonly IUnitOfWork _unitOfWork;
             private readonly IUserService _userService;
             private readonly IRoleService _roleService;
+            private readonly IStringLocalizer<GetDashboardDataQueryHandler> _localizer;
 
-            public GetDashboardDataQueryHandler(IUnitOfWork unitOfWork, IUserService userService, IRoleService roleService)
+            public GetDashboardDataQueryHandler(IUnitOfWork unitOfWork, IUserService userService, IRoleService roleService, IStringLocalizer<GetDashboardDataQueryHandler> localizer)
             {
                 _unitOfWork = unitOfWork;
                 _userService = userService;
                 _roleService = roleService;
+                _localizer = localizer;
             }
 
             public async Task<Result<DashboardDataResponse>> Handle(GetDashboardDataQuery query, CancellationToken cancellationToken)
@@ -33,9 +36,6 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
                 response.BrandCount = await _unitOfWork.Repository<Brand>().Entities.CountAsync();
                 response.UserCount = await _userService.GetCountAsync();
                 response.RoleCount = await _roleService.GetCountAsync();
-
-
-
 
                 var selectedYear = DateTime.Now.Year;
                 double[] productsFigure = new double[13];
@@ -51,8 +51,8 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
 
                 }
 
-                response.DataEnterBarChart.Add(new ChartSeries { Name = "Products", Data = productsFigure });
-                response.DataEnterBarChart.Add(new ChartSeries { Name = "Brands", Data = brandsFigure });
+                response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Products"], Data = productsFigure });
+                response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Brands"], Data = brandsFigure });
 
                 return Result<DashboardDataResponse>.Success(response);
             }

@@ -39,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         protected override async Task OnInitializedAsync()
         {
             _interceptor.RegisterEvent();
-            currentTheme = await _preferenceManager.GetCurrentThemeAsync();
+            currentTheme = await _clientPreferenceManager.GetCurrentThemeAsync();
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             await hubConnection.StartAsync();
             hubConnection.On<string, string, string>("ReceiveChatNotification", (message, receiverUserId, senderUserId) =>
@@ -104,7 +104,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
         private async Task DarkMode()
         {
-            bool isDarkMode = await _preferenceManager.ToggleDarkModeAsync();
+            bool isDarkMode = await _clientPreferenceManager.ToggleDarkModeAsync();
             if (isDarkMode)
             {
                 currentTheme = BlazorHeroTheme.DefaultTheme;

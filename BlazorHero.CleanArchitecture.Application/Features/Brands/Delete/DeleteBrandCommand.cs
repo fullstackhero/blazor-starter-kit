@@ -4,6 +4,7 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Delete
 {
@@ -14,12 +15,14 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Delete
         public class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommand, Result<int>>
         {
             private readonly IProductRepository _productRepository;
+            private readonly IStringLocalizer<DeleteBrandCommandHandler> _localizer;
             private readonly IUnitOfWork _unitOfWork;
 
-            public DeleteBrandCommandHandler(IUnitOfWork unitOfWork, IProductRepository productRepository)
+            public DeleteBrandCommandHandler(IUnitOfWork unitOfWork, IProductRepository productRepository, IStringLocalizer<DeleteBrandCommandHandler> localizer)
             {
                 _unitOfWork = unitOfWork;
                 _productRepository = productRepository;
+                _localizer = localizer;
             }
 
             public async Task<Result<int>> Handle(DeleteBrandCommand command, CancellationToken cancellationToken)
@@ -30,11 +33,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Delete
                     var brand = await _unitOfWork.Repository<Brand>().GetByIdAsync(command.Id);
                     await _unitOfWork.Repository<Brand>().DeleteAsync(brand);
                     await _unitOfWork.Commit(cancellationToken);
-                    return Result<int>.Success(brand.Id, "Brand Deleted");
+                    return Result<int>.Success(brand.Id, _localizer["Brand Deleted"]);
                 }
                 else
                 {
-                    return Result<int>.Fail("Deletion Not Allowed");
+                    return Result<int>.Fail(_localizer["Deletion Not Allowed"]);
                 }
             }
         }

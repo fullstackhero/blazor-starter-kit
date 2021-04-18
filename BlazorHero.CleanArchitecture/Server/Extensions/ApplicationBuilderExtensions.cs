@@ -1,7 +1,12 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+﻿using System.Globalization;
+using System.Linq;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Server.Hubs;
+using BlazorHero.CleanArchitecture.Server.Middlewares;
+using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -41,6 +46,22 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 endpoints.MapFallbackToFile("index.html");
                 endpoints.MapHub<SignalRHub>("/signalRHub");
             });
+
+        public static IApplicationBuilder UseRequestLocalizationByCulture(this IApplicationBuilder app)
+        {
+            var supportedCultures = LocalizationConstants.SupportedLanguages.Select(l => new CultureInfo(l.Code)).ToArray();
+            app.UseRequestLocalization(options =>
+            {
+                options.SupportedUICultures = supportedCultures;
+                options.SupportedCultures = supportedCultures;
+                options.DefaultRequestCulture = new RequestCulture(supportedCultures.First());
+                options.ApplyCurrentCultureToResponseHeaders = true;
+            });
+
+            app.UseMiddleware<RequestCultureMiddleware>();
+
+            return app;
+        }
 
         public static IApplicationBuilder Initialize(this IApplicationBuilder app, Microsoft.Extensions.Configuration.IConfiguration _configuration)
         {

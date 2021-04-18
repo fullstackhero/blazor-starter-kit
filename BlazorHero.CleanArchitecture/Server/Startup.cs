@@ -1,3 +1,4 @@
+using System;
 using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Server.Extensions;
@@ -32,6 +33,13 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddDatabase(_configuration);
             services.AddIdentity();
             services.AddJwtAuthentication(services.GetApplicationSettings(_configuration));
+            //TODO - add CustomServerLocalStorageService
+            //services.AddScoped<ILocalStorageService, CustomServerLocalStorageService>();
+            //services.AddScoped<IServerPreferenceManager, ServerPreferenceManager>();
+            services.AddLocalization(options =>
+            {
+                options.ResourcesPath = "Resources";
+            });
             services.AddApplicationLayer();
             services.AddApplicationServices();
             services.AddSharedInfrastructure(_configuration);
@@ -62,6 +70,7 @@ namespace BlazorHero.CleanArchitecture.Server
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Files")),
                 RequestPath = new PathString("/Files")
             });
+            app.UseRequestLocalizationByCulture();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

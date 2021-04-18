@@ -7,6 +7,7 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit
 {
@@ -27,12 +28,14 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUploadService _uploadService;
+        private readonly IStringLocalizer<AddEditProductCommandHandler> _localizer;
 
-        public AddEditProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IUploadService uploadService)
+        public AddEditProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditProductCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _uploadService = uploadService;
+            _localizer = localizer;
         }
 
         public async Task<Result<int>> Handle(AddEditProductCommand command, CancellationToken cancellationToken)
@@ -52,7 +55,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
                 }
                 await _unitOfWork.Repository<Product>().AddAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(product.Id, "Product Saved");
+                return Result<int>.Success(product.Id, _localizer["Product Saved"]);
             }
             else
             {
@@ -69,11 +72,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
                     product.BrandId = (command.BrandId == 0) ? product.BrandId : command.BrandId;
                     await _unitOfWork.Repository<Product>().UpdateAsync(product);
                     await _unitOfWork.Commit(cancellationToken);
-                    return Result<int>.Success(product.Id, "Product Updated");
+                    return Result<int>.Success(product.Id, _localizer["Product Updated"]);
                 }
                 else
                 {
-                    return Result<int>.Fail("Product Not Found!");
+                    return Result<int>.Fail(_localizer["Product Not Found!"]);
                 }
             }
         }

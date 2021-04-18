@@ -18,6 +18,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
@@ -26,13 +27,20 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private readonly UserManager<BlazorHeroUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMailService _mailService;
+        private readonly IStringLocalizer<UserService> _localizer;
 
-        public UserService(UserManager<BlazorHeroUser> userManager, IMapper mapper, RoleManager<IdentityRole> roleManager, IMailService mailService)
+        public UserService(
+            UserManager<BlazorHeroUser> userManager,
+            IMapper mapper,
+            RoleManager<IdentityRole> roleManager,
+            IMailService mailService,
+            IStringLocalizer<UserService> localizer)
         {
             _userManager = userManager;
             _mapper = mapper;
             _roleManager = roleManager;
             _mailService = mailService;
+            _localizer = localizer;
         }
 
         private IMapper _mapper;
@@ -49,7 +57,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var userWithSameUserName = await _userManager.FindByNameAsync(request.UserName);
             if (userWithSameUserName != null)
             {
-                return Result.Fail($"Username '{request.UserName}' is already taken.");
+                return Result.Fail($"{_localizer["Username"]} '{request.UserName}' {_localizer["is already taken."]}");
             }
             var user = new BlazorHeroUser
             {
@@ -72,9 +80,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                     {
                         var verificationUri = await SendVerificationEmail(user, origin);
                         BackgroundJob.Enqueue(() => _mailService.SendAsync(new MailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by <a href='{verificationUri}'>clicking here</a>.", Subject = "Confirm Registration" }));
-                        return Result<string>.Success(user.Id, message: $"User Registered. Please check your Mailbox to verify!");
+                        return Result<string>.Success(user.Id, message: _localizer[$"User Registered. Please check your Mailbox to verify!"]);
                     }
-                    return Result<string>.Success(user.Id, message: $"User Registered");
+                    return Result<string>.Success(user.Id, message: _localizer[$"User Registered"]);
                 }
                 else
                 {
@@ -83,7 +91,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             }
             else
             {
-                return Result.Fail($"Email {request.Email } is already registered.");
+                return Result.Fail($"{_localizer["Email"]} {request.Email } {_localizer["is already registered."]}");
             }
         }
 
@@ -111,7 +119,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var IsAdmin = await _userManager.IsInRoleAsync(user, RoleConstant.AdministratorRole);
             if (IsAdmin)
             {
-                return Result.Fail("Administrators Profile's Status cannot be toggled");
+                return Result.Fail(_localizer["Administrators Profile's Status cannot be toggled"]);
             }
             if (user != null)
             {
@@ -148,11 +156,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         public async Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request)
         {
             var user = await _userManager.FindByIdAsync(request.UserId);
-            if (user.Email == "mukesh@blazorhero.com") return Result.Fail("Not Allowed.");
+            if (user.Email == "mukesh@blazorhero.com") return Result.Fail(_localizer["Not Allowed."]);
             var roles = await _userManager.GetRolesAsync(user);
             var result = await _userManager.RemoveFromRolesAsync(user, roles);
             result = await _userManager.AddToRolesAsync(user, request.UserRoles.Where(x => x.Selected).Select(y => y.RoleName));
-            return Result.Success("Roles Updated");
+            return Result.Success(_localizer["Roles Updated"]);
         }
 
         public async Task<IResult<string>> ConfirmEmailAsync(string userId, string code)
@@ -162,11 +170,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
-                return Result<string>.Success(user.Id, message: $"Account Confirmed for {user.Email}. You can now use the /api/identity/token endpoint to generate JWT.");
+                return Result<string>.Success(user.Id, message: $"{_localizer["Account Confirmed for"]} {user.Email}. {_localizer["You can now use the /api/identity/token endpoint to generate JWT."]}");
             }
             else
             {
-                throw new ApiException($"An error occured while confirming {user.Email}.");
+                throw new ApiException($"{_localizer["An error occured while confirming"]} {user.Email}.");
             }
         }
 
@@ -187,12 +195,12 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var passwordResetURL = QueryHelpers.AddQueryString(_enpointUri.ToString(), "Token", code);
             var request = new MailRequest()
             {
-                Body = $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(passwordResetURL)}'>clicking here</a>.",
-                Subject = "Reset Password",
+                Body = $"{_localizer["Please reset your password by"]} <a href='{HtmlEncoder.Default.Encode(passwordResetURL)}'>{_localizer["clicking here"]}</a>.",
+                Subject = _localizer["Reset Password"],
                 To = emailId
             };
             BackgroundJob.Enqueue(() => _mailService.SendAsync(request));
-            return Result.Success("Password Reset Mail has been sent to your authorized EmailId.");
+            return Result.Success(_localizer["Password Reset Mail has been sent to your authorized EmailId."]);
         }
 
         public async Task<IResult> ResetPasswordAsync(ResetPasswordRequest request)
@@ -201,17 +209,17 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return Result.Fail("An Error has occured!");
+                return Result.Fail(_localizer["An Error has occured!"]);
             }
 
             var result = await _userManager.ResetPasswordAsync(user, request.Token, request.Password);
             if (result.Succeeded)
             {
-                return Result.Success("Password Reset Successful!");
+                return Result.Success(_localizer["Password Reset Successful!"]);
             }
             else
             {
-                return Result.Fail("An Error has occured!");
+                return Result.Fail(_localizer["An Error has occured!"]);
             }
         }
 

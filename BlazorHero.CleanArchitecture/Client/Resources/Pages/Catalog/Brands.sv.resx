@@ -123,9 +123,6 @@
   <data name="Add Brand" xml:space="preserve">
     <value>Lägg till varumärke</value>
   </data>
-  <data name="Brand Deleted" xml:space="preserve">
-    <value>Varumärke borttaget!</value>
-  </data>
   <data name="Brands" xml:space="preserve">
     <value>Varumärken</value>
   </data>
