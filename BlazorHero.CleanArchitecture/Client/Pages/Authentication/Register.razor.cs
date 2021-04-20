@@ -37,6 +37,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
                     _navigationManager.NavigateTo("/login");
                     model = new RegisterUsermodel();
                 }
+                else
+                {
+                    foreach (var message in response.Messages)
+                    {
+                        _snackBar.Add(localizer[message], Severity.Error);
+                    }
+                }
             }
             else
             {
