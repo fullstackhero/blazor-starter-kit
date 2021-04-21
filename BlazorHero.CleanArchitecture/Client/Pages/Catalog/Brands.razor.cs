@@ -1,6 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Client.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
@@ -8,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Constants.Application;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {

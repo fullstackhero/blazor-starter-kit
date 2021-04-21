@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="5.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Application.Constants\BlazorHero.CleanArchitecture.Application.Constants.csproj" />
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Domain\BlazorHero.CleanArchitecture.Domain.csproj" />
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.RoleService.Interfaces\BlazorHero.CleanArchitecture.RoleService.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Dashboard.Queries.GetData;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

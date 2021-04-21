@@ -2,7 +2,6 @@
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences;
-using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -13,6 +12,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using BlazorHero.CleanArchitecture.Application.Constants.Permission;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions

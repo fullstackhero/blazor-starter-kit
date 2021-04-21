@@ -1,11 +1,12 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Client.Extensions;
+﻿using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.AccountService.Interfaces.Requests;
+using BlazorHero.CleanArchitecture.Utils.Enums;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
@@ -77,7 +78,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var imageFile = await e.File.RequestImageFileAsync(format, 400, 400);
                 var buffer = new byte[imageFile.Size];
                 await imageFile.OpenReadStream().ReadAsync(buffer);
-                var request = new UpdateProfilePictureRequest() { Data = buffer, FileName = fileName, Extension = extension, UploadType = Application.Enums.UploadType.ProfilePicture };
+                var request = new UpdateProfilePictureRequest() { Data = buffer, FileName = fileName, Extension = extension, UploadType = UploadType.ProfilePicture };
                 var result = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (result.Succeeded)
                 {
@@ -103,7 +104,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                var request = new UpdateProfilePictureRequest() { Data = null, FileName = string.Empty, UploadType = Application.Enums.UploadType.ProfilePicture };
+                var request = new UpdateProfilePictureRequest() { Data = null, FileName = string.Empty, UploadType = UploadType.ProfilePicture };
                 var data = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (data.Succeeded)
                 {

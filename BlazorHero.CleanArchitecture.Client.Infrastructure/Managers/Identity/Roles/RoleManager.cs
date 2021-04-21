@@ -1,11 +1,11 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
+﻿using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.RoleService.Interfaces.Requests;
+using BlazorHero.CleanArchitecture.RoleService.Interfaces.Responses;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Roles
 {

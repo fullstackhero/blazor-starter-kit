@@ -1,15 +1,15 @@
 ﻿using System.Globalization;
 using System.Linq;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Application.Constants.Application;
+using BlazorHero.CleanArchitecture.Application.Constants.Localization;
+using BlazorHero.CleanArchitecture.DataAccess.Interfaces;
 using BlazorHero.CleanArchitecture.Server.Hubs;
 using BlazorHero.CleanArchitecture.Server.Middlewares;
-using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {

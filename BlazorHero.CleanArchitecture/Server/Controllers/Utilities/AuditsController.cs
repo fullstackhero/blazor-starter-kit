@@ -1,7 +1,8 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.AuditService.Interfaces;
+using BlazorHero.CleanArchitecture.CurrentUserService.Interfaces;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
 {

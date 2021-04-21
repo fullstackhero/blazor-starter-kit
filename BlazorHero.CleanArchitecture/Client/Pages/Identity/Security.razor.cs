@@ -1,9 +1,9 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.AccountService.Interfaces.Requests;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {

@@ -1,11 +1,12 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Application.Requests;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.UploadService.Interfaces.Requests;
+using BlazorHero.CleanArchitecture.Utils.Enums;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 {
@@ -85,7 +86,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                 var buffer = new byte[file.Size];
                 var extension = Path.GetExtension(file.Name);
                 var document = await e.File.OpenReadStream().ReadAsync(buffer);
-                UploadRequest = new UploadRequest() { Data = buffer, UploadType = Application.Enums.UploadType.Document, Extension = extension };
+                UploadRequest = new UploadRequest() { Data = buffer, UploadType = UploadType.Document, Extension = extension };
             }
         }
     }

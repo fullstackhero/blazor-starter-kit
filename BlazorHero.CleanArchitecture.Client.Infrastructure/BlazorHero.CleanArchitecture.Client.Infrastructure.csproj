@@ -6,14 +6,16 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.5" />
     <PackageReference Include="MudBlazor" Version="5.0.8" />
-    <PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.0.0" />
     <PackageReference Include="Toolbelt.Blazor.HttpClientInterceptor" Version="9.2.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.AccountService.Interfaces\BlazorHero.CleanArchitecture.AccountService.Interfaces.csproj" />
     <ProjectReference Include="..\BlazorHero.CleanArchitecture.Application\BlazorHero.CleanArchitecture.Application.csproj" />
-    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Shared\BlazorHero.CleanArchitecture.Shared.csproj" />
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.AuditService.Interfaces\BlazorHero.CleanArchitecture.AuditService.Interfaces.csproj" />
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.ChatService.Interfaces\BlazorHero.CleanArchitecture.ChatService.Interfaces.csproj" />
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Infrastructure.Interfaces\BlazorHero.CleanArchitecture.Infrastructure.Interfaces.csproj" />
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.TokenService.Interfaces\BlazorHero.CleanArchitecture.TokenService.Interfaces.csproj" />
   </ItemGroup>
 </Project>

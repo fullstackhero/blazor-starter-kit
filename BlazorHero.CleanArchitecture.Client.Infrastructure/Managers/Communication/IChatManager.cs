@@ -1,8 +1,8 @@
-﻿using BlazorHero.CleanArchitecture.Application.Models.Chat;
-using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.ChatService.Interfaces.Responses;
+using BlazorHero.CleanArchitecture.Domain.Entities.Chat;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communication
 {

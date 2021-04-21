@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BlazorHero.CleanArchitecture.RoleService.Interfaces.Responses;
 
 namespace BlazorHero.CleanArchitecture.Application.Responses.Identity
 {

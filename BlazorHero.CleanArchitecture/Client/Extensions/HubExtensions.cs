@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+using BlazorHero.CleanArchitecture.Application.Constants.Application;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
 {

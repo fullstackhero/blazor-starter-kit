@@ -1,7 +1,7 @@
-﻿using BlazorHero.CleanArchitecture.Application.Models.Chat;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Constants.Application;
+using BlazorHero.CleanArchitecture.Domain.Entities.Chat;
 
 namespace BlazorHero.CleanArchitecture.Server.Hubs
 {

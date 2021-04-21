@@ -1,8 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Application.Requests;
 using BlazorHero.CleanArchitecture.Client.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -12,6 +10,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Constants.Application;
+using BlazorHero.CleanArchitecture.UploadService.Interfaces.Requests;
+using BlazorHero.CleanArchitecture.Utils.Enums;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
@@ -149,7 +150,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 var buffer = new byte[imageFile.Size];
                 await imageFile.OpenReadStream().ReadAsync(buffer);
                 ImageDataUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-                UploadRequest = new UploadRequest() { Data = buffer, UploadType = Application.Enums.UploadType.Product, Extension = extension };
+                UploadRequest = new UploadRequest() { Data = buffer, UploadType = UploadType.Product, Extension = extension };
             }
         }
     }

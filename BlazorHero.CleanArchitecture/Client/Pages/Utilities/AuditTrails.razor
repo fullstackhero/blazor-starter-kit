@@ -1,6 +1,5 @@
 ﻿@page "/audit-trails"
 @inject Microsoft.Extensions.Localization.IStringLocalizer<AuditTrails> localizer
-@using BlazorHero.CleanArchitecture.Application.Responses.Audit;
 <HeroTitle Title="@localizer["Audit Trails"]" Description="@localizer["Your Recent Activities."]" />
 <MudTable Hover="false" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Elevation="25" Items="Trails" Filter="new Func<RelatedAuditTrail, bool>(Search)" @bind-trail="Trail" CustomHeader="true">
     <ToolBarContent>

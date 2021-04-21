@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+using BlazorHero.CleanArchitecture.Application.Constants.Application;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 {

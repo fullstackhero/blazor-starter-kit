@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Shared.Settings;
+using BlazorHero.CleanArchitecture.CurrentUserService.Interfaces;
+using BlazorHero.CleanArchitecture.CustomLocalStorageService.Interfaces;
+using BlazorHero.CleanArchitecture.Infrastructure.Interfaces.Settings;
+using BlazorHero.CleanArchitecture.Infrastructure.Settings;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Managers.Preferences
 {
@@ -8,11 +11,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Managers.Preferences
 
     public class ServerPreferenceManager : IServerPreferenceManager
     {
-        //private readonly ILocalStorageService _localStorageService;
+        //private readonly ICustomLocalStorageService _localStorageService;
         //private readonly ICurrentUserService _currentUserService;
 
         public ServerPreferenceManager(
-            //ILocalStorageService localStorageService,
+            //ICustomLocalStorageService localStorageService,
             //ICurrentUserService currentUserService
             )
         {

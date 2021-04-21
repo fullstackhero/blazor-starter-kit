@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
-using BlazorHero.CleanArchitecture.Shared.Settings;
+using BlazorHero.CleanArchitecture.Application.Constants.Localization;
+using BlazorHero.CleanArchitecture.Infrastructure.Interfaces.Settings;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
 {

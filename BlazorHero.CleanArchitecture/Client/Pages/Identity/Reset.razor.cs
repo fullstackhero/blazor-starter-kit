@@ -1,5 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 using MudBlazor;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.UserService.Interfaces.Requests;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {

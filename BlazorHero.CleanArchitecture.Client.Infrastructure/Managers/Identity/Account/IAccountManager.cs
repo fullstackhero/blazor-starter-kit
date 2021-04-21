@@ -1,6 +1,6 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.AccountService.Interfaces.Requests;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Account
 {

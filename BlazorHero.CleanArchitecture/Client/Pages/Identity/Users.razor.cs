@@ -1,9 +1,9 @@
-﻿using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using MudBlazor;
+﻿using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.UserService.Interfaces.Responses;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {

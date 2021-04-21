@@ -1,11 +1,11 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+﻿using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.DataAccess.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.ExcelService.Interfaces;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Export
@@ -20,9 +20,10 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Exp
         private readonly IUnitOfWork _unitOfWork;
         private readonly IStringLocalizer<ExportQueryHandler> _localizer;
 
-        public ExportQueryHandler(IExcelService excelService
-            , IUnitOfWork unitOfWork
-            , IStringLocalizer<ExportQueryHandler> localizer)
+        public ExportQueryHandler(
+            IExcelService excelService,
+            IUnitOfWork unitOfWork,
+            IStringLocalizer<ExportQueryHandler> localizer)
         {
             _excelService = excelService;
             _unitOfWork = unitOfWork;

@@ -1,11 +1,11 @@
 ﻿using System;
-using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.UserService.Interfaces.Requests;
+using BlazorHero.CleanArchitecture.UserService.Interfaces.Responses;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
@@ -20,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         [Parameter]
         public string Description { get; set; }
 
-        public List<UserRoleModel> UserRolesList { get; set; } = new List<UserRoleModel>();
+        public List<UserRoleModel> UserRolesList { get; set; } = new();
         public ClaimsPrincipal CurrentUser { get; set; }
 
         private UserRoleModel userRole = new UserRoleModel();

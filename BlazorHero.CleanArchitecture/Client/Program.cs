@@ -5,8 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Constants.Localization;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
-using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
 
 namespace BlazorHero.CleanArchitecture.Client
 {

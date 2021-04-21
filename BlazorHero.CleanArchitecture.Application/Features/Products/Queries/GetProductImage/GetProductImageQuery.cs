@@ -1,11 +1,11 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
-using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
+﻿using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.DataAccess.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetProductImage
 {

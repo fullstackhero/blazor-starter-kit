@@ -1,12 +1,12 @@
 ﻿using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.JSInterop;
 using MudBlazor;
 using System;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Constants.Application;
 
 namespace BlazorHero.CleanArchitecture.Client.Shared
 {

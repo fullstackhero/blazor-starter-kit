@@ -1,8 +1,8 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.UserService.Interfaces.Requests;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
@@ -22,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             form.Validate();
             if (form.IsValid)
             {
-                var request = new ForgotPasswordRequest() { Email = Email };
+                var request = new ForgotPasswordRequest { Email = Email };
                 var result = await _userManager.ForgotPasswordAsync(request);
                 if (result.Succeeded)
                 {

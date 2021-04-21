@@ -1,11 +1,11 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Client.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+﻿using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Constants.Application;
+using BlazorHero.CleanArchitecture.RoleService.Interfaces.Requests;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {

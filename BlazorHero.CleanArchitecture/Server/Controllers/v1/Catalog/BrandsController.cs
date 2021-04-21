@@ -1,11 +1,11 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit;
-using BlazorHero.CleanArchitecture.Application.Features.Brands.Delete;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Delete;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetById;
-using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Constants.Permission;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
 {

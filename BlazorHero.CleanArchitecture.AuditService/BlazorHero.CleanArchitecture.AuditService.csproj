@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="5.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.AuditService.Interfaces\BlazorHero.CleanArchitecture.AuditService.Interfaces.csproj" />
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.DataAccess.Interfaces\BlazorHero.CleanArchitecture.DataAccess.Interfaces.csproj" />
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.ExcelService.Interfaces\BlazorHero.CleanArchitecture.ExcelService.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

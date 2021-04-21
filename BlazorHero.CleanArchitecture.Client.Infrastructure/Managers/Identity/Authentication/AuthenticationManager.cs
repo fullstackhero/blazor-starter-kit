@@ -1,9 +1,6 @@
 ﻿using Blazored.LocalStorage;
-using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Components.Authorization;
 using System;
 using System.Net.Http;
@@ -14,6 +11,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Routes;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
+using BlazorHero.CleanArchitecture.TokenService.Interfaces.Requests;
+using BlazorHero.CleanArchitecture.TokenService.Interfaces.Responses;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Authentication
 {

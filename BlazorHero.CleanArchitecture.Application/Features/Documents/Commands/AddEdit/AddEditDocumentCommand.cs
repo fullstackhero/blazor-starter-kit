@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Application.Requests;
-using BlazorHero.CleanArchitecture.Domain.Entities;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.DataAccess.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.UploadService.Interfaces;
+using BlazorHero.CleanArchitecture.UploadService.Interfaces.Requests;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit
@@ -29,7 +29,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
         private readonly IUploadService _uploadService;
         private readonly IStringLocalizer<AddEditDocumentCommandHandler> _localizer;
 
-        public AddEditDocumentCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditDocumentCommandHandler> localizer)
+        public AddEditDocumentCommandHandler(
+            IUnitOfWork unitOfWork,
+            IMapper mapper,
+            IUploadService uploadService,
+            IStringLocalizer<AddEditDocumentCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

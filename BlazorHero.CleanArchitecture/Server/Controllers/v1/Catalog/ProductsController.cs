@@ -3,10 +3,10 @@ using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Delete
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Export;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetProductImage;
-using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Constants.Permission;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
 {

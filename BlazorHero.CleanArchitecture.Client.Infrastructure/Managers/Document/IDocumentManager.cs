@@ -1,8 +1,8 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Application.Requests.Documents;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document
 {

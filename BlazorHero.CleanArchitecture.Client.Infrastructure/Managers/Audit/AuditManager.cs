@@ -1,9 +1,9 @@
-﻿using BlazorHero.CleanArchitecture.Application.Responses.Audit;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
+﻿using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.AuditService.Interfaces.Responses;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit
 {

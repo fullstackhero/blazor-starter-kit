@@ -2,10 +2,10 @@
 using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Application.Requests.Documents;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document
 {

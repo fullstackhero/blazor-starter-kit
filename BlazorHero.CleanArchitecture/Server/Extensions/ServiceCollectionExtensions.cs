@@ -1,19 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Configurations;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
-using BlazorHero.CleanArchitecture.Application.Models.Identity;
-using BlazorHero.CleanArchitecture.Infrastructure;
-using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
-using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
-using BlazorHero.CleanArchitecture.Infrastructure.Services;
-using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
-using BlazorHero.CleanArchitecture.Infrastructure.Shared.Services;
-using BlazorHero.CleanArchitecture.Server.Permission;
-using BlazorHero.CleanArchitecture.Server.Services;
-using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
+﻿using BlazorHero.CleanArchitecture.Server.Permission;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,6 +14,33 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using BlazorHero.CleanArchitecture.AccountService.Interfaces;
+using BlazorHero.CleanArchitecture.Application.Constants.Permission;
+using BlazorHero.CleanArchitecture.AuditService.Extensions;
+using BlazorHero.CleanArchitecture.AuditService.Interfaces;
+using BlazorHero.CleanArchitecture.ChatService.Extensions;
+using BlazorHero.CleanArchitecture.ChatService.Interfaces;
+using BlazorHero.CleanArchitecture.CurrentUserService.Interfaces;
+using BlazorHero.CleanArchitecture.DataAccess.Interfaces.Contexts;
+using BlazorHero.CleanArchitecture.DataAccess.MsSql;
+using BlazorHero.CleanArchitecture.DataAccess.MsSql.Repositories;
+using BlazorHero.CleanArchitecture.DataAccess.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.DataAccess.Interfaces;
+using BlazorHero.CleanArchitecture.DataAccess.MsSql.Contexts;
+using BlazorHero.CleanArchitecture.DateTimeService;
+using BlazorHero.CleanArchitecture.DateTimeService.Interfaces;
+using BlazorHero.CleanArchitecture.Domain.Entities.Identity;
+using BlazorHero.CleanArchitecture.ExcelService.Interfaces;
+using BlazorHero.CleanArchitecture.IdentityService.Configurations;
+using BlazorHero.CleanArchitecture.RoleService.Interfaces;
+using BlazorHero.CleanArchitecture.TokenService.Interfaces;
+using BlazorHero.CleanArchitecture.UploadService.Interfaces;
+using BlazorHero.CleanArchitecture.UserService.Interfaces;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
+using BlazorHero.CleanArchitecture.MailService.Interfaces;
+using BlazorHero.CleanArchitecture.RoleService.Extensions;
+using BlazorHero.CleanArchitecture.SMTPMailService.Configurations;
+using BlazorHero.CleanArchitecture.UserService.Extensions;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
@@ -100,6 +112,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services
+                .AddTransient<IBlazorHeroContext, BlazorHeroContext>()
                 .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
                 .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>()
                 .AddIdentity<BlazorHeroUser, IdentityRole>(options =>
@@ -117,29 +130,34 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return services;
         }
 
-        public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IDateTimeService, SystemDateTimeService>();
             services.Configure<MailConfiguration>(configuration.GetSection("MailConfiguration"));
-            services.AddTransient<IMailService, SMTPMailService>();
-            return services;
-        }
+            services.AddTransient<IMailService, SMTPMailService.SMTPMailService>();
 
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
-        {
-            services.AddTransient<ITokenService, IdentityService>();
-            services.AddTransient<IRoleService, RoleService>();
-            services.AddTransient<IAccountService, AccountService>();
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IChatService, ChatService>();
-            services.AddTransient<IUploadService, UploadService>();
-            services.AddTransient<IAuditService, AuditService>();
-            services.AddScoped<IExcelService, ExcelService>();
+            services.AddTransient<ITokenService, IdentityService.IdentityService>();
+            services.AddTransient<IRoleService, RoleService.RoleService>();
+            services.AddTransient<IAccountService, AccountService.AccountService>();
+            services.AddTransient<IUserService, UserService.UserService>();
+            services.AddTransient<IChatService, ChatService.ChatService>();
+            services.AddTransient<IUploadService, UploadService.UploadService>();
+            services.AddTransient<IAuditService, AuditService.AuditService>();
+            services.AddScoped<IExcelService, ExcelService.ExcelService>();
 
             services.AddTransient(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IBrandRepository, BrandRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            return services;
+        }
+
+        public static IServiceCollection AddApplicationServicesMappings(this IServiceCollection services)
+        {
+            services.AddAuditServiceMappings();
+            services.AddChatServiceMappings();
+            services.AddRoleServiceMappings();
+            services.AddUserServiceMappings();
             return services;
         }
 
@@ -201,7 +219,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 }
             });
             services.AddHttpContextAccessor();
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<ICurrentUserService, Services.CurrentUserService>();
             return services;
         }
     }

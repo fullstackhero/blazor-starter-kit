@@ -1,11 +1,11 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
+﻿using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.UserService.Interfaces.Requests;
+using BlazorHero.CleanArchitecture.UserService.Interfaces.Responses;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Users
 {
@@ -54,9 +54,9 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
             return await response.ToResult<UserRolesResponse>();
         }
 
-        public async Task<IResult> ForgotPasswordAsync(ForgotPasswordRequest model)
+        public async Task<IResult> ForgotPasswordAsync(ForgotPasswordRequest request)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoints.ForgotPassword, model);
+            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoints.ForgotPassword, request);
             return await response.ToResult();
         }
 

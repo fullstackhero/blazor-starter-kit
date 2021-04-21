@@ -1,8 +1,8 @@
-﻿using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Constants.Permission;
 
 namespace BlazorHero.CleanArchitecture.Server.Permission
 {

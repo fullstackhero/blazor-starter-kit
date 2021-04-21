@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.UploadService.Interfaces\BlazorHero.CleanArchitecture.UploadService.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

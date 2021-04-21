@@ -1,9 +1,10 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Application.Models.Chat;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.ChatService.Interfaces;
+using BlazorHero.CleanArchitecture.CurrentUserService.Interfaces;
+using BlazorHero.CleanArchitecture.Domain.Entities.Chat;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.Communication
 {

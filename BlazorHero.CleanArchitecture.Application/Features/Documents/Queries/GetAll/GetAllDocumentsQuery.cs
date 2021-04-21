@@ -1,15 +1,15 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Extensions;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Specifications;
-using BlazorHero.CleanArchitecture.Domain.Entities;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using MediatR;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.CurrentUserService.Interfaces;
+using BlazorHero.CleanArchitecture.DataAccess.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Utils.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetAll
 {

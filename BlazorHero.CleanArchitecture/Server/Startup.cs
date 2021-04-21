@@ -1,6 +1,4 @@
-using System;
 using BlazorHero.CleanArchitecture.Application.Extensions;
-using BlazorHero.CleanArchitecture.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Server.Extensions;
 using BlazorHero.CleanArchitecture.Server.Middlewares;
 using Hangfire;
@@ -41,10 +39,9 @@ namespace BlazorHero.CleanArchitecture.Server
                 options.ResourcesPath = "Resources";
             });
             services.AddApplicationLayer();
-            services.AddApplicationServices();
-            services.AddSharedInfrastructure(_configuration);
+            services.AddApplicationServices(_configuration);
+            services.AddApplicationServicesMappings();
             services.RegisterSwagger();
-            services.AddInfrastructureMappings();
             services.AddHangfire(x => x.UseSqlServerStorage(_configuration.GetConnectionString("DefaultConnection")));
             services.AddHangfireServer();
             services.AddControllers();

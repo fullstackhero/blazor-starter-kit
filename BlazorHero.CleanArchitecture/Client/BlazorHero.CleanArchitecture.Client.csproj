@@ -21,7 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.Localization" Version="5.0.5" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
     <PackageReference Include="MudBlazor" Version="5.0.8" />
-    <PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +38,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Client.Infrastructure\BlazorHero.CleanArchitecture.Client.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Shared\BlazorHero.CleanArchitecture.Shared.csproj" />
   </ItemGroup>
 
 </Project>

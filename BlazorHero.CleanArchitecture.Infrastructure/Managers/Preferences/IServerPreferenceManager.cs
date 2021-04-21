@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Shared.Managers;
+﻿using BlazorHero.CleanArchitecture.Infrastructure.Interfaces.Managers;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Managers.Preferences
 {

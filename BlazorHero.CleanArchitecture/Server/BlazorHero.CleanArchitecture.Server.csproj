@@ -34,10 +34,18 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Application\BlazorHero.CleanArchitecture.Application.csproj" />
-    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Infrastructure.Shared\BlazorHero.CleanArchitecture.Infrastructure.Shared.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.AccountService\BlazorHero.CleanArchitecture.AccountService.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.AuditService\BlazorHero.CleanArchitecture.AuditService.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.ChatService\BlazorHero.CleanArchitecture.ChatService.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.DataAccess.MsSql\BlazorHero.CleanArchitecture.DataAccess.MsSql.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.DateTimeService\BlazorHero.CleanArchitecture.DateTimeService.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.ExcelService\BlazorHero.CleanArchitecture.ExcelService.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.IdentityService\BlazorHero.CleanArchitecture.IdentityService.csproj" />
     <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Infrastructure\BlazorHero.CleanArchitecture.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Shared\BlazorHero.CleanArchitecture.Shared.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.RoleService\BlazorHero.CleanArchitecture.RoleService.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.SMTPMailService\BlazorHero.CleanArchitecture.SMTPMailService.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.UploadService\BlazorHero.CleanArchitecture.UploadService.csproj" />
+    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.UserService\BlazorHero.CleanArchitecture.UserService.csproj" />
     <ProjectReference Include="..\Client\BlazorHero.CleanArchitecture.Client.csproj" />
   </ItemGroup>
   <ItemGroup>

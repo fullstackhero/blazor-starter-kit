@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Domain\BlazorHero.CleanArchitecture.Domain.csproj" />
+    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Utils\BlazorHero.CleanArchitecture.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

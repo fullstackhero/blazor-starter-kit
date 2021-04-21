@@ -2,7 +2,7 @@
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
 using MudBlazor;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Shared.Settings;
+using BlazorHero.CleanArchitecture.Infrastructure.Interfaces.Settings;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences
 {

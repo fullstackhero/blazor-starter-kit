@@ -1,8 +1,8 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using Microsoft.AspNetCore.Components.Authorization;
+﻿using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.TokenService.Interfaces.Requests;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 {

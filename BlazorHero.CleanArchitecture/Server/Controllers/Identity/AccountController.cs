@@ -1,9 +1,9 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
-using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.AccountService.Interfaces;
+using BlazorHero.CleanArchitecture.AccountService.Interfaces.Requests;
+using BlazorHero.CleanArchitecture.CurrentUserService.Interfaces;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
 {
