@@ -45,7 +45,7 @@
             },
             new LanguageCode
             {
-                Code = "it-ID",
+                Code = "it-IT",
                 DisplayName = "Italian"
             }
         };
