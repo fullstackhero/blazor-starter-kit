@@ -121,7 +121,7 @@
     <value>Azioni</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>Active</value>
+    <value>Attiva</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Crea</value>
@@ -142,10 +142,10 @@
     <value>Gestisci ruoli</value>
   </data>
   <data name="Manage Users" xml:space="preserve">
-    <value>Manage Users</value>
+    <value>Gestisci utenti</value>
   </data>
   <data name="Not Allowed." xml:space="preserve">
-    <value>Not Allowed.</value>
+    <value>Non autorizzato.</value>
   </data>
   <data name="Register New User" xml:space="preserve">
     <value>Registra nuovo utente</value>

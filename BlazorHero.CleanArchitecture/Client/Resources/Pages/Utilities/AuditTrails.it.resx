@@ -117,19 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Forgot password?" xml:space="preserve">
-    <value>Password dimenticata?</value>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>Registro Attività</value>
   </data>
-  <data name="E-Mail" xml:space="preserve">
-    <value>E-Mail</value>
+  <data name="Columns Affected" xml:space="preserve">
+    <value>Colonne Interessate</value>
   </data>
-  <data name="Reset Password" xml:space="preserve">
-    <value>Ripristina Password</value>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
   </data>
-  <data name="Done!" xml:space="preserve">
-    <value>Fatto!</value>
+  <data name="Details for Trail ID" xml:space="preserve">
+    <value>Dettagli per ID Attività</value>
   </data>
-  <data name="Enter email for password reset" xml:space="preserve">
-    <value>Inserisci l'indirizzo E-Mail collegato al tuo utente e riceverai un link per il ripristino della password.</value>
+  <data name="Export To Excel" xml:space="preserve">
+    <value>Esporta in Excel</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Nascondi</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>Locale</value>
+  </data>
+  <data name="New Values" xml:space="preserve">
+    <value>Nuovi valori</value>
+  </data>
+  <data name="Old Values" xml:space="preserve">
+    <value>Vecchi valori</value>
+  </data>
+  <data name="Primary Key" xml:space="preserve">
+    <value>Chiave Primaria</value>
+  </data>
+  <data name="Search for Trails" xml:space="preserve">
+    <value>Cerca Attività</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Mostra</value>
+  </data>
+  <data name="Table Name" xml:space="preserve">
+    <value>Nome Tabella</value>
+  </data>
+  <data name="Trail Details" xml:space="preserve">
+    <value>Dettagli Attività</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="UTC" xml:space="preserve">
+    <value>UTC</value>
+  </data>
+  <data name="Your Recent Activities." xml:space="preserve">
+    <value>Le tue Attività Recenti.</value>
   </data>
 </root>

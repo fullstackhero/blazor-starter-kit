@@ -117,19 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Forgot password?" xml:space="preserve">
-    <value>Password dimenticata?</value>
+  <data name="Already have an account?" xml:space="preserve">
+    <value>Hai già un account?</value>
   </data>
-  <data name="E-Mail" xml:space="preserve">
-    <value>E-Mail</value>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Conferma Password</value>
   </data>
-  <data name="Reset Password" xml:space="preserve">
-    <value>Ripristina Password</value>
+  <data name="E-mail" xml:space="preserve">
+    <value>E-mail</value>
   </data>
-  <data name="Done!" xml:space="preserve">
-    <value>Fatto!</value>
+  <data name="Email is required!" xml:space="preserve">
+    <value>Email è richiesta!</value>
   </data>
-  <data name="Enter email for password reset" xml:space="preserve">
-    <value>Inserisci l'indirizzo E-Mail collegato al tuo utente e riceverai un link per il ripristino della password.</value>
+  <data name="First Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Last Name" xml:space="preserve">
+    <value>Cognome</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Password is required!" xml:space="preserve">
+    <value>Password è richiesta!</value>
+  </data>
+  <data name="Password must be at least of length 8" xml:space="preserve">
+    <value>La password deve essere almeno di lunghezza 8 caratteri</value>
+  </data>
+  <data name="Password must contain at least one capital letter" xml:space="preserve">
+    <value>La password deve contenere almeno una lettera maiuscola</value>
+  </data>
+  <data name="Password must contain at least one digit" xml:space="preserve">
+    <value>La password deve contenere almeno una cifra</value>
+  </data>
+  <data name="Password must contain at least one lowercase letter" xml:space="preserve">
+    <value>La password deve contenere almeno una lettera minuscola</value>
+  </data>
+  <data name="Passwords don't match" xml:space="preserve">
+    <value>Le password non corrispondono</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registrati</value>
+  </data>
+  <data name="Sign In" xml:space="preserve">
+    <value>Registrati</value>
+  </data>
+  <data name="User Name" xml:space="preserve">
+    <value>Username</value>
   </data>
 </root>

@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Forgot password?" xml:space="preserve">
-    <value>Password dimenticata?</value>
-  </data>
-  <data name="E-Mail" xml:space="preserve">
-    <value>E-Mail</value>
-  </data>
-  <data name="Reset Password" xml:space="preserve">
-    <value>Ripristina Password</value>
-  </data>
   <data name="Done!" xml:space="preserve">
     <value>Fatto!</value>
   </data>
+  <data name="E-mail" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
   <data name="Enter email for password reset" xml:space="preserve">
-    <value>Inserisci l'indirizzo E-Mail collegato al tuo utente e riceverai un link per il ripristino della password.</value>
+    <value>Inserisci l'email per reimpostare la password</value>
+  </data>
+  <data name="Forgot password?" xml:space="preserve">
+    <value>Password Dimenticata?</value>
+  </data>
+  <data name="Reset Password" xml:space="preserve">
+    <value>Resetta la password</value>
   </data>
 </root>
