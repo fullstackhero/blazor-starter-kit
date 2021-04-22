@@ -42,6 +42,11 @@
             {
                 Code = "id-ID",
                 DisplayName = "Indonesia"
+            },
+            new LanguageCode
+            {
+                Code = "it-IT",
+                DisplayName = "Italian"
             }
         };
     }
