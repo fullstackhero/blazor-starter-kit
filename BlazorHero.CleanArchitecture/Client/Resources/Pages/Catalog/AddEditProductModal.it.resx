@@ -117,19 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Forgot password?" xml:space="preserve">
-    <value>Password dimenticata?</value>
+  <data name="Add Product" xml:space="preserve">
+    <value>Aggiungi prodotto</value>
   </data>
-  <data name="E-Mail" xml:space="preserve">
-    <value>E-Mail</value>
+  <data name="Barcode" xml:space="preserve">
+    <value>Barcode</value>
   </data>
-  <data name="Reset Password" xml:space="preserve">
-    <value>Ripristina Password</value>
+  <data name="Brand" xml:space="preserve">
+    <value>Marca</value>
   </data>
-  <data name="Done!" xml:space="preserve">
-    <value>Fatto!</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annulla</value>
   </data>
-  <data name="Enter email for password reset" xml:space="preserve">
-    <value>Inserisci l'indirizzo E-Mail collegato al tuo utente e riceverai un link per il ripristino della password.</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrizione</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Product Saved" xml:space="preserve">
+    <value>Prodotto Salvato!</value>
+  </data>
+  <data name="Product Updated" xml:space="preserve">
+    <value>Prodotto Aggiornato!</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Vota</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="Select a Brand." xml:space="preserve">
+    <value>Seleziona una marca.</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Aggiorna</value>
+  </data>
+  <data name="Update Product" xml:space="preserve">
+    <value>Aggiorna Prodotto</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Carica</value>
   </data>
 </root>
