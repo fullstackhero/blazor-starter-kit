@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
@@ -32,7 +33,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "BlazorHero.CleanArchitecture.Server");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", typeof(Program).Assembly.GetName().Name);
                 options.RoutePrefix = "swagger";
                 options.DisplayRequestDuration();
             });
@@ -44,7 +45,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
-                endpoints.MapHub<SignalRHub>("/signalRHub");
+                endpoints.MapHub<SignalRHub>(ApplicationConstants.SignalR.HubUrl);
             });
 
         public static IApplicationBuilder UseRequestLocalizationByCulture(this IApplicationBuilder app)

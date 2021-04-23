@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 {
@@ -28,10 +29,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
         {
             await LoadDataAsync();
             hubConnection = new HubConnectionBuilder()
-            .WithUrl(_navigationManager.ToAbsoluteUri("/signalRHub"))
-            .WithUrl(_navigationManager.ToAbsoluteUri("/signalRHub"))
+            .WithUrl(_navigationManager.ToAbsoluteUri(ApplicationConstants.SignalR.HubUrl))
             .Build();
-            hubConnection.On("UpdateDashboard", async () =>
+            hubConnection.On(ApplicationConstants.SignalR.RecievieUpdateDashboard, async () =>
             {
                 await LoadDataAsync();
                 StateHasChanged();
