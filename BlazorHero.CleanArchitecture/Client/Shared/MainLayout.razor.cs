@@ -1,5 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.JSInterop;
 using MudBlazor;
@@ -42,7 +43,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             currentTheme = await _clientPreferenceManager.GetCurrentThemeAsync();
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             await hubConnection.StartAsync();
-            hubConnection.On<string, string, string>("ReceiveChatNotification", (message, receiverUserId, senderUserId) =>
+            hubConnection.On<string, string, string>(ApplicationConstants.SignalR.ReceiveChatNotification, (message, receiverUserId, senderUserId) =>
             {
                 if (CurrentUserId == receiverUserId)
                 {
@@ -62,7 +63,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                     });
                 }
             });
-            hubConnection.On("RegenerateTokens", async () =>
+            hubConnection.On(ApplicationConstants.SignalR.RecievieRegenerateTokens, async () =>
             {
                 try
                 {

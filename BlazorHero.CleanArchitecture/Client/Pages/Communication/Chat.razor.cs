@@ -1,6 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Models.Chat;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Client.Extensions;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -54,7 +55,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                     CurrentUserId = user.GetUserId();
                     chatHistory.FromUserId = CurrentUserId;
                     var userName = $"{user.GetFirstName()} {user.GetLastName()}";
-                    await hubConnection.SendAsync("SendMessageAsync", chatHistory, userName);
+                    await hubConnection.SendAsync(ApplicationConstants.SignalR.SendMessage, chatHistory, userName);
                     CurrentMessage = string.Empty;
                 }
                 else
@@ -89,7 +90,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
                          messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
-                         await hubConnection.SendAsync("ChatNotificationAsync", $"New Message From {userName}", CId, CurrentUserId);
+                         await hubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, $"New Message From {userName}", CId, CurrentUserId);
                      }
                      else if ((CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                      {

@@ -1,6 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
 using BlazorHero.CleanArchitecture.Client.Extensions;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.JSInterop;
@@ -131,7 +132,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 if (response.Succeeded)
                 {
                     OnSearch("");
-                    await hubConnection.SendAsync("UpdateDashboardAsync");
+                    await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
                     _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
                 }
                 else
