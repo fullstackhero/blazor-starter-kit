@@ -14,5 +14,9 @@
             public const string ReceiveMessage = "ReceiveMessage";
             public const string SendMessage = "SendMessageAsync";
         }
+        public static class Cache
+        {
+            public const string GetAllBrandsCacheKey = "all-brands";
+        }
     }
 }

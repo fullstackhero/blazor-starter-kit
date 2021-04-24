@@ -5,6 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Delete
 {
@@ -32,7 +33,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Delete
                 {
                     var brand = await _unitOfWork.Repository<Brand>().GetByIdAsync(command.Id);
                     await _unitOfWork.Repository<Brand>().DeleteAsync(brand);
-                    await _unitOfWork.Commit(cancellationToken);
+                    await _unitOfWork.ComitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
                     return Result<int>.Success(brand.Id, _localizer["Brand Deleted"]);
                 }
                 else
