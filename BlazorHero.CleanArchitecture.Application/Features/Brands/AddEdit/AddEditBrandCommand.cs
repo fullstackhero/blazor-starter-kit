@@ -6,6 +6,8 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
+using LazyCache;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
 {
@@ -36,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
             {
                 var brand = _mapper.Map<Brand>(command);
                 await _unitOfWork.Repository<Brand>().AddAsync(brand);
-                await _unitOfWork.Commit(cancellationToken);
+                await _unitOfWork.ComitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
                 return Result<int>.Success(brand.Id, _localizer["Brand Saved"]);
             }
             else
@@ -48,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
                     brand.Tax = (command.Tax == 0) ? brand.Tax : command.Tax;
                     brand.Description = command.Description ?? brand.Description;
                     await _unitOfWork.Repository<Brand>().UpdateAsync(brand);
-                    await _unitOfWork.Commit(cancellationToken);
+                    await _unitOfWork.ComitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
                     return Result<int>.Success(brand.Id, _localizer["Brand Updated"]);
                 }
                 else

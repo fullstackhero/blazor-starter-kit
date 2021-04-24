@@ -10,7 +10,7 @@ using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
 
 namespace BlazorHero.CleanArchitecture.Client
 {
-    public class Program
+    public static class Program
     {
         public static async Task Main(string[] args)
         {

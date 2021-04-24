@@ -55,6 +55,7 @@ namespace BlazorHero.CleanArchitecture.Server
                 config.AssumeDefaultVersionWhenUnspecified = true;
                 config.ReportApiVersions = true;
             });
+            services.AddLazyCache();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
