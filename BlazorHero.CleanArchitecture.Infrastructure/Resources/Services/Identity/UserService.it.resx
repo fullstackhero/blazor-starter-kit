@@ -117,64 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
+  <data name="Account Confirmed for" xml:space="preserve">
+    <value>Account confermato per</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Amministratore</value>
+  <data name="Administrators Profile's Status cannot be toggled" xml:space="preserve">
+    <value>Lo stato del profilo amministratore non può essere modificato</value>
   </data>
-  <data name="Audit Trails" xml:space="preserve">
-    <value>Registro Attività</value>
+  <data name="An Error has occured!" xml:space="preserve">
+    <value>C'è stato un errore!</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Marche</value>
+  <data name="An error occured while confirming" xml:space="preserve">
+    <value>Si è verificato un errore durante la conferma</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Gestione catalogo</value>
+  <data name="clicking here" xml:space="preserve">
+    <value>cliccando qui</value>
   </data>
-  <data name="Chat" xml:space="preserve">
-    <value>Chat</value>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Comunicazione</value>
+  <data name="is already registered." xml:space="preserve">
+    <value>è già registrato.</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
+  <data name="is already taken." xml:space="preserve">
+    <value>è già stato preso.</value>
   </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Archivio documenti</value>
+  <data name="Not Allowed." xml:space="preserve">
+    <value>Non Autorizzato.</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQs</value>
+  <data name="Password Reset Mail has been sent to your authorized EmailId." xml:space="preserve">
+    <value>La mail per il ripristino della password è stata inviata al tuo indirizzo emial autorizzato.</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Caratteristiche</value>
+  <data name="Password Reset Successful!" xml:space="preserve">
+    <value>Reimpostazione della password riuscita!</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="Please reset your password by" xml:space="preserve">
+    <value>Reimposta la password entro</value>
   </data>
-  <data name="Mail" xml:space="preserve">
-    <value>Mail</value>
+  <data name="Reset Password" xml:space="preserve">
+    <value>Resetta la password</value>
   </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personale</value>
+  <data name="Roles Updated" xml:space="preserve">
+    <value>Ruoli Aggiornati</value>
   </data>
-  <data name="Products" xml:space="preserve">
-    <value>Prodotti</value>
+  <data name="User Registered" xml:space="preserve">
+    <value>Utente Registrato</value>
   </data>
-  <data name="Quick Start Guide" xml:space="preserve">
-    <value>Guida rapida</value>
+  <data name="User Registered. Please check your Mailbox to verify!" xml:space="preserve">
+    <value>Utente registrato. Controlla la tua casella di posta per verificare!</value>
   </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Risorse</value>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Ruoli</value>
-  </data>
-  <data name="Swagger" xml:space="preserve">
-    <value>Swagger</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utenti</value>
+  <data name="You can now use the /api/identity/token endpoint to generate JWT." xml:space="preserve">
+    <value>È ora possibile utilizzare l'endpoint / api / identity / token per generare JWT.</value>
   </data>
 </root>

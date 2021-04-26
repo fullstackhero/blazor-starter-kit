@@ -3,6 +3,7 @@ using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Mappings;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
@@ -53,7 +54,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if (result.Succeeded)
             {
                 _snackBar.Add(localizer[result.Messages[0]], Severity.Success);
-                await hubConnection.SendAsync("RegenerateTokensAsync");
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.SendRegenerateTokens);
                 _navigationManager.NavigateTo("/identity/roles");
             }
             else

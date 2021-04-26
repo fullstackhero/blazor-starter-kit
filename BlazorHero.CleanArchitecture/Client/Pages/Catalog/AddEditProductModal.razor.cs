@@ -2,6 +2,7 @@
 using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Application.Requests;
 using BlazorHero.CleanArchitecture.Client.Extensions;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -72,7 +73,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 if (response.Succeeded)
                 {
                     _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
-                    await hubConnection.SendAsync("UpdateDashboardAsync");
+                    await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
                     MudDialog.Close();
                 }
                 else

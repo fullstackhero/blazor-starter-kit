@@ -124,12 +124,12 @@
     <value>E-Mail</value>
   </data>
   <data name="Reset Password" xml:space="preserve">
-    <value>Reset Password</value>
+    <value>Ripristina Password</value>
   </data>
   <data name="Done!" xml:space="preserve">
     <value>Fatto!</value>
   </data>
   <data name="Enter email for password reset" xml:space="preserve">
-    <value>Inserisci l'indirizzo E-Mail collegato al tuo utente e riceverai un link per il reset della password.</value>
+    <value>Inserisci l'indirizzo E-Mail collegato al tuo utente e riceverai un link per il ripristino della password.</value>
   </data>
 </root>

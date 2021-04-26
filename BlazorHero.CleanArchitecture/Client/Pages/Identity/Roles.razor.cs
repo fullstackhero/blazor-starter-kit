@@ -1,5 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Client.Extensions;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
@@ -58,7 +59,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 if (response.Succeeded)
                 {
                     await Reset();
-                    await hubConnection.SendAsync("UpdateDashboardAsync");
+                    await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
                     _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
                 }
                 else

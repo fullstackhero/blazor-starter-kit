@@ -5,7 +5,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace BlazorHero.CleanArchitecture.Server
 {
-    public class Program
+    public static class Program
     {
         public static async Task Main(string[] args)
         {

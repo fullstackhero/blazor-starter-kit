@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Active?" xml:space="preserve">
-    <value>Active?</value>
+    <value>Attiva?</value>
   </data>
   <data name="Administrator Settings." xml:space="preserve">
     <value>Impostazioni amministratore.</value>
@@ -145,7 +145,7 @@
     <value>Salvare le modifiche</value>
   </data>
   <data name="This is an Administrator Only View." xml:space="preserve">
-    <value>This is an Administrator Only View.</value>
+    <value>Questa è una visualizzazione solo amministratore.</value>
   </data>
   <data name="Updated User Status." xml:space="preserve">
     <value>Aggiorna status utente.</value>

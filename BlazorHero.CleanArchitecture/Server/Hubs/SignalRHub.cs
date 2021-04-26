@@ -1,4 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Models.Chat;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
@@ -8,22 +9,22 @@ namespace BlazorHero.CleanArchitecture.Server.Hubs
     {
         public async Task SendMessageAsync(ChatHistory chatHistory, string userName)
         {
-            await Clients.All.SendAsync("ReceiveMessage", chatHistory, userName);
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.ReceiveMessage, chatHistory, userName);
         }
 
         public async Task ChatNotificationAsync(string message, string receiverUserId, string senderUserId)
         {
-            await Clients.All.SendAsync("ReceiveChatNotification", message, receiverUserId, senderUserId);
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.ReceiveChatNotification, message, receiverUserId, senderUserId);
         }
 
         public async Task UpdateDashboardAsync()
         {
-            await Clients.All.SendAsync("UpdateDashboard");
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.RecievieUpdateDashboard);
         }
 
         public async Task RegenerateTokensAsync()
         {
-            await Clients.All.SendAsync("RegenerateTokens");
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.RecievieRegenerateTokens);
         }
     }
 }

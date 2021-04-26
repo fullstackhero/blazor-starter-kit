@@ -117,64 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
+  <data name="Document Not Found!" xml:space="preserve">
+    <value>Documento Non Trovato!</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Amministratore</value>
+  <data name="Document Saved" xml:space="preserve">
+    <value>Documento Salvato</value>
   </data>
-  <data name="Audit Trails" xml:space="preserve">
-    <value>Registro Attività</value>
-  </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Marche</value>
-  </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Gestione catalogo</value>
-  </data>
-  <data name="Chat" xml:space="preserve">
-    <value>Chat</value>
-  </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Comunicazione</value>
-  </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
-  </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Archivio documenti</value>
-  </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQs</value>
-  </data>
-  <data name="Features" xml:space="preserve">
-    <value>Caratteristiche</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="Mail" xml:space="preserve">
-    <value>Mail</value>
-  </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personale</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Prodotti</value>
-  </data>
-  <data name="Quick Start Guide" xml:space="preserve">
-    <value>Guida rapida</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Risorse</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Ruoli</value>
-  </data>
-  <data name="Swagger" xml:space="preserve">
-    <value>Swagger</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utenti</value>
+  <data name="Document Updated" xml:space="preserve">
+    <value>Documento Aggiornato</value>
   </data>
 </root>

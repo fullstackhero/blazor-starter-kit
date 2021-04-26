@@ -11,6 +11,8 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Repositories
 
         Task<int> Commit(CancellationToken cancellationToken);
 
+        Task<int> ComitAndRemoveCache(CancellationToken cancellationToken, string cacheKey);
+
         Task Rollback();
     }
 }

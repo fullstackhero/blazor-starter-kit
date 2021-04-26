@@ -1,5 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit;
 using BlazorHero.CleanArchitecture.Client.Extensions;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
@@ -56,7 +57,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                         _snackBar.Add(localizer[message], Severity.Error);
                     }
                 }
-                await hubConnection.SendAsync("UpdateDashboardAsync");
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
             }
         }
 

@@ -117,64 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
-  </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Amministratore</value>
-  </data>
   <data name="Audit Trails" xml:space="preserve">
     <value>Registro Attività</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Marche</value>
+  <data name="Columns Affected" xml:space="preserve">
+    <value>Colonne Interessate</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Gestione catalogo</value>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
   </data>
-  <data name="Chat" xml:space="preserve">
-    <value>Chat</value>
+  <data name="Details for Trail ID" xml:space="preserve">
+    <value>Dettagli per ID Attività</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Comunicazione</value>
+  <data name="Export To Excel" xml:space="preserve">
+    <value>Esporta in Excel</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
+  <data name="Hide" xml:space="preserve">
+    <value>Nascondi</value>
   </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Archivio documenti</value>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQs</value>
+  <data name="Local" xml:space="preserve">
+    <value>Locale</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Caratteristiche</value>
+  <data name="New Values" xml:space="preserve">
+    <value>Nuovi valori</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="Old Values" xml:space="preserve">
+    <value>Vecchi valori</value>
   </data>
-  <data name="Mail" xml:space="preserve">
-    <value>Mail</value>
+  <data name="Primary Key" xml:space="preserve">
+    <value>Chiave Primaria</value>
   </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personale</value>
+  <data name="Search for Trails" xml:space="preserve">
+    <value>Cerca Attività</value>
   </data>
-  <data name="Products" xml:space="preserve">
-    <value>Prodotti</value>
+  <data name="Show" xml:space="preserve">
+    <value>Mostra</value>
   </data>
-  <data name="Quick Start Guide" xml:space="preserve">
-    <value>Guida rapida</value>
+  <data name="Table Name" xml:space="preserve">
+    <value>Nome Tabella</value>
   </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Risorse</value>
+  <data name="Trail Details" xml:space="preserve">
+    <value>Dettagli Attività</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Ruoli</value>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
   </data>
-  <data name="Swagger" xml:space="preserve">
-    <value>Swagger</value>
+  <data name="UTC" xml:space="preserve">
+    <value>UTC</value>
   </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utenti</value>
+  <data name="Your Recent Activities." xml:space="preserve">
+    <value>Le tue Attività Recenti.</value>
   </data>
 </root>

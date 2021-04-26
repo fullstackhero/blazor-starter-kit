@@ -117,64 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Account</value>
+  <data name="Add Product" xml:space="preserve">
+    <value>Aggiungi prodotto</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Amministratore</value>
+  <data name="Barcode" xml:space="preserve">
+    <value>Barcode</value>
   </data>
-  <data name="Audit Trails" xml:space="preserve">
-    <value>Registro Attività</value>
+  <data name="Brand" xml:space="preserve">
+    <value>Marca</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Marche</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annulla</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Gestione catalogo</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Elimina</value>
   </data>
-  <data name="Chat" xml:space="preserve">
-    <value>Chat</value>
+  <data name="Description" xml:space="preserve">
+    <value>Descrizione</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Comunicazione</value>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
+  <data name="Name" xml:space="preserve">
+    <value>Nome</value>
   </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Archivio documenti</value>
+  <data name="Product Saved" xml:space="preserve">
+    <value>Prodotto Salvato!</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQs</value>
+  <data name="Product Updated" xml:space="preserve">
+    <value>Prodotto Aggiornato!</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Caratteristiche</value>
+  <data name="Rate" xml:space="preserve">
+    <value>Vota</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="Save" xml:space="preserve">
+    <value>Salva</value>
   </data>
-  <data name="Mail" xml:space="preserve">
-    <value>Mail</value>
+  <data name="Select a Brand." xml:space="preserve">
+    <value>Seleziona una marca.</value>
   </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Personale</value>
+  <data name="Update" xml:space="preserve">
+    <value>Aggiorna</value>
   </data>
-  <data name="Products" xml:space="preserve">
-    <value>Prodotti</value>
+  <data name="Update Product" xml:space="preserve">
+    <value>Aggiorna Prodotto</value>
   </data>
-  <data name="Quick Start Guide" xml:space="preserve">
-    <value>Guida rapida</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Risorse</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Ruoli</value>
-  </data>
-  <data name="Swagger" xml:space="preserve">
-    <value>Swagger</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utenti</value>
+  <data name="Upload" xml:space="preserve">
+    <value>Carica</value>
   </data>
 </root>

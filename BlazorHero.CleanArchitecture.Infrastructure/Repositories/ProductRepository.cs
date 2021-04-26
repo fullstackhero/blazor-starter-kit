@@ -17,8 +17,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
 
         public async Task<bool> IsBrandUsed(int brandId)
         {
-            var exists = await _repository.Entities.Where(b => b.BrandId == brandId).AnyAsync();
-            return exists;
+            return await _repository.Entities.AnyAsync(b => b.BrandId == brandId);
         }
     }
 }
