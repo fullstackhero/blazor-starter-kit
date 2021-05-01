@@ -18,25 +18,45 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
         private bool _bordered = false;
         private bool _searchInOldValues = false;
         private bool _searchInNewValues = false;
+        private MudDateRangePicker _dateRangePicker;
+        private DateRange _dateRange;
 
         private bool Search(AuditResponse response)
         {
-            if (string.IsNullOrWhiteSpace(searchString)) return true;
-            if (response.TableName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            var result = false;
+
+            // check Search String
+            if (string.IsNullOrWhiteSpace(searchString)) result = true;
+            if (!result)
             {
-                return true;
+                if (response.TableName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result = true;
+                }
+                if (_searchInOldValues &&
+                    response.OldValues?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result = true;
+                }
+                if (_searchInNewValues &&
+                    response.NewValues?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    result = true;
+                }
             }
-            if (_searchInOldValues &&
-                response.OldValues?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+
+            // check Date Range
+            if (_dateRange?.Start == null && _dateRange?.End == null) return result;
+            if (_dateRange?.Start != null && response.DateTime < _dateRange.Start)
             {
-                return true;
+                result = false;
             }
-            if (_searchInNewValues &&
-                response.NewValues?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (_dateRange?.End != null && response.DateTime > _dateRange.End + new TimeSpan(0,11, 59, 59, 999))
             {
-                return true;
+                result = false;
             }
-            return false;
+
+            return result;
         }
 
         protected override async Task OnInitializedAsync()

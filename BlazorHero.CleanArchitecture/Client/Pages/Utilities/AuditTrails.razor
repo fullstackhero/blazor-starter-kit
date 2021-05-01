@@ -12,7 +12,16 @@
     </ToolBarContent>
     <HeaderContent>
         <MudTHeadRow IgnoreCheckbox="true">
-            <MudTh colspan="5" Style="text-align: right">
+            <MudTh colspan="2">
+                <MudDateRangePicker @ref="_dateRangePicker" PickerVariant="PickerVariant.Dialog" Label="@localizer["Date Range For Searching"]" @bind-DateRange="_dateRange">
+                    <PickerActions>
+                        <MudButton Class="mr-auto align-self-start" OnClick="@(() => _dateRangePicker.Clear())">@localizer["Clear"]</MudButton>
+                        <MudButton OnClick="@(() => _dateRangePicker.Close(false))">@localizer["Cancel"]</MudButton>
+                        <MudButton Color="Color.Primary" OnClick="@(() => _dateRangePicker.Close())">@localizer["Ok"]</MudButton>
+                    </PickerActions>
+                </MudDateRangePicker>
+            </MudTh>
+            <MudTh colspan="3" Style="text-align: right">
                 <MudSwitch @bind-Checked="@_searchInOldValues" Color="Color.Primary" Style="margin-left: 5px;">@localizer["Search in Old Values"]</MudSwitch>
                 <MudSwitch @bind-Checked="@_searchInNewValues" Color="Color.Primary" Style="margin-left: 5px;">@localizer["Search in New Values"]</MudSwitch>
             </MudTh>

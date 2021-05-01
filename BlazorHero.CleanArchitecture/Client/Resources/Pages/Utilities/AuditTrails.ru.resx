@@ -123,11 +123,20 @@
   <data name="Bordered" xml:space="preserve">
     <value>Обрамлённый</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
   <data name="Columns Affected" xml:space="preserve">
     <value>Затронутые стобцы</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Дата</value>
+  </data>
+  <data name="Date Range For Searching" xml:space="preserve">
+    <value>Диапазон дат для поиска</value>
   </data>
   <data name="Dense" xml:space="preserve">
     <value>Компактный</value>
@@ -149,6 +158,9 @@
   </data>
   <data name="New Values" xml:space="preserve">
     <value>Новые значения</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="Old Values" xml:space="preserve">
     <value>Старые значения</value>
