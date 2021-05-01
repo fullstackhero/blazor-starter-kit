@@ -1,8 +1,10 @@
 ﻿@page "/identity/user-roles/{Id}"
+@using BlazorHero.CleanArchitecture.Application.Responses.Identity
+@using Microsoft.AspNetCore.Components
 @attribute [Authorize(Policy = Permissions.Roles.View)]
 @inject Microsoft.Extensions.Localization.IStringLocalizer<UserRoles> localizer
 <HeroTitle Title="@Title" Description="@Description" />
-<MudTable Hover="true" Elevation="25" Items="UserRolesList">
+<MudTable Hover="true" Elevation="25" Items="UserRolesList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<UserRoleModel, bool>(Search)" @bind-userRole="userRole">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
             @if ((_authorizationService.AuthorizeAsync(CurrentUser, Permissions.Roles.Create)).Result.Succeeded)
@@ -11,15 +13,24 @@
             }
         </div>
         <MudToolBarSpacer />
+        <MudTextField @bind-Value="searchString" Immediate="true" FullWidth=false Placeholder="@localizer["Search For User Roles"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
-        <MudTh>@localizer["Role Name"]</MudTh>
-        <MudTh>@localizer["Status"]</MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<UserRoleModel, object>(x => x.RoleName)">@localizer["Role Name"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<UserRoleModel, object>(x => x.Selected)">@localizer["Status"]</MudTableSortLabel></MudTh>
     </HeaderContent>
     <RowTemplate>
-        <MudTd DataLabel="Id">@context.RoleName</MudTd>
+        <MudTd DataLabel="Id">
+            <MudHighlighter Text="@context.RoleName" HighlightedText="@searchString" />
+        </MudTd>
         <MudTd DataLabel="Role"><MudCheckBox @bind-Checked="@context.Selected" Color="Color.Secondary"></MudCheckBox></MudTd>
     </RowTemplate>
+    <FooterContent>
+        <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@localizer["Dense"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@localizer["Striped"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@localizer["Bordered"]</MudSwitch>
+    </FooterContent>
     <PagerContent>
+        <TablePager />
     </PagerContent>
 </MudTable>

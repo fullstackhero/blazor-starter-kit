@@ -123,6 +123,9 @@
   <data name="Barcode" xml:space="preserve">
     <value>Баркод</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Обрамлённый</value>
+  </data>
   <data name="Brand" xml:space="preserve">
     <value>Бренд</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Delete Content" xml:space="preserve">
     <value>Удалить контент</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Компактный</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Описание</value>
@@ -167,5 +173,8 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Поиск продуктов...</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Чередующийся</value>
   </data>
 </root>

@@ -120,11 +120,17 @@
   <data name="Audit Trails" xml:space="preserve">
     <value>Журналы аудита</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Обрамлённый</value>
+  </data>
   <data name="Columns Affected" xml:space="preserve">
     <value>Затронутые стобцы</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Дата</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Компактный</value>
   </data>
   <data name="Details for Trail ID" xml:space="preserve">
     <value>Детали для записи с ID</value>
@@ -153,8 +159,17 @@
   <data name="Search for Trails" xml:space="preserve">
     <value>Поиск в журналах</value>
   </data>
+  <data name="Search in New Values" xml:space="preserve">
+    <value>Искать в новых значениях</value>
+  </data>
+  <data name="Search in Old Values" xml:space="preserve">
+    <value>Искать в старых значениях</value>
+  </data>
   <data name="Show" xml:space="preserve">
     <value>Показать</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Чередующийся</value>
   </data>
   <data name="Table Name" xml:space="preserve">
     <value>Имя таблицы</value>

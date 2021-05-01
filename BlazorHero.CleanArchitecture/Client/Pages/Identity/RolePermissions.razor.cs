@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Client.Extensions;
@@ -24,6 +25,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         public PermissionResponse model { get; set; }
         private IMapper _mapper;
+        private RoleClaimsResponse roleClaims = new RoleClaimsResponse();
+        private string searchString = "";
+        private bool _dense = true;
+        private bool _striped = true;
+        private bool _bordered = false;
 
         protected override async Task OnInitializedAsync()
         {
@@ -64,6 +70,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     _snackBar.Add(localizer[error], Severity.Error);
                 }
             }
+        }
+
+        private bool Search(RoleClaimsResponse roleClaims)
+        {
+            if (string.IsNullOrWhiteSpace(searchString)) return true;
+            if (roleClaims.Value?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -13,11 +13,26 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
         public List<RelatedAuditTrail> Trails = new List<RelatedAuditTrail>();
         private RelatedAuditTrail Trail = new RelatedAuditTrail();
         private string searchString = "";
+        private bool _dense = true;
+        private bool _striped = true;
+        private bool _bordered = false;
+        private bool _searchInOldValues = false;
+        private bool _searchInNewValues = false;
 
         private bool Search(AuditResponse response)
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
-            if (response.TableName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            if (response.TableName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (_searchInOldValues &&
+                response.OldValues?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (_searchInNewValues &&
+                response.NewValues?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

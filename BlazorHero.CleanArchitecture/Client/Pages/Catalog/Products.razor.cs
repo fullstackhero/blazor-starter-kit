@@ -22,6 +22,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private int totalItems;
         private int currentPage;
         private string searchString = null;
+        private bool _dense = true;
+        private bool _striped = true;
+        private bool _bordered = false;
         [CascadingParameter] public HubConnection hubConnection { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -35,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
         {
-            await LoadData(state.Page, state.PageSize);
+            await LoadData(state.Page, state.PageSize, state);
             return new TableData<GetAllPagedProductsResponse>() { TotalItems = totalItems, Items = pagedData };
         }
 
@@ -46,7 +49,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             AuthenticationStateProviderUser = await _stateProvider.GetAuthenticationStateProviderUserAsync();
         }
 
-        private async Task LoadData(int pageNumber, int pageSize)
+        private async Task LoadData(int pageNumber, int pageSize, TableState state)
         {
             var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
             var response = await _productManager.GetProductsAsync(request);
@@ -55,18 +58,40 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 totalItems = response.TotalCount;
                 currentPage = response.CurrentPage;
                 var data = response.Data;
-                data = data.Where(element =>
+                var loadedData = data.Where(element =>
                 {
                     if (string.IsNullOrWhiteSpace(searchString))
                         return true;
-                    if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    if (element.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
                         return true;
-                    if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    if (element.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
                         return true;
-                    if (element.Barcode.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    if (element.Barcode?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
                         return true;
                     return false;
-                }).ToList();
+                });
+                switch (state.SortLabel)
+                {
+                    case "productIdField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Id);
+                        break;
+                    case "productNameField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Name);
+                        break;
+                    case "productBrandField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Brand);
+                        break;
+                    case "productDescriptionField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Description);
+                        break;
+                    case "productBarcodeField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Barcode);
+                        break;
+                    case "productRateField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Rate);
+                        break;
+                }
+                data = loadedData.ToList();
                 pagedData = data;
             }
             else

@@ -16,6 +16,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         public List<GetAllBrandsResponse> BrandList = new List<GetAllBrandsResponse>();
         private GetAllBrandsResponse brand = new GetAllBrandsResponse();
         private string searchString = "";
+        private bool _dense = true;
+        private bool _striped = true;
+        private bool _bordered = false;
 
         protected override async Task OnInitializedAsync()
         {
@@ -102,7 +105,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private bool Search(GetAllBrandsResponse brand)
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
-            if (brand.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            if (brand.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

@@ -123,8 +123,14 @@
   <data name="Active" xml:space="preserve">
     <value>Активный</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Обрамлённый</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>Создать</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Компактный</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -147,6 +153,9 @@
   <data name="Not Allowed." xml:space="preserve">
     <value>Не разрешено.</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
   <data name="Register New User" xml:space="preserve">
     <value>Зарегистрировать нового пользователя</value>
   </data>
@@ -155,6 +164,12 @@
   </data>
   <data name="Search For Users" xml:space="preserve">
     <value>Поиск пользователя...</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Чередующийся</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>UserName</value>
   </data>
   <data name="Users" xml:space="preserve">
     <value>Пользователи</value>

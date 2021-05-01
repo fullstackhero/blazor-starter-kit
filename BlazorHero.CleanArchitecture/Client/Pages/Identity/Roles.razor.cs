@@ -16,6 +16,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         public List<RoleResponse> RoleList = new List<RoleResponse>();
         private RoleResponse role = new RoleResponse();
         private string searchString = "";
+        private bool _dense = true;
+        private bool _striped = true;
+        private bool _bordered = false;
 
         [CascadingParameter] public HubConnection hubConnection { get; set; }
 
@@ -100,7 +103,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private bool Search(RoleResponse role)
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
-            if (role.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            if (role.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

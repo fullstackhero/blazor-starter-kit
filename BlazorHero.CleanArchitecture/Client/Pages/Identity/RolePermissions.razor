@@ -1,4 +1,5 @@
 ﻿@page "/identity/role-permissions/{Id}"
+@using BlazorHero.CleanArchitecture.Application.Responses.Identity
 @inject Microsoft.Extensions.Localization.IStringLocalizer<RolePermissions> localizer
 <HeroTitle Title="@localizer["Manage Permission"]" Description="@Description" />
 
@@ -8,23 +9,31 @@
 }
 else
 {
-    <MudTable Hover="true" Elevation="25" Items="@model.RoleClaims">
+    <MudTable Hover="true" Elevation="25" Items="@model.RoleClaims" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<RoleClaimsResponse, bool>(Search)" @bind-roleClaims="roleClaims">
         <ToolBarContent>
             <div class="justify-center mud-text-align-center">
                 <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">@localizer["Update Role Permissions"]</MudButton>
             </div>
             <MudToolBarSpacer />
+            <MudTextField @bind-Value="searchString" Immediate="true" FullWidth=false Placeholder="@localizer["Search For Permissions"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
         </ToolBarContent>
         <HeaderContent>
-            <MudTh>@localizer["Type"]</MudTh>
-            <MudTh>@localizer["Role Name"]</MudTh>
-            <MudTh>@localizer["Status"]</MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<RoleClaimsResponse, object>(x => x.Type)">@localizer["Type"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<RoleClaimsResponse, object>(x => x.Value)">@localizer["Role Name"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<RoleClaimsResponse, object>(x => x.Selected)">@localizer["Status"]</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Type">@context.Type</MudTd>
-            <MudTd DataLabel="Permissions">@context.Value</MudTd>
+            <MudTd DataLabel="Permissions">
+                <MudHighlighter Text="@context.Value" HighlightedText="@searchString" />
+            </MudTd>
             <MudTd DataLabel="Status"><MudCheckBox @bind-Checked="@context.Selected" Color="Color.Secondary" /></MudTd>
         </RowTemplate>
+        <FooterContent>
+            <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@localizer["Dense"]</MudSwitch>
+            <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@localizer["Striped"]</MudSwitch>
+            <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@localizer["Bordered"]</MudSwitch>
+        </FooterContent>
         <PagerContent>
             <TablePager />
         </PagerContent>

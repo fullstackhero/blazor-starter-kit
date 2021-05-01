@@ -132,6 +132,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Sunting</value>
   </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
   <data name="Manage Permission" xml:space="preserve">
     <value>Atur Perizinan</value>
   </data>

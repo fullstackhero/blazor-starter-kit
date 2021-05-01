@@ -123,6 +123,9 @@
   <data name="Add Brand" xml:space="preserve">
     <value>Add Brand</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordered</value>
+  </data>
   <data name="Brands" xml:space="preserve">
     <value>Brands</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Delete Content" xml:space="preserve">
     <value>Delete Content</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Dense</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -155,6 +161,9 @@
   </data>
   <data name="Search for Brands" xml:space="preserve">
     <value>Search for Brands</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Striped</value>
   </data>
   <data name="Tax" xml:space="preserve">
     <value>Tax</value>

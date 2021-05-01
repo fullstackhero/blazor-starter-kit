@@ -12,6 +12,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         public List<UserResponse> UserList = new List<UserResponse>();
         private UserResponse user = new UserResponse();
         private string searchString = "";
+        private bool _dense = true;
+        private bool _striped = true;
+        private bool _bordered = false;
 
         protected override async Task OnInitializedAsync()
         {
@@ -37,7 +40,23 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private bool Search(UserResponse user)
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
-            if (user.FirstName.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            if (user.FirstName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (user.LastName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (user.Email?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (user.PhoneNumber?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (user.UserName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
