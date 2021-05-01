@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+﻿using System;
+using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
@@ -21,6 +22,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         public List<UserRoleModel> UserRolesList { get; set; } = new List<UserRoleModel>();
         public ClaimsPrincipal CurrentUser { get; set; }
+
+        private UserRoleModel userRole = new UserRoleModel();
+        private string searchString = "";
+        private bool _dense = true;
+        private bool _striped = true;
+        private bool _bordered = false;
 
         protected override async Task OnInitializedAsync()
         {
@@ -61,6 +68,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     _snackBar.Add(localizer[error], Severity.Error);
                 }
             }
+        }
+
+        private bool Search(UserRoleModel userRole)
+        {
+            if (string.IsNullOrWhiteSpace(searchString)) return true;
+            if (userRole.RoleName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

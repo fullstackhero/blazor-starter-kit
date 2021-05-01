@@ -2,27 +2,41 @@
 @using BlazorHero.CleanArchitecture.Application.Responses.Identity
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Users> localizer
 <HeroTitle Title="@localizer["Users"]" Description="@localizer["Manage Users"]" />
-<MudTable Hover="true" Elevation="25" Items="UserList" Filter="new Func<UserResponse, bool>(Search)" @bind-user="user">
+<MudTable Hover="true" Elevation="25" Items="UserList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<UserResponse, bool>(Search)" @bind-user="user">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
             <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(()=>InvokeModal())">@localizer["Register New User"]</MudButton>
             <MudButton Variant="Variant.Filled" OnClick="GetUsersAsync" Color="Color.Secondary">@localizer["Reload"]</MudButton>
         </div>
         <MudToolBarSpacer />
-        <MudTextField @bind-Value="searchString" FullWidth=false Placeholder="@localizer["Search For Users"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        <MudTextField @bind-Value="searchString" Immediate="true" FullWidth=false Placeholder="@localizer["Search For Users"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
-        <MudTh>@localizer["First Name"]</MudTh>
-        <MudTh>@localizer["Last Name"]</MudTh>
-        <MudTh>@localizer["Email"]</MudTh>
-        <MudTh>@localizer["Email Confirmation"]</MudTh>
-        <MudTh>@localizer["Active"]</MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.FirstName)">@localizer["First Name"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.LastName)">@localizer["Last Name"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.UserName)">@localizer["UserName"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.Email)">@localizer["Email"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.PhoneNumber)">@localizer["PhoneNumber"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.EmailConfirmed)">@localizer["Email Confirmation"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.IsActive)">@localizer["Active"]</MudTableSortLabel></MudTh>
         <MudTh Style="text-align:right">@localizer["Actions"]</MudTh>
     </HeaderContent>
     <RowTemplate>
-        <MudTd DataLabel="FirstName">@context.FirstName</MudTd>
-        <MudTd DataLabel="LastName">@context.LastName</MudTd>
-        <MudTd DataLabel="PhoneNumber">@context.Email</MudTd>
+        <MudTd DataLabel="FirstName">
+            <MudHighlighter Text="@context.FirstName" HighlightedText="@searchString" />
+        </MudTd>
+        <MudTd DataLabel="LastName">
+            <MudHighlighter Text="@context.LastName" HighlightedText="@searchString" />
+        </MudTd>
+        <MudTd DataLabel="UserName">
+            <MudHighlighter Text="@context.UserName" HighlightedText="@searchString" />
+        </MudTd>
+        <MudTd DataLabel="Email">
+            <MudHighlighter Text="@context.Email" HighlightedText="@searchString" />
+        </MudTd>
+        <MudTd DataLabel="PhoneNumber">
+            <MudHighlighter Text="@context.PhoneNumber" HighlightedText="@searchString" />
+        </MudTd>
         <MudTd DataLabel="EmailConfirmed"><MudCheckBox @bind-Checked="@context.EmailConfirmed" ReadOnly Color="Color.Secondary"></MudCheckBox></MudTd>
         <MudTd DataLabel="Active"><MudCheckBox @bind-Checked="@context.IsActive" ReadOnly Color="Color.Secondary"></MudCheckBox></MudTd>
         <MudTd DataLabel="Actions" Style="text-align:right">
@@ -32,6 +46,11 @@
             </MudMenu>
         </MudTd>
     </RowTemplate>
+    <FooterContent>
+        <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@localizer["Dense"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@localizer["Striped"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@localizer["Bordered"]</MudSwitch>
+    </FooterContent>
     <PagerContent>
         <TablePager />
     </PagerContent>

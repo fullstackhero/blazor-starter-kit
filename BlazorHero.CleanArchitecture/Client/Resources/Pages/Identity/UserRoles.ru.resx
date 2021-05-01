@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Bordered" xml:space="preserve">
+    <value>Обрамлённый</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Компактный</value>
+  </data>
   <data name="Manage" xml:space="preserve">
     <value>Управление</value>
   </data>
@@ -129,8 +135,14 @@
   <data name="Roles Updated" xml:space="preserve">
     <value>Роли обновлены!</value>
   </data>
+  <data name="Search For User Roles" xml:space="preserve">
+    <value>Поиск ролей пользователя</value>
+  </data>
   <data name="Status" xml:space="preserve">
     <value>Статус</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Чередующийся</value>
   </data>
   <data name="Update User Roles" xml:space="preserve">
     <value>Обновить роли пользователя</value>

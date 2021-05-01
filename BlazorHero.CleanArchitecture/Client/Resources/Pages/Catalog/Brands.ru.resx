@@ -123,6 +123,9 @@
   <data name="Add Brand" xml:space="preserve">
     <value>Добавить бренд</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Обрамлённый</value>
+  </data>
   <data name="Brands" xml:space="preserve">
     <value>Бренды</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Delete Content" xml:space="preserve">
     <value>Удалить контент</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Компактный</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Описание</value>
@@ -155,6 +161,9 @@
   </data>
   <data name="Search for Brands" xml:space="preserve">
     <value>Поиск брендов...</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Чередующийся</value>
   </data>
   <data name="Tax" xml:space="preserve">
     <value>Сбор</value>

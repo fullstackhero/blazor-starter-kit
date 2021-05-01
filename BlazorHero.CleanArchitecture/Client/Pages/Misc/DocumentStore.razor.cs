@@ -17,6 +17,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private int totalItems;
         private int currentPage;
         private string searchString = null;
+        private bool _dense = true;
+        private bool _striped = true;
+        private bool _bordered = false;
 
         protected override async Task OnInitializedAsync()
         {
@@ -31,11 +34,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 
         private async Task<TableData<GetAllDocumentsResponse>> ServerReload(TableState state)
         {
-            await LoadData(state.Page, state.PageSize);
+            await LoadData(state.Page, state.PageSize, state);
             return new TableData<GetAllDocumentsResponse>() { TotalItems = totalItems, Items = pagedData };
         }
 
-        private async Task LoadData(int pageNumber, int pageSize)
+        private async Task LoadData(int pageNumber, int pageSize, TableState state)
         {
             var request = new GetAllPagedDocumentsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
             var response = await _documentManager.GetAllAsync(request);
@@ -44,7 +47,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                 totalItems = response.TotalCount;
                 currentPage = response.CurrentPage;
                 var data = response.Data;
-                data = data.Where(element =>
+                var loadedData = data.Where(element =>
                 {
                     if (string.IsNullOrWhiteSpace(searchString))
                         return true;
@@ -53,7 +56,29 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                     if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
                         return true;
                     return false;
-                }).ToList();
+                });
+                switch (state.SortLabel)
+                {
+                    case "documentIdField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, d => d.Id);
+                        break;
+                    case "documentTitleField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, d => d.Title);
+                        break;
+                    case "documentDescriptionField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, d => d.Description);
+                        break;
+                    case "documentIsPublicField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, d => d.IsPublic);
+                        break;
+                    case "documentDateCreatedField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, d => d.CreatedOn);
+                        break;
+                    case "documentOwnerField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, d => d.CreatedBy);
+                        break;
+                }
+                data = loadedData.ToList();
                 pagedData = data;
             }
             else

@@ -2,24 +2,25 @@
 @using BlazorHero.CleanArchitecture.Application.Responses.Identity
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Roles> localizer
 <HeroTitle Title="@localizer["Roles"]" Description="@localizer["Manage Roles."]" />
-<MudTable Hover="true" Elevation="25" Items="RoleList" Filter="new Func<RoleResponse, bool>(Search)" @bind-role="role">
+<MudTable Hover="true" Elevation="25" Items="RoleList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<RoleResponse, bool>(Search)" @bind-role="role">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
             <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(()=>InvokeModal())">@localizer["Create"]</MudButton>
             <MudButton Variant="Variant.Filled" OnClick="GetRolesAsync" Color="Color.Secondary">@localizer["Reload"]</MudButton>
         </div>
-
         <MudToolBarSpacer />
-        <MudTextField @bind-Value="searchString" Placeholder="@localizer["Search for Roles..."]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        <MudTextField @bind-Value="searchString" Immediate="true" Placeholder="@localizer["Search for Roles..."]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
-        <MudTh>Id</MudTh>
-        <MudTh>@localizer["Role"]</MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<RoleResponse, object>(x => x.Id)">@localizer["Id"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<RoleResponse, object>(x => x.Name)">@localizer["Role"]</MudTableSortLabel></MudTh>
         <MudTh Style="text-align:right">@localizer["Actions"]</MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Id">@context.Id</MudTd>
-        <MudTd DataLabel="@localizer["Role"]">@context.Name</MudTd>
+        <MudTd DataLabel="@localizer["Role"]">
+            <MudHighlighter Text="@context.Name" HighlightedText="@searchString" />
+        </MudTd>
         <MudTd DataLabel="@localizer["Actions"]" Style="text-align:right">
             <MudMenu Label="@localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
                 <MudMenuItem @onclick="@(()=>ManagePermissions(@context.Id))">@localizer["Manage Permission"]</MudMenuItem>
@@ -28,6 +29,11 @@
             </MudMenu>
         </MudTd>
     </RowTemplate>
+    <FooterContent>
+        <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@localizer["Dense"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@localizer["Striped"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@localizer["Bordered"]</MudSwitch>
+    </FooterContent>
     <PagerContent>
         <TablePager />
     </PagerContent>

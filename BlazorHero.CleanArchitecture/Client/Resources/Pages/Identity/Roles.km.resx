@@ -132,6 +132,9 @@
   <data name="Edit" xml:space="preserve">
     <value>កែប្រែ</value>
   </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
   <data name="Manage Roles." xml:space="preserve">
     <value>គ្រប់គ្រងតួនាទី</value>
   </data>

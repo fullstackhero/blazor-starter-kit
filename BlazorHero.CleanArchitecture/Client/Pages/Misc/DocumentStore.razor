@@ -3,7 +3,7 @@
 @using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetAll
 <HeroTitle Title="@localizer["Document Store"]" Description="@localizer["Browse Available Documents."]" />
 
-<MudTable Elevation="25" ServerData="@(new Func<TableState, Task<TableData<GetAllDocumentsResponse>>>(ServerReload))" Hover="true" @ref="table">
+<MudTable Elevation="25" ServerData="@(new Func<TableState, Task<TableData<GetAllDocumentsResponse>>>(ServerReload))" Hover="true" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" @ref="table">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
             <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="@(()=>InvokeModal(0))">@localizer["Create"]</MudButton>
@@ -13,18 +13,22 @@
         <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@localizer["Search"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
-        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse">@localizer["Id"]</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse">@localizer["Title"]</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse">@localizer["Description"]</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse">@localizer["Is Public"]</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse">@localizer["Date Created"]</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse">@localizer["Owner"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentIdField">@localizer["Id"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentTitleField">@localizer["Title"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentDescriptionField">@localizer["Description"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentIsPublicField">@localizer["Is Public"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentDateCreatedField">@localizer["Date Created"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentOwnerField">@localizer["Owner"]</MudTableSortLabel></MudTh>
         <MudTh Style="text-align:right">@localizer["Actions"]</MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Id">@context.Id</MudTd>
-        <MudTd DataLabel="Title">@context.Title</MudTd>
-        <MudTd DataLabel="Description">@context.Description</MudTd>
+        <MudTd DataLabel="Title">
+            <MudHighlighter Text="@context.Title" HighlightedText="@searchString" />
+        </MudTd>
+        <MudTd DataLabel="Description">
+            <MudHighlighter Text="@context.Description" HighlightedText="@searchString" />
+        </MudTd>
         <MudTd DataLabel="IsPublic"><MudCheckBox @bind-Checked="@context.IsPublic" ReadOnly="true" Color="Color.Secondary" /></MudTd>
         <MudTd DataLabel="Date Created">@context.CreatedOn</MudTd>
         <MudTd DataLabel="Owner">
@@ -45,6 +49,11 @@
             </MudMenu>
         </MudTd>
     </RowTemplate>
+    <FooterContent>
+        <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@localizer["Dense"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@localizer["Striped"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@localizer["Bordered"]</MudSwitch>
+    </FooterContent>
     <PagerContent>
         <TablePager />
     </PagerContent>
