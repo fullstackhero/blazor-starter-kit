@@ -123,11 +123,20 @@
   <data name="Bordered" xml:space="preserve">
     <value>Bordered</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="Columns Affected" xml:space="preserve">
     <value>Columns Affected</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
+  </data>
+  <data name="Date Range For Searching" xml:space="preserve">
+    <value>Date Range For Searching</value>
   </data>
   <data name="Dense" xml:space="preserve">
     <value>Dense</value>
@@ -149,6 +158,9 @@
   </data>
   <data name="New Values" xml:space="preserve">
     <value>New Values</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="Old Values" xml:space="preserve">
     <value>Old Values</value>
