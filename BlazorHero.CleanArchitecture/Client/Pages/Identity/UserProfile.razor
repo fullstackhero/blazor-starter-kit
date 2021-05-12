@@ -3,7 +3,7 @@
 @inject Microsoft.Extensions.Localization.IStringLocalizer<UserProfile> localizer
 <HeroTitle Title="@Title" Description="@Description" />
 <MudGrid>
-    <AuthorizeView Roles="@RoleConstant.AdministratorRole">
+    <AuthorizeView Roles="@RoleConstants.AdministratorRole">
         <MudItem xs="12" sm="12" md="12">
             <MudCard Elevation="25">
                 <MudCardHeader>

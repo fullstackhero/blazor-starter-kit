@@ -39,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
         {
             Task.Run(async () =>
             {
-                var adminRoleInDb = await _roleManager.FindByNameAsync(RoleConstant.AdministratorRole);
+                var adminRoleInDb = await _roleManager.FindByNameAsync(RoleConstants.AdministratorRole);
                 if (adminRoleInDb != null)
                 {
                     await _roleManager.AddCustomPermissionClaim(adminRoleInDb, "Permissions.Communication.Chat");
@@ -52,8 +52,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
             Task.Run(async () =>
             {
                 //Check if Role Exists
-                var adminRole = new IdentityRole(RoleConstant.AdministratorRole);
-                var adminRoleInDb = await _roleManager.FindByNameAsync(RoleConstant.AdministratorRole);
+                var adminRole = new IdentityRole(RoleConstants.AdministratorRole);
+                var adminRoleInDb = await _roleManager.FindByNameAsync(RoleConstants.AdministratorRole);
                 if (adminRoleInDb == null)
                 {
                     await _roleManager.CreateAsync(adminRole);
@@ -74,8 +74,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                 var superUserInDb = await _userManager.FindByEmailAsync(superUser.Email);
                 if (superUserInDb == null)
                 {
-                    await _userManager.CreateAsync(superUser, UserConstant.DefaultPassword);
-                    var result = await _userManager.AddToRoleAsync(superUser, RoleConstant.AdministratorRole);
+                    await _userManager.CreateAsync(superUser, UserConstants.DefaultPassword);
+                    var result = await _userManager.AddToRoleAsync(superUser, RoleConstants.AdministratorRole);
                     if (result.Succeeded)
                     {
                         await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Users);
@@ -93,8 +93,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
             Task.Run(async () =>
             {
                 //Check if Role Exists
-                var basicRole = new IdentityRole(RoleConstant.BasicRole);
-                var basicRoleInDb = await _roleManager.FindByNameAsync(RoleConstant.BasicRole);
+                var basicRole = new IdentityRole(RoleConstants.BasicRole);
+                var basicRoleInDb = await _roleManager.FindByNameAsync(RoleConstants.BasicRole);
                 if (basicRoleInDb == null)
                 {
                     await _roleManager.CreateAsync(basicRole);
@@ -115,8 +115,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                 var basicUserInDb = await _userManager.FindByEmailAsync(basicUser.Email);
                 if (basicUserInDb == null)
                 {
-                    await _userManager.CreateAsync(basicUser, UserConstant.DefaultPassword);
-                    await _userManager.AddToRoleAsync(basicUser, RoleConstant.BasicRole);
+                    await _userManager.CreateAsync(basicUser, UserConstants.DefaultPassword);
+                    await _userManager.AddToRoleAsync(basicUser, RoleConstants.BasicRole);
                     _logger.LogInformation("Seeded User with Basic Role.");
                 }
             }).GetAwaiter().GetResult();

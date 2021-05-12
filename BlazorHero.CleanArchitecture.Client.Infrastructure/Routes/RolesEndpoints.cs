@@ -1,6 +1,6 @@
 ﻿namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Routes
 {
-    public static class RolesEndpoint
+    public static class RolesEndpoints
     {
         public static string Delete = "api/identity/role";
         public static string GetAll = "api/identity/role";

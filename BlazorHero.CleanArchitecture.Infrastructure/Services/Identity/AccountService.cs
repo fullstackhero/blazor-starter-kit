@@ -34,7 +34,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var user = await this._userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return Result.Fail(_localizer["User Not Found."]);
+                return await Result.FailAsync(_localizer["User Not Found."]);
             }
 
             var identityResult = await this._userManager.ChangePasswordAsync(
@@ -42,7 +42,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 model.Password,
                 model.NewPassword);
             var errors = identityResult.Errors.Select(e => e.Description).ToList();
-            return identityResult.Succeeded ? Result.Success() : Result.Fail(errors);
+            return identityResult.Succeeded ? await Result.SuccessAsync() : await Result.FailAsync(errors);
         }
 
         public async Task<IResult> UpdateProfileAsync(UpdateProfileRequest model, string userId)
@@ -50,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return Result.Fail(_localizer["User Not Found."]);
+                return await Result.FailAsync(_localizer["User Not Found."]);
             }
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
@@ -63,25 +63,25 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var identityResult = await _userManager.UpdateAsync(user);
             var errors = identityResult.Errors.Select(e => e.Description).ToList();
             await _signInManager.RefreshSignInAsync(user);
-            return identityResult.Succeeded ? Result.Success() : Result.Fail(errors);
+            return identityResult.Succeeded ? await Result.SuccessAsync() : await Result.FailAsync(errors);
         }
 
         public async Task<IResult<string>> GetProfilePictureAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return Result<string>.Fail(_localizer["User Not Found"]);
-            return Result<string>.Success(data: user.ProfilePictureDataUrl);
+            if (user == null) return await Result<string>.FailAsync(_localizer["User Not Found"]);
+            return await Result<string>.SuccessAsync(data: user.ProfilePictureDataUrl);
         }
 
         public async Task<IResult<string>> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return Result<string>.Fail(message: _localizer["User Not Found"]);
+            if (user == null) return await Result<string>.FailAsync(message: _localizer["User Not Found"]);
             var filePath = _uploadService.UploadAsync(request);
             user.ProfilePictureDataUrl = filePath;
             var identityResult = await _userManager.UpdateAsync(user);
             var errors = identityResult.Errors.Select(e => e.Description).ToList();
-            return identityResult.Succeeded ? Result<string>.Success(data: filePath) : Result<string>.Fail(errors);
+            return identityResult.Succeeded ? await Result<string>.SuccessAsync(data: filePath) : await Result<string>.FailAsync(errors);
         }
     }
 }

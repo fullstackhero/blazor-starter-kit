@@ -1,6 +1,6 @@
 ﻿namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Routes
 {
-    public static class ProductsEndpoint
+    public static class ProductsEndpoints
     {
         public static string GetAllPaged(int pageNumber, int pageSize)
         {

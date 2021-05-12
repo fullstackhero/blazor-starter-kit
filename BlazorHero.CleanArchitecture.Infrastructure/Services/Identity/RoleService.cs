@@ -22,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<BlazorHeroUser> _userManager;
         private readonly IStringLocalizer<RoleService> _localizer;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public RoleService(
             RoleManager<IdentityRole> roleManager,
@@ -39,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         public async Task<Result<string>> DeleteAsync(string id)
         {
             var existingRole = await _roleManager.FindByIdAsync(id);
-            if (existingRole.Name != RoleConstant.AdministratorRole && existingRole.Name != RoleConstant.BasicRole)
+            if (existingRole.Name != RoleConstants.AdministratorRole && existingRole.Name != RoleConstants.BasicRole)
             {
                 //TODO Check if Any Users already uses this Role
                 bool roleIsNotUsed = true;
@@ -54,16 +54,16 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 if (roleIsNotUsed)
                 {
                     await _roleManager.DeleteAsync(existingRole);
-                    return Result<string>.Success($"{_localizer["Role"]} {existingRole.Name} {_localizer["deleted."]}");
+                    return await Result<string>.SuccessAsync($"{_localizer["Role"]} {existingRole.Name} {_localizer["deleted."]}");
                 }
                 else
                 {
-                    return Result<string>.Fail($"{_localizer["Not allowed to delete"]} {existingRole.Name} {_localizer["Role as it is being used."]}");
+                    return await Result<string>.FailAsync($"{_localizer["Not allowed to delete"]} {existingRole.Name} {_localizer["Role as it is being used."]}");
                 }
             }
             else
             {
-                return Result<string>.Fail($"{_localizer["Not allowed to delete"]} {existingRole.Name} {_localizer["Role"]}.");
+                return await Result<string>.FailAsync($"{_localizer["Not allowed to delete"]} {existingRole.Name} {_localizer["Role"]}.");
             }
         }
 
@@ -71,7 +71,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         {
             var roles = await _roleManager.Roles.ToListAsync();
             var rolesResponse = _mapper.Map<List<RoleResponse>>(roles);
-            return Result<List<RoleResponse>>.Success(rolesResponse);
+            return await Result<List<RoleResponse>>.SuccessAsync(rolesResponse);
         }
 
         public async Task<Result<PermissionResponse>> GetAllPermissionsAsync(string roleId)
@@ -109,14 +109,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 }
             }
             model.RoleClaims = allPermissions;
-            return Result<PermissionResponse>.Success(model);
+            return await Result<PermissionResponse>.SuccessAsync(model);
         }
 
         public async Task<Result<RoleResponse>> GetByIdAsync(string id)
         {
             var roles = await _roleManager.Roles.SingleOrDefaultAsync(x => x.Id == id);
             var rolesResponse = _mapper.Map<RoleResponse>(roles);
-            return Result<RoleResponse>.Success(rolesResponse);
+            return await Result<RoleResponse>.SuccessAsync(rolesResponse);
         }
 
         public async Task<Result<string>> SaveAsync(RoleRequest request)
@@ -124,21 +124,28 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             if (string.IsNullOrEmpty(request.Id))
             {
                 var existingRole = await _roleManager.FindByNameAsync(request.Name);
-                if (existingRole != null) return Result<string>.Fail(_localizer["Similar Role already exists."]);
+                if (existingRole != null) return await Result<string>.FailAsync(_localizer["Similar Role already exists."]);
                 var response = await _roleManager.CreateAsync(new IdentityRole(request.Name));
-                return Result<string>.Success(_localizer["Role Created"]);
+                if (response.Succeeded)
+                {
+                    return await Result<string>.SuccessAsync(_localizer["Role Created"]);
+                }
+                else
+                {
+                    return await Result<string>.FailAsync(response.Errors.Select(e => _localizer[e.Description].Value).ToList());
+                }
             }
             else
             {
                 var existingRole = await _roleManager.FindByIdAsync(request.Id);
-                if (existingRole.Name == RoleConstant.AdministratorRole || existingRole.Name == RoleConstant.BasicRole)
+                if (existingRole.Name == RoleConstants.AdministratorRole || existingRole.Name == RoleConstants.BasicRole)
                 {
-                    return Result<string>.Fail($"{_localizer["Not allowed to modify"]} {existingRole.Name} {_localizer["Role"]}.");
+                    return await Result<string>.FailAsync($"{_localizer["Not allowed to modify"]} {existingRole.Name} {_localizer["Role"]}.");
                 }
                 existingRole.Name = request.Name;
                 existingRole.NormalizedName = request.Name.ToUpper();
                 await _roleManager.UpdateAsync(existingRole);
-                return Result<string>.Success(_localizer["Role Updated."]);
+                return await Result<string>.SuccessAsync(_localizer["Role Updated."]);
             }
         }
 
@@ -147,9 +154,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             try
             {
                 var role = await _roleManager.FindByIdAsync(request.RoleId);
-                if (role.Name == RoleConstant.AdministratorRole)
+                if (role.Name == RoleConstants.AdministratorRole)
                 {
-                    return Result<string>.Fail(_localizer["Not allowed to modify Permissions for this Role."]);
+                    return await Result<string>.FailAsync(_localizer["Not allowed to modify Permissions for this Role."]);
                 }
                 var claims = await _roleManager.GetClaimsAsync(role);
                 foreach (var claim in claims)
@@ -161,11 +168,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 {
                     await _roleManager.AddPermissionClaim(role, claim.Value);
                 }
-                return Result<string>.Success(_localizer["Permission Updated."]);
+                return await Result<string>.SuccessAsync(_localizer["Permission Updated."]);
             }
             catch (Exception ex)
             {
-                return Result<string>.Fail(ex.Message);
+                return await Result<string>.FailAsync(ex.Message);
             }
         }
 

@@ -34,11 +34,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Delete
                     var brand = await _unitOfWork.Repository<Brand>().GetByIdAsync(command.Id);
                     await _unitOfWork.Repository<Brand>().DeleteAsync(brand);
                     await _unitOfWork.ComitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
-                    return Result<int>.Success(brand.Id, _localizer["Brand Deleted"]);
+                    return await Result<int>.SuccessAsync(brand.Id, _localizer["Brand Deleted"]);
                 }
                 else
                 {
-                    return Result<int>.Fail(_localizer["Deletion Not Allowed"]);
+                    return await Result<int>.FailAsync(_localizer["Deletion Not Allowed"]);
                 }
             }
         }

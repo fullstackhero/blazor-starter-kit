@@ -63,7 +63,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                     });
                 }
             });
-            hubConnection.On(ApplicationConstants.SignalR.RecievieRegenerateTokens, async () =>
+            hubConnection.On(ApplicationConstants.SignalR.ReceiveRegenerateTokens, async () =>
             {
                 try
                 {

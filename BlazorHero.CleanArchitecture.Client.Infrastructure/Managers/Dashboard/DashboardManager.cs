@@ -17,7 +17,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard
 
         public async Task<IResult<DashboardDataResponse>> GetDataAsync()
         {
-            var response = await _httpClient.GetAsync(Routes.DashboardEndpoint.GetData);
+            var response = await _httpClient.GetAsync(Routes.DashboardEndpoints.GetData);
             var data = await response.ToResult<DashboardDataResponse>();
             return data;
         }

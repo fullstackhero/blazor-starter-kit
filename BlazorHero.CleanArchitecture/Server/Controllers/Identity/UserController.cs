@@ -76,7 +76,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         public async Task<IActionResult> ForgotPasswordAsync(ForgotPasswordRequest request)
         {
             var origin = Request.Headers["origin"];
-            return Ok(await _userService.ForgotPasswordAsync(request.Email, origin));
+            return Ok(await _userService.ForgotPasswordAsync(request, origin));
         }
 
         [HttpPost("reset-password")]

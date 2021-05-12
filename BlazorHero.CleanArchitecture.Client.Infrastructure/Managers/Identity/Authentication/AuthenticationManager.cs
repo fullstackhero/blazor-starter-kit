@@ -41,7 +41,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
 
         public async Task<IResult> Login(TokenRequest model)
         {
-            var response = await _httpClient.PostAsJsonAsync(TokenEndpoint.Get, model);
+            var response = await _httpClient.PostAsJsonAsync(TokenEndpoints.Get, model);
             var result = await response.ToResult<TokenResponse>();
             if (result.Succeeded)
             {
@@ -56,11 +56,11 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
                 }
                 ((BlazorHeroStateProvider)this._authenticationStateProvider).MarkUserAsAuthenticated(model.Email);
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                return Result.Success();
+                return await Result.SuccessAsync();
             }
             else
             {
-                return Result.Fail(result.Messages);
+                return await Result.FailAsync(result.Messages);
             }
         }
 
@@ -71,7 +71,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
             await _localStorage.RemoveItemAsync("userImageURL");
             ((BlazorHeroStateProvider)_authenticationStateProvider).MarkUserAsLoggedOut();
             _httpClient.DefaultRequestHeaders.Authorization = null;
-            return Result.Success();
+            return await Result.SuccessAsync();
         }
 
         public async Task<string> RefreshToken()
@@ -82,7 +82,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
             var tokenRequest = JsonSerializer.Serialize(new TokenResponse { Token = token, RefreshToken = refreshToken });
             var bodyContent = new StringContent(tokenRequest, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync(Routes.TokenEndpoint.Refresh, bodyContent);
+            var response = await _httpClient.PostAsync(Routes.TokenEndpoints.Refresh, bodyContent);
 
             var result = await response.ToResult<TokenResponse>();
 
@@ -106,7 +106,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
             if (string.IsNullOrEmpty(availableToken)) return string.Empty;
             var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
             var user = authState.User;
-            var exp = user.FindFirst(c => c.Type.Equals("exp")).Value;
+            var exp = user.FindFirst(c => c.Type.Equals("exp"))?.Value;
             var expTime = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(exp));
             var timeUTC = DateTime.UtcNow;
             var diff = expTime - timeUTC;
