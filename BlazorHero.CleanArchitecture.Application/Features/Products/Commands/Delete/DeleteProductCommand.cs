@@ -28,7 +28,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.De
                 var product = await _unitOfWork.Repository<Product>().GetByIdAsync(command.Id);
                 await _unitOfWork.Repository<Product>().DeleteAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(product.Id, _localizer["Product Deleted"]);
+                return await Result<int>.SuccessAsync(product.Id, _localizer["Product Deleted"]);
             }
         }
     }

@@ -27,7 +27,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetBy
             {
                 var product = await _unitOfWork.Repository<Brand>().GetByIdAsync(query.Id);
                 var mappedProduct = _mapper.Map<GetBrandByIdResponse>(product);
-                return Result<GetBrandByIdResponse>.Success(mappedProduct);
+                return await Result<GetBrandByIdResponse>.SuccessAsync(mappedProduct);
             }
         }
     }

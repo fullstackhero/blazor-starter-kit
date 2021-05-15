@@ -54,7 +54,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
                 }
                 await _unitOfWork.Repository<Document>().AddAsync(doc);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(doc.Id, _localizer["Document Saved"]);
+                return await Result<int>.SuccessAsync(doc.Id, _localizer["Document Saved"]);
             }
             else
             {
@@ -70,11 +70,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
                     }
                     await _unitOfWork.Repository<Document>().UpdateAsync(doc);
                     await _unitOfWork.Commit(cancellationToken);
-                    return Result<int>.Success(doc.Id, _localizer["Document Updated"]);
+                    return await Result<int>.SuccessAsync(doc.Id, _localizer["Document Updated"]);
                 }
                 else
                 {
-                    return Result<int>.Fail(_localizer["Document Not Found!"]);
+                    return await Result<int>.FailAsync(_localizer["Document Not Found!"]);
                 }
             }
         }

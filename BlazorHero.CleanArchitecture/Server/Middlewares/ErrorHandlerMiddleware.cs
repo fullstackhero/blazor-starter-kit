@@ -28,7 +28,7 @@ namespace BlazorHero.CleanArchitecture.Server.Middlewares
             {
                 var response = context.Response;
                 response.ContentType = "application/json";
-                var responseModel = Result<string>.Fail(error.Message);
+                var responseModel = await Result<string>.FailAsync(error.Message);
 
                 switch (error)
                 {

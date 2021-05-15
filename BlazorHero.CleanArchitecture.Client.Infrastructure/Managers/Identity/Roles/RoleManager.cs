@@ -20,31 +20,31 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.R
 
         public async Task<IResult<string>> DeleteAsync(string id)
         {
-            var response = await _httpClient.DeleteAsync($"{Routes.RolesEndpoint.Delete}/{id}");
+            var response = await _httpClient.DeleteAsync($"{Routes.RolesEndpoints.Delete}/{id}");
             return await response.ToResult<string>();
         }
 
         public async Task<IResult<List<RoleResponse>>> GetRolesAsync()
         {
-            var response = await _httpClient.GetAsync(Routes.RolesEndpoint.GetAll);
+            var response = await _httpClient.GetAsync(Routes.RolesEndpoints.GetAll);
             return await response.ToResult<List<RoleResponse>>();
         }
 
         public async Task<IResult<string>> SaveAsync(RoleRequest role)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.RolesEndpoint.Save, role);
+            var response = await _httpClient.PostAsJsonAsync(Routes.RolesEndpoints.Save, role);
             return await response.ToResult<string>();
         }
 
         public async Task<IResult<PermissionResponse>> GetPermissionsAsync(string roleId)
         {
-            var response = await _httpClient.GetAsync(Routes.RolesEndpoint.GetPermissions + roleId);
+            var response = await _httpClient.GetAsync(Routes.RolesEndpoints.GetPermissions + roleId);
             return await response.ToResult<PermissionResponse>();
         }
 
         public async Task<IResult<string>> UpdatePermissionsAsync(PermissionRequest request)
         {
-            var response = await _httpClient.PutAsJsonAsync(Routes.RolesEndpoint.UpdatePermissions, request);
+            var response = await _httpClient.PutAsJsonAsync(Routes.RolesEndpoints.UpdatePermissions, request);
             return await response.ToResult<string>();
         }
     }

@@ -31,11 +31,13 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
 
             public async Task<Result<DashboardDataResponse>> Handle(GetDashboardDataQuery query, CancellationToken cancellationToken)
             {
-                var response = new DashboardDataResponse();
-                response.ProductCount = await _unitOfWork.Repository<Product>().Entities.CountAsync();
-                response.BrandCount = await _unitOfWork.Repository<Brand>().Entities.CountAsync();
-                response.UserCount = await _userService.GetCountAsync();
-                response.RoleCount = await _roleService.GetCountAsync();
+                var response = new DashboardDataResponse
+                {
+                    ProductCount = await _unitOfWork.Repository<Product>().Entities.CountAsync(cancellationToken),
+                    BrandCount = await _unitOfWork.Repository<Brand>().Entities.CountAsync(cancellationToken),
+                    UserCount = await _userService.GetCountAsync(),
+                    RoleCount = await _roleService.GetCountAsync()
+                };
 
                 var selectedYear = DateTime.Now.Year;
                 double[] productsFigure = new double[13];
@@ -46,15 +48,15 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
                     var filterStartDate = new DateTime(selectedYear, month, 01);
                     var filterEndDate = new DateTime(selectedYear, month, DateTime.DaysInMonth(selectedYear, month), 23, 59, 59); // Monthly Based
 
-                    productsFigure[i-1] = await _unitOfWork.Repository<Product>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync();
-                    brandsFigure[i-1] = await _unitOfWork.Repository<Brand>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync();
+                    productsFigure[i-1] = await _unitOfWork.Repository<Product>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
+                    brandsFigure[i-1] = await _unitOfWork.Repository<Brand>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
 
                 }
 
                 response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Products"], Data = productsFigure });
                 response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Brands"], Data = brandsFigure });
 
-                return Result<DashboardDataResponse>.Success(response);
+                return await Result<DashboardDataResponse>.SuccessAsync(response);
             }
         }
     }

@@ -20,19 +20,19 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Br
 
         public async Task<IResult<int>> DeleteAsync(int id)
         {
-            var response = await _httpClient.DeleteAsync($"{Routes.BrandsEndpoint.Delete}/{id}");
+            var response = await _httpClient.DeleteAsync($"{Routes.BrandsEndpoints.Delete}/{id}");
             return await response.ToResult<int>();
         }
 
         public async Task<IResult<List<GetAllBrandsResponse>>> GetAllAsync()
         {
-            var response = await _httpClient.GetAsync(Routes.BrandsEndpoint.GetAll);
+            var response = await _httpClient.GetAsync(Routes.BrandsEndpoints.GetAll);
             return await response.ToResult<List<GetAllBrandsResponse>>();
         }
 
         public async Task<IResult<int>> SaveAsync(AddEditBrandCommand request)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.BrandsEndpoint.Save, request);
+            var response = await _httpClient.PostAsJsonAsync(Routes.BrandsEndpoints.Save, request);
             return await response.ToResult<int>();
         }
     }

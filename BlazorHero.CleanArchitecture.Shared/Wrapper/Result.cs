@@ -38,6 +38,11 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
             return Task.FromResult(Fail(message));
         }
 
+        public static Task<IResult> FailAsync(List<string> messages)
+        {
+            return Task.FromResult(Fail(messages));
+        }
+
         public static IResult Success()
         {
             return new Result { Succeeded = true };
@@ -67,37 +72,42 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
 
         public T Data { get; set; }
 
-        public static new Result<T> Fail()
+        public new static Result<T> Fail()
         {
             return new Result<T> { Succeeded = false };
         }
 
-        public static new Result<T> Fail(string message)
+        public new static Result<T> Fail(string message)
         {
             return new Result<T> { Succeeded = false, Messages = new List<string> { message } };
         }
 
-        public static new Result<T> Fail(List<string> messages)
+        public new static Result<T> Fail(List<string> messages)
         {
             return new Result<T> { Succeeded = false, Messages = messages };
         }
 
-        public static new Task<Result<T>> FailAsync()
+        public new static Task<Result<T>> FailAsync()
         {
             return Task.FromResult(Fail());
         }
 
-        public static new Task<Result<T>> FailAsync(string message)
+        public new static Task<Result<T>> FailAsync(string message)
         {
             return Task.FromResult(Fail(message));
         }
 
-        public static new Result<T> Success()
+        public new static Task<Result<T>> FailAsync(List<string> messages)
+        {
+            return Task.FromResult(Fail(messages));
+        }
+
+        public new static Result<T> Success()
         {
             return new Result<T> { Succeeded = true };
         }
 
-        public static new Result<T> Success(string message)
+        public new static Result<T> Success(string message)
         {
             return new Result<T> { Succeeded = true, Messages = new List<string> { message } };
         }
@@ -117,12 +127,12 @@ namespace BlazorHero.CleanArchitecture.Shared.Wrapper
             return new Result<T> { Succeeded = true, Data = data, Messages = messages };
         }
 
-        public static new Task<Result<T>> SuccessAsync()
+        public new static Task<Result<T>> SuccessAsync()
         {
             return Task.FromResult(Success());
         }
 
-        public static new Task<Result<T>> SuccessAsync(string message)
+        public new static Task<Result<T>> SuccessAsync(string message)
         {
             return Task.FromResult(Success(message));
         }

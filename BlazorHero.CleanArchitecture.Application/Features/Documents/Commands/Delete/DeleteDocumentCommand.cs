@@ -28,7 +28,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.D
                 var document = await _unitOfWork.Repository<Document>().GetByIdAsync(command.Id);
                 await _unitOfWork.Repository<Document>().DeleteAsync(document);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(document.Id, _localizer["Document Deleted"]);
+                return await Result<int>.SuccessAsync(document.Id, _localizer["Document Deleted"]);
             }
         }
     }

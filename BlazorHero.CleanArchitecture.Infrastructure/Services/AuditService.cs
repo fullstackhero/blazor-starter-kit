@@ -36,7 +36,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
         {
             var trails = await _context.AuditTrails.Where(a => a.UserId == userId).OrderByDescending(a => a.Id).Take(250).ToListAsync();
             var mappedLogs = _mapper.Map<List<AuditResponse>>(trails);
-            return Result<IEnumerable<AuditResponse>>.Success(mappedLogs);
+            return await Result<IEnumerable<AuditResponse>>.SuccessAsync(mappedLogs);
         }
 
         public async Task<string> ExportToExcelAsync(string userId)

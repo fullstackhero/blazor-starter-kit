@@ -31,7 +31,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
             hubConnection = new HubConnectionBuilder()
             .WithUrl(_navigationManager.ToAbsoluteUri(ApplicationConstants.SignalR.HubUrl))
             .Build();
-            hubConnection.On(ApplicationConstants.SignalR.RecievieUpdateDashboard, async () =>
+            hubConnection.On(ApplicationConstants.SignalR.ReceiveUpdateDashboard, async () =>
             {
                 await LoadDataAsync();
                 StateHasChanged();

@@ -55,7 +55,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
                 }
                 await _unitOfWork.Repository<Product>().AddAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
-                return Result<int>.Success(product.Id, _localizer["Product Saved"]);
+                return await Result<int>.SuccessAsync(product.Id, _localizer["Product Saved"]);
             }
             else
             {
@@ -72,11 +72,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
                     product.BrandId = (command.BrandId == 0) ? product.BrandId : command.BrandId;
                     await _unitOfWork.Repository<Product>().UpdateAsync(product);
                     await _unitOfWork.Commit(cancellationToken);
-                    return Result<int>.Success(product.Id, _localizer["Product Updated"]);
+                    return await Result<int>.SuccessAsync(product.Id, _localizer["Product Updated"]);
                 }
                 else
                 {
-                    return Result<int>.Fail(_localizer["Product Not Found!"]);
+                    return await Result<int>.FailAsync(_localizer["Product Not Found!"]);
                 }
             }
         }

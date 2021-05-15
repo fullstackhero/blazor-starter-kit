@@ -2,7 +2,7 @@
 
 namespace BlazorHero.CleanArchitecture.Application.Responses.Identity
 {
-    public class GetAllUsersReponse
+    public class GetAllUsersResponse
     {
         public IEnumerable<UserResponse> Users { get; set; }
     }

@@ -132,6 +132,9 @@
   <data name="clicking here" xml:space="preserve">
     <value>этой ссылки</value>
   </data>
+  <data name="Confirm Registration" xml:space="preserve">
+    <value>Подтверждение регистрации</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Password Reset Successful!" xml:space="preserve">
     <value>Сброс пароля выполнен успешно!</value>
+  </data>
+  <data name="Please confirm your account by" xml:space="preserve">
+    <value>Пожалуйста, подтвердите аккаунт с помощью</value>
   </data>
   <data name="Please reset your password by" xml:space="preserve">
     <value>Пожалуйста, сбросьте пароль с помощью</value>

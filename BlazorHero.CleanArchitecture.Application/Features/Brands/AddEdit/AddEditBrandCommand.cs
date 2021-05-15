@@ -39,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
                 var brand = _mapper.Map<Brand>(command);
                 await _unitOfWork.Repository<Brand>().AddAsync(brand);
                 await _unitOfWork.ComitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
-                return Result<int>.Success(brand.Id, _localizer["Brand Saved"]);
+                return await Result<int>.SuccessAsync(brand.Id, _localizer["Brand Saved"]);
             }
             else
             {
@@ -51,11 +51,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
                     brand.Description = command.Description ?? brand.Description;
                     await _unitOfWork.Repository<Brand>().UpdateAsync(brand);
                     await _unitOfWork.ComitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
-                    return Result<int>.Success(brand.Id, _localizer["Brand Updated"]);
+                    return await Result<int>.SuccessAsync(brand.Id, _localizer["Brand Updated"]);
                 }
                 else
                 {
-                    return Result<int>.Fail(_localizer["Brand Not Found!"]);
+                    return await Result<int>.FailAsync(_localizer["Brand Not Found!"]);
                 }
             }
         }
