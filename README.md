@@ -36,6 +36,8 @@
     <a href="https://github.com/blazorhero/CleanArchitecture/issues">Report Bug</a>
     ·
     <a href="https://github.com/blazorhero/CleanArchitecture/issues">Request Feature</a>
+    .
+    <a href="https://github.com/blazorhero/CleanArchitecture/issues">Request Documentation</a>
   </p>
 </p>
 
