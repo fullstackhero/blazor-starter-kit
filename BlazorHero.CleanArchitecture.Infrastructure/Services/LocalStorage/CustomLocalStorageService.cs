@@ -16,48 +16,52 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.LocalStorage
             _jsonOptions = options.Value.JsonSerializerOptions;
         }
 
-        //TODO - implement all
-        public async ValueTask ClearAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async ValueTask<T> GetItemAsync<T>(string key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async ValueTask<string> GetItemAsStringAsync(string key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async ValueTask<string> KeyAsync(int index)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async ValueTask<bool> ContainKeyAsync(string key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async ValueTask<int> LengthAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async ValueTask RemoveItemAsync(string key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async ValueTask SetItemAsync<T>(string key, T data)
-        {
-            throw new NotImplementedException();
-        }
-
         public event EventHandler<ChangingEventArgs> Changing;
         public event EventHandler<ChangedEventArgs> Changed;
+
+        public ValueTask ClearAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<bool> ContainKeyAsync(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<string> GetItemAsStringAsync(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<T> GetItemAsync<T>(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<string> KeyAsync(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<int> LengthAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask RemoveItemAsync(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask SetItemAsStringAsync(string key, string data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask SetItemAsync<T>(string key, T data)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
