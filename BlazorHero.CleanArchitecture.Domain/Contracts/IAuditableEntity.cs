@@ -1,8 +1,9 @@
 ﻿using System;
+using BlazorHero.CleanArchitecture.Domain.Entities;
 
 namespace BlazorHero.CleanArchitecture.Domain.Contracts
 {
-    public interface IAuditableEntity
+    public interface IAuditableEntity : IEntity
     {
         string CreatedBy { get; set; }
 

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Domain.Entities;
 
 namespace BlazorHero.CleanArchitecture.Application.Interfaces.Repositories
 {
-    public interface IRepositoryAsync<T> where T : class
+    public interface IRepositoryAsync<T> where T : class, IEntity
     {
         IQueryable<T> Entities { get; }
 
