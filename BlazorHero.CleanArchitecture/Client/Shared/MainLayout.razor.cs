@@ -39,8 +39,9 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
         protected override async Task OnInitializedAsync()
         {
-            _interceptor.RegisterEvent();
+            currentTheme = BlazorHeroTheme.DefaultTheme;
             currentTheme = await _clientPreferenceManager.GetCurrentThemeAsync();
+            _interceptor.RegisterEvent();            
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             await hubConnection.StartAsync();
             hubConnection.On<string, string, string>(ApplicationConstants.SignalR.ReceiveChatNotification, (message, receiverUserId, senderUserId) =>
