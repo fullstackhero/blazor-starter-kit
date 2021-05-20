@@ -40,6 +40,7 @@
     </MudItem>
     <MudItem xs="12" sm="8" md="9">
         <EditForm Model="@profileModel" OnValidSubmit="UpdateProfileAsync">
+            <FluentValidationValidator />
             <MudCard Elevation="25">
                 <MudCardHeader>
                     <CardHeaderContent>
@@ -49,10 +50,10 @@
                 <MudCardContent>
                     <MudGrid>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@profileModel.FirstName" For="@(() => profileModel.FirstName)" Label="@localizer["First Name"]" Variant="Variant.Outlined" Required="true" />
+                            <MudTextField @bind-Value="@profileModel.FirstName" For="@(() => profileModel.FirstName)" Label="@localizer["First Name"]" Variant="Variant.Outlined" />
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@profileModel.LastName" For="@(() => profileModel.LastName)" Label="@localizer["Last Name"]" Variant="Variant.Outlined" Required="true" />
+                            <MudTextField @bind-Value="@profileModel.LastName" For="@(() => profileModel.LastName)" Label="@localizer["Last Name"]" Variant="Variant.Outlined" />
                         </MudItem>
                         <MudItem xs="12" md="6">
                             <MudTextField @bind-Value="@profileModel.PhoneNumber" For="@(() => profileModel.PhoneNumber)" Label="@localizer["Phone Number"]" Variant="Variant.Outlined" />
