@@ -9,48 +9,26 @@ using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
     public partial class AddEditProductModal
     {
+        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<AddEditProductModal> localizer { get; set; }
+
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+
+        [Parameter]
+        public AddEditProductCommand AddEditProductModel { get; set; } = new();
+
         [CascadingParameter] public HubConnection hubConnection { get; set; }
-        private bool success;
-        private string[] errors = { };
-        private MudForm form;
-
-        [Parameter]
-        public int Id { get; set; }
-
-        [Parameter]
-        [Required]
-        public string Name { get; set; }
-
-        [Parameter]
-        [Required]
-        public string Barcode { get; set; }
-
-        [Parameter]
-        [Required]
-        public string Description { get; set; }
-
-        [Parameter]
-        [Required]
-        public string Brand { get; set; }
-
-        [Parameter]
-        [Required]
-        public int BrandId { get; set; }
-
-        [Parameter]
-        [Required]
-        public decimal Rate { get; set; }
 
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
-        private List<GetAllBrandsResponse> Brands = new List<GetAllBrandsResponse>();
+        private List<GetAllBrandsResponse> Brands = new();
 
         public void Cancel()
         {
@@ -59,29 +37,18 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task SaveAsync()
         {
-            form.Validate();
-            if (form.IsValid)
+            var response = await _productManager.SaveAsync(AddEditProductModel);
+            if (response.Succeeded)
             {
-                //TODO: Try to integrate validation with Mudblazor component - Select
-                if (BrandId == 0)
+                _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
+                MudDialog.Close();
+            }
+            else
+            {
+                foreach (var message in response.Messages)
                 {
-                    _snackBar.Add("Select a Brand.", Severity.Error);
-                    return;
-                }
-                var request = new AddEditProductCommand() { Name = Name, Barcode = Barcode, BrandId = BrandId, Description = Description, ImageDataURL = ImageDataUrl, Rate = Rate, Id = Id, UploadRequest = UploadRequest };
-                var response = await _productManager.SaveAsync(request);
-                if (response.Succeeded)
-                {
-                    _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
-                    await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
-                    MudDialog.Close();
-                }
-                else
-                {
-                    foreach (var message in response.Messages)
-                    {
-                        _snackBar.Add(localizer[message], Severity.Error);
-                    }
+                    _snackBar.Add(localizer[message], Severity.Error);
                 }
             }
         }
@@ -113,30 +80,24 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task LoadImageAsync()
         {
-            var data = await _productManager.GetProductImageAsync(Id);
+            var data = await _productManager.GetProductImageAsync(AddEditProductModel.Id);
             if (data.Succeeded)
             {
                 var imageData = data.Data;
                 if (!string.IsNullOrEmpty(imageData))
                 {
-                    ImageDataUrl = imageData;
+                    AddEditProductModel.ImageDataURL = imageData;
                 }
             }
         }
 
         private void DeleteAsync()
         {
-            ImageDataUrl = null;
-            UploadRequest = new UploadRequest();
+            AddEditProductModel.ImageDataURL = null;
+            AddEditProductModel.UploadRequest = new UploadRequest();
         }
 
         public IBrowserFile file { get; set; }
-
-        [Parameter]
-        public string ImageDataUrl { get; set; }
-
-        [Parameter]
-        public UploadRequest UploadRequest { get; set; }
 
         private async Task UploadFiles(InputFileChangeEventArgs e)
         {
@@ -148,8 +109,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 var imageFile = await e.File.RequestImageFileAsync(format, 400, 400);
                 var buffer = new byte[imageFile.Size];
                 await imageFile.OpenReadStream().ReadAsync(buffer);
-                ImageDataUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-                UploadRequest = new UploadRequest() { Data = buffer, UploadType = Application.Enums.UploadType.Product, Extension = extension };
+                AddEditProductModel.ImageDataURL = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+                AddEditProductModel.UploadRequest = new UploadRequest { Data = buffer, UploadType = Application.Enums.UploadType.Product, Extension = extension };
             }
         }
     }

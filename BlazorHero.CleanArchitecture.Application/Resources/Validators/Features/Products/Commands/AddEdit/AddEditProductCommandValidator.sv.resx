@@ -117,49 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Product" xml:space="preserve">
-    <value>Lägg till produkt</value>
+  <data name="Barcode is required!" xml:space="preserve">
+    <value>Barcode is required!</value>
   </data>
-  <data name="Barcode" xml:space="preserve">
-    <value>Streckkod</value>
+  <data name="Brand is required!" xml:space="preserve">
+    <value>Brand is required!</value>
   </data>
-  <data name="Brand" xml:space="preserve">
-    <value>Varumärke</value>
+  <data name="Description is required!" xml:space="preserve">
+    <value>Description is required!</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Avbryt</value>
+  <data name="Name is required!" xml:space="preserve">
+    <value>Name is required!</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Radera</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Beskrivning</value>
-  </data>
-  <data name="Id" xml:space="preserve">
-    <value>Id</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Namn</value>
-  </data>
-  <data name="Product Saved" xml:space="preserve">
-    <value>Produkt Sparad!</value>
-  </data>
-  <data name="Product Updated" xml:space="preserve">
-    <value>Produkt Uppdaterad!</value>
-  </data>
-  <data name="Rate" xml:space="preserve">
-    <value>Betygsätt</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Spara</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>Uppdatera</value>
-  </data>
-  <data name="Update Product" xml:space="preserve">
-    <value>Uppdatera Produkt</value>
-  </data>
-  <data name="Upload" xml:space="preserve">
-    <value>Ladda upp</value>
+  <data name="Rate must be greater than 0" xml:space="preserve">
+    <value>Rate must be greater than 0</value>
   </data>
 </root>

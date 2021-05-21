@@ -153,9 +153,6 @@
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
   </data>
-  <data name="Select a Brand." xml:space="preserve">
-    <value>Выберите бренд.</value>
-  </data>
   <data name="Update" xml:space="preserve">
     <value>Обновить</value>
   </data>

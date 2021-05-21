@@ -153,9 +153,6 @@
   <data name="Save" xml:space="preserve">
     <value>Salva</value>
   </data>
-  <data name="Select a Brand." xml:space="preserve">
-    <value>Seleziona una marca.</value>
-  </data>
   <data name="Update" xml:space="preserve">
     <value>Aggiorna</value>
   </data>
