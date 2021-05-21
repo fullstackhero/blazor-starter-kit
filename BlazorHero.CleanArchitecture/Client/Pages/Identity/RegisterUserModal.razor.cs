@@ -9,7 +9,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<RegisterUserModal> localizer { get; set; }
 
-        private readonly RegisterRequest registerUserModel = new RegisterRequest();
+        private readonly RegisterRequest registerUserModel = new();
 
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
 

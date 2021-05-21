@@ -9,7 +9,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Security> localizer { get; set; }
 
-        private readonly ChangePasswordRequest passwordModel = new ChangePasswordRequest();
+        private readonly ChangePasswordRequest passwordModel = new();
 
         private async Task ChangePasswordAsync()
         {

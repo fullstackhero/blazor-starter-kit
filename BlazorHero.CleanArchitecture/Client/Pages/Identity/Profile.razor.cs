@@ -15,7 +15,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private char FirstLetterOfName { get; set; }
 
-        private readonly UpdateProfileRequest profileModel = new UpdateProfileRequest();
+        private readonly UpdateProfileRequest profileModel = new();
         public string UserId { get; set; }
 
         private async Task UpdateProfileAsync()
@@ -96,8 +96,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task DeleteAsync()
         {
-            var parameters = new DialogParameters();
-            parameters.Add("ContentText", $"Do you want to delete the profile picture of {profileModel.Email} ?");
+            var parameters = new DialogParameters
+            {
+                //TODO: localize
+                {"ContentText", $"Do you want to delete the profile picture of {profileModel.Email} ?"}
+            };
             var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
             var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
             var result = await dialog.Result;

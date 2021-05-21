@@ -9,7 +9,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Forgot> localizer { get; set; }
 
-        private readonly ForgotPasswordRequest emailModel = new ForgotPasswordRequest();
+        private readonly ForgotPasswordRequest emailModel = new();
 
         private async Task SubmitAsync()
         {
