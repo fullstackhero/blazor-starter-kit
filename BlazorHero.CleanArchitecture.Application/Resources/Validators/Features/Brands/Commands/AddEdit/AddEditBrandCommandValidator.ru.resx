@@ -123,7 +123,7 @@
   <data name="Name is required!" xml:space="preserve">
     <value>Наименование необходимо!</value>
   </data>
-  <data name="Tax must be greater then 0" xml:space="preserve">
+  <data name="Tax must be greater than 0" xml:space="preserve">
     <value>Cбор должен быть больше 0</value>
   </data>
 </root>

@@ -43,11 +43,11 @@
             <MudButton Variant="Variant.Filled" OnClick="Cancel">@localizer["Cancel"]</MudButton>
             @if (AddEditBrandModel.Id != 0)
             {
-                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Disabled="@(!validated)" Color="Color.Secondary">@localizer["Update"]</MudButton>
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!validated)" Color="Color.Secondary">@localizer["Update"]</MudButton>
             }
             else
             {
-                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Disabled="@(!validated)" Color="Color.Success">@localizer["Save"]</MudButton>
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!validated)" Color="Color.Success">@localizer["Save"]</MudButton>
             }
         </DialogActions>
     </MudDialog>

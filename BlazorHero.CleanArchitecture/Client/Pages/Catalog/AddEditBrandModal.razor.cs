@@ -13,12 +13,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<AddEditBrandModal> localizer { get; set; }
 
+        private FluentValidationValidator _fluentValidationValidator;
         private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
-        private FluentValidationValidator _fluentValidationValidator;
-
         [Parameter]
-        public AddEditBrandCommand AddEditBrandModel { get; set; } = new AddEditBrandCommand();
+        public AddEditBrandCommand AddEditBrandModel { get; set; } = new();
 
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
         [CascadingParameter] public HubConnection hubConnection { get; set; }
