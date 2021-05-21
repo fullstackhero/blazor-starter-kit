@@ -1,11 +1,11 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit;
-using BlazorHero.CleanArchitecture.Client.Extensions;
+﻿using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.Threading.Tasks;
 using Blazored.FluentValidation;
+using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {

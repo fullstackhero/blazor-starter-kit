@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 
-namespace BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit
+namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit
 {
     public partial class AddEditBrandCommand : IRequest<Result<int>>
     {

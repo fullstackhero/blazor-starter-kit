@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {

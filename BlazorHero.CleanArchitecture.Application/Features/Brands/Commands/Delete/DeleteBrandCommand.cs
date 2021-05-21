@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 
-namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Delete
+namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Delete
 {
     public class DeleteBrandCommand : IRequest<Result<int>>
     {

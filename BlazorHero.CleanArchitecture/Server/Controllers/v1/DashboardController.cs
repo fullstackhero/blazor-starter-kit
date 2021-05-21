@@ -1,7 +1,7 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.GetData;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.v1
 {

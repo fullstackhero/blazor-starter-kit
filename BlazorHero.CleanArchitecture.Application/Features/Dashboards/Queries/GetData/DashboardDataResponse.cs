@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
+namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.GetData
 {
     public class DashboardDataResponse
     {

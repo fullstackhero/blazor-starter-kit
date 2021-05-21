@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 
-namespace BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData
+namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.GetData
 {
     public class GetDashboardDataQuery : IRequest<Result<DashboardDataResponse>>
     {
