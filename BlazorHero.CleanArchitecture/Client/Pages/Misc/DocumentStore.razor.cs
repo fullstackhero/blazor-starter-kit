@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 {
@@ -26,7 +27,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             if (user == null) return;
-            if (user.Identity.IsAuthenticated)
+            if (user.Identity?.IsAuthenticated == true)
             {
                 CurrentUserId = user.GetUserId();
             }
@@ -35,7 +36,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private async Task<TableData<GetAllDocumentsResponse>> ServerReload(TableState state)
         {
             await LoadData(state.Page, state.PageSize, state);
-            return new TableData<GetAllDocumentsResponse>() { TotalItems = totalItems, Items = pagedData };
+            return new TableData<GetAllDocumentsResponse> { TotalItems = totalItems, Items = pagedData };
         }
 
         private async Task LoadData(int pageNumber, int pageSize, TableState state)
@@ -102,13 +103,19 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             if (id != 0)
             {
                 var doc = pagedData.FirstOrDefault(c => c.Id == id);
-                parameters.Add("Id", doc.Id);
-                parameters.Add("Title", doc.Title);
-                parameters.Add("Description", doc.Description);
-                parameters.Add("URL", doc.URL);
-                parameters.Add("IsPublic", doc.IsPublic);
+                if (doc != null)
+                {
+                    parameters.Add(nameof(AddEditDocumentModal.AddEditDocumentModel), new AddEditDocumentCommand
+                    {
+                        Id = doc.Id,
+                        Title = doc.Title,
+                        Description = doc.Description,
+                        URL = doc.URL,
+                        IsPublic = doc.IsPublic
+                    });
+                }
             }
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
             var dialog = _dialogService.Show<AddEditDocumentModal>("Modal", parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
@@ -120,10 +127,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private async Task Delete(int id)
         {
             string deleteContent = localizer["Delete Content"];
-            var parameters = new DialogParameters();
-            parameters.Add("ContentText", string.Format(deleteContent, id));
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
+            var parameters = new DialogParameters
+            {
+                {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
+            };
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(localizer["Delete"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {

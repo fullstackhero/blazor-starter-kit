@@ -117,61 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Действия</value>
+  <data name="Description is required!" xml:space="preserve">
+    <value>Описание обязательно!</value>
   </data>
-  <data name="Bordered" xml:space="preserve">
-    <value>Обрамлённый</value>
-  </data>
-  <data name="Browse Available Documents." xml:space="preserve">
-    <value>Обзор доступных документов.</value>
-  </data>
-  <data name="Create" xml:space="preserve">
-    <value>Создать</value>
-  </data>
-  <data name="Date Created" xml:space="preserve">
-    <value>Дата создания</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Удалить</value>
-  </data>
-  <data name="Delete Content" xml:space="preserve">
-    <value>Удалить контент</value>
-  </data>
-  <data name="Dense" xml:space="preserve">
-    <value>Компактный</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Хранилище документов</value>
-  </data>
-  <data name="Download" xml:space="preserve">
-    <value>Скачать</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Редактировать</value>
-  </data>
-  <data name="Id" xml:space="preserve">
-    <value>Id</value>
-  </data>
-  <data name="Is Public" xml:space="preserve">
-    <value>Публичный</value>
-  </data>
-  <data name="Owner" xml:space="preserve">
-    <value>Владелец</value>
-  </data>
-  <data name="Reload" xml:space="preserve">
-    <value>Перезагрузить</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Поиск документов</value>
-  </data>
-  <data name="Striped" xml:space="preserve">
-    <value>Чередующийся</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Заголовок</value>
+  <data name="Title is required!" xml:space="preserve">
+    <value>Заголовок обязателен!</value>
   </data>
 </root>

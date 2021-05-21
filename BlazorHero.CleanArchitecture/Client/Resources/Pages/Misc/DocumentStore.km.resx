@@ -132,6 +132,9 @@
   <data name="Delete" xml:space="preserve">
     <value>លុប</value>
   </data>
+  <data name="Delete Content" xml:space="preserve">
+    <value>Delete Content</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>ការពិពណ៌នា</value>
   </data>
