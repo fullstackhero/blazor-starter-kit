@@ -153,9 +153,6 @@
   <data name="Name" xml:space="preserve">
     <value>Namn</value>
   </data>
-  <data name="Product Deleted" xml:space="preserve">
-    <value>Produkt borttagen!</value>
-  </data>
   <data name="Products" xml:space="preserve">
     <value>Produkter</value>
   </data>

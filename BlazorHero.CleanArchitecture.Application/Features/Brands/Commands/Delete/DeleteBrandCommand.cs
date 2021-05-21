@@ -12,34 +12,34 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Dele
     public class DeleteBrandCommand : IRequest<Result<int>>
     {
         public int Id { get; set; }
+    }
 
-        public class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommand, Result<int>>
+    public class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommand, Result<int>>
+    {
+        private readonly IProductRepository _productRepository;
+        private readonly IStringLocalizer<DeleteBrandCommandHandler> _localizer;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public DeleteBrandCommandHandler(IUnitOfWork unitOfWork, IProductRepository productRepository, IStringLocalizer<DeleteBrandCommandHandler> localizer)
         {
-            private readonly IProductRepository _productRepository;
-            private readonly IStringLocalizer<DeleteBrandCommandHandler> _localizer;
-            private readonly IUnitOfWork _unitOfWork;
+            _unitOfWork = unitOfWork;
+            _productRepository = productRepository;
+            _localizer = localizer;
+        }
 
-            public DeleteBrandCommandHandler(IUnitOfWork unitOfWork, IProductRepository productRepository, IStringLocalizer<DeleteBrandCommandHandler> localizer)
+        public async Task<Result<int>> Handle(DeleteBrandCommand command, CancellationToken cancellationToken)
+        {
+            var isBrandUsed = await _productRepository.IsBrandUsed(command.Id);
+            if (!isBrandUsed)
             {
-                _unitOfWork = unitOfWork;
-                _productRepository = productRepository;
-                _localizer = localizer;
+                var brand = await _unitOfWork.Repository<Brand>().GetByIdAsync(command.Id);
+                await _unitOfWork.Repository<Brand>().DeleteAsync(brand);
+                await _unitOfWork.ComitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
+                return await Result<int>.SuccessAsync(brand.Id, _localizer["Brand Deleted"]);
             }
-
-            public async Task<Result<int>> Handle(DeleteBrandCommand command, CancellationToken cancellationToken)
+            else
             {
-                var isBrandUsed = await _productRepository.IsBrandUsed(command.Id);
-                if (!isBrandUsed)
-                {
-                    var brand = await _unitOfWork.Repository<Brand>().GetByIdAsync(command.Id);
-                    await _unitOfWork.Repository<Brand>().DeleteAsync(brand);
-                    await _unitOfWork.ComitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
-                    return await Result<int>.SuccessAsync(brand.Id, _localizer["Brand Deleted"]);
-                }
-                else
-                {
-                    return await Result<int>.FailAsync(_localizer["Deletion Not Allowed"]);
-                }
+                return await Result<int>.FailAsync(_localizer["Deletion Not Allowed"]);
             }
         }
     }

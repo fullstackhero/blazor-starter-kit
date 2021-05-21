@@ -159,9 +159,6 @@
   <data name="Name" xml:space="preserve">
     <value>Наименование</value>
   </data>
-  <data name="Product Deleted" xml:space="preserve">
-    <value>Продукт удалён</value>
-  </data>
   <data name="Products" xml:space="preserve">
     <value>Продукты</value>
   </data>

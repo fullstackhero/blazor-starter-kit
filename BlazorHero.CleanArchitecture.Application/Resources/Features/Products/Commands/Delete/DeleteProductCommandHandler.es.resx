@@ -117,52 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Tindakan</value>
-  </data>
-  <data name="Barcode" xml:space="preserve">
-    <value>Barcode</value>
-  </data>
-  <data name="Brand" xml:space="preserve">
-    <value>Merek</value>
-  </data>
-  <data name="Create" xml:space="preserve">
-    <value>Tambah</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Hapus</value>
-  </data>
-  <data name="Delete Content" xml:space="preserve">
-    <value>Hapus Konten</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Deskripsi</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Sunting</value>
-  </data>
-  <data name="Export" xml:space="preserve">
-    <value>Ekspor</value>
-  </data>
-  <data name="Id" xml:space="preserve">
-    <value>Id</value>
-  </data>
-  <data name="Manage Products." xml:space="preserve">
-    <value>Kelola Produk.</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Nama</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Produk</value>
-  </data>
-  <data name="Rate" xml:space="preserve">
-    <value>Nilai</value>
-  </data>
-  <data name="Reload" xml:space="preserve">
-    <value>Muat Ulang</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Cari</value>
+  <data name="Product Deleted" xml:space="preserve">
+    <value>Producto Borrado</value>
   </data>
 </root>

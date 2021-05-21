@@ -147,9 +147,6 @@
   <data name="Rate" xml:space="preserve">
     <value>Tasso</value>
   </data>
-  <data name="Product Deleted" xml:space="preserve">
-    <value>Prodotto eliminato!</value>
-  </data>
   <data name="Manage Products." xml:space="preserve">
     <value>Gestione prodotti.</value>
   </data>
