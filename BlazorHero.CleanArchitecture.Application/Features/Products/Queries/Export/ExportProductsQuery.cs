@@ -13,38 +13,38 @@ using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Export
 {
-    public class ExportQuery : IRequest<string>
+    public class ExportProductsQuery : IRequest<string>
     {
         public string SearchString { get; set; }
 
-        public ExportQuery(string searchString = "")
+        public ExportProductsQuery(string searchString = "")
         {
             SearchString = searchString;
         }
     }
 
-    public class ExportQueryHandler : IRequestHandler<ExportQuery, string>
+    public class ExportProductsQueryHandler : IRequestHandler<ExportProductsQuery, string>
     {
         private readonly IExcelService _excelService;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IStringLocalizer<ExportQueryHandler> _localizer;
+        private readonly IStringLocalizer<ExportProductsQueryHandler> _localizer;
 
-        public ExportQueryHandler(IExcelService excelService
+        public ExportProductsQueryHandler(IExcelService excelService
             , IUnitOfWork unitOfWork
-            , IStringLocalizer<ExportQueryHandler> localizer)
+            , IStringLocalizer<ExportProductsQueryHandler> localizer)
         {
             _excelService = excelService;
             _unitOfWork = unitOfWork;
             _localizer = localizer;
         }
 
-        public async Task<string> Handle(ExportQuery request, CancellationToken cancellationToken)
+        public async Task<string> Handle(ExportProductsQuery request, CancellationToken cancellationToken)
         {
             var productFilterSpec = new ProductFilterSpecification(request.SearchString);
             var products = await _unitOfWork.Repository<Product>().Entities
                 .Specify(productFilterSpec)
                 .ToListAsync( cancellationToken);
-            var data = await _excelService.ExportAsync(products, mappers: new Dictionary<string, Func<Product, object>>()
+            var data = await _excelService.ExportAsync(products, mappers: new Dictionary<string, Func<Product, object>>
             {
                 { _localizer["Id"], item => item.Id },
                 { _localizer["Name"], item => item.Name },

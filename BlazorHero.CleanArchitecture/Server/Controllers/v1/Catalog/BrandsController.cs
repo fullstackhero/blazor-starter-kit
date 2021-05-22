@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Delete;
+using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.Export;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
 {
@@ -39,6 +40,13 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         public async Task<IActionResult> Delete(int id)
         {
             return Ok(await _mediator.Send(new DeleteBrandCommand { Id = id }));
+        }
+
+        [Authorize(Policy = Permissions.Brands.View)]
+        [HttpGet("export")]
+        public async Task<IActionResult> Export(string searchString = "")
+        {
+            return Ok(await _mediator.Send(new ExportBrandsQuery(searchString)));
         }
     }
 }

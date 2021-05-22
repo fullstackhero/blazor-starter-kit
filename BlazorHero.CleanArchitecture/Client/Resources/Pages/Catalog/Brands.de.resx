@@ -118,28 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Actions" xml:space="preserve">
-    <value>Azioni</value>
+    <value>Aktionen</value>
   </data>
   <data name="Add Brand" xml:space="preserve">
-    <value>Aggiungi marca</value>
+    <value>Add Brand</value>
+  </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordered</value>
   </data>
   <data name="Brands" xml:space="preserve">
-    <value>Marche</value>
+    <value>Brands</value>
   </data>
   <data name="Create" xml:space="preserve">
-    <value>Crea</value>
+    <value>Hinzufügen</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Elimina</value>
+    <value>Löschen</value>
   </data>
   <data name="Delete Content" xml:space="preserve">
-    <value>Cancella contenuto</value>
+    <value>Delete Content</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Dense</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Descrizione</value>
+    <value>Beschreibung</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Modifica</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="Export" xml:space="preserve">
     <value>Export</value>
@@ -148,18 +154,21 @@
     <value>Id</value>
   </data>
   <data name="Manage Brands." xml:space="preserve">
-    <value>Gestione marca.</value>
+    <value>Manage Brands.</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Nome</value>
+    <value>Name</value>
   </data>
   <data name="Reload" xml:space="preserve">
-    <value>Ricarica</value>
+    <value>Neu laden</value>
   </data>
   <data name="Search for Brands" xml:space="preserve">
-    <value>Ricerca marche</value>
+    <value>Search for Brands</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Striped</value>
   </data>
   <data name="Tax" xml:space="preserve">
-    <value>Imposta</value>
+    <value>Tax</value>
   </data>
 </root>

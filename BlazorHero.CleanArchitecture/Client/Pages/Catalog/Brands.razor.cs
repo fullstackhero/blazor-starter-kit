@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
+using Microsoft.JSInterop;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
@@ -77,6 +78,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             }
         }
 
+        private async Task ExportToExcel()
+        {
+            var base64 = await _brandManager.ExportToExcelAsync(searchString);
+            await _jsRuntime.InvokeVoidAsync("Download", new
+            {
+                ByteArray = base64,
+                FileName = $"brands_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            });
+        }
+
         private async Task InvokeModal(int id = 0)
         {
             var parameters = new DialogParameters();
@@ -113,6 +125,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
             if (brand.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (brand.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

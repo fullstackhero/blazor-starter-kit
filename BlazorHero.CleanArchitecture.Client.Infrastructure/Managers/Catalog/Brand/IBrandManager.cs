@@ -13,5 +13,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Br
         Task<IResult<int>> SaveAsync(AddEditBrandCommand request);
 
         Task<IResult<int>> DeleteAsync(int id);
+
+        Task<string> ExportToExcelAsync(string searchString = "");
     }
 }

@@ -46,7 +46,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         [HttpGet("export")]
         public async Task<IActionResult> Export(string searchString = "")
         {
-            return Ok(await _mediator.Send(new ExportQuery(searchString)));
+            return Ok(await _mediator.Send(new ExportProductsQuery(searchString)));
         }
     }
 }
