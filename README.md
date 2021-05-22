@@ -24,7 +24,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/blazorhero/CleanArchitecture">
-    <img src="https://codewithmukesh.com/wp-content/uploads/2021/04/BlazorHeroBannerv2.jpg" alt="Blazor Hero">
+    <img src="https://codewithmukesh.com/wp-content/uploads/2021/05/BlazorHeroBannerv2.1.jpg" alt="Blazor Hero">
   </a>
   <h3 align="center">BlazorHero - Clean Architecture Template</h3>
   <p align="center">
