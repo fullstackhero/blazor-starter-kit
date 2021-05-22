@@ -3,7 +3,7 @@
 @attribute [AllowAnonymous]
 
 <EditForm Model="@registerUserModel" OnValidSubmit="SubmitAsync">
-    <FluentValidationValidator />
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
     <MudGrid>
         <MudItem xs="12">
             <div class="d-flex justify-center">
@@ -40,7 +40,7 @@
             <MudTextField For="@(() => registerUserModel.ConfirmPassword)" InputType="InputType.Password" @bind-Value="registerUserModel.ConfirmPassword" Label="@localizer["Confirm Password"]" />
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-center">
-            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">@localizer["Register"]</MudButton>
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Disabled="@(!validated)" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">@localizer["Register"]</MudButton>
         </MudItem>
     </MudGrid>
 </EditForm>

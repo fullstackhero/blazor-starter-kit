@@ -2,12 +2,16 @@
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 {
     public partial class Register
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Register> localizer { get; set; }
+
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         private RegisterRequest registerUserModel = new RegisterRequest();
 

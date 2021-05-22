@@ -1,6 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using MudBlazor;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
@@ -8,6 +9,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
     public partial class Forgot
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Forgot> localizer { get; set; }
+
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         private readonly ForgotPasswordRequest emailModel = new();
 

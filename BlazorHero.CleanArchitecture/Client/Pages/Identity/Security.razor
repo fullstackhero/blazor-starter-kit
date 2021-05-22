@@ -1,5 +1,5 @@
 ﻿<EditForm Model="@passwordModel" OnValidSubmit="ChangePasswordAsync">
-    <FluentValidationValidator />
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
     <MudCard Elevation="25">
         <MudCardHeader>
             <CardHeaderContent>
@@ -20,7 +20,7 @@
             </MudGrid>
         </MudCardContent>
         <MudCardActions Class="pb-4 pl-4">
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" ButtonType="ButtonType.Submit" Class="ml-auto">@localizer["Change Password"]</MudButton>
+            <MudButton Variant="Variant.Filled" Disabled="@(!validated)" Color="Color.Primary" ButtonType="ButtonType.Submit" Class="ml-auto">@localizer["Change Password"]</MudButton>
         </MudCardActions>
     </MudCard>
 </EditForm>

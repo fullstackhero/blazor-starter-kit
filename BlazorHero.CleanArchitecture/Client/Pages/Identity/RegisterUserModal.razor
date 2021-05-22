@@ -1,5 +1,5 @@
 ﻿<EditForm Model="@registerUserModel" OnValidSubmit="SubmitAsync">
-    <FluentValidationValidator />
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
     <MudDialog>
         <TitleContent>
             @{
@@ -23,7 +23,7 @@
         <DialogActions>
             <MudButton Variant="Variant.Filled" OnClick="Cancel">@localizer["Cancel"]</MudButton>
             @{
-                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Color="Color.Success">@localizer["Register"]</MudButton>
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!validated)" Color="Color.Success">@localizer["Register"]</MudButton>
             }
         </DialogActions>
     </MudDialog>

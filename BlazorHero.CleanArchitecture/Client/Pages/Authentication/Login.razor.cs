@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
@@ -10,6 +11,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
     public partial class Login
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Login> localizer { get; set; }
+
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         private TokenRequest tokenModel = new TokenRequest();
 

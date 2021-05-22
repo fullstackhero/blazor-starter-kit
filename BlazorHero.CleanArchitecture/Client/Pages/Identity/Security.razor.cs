@@ -2,12 +2,16 @@
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Security
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Security> localizer { get; set; }
+
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         private readonly ChangePasswordRequest passwordModel = new();
 

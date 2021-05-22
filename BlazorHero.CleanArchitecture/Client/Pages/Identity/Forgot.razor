@@ -3,7 +3,7 @@
 @attribute [AllowAnonymous]
 
 <EditForm Model="@emailModel" OnValidSubmit="SubmitAsync">
-    <FluentValidationValidator />
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
     <MudGrid>
         <MudItem xs="12">
             <div class="d-flex justify-center">
@@ -24,7 +24,7 @@
             <MudTextField Label="@localizer["E-mail"]" @bind-Value="emailModel.Email" For="@(() => emailModel.Email)" Variant="Variant.Outlined"></MudTextField>
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-center">
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" ButtonType="ButtonType.Submit" FullWidth="true">@localizer["Reset Password"]</MudButton>
+            <MudButton Variant="Variant.Filled" Disabled="@(!validated)" Color="Color.Primary" Size="Size.Large" ButtonType="ButtonType.Submit" FullWidth="true">@localizer["Reset Password"]</MudButton>
         </MudItem>
     </MudGrid>
 </EditForm>

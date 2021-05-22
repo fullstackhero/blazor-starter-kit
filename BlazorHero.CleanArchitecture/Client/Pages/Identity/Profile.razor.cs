@@ -6,12 +6,16 @@ using MudBlazor;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Profile
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Profile> localizer { get; set; }
+
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         private char FirstLetterOfName { get; set; }
 
