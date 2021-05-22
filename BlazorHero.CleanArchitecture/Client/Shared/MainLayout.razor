@@ -7,8 +7,16 @@
 <MudSnackbarProvider />
 <AuthorizeView>
     <NotAuthorized>
+        <MudAppBar Elevation="4" Color="Color.Primary">
+            <MudAppBarSpacer />
+            <LanguageSelector />
+            <MudTooltip Text="@localizer["Toggle Dark Mode"]">
+                <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
+            </MudTooltip>
+        </MudAppBar>
+
         <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center" Style="height: 100vh;">
-            <MudPaper Elevation="25" Class="pa-8" Style="width:500px;">
+            <MudPaper Elevation="25" Class="pa-8" Style="width: 500px;">
                 <CascadingValue Value="hubConnection">
                     @Body
                 </CascadingValue>
