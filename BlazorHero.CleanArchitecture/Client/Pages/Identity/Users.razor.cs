@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
@@ -61,6 +62,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 return true;
             }
             return false;
+        }
+
+        private async Task ExportToExcel()
+        {
+            var base64 = await _userManager.ExportToExcelAsync(searchString);
+            await _jsRuntime.InvokeVoidAsync("Download", new
+            {
+                ByteArray = base64,
+                FileName = $"{nameof(Users).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            });
         }
 
         private async Task InvokeModal()

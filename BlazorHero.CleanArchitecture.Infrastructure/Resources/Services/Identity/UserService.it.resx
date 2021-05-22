@@ -132,14 +132,35 @@
   <data name="clicking here" xml:space="preserve">
     <value>cliccando qui</value>
   </data>
+  <data name="CreatedOn (Local)" xml:space="preserve">
+    <value>CreatedOn (Local)</value>
+  </data>
+  <data name="CreatedOn (UTC)" xml:space="preserve">
+    <value>CreatedOn (UTC)</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>EmailConfirmed</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>FirstName</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="is already registered." xml:space="preserve">
     <value>è già registrato.</value>
   </data>
   <data name="is already taken." xml:space="preserve">
     <value>è già stato preso.</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>IsActive</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>LastName</value>
   </data>
   <data name="Not Allowed." xml:space="preserve">
     <value>Non Autorizzato.</value>
@@ -150,8 +171,17 @@
   <data name="Password Reset Successful!" xml:space="preserve">
     <value>Reimpostazione della password riuscita!</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>PhoneNumber</value>
+  </data>
+  <data name="PhoneNumberConfirmed" xml:space="preserve">
+    <value>PhoneNumberConfirmed</value>
+  </data>
   <data name="Please reset your password by" xml:space="preserve">
     <value>Reimposta la password entro</value>
+  </data>
+  <data name="ProfilePictureDataUrl" xml:space="preserve">
+    <value>ProfilePictureDataUrl</value>
   </data>
   <data name="Reset Password" xml:space="preserve">
     <value>Resetta la password</value>

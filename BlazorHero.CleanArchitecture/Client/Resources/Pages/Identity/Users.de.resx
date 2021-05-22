@@ -132,6 +132,9 @@
   <data name="Email Confirmation" xml:space="preserve">
     <value>E-Mail bestätigt</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <data name="First Name" xml:space="preserve">
     <value>Vorname</value>
   </data>

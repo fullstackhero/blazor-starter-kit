@@ -18,6 +18,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Extensions;
+using BlazorHero.CleanArchitecture.Application.Specifications;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
@@ -28,6 +30,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMailService _mailService;
         private readonly IStringLocalizer<UserService> _localizer;
+        private readonly IExcelService _excelService;
         private readonly IMapper _mapper;
 
         public UserService(
@@ -35,13 +38,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             IMapper mapper,
             RoleManager<IdentityRole> roleManager,
             IMailService mailService,
-            IStringLocalizer<UserService> localizer)
+            IStringLocalizer<UserService> localizer,
+            IExcelService excelService)
         {
             _userManager = userManager;
             _mapper = mapper;
             _roleManager = roleManager;
             _mailService = mailService;
             _localizer = localizer;
+            _excelService = excelService;
         }
 
         public async Task<Result<List<UserResponse>>> GetAllAsync()
@@ -233,6 +238,33 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         {
             var count = await _userManager.Users.CountAsync();
             return count;
+        }
+
+        public async Task<string> ExportToExcelAsync(string searchString = "")
+        {
+            var userSpec = new UserFilterSpecification(searchString);
+            var users = await _userManager.Users
+                .Specify(userSpec)
+                .OrderByDescending(a => a.CreatedOn)
+                .ToListAsync();
+            var result = await _excelService.ExportAsync(users, sheetName: _localizer["Users"],
+                mappers: new Dictionary<string, Func<BlazorHeroUser, object>>
+                {
+                    { _localizer["Id"], item => item.Id },
+                    { _localizer["FirstName"], item => item.FirstName },
+                    { _localizer["LastName"], item => item.LastName },
+                    { _localizer["UserName"], item => item.UserName },
+                    { _localizer["Email"], item => item.Email },
+                    { _localizer["EmailConfirmed"], item => item.EmailConfirmed },
+                    { _localizer["PhoneNumber"], item => item.PhoneNumber },
+                    { _localizer["PhoneNumberConfirmed"], item => item.PhoneNumberConfirmed },
+                    { _localizer["IsActive"], item => item.IsActive },
+                    { _localizer["CreatedOn (Local)"], item => DateTime.SpecifyKind(item.CreatedOn, DateTimeKind.Utc).ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss") },
+                    { _localizer["CreatedOn (UTC)"], item => item.CreatedOn.ToString("dd/MM/yyyy HH:mm:ss") },
+                    { _localizer["ProfilePictureDataUrl"], item => item.ProfilePictureDataUrl },
+                });
+
+            return result;
         }
     }
 }
