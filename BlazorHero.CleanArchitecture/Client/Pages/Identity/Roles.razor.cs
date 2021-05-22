@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
@@ -86,11 +87,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 role = RoleList.FirstOrDefault(c => c.Id == id);
                 if (role != null)
                 {
-                    parameters.Add("Id", role.Id);
-                    parameters.Add("Name", role.Name);
+                    parameters.Add(nameof(RoleModal.RoleModel), new RoleRequest
+                    {
+                        Id = role.Id,
+                        Name = role.Name
+                    });
                 }
             }
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
             var dialog = _dialogService.Show<RoleModal>("Modal", parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
