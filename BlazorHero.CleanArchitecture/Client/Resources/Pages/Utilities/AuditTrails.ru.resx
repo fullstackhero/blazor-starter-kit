@@ -120,6 +120,9 @@
   <data name="Audit Trails" xml:space="preserve">
     <value>Журналы аудита</value>
   </data>
+  <data name="Audit Trails exported" xml:space="preserve">
+    <value>Журналы аудита экспортированы</value>
+  </data>
   <data name="Bordered" xml:space="preserve">
     <value>Обрамлённый</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Export To Excel" xml:space="preserve">
     <value>Экспорт в Excel</value>
+  </data>
+  <data name="Filtered Audit Trails exported" xml:space="preserve">
+    <value>Отфильтрованные журналы аудита экспортированы</value>
   </data>
   <data name="Hide" xml:space="preserve">
     <value>Скрыть</value>

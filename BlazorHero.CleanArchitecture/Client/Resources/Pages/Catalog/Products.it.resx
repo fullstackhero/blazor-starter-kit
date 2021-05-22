@@ -162,4 +162,10 @@
   <data name="Barcode" xml:space="preserve">
     <value>Barcode</value>
   </data>
+  <data name="Products exported" xml:space="preserve">
+    <value>Products exported</value>
+  </data>
+  <data name="Filtered Products exported" xml:space="preserve">
+    <value>Filtered Products exported</value>
+  </data>
 </root>

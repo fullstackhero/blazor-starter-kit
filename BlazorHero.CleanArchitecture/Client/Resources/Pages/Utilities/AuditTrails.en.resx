@@ -120,6 +120,9 @@
   <data name="Audit Trails" xml:space="preserve">
     <value>Audit Trails</value>
   </data>
+  <data name="Audit Trails exported" xml:space="preserve">
+    <value>Audit Trails exported</value>
+  </data>
   <data name="Bordered" xml:space="preserve">
     <value>Bordered</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Export To Excel" xml:space="preserve">
     <value>Export To Excel</value>
+  </data>
+  <data name="Filtered Audit Trails exported" xml:space="preserve">
+    <value>Filtered Audit Trails exported</value>
   </data>
   <data name="Hide" xml:space="preserve">
     <value>Hide</value>

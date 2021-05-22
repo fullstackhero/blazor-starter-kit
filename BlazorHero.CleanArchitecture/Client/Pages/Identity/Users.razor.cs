@@ -73,6 +73,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 FileName = $"{nameof(Users).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
+            _snackBar.Add(string.IsNullOrWhiteSpace(searchString)
+                ? localizer["Users exported"]
+                : localizer["Filtered Users exported"], Severity.Success);
         }
 
         private async Task InvokeModal()

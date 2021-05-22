@@ -112,6 +112,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
                 FileName = $"{nameof(AuditTrails).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
+            _snackBar.Add(string.IsNullOrWhiteSpace(searchString)
+                ? localizer["Audit Trails exported"]
+                : localizer["Filtered Audit Trails exported"], Severity.Success);
         }
 
         public class RelatedAuditTrail : AuditResponse

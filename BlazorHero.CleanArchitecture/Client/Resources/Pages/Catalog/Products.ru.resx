@@ -150,6 +150,9 @@
   <data name="Export" xml:space="preserve">
     <value>Экспорт в Excel</value>
   </data>
+  <data name="Filtered Products exported" xml:space="preserve">
+    <value>Отфильтрованные продукты экспортированы</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="Products" xml:space="preserve">
     <value>Продукты</value>
+  </data>
+  <data name="Products exported" xml:space="preserve">
+    <value>Продукты экспортированы</value>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Рейтинг</value>

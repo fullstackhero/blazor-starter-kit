@@ -87,6 +87,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 FileName = $"{nameof(Brands).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
+            _snackBar.Add(string.IsNullOrWhiteSpace(searchString)
+                ? localizer["Brands exported"]
+                : localizer["Filtered Brands exported"], Severity.Success);
         }
 
         private async Task InvokeModal(int id = 0)
