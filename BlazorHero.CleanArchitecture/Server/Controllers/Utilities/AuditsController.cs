@@ -26,9 +26,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
         }
 
         [HttpGet("export")]
-        public async Task<IActionResult> ExportExcel()
+        public async Task<IActionResult> ExportExcel(string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false)
         {
-            var data = await _auditService.ExportToExcelAsync(_currentUserService.UserId);
+            var data = await _auditService.ExportToExcelAsync(_currentUserService.UserId, searchString, searchInOldValues, searchInNewValues);
             return Ok(data);
         }
     }
