@@ -34,7 +34,14 @@
         <MudTd DataLabel="Owner">
             @if (context.CreatedBy == CurrentUserId)
             {
-                <MudChip Icon="@Icons.Material.Filled.Face" IconColor="Color.Secondary" Label="true" Color="Color.Surface">you</MudChip>
+                <MudButton Variant="Variant.Filled"
+                           StartIcon="@Icons.Material.Filled.Face"
+                           IconColor="Color.Secondary"
+                           Size="Size.Small"
+                           Color="Color.Surface"
+                           Link="/account">
+                    @localizer["you"]
+                </MudButton>
             }
         </MudTd>
         <MudTd DataLabel="Actions" Style="text-align:right">
