@@ -45,7 +45,7 @@
                     <MudMenuItem @onclick="@(()=>Delete(@context.Id))">@localizer["Delete"]</MudMenuItem>
                 }
 
-                <MudMenuItem Link="@context.URL" Target="_blank">@localizer["Download"]</MudMenuItem>
+                <MudMenuItem Link="@context.URL" Disabled="@(string.IsNullOrWhiteSpace(context.URL))" Target="_blank">@localizer["Download"]</MudMenuItem>
             </MudMenu>
         </MudTd>
     </RowTemplate>
