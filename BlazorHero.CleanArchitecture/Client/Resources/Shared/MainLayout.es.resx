@@ -141,6 +141,9 @@
   <data name="Quick-Start Guide" xml:space="preserve">
     <value>Guía de Inicio Rápido</value>
   </data>
+  <data name="Refreshed Token." xml:space="preserve">
+    <value>Refreshed Token.</value>
+  </data>
   <data name="Resources" xml:space="preserve">
     <value>Recursos</value>
   </data>
@@ -149,5 +152,8 @@
   </data>
   <data name="Toggle Dark Mode" xml:space="preserve">
     <value>Alternar modo oscuro</value>
+  </data>
+  <data name="You are Logged Out." xml:space="preserve">
+    <value>You are Logged Out.</value>
   </data>
 </root>

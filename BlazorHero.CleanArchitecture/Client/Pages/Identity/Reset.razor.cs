@@ -5,12 +5,16 @@ using MudBlazor;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Reset
     {
         [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Reset> localizer { get; set; }
+
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         private readonly ResetPasswordRequest resetPasswordModel = new();
 

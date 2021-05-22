@@ -144,6 +144,9 @@
   <data name="Quick-Start Guide" xml:space="preserve">
     <value>Краткое руководство пользователя</value>
   </data>
+  <data name="Refreshed Token." xml:space="preserve">
+    <value>Токен обновлён.</value>
+  </data>
   <data name="Resources" xml:space="preserve">
     <value>Ресурсы</value>
   </data>
@@ -152,5 +155,8 @@
   </data>
   <data name="Toggle Dark Mode" xml:space="preserve">
     <value>Переключить Тёмный режим</value>
+  </data>
+  <data name="You are Logged Out." xml:space="preserve">
+    <value>Вы вышли из системы.</value>
   </data>
 </root>

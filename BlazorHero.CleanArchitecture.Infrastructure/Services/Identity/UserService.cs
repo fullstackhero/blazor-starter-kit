@@ -190,7 +190,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
                 // Don't reveal that the user does not exist or is not confirmed
-                return await Result.FailAsync("An Error has occured!");
+                return await Result.FailAsync(_localizer["An Error has occured!"]);
             }
             // For more information on how to enable account confirmation and password reset please
             // visit https://go.microsoft.com/fwlink/?LinkID=532713
