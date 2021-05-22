@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
+﻿using System;
+using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Application.Requests;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -62,7 +63,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             {
                 var buffer = new byte[file.Size];
                 var extension = Path.GetExtension(file.Name);
-                await e.File.OpenReadStream().ReadAsync(buffer);
+                await file.OpenReadStream(file.Size).ReadAsync(buffer);
                 AddEditDocumentModel.UploadRequest = new UploadRequest { Data = buffer, UploadType = Application.Enums.UploadType.Document, Extension = extension };
             }
         }
