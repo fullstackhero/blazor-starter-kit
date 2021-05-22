@@ -6,12 +6,21 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Extensions;
+using BlazorHero.CleanArchitecture.Application.Specifications;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Export
 {
     public class ExportQuery : IRequest<string>
     {
+        public string SearchString { get; set; }
+
+        public ExportQuery(string searchString = "")
+        {
+            SearchString = searchString;
+        }
     }
 
     public class ExportQueryHandler : IRequestHandler<ExportQuery, string>
@@ -31,7 +40,10 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Exp
 
         public async Task<string> Handle(ExportQuery request, CancellationToken cancellationToken)
         {
-            var products = await _unitOfWork.Repository<Product>().GetAllAsync();
+            var productFilterSpec = new ProductFilterSpecification(request.SearchString);
+            var products = await _unitOfWork.Repository<Product>().Entities
+                .Specify(productFilterSpec)
+                .ToListAsync( cancellationToken);
             var data = await _excelService.ExportAsync(products, mappers: new Dictionary<string, Func<Product, object>>()
             {
                 { _localizer["Id"], item => item.Id },

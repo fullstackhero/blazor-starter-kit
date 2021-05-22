@@ -9,9 +9,14 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Specifications;
+using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
@@ -65,6 +70,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                         return true;
                     if (element.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
                         return true;
+                    if (element.Brand?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+                        return true;
                     if (element.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
                         return true;
                     if (element.Barcode?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
@@ -112,7 +119,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task ExportToExcel()
         {
-            var base64 = await _productManager.ExportToExcelAsync();
+            var base64 = await _productManager.ExportToExcelAsync(searchString);
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
                 ByteArray = base64,
