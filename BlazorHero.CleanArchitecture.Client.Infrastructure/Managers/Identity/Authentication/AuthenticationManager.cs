@@ -10,10 +10,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Claims;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Routes;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Authentication
 {
@@ -22,15 +21,18 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
         private readonly HttpClient _httpClient;
         private readonly ILocalStorageService _localStorage;
         private readonly AuthenticationStateProvider _authenticationStateProvider;
+        private readonly IStringLocalizer<AuthenticationManager> _localizer;
 
         public AuthenticationManager(
             HttpClient httpClient,
             ILocalStorageService localStorage,
-            AuthenticationStateProvider authenticationStateProvider)
+            AuthenticationStateProvider authenticationStateProvider,
+            IStringLocalizer<AuthenticationManager> localizer)
         {
             _httpClient = httpClient;
             _localStorage = localStorage;
             _authenticationStateProvider = authenticationStateProvider;
+            _localizer = localizer;
         }
 
         public async Task<ClaimsPrincipal> CurrentUser()
@@ -79,16 +81,13 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
             var token = await _localStorage.GetItemAsync<string>("authToken");
             var refreshToken = await _localStorage.GetItemAsync<string>("refreshToken");
 
-            var tokenRequest = JsonSerializer.Serialize(new TokenResponse { Token = token, RefreshToken = refreshToken });
-            var bodyContent = new StringContent(tokenRequest, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PostAsync(Routes.TokenEndpoints.Refresh, bodyContent);
+            var response = await _httpClient.PostAsJsonAsync(Routes.TokenEndpoints.Refresh, new RefreshTokenRequest { Token = token, RefreshToken = refreshToken });
 
             var result = await response.ToResult<TokenResponse>();
 
             if (!result.Succeeded)
             {
-                throw new ApplicationException($"Something went wrong during the refresh token action");
+                throw new ApplicationException(_localizer["Something went wrong during the refresh token action"]);
             }
 
             token = result.Data.Token;
