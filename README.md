@@ -58,24 +58,12 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 - Blazor WebAssembly 5.0 - ASP.NET Core Hosted Model
 - [Entity Framework Core 5.0](https://docs.microsoft.com/en-us/ef/core/)
 
-# New Features of BlazorHero v2.0
+# BlazorHero v2.1
 
-- [x] Play Notification Tone when a new Chat Message is received.
-- [x] Auto Scroll to Last Message when a new Chat Message is received.
-- [x] Registration Page for Unauthorized User (Currently only Admins can register new users)
-- [x] Realtime Notifications - Dashboard Updates Realtime
-- [x] Logout Users / Regenerate Token from Multiple Client Browsers when Permission Changes
-- [x] FIX: Token Issue Fixed from v1.0.1
-- [x] User Images in Chat Component
-- [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
-- [x] Notifications System using SignalR
-- [x] Document Management
-- [x] Export to Excel
-- [x] Audit Trails
-- [x] FIX: Image Upload - Shift to File System from Encoded String. (REASON: Can be heavy on the db and bandwidth consumption, API responses may look huge and ugly.)
-- [x] FIX: Code Cleanup.
-- [x] FIX: Validations on User Registration - Show Snackbar on Exceptions / Validation Errors.
-- [x] FIX: Remove AutoMigrations - Causes SQL Exceptions at times.
+- minor bug fixes
+- UI improvements
+- validation messages fixed
+- fluent validation support
 
 # Getting Started 🦸
 
