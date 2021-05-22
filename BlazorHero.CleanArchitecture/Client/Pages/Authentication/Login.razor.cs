@@ -3,12 +3,19 @@ using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 {
     public partial class Login
     {
-        private TokenRequest model = new TokenRequest();
+        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Login> localizer { get; set; }
+
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+
+        private TokenRequest tokenModel = new TokenRequest();
 
         protected override async Task OnInitializedAsync()
         {
@@ -21,10 +28,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 
         private async Task SubmitAsync()
         {
-            var result = await _authenticationManager.Login(model);
+            var result = await _authenticationManager.Login(tokenModel);
             if (result.Succeeded)
             {
-                _snackBar.Add($"{localizer["Welcome"]} {model.Email}.", Severity.Success);
+                _snackBar.Add($"{localizer["Welcome"]} {tokenModel.Email}.", Severity.Success);
                 _navigationManager.NavigateTo("/", true);
             }
             else
@@ -36,16 +43,36 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             }
         }
 
-        private void FillAdminstratorCredentials()
+        private bool PasswordVisibility;
+        private InputType PasswordInput = InputType.Password;
+        private string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+        void TogglePasswordVisibility()
         {
-            model.Email = "mukesh@blazorhero.com";
-            model.Password = "123Pa$$word!";
+            if(PasswordVisibility)
+            {
+                PasswordVisibility = false;
+                PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+                PasswordInput = InputType.Password;
+            }
+            else
+            {
+                PasswordVisibility = true;
+                PasswordInputIcon = Icons.Material.Filled.Visibility;
+                PasswordInput = InputType.Text;
+            }
+        }
+
+        private void FillAdministratorCredentials()
+        {
+            tokenModel.Email = "mukesh@blazorhero.com";
+            tokenModel.Password = "123Pa$$word!";
         }
 
         private void FillBasicUserCredentials()
         {
-            model.Email = "john@blazorhero.com";
-            model.Password = "123Pa$$word!";
+            tokenModel.Email = "john@blazorhero.com";
+            tokenModel.Password = "123Pa$$word!";
         }
     }
 }

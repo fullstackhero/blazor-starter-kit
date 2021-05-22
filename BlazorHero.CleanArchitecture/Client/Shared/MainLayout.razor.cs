@@ -23,7 +23,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             if (user == null) return;
-            if (user.Identity.IsAuthenticated)
+            if (user.Identity?.IsAuthenticated == true)
             {
                 CurrentUserId = user.GetUserId();
                 this.FirstName = user.GetFirstName();
@@ -31,17 +31,19 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 {
                     FirstLetterOfName = FirstName[0];
                 }
+                this.SecondName = user.GetLastName();
+                this.Email = user.GetEmail();
             }
         }
 
-        private MudTheme currentTheme;
+        private MudTheme _currentTheme;
         private bool _drawerOpen = true;
 
         protected override async Task OnInitializedAsync()
         {
-            currentTheme = BlazorHeroTheme.DefaultTheme;
-            currentTheme = await _clientPreferenceManager.GetCurrentThemeAsync();
-            _interceptor.RegisterEvent();            
+            _currentTheme = BlazorHeroTheme.DefaultTheme;
+            _currentTheme = await _clientPreferenceManager.GetCurrentThemeAsync();
+            _interceptor.RegisterEvent();
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             await hubConnection.StartAsync();
             hubConnection.On<string, string, string>(ApplicationConstants.SignalR.ReceiveChatNotification, (message, receiverUserId, senderUserId) =>
@@ -71,14 +73,14 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                     var token = await _authenticationManager.TryForceRefreshToken();
                     if (!string.IsNullOrEmpty(token))
                     {
-                        _snackBar.Add("Refreshed Token.", Severity.Success);
+                        _snackBar.Add(localizer["Refreshed Token."], Severity.Success);
                         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                     }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    _snackBar.Add("You are Logged Out.", Severity.Error);
+                    _snackBar.Add(localizer["You are Logged Out."], Severity.Error);
                     await _authenticationManager.Logout();
                     _navigationManager.NavigateTo("/");
                 }
@@ -89,14 +91,16 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         {
             string logoutConfirmationText = localizer["Logout Confirmation"];
             string logoutText = localizer["Logout"];
-            var parameters = new DialogParameters();
-            parameters.Add("ContentText", logoutConfirmationText);
-            parameters.Add("ButtonText", logoutText);
-            parameters.Add("Color", Color.Error);
+            var parameters = new DialogParameters
+            {
+                {"ContentText", logoutConfirmationText},
+                {"ButtonText", logoutText},
+                {"Color", Color.Error}
+            };
 
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
 
-            _dialogService.Show<Dialogs.Logout>("Logout", parameters, options);
+            _dialogService.Show<Dialogs.Logout>(localizer["Logout"], parameters, options);
         }
 
         private void DrawerToggle()
@@ -107,14 +111,9 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         private async Task DarkMode()
         {
             bool isDarkMode = await _clientPreferenceManager.ToggleDarkModeAsync();
-            if (isDarkMode)
-            {
-                currentTheme = BlazorHeroTheme.DefaultTheme;
-            }
-            else
-            {
-                currentTheme = BlazorHeroTheme.DarkTheme;
-            }
+            _currentTheme = isDarkMode
+                ? BlazorHeroTheme.DefaultTheme
+                : BlazorHeroTheme.DarkTheme;
         }
 
         public void Dispose()

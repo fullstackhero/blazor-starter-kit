@@ -6,6 +6,7 @@ using BlazorHero.CleanArchitecture.Domain.Entities;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
@@ -15,9 +16,12 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
     public partial class AddEditDocumentCommand : IRequest<Result<int>>
     {
         public int Id { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string Description { get; set; }
         public bool IsPublic { get; set; } = false;
+        [Required]
         public string URL { get; set; }
         public UploadRequest UploadRequest { get; set; }
     }

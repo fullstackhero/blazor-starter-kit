@@ -135,25 +135,4 @@
   <data name="Password Confirmation" xml:space="preserve">
     <value>Подтверждение пароля</value>
   </data>
-  <data name="Password Confirmation is required!" xml:space="preserve">
-    <value>Подтверждение пароля обязательно!</value>
-  </data>
-  <data name="Password is required!" xml:space="preserve">
-    <value>Пароль обязателен!</value>
-  </data>
-  <data name="Password must be at least of length 8" xml:space="preserve">
-    <value>Пароль должен быть не короче 8 символов</value>
-  </data>
-  <data name="Password must contain at least one capital letter" xml:space="preserve">
-    <value>Пароль должен содержать хотя бы одну заглавную букву</value>
-  </data>
-  <data name="Password must contain at least one digit" xml:space="preserve">
-    <value>Пароль должен содержать хотя бы одну цифру</value>
-  </data>
-  <data name="Password must contain at least one lowercase letter" xml:space="preserve">
-    <value>Пароль должен содержать хотя бы одну строчную букву</value>
-  </data>
-  <data name="Passwords don't match" xml:space="preserve">
-    <value>Пароли не свопадают</value>
-  </data>
 </root>

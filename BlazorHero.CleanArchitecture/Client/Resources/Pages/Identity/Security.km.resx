@@ -129,25 +129,4 @@
   <data name="Password Confirmation" xml:space="preserve">
     <value>ការ​បញ្ជាក់​ពាក្យ​សម្ងាត់</value>
   </data>
-  <data name="Password Confirmation is required!" xml:space="preserve">
-    <value>ទាមទារការបញ្ជាក់ពាក្យសម្ងាត់!</value>
-  </data>
-  <data name="Password is required!" xml:space="preserve">
-    <value>ពាក្យ​សម្ងាត់​គឺ​ត្រូវ​បាន​ទាមទារ!</value>
-  </data>
-  <data name="Password must be at least of length 8" xml:space="preserve">
-    <value>លេខសម្ងាត់ត្រូវតែមានប្រវែងយ៉ាងតិច ៨</value>
-  </data>
-  <data name="Password must contain at least one capital letter" xml:space="preserve">
-    <value>លេខសម្ងាត់ត្រូវតែមានយ៉ាងហោចណាស់អក្សរធំមួយ</value>
-  </data>
-  <data name="Password must contain at least one digit" xml:space="preserve">
-    <value>លេខសម្ងាត់ត្រូវតែមានយ៉ាងហោចណាស់លេខមួយខ្ទង់</value>
-  </data>
-  <data name="Password must contain at least one lowercase letter" xml:space="preserve">
-    <value>លេខសម្ងាត់ត្រូវតែមានយ៉ាងហោចណាស់អក្សរតូចមួយខ្ទង់</value>
-  </data>
-  <data name="Passwords don't match" xml:space="preserve">
-    <value>ពាក្យសម្ងាត់មិនត្រូវគ្នា</value>
-  </data>
 </root>

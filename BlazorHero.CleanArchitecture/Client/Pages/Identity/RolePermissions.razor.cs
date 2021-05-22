@@ -25,7 +25,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         public PermissionResponse model { get; set; }
         private IMapper _mapper;
-        private RoleClaimsResponse roleClaims = new RoleClaimsResponse();
+        private RoleClaimsResponse roleClaims = new();
         private string searchString = "";
         private bool _dense = true;
         private bool _striped = true;

@@ -9,8 +9,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Users
     {
-        public List<UserResponse> UserList = new List<UserResponse>();
-        private UserResponse user = new UserResponse();
+        public List<UserResponse> UserList = new();
+        private UserResponse user = new();
         private string searchString = "";
         private bool _dense = true;
         private bool _striped = true;
@@ -66,8 +66,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private async Task InvokeModal()
         {
             var parameters = new DialogParameters();
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<RegisterUserModal>("Modal", parameters, options);
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<RegisterUserModal>(localizer["Modal"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {

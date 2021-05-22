@@ -1,11 +1,11 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.AddEdit;
-using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Brand
 {

@@ -20,10 +20,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         [Parameter]
         public string Description { get; set; }
 
-        public List<UserRoleModel> UserRolesList { get; set; } = new List<UserRoleModel>();
+        public List<UserRoleModel> UserRolesList { get; set; } = new();
         public ClaimsPrincipal CurrentUser { get; set; }
 
-        private UserRoleModel userRole = new UserRoleModel();
+        private UserRoleModel userRole = new();
         private string searchString = "";
         private bool _dense = true;
         private bool _striped = true;

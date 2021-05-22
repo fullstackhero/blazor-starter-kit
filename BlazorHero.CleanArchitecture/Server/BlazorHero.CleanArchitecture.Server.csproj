@@ -8,6 +8,7 @@
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.1.0" />
     <PackageReference Include="Hangfire" Version="1.7.22" />
     <PackageReference Include="LazyCache.AspNetCore" Version="2.1.3" />
     <PackageReference Include="MediatR" Version="9.0.0" />

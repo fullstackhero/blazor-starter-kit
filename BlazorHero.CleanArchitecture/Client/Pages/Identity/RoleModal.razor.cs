@@ -4,23 +4,20 @@ using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class RoleModal
     {
-        private bool success;
-        private string[] errors = { };
-        private MudForm form;
+        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<RoleModal> localizer { get; set; }
+
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         [Parameter]
-        public string Id { get; set; }
-
-        [Parameter]
-        [Required]
-        public string Name { get; set; }
+        public RoleRequest RoleModel { get; set; } = new();
 
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
 
@@ -42,23 +39,18 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task SaveAsync()
         {
-            form.Validate();
-            if (form.IsValid)
+            var response = await _roleManager.SaveAsync(RoleModel);
+            if (response.Succeeded)
             {
-                var roleRequest = new RoleRequest() { Name = Name, Id = Id };
-                var response = await _roleManager.SaveAsync(roleRequest);
-                if (response.Succeeded)
+                _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
+                MudDialog.Close();
+            }
+            else
+            {
+                foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
-                    await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
-                    MudDialog.Close();
-                }
-                else
-                {
-                    foreach (var message in response.Messages)
-                    {
-                        _snackBar.Add(localizer[message], Severity.Error);
-                    }
+                    _snackBar.Add(localizer[message], Severity.Error);
                 }
             }
         }
