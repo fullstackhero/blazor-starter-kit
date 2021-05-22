@@ -42,7 +42,7 @@
                         {
                             <MudAlert>@file.Name</MudAlert>
                         }
-                        @if (!string.IsNullOrEmpty(AddEditDocumentModel.URL))
+                        @if (AddEditDocumentModel.Id != 0 && !string.IsNullOrEmpty(AddEditDocumentModel.URL))
                         {
                             <MudAlert>@(AddEditDocumentModel.URL)</MudAlert>
                         }
@@ -59,8 +59,7 @@
                                     @localizer["Upload"]
                                 </MudButton>
                             }
-
-                            @if (!string.IsNullOrEmpty(AddEditDocumentModel.URL))
+                            else if (!string.IsNullOrEmpty(AddEditDocumentModel.URL))
                             {
                                 <MudButton Variant="Variant.Text"
                                            Color="Color.Secondary"

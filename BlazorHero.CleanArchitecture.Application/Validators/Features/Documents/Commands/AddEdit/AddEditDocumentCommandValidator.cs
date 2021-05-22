@@ -12,6 +12,8 @@ namespace BlazorHero.CleanArchitecture.Application.Validators.Features.Documents
                 .Must(x => !string.IsNullOrWhiteSpace(x)).WithMessage(x => localizer["Title is required!"]);
             RuleFor(request => request.Description)
                 .Must(x => !string.IsNullOrWhiteSpace(x)).WithMessage(x => localizer["Description is required!"]);
+            RuleFor(request => request.URL)
+                .Must(x => !string.IsNullOrWhiteSpace(x)).WithMessage(x => localizer["File is required!"]);
         }
     }
 }

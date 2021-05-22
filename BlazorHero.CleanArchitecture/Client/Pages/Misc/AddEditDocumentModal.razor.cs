@@ -63,7 +63,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             {
                 var buffer = new byte[file.Size];
                 var extension = Path.GetExtension(file.Name);
+                var format = "application/octet-stream";
                 await file.OpenReadStream(file.Size).ReadAsync(buffer);
+                AddEditDocumentModel.URL = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
                 AddEditDocumentModel.UploadRequest = new UploadRequest { Data = buffer, UploadType = Application.Enums.UploadType.Document, Extension = extension };
             }
         }

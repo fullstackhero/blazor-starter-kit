@@ -21,6 +21,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
         [Required]
         public string Description { get; set; }
         public bool IsPublic { get; set; } = false;
+        [Required]
         public string URL { get; set; }
         public UploadRequest UploadRequest { get; set; }
     }
