@@ -8,7 +8,7 @@
         <div class="justify-center mud-text-align-center">
             <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(()=>InvokeModal())">@localizer["Create"]</MudButton>
             <MudButton Variant="Variant.Filled" OnClick="GetBrandsAsync" Color="Color.Secondary">@localizer["Reload"]</MudButton>
-            <MudButton Variant="Variant.Filled" OnClick="@(ExportToExcel)" Color="Color.Surface">@localizer["Export"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="ExportToExcel" Color="Color.Surface">@localizer["Export"]</MudButton>
         </div>
         <MudToolBarSpacer />
         <MudTextField @bind-Value="searchString" Immediate="true" Placeholder="@localizer["Search for Brands"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>

@@ -84,7 +84,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
                 ByteArray = base64,
-                FileName = $"brands_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                FileName = $"{nameof(Brands).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
         }

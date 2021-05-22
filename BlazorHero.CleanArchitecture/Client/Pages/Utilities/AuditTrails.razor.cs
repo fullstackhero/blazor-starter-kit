@@ -109,7 +109,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
                 ByteArray = base64,
-                FileName = $"audit_trails_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                FileName = $"{nameof(AuditTrails).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
         }
