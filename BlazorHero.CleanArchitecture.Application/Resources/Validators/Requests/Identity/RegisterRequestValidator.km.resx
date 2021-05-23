@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Email is not correct" xml:space="preserve">
-    <value>Email is not correct</value>
+    <value>អ៊ីម៉ែលមិនត្រឹមត្រូវ</value>
   </data>
   <data name="Email is required" xml:space="preserve">
     <value>តម្រូវបញ្ចូលអ៊ីម៉ែល</value>
   </data>
   <data name="First Name is required" xml:space="preserve">
-    <value>First Name is required</value>
+    <value>ឈ្មោះត្រូវបំពេញ</value>
   </data>
   <data name="Last Name is required" xml:space="preserve">
-    <value>Last Name is required</value>
+    <value>ត្រកូលត្រូវបំពេញ</value>
   </data>
   <data name="Password Confirmation is required!" xml:space="preserve">
-    <value>Password Confirmation is required!</value>
+    <value>លេខសម្ងាត់បញ្ជាក់ត្រូវបំពេញ</value>
   </data>
   <data name="Password is required!" xml:space="preserve">
     <value>តម្រូវបញ្ចូលលេខកូដសម្ងាត់</value>
@@ -151,9 +151,9 @@
     <value>លេខកូដសម្ងាត់មិនដូចគ្នា</value>
   </data>
   <data name="UserName is required" xml:space="preserve">
-    <value>UserName is required</value>
+    <value>ឈ្មោះអ្នកប្រើប្រាស់ត្រូវបំពេញ</value>
   </data>
   <data name="UserName must be at least of length 6" xml:space="preserve">
-    <value>UserName must be at least of length 6</value>
+    <value>ឈ្មោះអ្នកប្រើប្រាស់ត្រូវមានយ៉ាងតិច៦តួអក្សរ</value>
   </data>
 </root>

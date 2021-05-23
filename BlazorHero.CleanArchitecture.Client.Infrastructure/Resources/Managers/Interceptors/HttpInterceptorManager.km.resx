@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Name is required" xml:space="preserve">
-    <value>តម្រូវបំពេញឈ្មោះ</value>
+  <data name="Refreshed Token." xml:space="preserve">
+    <value>ធូឃីនថ្មី</value>
+  </data>
+  <data name="You are Logged Out." xml:space="preserve">
+    <value>អ្នកត្រូវបានចាកចេញពីប្រព័ន្ធ</value>
   </data>
 </root>

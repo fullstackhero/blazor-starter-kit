@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Name is required" xml:space="preserve">
-    <value>តម្រូវបំពេញឈ្មោះ</value>
+  <data name="E-Mail not confirmed." xml:space="preserve">
+    <value>អ៊ីម៉ែលមិនទាន់បានបញ្ជាក់</value>
+  </data>
+  <data name="Invalid Client Token." xml:space="preserve">
+    <value>កូដធូឃីនអតិថិជនមិនត្រឹមត្រូវ</value>
+  </data>
+  <data name="Invalid Credentials." xml:space="preserve">
+    <value>គណនីមិនត្រឹមត្រូវ</value>
+  </data>
+  <data name="Invalid token" xml:space="preserve">
+    <value>កូដធូឃីនមិនត្រឹមត្រូវ</value>
+  </data>
+  <data name="User Not Active. Please contact the administrator." xml:space="preserve">
+    <value>គណនីមិនទាន់សកម្ម សូមធ្វើការទាក់ទងអ្នករដ្ឋបាល</value>
+  </data>
+  <data name="User Not Found." xml:space="preserve">
+    <value>គណនិរកមិនឃើញ</value>
   </data>
 </root>

@@ -117,7 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Name is required" xml:space="preserve">
-    <value>តម្រូវបំពេញឈ្មោះ</value>
+  <data name="Audit trails" xml:space="preserve">
+    <value>កំណត់ត្រាប្រព័ន្ធ</value>
+  </data>
+  <data name="Date Time (Local)" xml:space="preserve">
+    <value>ម៉ោងកាលបរិឆ្ឆេទ(តំបន់)</value>
+  </data>
+  <data name="Date Time (UTC)" xml:space="preserve">
+    <value>ម៉ោងកាលបរិឆ្ឆេទ(សកល)</value>
+  </data>
+  <data name="New Values" xml:space="preserve">
+    <value>តម្លៃថ្មី</value>
+  </data>
+  <data name="Old Values" xml:space="preserve">
+    <value>តម្លៃចាស់</value>
+  </data>
+  <data name="Primary Key" xml:space="preserve">
+    <value>លេខកូដគោល</value>
+  </data>
+  <data name="Table Name" xml:space="preserve">
+    <value>ឈ្មោះតារាង</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>ប្រភេទ</value>
   </data>
 </root>

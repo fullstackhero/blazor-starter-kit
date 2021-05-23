@@ -117,7 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Name is required" xml:space="preserve">
-    <value>តម្រូវបំពេញឈ្មោះ</value>
+  <data name="Account Confirmed for" xml:space="preserve">
+    <value>គណនីបញ្ជាក់សម្រាប់</value>
+  </data>
+  <data name="Administrators Profile's Status cannot be toggled" xml:space="preserve">
+    <value>ស្ថានភាពគណនីរដ្ឋបាលមិនអាចផ្លាស់ប្តូរបាន</value>
+  </data>
+  <data name="An Error has occured!" xml:space="preserve">
+    <value>កំហុសត្រូវបានកើតឡើង</value>
+  </data>
+  <data name="An error occured while confirming" xml:space="preserve">
+    <value>កំហុសកើតឡើងកំឡុងពេលបញ្ជាក់</value>
+  </data>
+  <data name="clicking here" xml:space="preserve">
+    <value>ចុចទីនេះ</value>
+  </data>
+  <data name="Confirm Registration" xml:space="preserve">
+    <value>បញ្ជាក់ការចុះឈ្មោះ</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>អ៊ីម៉ែល</value>
+  </data>
+  <data name="is already registered." xml:space="preserve">
+    <value>ត្រូវបានចុះឈ្មោះរួចហើយ</value>
+  </data>
+  <data name="is already taken." xml:space="preserve">
+    <value>ត្រូវបានយករួចហើយ</value>
+  </data>
+  <data name="Not Allowed." xml:space="preserve">
+    <value>មិនអនុញ្ញាត្ត</value>
+  </data>
+  <data name="Password Reset Mail has been sent to your authorized EmailId." xml:space="preserve">
+    <value>លេខកូដកំណត់ឡើងវិញត្រូវបានផ្ញើទៅកាន់អ៊ីម៉ែលរបស់អ្នក</value>
+  </data>
+  <data name="Password Reset Successful!" xml:space="preserve">
+    <value>លេខកូដសម្ងាត់បានកំណត់ឡើងវិញដោយជោគជ័យ</value>
+  </data>
+  <data name="Please confirm your account by" xml:space="preserve">
+    <value>សូមបញ្ជាក់គណនីរបស់អ្នកដោយ</value>
+  </data>
+  <data name="Please reset your password by" xml:space="preserve">
+    <value>សូមកំណត់ឡើងវិញលេខកូដសម្ងាត់របស់អ្នកដោយ</value>
+  </data>
+  <data name="Reset Password" xml:space="preserve">
+    <value>កំណត់លេខកូដសម្ងាត់ឡើងវិញ</value>
+  </data>
+  <data name="Roles Updated" xml:space="preserve">
+    <value>តួនាទីបានធ្វើបច្ចុប្បន្នភាព</value>
+  </data>
+  <data name="User Registered" xml:space="preserve">
+    <value>អ្នកប្រើប្រាស់ត្រូវបានបង្កើត</value>
+  </data>
+  <data name="User Registered. Please check your Mailbox to verify!" xml:space="preserve">
+    <value>អ្នកប្រើប្រាស់ត្រូវបានបង្កើត​ សូមពិនិត្យមើលក្នុងប្រអប់សារអ៊ីម៉ែលរបស់អ្នកដើម្បីបញ្ជាក់!</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>ឈ្មោះអ្នកប្រើប្រាស់</value>
+  </data>
+  <data name="You can now use the /api/identity/token endpoint to generate JWT." xml:space="preserve">
+    <value>ពេលនេះអ្នកអាចប្រើប្រាស់អាសយដ្ឋាននេះ /api/identity/token endpoint ដើម្បីបង្កើត​ធូឃីន​JWT.</value>
   </data>
 </root>

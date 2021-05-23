@@ -133,7 +133,7 @@
     <value>លុប</value>
   </data>
   <data name="Delete Content" xml:space="preserve">
-    <value>Delete Content</value>
+    <value>អត្ថបទត្រូវបានលុប</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>ការពិពណ៌នា</value>
@@ -166,6 +166,6 @@
     <value>ចំណងជើង</value>
   </data>
   <data name="you" xml:space="preserve">
-    <value>you</value>
+    <value>អ្នក</value>
   </data>
 </root>
