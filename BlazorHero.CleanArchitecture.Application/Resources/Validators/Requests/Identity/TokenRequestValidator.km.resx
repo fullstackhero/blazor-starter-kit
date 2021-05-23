@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Email is not correct" xml:space="preserve">
-    <value>Email is not correct</value>
+    <value>អ៊ីម៉ែលមិនត្រឹមត្រូវ</value>
   </data>
   <data name="Email is required" xml:space="preserve">
     <value>តម្រូវបញ្ចូលអ៊ីម៉ែល</value>

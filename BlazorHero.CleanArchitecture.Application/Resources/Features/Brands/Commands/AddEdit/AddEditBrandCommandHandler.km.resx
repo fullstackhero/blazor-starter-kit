@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Name is required" xml:space="preserve">
-    <value>តម្រូវបំពេញឈ្មោះ</value>
+  <data name="Brand Not Found!" xml:space="preserve">
+    <value>ម៉ាករកមិនឃើញ!</value>
+  </data>
+  <data name="Brand Saved" xml:space="preserve">
+    <value>ម៉ាកបានរក្សាទុក</value>
+  </data>
+  <data name="Brand Updated" xml:space="preserve">
+    <value>ម៉ាកបានធ្វើបច្ចុប្បន្នភាព</value>
   </data>
 </root>

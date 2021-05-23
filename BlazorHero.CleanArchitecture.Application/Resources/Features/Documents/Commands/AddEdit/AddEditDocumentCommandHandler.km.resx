@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Name is required" xml:space="preserve">
-    <value>តម្រូវបំពេញឈ្មោះ</value>
+  <data name="Document Not Found!" xml:space="preserve">
+    <value>ឯកសាររកមិនឃើញ!</value>
+  </data>
+  <data name="Document Saved" xml:space="preserve">
+    <value>ឯកសាររក្សារទុក</value>
+  </data>
+  <data name="Document Updated" xml:space="preserve">
+    <value>ឯកសារធ្វើបច្ចុប្បន្នភាព</value>
   </data>
 </root>
