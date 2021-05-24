@@ -82,7 +82,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var imageFile = await e.File.RequestImageFileAsync(format, 400, 400);
                 var buffer = new byte[imageFile.Size];
                 await imageFile.OpenReadStream().ReadAsync(buffer);
-                var request = new UpdateProfilePictureRequest() { Data = buffer, FileName = fileName, Extension = extension, UploadType = Application.Enums.UploadType.ProfilePicture };
+                var request = new UpdateProfilePictureRequest { Data = buffer, FileName = fileName, Extension = extension, UploadType = Application.Enums.UploadType.ProfilePicture };
                 var result = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (result.Succeeded)
                 {
@@ -103,15 +103,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             var parameters = new DialogParameters
             {
-                //TODO: localize
-                {"ContentText", $"Do you want to delete the profile picture of {profileModel.Email} ?"}
+                {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), $"{localizer["Do you want to delete the profile picture of"]} {profileModel.Email} ?"}
             };
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(localizer["Delete"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                var request = new UpdateProfilePictureRequest() { Data = null, FileName = string.Empty, UploadType = Application.Enums.UploadType.ProfilePicture };
+                var request = new UpdateProfilePictureRequest { Data = null, FileName = string.Empty, UploadType = Application.Enums.UploadType.ProfilePicture };
                 var data = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (data.Succeeded)
                 {

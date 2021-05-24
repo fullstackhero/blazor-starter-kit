@@ -82,7 +82,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             var parameters = new DialogParameters();
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<RegisterUserModal>(localizer["Modal"], parameters, options);
+            var dialog = _dialogService.Show<RegisterUserModal>(localizer["Register New User"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {

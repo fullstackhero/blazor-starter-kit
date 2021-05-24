@@ -54,7 +54,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             string deleteContent = localizer["Delete Content"];
             var parameters = new DialogParameters
             {
-                {"ContentText", string.Format(deleteContent, id)}
+                {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
             };
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
             var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(localizer["Delete"], parameters, options);
@@ -95,7 +95,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<RoleModal>("Modal", parameters, options);
+            var dialog = _dialogService.Show<RoleModal>(id == null ? localizer["Create"] : localizer["Edit"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {

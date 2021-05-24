@@ -9,14 +9,9 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Application.Specifications;
-using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
-using Microsoft.EntityFrameworkCore;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
@@ -45,7 +40,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
         {
             await LoadData(state.Page, state.PageSize, state);
-            return new TableData<GetAllPagedProductsResponse>() { TotalItems = totalItems, Items = pagedData };
+            return new TableData<GetAllPagedProductsResponse> { TotalItems = totalItems, Items = pagedData };
         }
 
         private ClaimsPrincipal AuthenticationStateProviderUser { get; set; }
@@ -150,8 +145,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     });
                 }
             }
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<AddEditProductModal>("Modal", parameters, options);
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<AddEditProductModal>(id == 0 ? localizer["Create"] : localizer["Edit"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
@@ -164,10 +159,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             string deleteContent = localizer["Delete Content"];
             var parameters = new DialogParameters
             {
-                {"ContentText", string.Format(deleteContent, id)}
+                {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
             };
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(localizer["Delete"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {

@@ -89,13 +89,11 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
         private void Logout()
         {
-            string logoutConfirmationText = localizer["Logout Confirmation"];
-            string logoutText = localizer["Logout"];
             var parameters = new DialogParameters
             {
-                {"ContentText", logoutConfirmationText},
-                {"ButtonText", logoutText},
-                {"Color", Color.Error}
+                {nameof(Dialogs.Logout.ContentText), localizer["Logout Confirmation"]},
+                {nameof(Dialogs.Logout.ButtonText), localizer["Logout"]},
+                {nameof(Dialogs.Logout.Color), Color.Error}
             };
 
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };

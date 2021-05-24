@@ -53,10 +53,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private async Task Delete(int id)
         {
             string deleteContent = localizer["Delete Content"];
-            var parameters = new DialogParameters();
-            parameters.Add("ContentText", string.Format(deleteContent, id));
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
+            var parameters = new DialogParameters
+            {
+                {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
+            };
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(localizer["Delete"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
@@ -110,7 +112,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 }
             }
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<AddEditBrandModal>("Modal", parameters, options);
+            var dialog = _dialogService.Show<AddEditBrandModal>(id == 0 ? localizer["Create"] : localizer["Edit"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
