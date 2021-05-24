@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.LocalStorage;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
 {
@@ -21,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         [Parameter] public string CurrentUserId { get; set; }
         [Parameter] public string CurrentUserImageURL { get; set; }
         [CascadingParameter] private bool IsConnected { get; set; }
-        private List<ChatHistoryResponse> messages = new List<ChatHistoryResponse>();
+        private List<ChatHistoryResponse> messages = new();
 
         private class MessageRequest
         {
@@ -29,7 +30,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             public string message { get; set; }
         }
 
-        private MessageRequest model = new MessageRequest();
+        private MessageRequest model = new();
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -104,14 +105,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             CurrentUserId = user.GetUserId();
-            CurrentUserImageURL = await _localStorage.GetItemAsync<string>("userImageURL");
+            CurrentUserImageURL = await _localStorage.GetItemAsync<string>(LocalStorageConstants.Client.UserImageURL);
             if (!string.IsNullOrEmpty(CId))
             {
                 await LoadUserChat(CId);
             }
         }
 
-        public List<ChatUserResponse> UserList = new List<ChatUserResponse>();
+        public List<ChatUserResponse> UserList = new();
         [Parameter] public string CFullName { get; set; }
         [Parameter] public string CId { get; set; }
         [Parameter] public string CUserName { get; set; }

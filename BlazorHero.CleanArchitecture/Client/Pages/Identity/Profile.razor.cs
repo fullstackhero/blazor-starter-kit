@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Blazored.FluentValidation;
+using BlazorHero.CleanArchitecture.Shared.Constants.LocalStorage;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
@@ -85,7 +86,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var result = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (result.Succeeded)
                 {
-                    await _localStorage.SetItemAsync("userImageURL", result.Data);
+                    await _localStorage.SetItemAsync(LocalStorageConstants.Client.UserImageURL, result.Data);
                     _navigationManager.NavigateTo("/account", true);
                 }
                 else
@@ -114,7 +115,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var data = await _accountManager.UpdateProfilePictureAsync(request, UserId);
                 if (data.Succeeded)
                 {
-                    await _localStorage.RemoveItemAsync("userImageURL");
+                    await _localStorage.RemoveItemAsync(LocalStorageConstants.Client.UserImageURL);
                     ImageDataUrl = string.Empty;
                     _navigationManager.NavigateTo("/account", true);
                 }
