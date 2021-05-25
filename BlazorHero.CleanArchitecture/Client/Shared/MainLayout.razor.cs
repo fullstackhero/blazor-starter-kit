@@ -91,8 +91,8 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         {
             var parameters = new DialogParameters
             {
-                {nameof(Dialogs.Logout.ContentText), localizer["Logout Confirmation"]},
-                {nameof(Dialogs.Logout.ButtonText), localizer["Logout"]},
+                {nameof(Dialogs.Logout.ContentText), $"{localizer["Logout Confirmation"]}"},
+                {nameof(Dialogs.Logout.ButtonText), $"{localizer["Logout"]}"},
                 {nameof(Dialogs.Logout.Color), Color.Error}
             };
 
