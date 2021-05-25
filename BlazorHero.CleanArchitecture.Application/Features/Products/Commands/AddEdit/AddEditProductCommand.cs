@@ -29,7 +29,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
         public UploadRequest UploadRequest { get; set; }
     }
 
-    public class AddEditProductCommandHandler : IRequestHandler<AddEditProductCommand, Result<int>>
+    internal class AddEditProductCommandHandler : IRequestHandler<AddEditProductCommand, Result<int>>
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;

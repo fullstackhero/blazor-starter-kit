@@ -19,7 +19,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
         }
     }
 
-    public class GetProductImageQueryHandler : IRequestHandler<GetProductImageQuery, Result<string>>
+    internal class GetProductImageQueryHandler : IRequestHandler<GetProductImageQuery, Result<string>>
     {
         private readonly IUnitOfWork _unitOfWork;
 

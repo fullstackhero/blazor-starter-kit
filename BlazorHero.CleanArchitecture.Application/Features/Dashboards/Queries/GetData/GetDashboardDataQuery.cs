@@ -17,7 +17,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.G
         
     }
 
-    public class GetDashboardDataQueryHandler : IRequestHandler<GetDashboardDataQuery, Result<DashboardDataResponse>>
+    internal class GetDashboardDataQueryHandler : IRequestHandler<GetDashboardDataQuery, Result<DashboardDataResponse>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserService _userService;

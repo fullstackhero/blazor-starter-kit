@@ -26,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
         public UploadRequest UploadRequest { get; set; }
     }
 
-    public class AddEditDocumentCommandHandler : IRequestHandler<AddEditDocumentCommand, Result<int>>
+    internal class AddEditDocumentCommandHandler : IRequestHandler<AddEditDocumentCommand, Result<int>>
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;

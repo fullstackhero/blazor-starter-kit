@@ -22,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddE
         public decimal Tax { get; set; }
     }
 
-    public class AddEditBrandCommandHandler : IRequestHandler<AddEditBrandCommand, Result<int>>
+    internal class AddEditBrandCommandHandler : IRequestHandler<AddEditBrandCommand, Result<int>>
     {
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<AddEditBrandCommandHandler> _localizer;

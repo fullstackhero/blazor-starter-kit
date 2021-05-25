@@ -13,7 +13,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetBy
         public int Id { get; set; }
     }
 
-    public class GetProductByIdQueryHandler : IRequestHandler<GetBrandByIdQuery, Result<GetBrandByIdResponse>>
+    internal class GetProductByIdQueryHandler : IRequestHandler<GetBrandByIdQuery, Result<GetBrandByIdResponse>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
