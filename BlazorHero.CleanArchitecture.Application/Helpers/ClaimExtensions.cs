@@ -17,7 +17,7 @@ namespace BlazorHero.CleanArchitecture.Application.Helpers
             FieldInfo[] fields = policy.GetFields(BindingFlags.Static | BindingFlags.Public);
             foreach (FieldInfo fi in fields)
             {
-                allPermissions.Add(new RoleClaimsResponse { Value = fi.GetValue(null).ToString(), Type = ApplicationClaimTypes.Permission });
+                allPermissions.Add(new RoleClaimsResponse { Value = fi.GetValue(null)?.ToString(), Type = ApplicationClaimTypes.Permission, Group = policy.Name });
             }
         }
 
