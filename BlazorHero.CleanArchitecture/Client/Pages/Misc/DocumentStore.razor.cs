@@ -116,7 +116,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                 }
             }
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<AddEditDocumentModal>("Modal", parameters, options);
+            var dialog = _dialogService.Show<AddEditDocumentModal>(id == 0 ? localizer["Create"] : localizer["Edit"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {

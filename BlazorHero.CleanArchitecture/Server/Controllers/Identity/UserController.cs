@@ -85,5 +85,13 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             return Ok(await _userService.ResetPasswordAsync(request));
         }
+
+        [Authorize(Policy = Permissions.Users.View)]
+        [HttpGet("export")]
+        public async Task<IActionResult> Export(string searchString = "")
+        {
+            var data = await _userService.ExportToExcelAsync(searchString);
+            return Ok(data);
+        }
     }
 }

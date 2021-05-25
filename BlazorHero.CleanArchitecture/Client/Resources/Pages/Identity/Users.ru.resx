@@ -138,6 +138,12 @@
   <data name="Email Confirmation" xml:space="preserve">
     <value>Email подтверждён</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Экспорт в Excel</value>
+  </data>
+  <data name="Filtered Users exported" xml:space="preserve">
+    <value>Отфильтрованные пользователи экспортированы</value>
+  </data>
   <data name="First Name" xml:space="preserve">
     <value>Имя</value>
   </data>
@@ -173,6 +179,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Пользователи</value>
+  </data>
+  <data name="Users exported" xml:space="preserve">
+    <value>Пользователи экспортированы</value>
   </data>
   <data name="View Profile" xml:space="preserve">
     <value>Посмотреть профиль</value>

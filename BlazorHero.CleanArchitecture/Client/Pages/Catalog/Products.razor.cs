@@ -40,7 +40,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
         {
             await LoadData(state.Page, state.PageSize, state);
-            return new TableData<GetAllPagedProductsResponse>() { TotalItems = totalItems, Items = pagedData };
+            return new TableData<GetAllPagedProductsResponse> { TotalItems = totalItems, Items = pagedData };
         }
 
         private ClaimsPrincipal AuthenticationStateProviderUser { get; set; }
@@ -64,6 +64,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     if (string.IsNullOrWhiteSpace(searchString))
                         return true;
                     if (element.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+                        return true;
+                    if (element.Brand?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
                         return true;
                     if (element.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
                         return true;
@@ -112,13 +114,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task ExportToExcel()
         {
-            var base64 = await _productManager.ExportToExcelAsync();
+            var base64 = await _productManager.ExportToExcelAsync(searchString);
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
                 ByteArray = base64,
-                FileName = $"products_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                FileName = $"{nameof(Products).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
+            _snackBar.Add(string.IsNullOrWhiteSpace(searchString)
+                ? localizer["Products exported"]
+                : localizer["Filtered Products exported"], Severity.Success);
         }
 
         private async Task InvokeModal(int id = 0)
@@ -140,8 +145,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     });
                 }
             }
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<AddEditProductModal>("Modal", parameters, options);
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<AddEditProductModal>(id == 0 ? localizer["Create"] : localizer["Edit"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
@@ -154,10 +159,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             string deleteContent = localizer["Delete Content"];
             var parameters = new DialogParameters
             {
-                {"ContentText", string.Format(deleteContent, id)}
+                {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
             };
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(localizer["Delete"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {

@@ -24,9 +24,11 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Pr
             return await response.ToResult<int>();
         }
 
-        public async Task<string> ExportToExcelAsync()
+        public async Task<string> ExportToExcelAsync(string searchString = "")
         {
-            var response = await _httpClient.GetAsync(Routes.ProductsEndpoints.Export);
+            var response = await _httpClient.GetAsync(string.IsNullOrWhiteSpace(searchString)
+                ? Routes.ProductsEndpoints.Export
+                : Routes.ProductsEndpoints.ExportFiltered(searchString));
             var data = await response.Content.ReadAsStringAsync();
             return data;
         }

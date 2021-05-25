@@ -7,6 +7,7 @@
         <div class="justify-center mud-text-align-center">
             <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(()=>InvokeModal())">@localizer["Register New User"]</MudButton>
             <MudButton Variant="Variant.Filled" OnClick="GetUsersAsync" Color="Color.Secondary">@localizer["Reload"]</MudButton>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface">@localizer["Export"]</MudButton>
         </div>
         <MudToolBarSpacer />
         <MudTextField @bind-Value="searchString" Immediate="true" FullWidth=false Placeholder="@localizer["Search For Users"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>

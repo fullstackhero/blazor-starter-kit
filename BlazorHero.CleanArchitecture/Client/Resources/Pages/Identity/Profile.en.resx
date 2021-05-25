@@ -123,6 +123,9 @@
   <data name="Delete Picture" xml:space="preserve">
     <value>Delete Picture</value>
   </data>
+  <data name="Do you want to delete the profile picture of" xml:space="preserve">
+    <value>Do you want to delete the profile picture of</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>

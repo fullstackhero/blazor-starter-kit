@@ -18,6 +18,15 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Br
             _httpClient = httpClient;
         }
 
+        public async Task<string> ExportToExcelAsync(string searchString = "")
+        {
+            var response = await _httpClient.GetAsync(string.IsNullOrWhiteSpace(searchString)
+                ? Routes.BrandsEndpoints.Export
+                : Routes.BrandsEndpoints.ExportFiltered(searchString));
+            var data = await response.Content.ReadAsStringAsync();
+            return data;
+        }
+
         public async Task<IResult<int>> DeleteAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"{Routes.BrandsEndpoints.Delete}/{id}");

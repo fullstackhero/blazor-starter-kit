@@ -126,6 +126,9 @@
   <data name="Brands" xml:space="preserve">
     <value>Marche</value>
   </data>
+  <data name="Brands exported" xml:space="preserve">
+    <value>Brands exported</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>Crea</value>
   </data>
@@ -140,6 +143,12 @@
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Modifica</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Filtered Brands exported" xml:space="preserve">
+    <value>Filtered Brands exported</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>

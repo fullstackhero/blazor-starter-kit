@@ -44,9 +44,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
 
         [Authorize(Policy = Permissions.Products.View)]
         [HttpGet("export")]
-        public async Task<IActionResult> Export()
+        public async Task<IActionResult> Export(string searchString = "")
         {
-            return Ok(await _mediator.Send(new ExportQuery()));
+            return Ok(await _mediator.Send(new ExportProductsQuery(searchString)));
         }
     }
 }

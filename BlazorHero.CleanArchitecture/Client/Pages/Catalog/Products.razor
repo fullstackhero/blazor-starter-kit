@@ -10,7 +10,7 @@
             <div class="justify-center mud-text-align-center">
                 <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="@(()=>InvokeModal(0))">@localizer["Create"]</MudButton>
                 <MudButton Variant="Variant.Filled" OnClick="@(()=>OnSearch(""))" Color="Color.Secondary">@localizer["Reload"]</MudButton>
-                <MudButton Variant="Variant.Filled" OnClick="@(ExportToExcel)" Color="Color.Surface">@localizer["Export"]</MudButton>
+                <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface">@localizer["Export"]</MudButton>
             </div>
         }
         <MudToolBarSpacer />
@@ -30,7 +30,9 @@
         <MudTd DataLabel="Name">
             <MudHighlighter Text="@context.Name" HighlightedText="@searchString" />
         </MudTd>
-        <MudTd DataLabel="Brand">@context.Brand</MudTd>
+        <MudTd DataLabel="Brand">
+            <MudHighlighter Text="@context.Brand" HighlightedText="@searchString" />
+        </MudTd>
         <MudTd DataLabel="Description">
             <MudHighlighter Text="@context.Description" HighlightedText="@searchString" />
         </MudTd>

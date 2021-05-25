@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
+using Microsoft.JSInterop;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
@@ -52,10 +53,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private async Task Delete(int id)
         {
             string deleteContent = localizer["Delete Content"];
-            var parameters = new DialogParameters();
-            parameters.Add("ContentText", string.Format(deleteContent, id));
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>("Delete", parameters, options);
+            var parameters = new DialogParameters
+            {
+                {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
+            };
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(localizer["Delete"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
@@ -77,6 +80,20 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             }
         }
 
+        private async Task ExportToExcel()
+        {
+            var base64 = await _brandManager.ExportToExcelAsync(searchString);
+            await _jsRuntime.InvokeVoidAsync("Download", new
+            {
+                ByteArray = base64,
+                FileName = $"{nameof(Brands).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            });
+            _snackBar.Add(string.IsNullOrWhiteSpace(searchString)
+                ? localizer["Brands exported"]
+                : localizer["Filtered Brands exported"], Severity.Success);
+        }
+
         private async Task InvokeModal(int id = 0)
         {
             var parameters = new DialogParameters();
@@ -95,7 +112,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 }
             }
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<AddEditBrandModal>("Modal", parameters, options);
+            var dialog = _dialogService.Show<AddEditBrandModal>(id == 0 ? localizer["Create"] : localizer["Edit"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
@@ -113,6 +130,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
             if (brand.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (brand.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

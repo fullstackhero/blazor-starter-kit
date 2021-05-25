@@ -28,6 +28,7 @@ namespace BlazorHero.CleanArchitecture.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddSignalR();
             services.AddDatabase(_configuration);
             services.AddIdentity();
@@ -59,6 +60,7 @@ namespace BlazorHero.CleanArchitecture.Server
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors();
             app.UseExceptionHandling(env);
             app.UseHttpsRedirection();
             app.UseHangfireDashboard("/jobs");

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
@@ -63,11 +64,25 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             return false;
         }
 
+        private async Task ExportToExcel()
+        {
+            var base64 = await _userManager.ExportToExcelAsync(searchString);
+            await _jsRuntime.InvokeVoidAsync("Download", new
+            {
+                ByteArray = base64,
+                FileName = $"{nameof(Users).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            });
+            _snackBar.Add(string.IsNullOrWhiteSpace(searchString)
+                ? localizer["Users exported"]
+                : localizer["Filtered Users exported"], Severity.Success);
+        }
+
         private async Task InvokeModal()
         {
             var parameters = new DialogParameters();
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<RegisterUserModal>(localizer["Modal"], parameters, options);
+            var dialog = _dialogService.Show<RegisterUserModal>(localizer["Register New User"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {

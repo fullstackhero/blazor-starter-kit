@@ -135,14 +135,35 @@
   <data name="Confirm Registration" xml:space="preserve">
     <value>Подтверждение регистрации</value>
   </data>
+  <data name="CreatedOn (Local)" xml:space="preserve">
+    <value>Дата создания (локальное)</value>
+  </data>
+  <data name="CreatedOn (UTC)" xml:space="preserve">
+    <value>Дата создания (UTC)</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>Email подтверждён</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="is already registered." xml:space="preserve">
     <value>уже зарегистрирован.</value>
   </data>
   <data name="is already taken." xml:space="preserve">
     <value>занят.</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Активный</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Фамилия</value>
   </data>
   <data name="Not Allowed." xml:space="preserve">
     <value>Нет доступно.</value>
@@ -153,11 +174,20 @@
   <data name="Password Reset Successful!" xml:space="preserve">
     <value>Сброс пароля выполнен успешно!</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="PhoneNumberConfirmed" xml:space="preserve">
+    <value>Номер телефона подтверждён</value>
+  </data>
   <data name="Please confirm your account by" xml:space="preserve">
     <value>Пожалуйста, подтвердите аккаунт с помощью</value>
   </data>
   <data name="Please reset your password by" xml:space="preserve">
     <value>Пожалуйста, сбросьте пароль с помощью</value>
+  </data>
+  <data name="ProfilePictureDataUrl" xml:space="preserve">
+    <value>Url изображения профиля</value>
   </data>
   <data name="Reset Password" xml:space="preserve">
     <value>Сброс пароля</value>

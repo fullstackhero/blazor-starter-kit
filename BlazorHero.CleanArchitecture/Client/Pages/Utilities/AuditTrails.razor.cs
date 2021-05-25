@@ -10,8 +10,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
 {
     public partial class AuditTrails
     {
-        public List<RelatedAuditTrail> Trails = new List<RelatedAuditTrail>();
-        private RelatedAuditTrail Trail = new RelatedAuditTrail();
+        public List<RelatedAuditTrail> Trails = new();
+        private RelatedAuditTrail Trail = new();
         private string searchString = "";
         private bool _dense = true;
         private bool _striped = true;
@@ -105,13 +105,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
 
         private async Task ExportToExcelAsync()
         {
-            var base64 = await _auditManager.DownloadFileAsync();
+            var base64 = await _auditManager.DownloadFileAsync(searchString, _searchInOldValues, _searchInNewValues);
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
                 ByteArray = base64,
-                FileName = $"audit_trails_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                FileName = $"{nameof(AuditTrails).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
+            _snackBar.Add(string.IsNullOrWhiteSpace(searchString)
+                ? localizer["Audit Trails exported"]
+                : localizer["Filtered Audit Trails exported"], Severity.Success);
         }
 
         public class RelatedAuditTrail : AuditResponse

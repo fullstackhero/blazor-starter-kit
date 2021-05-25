@@ -29,6 +29,9 @@
             <MudAppBar Elevation="4" Color="Color.Primary">
                 <MudIcon Icon="@CustomIcons.BlazorHero" Size="Size.Large" ViewBox="0 0 500 500" />
                 <MudText Typo="Typo.h6" Class="ml-4">Blazor Hero</MudText>
+                <MudToolBar DisableGutters="true">
+                    <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
+                </MudToolBar>
                 <MudAppBarSpacer />
                 <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
                     <MudButton Variant="Variant.Filled" Color="Color.Secondary" Link="https://www.buymeacoffee.com/codewithmukesh" Target="_blank">Buy Me A Coffee!</MudButton>
@@ -52,6 +55,7 @@
                     </MudTooltip>
                 </MudHidden>
                 <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                    <LanguageSelector />
                     <MudMenu Icon="@Icons.Filled.Settings" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
                         <div class="px-2">
                             <MudTooltip Text="@localizer["Toggle Dark Mode"]">
@@ -86,9 +90,6 @@
                 <NavMenu />
             </MudDrawer>
             <MudMainContent>
-                <MudToolBar DisableGutters="true">
-                    <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
-                </MudToolBar>
                 <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
                     <CascadingValue Value="hubConnection">
                         @Body
