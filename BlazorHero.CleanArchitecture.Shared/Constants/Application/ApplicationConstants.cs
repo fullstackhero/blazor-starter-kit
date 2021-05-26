@@ -13,6 +13,11 @@
             public const string SendChatNotification = "ChatNotificationAsync";
             public const string ReceiveMessage = "ReceiveMessage";
             public const string SendMessage = "SendMessageAsync";
+
+            public const string OnConnect = "OnConnectAsync";
+            public const string ConnectUser = "ConnectUser";
+            public const string OnDisconnect = "OnDisconnectAsync";
+            public const string DisconnectUser = "DisconnectUser";
         }
         public static class Cache
         {

@@ -84,14 +84,35 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 await hubConnection.StartAsync();
             }
-            hubConnection.On<ChatHistory, string>("ReceiveMessage", async (chatHistory, userName) =>
+
+            hubConnection.On<string>(ApplicationConstants.SignalR.ConnectUser, async (userId) =>
+            {
+                var connectedUser = UserList.Find(x => x.Id.Equals(userId));
+                if (connectedUser is {IsOnline: false})
+                {
+                    connectedUser.IsOnline = true;
+                    _snackBar.Add($"{connectedUser.UserName} {localizer["Logged In."]}", Severity.Info);
+                    StateHasChanged();
+                }
+            });
+            hubConnection.On<string>(ApplicationConstants.SignalR.DisconnectUser, async (userId) =>
+            {
+                var disconnectedUser = UserList.Find(x => x.Id.Equals(userId));
+                if (disconnectedUser is {IsOnline: true})
+                {
+                    disconnectedUser.IsOnline = false;
+                    _snackBar.Add($"{disconnectedUser.UserName} {localizer["Logged Out."]}", Severity.Info);
+                    StateHasChanged();
+                }
+            });
+            hubConnection.On<ChatHistory, string>(ApplicationConstants.SignalR.ReceiveMessage, async (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
                          messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
-                         await hubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, $"New Message From {userName}", CId, CurrentUserId);
+                         await hubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, $"{localizer["New Message From"]} {userName}", CId, CurrentUserId);
                      }
                      else if ((CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                      {
@@ -178,6 +199,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         {
             ChatDrawer = anchor;
             open = true;
+        }
+
+        private Color GetUserStatusBadgeColor(bool isOnline)
+        {
+            switch (isOnline)
+            {
+                case false:
+                    return Color.Error;
+                case true:
+                    return Color.Success;
+            }
         }
     }
 }

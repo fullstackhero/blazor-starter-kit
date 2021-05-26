@@ -26,6 +26,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             if (user.Identity?.IsAuthenticated == true)
             {
                 CurrentUserId = user.GetUserId();
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);
                 this.FirstName = user.GetFirstName();
                 if (this.FirstName.Length > 0)
                 {
@@ -87,7 +88,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             });
         }
 
-        private void Logout()
+        private async Task LogoutAsync()
         {
             var parameters = new DialogParameters
             {
@@ -98,7 +99,13 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
 
-            _dialogService.Show<Dialogs.Logout>(localizer["Logout"], parameters, options);
+            var dialog = _dialogService.Show<Dialogs.Logout>(localizer["Logout"], parameters, options);
+            var result = await dialog.Result;
+            if (!result.Cancelled)
+            {
+                //TODO check it!
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnDisconnect, CurrentUserId);
+            }
         }
 
         private void DrawerToggle()

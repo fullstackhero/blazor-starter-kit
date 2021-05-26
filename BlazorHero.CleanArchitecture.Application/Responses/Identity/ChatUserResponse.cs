@@ -11,6 +11,7 @@ namespace BlazorHero.CleanArchitecture.Application.Responses.Identity
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
+        public bool IsOnline { get; set; }
         public virtual ICollection<ChatHistory> ChatHistoryFromUsers { get; set; }
         public virtual ICollection<ChatHistory> ChatHistoryToUsers { get; set; }
     }

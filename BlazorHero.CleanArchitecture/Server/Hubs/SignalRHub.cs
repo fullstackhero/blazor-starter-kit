@@ -7,6 +7,16 @@ namespace BlazorHero.CleanArchitecture.Server.Hubs
 {
     public class SignalRHub : Hub
     {
+        public async Task OnConnectAsync(string userId)
+        {
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.ConnectUser, userId);
+        }
+
+        public async Task OnDisconnectAsync(string userId)
+        {
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.DisconnectUser, userId);
+        }
+
         public async Task SendMessageAsync(ChatHistory chatHistory, string userName)
         {
             await Clients.All.SendAsync(ApplicationConstants.SignalR.ReceiveMessage, chatHistory, userName);
