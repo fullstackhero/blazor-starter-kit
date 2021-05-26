@@ -22,6 +22,7 @@
         <DialogContent>
             <MudTextField For="@(() => RoleModel.Id)" @bind-Value="RoleModel.Id" Label="@localizer["Role ID"]" Disabled />
             <MudTextField For="@(() => RoleModel.Name)" @bind-Value="RoleModel.Name" Label="@localizer["Role Name"]" />
+            <MudTextField For="@(() => RoleModel.Description)" @bind-Value="RoleModel.Description" Label="@localizer["Description"]" />
         </DialogContent>
         <DialogActions>
             <MudButton Variant="Variant.Filled" OnClick="Cancel">@localizer["Cancel"]</MudButton>

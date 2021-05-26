@@ -27,7 +27,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
     public class UserService : IUserService
     {
         private readonly UserManager<BlazorHeroUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<BlazorHeroRole> _roleManager;
         private readonly IMailService _mailService;
         private readonly IStringLocalizer<UserService> _localizer;
         private readonly IExcelService _excelService;
@@ -36,7 +36,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         public UserService(
             UserManager<BlazorHeroUser> userManager,
             IMapper mapper,
-            RoleManager<IdentityRole> roleManager,
+            RoleManager<BlazorHeroRole> roleManager,
             IMailService mailService,
             IStringLocalizer<UserService> localizer,
             IExcelService excelService)

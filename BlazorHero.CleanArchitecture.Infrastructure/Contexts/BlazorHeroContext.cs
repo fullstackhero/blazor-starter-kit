@@ -29,9 +29,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Document> Documents { get; set; }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
-            foreach (var entry in ChangeTracker.Entries<AuditableEntity>().ToList())
+            foreach (var entry in ChangeTracker.Entries<IAuditableEntity>().ToList())
             {
                 switch (entry.State)
                 {
@@ -84,7 +84,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                 entity.ToTable(name: "Users", "Identity");
             });
 
-            builder.Entity<IdentityRole>(entity =>
+            builder.Entity<BlazorHeroRole>(entity =>
             {
                 entity.ToTable(name: "Roles", "Identity");
             });

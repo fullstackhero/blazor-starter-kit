@@ -102,7 +102,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             services
                 .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
                 .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>()
-                .AddIdentity<BlazorHeroUser, IdentityRole>(options =>
+                .AddIdentity<BlazorHeroUser, BlazorHeroRole>(options =>
                 {
                     options.Password.RequiredLength = 6;
                     options.Password.RequireDigit = false;

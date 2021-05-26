@@ -24,13 +24,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private const string InvalidErrorMessage = "Invalid email or password.";
 
         private readonly UserManager<BlazorHeroUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<BlazorHeroRole> _roleManager;
         private readonly AppConfiguration _appConfig;
         private readonly SignInManager<BlazorHeroUser> _signInManager;
         private readonly IStringLocalizer<IdentityService> _localizer;
 
         public IdentityService(
-            UserManager<BlazorHeroUser> userManager, RoleManager<IdentityRole> roleManager,
+            UserManager<BlazorHeroUser> userManager, RoleManager<BlazorHeroRole> roleManager,
             IOptions<AppConfiguration> appConfig, SignInManager<BlazorHeroUser> signInManager,
             IStringLocalizer<IdentityService> localizer)
         {

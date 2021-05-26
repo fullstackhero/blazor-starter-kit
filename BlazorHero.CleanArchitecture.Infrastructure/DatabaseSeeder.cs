@@ -17,9 +17,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
         private readonly ILogger<DatabaseSeeder> _logger;
         private readonly BlazorHeroContext _db;
         private readonly UserManager<BlazorHeroUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<BlazorHeroRole> _roleManager;
 
-        public DatabaseSeeder(UserManager<BlazorHeroUser> userManager, RoleManager<IdentityRole> roleManager, BlazorHeroContext db, ILogger<DatabaseSeeder> logger)
+        public DatabaseSeeder(UserManager<BlazorHeroUser> userManager, RoleManager<BlazorHeroRole> roleManager, BlazorHeroContext db, ILogger<DatabaseSeeder> logger)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -52,7 +52,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
             Task.Run(async () =>
             {
                 //Check if Role Exists
-                var adminRole = new IdentityRole(RoleConstants.AdministratorRole);
+                var adminRole = new BlazorHeroRole(RoleConstants.AdministratorRole, "Administrator role with full permissions");
                 var adminRoleInDb = await _roleManager.FindByNameAsync(RoleConstants.AdministratorRole);
                 if (adminRoleInDb == null)
                 {
@@ -93,7 +93,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
             Task.Run(async () =>
             {
                 //Check if Role Exists
-                var basicRole = new IdentityRole(RoleConstants.BasicRole);
+                var basicRole = new BlazorHeroRole(RoleConstants.BasicRole, "Basic role with default permissions");
                 var basicRoleInDb = await _roleManager.FindByNameAsync(RoleConstants.BasicRole);
                 if (basicRoleInDb == null)
                 {

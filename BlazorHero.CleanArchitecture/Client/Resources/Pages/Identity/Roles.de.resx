@@ -129,6 +129,9 @@
   <data name="Delete Content" xml:space="preserve">
     <value>Do you want to delete the role with Id {0}?</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Bearbeiten</value>
   </data>

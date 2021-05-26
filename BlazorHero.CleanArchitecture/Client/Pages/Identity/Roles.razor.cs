@@ -90,7 +90,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     parameters.Add(nameof(RoleModal.RoleModel), new RoleRequest
                     {
                         Id = role.Id,
-                        Name = role.Name
+                        Name = role.Name,
+                        Description = role.Description
                     });
                 }
             }
@@ -113,6 +114,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
             if (role.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (role.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
