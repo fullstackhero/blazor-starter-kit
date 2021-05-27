@@ -34,9 +34,16 @@
             public const string Delete = "Permissions.Roles.Delete";
         }
 
+        public static class Communication
+        {
+            public const string Chat = "Permissions.Communication.Chat";
+        }
+
         public static class Preferences
         {
-            //TODO: add permissions
+            public const string ChangeLanguage = "Permissions.Preferences.ChangeLanguage";
+
+            //TODO - add permissions
         }
     }
 }

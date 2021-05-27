@@ -87,7 +87,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             allPermissions.GetPermissions(typeof(Permissions.Brands), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Preferences), roleId);
             //You could have your own method to refactor the below line, maybe by using Reflection and fetch directly from a class, else assume that Admin has all the roles assigned and retreive the Admin's roles here via the DB/Identity.RoleClaims table.
-            allPermissions.Add(new RoleClaimsResponse { Value = "Permissions.Communication.Chat", Type = ApplicationClaimTypes.Permission, Group = "Communication" });
+            allPermissions.Add(new RoleClaimsResponse { Value = Permissions.Communication.Chat, Type = ApplicationClaimTypes.Permission, Group = "Communication" });
 
             #endregion GetPermissions
 

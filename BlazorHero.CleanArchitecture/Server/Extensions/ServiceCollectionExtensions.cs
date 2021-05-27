@@ -26,14 +26,57 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
+using BlazorHero.CleanArchitecture.Server.Localization;
+using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
     public static class ServiceCollectionExtensions
     {
+        internal static async Task<IStringLocalizer> GetRegisteredServerLocalizerAsync<T>(this IServiceCollection services) where T : class
+        {
+            var serviceProvider = services.BuildServiceProvider();
+            await SetCultureFromServerPreferenceAsync(serviceProvider);
+            var localizer = serviceProvider.GetService<IStringLocalizer<T>>();
+            await serviceProvider.DisposeAsync();
+            return localizer;
+        }
+
+        private static async Task SetCultureFromServerPreferenceAsync(IServiceProvider serviceProvider)
+        {
+            var storageService = serviceProvider.GetService<ServerPreferenceManager>();
+            if (storageService != null)
+            {
+                // TODO - should implement ServerStorageProvider to work correctly!
+                CultureInfo culture;
+                var preference = await storageService.GetPreference() as ServerPreference;
+                if (preference != null)
+                    culture = new CultureInfo(preference.LanguageCode);
+                else
+                    culture = new CultureInfo(LocalizationConstants.SupportedLanguages.FirstOrDefault()?.Code ?? "en-US");
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
+                CultureInfo.CurrentCulture = culture;
+                CultureInfo.CurrentUICulture = culture;
+            }
+        }
+
+        public static IServiceCollection AddServerLocalization(this IServiceCollection services)
+        {
+            services.TryAddTransient(typeof(IStringLocalizer<>), typeof(ServerLocalizer<>));
+            return services;
+        }
+
         public static AppConfiguration GetApplicationSettings(
            this IServiceCollection services,
            IConfiguration configuration)
@@ -45,7 +88,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
         public static void RegisterSwagger(this IServiceCollection services)
         {
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(async c =>
             {
                 //TODO - Lowercase Swagger Documents
                 //c.DocumentFilter<LowercaseDocumentFilter>();
@@ -55,12 +98,15 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 {
                     Version = "v1",
                     Title = "BlazorHero.CleanArchitecture",
-                    License = new OpenApiLicense()
+                    License = new OpenApiLicense
                     {
                         Name = "MIT License",
                         Url = new Uri("https://opensource.org/licenses/MIT")
                     }
                 });
+
+                var localizer = await GetRegisteredServerLocalizerAsync<ServerCommonResources>(services);
+
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -68,7 +114,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
-                    Description = "Input your Bearer token in this format - Bearer {your token here} to access this API",
+                    Description = localizer["Input your Bearer token in this format - Bearer {your token here} to access this API"],
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
@@ -96,6 +142,13 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 .AddDbContext<BlazorHeroContext>(options => options
                     .UseSqlServer(configuration.GetConnectionString("DefaultConnection")))
             .AddTransient<IDatabaseSeeder, DatabaseSeeder>();
+
+        public static IServiceCollection AddCurrentUserService(this IServiceCollection services)
+        {
+            services.AddHttpContextAccessor();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            return services;
+        }
 
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
@@ -153,7 +206,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                     authentication.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     authentication.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
-                .AddJwtBearer(bearer =>
+                .AddJwtBearer(async bearer =>
                 {
                     bearer.RequireHttpsMetadata = false;
                     bearer.SaveToken = true;
@@ -166,7 +219,10 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                         RoleClaimType = ClaimTypes.Role,
                         ClockSkew = TimeSpan.Zero
                     };
-                    bearer.Events = new JwtBearerEvents()
+
+                    var localizer = await GetRegisteredServerLocalizerAsync<ServerCommonResources>(services);
+
+                    bearer.Events = new JwtBearerEvents
                     {
                         OnAuthenticationFailed = c =>
                         {
@@ -180,14 +236,14 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                             context.HandleResponse();
                             context.Response.StatusCode = 401;
                             context.Response.ContentType = "application/json";
-                            var result = JsonConvert.SerializeObject(Result.Fail("You are not Authorized."));
+                            var result = JsonConvert.SerializeObject(Result.Fail(localizer["You are not Authorized."]));
                             return context.Response.WriteAsync(result);
                         },
                         OnForbidden = context =>
                         {
                             context.Response.StatusCode = 403;
                             context.Response.ContentType = "application/json";
-                            var result = JsonConvert.SerializeObject(Result.Fail("You are not authorized to access this resource."));
+                            var result = JsonConvert.SerializeObject(Result.Fail(localizer["You are not authorized to access this resource."]));
                             return context.Response.WriteAsync(result);
                         },
                     };
@@ -197,11 +253,13 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 // Here I stored necessary permissions/roles in a constant
                 foreach (var prop in typeof(Permissions).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy))
                 {
-                    options.AddPolicy(prop.GetValue(null).ToString(), policy => policy.RequireClaim(ApplicationClaimTypes.Permission, prop.GetValue(null).ToString()));
+                    var propertyValue = prop.GetValue(null);
+                    if (propertyValue is not null)
+                    {
+                        options.AddPolicy(propertyValue.ToString(), policy => policy.RequireClaim(ApplicationClaimTypes.Permission, propertyValue.ToString()));
+                    }
                 }
             });
-            services.AddHttpContextAccessor();
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
             return services;
         }
     }

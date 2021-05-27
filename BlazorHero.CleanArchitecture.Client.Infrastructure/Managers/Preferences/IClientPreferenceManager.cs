@@ -9,7 +9,5 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preference
         Task<MudTheme> GetCurrentThemeAsync();
 
         Task<bool> ToggleDarkModeAsync();
-
-        Task ChangeLanguageAsync(string languageCode);
     }
 }

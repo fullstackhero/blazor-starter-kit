@@ -12,7 +12,7 @@ using System.Net.Http.Json;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Routes;
-using BlazorHero.CleanArchitecture.Shared.Constants.LocalStorage;
+using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Authentication
@@ -51,11 +51,11 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
                 var token = result.Data.Token;
                 var refreshToken = result.Data.RefreshToken;
                 var userImageURL = result.Data.UserImageURL;
-                await _localStorage.SetItemAsync(LocalStorageConstants.Client.AuthToken, token);
-                await _localStorage.SetItemAsync(LocalStorageConstants.Client.RefreshToken, refreshToken);
+                await _localStorage.SetItemAsync(StorageConstants.Local.AuthToken, token);
+                await _localStorage.SetItemAsync(StorageConstants.Local.RefreshToken, refreshToken);
                 if (!string.IsNullOrEmpty(userImageURL))
                 {
-                    await _localStorage.SetItemAsync(LocalStorageConstants.Client.UserImageURL, userImageURL);
+                    await _localStorage.SetItemAsync(StorageConstants.Local.UserImageURL, userImageURL);
                 }
                 ((BlazorHeroStateProvider)this._authenticationStateProvider).MarkUserAsAuthenticated(model.Email);
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -69,9 +69,9 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
 
         public async Task<IResult> Logout()
         {
-            await _localStorage.RemoveItemAsync(LocalStorageConstants.Client.AuthToken);
-            await _localStorage.RemoveItemAsync(LocalStorageConstants.Client.RefreshToken);
-            await _localStorage.RemoveItemAsync(LocalStorageConstants.Client.UserImageURL);
+            await _localStorage.RemoveItemAsync(StorageConstants.Local.AuthToken);
+            await _localStorage.RemoveItemAsync(StorageConstants.Local.RefreshToken);
+            await _localStorage.RemoveItemAsync(StorageConstants.Local.UserImageURL);
             ((BlazorHeroStateProvider)_authenticationStateProvider).MarkUserAsLoggedOut();
             _httpClient.DefaultRequestHeaders.Authorization = null;
             return await Result.SuccessAsync();
@@ -79,8 +79,8 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
 
         public async Task<string> RefreshToken()
         {
-            var token = await _localStorage.GetItemAsync<string>(LocalStorageConstants.Client.AuthToken);
-            var refreshToken = await _localStorage.GetItemAsync<string>(LocalStorageConstants.Client.RefreshToken);
+            var token = await _localStorage.GetItemAsync<string>(StorageConstants.Local.AuthToken);
+            var refreshToken = await _localStorage.GetItemAsync<string>(StorageConstants.Local.RefreshToken);
 
             var response = await _httpClient.PostAsJsonAsync(Routes.TokenEndpoints.Refresh, new RefreshTokenRequest { Token = token, RefreshToken = refreshToken });
 
@@ -93,8 +93,8 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
 
             token = result.Data.Token;
             refreshToken = result.Data.RefreshToken;
-            await _localStorage.SetItemAsync(LocalStorageConstants.Client.AuthToken, token);
-            await _localStorage.SetItemAsync(LocalStorageConstants.Client.RefreshToken, refreshToken);
+            await _localStorage.SetItemAsync(StorageConstants.Local.AuthToken, token);
+            await _localStorage.SetItemAsync(StorageConstants.Local.RefreshToken, refreshToken);
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             return token;
         }
@@ -102,7 +102,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
         public async Task<string> TryRefreshToken()
         {
             //check if token exists
-            var availableToken = await _localStorage.GetItemAsync<string>(LocalStorageConstants.Client.RefreshToken);
+            var availableToken = await _localStorage.GetItemAsync<string>(StorageConstants.Local.RefreshToken);
             if (string.IsNullOrEmpty(availableToken)) return string.Empty;
             var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
             var user = authState.User;

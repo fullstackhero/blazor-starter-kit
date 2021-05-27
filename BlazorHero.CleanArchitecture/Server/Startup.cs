@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences;
 
 namespace BlazorHero.CleanArchitecture.Server
 {
@@ -30,16 +31,17 @@ namespace BlazorHero.CleanArchitecture.Server
         {
             services.AddCors();
             services.AddSignalR();
-            services.AddDatabase(_configuration);
-            services.AddIdentity();
-            services.AddJwtAuthentication(services.GetApplicationSettings(_configuration));
-            //TODO - add CustomServerLocalStorageService
-            //services.AddScoped<ILocalStorageService, CustomServerLocalStorageService>();
-            //services.AddScoped<IServerPreferenceManager, ServerPreferenceManager>();
             services.AddLocalization(options =>
             {
                 options.ResourcesPath = "Resources";
             });
+            services.AddCurrentUserService();
+            services.AddDatabase(_configuration);
+            services.AddServerStorage(); //TODO - should implement ServerStorageProvider to work correctly!
+            services.AddScoped<ServerPreferenceManager>();
+            services.AddServerLocalization();
+            services.AddIdentity();
+            services.AddJwtAuthentication(services.GetApplicationSettings(_configuration));
             services.AddApplicationLayer();
             services.AddApplicationServices();
             services.AddSharedInfrastructure(_configuration);
@@ -67,7 +69,7 @@ namespace BlazorHero.CleanArchitecture.Server
             app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions()
+            app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Files")),
                 RequestPath = new PathString("/Files")

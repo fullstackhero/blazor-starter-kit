@@ -42,6 +42,8 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                     {
                         RegisterPermissionClaimPolicyByModule(options, permissionModule);
                     }
+
+                    RegisterPermissionClaimPolicyByCustomModules(options);
                 })
                 .AddBlazoredLocalStorage()
                 .AddMudServices(configuration =>
@@ -105,8 +107,13 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
             {
                 options.AddPolicy(permission, policy => policy.RequireClaim(ApplicationClaimTypes.Permission, permission));
             }
+        }
+
+        private static void RegisterPermissionClaimPolicyByCustomModules(AuthorizationOptions options)
+        {
             //Test
-            options.AddPolicy("Permissions.Communication.Chat", policy => policy.RequireClaim(ApplicationClaimTypes.Permission, "Permissions.Communication.Chat"));
+            options.AddPolicy(Permissions.Communication.Chat, policy => policy.RequireClaim(ApplicationClaimTypes.Permission, Permissions.Communication.Chat));
+            options.AddPolicy(Permissions.Preferences.ChangeLanguage, policy => policy.RequireClaim(ApplicationClaimTypes.Permission, Permissions.Preferences.ChangeLanguage));
         }
     }
 }
