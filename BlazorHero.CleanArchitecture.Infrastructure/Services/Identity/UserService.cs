@@ -97,7 +97,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 }
                 else
                 {
-                    return await Result.FailAsync(result.Errors.Select(a => a.Description).ToList());
+                    return await Result.FailAsync(result.Errors.Select(a => _localizer[a.Description].ToString()).ToList());
                 }
             }
             else

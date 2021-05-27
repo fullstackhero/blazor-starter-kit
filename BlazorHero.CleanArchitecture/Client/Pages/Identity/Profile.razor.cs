@@ -36,7 +36,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }
@@ -93,7 +93,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 {
                     foreach (var error in result.Messages)
                     {
-                        _snackBar.Add(localizer[error], Severity.Error);
+                        _snackBar.Add(error, Severity.Error);
                     }
                 }
             }
@@ -122,7 +122,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 {
                     foreach (var error in data.Messages)
                     {
-                        _snackBar.Add(localizer[error], Severity.Error);
+                        _snackBar.Add(error, Severity.Error);
                     }
                 }
             }

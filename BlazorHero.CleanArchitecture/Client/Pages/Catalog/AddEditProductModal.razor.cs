@@ -40,7 +40,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             var response = await _productManager.SaveAsync(AddEditProductModel);
             if (response.Succeeded)
             {
-                _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
+                _snackBar.Add(response.Messages[0], Severity.Success);
                 await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
                 MudDialog.Close();
             }
@@ -48,7 +48,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }

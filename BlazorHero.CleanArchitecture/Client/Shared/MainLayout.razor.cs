@@ -57,7 +57,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                         config.VisibleStateDuration = 10000;
                         config.HideTransitionDuration = 500;
                         config.ShowTransitionDuration = 500;
-                        config.Action = "Chat?";
+                        config.Action = localizer["Chat?"];
                         config.ActionColor = Color.Primary;
                         config.Onclick = snackbar =>
                         {

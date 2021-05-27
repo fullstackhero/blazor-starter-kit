@@ -41,7 +41,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 user,
                 model.Password,
                 model.NewPassword);
-            var errors = identityResult.Errors.Select(e => e.Description).ToList();
+            var errors = identityResult.Errors.Select(e => _localizer[e.Description].ToString()).ToList();
             return identityResult.Succeeded ? await Result.SuccessAsync() : await Result.FailAsync(errors);
         }
 
@@ -61,7 +61,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
             }
             var identityResult = await _userManager.UpdateAsync(user);
-            var errors = identityResult.Errors.Select(e => e.Description).ToList();
+            var errors = identityResult.Errors.Select(e => _localizer[e.Description].ToString()).ToList();
             await _signInManager.RefreshSignInAsync(user);
             return identityResult.Succeeded ? await Result.SuccessAsync() : await Result.FailAsync(errors);
         }
@@ -80,7 +80,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var filePath = _uploadService.UploadAsync(request);
             user.ProfilePictureDataUrl = filePath;
             var identityResult = await _userManager.UpdateAsync(user);
-            var errors = identityResult.Errors.Select(e => e.Description).ToList();
+            var errors = identityResult.Errors.Select(e => _localizer[e.Description].ToString()).ToList();
             return identityResult.Succeeded ? await Result<string>.SuccessAsync(data: filePath) : await Result<string>.FailAsync(errors);
         }
     }

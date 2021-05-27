@@ -132,7 +132,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 }
                 else
                 {
-                    return await Result<string>.FailAsync(response.Errors.Select(e => _localizer[e.Description].Value).ToList());
+                    return await Result<string>.FailAsync(response.Errors.Select(e => _localizer[e.Description].ToString()).ToList());
                 }
             }
             else

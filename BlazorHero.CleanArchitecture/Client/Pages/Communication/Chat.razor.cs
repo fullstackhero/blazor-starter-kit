@@ -63,7 +63,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 {
                     foreach (var message in response.Messages)
                     {
-                        _snackBar.Add(localizer[message], Severity.Error);
+                        _snackBar.Add(message, Severity.Error);
                     }
                 }
             }
@@ -85,7 +85,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 await hubConnection.StartAsync();
             }
 
-            hubConnection.On<string>(ApplicationConstants.SignalR.ConnectUser, async (userId) =>
+            hubConnection.On<string>(ApplicationConstants.SignalR.ConnectUser, (userId) =>
             {
                 var connectedUser = UserList.Find(x => x.Id.Equals(userId));
                 if (connectedUser is {IsOnline: false})
@@ -95,7 +95,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                     StateHasChanged();
                 }
             });
-            hubConnection.On<string>(ApplicationConstants.SignalR.DisconnectUser, async (userId) =>
+            hubConnection.On<string>(ApplicationConstants.SignalR.DisconnectUser, (userId) =>
             {
                 var disconnectedUser = UserList.Find(x => x.Id.Equals(userId));
                 if (disconnectedUser is {IsOnline: true})
@@ -162,7 +162,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 {
                     foreach (var message in historyResponse.Messages)
                     {
-                        _snackBar.Add(localizer[message], Severity.Error);
+                        _snackBar.Add(message, Severity.Error);
                     }
                 }
             }
@@ -170,7 +170,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }
@@ -187,7 +187,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }

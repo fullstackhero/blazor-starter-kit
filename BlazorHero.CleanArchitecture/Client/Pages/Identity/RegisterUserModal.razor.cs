@@ -27,14 +27,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var response = await _userManager.RegisterUserAsync(registerUserModel);
             if (response.Succeeded)
             {
-                _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
+                _snackBar.Add(response.Messages[0], Severity.Success);
                 MudDialog.Close();
             }
             else
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }

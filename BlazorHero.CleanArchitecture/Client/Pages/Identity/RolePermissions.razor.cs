@@ -74,7 +74,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var result = await _roleManager.UpdatePermissionsAsync(request);
             if (result.Succeeded)
             {
-                _snackBar.Add(localizer[result.Messages[0]], Severity.Success);
+                _snackBar.Add(result.Messages[0], Severity.Success);
                 await hubConnection.SendAsync(ApplicationConstants.SignalR.SendRegenerateTokens);
                 _navigationManager.NavigateTo("/identity/roles");
             }
@@ -82,7 +82,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 foreach (var error in result.Messages)
                 {
-                    _snackBar.Add(localizer[error], Severity.Error);
+                    _snackBar.Add(error, Severity.Error);
                 }
             }
         }
