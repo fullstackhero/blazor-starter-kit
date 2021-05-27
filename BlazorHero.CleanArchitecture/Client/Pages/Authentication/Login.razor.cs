@@ -38,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             {
                 foreach (var message in result.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }

@@ -35,14 +35,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var result = await _userManager.ResetPasswordAsync(resetPasswordModel);
                 if (result.Succeeded)
                 {
-                    _snackBar.Add(localizer[result.Messages[0]], Severity.Success);
+                    _snackBar.Add(result.Messages[0], Severity.Success);
                     _navigationManager.NavigateTo("/");
                 }
                 else
                 {
                     foreach (var message in result.Messages)
                     {
-                        _snackBar.Add(localizer[message], Severity.Error);
+                        _snackBar.Add(message, Severity.Error);
                     }
                 }
             }

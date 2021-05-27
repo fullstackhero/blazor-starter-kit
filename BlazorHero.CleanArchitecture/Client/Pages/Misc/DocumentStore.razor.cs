@@ -86,7 +86,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }
@@ -140,14 +140,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                 if (response.Succeeded)
                 {
                     OnSearch("");
-                    _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
+                    _snackBar.Add(response.Messages[0], Severity.Success);
                 }
                 else
                 {
                     OnSearch("");
                     foreach (var message in response.Messages)
                     {
-                        _snackBar.Add(localizer[message], Severity.Error);
+                        _snackBar.Add(message, Severity.Error);
                     }
                 }
             }

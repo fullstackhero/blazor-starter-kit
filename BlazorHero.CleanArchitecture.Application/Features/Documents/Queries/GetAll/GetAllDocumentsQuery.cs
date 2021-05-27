@@ -27,7 +27,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.Ge
         }
     }
 
-    public class GetAllDocumentsQueryHandler : IRequestHandler<GetAllDocumentsQuery, PaginatedResult<GetAllDocumentsResponse>>
+    internal class GetAllDocumentsQueryHandler : IRequestHandler<GetAllDocumentsQuery, PaginatedResult<GetAllDocumentsResponse>>
     {
         private readonly IUnitOfWork _unitOfWork;
 

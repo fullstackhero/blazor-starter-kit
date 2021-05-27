@@ -13,7 +13,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.D
         public int Id { get; set; }
     }
 
-    public class DeleteDocumentCommandHandler : IRequestHandler<DeleteDocumentCommand, Result<int>>
+    internal class DeleteDocumentCommandHandler : IRequestHandler<DeleteDocumentCommand, Result<int>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IStringLocalizer<DeleteDocumentCommandHandler> _localizer;

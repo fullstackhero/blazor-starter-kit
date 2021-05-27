@@ -44,7 +44,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }
@@ -66,14 +66,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 {
                     await Reset();
                     await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
-                    _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
+                    _snackBar.Add(response.Messages[0], Severity.Success);
                 }
                 else
                 {
                     await Reset();
                     foreach (var message in response.Messages)
                     {
-                        _snackBar.Add(localizer[message], Severity.Error);
+                        _snackBar.Add(message, Severity.Error);
                     }
                 }
             }
@@ -90,7 +90,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     parameters.Add(nameof(RoleModal.RoleModel), new RoleRequest
                     {
                         Id = role.Id,
-                        Name = role.Name
+                        Name = role.Name,
+                        Description = role.Description
                     });
                 }
             }
@@ -113,6 +114,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
             if (role.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (role.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

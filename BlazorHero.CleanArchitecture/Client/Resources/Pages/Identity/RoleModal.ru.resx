@@ -123,6 +123,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
   <data name="Role ID" xml:space="preserve">
     <value>ID роли</value>
   </data>

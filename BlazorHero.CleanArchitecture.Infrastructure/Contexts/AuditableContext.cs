@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 {
-    public abstract class AuditableContext : IdentityDbContext<BlazorHeroUser, IdentityRole, string>
+    public abstract class AuditableContext : IdentityDbContext<BlazorHeroUser, BlazorHeroRole, string>
     {
         public AuditableContext(DbContextOptions options) : base(options)
         {

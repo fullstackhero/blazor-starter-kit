@@ -13,7 +13,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.De
         public int Id { get; set; }
     }
 
-    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, Result<int>>
+    internal class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, Result<int>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IStringLocalizer<DeleteProductCommandHandler> _localizer;

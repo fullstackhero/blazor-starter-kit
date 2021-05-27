@@ -63,7 +63,7 @@
                         <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
                             <div class="d-flex flex-row mt-n1 mb-n1">
                                 <div class="mr-4">
-                                    <MudBadge Class="my-2">
+                                    <MudBadge Class="my-2" Color="@(GetUserStatusBadgeColor(user.IsOnline))" Overlap="true" Bottom="true" Dot="true">
                                         @if (string.IsNullOrEmpty(user.ProfilePictureDataUrl))
                                         {
                                             @if (user.Id == CId)
@@ -101,21 +101,23 @@
                 <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
                     <div class="d-flex flex-row mt-n1 mb-n1">
                         <div class="mr-4">
-                            @if (string.IsNullOrEmpty(user.ProfilePictureDataUrl))
-                            {
-                                @if (user.Id == CId)
+                            <MudBadge Class="my-2" Color="@(GetUserStatusBadgeColor(user.IsOnline))" Overlap="true" Bottom="true" Dot="true">
+                                @if (string.IsNullOrEmpty(user.ProfilePictureDataUrl))
                                 {
-                                    <MudAvatar Color="Color.Secondary" Style="height:50px; width:50px;">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                    @if (user.Id == CId)
+                                    {
+                                        <MudAvatar Color="Color.Secondary" Style="height: 50px; width: 50px;">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                    }
+                                    else
+                                    {
+                                        <MudAvatar Color="Color.Dark" Style="height: 50px; width: 50px;">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                    }
                                 }
                                 else
                                 {
-                                    <MudAvatar Color="Color.Dark" Style="height:50px; width:50px;">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                    <MudAvatar Image="@user.ProfilePictureDataUrl" Style="height: 50px; width: 50px;"> </MudAvatar>
                                 }
-                            }
-                            else
-                            {
-                                <MudAvatar Image="@user.ProfilePictureDataUrl" Style="height:50px; width:50px;"> </MudAvatar>
-                            }
+                            </MudBadge>
                         </div>
                         <div>
                             <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>

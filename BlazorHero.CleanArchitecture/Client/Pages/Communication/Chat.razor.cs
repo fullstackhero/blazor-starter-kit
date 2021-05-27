@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Shared.Constants.LocalStorage;
+using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
 {
@@ -63,7 +63,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 {
                     foreach (var message in response.Messages)
                     {
-                        _snackBar.Add(localizer[message], Severity.Error);
+                        _snackBar.Add(message, Severity.Error);
                     }
                 }
             }
@@ -84,14 +84,35 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 await hubConnection.StartAsync();
             }
-            hubConnection.On<ChatHistory, string>("ReceiveMessage", async (chatHistory, userName) =>
+
+            hubConnection.On<string>(ApplicationConstants.SignalR.ConnectUser, (userId) =>
+            {
+                var connectedUser = UserList.Find(x => x.Id.Equals(userId));
+                if (connectedUser is {IsOnline: false})
+                {
+                    connectedUser.IsOnline = true;
+                    _snackBar.Add($"{connectedUser.UserName} {localizer["Logged In."]}", Severity.Info);
+                    StateHasChanged();
+                }
+            });
+            hubConnection.On<string>(ApplicationConstants.SignalR.DisconnectUser, (userId) =>
+            {
+                var disconnectedUser = UserList.Find(x => x.Id.Equals(userId));
+                if (disconnectedUser is {IsOnline: true})
+                {
+                    disconnectedUser.IsOnline = false;
+                    _snackBar.Add($"{disconnectedUser.UserName} {localizer["Logged Out."]}", Severity.Info);
+                    StateHasChanged();
+                }
+            });
+            hubConnection.On<ChatHistory, string>(ApplicationConstants.SignalR.ReceiveMessage, async (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
                          messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
-                         await hubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, $"New Message From {userName}", CId, CurrentUserId);
+                         await hubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, $"{localizer["New Message From"]} {userName}", CId, CurrentUserId);
                      }
                      else if ((CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                      {
@@ -105,7 +126,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             CurrentUserId = user.GetUserId();
-            CurrentUserImageURL = await _localStorage.GetItemAsync<string>(LocalStorageConstants.Client.UserImageURL);
+            CurrentUserImageURL = await _localStorage.GetItemAsync<string>(StorageConstants.Local.UserImageURL);
             if (!string.IsNullOrEmpty(CId))
             {
                 await LoadUserChat(CId);
@@ -141,7 +162,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 {
                     foreach (var message in historyResponse.Messages)
                     {
-                        _snackBar.Add(localizer[message], Severity.Error);
+                        _snackBar.Add(message, Severity.Error);
                     }
                 }
             }
@@ -149,7 +170,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }
@@ -166,7 +187,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }
@@ -178,6 +199,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         {
             ChatDrawer = anchor;
             open = true;
+        }
+
+        private Color GetUserStatusBadgeColor(bool isOnline)
+        {
+            switch (isOnline)
+            {
+                case false:
+                    return Color.Error;
+                case true:
+                    return Color.Success;
+            }
         }
     }
 }

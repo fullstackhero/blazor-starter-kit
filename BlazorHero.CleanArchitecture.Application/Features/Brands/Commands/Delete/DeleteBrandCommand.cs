@@ -14,7 +14,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Dele
         public int Id { get; set; }
     }
 
-    public class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommand, Result<int>>
+    internal class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommand, Result<int>>
     {
         private readonly IProductRepository _productRepository;
         private readonly IStringLocalizer<DeleteBrandCommandHandler> _localizer;

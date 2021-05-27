@@ -19,13 +19,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
     public class RoleService : IRoleService
     {
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<BlazorHeroRole> _roleManager;
         private readonly UserManager<BlazorHeroUser> _userManager;
         private readonly IStringLocalizer<RoleService> _localizer;
         private readonly IMapper _mapper;
 
         public RoleService(
-            RoleManager<IdentityRole> roleManager,
+            RoleManager<BlazorHeroRole> roleManager,
             IMapper mapper,
             UserManager<BlazorHeroUser> userManager,
             IStringLocalizer<RoleService> localizer)
@@ -87,7 +87,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             allPermissions.GetPermissions(typeof(Permissions.Brands), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Preferences), roleId);
             //You could have your own method to refactor the below line, maybe by using Reflection and fetch directly from a class, else assume that Admin has all the roles assigned and retreive the Admin's roles here via the DB/Identity.RoleClaims table.
-            allPermissions.Add(new RoleClaimsResponse { Value = "Permissions.Communication.Chat", Type = ApplicationClaimTypes.Permission });
+            allPermissions.Add(new RoleClaimsResponse { Value = Permissions.Communication.Chat, Type = ApplicationClaimTypes.Permission, Group = "Communication" });
 
             #endregion GetPermissions
 
@@ -125,14 +125,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             {
                 var existingRole = await _roleManager.FindByNameAsync(request.Name);
                 if (existingRole != null) return await Result<string>.FailAsync(_localizer["Similar Role already exists."]);
-                var response = await _roleManager.CreateAsync(new IdentityRole(request.Name));
+                var response = await _roleManager.CreateAsync(new BlazorHeroRole(request.Name, request.Description));
                 if (response.Succeeded)
                 {
                     return await Result<string>.SuccessAsync(_localizer["Role Created"]);
                 }
                 else
                 {
-                    return await Result<string>.FailAsync(response.Errors.Select(e => _localizer[e.Description].Value).ToList());
+                    return await Result<string>.FailAsync(response.Errors.Select(e => _localizer[e.Description].ToString()).ToList());
                 }
             }
             else
@@ -144,6 +144,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 }
                 existingRole.Name = request.Name;
                 existingRole.NormalizedName = request.Name.ToUpper();
+                existingRole.Description = request.Description;
                 await _roleManager.UpdateAsync(existingRole);
                 return await Result<string>.SuccessAsync(_localizer["Role Updated."]);
             }

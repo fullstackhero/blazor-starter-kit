@@ -29,7 +29,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 foreach (var error in response.Messages)
                 {
-                    _snackBar.Add(localizer[error], Severity.Error);
+                    _snackBar.Add(error, Severity.Error);
                 }
             }
         }

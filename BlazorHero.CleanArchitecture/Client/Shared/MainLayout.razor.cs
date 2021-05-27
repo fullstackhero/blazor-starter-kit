@@ -26,6 +26,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             if (user.Identity?.IsAuthenticated == true)
             {
                 CurrentUserId = user.GetUserId();
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);
                 this.FirstName = user.GetFirstName();
                 if (this.FirstName.Length > 0)
                 {
@@ -56,7 +57,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                         config.VisibleStateDuration = 10000;
                         config.HideTransitionDuration = 500;
                         config.ShowTransitionDuration = 500;
-                        config.Action = "Chat?";
+                        config.Action = localizer["Chat?"];
                         config.ActionColor = Color.Primary;
                         config.Onclick = snackbar =>
                         {
@@ -93,12 +94,14 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             {
                 {nameof(Dialogs.Logout.ContentText), $"{localizer["Logout Confirmation"]}"},
                 {nameof(Dialogs.Logout.ButtonText), $"{localizer["Logout"]}"},
-                {nameof(Dialogs.Logout.Color), Color.Error}
+                {nameof(Dialogs.Logout.Color), Color.Error},
+                {nameof(Dialogs.Logout.CurrentUserId), CurrentUserId},
+                {nameof(Dialogs.Logout.HubConnection), hubConnection}
             };
 
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
 
-            _dialogService.Show<Dialogs.Logout>(localizer["Logout"], parameters, options);
+             _dialogService.Show<Dialogs.Logout>(localizer["Logout"], parameters, options);
         }
 
         private void DrawerToggle()

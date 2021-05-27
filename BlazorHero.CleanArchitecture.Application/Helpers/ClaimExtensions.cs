@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Models.Identity;
 
 namespace BlazorHero.CleanArchitecture.Application.Helpers
 {
@@ -17,11 +18,11 @@ namespace BlazorHero.CleanArchitecture.Application.Helpers
             FieldInfo[] fields = policy.GetFields(BindingFlags.Static | BindingFlags.Public);
             foreach (FieldInfo fi in fields)
             {
-                allPermissions.Add(new RoleClaimsResponse { Value = fi.GetValue(null).ToString(), Type = ApplicationClaimTypes.Permission });
+                allPermissions.Add(new RoleClaimsResponse { Value = fi.GetValue(null)?.ToString(), Type = ApplicationClaimTypes.Permission, Group = policy.Name });
             }
         }
 
-        public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string permission)
+        public static async Task AddPermissionClaim(this RoleManager<BlazorHeroRole> roleManager, BlazorHeroRole role, string permission)
         {
             var allClaims = await roleManager.GetClaimsAsync(role);
             if (!allClaims.Any(a => a.Type == ApplicationClaimTypes.Permission && a.Value == permission))
@@ -30,7 +31,7 @@ namespace BlazorHero.CleanArchitecture.Application.Helpers
             }
         }
 
-        public static async Task GeneratePermissionClaimByModule(this RoleManager<IdentityRole> roleManager, IdentityRole role, string module)
+        public static async Task GeneratePermissionClaimByModule(this RoleManager<BlazorHeroRole> roleManager, BlazorHeroRole role, string module)
         {
             var allClaims = await roleManager.GetClaimsAsync(role);
             var allPermissions = PermissionModules.GeneratePermissionsForModule(module);
@@ -43,7 +44,7 @@ namespace BlazorHero.CleanArchitecture.Application.Helpers
             }
         }
 
-        public static async Task AddCustomPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string permission)
+        public static async Task AddCustomPermissionClaim(this RoleManager<BlazorHeroRole> roleManager, BlazorHeroRole role, string permission)
         {
             var allClaims = await roleManager.GetClaimsAsync(role);
             if (!allClaims.Any(a => a.Type == ApplicationClaimTypes.Permission && a.Value == permission))

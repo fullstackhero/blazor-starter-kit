@@ -50,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
                 RoleCount = data.Data.RoleCount;
                 foreach (var item in data.Data.DataEnterBarChart)
                 {
-                    DataEnterBarChartSeries.Add(new ChartSeries { Name = localizer[item.Name], Data = item.Data });
+                    DataEnterBarChartSeries.Add(new ChartSeries { Name = item.Name, Data = item.Data });
                 }
             }
         }

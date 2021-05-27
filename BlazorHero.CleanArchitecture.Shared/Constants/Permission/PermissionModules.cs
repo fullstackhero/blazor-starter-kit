@@ -6,7 +6,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
     {
         public static List<string> GeneratePermissionsForModule(string module)
         {
-            return new List<string>()
+            return new()
             {
                 $"Permissions.{module}.Create",
                 $"Permissions.{module}.View",
@@ -17,7 +17,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
 
         public static List<string> GetAllPermissionsModules()
         {
-            return new List<string>()
+            return new()
             {
                 Users,
                 Roles,

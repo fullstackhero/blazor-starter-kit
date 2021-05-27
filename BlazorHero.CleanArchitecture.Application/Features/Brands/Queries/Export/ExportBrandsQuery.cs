@@ -23,7 +23,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.Expor
         }
     }
 
-    public class ExportBrandsQueryHandler : IRequestHandler<ExportBrandsQuery, string>
+    internal class ExportBrandsQueryHandler : IRequestHandler<ExportBrandsQuery, string>
     {
         private readonly IExcelService _excelService;
         private readonly IUnitOfWork _unitOfWork;

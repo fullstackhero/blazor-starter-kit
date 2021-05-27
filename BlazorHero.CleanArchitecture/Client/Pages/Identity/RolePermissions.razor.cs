@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
@@ -24,6 +25,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         public string Description { get; set; }
 
         public PermissionResponse model { get; set; }
+
+        private Dictionary<string, List<RoleClaimsResponse>> GroupedRoleClaims { get; } = new();
+
         private IMapper _mapper;
         private RoleClaimsResponse roleClaims = new();
         private string searchString = "";
@@ -39,6 +43,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if (result.Succeeded)
             {
                 model = result.Data;
+                foreach (var claim in model.RoleClaims)
+                {
+                    if (GroupedRoleClaims.ContainsKey(claim.Group))
+                    {
+                        GroupedRoleClaims[claim.Group].Add(claim);
+                    }
+                    else
+                    {
+                        GroupedRoleClaims.Add(claim.Group, new List<RoleClaimsResponse> { claim });
+                    }
+                }
                 if (model != null)
                 {
                     Description = $"{localizer["Manage"]} {model.RoleId} {model.RoleName}'s {localizer["Permissions"]}";
@@ -59,7 +74,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var result = await _roleManager.UpdatePermissionsAsync(request);
             if (result.Succeeded)
             {
-                _snackBar.Add(localizer[result.Messages[0]], Severity.Success);
+                _snackBar.Add(result.Messages[0], Severity.Success);
                 await hubConnection.SendAsync(ApplicationConstants.SignalR.SendRegenerateTokens);
                 _navigationManager.NavigateTo("/identity/roles");
             }
@@ -67,7 +82,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 foreach (var error in result.Messages)
                 {
-                    _snackBar.Add(localizer[error], Severity.Error);
+                    _snackBar.Add(error, Severity.Error);
                 }
             }
         }
@@ -80,6 +95,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 return true;
             }
             return false;
+        }
+
+        private Color GetGroupBadgeColor(int selected, int all)
+        {
+            if (selected == 0)
+                return Color.Error;
+
+            if (selected == all)
+                return Color.Success;
+
+            return Color.Info;
         }
     }
 }

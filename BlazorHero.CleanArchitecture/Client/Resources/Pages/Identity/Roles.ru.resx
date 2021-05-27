@@ -135,6 +135,9 @@
   <data name="Dense" xml:space="preserve">
     <value>Компактный</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
   </data>
