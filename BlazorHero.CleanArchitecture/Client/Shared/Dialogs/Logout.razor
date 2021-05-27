@@ -1,4 +1,6 @@
-﻿@namespace BlazorHero.CleanArchitecture.Client.Shared.Dialogs
+﻿@using BlazorHero.CleanArchitecture.Shared.Constants.Application
+@using Microsoft.AspNetCore.SignalR.Client
+@namespace BlazorHero.CleanArchitecture.Client.Shared.Dialogs
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Logout> localizer
 <MudDialog>
     <TitleContent>
@@ -18,14 +20,19 @@
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
+    [Parameter] public HubConnection HubConnection { get; set; }
+
     [Parameter] public string ContentText { get; set; }
 
     [Parameter] public string ButtonText { get; set; }
 
     [Parameter] public Color Color { get; set; }
 
+    [Parameter] public string CurrentUserId { get; set; }
+
     async Task Submit()
     {
+        await HubConnection.SendAsync(ApplicationConstants.SignalR.OnDisconnect, CurrentUserId);
         await _authenticationManager.Logout();
         _navigationManager.NavigateTo("/login");
         MudDialog.Close(DialogResult.Ok(true));

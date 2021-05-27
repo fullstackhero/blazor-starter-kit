@@ -88,24 +88,20 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             });
         }
 
-        private async Task LogoutAsync()
+        private void Logout()
         {
             var parameters = new DialogParameters
             {
                 {nameof(Dialogs.Logout.ContentText), $"{localizer["Logout Confirmation"]}"},
                 {nameof(Dialogs.Logout.ButtonText), $"{localizer["Logout"]}"},
-                {nameof(Dialogs.Logout.Color), Color.Error}
+                {nameof(Dialogs.Logout.Color), Color.Error},
+                {nameof(Dialogs.Logout.CurrentUserId), CurrentUserId},
+                {nameof(Dialogs.Logout.HubConnection), hubConnection}
             };
 
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
 
-            var dialog = _dialogService.Show<Dialogs.Logout>(localizer["Logout"], parameters, options);
-            var result = await dialog.Result;
-            if (!result.Cancelled)
-            {
-                //TODO check it!
-                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnDisconnect, CurrentUserId);
-            }
+             _dialogService.Show<Dialogs.Logout>(localizer["Logout"], parameters, options);
         }
 
         private void DrawerToggle()
