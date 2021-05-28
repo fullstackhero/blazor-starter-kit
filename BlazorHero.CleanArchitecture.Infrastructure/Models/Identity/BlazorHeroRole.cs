@@ -2,7 +2,7 @@
 using BlazorHero.CleanArchitecture.Domain.Contracts;
 using Microsoft.AspNetCore.Identity;
 
-namespace BlazorHero.CleanArchitecture.Application.Models.Identity
+namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
 {
     public class BlazorHeroRole : IdentityRole, IAuditableEntity
     {

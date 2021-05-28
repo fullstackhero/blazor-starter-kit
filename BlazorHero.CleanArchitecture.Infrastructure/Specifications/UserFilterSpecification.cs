@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Models.Identity;
+﻿using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Application.Specifications.Base;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Specifications

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
 using BlazorHero.CleanArchitecture.Application.Models.Chat;
-using BlazorHero.CleanArchitecture.Application.Models.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Mappings
 {

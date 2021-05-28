@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
 using BlazorHero.CleanArchitecture.Application.Models.Chat;
 
-namespace BlazorHero.CleanArchitecture.Application.Models.Identity
+namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
 {
     public class BlazorHeroUser : IdentityUser<string>, IChatUser, IAuditableEntity
     {

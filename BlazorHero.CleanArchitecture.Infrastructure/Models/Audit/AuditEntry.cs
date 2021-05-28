@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BlazorHero.CleanArchitecture.Application.Models.Audit
+namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Audit
 {
     public class AuditEntry
     {

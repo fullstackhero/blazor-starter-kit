@@ -1,7 +1,7 @@
 ﻿using System;
 using BlazorHero.CleanArchitecture.Domain.Entities;
 
-namespace BlazorHero.CleanArchitecture.Application.Models.Audit
+namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Audit
 {
     public class Audit : IEntity
     {

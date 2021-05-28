@@ -1,6 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Enums;
-using BlazorHero.CleanArchitecture.Application.Models.Audit;
-using BlazorHero.CleanArchitecture.Application.Models.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Audit;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

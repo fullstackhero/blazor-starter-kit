@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Models.Audit;
+﻿using BlazorHero.CleanArchitecture.Infrastructure.Models.Audit;
 using BlazorHero.CleanArchitecture.Application.Specifications.Base;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Specifications
