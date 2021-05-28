@@ -9,11 +9,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Models.Identity;
 
-namespace BlazorHero.CleanArchitecture.Application.Helpers
+namespace BlazorHero.CleanArchitecture.Infrastructure.Helpers
 {
     public static class ClaimsHelper
     {
-        public static void GetPermissions(this List<RoleClaimsResponse> allPermissions, Type policy, string roleId)
+        public static void AddPermissions(this List<RoleClaimsResponse> allPermissions, Type policy)
         {
             FieldInfo[] fields = policy.GetFields(BindingFlags.Static | BindingFlags.Public);
             foreach (FieldInfo fi in fields)

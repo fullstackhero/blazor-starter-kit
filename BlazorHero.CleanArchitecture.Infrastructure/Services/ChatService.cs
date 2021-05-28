@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
+using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services
@@ -71,10 +73,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
             return await Result<IEnumerable<ChatUserResponse>>.SuccessAsync(chatUsers);
         }
 
-        public async Task<IResult> SaveMessageAsync(ChatHistory message)
+        public async Task<IResult> SaveMessageAsync(ChatHistory<IChatUser> message)
         {
             message.ToUser = await _context.Users.Where(user => user.Id == message.ToUserId).FirstOrDefaultAsync();
-            await _context.ChatHistories.AddAsync(message);
+            await _context.ChatHistories.AddAsync(_mapper.Map<ChatHistory<BlazorHeroUser>>(message));
             await _context.SaveChangesAsync();
             return await Result.SuccessAsync();
         }

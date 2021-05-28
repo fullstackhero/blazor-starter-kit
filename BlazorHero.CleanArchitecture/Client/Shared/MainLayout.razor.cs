@@ -52,6 +52,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 if (CurrentUserId == receiverUserId)
                 {
                     _jsRuntime.InvokeAsync<string>("PlayAudio", "notification");
+                    //TODO - Localize message?
                     _snackBar.Add(message, Severity.Info, config =>
                     {
                         config.VisibleStateDuration = 10000;

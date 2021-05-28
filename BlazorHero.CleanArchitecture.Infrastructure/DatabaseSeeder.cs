@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Helpers;
+﻿using BlazorHero.CleanArchitecture.Infrastructure.Helpers;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;

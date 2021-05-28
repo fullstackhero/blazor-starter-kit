@@ -1,13 +1,14 @@
-﻿using BlazorHero.CleanArchitecture.Application.Models.Chat;
-using BlazorHero.CleanArchitecture.Domain.Contracts;
+﻿using BlazorHero.CleanArchitecture.Domain.Contracts;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
+using BlazorHero.CleanArchitecture.Application.Models.Chat;
 
 namespace BlazorHero.CleanArchitecture.Application.Models.Identity
 {
-    public class BlazorHeroUser : IdentityUser, IAuditableEntity
+    public class BlazorHeroUser : IdentityUser<string>, IChatUser, IAuditableEntity
     {
         public string FirstName { get; set; }
 
@@ -29,13 +30,13 @@ namespace BlazorHero.CleanArchitecture.Application.Models.Identity
         public bool IsActive { get; set; }
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
-        public virtual ICollection<ChatHistory> ChatHistoryFromUsers { get; set; }
-        public virtual ICollection<ChatHistory> ChatHistoryToUsers { get; set; }
+        public virtual ICollection<ChatHistory<BlazorHeroUser>> ChatHistoryFromUsers { get; set; }
+        public virtual ICollection<ChatHistory<BlazorHeroUser>> ChatHistoryToUsers { get; set; }
 
         public BlazorHeroUser()
         {
-            ChatHistoryFromUsers = new HashSet<ChatHistory>();
-            ChatHistoryToUsers = new HashSet<ChatHistory>();
+            ChatHistoryFromUsers = new HashSet<ChatHistory<BlazorHeroUser>>();
+            ChatHistoryToUsers = new HashSet<ChatHistory<BlazorHeroUser>>();
         }
     }
 }

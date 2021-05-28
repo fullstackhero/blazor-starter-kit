@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
+using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
@@ -42,7 +44,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             if (!string.IsNullOrEmpty(CurrentMessage) && !string.IsNullOrEmpty(CId))
             {
                 //Save Message to DB
-                var chatHistory = new ChatHistory()
+                var chatHistory = new ChatHistory<IChatUser>
                 {
                     Message = CurrentMessage,
                     ToUserId = CId,
@@ -105,7 +107,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                     StateHasChanged();
                 }
             });
-            hubConnection.On<ChatHistory, string>(ApplicationConstants.SignalR.ReceiveMessage, async (chatHistory, userName) =>
+            hubConnection.On<ChatHistory<IChatUser>, string>(ApplicationConstants.SignalR.ReceiveMessage, async (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {

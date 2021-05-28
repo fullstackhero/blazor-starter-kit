@@ -2,6 +2,7 @@
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
 
 namespace BlazorHero.CleanArchitecture.Server.Hubs
 {
@@ -17,7 +18,7 @@ namespace BlazorHero.CleanArchitecture.Server.Hubs
             await Clients.All.SendAsync(ApplicationConstants.SignalR.DisconnectUser, userId);
         }
 
-        public async Task SendMessageAsync(ChatHistory chatHistory, string userName)
+        public async Task SendMessageAsync(ChatHistory<IChatUser> chatHistory, string userName)
         {
             await Clients.All.SendAsync(ApplicationConstants.SignalR.ReceiveMessage, chatHistory, userName);
         }

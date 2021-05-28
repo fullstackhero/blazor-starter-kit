@@ -24,7 +24,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             _dateTimeService = dateTimeService;
         }
 
-        public DbSet<ChatHistory> ChatHistories { get; set; }
+        public DbSet<ChatHistory<BlazorHeroUser>> ChatHistories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Document> Documents { get; set; }
@@ -65,7 +65,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                 property.SetColumnType("decimal(18,2)");
             }
             base.OnModelCreating(builder);
-            builder.Entity<ChatHistory>(entity =>
+            builder.Entity<ChatHistory<BlazorHeroUser>>(entity =>
             {
                 entity.ToTable("ChatHistory");
 
@@ -103,9 +103,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                 entity.ToTable("UserLogins", "Identity");
             });
 
-            builder.Entity<IdentityRoleClaim<string>>(entity =>
+            builder.Entity<BlazorHeroRoleClaim>(entity =>
             {
-                entity.ToTable("RoleClaims", "Identity");
+                entity.ToTable(name: "RoleClaims", "Identity");
             });
 
             builder.Entity<IdentityUserToken<string>>(entity =>

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BlazorHero.CleanArchitecture.Application.Helpers;
+using BlazorHero.CleanArchitecture.Infrastructure.Helpers;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Application.Models.Identity;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
@@ -77,20 +77,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         public async Task<Result<PermissionResponse>> GetAllPermissionsAsync(string roleId)
         {
             var model = new PermissionResponse();
-            var allPermissions = new List<RoleClaimsResponse>();
-
-            #region GetPermissions
-
-            allPermissions.GetPermissions(typeof(Permissions.Users), roleId);
-            allPermissions.GetPermissions(typeof(Permissions.Roles), roleId);
-            allPermissions.GetPermissions(typeof(Permissions.Products), roleId);
-            allPermissions.GetPermissions(typeof(Permissions.Brands), roleId);
-            allPermissions.GetPermissions(typeof(Permissions.Preferences), roleId);
-            //You could have your own method to refactor the below line, maybe by using Reflection and fetch directly from a class, else assume that Admin has all the roles assigned and retreive the Admin's roles here via the DB/Identity.RoleClaims table.
-            allPermissions.Add(new RoleClaimsResponse { Value = Permissions.Communication.Chat, Type = ApplicationClaimTypes.Permission, Group = "Communication" });
-
-            #endregion GetPermissions
-
+            var allPermissions = GetAllPermissions();
             var role = await _roleManager.FindByIdAsync(roleId);
             if (role != null)
             {
@@ -110,6 +97,55 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             }
             model.RoleClaims = allPermissions;
             return await Result<PermissionResponse>.SuccessAsync(model);
+        }
+
+        public async Task<Result<List<PermissionResponse>>> GetAllPermissionsAsync()
+        {
+            var models = new List<PermissionResponse>();
+            var allPermissions = GetAllPermissions();
+            var roles = await _roleManager.Roles.ToListAsync();
+            foreach (var role in roles)
+            {
+                var model = new PermissionResponse
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name
+                };
+                var claims = await _roleManager.GetClaimsAsync(role);
+                var allClaimValues = allPermissions.Select(a => a.Value).ToList();
+                var roleClaimValues = claims.Select(a => a.Value).ToList();
+                var authorizedClaims = allClaimValues.Intersect(roleClaimValues).ToList();
+                foreach (var permission in allPermissions)
+                {
+                    if (authorizedClaims.Any(a => a == permission.Value))
+                    {
+                        permission.Selected = true;
+                    }
+                }
+                model.RoleClaims = allPermissions;
+                models.Add(model);
+            }
+
+            return await Result<List<PermissionResponse>>.SuccessAsync(models);
+        }
+
+        private List<RoleClaimsResponse> GetAllPermissions()
+        {
+            var allPermissions = new List<RoleClaimsResponse>();
+
+            #region GetPermissions
+
+            allPermissions.AddPermissions(typeof(Permissions.Users));
+            allPermissions.AddPermissions(typeof(Permissions.Roles));
+            allPermissions.AddPermissions(typeof(Permissions.Products));
+            allPermissions.AddPermissions(typeof(Permissions.Brands));
+            allPermissions.AddPermissions(typeof(Permissions.Preferences));
+            //You could have your own method to refactor the below line, maybe by using Reflection and fetch directly from a class, else assume that Admin has all the roles assigned and retreive the Admin's roles here via the DB/Identity.RoleClaims table.
+            allPermissions.Add(new RoleClaimsResponse { Value = Permissions.Communication.Chat, Type = ApplicationClaimTypes.Permission, Group = "Communication" });
+
+            #endregion GetPermissions
+
+            return allPermissions;
         }
 
         public async Task<Result<RoleResponse>> GetByIdAsync(string id)

@@ -50,6 +50,15 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             return Ok(response);
         }
 
+        //[Authorize(Policy = Permissions.Roles.Edit)]
+        [AllowAnonymous]
+        [HttpGet("permissions")]
+        public async Task<IActionResult> GetAllPermissions()
+        {
+            var response = await _roleService.GetAllPermissionsAsync();
+            return Ok(response);
+        }
+
         [Authorize(Policy = Permissions.Roles.Edit)]
         [HttpPut("permissions/update")]
         public async Task<IActionResult> Update(PermissionRequest model)
