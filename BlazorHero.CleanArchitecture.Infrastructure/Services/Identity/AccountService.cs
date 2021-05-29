@@ -6,6 +6,7 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
@@ -45,25 +46,41 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             return identityResult.Succeeded ? await Result.SuccessAsync() : await Result.FailAsync(errors);
         }
 
-        public async Task<IResult> UpdateProfileAsync(UpdateProfileRequest model, string userId)
+        public async Task<IResult> UpdateProfileAsync(UpdateProfileRequest request, string userId)
         {
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
+            var userWithSamePhoneNumber = await _userManager.Users.SingleOrDefaultAsync(x => x.PhoneNumber == request.PhoneNumber && x.Id != userId);
+            if (userWithSamePhoneNumber == null)
             {
-                return await Result.FailAsync(_localizer["User Not Found."]);
+                var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
+                if (userWithSameEmail == null || userWithSameEmail.Id == userId)
+                {
+                    var user = await _userManager.FindByIdAsync(userId);
+                    if (user == null)
+                    {
+                        return await Result.FailAsync(_localizer["User Not Found."]);
+                    }
+                    user.FirstName = request.FirstName;
+                    user.LastName = request.LastName;
+                    user.PhoneNumber = request.PhoneNumber;
+                    var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+                    if (request.PhoneNumber != phoneNumber)
+                    {
+                        var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, request.PhoneNumber);
+                    }
+                    var identityResult = await _userManager.UpdateAsync(user);
+                    var errors = identityResult.Errors.Select(e => _localizer[e.Description].ToString()).ToList();
+                    await _signInManager.RefreshSignInAsync(user);
+                    return identityResult.Succeeded ? await Result.SuccessAsync() : await Result.FailAsync(errors);
+                }
+                else
+                {
+                    return await Result.FailAsync(string.Format(_localizer["Email {0} is already used."], request.Email));
+                }
             }
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            user.PhoneNumber = model.PhoneNumber;
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (model.PhoneNumber != phoneNumber)
+            else
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
+                return await Result.FailAsync(string.Format(_localizer["Phone number {0} is already used."], request.PhoneNumber));
             }
-            var identityResult = await _userManager.UpdateAsync(user);
-            var errors = identityResult.Errors.Select(e => _localizer[e.Description].ToString()).ToList();
-            await _signInManager.RefreshSignInAsync(user);
-            return identityResult.Succeeded ? await Result.SuccessAsync() : await Result.FailAsync(errors);
         }
 
         public async Task<IResult<string>> GetProfilePictureAsync(string userId)
