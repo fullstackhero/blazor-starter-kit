@@ -151,6 +151,6 @@
     <value>Accedi</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Benvenuto</value>
+    <value>Benvenuto {0}</value>
   </data>
 </root>

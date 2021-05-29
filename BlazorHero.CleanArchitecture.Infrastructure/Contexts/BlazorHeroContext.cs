@@ -82,6 +82,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             builder.Entity<BlazorHeroUser>(entity =>
             {
                 entity.ToTable(name: "Users", "Identity");
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
             builder.Entity<BlazorHeroRole>(entity =>
@@ -106,6 +107,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             builder.Entity<BlazorHeroRoleClaim>(entity =>
             {
                 entity.ToTable(name: "RoleClaims", "Identity");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.RoleClaims)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             builder.Entity<IdentityUserToken<string>>(entity =>

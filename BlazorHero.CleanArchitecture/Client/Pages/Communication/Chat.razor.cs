@@ -113,7 +113,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
                          messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
-                         await hubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, $"{localizer["New Message From"]} {userName}", CId, CurrentUserId);
+                         await hubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, string.Format(localizer["New Message From {0}"], userName), CId, CurrentUserId);
                      }
                      else if ((CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                      {

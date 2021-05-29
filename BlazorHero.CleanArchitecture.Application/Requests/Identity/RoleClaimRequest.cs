@@ -1,7 +1,9 @@
 ﻿namespace BlazorHero.CleanArchitecture.Application.Requests.Identity
 {
-    public class RoleClaimsRequest
+    public class RoleClaimRequest
     {
+        public int Id { get; set; }
+        public string RoleId { get; set; }
         public string Type { get; set; }
         public string Value { get; set; }
         public string Description { get; set; }

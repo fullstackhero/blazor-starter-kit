@@ -12,6 +12,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
         public DateTime CreatedOn { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime? LastModifiedOn { get; set; }
+        public virtual BlazorHeroRole Role { get; set; }
 
         public BlazorHeroRoleClaim() : base()
         {

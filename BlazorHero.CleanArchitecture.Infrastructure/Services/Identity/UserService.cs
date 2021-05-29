@@ -61,7 +61,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var userWithSameUserName = await _userManager.FindByNameAsync(request.UserName);
             if (userWithSameUserName != null)
             {
-                return await Result.FailAsync($"{_localizer["Username"]} '{request.UserName}' {_localizer["is already taken."]}");
+                return await Result.FailAsync(string.Format(_localizer["Username {0} is already taken."], request.UserName));
             }
             var user = new BlazorHeroUser
             {
@@ -87,13 +87,13 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                         {
                             From = "mail@codewithmukesh.com",
                             To = user.Email,
-                            Body = $"{_localizer["Please confirm your account by"]} <a href='{verificationUri}'>{_localizer["clicking here"]}</a>.",
+                            Body = string.Format(_localizer["Please confirm your account by <a href='{0}'>clicking here</a>."], verificationUri),
                             Subject = _localizer["Confirm Registration"]
                         };
                         BackgroundJob.Enqueue(() => _mailService.SendAsync(mailRequest));
-                        return await Result<string>.SuccessAsync(user.Id, message: _localizer[$"User Registered. Please check your Mailbox to verify!"]);
+                        return await Result<string>.SuccessAsync(user.Id, string.Format(_localizer["User {0} Registered. Please check your Mailbox to verify!"], user.UserName));
                     }
-                    return await Result<string>.SuccessAsync(user.Id, message: _localizer[$"User Registered"]);
+                    return await Result<string>.SuccessAsync(user.Id, string.Format(_localizer["User {0} Registered."], user.UserName));
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             }
             else
             {
-                return await Result.FailAsync($"{_localizer["Email"]} {request.Email } {_localizer["is already registered."]}");
+                return await Result.FailAsync(string.Format(_localizer["Email {0} is already registered."], request.Email));
             }
         }
 
@@ -181,11 +181,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
-                return await Result<string>.SuccessAsync(user.Id, message: $"{_localizer["Account Confirmed for"]} {user.Email}. {_localizer["You can now use the /api/identity/token endpoint to generate JWT."]}");
+                return await Result<string>.SuccessAsync(user.Id, string.Format(_localizer["Account Confirmed for {0}. You can now use the /api/identity/token endpoint to generate JWT."], user.Email));
             }
             else
             {
-                throw new ApiException($"{_localizer["An error occured while confirming"]} {user.Email}.");
+                throw new ApiException(string.Format(_localizer["An error occurred while confirming {0}"], user.Email));
             }
         }
 
@@ -195,7 +195,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
                 // Don't reveal that the user does not exist or is not confirmed
-                return await Result.FailAsync(_localizer["An Error has occured!"]);
+                return await Result.FailAsync(_localizer["An Error has occurred!"]);
             }
             // For more information on how to enable account confirmation and password reset please
             // visit https://go.microsoft.com/fwlink/?LinkID=532713
@@ -204,14 +204,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var route = "account/reset-password";
             var endpointUri = new Uri(string.Concat($"{origin}/", route));
             var passwordResetURL = QueryHelpers.AddQueryString(endpointUri.ToString(), "Token", code);
-            var mailRequest = new MailRequest()
+            var mailRequest = new MailRequest
             {
-                Body = $"{_localizer["Please reset your password by"]} <a href='{HtmlEncoder.Default.Encode(passwordResetURL)}'>{_localizer["clicking here"]}</a>.",
+                Body = string.Format(_localizer["Please reset your password by <a href='{0}>clicking here</a>."], HtmlEncoder.Default.Encode(passwordResetURL)),
                 Subject = _localizer["Reset Password"],
                 To = request.Email
             };
             BackgroundJob.Enqueue(() => _mailService.SendAsync(mailRequest));
-            return await Result.SuccessAsync(_localizer["Password Reset Mail has been sent to your authorized EmailId."]);
+            return await Result.SuccessAsync(_localizer["Password Reset Mail has been sent to your authorized Email."]);
         }
 
         public async Task<IResult> ResetPasswordAsync(ResetPasswordRequest request)

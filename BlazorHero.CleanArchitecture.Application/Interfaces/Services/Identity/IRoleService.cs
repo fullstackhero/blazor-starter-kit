@@ -21,8 +21,6 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity
 
         Task<Result<PermissionResponse>> GetAllPermissionsAsync(string roleId);
 
-        Task<Result<List<PermissionResponse>>> GetAllPermissionsAsync();
-
         Task<Result<string>> UpdatePermissionsAsync(PermissionRequest request);
     }
 }

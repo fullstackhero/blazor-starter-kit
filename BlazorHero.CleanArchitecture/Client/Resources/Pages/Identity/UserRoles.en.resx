@@ -123,14 +123,11 @@
   <data name="Dense" xml:space="preserve">
     <value>Dense</value>
   </data>
-  <data name="Manage" xml:space="preserve">
-    <value>Manage</value>
+  <data name="Manage {0} {1}'s Roles" xml:space="preserve">
+    <value>Manage {0} {1}'s Roles</value>
   </data>
   <data name="Role Name" xml:space="preserve">
     <value>Role Name</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
   </data>
   <data name="Roles Updated" xml:space="preserve">
     <value>Roles Updated!</value>

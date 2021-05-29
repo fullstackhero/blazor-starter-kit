@@ -26,10 +26,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         public PermissionResponse model { get; set; }
 
-        private Dictionary<string, List<RoleClaimsResponse>> GroupedRoleClaims { get; } = new();
+        private Dictionary<string, List<RoleClaimResponse>> GroupedRoleClaims { get; } = new();
 
         private IMapper _mapper;
-        private RoleClaimsResponse roleClaims = new();
+        private RoleClaimResponse roleClaims = new();
+        private RoleClaimResponse selectedItem = new();
         private string searchString = "";
         private bool _dense = true;
         private bool _striped = true;
@@ -51,12 +52,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     }
                     else
                     {
-                        GroupedRoleClaims.Add(claim.Group, new List<RoleClaimsResponse> { claim });
+                        GroupedRoleClaims.Add(claim.Group, new List<RoleClaimResponse> { claim });
                     }
                 }
                 if (model != null)
                 {
-                    Description = $"{localizer["Manage"]} {model.RoleId} {model.RoleName}'s {localizer["Permissions"]}";
+                    Description = string.Format(localizer["Manage {0} {1}'s Permissions"], model.RoleId, model.RoleName);
                 }
             }
             hubConnection = hubConnection.TryInitialize(_navigationManager);
@@ -87,10 +88,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
         }
 
-        private bool Search(RoleClaimsResponse roleClaims)
+        private bool Search(RoleClaimResponse roleClaims)
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
             if (roleClaims.Value?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (roleClaims.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
