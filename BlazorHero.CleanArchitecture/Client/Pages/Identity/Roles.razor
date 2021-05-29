@@ -8,7 +8,7 @@
 </style>
 
 <HeroTitle Title="@localizer["Roles"]" Description="@localizer["Manage Roles."]" />
-<MudTable Hover="true" Outlined="true" Elevation="25" Items="RoleList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<RoleResponse, bool>(Search)" @bind-role="role">
+<MudTable Hover="true" Elevation="25" Items="RoleList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<RoleResponse, bool>(Search)" @bind-role="role">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
             @if ((_authorizationService.AuthorizeAsync(CurrentUser, Permissions.Roles.Create)).Result.Succeeded)
