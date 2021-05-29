@@ -73,36 +73,45 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 IsActive = request.ActivateUser,
                 EmailConfirmed = request.AutoConfirmEmail
             };
-            var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
-            if (userWithSameEmail == null)
+
+            var userWithSamePhoneNumber = await _userManager.Users.SingleOrDefaultAsync(x => x.PhoneNumber == request.PhoneNumber);
+            if (userWithSamePhoneNumber == null)
             {
-                var result = await _userManager.CreateAsync(user, request.Password);
-                if (result.Succeeded)
+                var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
+                if (userWithSameEmail == null)
                 {
-                    await _userManager.AddToRoleAsync(user, RoleConstants.BasicRole);
-                    if (!request.AutoConfirmEmail)
+                    var result = await _userManager.CreateAsync(user, request.Password);
+                    if (result.Succeeded)
                     {
-                        var verificationUri = await SendVerificationEmail(user, origin);
-                        var mailRequest = new MailRequest
+                        await _userManager.AddToRoleAsync(user, RoleConstants.BasicRole);
+                        if (!request.AutoConfirmEmail)
                         {
-                            From = "mail@codewithmukesh.com",
-                            To = user.Email,
-                            Body = string.Format(_localizer["Please confirm your account by <a href='{0}'>clicking here</a>."], verificationUri),
-                            Subject = _localizer["Confirm Registration"]
-                        };
-                        BackgroundJob.Enqueue(() => _mailService.SendAsync(mailRequest));
-                        return await Result<string>.SuccessAsync(user.Id, string.Format(_localizer["User {0} Registered. Please check your Mailbox to verify!"], user.UserName));
+                            var verificationUri = await SendVerificationEmail(user, origin);
+                            var mailRequest = new MailRequest
+                            {
+                                From = "mail@codewithmukesh.com",
+                                To = user.Email,
+                                Body = string.Format(_localizer["Please confirm your account by <a href='{0}'>clicking here</a>."], verificationUri),
+                                Subject = _localizer["Confirm Registration"]
+                            };
+                            BackgroundJob.Enqueue(() => _mailService.SendAsync(mailRequest));
+                            return await Result<string>.SuccessAsync(user.Id, string.Format(_localizer["User {0} Registered. Please check your Mailbox to verify!"], user.UserName));
+                        }
+                        return await Result<string>.SuccessAsync(user.Id, string.Format(_localizer["User {0} Registered."], user.UserName));
                     }
-                    return await Result<string>.SuccessAsync(user.Id, string.Format(_localizer["User {0} Registered."], user.UserName));
+                    else
+                    {
+                        return await Result.FailAsync(result.Errors.Select(a => _localizer[a.Description].ToString()).ToList());
+                    }
                 }
                 else
                 {
-                    return await Result.FailAsync(result.Errors.Select(a => _localizer[a.Description].ToString()).ToList());
+                    return await Result.FailAsync(string.Format(_localizer["Email {0} is already registered."], request.Email));
                 }
             }
             else
             {
-                return await Result.FailAsync(string.Format(_localizer["Email {0} is already registered."], request.Email));
+                return await Result.FailAsync(string.Format(_localizer["Phone number {0} is already registered."], request.PhoneNumber));
             }
         }
 

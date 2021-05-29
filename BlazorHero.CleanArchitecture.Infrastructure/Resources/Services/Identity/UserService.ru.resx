@@ -168,6 +168,9 @@
   <data name="Password Reset Successful!" xml:space="preserve">
     <value>Сброс пароля выполнен успешно!</value>
   </data>
+  <data name="Phone number {0} is already registered." xml:space="preserve">
+    <value>Номер телефона {0} уже зарегистрирован.</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Номер телефона</value>
   </data>

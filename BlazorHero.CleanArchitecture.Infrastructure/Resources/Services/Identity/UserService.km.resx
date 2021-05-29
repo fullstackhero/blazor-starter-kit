@@ -147,6 +147,9 @@
   <data name="Password Reset Successful!" xml:space="preserve">
     <value>លេខកូដសម្ងាត់បានកំណត់ឡើងវិញដោយជោគជ័យ</value>
   </data>
+  <data name="Phone number {0} is already registered." xml:space="preserve">
+    <value>Phone number {0} ត្រូវបានចុះឈ្មោះរួចហើយ</value>
+  </data>
   <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
     <value>សូមបញ្ជាក់គណនីរបស់អ្នកដោយ &lt;a href='{0}'&gt;ចុចទីនេះ&lt;/a&gt;.</value>
   </data>
