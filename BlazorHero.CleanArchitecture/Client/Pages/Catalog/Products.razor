@@ -1,6 +1,12 @@
 ﻿@page "/catalog/products"
 @using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Products> localizer
+<style>
+    .mud-table-container {
+        overflow-x: unset;
+    }
+</style>
+
 <HeroTitle Title="@localizer["Products"]" Description="@localizer["Manage Products."]" />
 <MudTable Elevation="25" ServerData="@(new Func<TableState, Task<TableData<GetAllPagedProductsResponse>>>(ServerReload))" Hover="true" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" @ref="table">
     <ToolBarContent>

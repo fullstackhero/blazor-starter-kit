@@ -1,6 +1,12 @@
 ﻿@page "/identity/users"
 @using BlazorHero.CleanArchitecture.Application.Responses.Identity
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Users> localizer
+<style>
+    .mud-table-container {
+        overflow-x: unset;
+    }
+</style>
+
 <HeroTitle Title="@localizer["Users"]" Description="@localizer["Manage Users"]" />
 <MudTable Hover="true" Elevation="25" Items="UserList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<UserResponse, bool>(Search)" @bind-user="user">
     <ToolBarContent>

@@ -1,8 +1,13 @@
 ﻿@page "/document-store"
 @inject Microsoft.Extensions.Localization.IStringLocalizer<DocumentStore> localizer
 @using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetAll
-<HeroTitle Title="@localizer["Document Store"]" Description="@localizer["Browse Available Documents."]" />
+<style>
+    .mud-table-container {
+        overflow-x: unset;
+    }
+</style>
 
+<HeroTitle Title="@localizer["Document Store"]" Description="@localizer["Browse Available Documents."]" />
 <MudTable Elevation="25" ServerData="@(new Func<TableState, Task<TableData<GetAllDocumentsResponse>>>(ServerReload))" Hover="true" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" @ref="table">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
