@@ -34,7 +34,7 @@
                 </MudToolBar>
                 <MudAppBarSpacer />
                 <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
-                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" Link="https://www.buymeacoffee.com/codewithmukesh" Target="_blank">Buy Me A Coffee!</MudButton>
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" Link="https://www.buymeacoffee.com/codewithmukesh" Target="_blank">@localizer["Buy Me A Coffee!"]</MudButton>
 
                     <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" Class="mx-4 my-5" />
                     <MudMenu EndIcon="@Icons.Filled.KeyboardArrowDown" Label="@localizer["Support"]" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
@@ -76,7 +76,14 @@
                 </MudHidden>
                 <MudMenu Direction="Direction.Left" OffsetX="true" Dense="true" Class="mt-1 ml-4">
                     <ActivatorContent>
-                        <MudAvatar Color="Color.Secondary">@FirstLetterOfName</MudAvatar>
+                        @if (string.IsNullOrEmpty(ImageDataUrl))
+                        {
+                            <MudAvatar Color="Color.Secondary">@FirstLetterOfName</MudAvatar>
+                        }
+                        else
+                        {
+                            <MudAvatar Image="@ImageDataUrl" Style="height:50px; width:50px;"> </MudAvatar>
+                        }
                     </ActivatorContent>
                     <ChildContent>
                         <UserCard Class="mt-n2" />

@@ -13,6 +13,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
     public partial class MainLayout : IDisposable
     {
         private string CurrentUserId { get; set; }
+        private string ImageDataUrl { get; set; }
         private string FirstName { get; set; }
         private string SecondName { get; set; }
         private string Email { get; set; }
@@ -34,6 +35,12 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 }
                 this.SecondName = user.GetLastName();
                 this.Email = user.GetEmail();
+
+                var imageResponse = await _accountManager.GetProfilePictureAsync(CurrentUserId);
+                if (imageResponse.Succeeded)
+                {
+                    ImageDataUrl = imageResponse.Data;
+                }
             }
         }
 
