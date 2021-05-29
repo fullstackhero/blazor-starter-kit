@@ -3,11 +3,12 @@
 @using Microsoft.AspNetCore.Components
 @attribute [Authorize(Policy = Permissions.Roles.View)]
 @inject Microsoft.Extensions.Localization.IStringLocalizer<UserRoles> localizer
+
 <HeroTitle Title="@Title" Description="@Description" />
 <MudTable Hover="true" Elevation="25" Items="UserRolesList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<UserRoleModel, bool>(Search)" @bind-userRole="userRole">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
-            @if ((_authorizationService.AuthorizeAsync(CurrentUser, Permissions.Roles.Create)).Result.Succeeded)
+            @if (canCreateOrEdit)
             {
                 <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">@localizer["Update User Roles"]</MudButton>
             }
@@ -17,13 +18,17 @@
     </ToolBarContent>
     <HeaderContent>
         <MudTh><MudTableSortLabel SortBy="new Func<UserRoleModel, object>(x => x.RoleName)">@localizer["Role Name"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<UserRoleModel, object>(x => x.RoleDescription)">@localizer["Description"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortBy="new Func<UserRoleModel, object>(x => x.Selected)">@localizer["Status"]</MudTableSortLabel></MudTh>
     </HeaderContent>
     <RowTemplate>
-        <MudTd DataLabel="Id">
+        <MudTd DataLabel="@localizer["Role Name"]">
             <MudHighlighter Text="@context.RoleName" HighlightedText="@searchString" />
         </MudTd>
-        <MudTd DataLabel="Role"><MudCheckBox @bind-Checked="@context.Selected" Color="Color.Secondary"></MudCheckBox></MudTd>
+        <MudTd DataLabel="@localizer["Description"]">
+            <MudHighlighter Text="@context.RoleDescription" HighlightedText="@searchString" />
+        </MudTd>
+        <MudTd DataLabel="Role"><MudCheckBox @bind-Checked="@context.Selected" Disabled="@(!canCreateOrEdit)" Color="Color.Secondary"></MudCheckBox></MudTd>
     </RowTemplate>
     <FooterContent>
         <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@localizer["Dense"]</MudSwitch>

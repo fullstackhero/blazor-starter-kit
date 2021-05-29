@@ -3,6 +3,7 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.JSInterop;
 
@@ -12,6 +13,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
     {
         public List<UserResponse> UserList = new();
         private UserResponse user = new();
+        private ClaimsPrincipal CurrentUser { get; set; }
         private string searchString = "";
         private bool _dense = true;
         private bool _striped = true;
@@ -19,6 +21,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         protected override async Task OnInitializedAsync()
         {
+            CurrentUser = await _authenticationManager.CurrentUser();
+
             await GetUsersAsync();
         }
 

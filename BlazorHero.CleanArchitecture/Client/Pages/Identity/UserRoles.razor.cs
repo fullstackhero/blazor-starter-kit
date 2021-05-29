@@ -6,6 +6,8 @@ using MudBlazor;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
@@ -22,6 +24,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         public List<UserRoleModel> UserRolesList { get; set; } = new();
         public ClaimsPrincipal CurrentUser { get; set; }
+        private bool canCreateOrEdit;
 
         private UserRoleModel userRole = new();
         private string searchString = "";
@@ -32,6 +35,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         protected override async Task OnInitializedAsync()
         {
             CurrentUser = await _authenticationManager.CurrentUser();
+            canCreateOrEdit = _authorizationService.AuthorizeAsync(CurrentUser, Permissions.Roles.Create).Result.Succeeded;
 
             var userId = Id;
             var result = await _userManager.GetAsync(userId);
@@ -74,6 +78,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
             if (userRole.RoleName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (userRole.RoleDescription?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

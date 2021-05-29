@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
@@ -10,6 +11,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
@@ -27,6 +30,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         public PermissionResponse model { get; set; }
 
         private Dictionary<string, List<RoleClaimResponse>> GroupedRoleClaims { get; } = new();
+        private ClaimsPrincipal CurrentUser { get; set; }
+        private bool canEdit;
 
         private IMapper _mapper;
         private RoleClaimResponse roleClaims = new();
@@ -38,6 +43,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         protected override async Task OnInitializedAsync()
         {
+            CurrentUser = await _authenticationManager.CurrentUser();
+            canEdit = _authorizationService.AuthorizeAsync(CurrentUser, Permissions.RoleClaims.Edit).Result.Succeeded;
+
             _mapper = new MapperConfiguration(c => { c.AddProfile<RoleProfile>(); }).CreateMapper();
             var roleId = Id;
             var result = await _roleManager.GetPermissionsAsync(roleId);
@@ -59,6 +67,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 {
                     Description = string.Format(localizer["Manage {0} {1}'s Permissions"], model.RoleId, model.RoleName);
                 }
+            }
+            else
+            {
+                foreach (var error in result.Messages)
+                {
+                    _snackBar.Add(error, Severity.Error);
+                }
+                _navigationManager.NavigateTo("/identity/roles");
             }
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             if (hubConnection.State == HubConnectionState.Disconnected)

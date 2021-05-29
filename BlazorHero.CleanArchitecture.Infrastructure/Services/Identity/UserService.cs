@@ -148,7 +148,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             {
                 var userRolesViewModel = new UserRoleModel
                 {
-                    RoleName = role.Name
+                    RoleName = role.Name,
+                    RoleDescription = role.Description
                 };
                 if (await _userManager.IsInRoleAsync(user, role.Name))
                 {
