@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using BlazorHero.CleanArchitecture.Server.Filters;
 using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
 
 namespace BlazorHero.CleanArchitecture.Server
@@ -65,7 +66,6 @@ namespace BlazorHero.CleanArchitecture.Server
             app.UseCors();
             app.UseExceptionHandling(env);
             app.UseHttpsRedirection();
-            app.UseHangfireDashboard("/jobs");
             app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
@@ -78,6 +78,10 @@ namespace BlazorHero.CleanArchitecture.Server
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseHangfireDashboard("/jobs", new DashboardOptions
+            {
+                Authorization = new[] { new HangfireAuthorizationFilter() }
+            });
             app.UseEndpoints();
             app.ConfigureSwagger();
             app.Initialize(_configuration);

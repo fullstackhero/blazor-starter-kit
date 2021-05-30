@@ -6,9 +6,12 @@
 <MudDivider Class="mb-4" />
 <MudNavMenu>
     <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">@localizer["Home"]</MudNavLink>
-    <MudNavLink Href="/jobs" Icon="@Icons.Material.Outlined.Work">
-        @localizer["Hangfire"]
-    </MudNavLink>
+    @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Hangfire.View).Result.Succeeded)
+    {
+        <MudNavLink Href="/jobs" Icon="@Icons.Material.Outlined.Work">
+            @localizer["Hangfire"]
+        </MudNavLink>
+    }
     <MudNavLink Href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/" Target="_blank" Icon="@Icons.Material.Outlined.ReadMore">
         @localizer["Quick Start Guide"]
     </MudNavLink>

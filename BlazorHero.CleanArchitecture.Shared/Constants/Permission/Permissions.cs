@@ -58,5 +58,10 @@
         {
             public const string View = "Permissions.Dashboards.View";
         }
+
+        public static class Hangfire
+        {
+            public const string View = "Permissions.Hangfire.View";
+        }
     }
 }
