@@ -3,7 +3,6 @@
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Products> localizer
 <style>
     .mud-table-container {
-        overflow-x: unset;
         overflow: auto;
     }
 </style>
@@ -48,7 +47,7 @@
         </MudTd>
         <MudTd DataLabel="Rate">@context.Rate</MudTd>
         <MudTd DataLabel="Actions" Style="text-align:right">
-            <MudMenu Label="@localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary">
+            <MudMenu Label="@localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
                 <MudMenuItem @onclick="@(()=>InvokeModal(@context.Id))">@localizer["Edit"]</MudMenuItem>
                 <MudMenuItem @onclick="@(()=>Delete(@context.Id))">@localizer["Delete"]</MudMenuItem>
             </MudMenu>
