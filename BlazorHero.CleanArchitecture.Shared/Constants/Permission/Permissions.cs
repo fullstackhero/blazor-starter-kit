@@ -53,5 +53,10 @@
 
             //TODO - add permissions
         }
+
+        public static class Dashboards
+        {
+            public const string View = "Permissions.Dashboards.View";
+        }
     }
 }

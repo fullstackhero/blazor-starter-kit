@@ -16,9 +16,12 @@
         @localizer["Swagger"]
     </MudNavLink>
     <MudListSubheader Class="mt-2 mb-n2">@localizer["Personal"]</MudListSubheader>
-    <MudNavLink Href="/dashboard" Icon="@Icons.Material.Outlined.Dashboard">
-        @localizer["Dashboard"]
-    </MudNavLink>
+    @if (_authorizationService.AuthorizeAsync(AuthenticationStateProviderUser, Permissions.Dashboards.View).Result.Succeeded)
+    {
+        <MudNavLink Href="/dashboard" Icon="@Icons.Material.Outlined.Dashboard">
+            @localizer["Dashboard"]
+        </MudNavLink>
+    }
     <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.SupervisorAccount">
         @localizer["Account"]
     </MudNavLink>

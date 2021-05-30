@@ -79,7 +79,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                         {
                             var propertyValue = prop.GetValue(null);
                             if (propertyValue is not null)
-                                await _roleManager.AddPermissionClaim(adminRole, prop.GetValue(null).ToString());
+                                await _roleManager.AddPermissionClaim(adminRole, propertyValue.ToString());
                         }
                     }
                     _logger.LogInformation(_localizer["Seeded User with Administrator Role."]);

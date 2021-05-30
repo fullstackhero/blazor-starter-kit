@@ -41,16 +41,23 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 
         private async Task LoadDataAsync()
         {
-            var data = await _dashboardManager.GetDataAsync();
-            if (data.Succeeded)
+            var response = await _dashboardManager.GetDataAsync();
+            if (response.Succeeded)
             {
-                ProductCount = data.Data.ProductCount;
-                BrandCount = data.Data.BrandCount;
-                UserCount = data.Data.UserCount;
-                RoleCount = data.Data.RoleCount;
-                foreach (var item in data.Data.DataEnterBarChart)
+                ProductCount = response.Data.ProductCount;
+                BrandCount = response.Data.BrandCount;
+                UserCount = response.Data.UserCount;
+                RoleCount = response.Data.RoleCount;
+                foreach (var item in response.Data.DataEnterBarChart)
                 {
                     DataEnterBarChartSeries.Add(new ChartSeries { Name = item.Name, Data = item.Data });
+                }
+            }
+            else
+            {
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }
