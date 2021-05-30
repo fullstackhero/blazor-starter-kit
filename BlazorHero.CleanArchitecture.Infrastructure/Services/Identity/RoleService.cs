@@ -1,19 +1,18 @@
 ﻿using AutoMapper;
-using BlazorHero.CleanArchitecture.Infrastructure.Helpers;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
-using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+using BlazorHero.CleanArchitecture.Infrastructure.Helpers;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Constants.Role;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
@@ -125,14 +124,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
             #region GetPermissions
 
-            allPermissions.AddPermissions(typeof(Permissions.Users));
-            allPermissions.AddPermissions(typeof(Permissions.Roles));
-            allPermissions.AddPermissions(typeof(Permissions.RoleClaims));
-            allPermissions.AddPermissions(typeof(Permissions.Products));
-            allPermissions.AddPermissions(typeof(Permissions.Brands));
-            allPermissions.AddPermissions(typeof(Permissions.Preferences));
-            //You could have your own method to refactor the below line, maybe by using Reflection and fetch directly from a class, else assume that Admin has all the roles assigned and retreive the Admin's roles here via the DB/Identity.RoleClaims table.
-            allPermissions.Add(new RoleClaimResponse { Value = Permissions.Communication.Chat, Type = ApplicationClaimTypes.Permission, Group = nameof(Permissions.Communication), Description = "" }); //TODO - add and localize
+            allPermissions.GetAllPermissions();
 
             #endregion GetPermissions
 
