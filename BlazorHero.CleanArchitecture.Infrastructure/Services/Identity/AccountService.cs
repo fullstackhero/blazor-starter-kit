@@ -48,38 +48,39 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
         public async Task<IResult> UpdateProfileAsync(UpdateProfileRequest request, string userId)
         {
-            var userWithSamePhoneNumber = await _userManager.Users.SingleOrDefaultAsync(x => x.PhoneNumber == request.PhoneNumber && x.Id != userId);
-            if (userWithSamePhoneNumber == null)
+            if (!string.IsNullOrWhiteSpace(request.PhoneNumber))
             {
-                var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
-                if (userWithSameEmail == null || userWithSameEmail.Id == userId)
+                var userWithSamePhoneNumber = await _userManager.Users.FirstOrDefaultAsync(x => x.PhoneNumber == request.PhoneNumber);
+                if (userWithSamePhoneNumber != null)
                 {
-                    var user = await _userManager.FindByIdAsync(userId);
-                    if (user == null)
-                    {
-                        return await Result.FailAsync(_localizer["User Not Found."]);
-                    }
-                    user.FirstName = request.FirstName;
-                    user.LastName = request.LastName;
-                    user.PhoneNumber = request.PhoneNumber;
-                    var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-                    if (request.PhoneNumber != phoneNumber)
-                    {
-                        var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, request.PhoneNumber);
-                    }
-                    var identityResult = await _userManager.UpdateAsync(user);
-                    var errors = identityResult.Errors.Select(e => _localizer[e.Description].ToString()).ToList();
-                    await _signInManager.RefreshSignInAsync(user);
-                    return identityResult.Succeeded ? await Result.SuccessAsync() : await Result.FailAsync(errors);
+                    return await Result.FailAsync(string.Format(_localizer["Phone number {0} is already used."], request.PhoneNumber));
                 }
-                else
+            }
+
+            var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
+            if (userWithSameEmail == null || userWithSameEmail.Id == userId)
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
                 {
-                    return await Result.FailAsync(string.Format(_localizer["Email {0} is already used."], request.Email));
+                    return await Result.FailAsync(_localizer["User Not Found."]);
                 }
+                user.FirstName = request.FirstName;
+                user.LastName = request.LastName;
+                user.PhoneNumber = request.PhoneNumber;
+                var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+                if (request.PhoneNumber != phoneNumber)
+                {
+                    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, request.PhoneNumber);
+                }
+                var identityResult = await _userManager.UpdateAsync(user);
+                var errors = identityResult.Errors.Select(e => _localizer[e.Description].ToString()).ToList();
+                await _signInManager.RefreshSignInAsync(user);
+                return identityResult.Succeeded ? await Result.SuccessAsync() : await Result.FailAsync(errors);
             }
             else
             {
-                return await Result.FailAsync(string.Format(_localizer["Phone number {0} is already used."], request.PhoneNumber));
+                return await Result.FailAsync(string.Format(_localizer["Email {0} is already used."], request.Email));
             }
         }
 
