@@ -11,16 +11,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
     public partial class AddEditBrandModal
     {
-        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<AddEditBrandModal> localizer { get; set; }
+        [Parameter] public AddEditBrandCommand AddEditBrandModel { get; set; } = new();
+        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+        [CascadingParameter] private HubConnection HubConnection { get; set; }
 
         private FluentValidationValidator _fluentValidationValidator;
-        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-
-        [Parameter]
-        public AddEditBrandCommand AddEditBrandModel { get; set; } = new();
-
-        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
-        [CascadingParameter] public HubConnection hubConnection { get; set; }
+        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         public void Cancel()
         {
@@ -42,16 +38,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                     _snackBar.Add(message, Severity.Error);
                 }
             }
-            await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
+            await HubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
         }
 
         protected override async Task OnInitializedAsync()
         {
             await LoadDataAsync();
-            hubConnection = hubConnection.TryInitialize(_navigationManager);
-            if (hubConnection.State == HubConnectionState.Disconnected)
+            HubConnection = HubConnection.TryInitialize(_navigationManager);
+            if (HubConnection.State == HubConnectionState.Disconnected)
             {
-                await hubConnection.StartAsync();
+                await HubConnection.StartAsync();
             }
         }
 

@@ -7,28 +7,43 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.JSInterop;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
     public partial class Brands
     {
-        public List<GetAllBrandsResponse> BrandList = new();
-        private GetAllBrandsResponse brand = new();
-        private string searchString = "";
+        [CascadingParameter] private HubConnection HubConnection { get; set; }
+
+        private List<GetAllBrandsResponse> _brandList = new();
+        private GetAllBrandsResponse _brand = new();
+        private string _searchString = "";
         private bool _dense = true;
         private bool _striped = true;
         private bool _bordered = false;
 
+        private ClaimsPrincipal _currentUser;
+        private bool _canCreateBrands;
+        private bool _canEditBrands;
+        private bool _canDeleteBrands;
+
         protected override async Task OnInitializedAsync()
         {
+            _currentUser = await _authenticationManager.CurrentUser();
+            _canCreateBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Create)).Succeeded;
+            _canEditBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Edit)).Succeeded;
+            _canDeleteBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Delete)).Succeeded;
+
             await GetBrandsAsync();
-            hubConnection = hubConnection.TryInitialize(_navigationManager);
-            if (hubConnection.State == HubConnectionState.Disconnected)
+            HubConnection = HubConnection.TryInitialize(_navigationManager);
+            if (HubConnection.State == HubConnectionState.Disconnected)
             {
-                await hubConnection.StartAsync();
+                await HubConnection.StartAsync();
             }
         }
 
@@ -37,7 +52,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             var response = await _brandManager.GetAllAsync();
             if (response.Succeeded)
             {
-                BrandList = response.Data.ToList();
+                _brandList = response.Data.ToList();
             }
             else
             {
@@ -48,17 +63,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             }
         }
 
-        [CascadingParameter] public HubConnection hubConnection { get; set; }
-
         private async Task Delete(int id)
         {
-            string deleteContent = localizer["Delete Content"];
+            string deleteContent = _localizer["Delete Content"];
             var parameters = new DialogParameters
             {
                 {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
             };
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(localizer["Delete"], parameters, options);
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(_localizer["Delete"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
@@ -66,7 +79,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 if (response.Succeeded)
                 {
                     await Reset();
-                    await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
+                    await HubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
                     _snackBar.Add(response.Messages[0], Severity.Success);
                 }
                 else
@@ -82,16 +95,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task ExportToExcel()
         {
-            var base64 = await _brandManager.ExportToExcelAsync(searchString);
+            var base64 = await _brandManager.ExportToExcelAsync(_searchString);
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
                 ByteArray = base64,
                 FileName = $"{nameof(Brands).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
-            _snackBar.Add(string.IsNullOrWhiteSpace(searchString)
-                ? localizer["Brands exported"]
-                : localizer["Filtered Brands exported"], Severity.Success);
+            _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
+                ? _localizer["Brands exported"]
+                : _localizer["Filtered Brands exported"], Severity.Success);
         }
 
         private async Task InvokeModal(int id = 0)
@@ -99,20 +112,20 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             var parameters = new DialogParameters();
             if (id != 0)
             {
-                brand = BrandList.FirstOrDefault(c => c.Id == id);
-                if (brand != null)
+                _brand = _brandList.FirstOrDefault(c => c.Id == id);
+                if (_brand != null)
                 {
                     parameters.Add(nameof(AddEditBrandModal.AddEditBrandModel), new AddEditBrandCommand
                     {
-                        Id = brand.Id,
-                        Name = brand.Name,
-                        Description = brand.Description,
-                        Tax = brand.Tax
+                        Id = _brand.Id,
+                        Name = _brand.Name,
+                        Description = _brand.Description,
+                        Tax = _brand.Tax
                     });
                 }
             }
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<AddEditBrandModal>(id == 0 ? localizer["Create"] : localizer["Edit"], parameters, options);
+            var dialog = _dialogService.Show<AddEditBrandModal>(id == 0 ? _localizer["Create"] : _localizer["Edit"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
@@ -122,18 +135,18 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task Reset()
         {
-            brand = new GetAllBrandsResponse();
+            _brand = new GetAllBrandsResponse();
             await GetBrandsAsync();
         }
 
         private bool Search(GetAllBrandsResponse brand)
         {
-            if (string.IsNullOrWhiteSpace(searchString)) return true;
-            if (brand.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (string.IsNullOrWhiteSpace(_searchString)) return true;
+            if (brand.Name?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
-            if (brand.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (brand.Description?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

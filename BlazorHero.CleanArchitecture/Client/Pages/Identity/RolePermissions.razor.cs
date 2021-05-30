@@ -18,41 +18,36 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class RolePermissions
     {
-        [Parameter]
-        public string Id { get; set; }
+        [CascadingParameter] private HubConnection HubConnection { get; set; }
+        [Parameter] public string Id { get; set; }
+        [Parameter] public string Title { get; set; }
+        [Parameter] public string Description { get; set; }
 
-        [Parameter]
-        public string Title { get; set; }
-
-        [Parameter]
-        public string Description { get; set; }
-
-        public PermissionResponse model { get; set; }
-
+        private PermissionResponse _model;
         private Dictionary<string, List<RoleClaimResponse>> GroupedRoleClaims { get; } = new();
-        private ClaimsPrincipal CurrentUser { get; set; }
-        private bool canEdit;
-
         private IMapper _mapper;
-        private RoleClaimResponse roleClaims = new();
-        private RoleClaimResponse selectedItem = new();
-        private string searchString = "";
+        private RoleClaimResponse _roleClaims = new();
+        private RoleClaimResponse _selectedItem = new();
+        private string _searchString = "";
         private bool _dense = true;
         private bool _striped = true;
         private bool _bordered = false;
 
+        private ClaimsPrincipal _currentUser;
+        private bool _canEditRolePermissions;
+
         protected override async Task OnInitializedAsync()
         {
-            CurrentUser = await _authenticationManager.CurrentUser();
-            canEdit = _authorizationService.AuthorizeAsync(CurrentUser, Permissions.RoleClaims.Edit).Result.Succeeded;
+            _currentUser = await _authenticationManager.CurrentUser();
+            _canEditRolePermissions = _authorizationService.AuthorizeAsync(_currentUser, Permissions.RoleClaims.Edit).Result.Succeeded;
 
             _mapper = new MapperConfiguration(c => { c.AddProfile<RoleProfile>(); }).CreateMapper();
             var roleId = Id;
             var result = await _roleManager.GetPermissionsAsync(roleId);
             if (result.Succeeded)
             {
-                model = result.Data;
-                foreach (var claim in model.RoleClaims)
+                _model = result.Data;
+                foreach (var claim in _model.RoleClaims)
                 {
                     if (GroupedRoleClaims.ContainsKey(claim.Group))
                     {
@@ -63,9 +58,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                         GroupedRoleClaims.Add(claim.Group, new List<RoleClaimResponse> { claim });
                     }
                 }
-                if (model != null)
+                if (_model != null)
                 {
-                    Description = string.Format(localizer["Manage {0} {1}'s Permissions"], model.RoleId, model.RoleName);
+                    Description = string.Format(_localizer["Manage {0} {1}'s Permissions"], _model.RoleId, _model.RoleName);
                 }
             }
             else
@@ -76,23 +71,21 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
                 _navigationManager.NavigateTo("/identity/roles");
             }
-            hubConnection = hubConnection.TryInitialize(_navigationManager);
-            if (hubConnection.State == HubConnectionState.Disconnected)
+            HubConnection = HubConnection.TryInitialize(_navigationManager);
+            if (HubConnection.State == HubConnectionState.Disconnected)
             {
-                await hubConnection.StartAsync();
+                await HubConnection.StartAsync();
             }
         }
 
-        [CascadingParameter] public HubConnection hubConnection { get; set; }
-
         private async Task SaveAsync()
         {
-            var request = _mapper.Map<PermissionResponse, PermissionRequest>(model);
+            var request = _mapper.Map<PermissionResponse, PermissionRequest>(_model);
             var result = await _roleManager.UpdatePermissionsAsync(request);
             if (result.Succeeded)
             {
                 _snackBar.Add(result.Messages[0], Severity.Success);
-                await hubConnection.SendAsync(ApplicationConstants.SignalR.SendRegenerateTokens);
+                await HubConnection.SendAsync(ApplicationConstants.SignalR.SendRegenerateTokens);
                 _navigationManager.NavigateTo("/identity/roles");
             }
             else
@@ -106,12 +99,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private bool Search(RoleClaimResponse roleClaims)
         {
-            if (string.IsNullOrWhiteSpace(searchString)) return true;
-            if (roleClaims.Value?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (string.IsNullOrWhiteSpace(_searchString)) return true;
+            if (roleClaims.Value?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
-            if (roleClaims.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (roleClaims.Description?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

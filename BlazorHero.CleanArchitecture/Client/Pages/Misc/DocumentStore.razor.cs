@@ -5,25 +5,38 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 {
     public partial class DocumentStore
     {
-        private IEnumerable<GetAllDocumentsResponse> pagedData;
-        private MudTable<GetAllDocumentsResponse> table;
+        private IEnumerable<GetAllDocumentsResponse> _pagedData;
+        private MudTable<GetAllDocumentsResponse> _table;
         private string CurrentUserId { get; set; }
-        private int totalItems;
-        private int currentPage;
-        private string searchString = null;
+        private int _totalItems;
+        private int _currentPage;
+        private string _searchString = "";
         private bool _dense = true;
         private bool _striped = true;
         private bool _bordered = false;
 
+        private ClaimsPrincipal _currentUser;
+        private bool _canCreateDocuments;
+        private bool _canEditDocuments;
+        private bool _canDeleteDocuments;
+
         protected override async Task OnInitializedAsync()
         {
+            _currentUser = await _authenticationManager.CurrentUser();
+            _canCreateDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Create)).Succeeded;
+            _canEditDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Edit)).Succeeded;
+            _canDeleteDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Delete)).Succeeded;
+
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             if (user == null) return;
@@ -36,7 +49,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private async Task<TableData<GetAllDocumentsResponse>> ServerReload(TableState state)
         {
             await LoadData(state.Page, state.PageSize, state);
-            return new TableData<GetAllDocumentsResponse> { TotalItems = totalItems, Items = pagedData };
+            return new TableData<GetAllDocumentsResponse> { TotalItems = _totalItems, Items = _pagedData };
         }
 
         private async Task LoadData(int pageNumber, int pageSize, TableState state)
@@ -45,16 +58,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             var response = await _documentManager.GetAllAsync(request);
             if (response.Succeeded)
             {
-                totalItems = response.TotalCount;
-                currentPage = response.CurrentPage;
+                _totalItems = response.TotalCount;
+                _currentPage = response.CurrentPage;
                 var data = response.Data;
                 var loadedData = data.Where(element =>
                 {
-                    if (string.IsNullOrWhiteSpace(searchString))
+                    if (string.IsNullOrWhiteSpace(_searchString))
                         return true;
-                    if (element.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    if (element.Title.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
                         return true;
-                    if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    if (element.Description.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
                         return true;
                     return false;
                 });
@@ -80,7 +93,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                         break;
                 }
                 data = loadedData.ToList();
-                pagedData = data;
+                _pagedData = data;
             }
             else
             {
@@ -93,8 +106,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 
         private void OnSearch(string text)
         {
-            searchString = text;
-            table.ReloadServerData();
+            _searchString = text;
+            _table.ReloadServerData();
         }
 
         private async Task InvokeModal(int id = 0)
@@ -102,7 +115,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             var parameters = new DialogParameters();
             if (id != 0)
             {
-                var doc = pagedData.FirstOrDefault(c => c.Id == id);
+                var doc = _pagedData.FirstOrDefault(c => c.Id == id);
                 if (doc != null)
                 {
                     parameters.Add(nameof(AddEditDocumentModal.AddEditDocumentModel), new AddEditDocumentCommand
@@ -116,7 +129,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                 }
             }
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<AddEditDocumentModal>(id == 0 ? localizer["Create"] : localizer["Edit"], parameters, options);
+            var dialog = _dialogService.Show<AddEditDocumentModal>(id == 0 ? _localizer["Create"] : _localizer["Edit"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
@@ -126,13 +139,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 
         private async Task Delete(int id)
         {
-            string deleteContent = localizer["Delete Content"];
+            string deleteContent = _localizer["Delete Content"];
             var parameters = new DialogParameters
             {
                 {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
             };
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(localizer["Delete"], parameters, options);
+            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(_localizer["Delete"], parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {

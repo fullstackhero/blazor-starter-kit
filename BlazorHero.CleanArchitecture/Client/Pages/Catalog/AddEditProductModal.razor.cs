@@ -10,6 +10,7 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Blazored.FluentValidation;
 
@@ -17,18 +18,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
     public partial class AddEditProductModal
     {
-        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<AddEditProductModal> localizer { get; set; }
+        [Parameter] public AddEditProductCommand AddEditProductModel { get; set; } = new();
+        [CascadingParameter] private HubConnection HubConnection { get; set; }
+        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
 
         private FluentValidationValidator _fluentValidationValidator;
-        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-
-        [Parameter]
-        public AddEditProductCommand AddEditProductModel { get; set; } = new();
-
-        [CascadingParameter] public HubConnection hubConnection { get; set; }
-
-        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
-        private List<GetAllBrandsResponse> Brands = new();
+        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+        private List<GetAllBrandsResponse> _brands = new();
 
         public void Cancel()
         {
@@ -41,7 +37,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             if (response.Succeeded)
             {
                 _snackBar.Add(response.Messages[0], Severity.Success);
-                await hubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
+                await HubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
                 MudDialog.Close();
             }
             else
@@ -56,10 +52,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         protected override async Task OnInitializedAsync()
         {
             await LoadDataAsync();
-            hubConnection = hubConnection.TryInitialize(_navigationManager);
-            if (hubConnection.State == HubConnectionState.Disconnected)
+            HubConnection = HubConnection.TryInitialize(_navigationManager);
+            if (HubConnection.State == HubConnectionState.Disconnected)
             {
-                await hubConnection.StartAsync();
+                await HubConnection.StartAsync();
             }
         }
 
@@ -74,7 +70,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             var data = await _brandManager.GetAllAsync();
             if (data.Succeeded)
             {
-                Brands = data.Data;
+                _brands = data.Data;
             }
         }
 
@@ -97,14 +93,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             AddEditProductModel.UploadRequest = new UploadRequest();
         }
 
-        public IBrowserFile file { get; set; }
+        private IBrowserFile _file;
 
         private async Task UploadFiles(InputFileChangeEventArgs e)
         {
-            file = e.File;
-            if (file != null)
+            _file = e.File;
+            if (_file != null)
             {
-                var extension = Path.GetExtension(file.Name);
+                var extension = Path.GetExtension(_file.Name);
                 var format = "image/png";
                 var imageFile = await e.File.RequestImageFileAsync(format, 400, 400);
                 var buffer = new byte[imageFile.Size];
@@ -112,6 +108,19 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 AddEditProductModel.ImageDataURL = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
                 AddEditProductModel.UploadRequest = new UploadRequest { Data = buffer, UploadType = Application.Enums.UploadType.Product, Extension = extension };
             }
+        }
+
+        private async Task<IEnumerable<int>> SearchBrands(string value)
+        {
+            // In real life use an asynchronous function for fetching data from an api.
+            await Task.Delay(5);
+
+            // if text is null or empty, show complete list
+            if (string.IsNullOrEmpty(value))
+                return _brands.Select(x => x.Id);
+
+            return _brands.Where(x => x.Name.Contains(value, StringComparison.InvariantCultureIgnoreCase))
+                .Select(x => x.Id);
         }
     }
 }

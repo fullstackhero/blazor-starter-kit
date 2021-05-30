@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
-@inject Microsoft.Extensions.Localization.IStringLocalizer<NotFoundLayout> localizer
+@inject Microsoft.Extensions.Localization.IStringLocalizer<NotFoundLayout> _localizer
+
 <MudThemeProvider Theme="BlazorHeroTheme.DefaultTheme" />
 <MudSnackbarProvider />
 <MudContainer MaxWidth="MaxWidth.Small">
@@ -20,14 +21,11 @@
             <path d="M832.06,417.88l52.06-30.06L835.87,158.26l-52.06,30.05Z" transform="translate(-315.12 -126.28)" style="fill:#1E88E5" />
             <path d="M780.07,126.29,728,156.34l55.8,32,52.06-30.05Z" transform="translate(-315.12 -126.28)" style="fill:#0069c0" />
         </svg>
-        <MudText Typo="Typo.h5" Class="mt-6" Align="Align.Center">@localizer["Message"]</MudText>
+        <MudText Typo="Typo.h5" Class="mt-6" Align="Align.Center">@_localizer["Message"]</MudText>
         <MudItem xs="12" sm="12" md="12">
             <div class="pa-4 justify-center my-4 mud-text-align-center">
-                <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Link="/">@localizer["GoHome"]</MudButton>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Link="/">@_localizer["GoHome"]</MudButton>
             </div>
         </MudItem>
     </div>
 </MudContainer>
-@code {
-
-}

@@ -1,5 +1,4 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Threading.Tasks;
 using Blazored.FluentValidation;
@@ -8,21 +7,18 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
 {
     public partial class Register
     {
-        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Register> localizer { get; set; }
-
         private FluentValidationValidator _fluentValidationValidator;
-        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-
-        private RegisterRequest registerUserModel = new RegisterRequest();
+        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+        private RegisterRequest _registerUserModel = new();
 
         private async Task SubmitAsync()
         {
-            var response = await _userManager.RegisterUserAsync(registerUserModel);
+            var response = await _userManager.RegisterUserAsync(_registerUserModel);
             if (response.Succeeded)
             {
                 _snackBar.Add(response.Messages[0], Severity.Success);
                 _navigationManager.NavigateTo("/login");
-                registerUserModel = new RegisterRequest();
+                _registerUserModel = new RegisterRequest();
             }
             else
             {
@@ -33,23 +29,23 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             }
         }
 
-        private bool PasswordVisibility;
-        private InputType PasswordInput = InputType.Password;
-        private string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+        private bool _passwordVisibility;
+        private InputType _passwordInput = InputType.Password;
+        private string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
 
         private void TogglePasswordVisibility()
         {
-            if (PasswordVisibility)
+            if (_passwordVisibility)
             {
-                PasswordVisibility = false;
-                PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-                PasswordInput = InputType.Password;
+                _passwordVisibility = false;
+                _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+                _passwordInput = InputType.Password;
             }
             else
             {
-                PasswordVisibility = true;
-                PasswordInputIcon = Icons.Material.Filled.Visibility;
-                PasswordInput = InputType.Text;
+                _passwordVisibility = true;
+                _passwordInputIcon = Icons.Material.Filled.Visibility;
+                _passwordInput = InputType.Text;
             }
         }
     }

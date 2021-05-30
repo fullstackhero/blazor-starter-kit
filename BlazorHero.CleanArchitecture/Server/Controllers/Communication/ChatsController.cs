@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.Communication
 {
-    [Authorize]
+    [Authorize(Policy = Permissions.Communication.Chat)]
     [Route("api/[controller]")]
     [ApiController]
     public class ChatsController : ControllerBase

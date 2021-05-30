@@ -11,8 +11,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
     public partial class AuditTrails
     {
         public List<RelatedAuditTrail> Trails = new();
-        private RelatedAuditTrail Trail = new();
-        private string searchString = "";
+
+        private RelatedAuditTrail _trail = new();
+        private string _searchString = "";
         private bool _dense = true;
         private bool _striped = true;
         private bool _bordered = false;
@@ -26,20 +27,20 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
             var result = false;
 
             // check Search String
-            if (string.IsNullOrWhiteSpace(searchString)) result = true;
+            if (string.IsNullOrWhiteSpace(_searchString)) result = true;
             if (!result)
             {
-                if (response.TableName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+                if (response.TableName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
                 {
                     result = true;
                 }
                 if (_searchInOldValues &&
-                    response.OldValues?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+                    response.OldValues?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
                 {
                     result = true;
                 }
                 if (_searchInNewValues &&
-                    response.NewValues?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+                    response.NewValues?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
                 {
                     result = true;
                 }
@@ -95,26 +96,26 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
 
         private void ShowBtnPress(int id)
         {
-            Trail = Trails.First(f => f.Id == id);
+            _trail = Trails.First(f => f.Id == id);
             foreach (var trial in Trails.Where(a => a.Id != id))
             {
                 trial.ShowDetails = false;
             }
-            Trail.ShowDetails = !Trail.ShowDetails;
+            _trail.ShowDetails = !_trail.ShowDetails;
         }
 
         private async Task ExportToExcelAsync()
         {
-            var base64 = await _auditManager.DownloadFileAsync(searchString, _searchInOldValues, _searchInNewValues);
+            var base64 = await _auditManager.DownloadFileAsync(_searchString, _searchInOldValues, _searchInNewValues);
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
                 ByteArray = base64,
                 FileName = $"{nameof(AuditTrails).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             });
-            _snackBar.Add(string.IsNullOrWhiteSpace(searchString)
-                ? localizer["Audit Trails exported"]
-                : localizer["Filtered Audit Trails exported"], Severity.Success);
+            _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
+                ? _localizer["Audit Trails exported"]
+                : _localizer["Filtered Audit Trails exported"], Severity.Success);
         }
 
         public class RelatedAuditTrail : AuditResponse

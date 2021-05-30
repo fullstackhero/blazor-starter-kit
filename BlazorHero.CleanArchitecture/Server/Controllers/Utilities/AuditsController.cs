@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
 {
@@ -19,12 +20,14 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
             _auditService = auditService;
         }
 
+        [Authorize(Policy = Permissions.AuditTrails.View)]
         [HttpGet]
         public async Task<IActionResult> GetUserTrailsAsync()
         {
             return Ok(await _auditService.GetCurrentUserTrailsAsync(_currentUserService.UserId));
         }
 
+        [Authorize(Policy = Permissions.AuditTrails.View)]
         [HttpGet("export")]
         public async Task<IActionResult> ExportExcel(string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false)
         {
