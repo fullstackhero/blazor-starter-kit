@@ -25,7 +25,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Helpers
                     var propertyValue = fi.GetValue(null);
 
                     if (propertyValue is not null)
-                        allPermissions.Add(new RoleClaimResponse { Value = fi.GetValue(null).ToString(), Type = ApplicationClaimTypes.Permission, Group = nameof(module) });
+                        allPermissions.Add(new RoleClaimResponse { Value = fi.GetValue(null).ToString(), Type = ApplicationClaimTypes.Permission, Group = module.Name });
                 }
             }
 
