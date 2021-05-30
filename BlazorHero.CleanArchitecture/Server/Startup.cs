@@ -13,6 +13,7 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using BlazorHero.CleanArchitecture.Server.Filters;
 using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Server
 {
@@ -61,7 +62,7 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddLazyCache();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IStringLocalizer<Startup> localizer)
         {
             app.UseCors();
             app.UseExceptionHandling(env);
@@ -80,6 +81,7 @@ namespace BlazorHero.CleanArchitecture.Server
             app.UseAuthorization();
             app.UseHangfireDashboard("/jobs", new DashboardOptions
             {
+                DashboardTitle = localizer["BlazorHero Jobs"],
                 Authorization = new[] { new HangfireAuthorizationFilter() }
             });
             app.UseEndpoints();
