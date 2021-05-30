@@ -3,19 +3,15 @@ using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
-using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
 using BlazorHero.CleanArchitecture.Infrastructure.Services;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Shared.Services;
-using BlazorHero.CleanArchitecture.Server.Localization;
-using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
 using BlazorHero.CleanArchitecture.Server.Permission;
 using BlazorHero.CleanArchitecture.Server.Services;
-using BlazorHero.CleanArchitecture.Server.Settings;
-using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -25,8 +21,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
@@ -38,6 +32,12 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Server.Localization;
+using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
+using BlazorHero.CleanArchitecture.Server.Settings;
+using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
@@ -252,7 +252,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             services.AddAuthorization(options =>
             {
                 // Here I stored necessary permissions/roles in a constant
-                foreach (var prop in typeof(Permissions).GetNestedTypes().SelectMany(c => c.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)))
+                foreach (var prop in typeof(Permissions).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy))
                 {
                     var propertyValue = prop.GetValue(null);
                     if (propertyValue is not null)

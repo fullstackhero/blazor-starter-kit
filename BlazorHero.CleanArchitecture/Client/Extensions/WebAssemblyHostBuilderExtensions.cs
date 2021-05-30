@@ -13,7 +13,6 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
-using System.Reflection;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
@@ -39,7 +38,12 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 })
                 .AddAuthorizationCore(options =>
                 {
-                    RegisterPermissionClaims(options);
+                    foreach (var permissionModule in PermissionModules.GetAllPermissionsModules())
+                    {
+                        RegisterPermissionClaimPolicyByModule(options, permissionModule);
+                    }
+
+                    RegisterPermissionClaimPolicyByCustomModules(options);
                 })
                 .AddBlazoredLocalStorage()
                 .AddMudServices(configuration =>
@@ -96,16 +100,20 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
             return services;
         }
 
-        private static void RegisterPermissionClaims(AuthorizationOptions options)
+        private static void RegisterPermissionClaimPolicyByModule(AuthorizationOptions options, string module)
         {
-            foreach (var prop in typeof(Permissions).GetNestedTypes().SelectMany(c => c.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)))
+            var allPermissions = PermissionModules.GeneratePermissionsForModule(module);
+            foreach (var permission in allPermissions)
             {
-                var propertyValue = prop.GetValue(null);
-                if (propertyValue is not null)
-                {
-                    options.AddPolicy(propertyValue.ToString(), policy => policy.RequireClaim(ApplicationClaimTypes.Permission, propertyValue.ToString()));
-                }
+                options.AddPolicy(permission, policy => policy.RequireClaim(ApplicationClaimTypes.Permission, permission));
             }
+        }
+
+        private static void RegisterPermissionClaimPolicyByCustomModules(AuthorizationOptions options)
+        {
+            //Test
+            options.AddPolicy(Permissions.Communication.Chat, policy => policy.RequireClaim(ApplicationClaimTypes.Permission, Permissions.Communication.Chat));
+            options.AddPolicy(Permissions.Preferences.ChangeLanguage, policy => policy.RequireClaim(ApplicationClaimTypes.Permission, Permissions.Preferences.ChangeLanguage));
         }
     }
 }
