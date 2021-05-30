@@ -12,15 +12,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 {
     public partial class AddEditDocumentModal
     {
-        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<AddEditDocumentModal> localizer { get; set; }
+        [Parameter] public AddEditDocumentCommand AddEditDocumentModel { get; set; } = new();
+        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
 
         private FluentValidationValidator _fluentValidationValidator;
-        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-
-        [Parameter]
-        public AddEditDocumentCommand AddEditDocumentModel { get; set; } = new();
-
-        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         public void Cancel()
         {
@@ -54,17 +50,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             await Task.CompletedTask;
         }
 
-        public IBrowserFile file { get; set; }
+        private IBrowserFile _file;
 
         private async Task UploadFiles(InputFileChangeEventArgs e)
         {
-            file = e.File;
-            if (file != null)
+            _file = e.File;
+            if (_file != null)
             {
-                var buffer = new byte[file.Size];
-                var extension = Path.GetExtension(file.Name);
+                var buffer = new byte[_file.Size];
+                var extension = Path.GetExtension(_file.Name);
                 var format = "application/octet-stream";
-                await file.OpenReadStream(file.Size).ReadAsync(buffer);
+                await _file.OpenReadStream(_file.Size).ReadAsync(buffer);
                 AddEditDocumentModel.URL = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
                 AddEditDocumentModel.UploadRequest = new UploadRequest { Data = buffer, UploadType = Application.Enums.UploadType.Document, Extension = extension };
             }

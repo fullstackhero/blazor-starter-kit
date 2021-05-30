@@ -1,5 +1,4 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 using MudBlazor;
 using System.Linq;
@@ -11,12 +10,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Reset
     {
-        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Reset> localizer { get; set; }
-
         private FluentValidationValidator _fluentValidationValidator;
-        private bool validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-
-        private readonly ResetPasswordRequest resetPasswordModel = new();
+        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+        private readonly ResetPasswordRequest _resetPasswordModel = new();
 
         protected override void OnInitialized()
         {
@@ -24,15 +20,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("Token", out var param))
             {
                 var queryToken = param.First();
-                resetPasswordModel.Token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(queryToken));
+                _resetPasswordModel.Token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(queryToken));
             }
         }
 
         private async Task SubmitAsync()
         {
-            if (!string.IsNullOrEmpty(resetPasswordModel.Token))
+            if (!string.IsNullOrEmpty(_resetPasswordModel.Token))
             {
-                var result = await _userManager.ResetPasswordAsync(resetPasswordModel);
+                var result = await _userManager.ResetPasswordAsync(_resetPasswordModel);
                 if (result.Succeeded)
                 {
                     _snackBar.Add(result.Messages[0], Severity.Success);
@@ -48,27 +44,27 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
             else
             {
-                _snackBar.Add(localizer["Token Not Found!"], Severity.Error);
+                _snackBar.Add(_localizer["Token Not Found!"], Severity.Error);
             }
         }
 
-        private bool PasswordVisibility;
-        private InputType PasswordInput = InputType.Password;
-        private string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+        private bool _passwordVisibility;
+        private InputType _passwordInput = InputType.Password;
+        private string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
 
         private void TogglePasswordVisibility()
         {
-            if (PasswordVisibility)
+            if (_passwordVisibility)
             {
-                PasswordVisibility = false;
-                PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-                PasswordInput = InputType.Password;
+                _passwordVisibility = false;
+                _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+                _passwordInput = InputType.Password;
             }
             else
             {
-                PasswordVisibility = true;
-                PasswordInputIcon = Icons.Material.Filled.Visibility;
-                PasswordInput = InputType.Text;
+                _passwordVisibility = true;
+                _passwordInputIcon = Icons.Material.Filled.Visibility;
+                _passwordInput = InputType.Text;
             }
         }
     }

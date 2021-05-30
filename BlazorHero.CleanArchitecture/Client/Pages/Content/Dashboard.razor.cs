@@ -9,34 +9,27 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 {
     public partial class Dashboard
     {
-        [Parameter]
-        public int ProductCount { get; set; }
+        [CascadingParameter] private HubConnection HubConnection { get; set; }
+        [Parameter] public int ProductCount { get; set; }
+        [Parameter] public int BrandCount { get; set; }
+        [Parameter] public int UserCount { get; set; }
+        [Parameter] public int RoleCount { get; set; }
 
-        [Parameter]
-        public int BrandCount { get; set; }
-
-        [Parameter]
-        public int UserCount { get; set; }
-
-        [Parameter]
-        public int RoleCount { get; set; }
-
-        public string[] DataEnterBarChartXAxisLabels = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-        public List<ChartSeries> DataEnterBarChartSeries = new List<ChartSeries>();
-
+        private readonly string[] _dataEnterBarChartXAxisLabels = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+        private readonly List<ChartSeries> _dataEnterBarChartSeries = new();
 
         protected override async Task OnInitializedAsync()
         {
             await LoadDataAsync();
-            hubConnection = new HubConnectionBuilder()
+            HubConnection = new HubConnectionBuilder()
             .WithUrl(_navigationManager.ToAbsoluteUri(ApplicationConstants.SignalR.HubUrl))
             .Build();
-            hubConnection.On(ApplicationConstants.SignalR.ReceiveUpdateDashboard, async () =>
+            HubConnection.On(ApplicationConstants.SignalR.ReceiveUpdateDashboard, async () =>
             {
                 await LoadDataAsync();
                 StateHasChanged();
             });
-            await hubConnection.StartAsync();
+            await HubConnection.StartAsync();
         }
 
         private async Task LoadDataAsync()
@@ -50,7 +43,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
                 RoleCount = response.Data.RoleCount;
                 foreach (var item in response.Data.DataEnterBarChart)
                 {
-                    DataEnterBarChartSeries.Add(new ChartSeries { Name = item.Name, Data = item.Data });
+                    _dataEnterBarChartSeries.Add(new ChartSeries { Name = item.Name, Data = item.Data });
                 }
             }
             else
@@ -61,7 +54,5 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
                 }
             }
         }
-
-        [CascadingParameter] public HubConnection hubConnection { get; set; }
     }
 }

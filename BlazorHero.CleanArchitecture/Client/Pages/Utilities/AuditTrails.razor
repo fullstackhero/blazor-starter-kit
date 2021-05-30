@@ -1,62 +1,62 @@
 ﻿@page "/audit-trails"
 @attribute [Authorize(Policy = Permissions.AuditTrails.View)]
-@inject Microsoft.Extensions.Localization.IStringLocalizer<AuditTrails> localizer
-@using BlazorHero.CleanArchitecture.Application.Responses.Audit;
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AuditTrails> _localizer
+
 <style>
     .mud-table-container {
         overflow: auto;
     }
 </style>
 
-<HeroTitle Title="@localizer["Audit Trails"]" Description="@localizer["Your Recent Activities."]" />
-<MudTable Hover="false" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Elevation="25" Items="Trails" Filter="new Func<RelatedAuditTrail, bool>(Search)" @bind-trail="Trail" CustomHeader="true">
+<HeroTitle Title="@_localizer["Audit Trails"]" Description="@_localizer["Your Recent Activities."]" />
+<MudTable Hover="false" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Elevation="25" Items="Trails" Filter="new Func<RelatedAuditTrail, bool>(Search)" @bind-trail="_trail" CustomHeader="true">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
-            <MudButton DisableElevation IconColor="Color.Secondary" Variant="Variant.Filled" OnClick="ExportToExcelAsync" StartIcon="@Icons.Custom.FileFormats.FileExcel" Color="Color.Surface">@localizer["Export To Excel"]</MudButton>
+            <MudButton DisableElevation IconColor="Color.Secondary" Variant="Variant.Filled" OnClick="ExportToExcelAsync" StartIcon="@Icons.Custom.FileFormats.FileExcel" Color="Color.Surface">@_localizer["Export To Excel"]</MudButton>
         </div>
         <MudToolBarSpacer />
-        <MudTextField @bind-Value="searchString" Immediate="true" Placeholder="@localizer["Search for Trails"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        <MudTextField @bind-Value="_searchString" Immediate="true" Placeholder="@_localizer["Search for Trails"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
     </ToolBarContent>
     <HeaderContent>
         <MudTHeadRow IgnoreCheckbox="true">
             <MudTh colspan="2">
-                <MudDateRangePicker @ref="_dateRangePicker" PickerVariant="PickerVariant.Dialog" Label="@localizer["Date Range For Searching"]" @bind-DateRange="_dateRange">
+                <MudDateRangePicker @ref="_dateRangePicker" PickerVariant="PickerVariant.Dialog" Label="@_localizer["Date Range For Searching"]" @bind-DateRange="_dateRange">
                     <PickerActions>
-                        <MudButton Class="mr-auto align-self-start" OnClick="@(() => _dateRangePicker.Clear())">@localizer["Clear"]</MudButton>
-                        <MudButton OnClick="@(() => _dateRangePicker.Close(false))">@localizer["Cancel"]</MudButton>
-                        <MudButton Color="Color.Primary" OnClick="@(() => _dateRangePicker.Close())">@localizer["Ok"]</MudButton>
+                        <MudButton Class="mr-auto align-self-start" OnClick="@(() => _dateRangePicker.Clear())">@_localizer["Clear"]</MudButton>
+                        <MudButton OnClick="@(() => _dateRangePicker.Close(false))">@_localizer["Cancel"]</MudButton>
+                        <MudButton Color="Color.Primary" OnClick="@(() => _dateRangePicker.Close())">@_localizer["Ok"]</MudButton>
                     </PickerActions>
                 </MudDateRangePicker>
             </MudTh>
             <MudTh colspan="3" Style="text-align: right">
-                <MudSwitch @bind-Checked="@_searchInOldValues" Color="Color.Primary" Style="margin-left: 5px;">@localizer["Search in Old Values"]</MudSwitch>
-                <MudSwitch @bind-Checked="@_searchInNewValues" Color="Color.Primary" Style="margin-left: 5px;">@localizer["Search in New Values"]</MudSwitch>
+                <MudSwitch @bind-Checked="@_searchInOldValues" Color="Color.Primary" Style="margin-left: 5px;">@_localizer["Search in Old Values"]</MudSwitch>
+                <MudSwitch @bind-Checked="@_searchInNewValues" Color="Color.Primary" Style="margin-left: 5px;">@_localizer["Search in New Values"]</MudSwitch>
             </MudTh>
         </MudTHeadRow>
         <MudTHeadRow IgnoreCheckbox="true">
-            <MudTh><MudTableSortLabel SortBy="new Func<RelatedAuditTrail, object>(x => x.Id)">@localizer["Id"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<RelatedAuditTrail, object>(x => x.TableName)">@localizer["Table Name"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<RelatedAuditTrail, object>(x => x.DateTime)">@localizer["Date"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<RelatedAuditTrail, object>(x => x.Type)">@localizer["Type"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<RelatedAuditTrail, object>(x => x.Id)">@_localizer["Id"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<RelatedAuditTrail, object>(x => x.TableName)">@_localizer["Table Name"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<RelatedAuditTrail, object>(x => x.DateTime)">@_localizer["Date"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<RelatedAuditTrail, object>(x => x.Type)">@_localizer["Type"]</MudTableSortLabel></MudTh>
             <MudTh Style="text-align: right"></MudTh>
         </MudTHeadRow>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Id">@context.Id</MudTd>
         <MudTd DataLabel="Name">
-            <MudHighlighter Text="@context.TableName" HighlightedText="@searchString" />
+            <MudHighlighter Text="@context.TableName" HighlightedText="@_searchString" />
         </MudTd>
         <MudTd DataLabel="Date">
             <MudItem>
-                <MudChip Icon="@Icons.Material.Filled.Watch" IconColor="Color.Secondary" Label="true" Color="Color.Surface">@localizer["Local"] : @context.LocalTime.ToString("dd MMM, yyyy hh:mm tt")</MudChip>
+                <MudChip Icon="@Icons.Material.Filled.Watch" IconColor="Color.Secondary" Label="true" Color="Color.Surface">@_localizer["Local"] : @context.LocalTime.ToString("dd MMM, yyyy hh:mm tt")</MudChip>
             </MudItem>
             <MudItem>
-                <MudChip Icon="@Icons.Material.Filled.Watch" IconColor="Color.Secondary" Label="true" Color="Color.Surface">@localizer["UTC"] : @context.DateTime.ToString("dd MMM, yyyy hh:mm tt")</MudChip>
+                <MudChip Icon="@Icons.Material.Filled.Watch" IconColor="Color.Secondary" Label="true" Color="Color.Surface">@_localizer["UTC"] : @context.DateTime.ToString("dd MMM, yyyy hh:mm tt")</MudChip>
             </MudItem>
         </MudTd>
         <MudTd DataLabel="Tax">@context.Type</MudTd>
         <MudTd Style="text-align:right">
-            <MudButton Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" OnClick="@(() => ShowBtnPress(context.Id))">@((context.ShowDetails == true)? @localizer["Hide"] : @localizer["Show"]) @localizer["Trail Details"]</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" OnClick="@(() => ShowBtnPress(context.Id))">@((context.ShowDetails == true)? _localizer["Hide"] : _localizer["Show"]) @_localizer["Trail Details"]</MudButton>
         </MudTd>
     </RowTemplate>
     <ChildRowContent>
@@ -67,7 +67,7 @@
                     <MudCard Elevation="25">
                         <MudCardHeader>
                             <CardHeaderContent>
-                                <MudAlert Severity="Severity.Info" Typo="Typo.body1">@localizer["Details for Trail ID"] : <strong>@context.Id</strong></MudAlert>
+                                <MudAlert Severity="Severity.Info" Typo="Typo.body1">@_localizer["Details for Trail ID"] : <strong>@context.Id</strong></MudAlert>
                             </CardHeaderContent>
                         </MudCardHeader>
                         <MudCardContent>
@@ -76,7 +76,7 @@
                                     @if (!string.IsNullOrEmpty(context.AffectedColumns))
                                     {
                                         <tr class="mud-table-row" style="padding:10px!important">
-                                            <td>@localizer["Columns Affected"]</td>
+                                            <td>@_localizer["Columns Affected"]</td>
                                             <td>
                                                 <MudItem>
                                                     @foreach (var column in context.AffectedColumns.Trim('[').Trim(']').Split(','))
@@ -88,7 +88,7 @@
                                         </tr>
                                     }
                                     <tr class="mud-table-row">
-                                        <td>@localizer["Primary Key"]</td>
+                                        <td>@_localizer["Primary Key"]</td>
                                         <td>
                                             <MudItem>
                                                 <MudChip Label="true" Color="Color.Surface">@context.PrimaryKey.Trim('{').Trim('}').Replace('"', ' ').Trim()</MudChip>
@@ -99,7 +99,7 @@
                                     @if (!string.IsNullOrEmpty(context.OldValues))
                                     {
                                         <tr class="mud-table-row">
-                                            <td>@localizer["Old Values"]</td>
+                                            <td>@_localizer["Old Values"]</td>
                                             <td>
 
                                                 <MudItem>
@@ -108,7 +108,7 @@
                                                         @if (_searchInOldValues)
                                                         {
                                                             <MudChip Label="true" Color="Color.Warning">
-                                                                <MudHighlighter Text="@value.Replace('"', ' ').Trim()" HighlightedText="@searchString" />
+                                                                <MudHighlighter Text="@value.Replace('"', ' ').Trim()" HighlightedText="@_searchString" />
                                                             </MudChip>
                                                         }
                                                         else
@@ -123,7 +123,7 @@
                                     @if (!string.IsNullOrEmpty(context.NewValues))
                                     {
                                         <tr class="mud-table-row">
-                                            <td>@localizer["New Values"]</td>
+                                            <td>@_localizer["New Values"]</td>
                                             <td>
 
                                                 <MudItem>
@@ -132,7 +132,7 @@
                                                         @if (_searchInNewValues)
                                                         {
                                                             <MudChip Label="true" Color="Color.Success">
-                                                                <MudHighlighter Text="@value.Replace('"', ' ').Trim()" HighlightedText="@searchString" />
+                                                                <MudHighlighter Text="@value.Replace('"', ' ').Trim()" HighlightedText="@_searchString" />
                                                             </MudChip>
                                                         }
                                                         else
@@ -152,9 +152,9 @@
             </MudTr>}
     </ChildRowContent>
     <FooterContent>
-        <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@localizer["Dense"]</MudSwitch>
-        <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@localizer["Striped"]</MudSwitch>
-        <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@localizer["Bordered"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@_localizer["Dense"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@_localizer["Striped"]</MudSwitch>
+        <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@_localizer["Bordered"]</MudSwitch>
     </FooterContent>
     <PagerContent>
         <TablePager />

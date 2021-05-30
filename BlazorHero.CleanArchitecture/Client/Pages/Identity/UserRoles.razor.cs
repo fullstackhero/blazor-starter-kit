@@ -13,29 +13,26 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class UserRoles
     {
-        [Parameter]
-        public string Id { get; set; }
-
-        [Parameter]
-        public string Title { get; set; }
-
-        [Parameter]
-        public string Description { get; set; }
-
+        [Parameter] public string Id { get; set; }
+        [Parameter] public string Title { get; set; }
+        [Parameter] public string Description { get; set; }
         public List<UserRoleModel> UserRolesList { get; set; } = new();
-        public ClaimsPrincipal CurrentUser { get; set; }
-        private bool canCreateOrEdit;
 
-        private UserRoleModel userRole = new();
-        private string searchString = "";
+        private UserRoleModel _userRole = new();
+        private string _searchString = "";
         private bool _dense = true;
         private bool _striped = true;
         private bool _bordered = false;
 
+        private ClaimsPrincipal _currentUser;
+        private bool _canCreateUserRoles;
+        private bool _canEditUserRoles;
+
         protected override async Task OnInitializedAsync()
         {
-            CurrentUser = await _authenticationManager.CurrentUser();
-            canCreateOrEdit = _authorizationService.AuthorizeAsync(CurrentUser, Permissions.Roles.Create).Result.Succeeded;
+            _currentUser = await _authenticationManager.CurrentUser();
+            _canCreateUserRoles = _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.Create).Result.Succeeded;
+            _canEditUserRoles = _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.Edit).Result.Succeeded;
 
             var userId = Id;
             var result = await _userManager.GetAsync(userId);
@@ -45,7 +42,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 if (user != null)
                 {
                     Title = $"{user.FirstName} {user.LastName}";
-                    Description = string.Format(localizer["Manage {0} {1}'s Roles"], user.FirstName, user.LastName);
+                    Description = string.Format(_localizer["Manage {0} {1}'s Roles"], user.FirstName, user.LastName);
                     var response = await _userManager.GetRolesAsync(user.Id);
                     UserRolesList = response.Data.UserRoles;
                 }
@@ -76,12 +73,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private bool Search(UserRoleModel userRole)
         {
-            if (string.IsNullOrWhiteSpace(searchString)) return true;
-            if (userRole.RoleName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (string.IsNullOrWhiteSpace(_searchString)) return true;
+            if (userRole.RoleName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
-            if (userRole.RoleDescription?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            if (userRole.RoleDescription?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
