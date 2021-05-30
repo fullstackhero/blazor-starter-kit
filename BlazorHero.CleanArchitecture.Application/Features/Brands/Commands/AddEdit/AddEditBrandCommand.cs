@@ -41,7 +41,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddE
             {
                 var brand = _mapper.Map<Brand>(command);
                 await _unitOfWork.Repository<Brand>().AddAsync(brand);
-                await _unitOfWork.ComitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
+                await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
                 return await Result<int>.SuccessAsync(brand.Id, _localizer["Brand Saved"]);
             }
             else
@@ -53,7 +53,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddE
                     brand.Tax = (command.Tax == 0) ? brand.Tax : command.Tax;
                     brand.Description = command.Description ?? brand.Description;
                     await _unitOfWork.Repository<Brand>().UpdateAsync(brand);
-                    await _unitOfWork.ComitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
+                    await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
                     return await Result<int>.SuccessAsync(brand.Id, _localizer["Brand Updated"]);
                 }
                 else

@@ -133,7 +133,10 @@
     <value>Cognome</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Accetto i termini e la privacy</value>
+  </data>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Telefono</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Registrati</value>

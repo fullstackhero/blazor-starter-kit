@@ -42,7 +42,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             return Ok(response);
         }
 
-        [Authorize(Policy = Permissions.Roles.Edit)]
+        [Authorize(Policy = Permissions.RoleClaims.View)]
         [HttpGet("permissions/{roleId}")]
         public async Task<IActionResult> GetPermissionsByRoleId([FromRoute] string roleId)
         {
@@ -50,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             return Ok(response);
         }
 
-        [Authorize(Policy = Permissions.Roles.Edit)]
+        [Authorize(Policy = Permissions.RoleClaims.Edit)]
         [HttpPut("permissions/update")]
         public async Task<IActionResult> Update(PermissionRequest model)
         {

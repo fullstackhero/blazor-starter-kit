@@ -120,8 +120,11 @@
   <data name="Account" xml:space="preserve">
     <value>Аккаунт</value>
   </data>
+  <data name="Buy Me A Coffee!" xml:space="preserve">
+    <value>Купить мне кофе!</value>
+  </data>
   <data name="Chat?" xml:space="preserve">
-    <value>Перейти к чату?</value>
+    <value>К чату?</value>
   </data>
   <data name="Community" xml:space="preserve">
     <value>Сообщество</value>

@@ -31,7 +31,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
             var result = await _authenticationManager.Login(tokenModel);
             if (result.Succeeded)
             {
-                _snackBar.Add($"{localizer["Welcome"]} {tokenModel.Email}.", Severity.Success);
+                _snackBar.Add(string.Format(localizer["Welcome {0}"], tokenModel.Email), Severity.Success);
                 _navigationManager.NavigateTo("/", true);
             }
             else

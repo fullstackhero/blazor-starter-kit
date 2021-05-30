@@ -129,6 +129,9 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>

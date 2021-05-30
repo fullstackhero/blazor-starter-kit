@@ -7,6 +7,7 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 
@@ -21,10 +22,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private bool _striped = true;
         private bool _bordered = false;
 
+        private ClaimsPrincipal CurrentUser { get; set; }
+
         [CascadingParameter] public HubConnection hubConnection { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
+            CurrentUser = await _authenticationManager.CurrentUser();
+
             await GetRolesAsync();
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             if (hubConnection.State == HubConnectionState.Disconnected)

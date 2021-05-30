@@ -120,6 +120,9 @@
   <data name="Account" xml:space="preserve">
     <value>Konto</value>
   </data>
+  <data name="Buy Me A Coffee!" xml:space="preserve">
+    <value>Buy Me A Coffee!</value>
+  </data>
   <data name="Chat?" xml:space="preserve">
     <value>Chat?</value>
   </data>

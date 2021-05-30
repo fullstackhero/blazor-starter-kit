@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
@@ -10,6 +11,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
@@ -26,10 +29,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         public PermissionResponse model { get; set; }
 
-        private Dictionary<string, List<RoleClaimsResponse>> GroupedRoleClaims { get; } = new();
+        private Dictionary<string, List<RoleClaimResponse>> GroupedRoleClaims { get; } = new();
+        private ClaimsPrincipal CurrentUser { get; set; }
+        private bool canEdit;
 
         private IMapper _mapper;
-        private RoleClaimsResponse roleClaims = new();
+        private RoleClaimResponse roleClaims = new();
+        private RoleClaimResponse selectedItem = new();
         private string searchString = "";
         private bool _dense = true;
         private bool _striped = true;
@@ -37,6 +43,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         protected override async Task OnInitializedAsync()
         {
+            CurrentUser = await _authenticationManager.CurrentUser();
+            canEdit = _authorizationService.AuthorizeAsync(CurrentUser, Permissions.RoleClaims.Edit).Result.Succeeded;
+
             _mapper = new MapperConfiguration(c => { c.AddProfile<RoleProfile>(); }).CreateMapper();
             var roleId = Id;
             var result = await _roleManager.GetPermissionsAsync(roleId);
@@ -51,13 +60,21 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     }
                     else
                     {
-                        GroupedRoleClaims.Add(claim.Group, new List<RoleClaimsResponse> { claim });
+                        GroupedRoleClaims.Add(claim.Group, new List<RoleClaimResponse> { claim });
                     }
                 }
                 if (model != null)
                 {
-                    Description = $"{localizer["Manage"]} {model.RoleId} {model.RoleName}'s {localizer["Permissions"]}";
+                    Description = string.Format(localizer["Manage {0} {1}'s Permissions"], model.RoleId, model.RoleName);
                 }
+            }
+            else
+            {
+                foreach (var error in result.Messages)
+                {
+                    _snackBar.Add(error, Severity.Error);
+                }
+                _navigationManager.NavigateTo("/identity/roles");
             }
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             if (hubConnection.State == HubConnectionState.Disconnected)
@@ -87,10 +104,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             }
         }
 
-        private bool Search(RoleClaimsResponse roleClaims)
+        private bool Search(RoleClaimResponse roleClaims)
         {
             if (string.IsNullOrWhiteSpace(searchString)) return true;
             if (roleClaims.Value?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (roleClaims.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

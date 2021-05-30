@@ -3,7 +3,7 @@ using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
-using BlazorHero.CleanArchitecture.Application.Models.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
@@ -180,6 +180,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddTransient<IRoleClaimService, RoleClaimService>();
             services.AddTransient<ITokenService, IdentityService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IAccountService, AccountService>();

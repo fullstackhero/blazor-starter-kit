@@ -1,6 +1,6 @@
-﻿using BlazorHero.CleanArchitecture.Application.Helpers;
+﻿using BlazorHero.CleanArchitecture.Infrastructure.Helpers;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Application.Models.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Constants.Role;
@@ -37,8 +37,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
 
         public void Initialize()
         {
-            AddCustomPermissionClaims();
             AddAdministrator();
+            AddCustomPermissionClaims();
             AddBasicUser();
             _db.SaveChanges();
         }
@@ -87,10 +87,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     var result = await _userManager.AddToRoleAsync(superUser, RoleConstants.AdministratorRole);
                     if (result.Succeeded)
                     {
-                        await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Users);
-                        await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Roles);
-                        await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Products);
-                        await _roleManager.GeneratePermissionClaimByModule(adminRole, PermissionModules.Brands);
+                        foreach (var module in PermissionModules.GetAllPermissionsModules())
+                        {
+                            await _roleManager.GeneratePermissionClaimByModule(adminRole, module);
+                        }
                     }
                     _logger.LogInformation(_localizer["Seeded User with Administrator Role."]);
                 }

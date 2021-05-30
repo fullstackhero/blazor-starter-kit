@@ -117,32 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="deleted." xml:space="preserve">
-    <value>удалена.</value>
+  <data name="Not allowed to delete {0} Role as it is being used." xml:space="preserve">
+    <value>Невозможно удалить Роль {0} так как она используется.</value>
   </data>
-  <data name="Not allowed to delete" xml:space="preserve">
-    <value>Невозможно удалить</value>
-  </data>
-  <data name="Not allowed to modify" xml:space="preserve">
-    <value>Невозможно обновить</value>
+  <data name="Not allowed to delete {0} Role." xml:space="preserve">
+    <value>Невозможно удалить Роль {0}.</value>
   </data>
   <data name="Not allowed to modify Permissions for this Role." xml:space="preserve">
     <value>Невозможно обновить Разрешения для этой роли.</value>
   </data>
-  <data name="Permission Updated." xml:space="preserve">
-    <value>Разрешение обновлено.</value>
+  <data name="Not allowed to modify {0} Role." xml:space="preserve">
+    <value>Невозможно обновить Роль {0}.</value>
   </data>
-  <data name="Role" xml:space="preserve">
-    <value>Роль</value>
+  <data name="Permissions Updated." xml:space="preserve">
+    <value>Разрешения обновлены.</value>
   </data>
-  <data name="Role as it is being used." xml:space="preserve">
-    <value>роль так как она используется.</value>
+  <data name="Role {0} Created." xml:space="preserve">
+    <value>Роль {0} создана.</value>
   </data>
-  <data name="Role Created" xml:space="preserve">
-    <value>Роль создана</value>
+  <data name="Role {0} Deleted." xml:space="preserve">
+    <value>Роль {0} удалена.</value>
   </data>
-  <data name="Role Updated." xml:space="preserve">
-    <value>Роль обновлена.</value>
+  <data name="Role {0} Updated." xml:space="preserve">
+    <value>Роль {0} обновлена.</value>
   </data>
   <data name="Similar Role already exists." xml:space="preserve">
     <value>Подобная роль уже существует.</value>

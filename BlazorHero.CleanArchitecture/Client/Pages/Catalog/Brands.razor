@@ -1,6 +1,12 @@
 ﻿@page "/catalog/brands"
 @using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Brands> localizer
+<style>
+    .mud-table-container {
+        overflow-x: unset;
+        overflow: auto;
+    }
+</style>
 
 <HeroTitle Title="@localizer["Brands"]" Description="@localizer["Manage Brands."]" />
 <MudTable Hover="true" Elevation="25" Items="BrandList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<GetAllBrandsResponse, bool>(Search)" @bind-brand="brand">
