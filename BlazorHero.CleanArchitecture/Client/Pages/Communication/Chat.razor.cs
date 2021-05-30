@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
 using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
@@ -42,7 +43,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             if (!string.IsNullOrEmpty(CurrentMessage) && !string.IsNullOrEmpty(CId))
             {
                 //Save Message to DB
-                var chatHistory = new ChatHistory()
+                var chatHistory = new ChatHistory<IChatUser>
                 {
                     Message = CurrentMessage,
                     ToUserId = CId,
@@ -105,14 +106,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                     StateHasChanged();
                 }
             });
-            hubConnection.On<ChatHistory, string>(ApplicationConstants.SignalR.ReceiveMessage, async (chatHistory, userName) =>
+            hubConnection.On<ChatHistory<IChatUser>, string>(ApplicationConstants.SignalR.ReceiveMessage, async (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
                          messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
-                         await hubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, $"{localizer["New Message From"]} {userName}", CId, CurrentUserId);
+                         await hubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, string.Format(localizer["New Message From {0}"], userName), CId, CurrentUserId);
                      }
                      else if ((CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                      {

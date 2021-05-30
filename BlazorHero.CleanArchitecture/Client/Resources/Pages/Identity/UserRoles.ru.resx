@@ -123,14 +123,11 @@
   <data name="Dense" xml:space="preserve">
     <value>Компактный</value>
   </data>
-  <data name="Manage" xml:space="preserve">
-    <value>Управление</value>
+  <data name="Manage {0} {1}'s Roles" xml:space="preserve">
+    <value>Управление Ролями {0} {1}</value>
   </data>
   <data name="Role Name" xml:space="preserve">
     <value>Имя роли</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Ролями</value>
   </data>
   <data name="Roles Updated" xml:space="preserve">
     <value>Роли обновлены!</value>

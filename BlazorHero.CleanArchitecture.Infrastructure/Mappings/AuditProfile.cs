@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BlazorHero.CleanArchitecture.Application.Models.Audit;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Audit;
 using BlazorHero.CleanArchitecture.Application.Responses.Audit;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Mappings

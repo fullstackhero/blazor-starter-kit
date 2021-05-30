@@ -50,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
             return await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<int> ComitAndRemoveCache(CancellationToken cancellationToken, string cacheKey)
+        public async Task<int> CommitAndRemoveCache(CancellationToken cancellationToken, string cacheKey)
         {
             var result =  await _dbContext.SaveChangesAsync(cancellationToken);
             _cache.Remove(cacheKey);

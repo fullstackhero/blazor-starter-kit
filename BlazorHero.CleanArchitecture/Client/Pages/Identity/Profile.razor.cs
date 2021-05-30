@@ -87,6 +87,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 if (result.Succeeded)
                 {
                     await _localStorage.SetItemAsync(StorageConstants.Local.UserImageURL, result.Data);
+                    _snackBar.Add(localizer["Profile picture added."], Severity.Success);
                     _navigationManager.NavigateTo("/account", true);
                 }
                 else
@@ -103,7 +104,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         {
             var parameters = new DialogParameters
             {
-                {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), $"{localizer["Do you want to delete the profile picture of"]} {profileModel.Email} ?"}
+                {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), $"{string.Format(localizer["Do you want to delete the profile picture of {0}"], profileModel.Email)}?"}
             };
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
             var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(localizer["Delete"], parameters, options);
@@ -116,6 +117,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 {
                     await _localStorage.RemoveItemAsync(StorageConstants.Local.UserImageURL);
                     ImageDataUrl = string.Empty;
+                    _snackBar.Add(localizer["Profile picture deleted."], Severity.Success);
                     _navigationManager.NavigateTo("/account", true);
                 }
                 else

@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using BlazorHero.CleanArchitecture.Domain.Contracts;
 using Microsoft.AspNetCore.Identity;
 
-namespace BlazorHero.CleanArchitecture.Application.Models.Identity
+namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
 {
     public class BlazorHeroRole : IdentityRole, IAuditableEntity
     {
@@ -11,13 +12,16 @@ namespace BlazorHero.CleanArchitecture.Application.Models.Identity
         public DateTime CreatedOn { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime? LastModifiedOn { get; set; }
+        public virtual ICollection<BlazorHeroRoleClaim> RoleClaims { get; set; }
 
         public BlazorHeroRole() : base()
         {
+            RoleClaims = new HashSet<BlazorHeroRoleClaim>();
         }
 
         public BlazorHeroRole(string roleName, string roleDescription = null) : base(roleName)
         {
+            RoleClaims = new HashSet<BlazorHeroRoleClaim>();
             Description = roleDescription;
         }
     }

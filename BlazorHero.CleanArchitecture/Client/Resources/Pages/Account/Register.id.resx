@@ -129,6 +129,9 @@
   <data name="Password" xml:space="preserve">
     <value>Sandi</value>
   </data>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Nomor Telepon</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Daftar</value>
   </data>

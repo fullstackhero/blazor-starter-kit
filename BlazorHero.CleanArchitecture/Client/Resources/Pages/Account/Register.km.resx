@@ -129,6 +129,9 @@
   <data name="Password" xml:space="preserve">
     <value>លេខសម្ងាត់</value>
   </data>
+  <data name="Phone Number" xml:space="preserve">
+    <value>លេខទូរស័ព្ទ</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>ចុះឈ្មោះ</value>
   </data>

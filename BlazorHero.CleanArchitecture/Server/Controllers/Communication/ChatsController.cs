@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.Communication
 {
@@ -37,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Communication
 
         //save chat message
         [HttpPost]
-        public async Task<IActionResult> SaveMessageAsync(ChatHistory message)
+        public async Task<IActionResult> SaveMessageAsync(ChatHistory<IChatUser> message)
         {
             message.FromUserId = _currentUserService.UserId;
             message.ToUserId = message.ToUserId;

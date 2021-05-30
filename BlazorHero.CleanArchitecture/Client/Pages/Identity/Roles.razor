@@ -1,11 +1,21 @@
 ﻿@page "/identity/roles"
 @using BlazorHero.CleanArchitecture.Application.Responses.Identity
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Roles> localizer
+<style>
+    .mud-table-container {
+        overflow-x: unset;
+        overflow: auto;
+    }
+</style>
+
 <HeroTitle Title="@localizer["Roles"]" Description="@localizer["Manage Roles."]" />
 <MudTable Hover="true" Elevation="25" Items="RoleList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<RoleResponse, bool>(Search)" @bind-role="role">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(()=>InvokeModal())">@localizer["Create"]</MudButton>
+            @if ((_authorizationService.AuthorizeAsync(CurrentUser, Permissions.Roles.Create)).Result.Succeeded)
+            {
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())">@localizer["Create"]</MudButton>
+            }
             <MudButton Variant="Variant.Filled" OnClick="GetRolesAsync" Color="Color.Secondary">@localizer["Reload"]</MudButton>
         </div>
         <MudToolBarSpacer />
@@ -27,9 +37,18 @@
         </MudTd>
         <MudTd DataLabel="@localizer["Actions"]" Style="text-align:right">
             <MudMenu Label="@localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
-                <MudMenuItem @onclick="@(()=>ManagePermissions(@context.Id))">@localizer["Manage Permission"]</MudMenuItem>
-                <MudMenuItem @onclick="@(()=>InvokeModal(@context.Id))">@localizer["Edit"]</MudMenuItem>
-                <MudMenuItem @onclick="@(()=>Delete(@context.Id))">@localizer["Delete"]</MudMenuItem>
+                @if ((_authorizationService.AuthorizeAsync(CurrentUser, Permissions.RoleClaims.View)).Result.Succeeded)
+                {
+                    <MudMenuItem @onclick="@(()=>ManagePermissions(@context.Id))">@localizer["Manage Permission"]</MudMenuItem>
+                }
+                @if ((_authorizationService.AuthorizeAsync(CurrentUser, Permissions.Roles.Edit)).Result.Succeeded)
+                {
+                    <MudMenuItem @onclick="@(()=>InvokeModal(@context.Id))">@localizer["Edit"]</MudMenuItem>
+                }
+                @if ((_authorizationService.AuthorizeAsync(CurrentUser, Permissions.Roles.Delete)).Result.Succeeded)
+                {
+                    <MudMenuItem @onclick="@(()=>Delete(@context.Id))">@localizer["Delete"]</MudMenuItem>
+                }
             </MudMenu>
         </MudTd>
     </RowTemplate>

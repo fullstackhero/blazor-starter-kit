@@ -12,7 +12,7 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage
         ValueTask ClearAsync();
 
         /// <summary>
-        /// Retrieve the specified data from server storage and deseralize it to the specified type.
+        /// Retrieve the specified data from server storage and deserialize it to the specified type.
         /// </summary>
         /// <param name="key">A <see cref="string"/> value specifying the name of the server storage slot to use</param>
         /// <returns>A <see cref="ValueTask"/> representing the completion of the operation.</returns>

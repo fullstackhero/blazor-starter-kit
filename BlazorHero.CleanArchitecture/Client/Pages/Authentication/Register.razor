@@ -30,8 +30,10 @@
             <MudTextField For="@(() => registerUserModel.LastName)" @bind-Value="registerUserModel.LastName" Label="@localizer["Last Name"]" />
         </MudItem>
         <MudItem xs="12">
-            <MudTextField T="string" Label="@localizer["E-mail"]"
-                          @bind-Value="registerUserModel.Email" For="@(() => registerUserModel.Email)" />
+            <MudTextField T="string" Label="@localizer["E-mail"]" @bind-Value="registerUserModel.Email" For="@(() => registerUserModel.Email)" />
+        </MudItem>
+        <MudItem xs="12">
+            <MudTextField T="string" Label="@localizer["Phone Number"]" @bind-Value="registerUserModel.PhoneNumber" For="@(() => registerUserModel.PhoneNumber)" />
         </MudItem>
         <MudItem xs="12">
             <MudTextField For="@(() => registerUserModel.Password)" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" @bind-Value="registerUserModel.Password" Label="@localizer["Password"]" />

@@ -18,6 +18,7 @@
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Account
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Authentication
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Roles
+@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.RoleClaims
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Users
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Interceptors
@@ -38,7 +39,6 @@
 @using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
 
 @using BlazorHero.CleanArchitecture.Application.Requests.Identity
-@using BlazorHero.CleanArchitecture.Application.Models.Identity
 
 @using BlazorHero.CleanArchitecture.Client.Pages.Authentication
 
@@ -57,6 +57,7 @@
 @inject IHttpInterceptorManager _interceptor
 @inject ClientPreferenceManager _clientPreferenceManager
 @inject IRoleManager _roleManager
+@inject IRoleClaimManager _roleClaimManager
 @inject IUserManager _userManager
 @inject IProductManager _productManager
 @inject IBrandManager _brandManager
