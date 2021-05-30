@@ -9,13 +9,13 @@
         <MudCardContent>
             <MudGrid>
                 <MudItem xs="12" md="6">
-                    <MudTextField T="string" @bind-Value="passwordModel.NewPassword" For="@(() => passwordModel.NewPassword)" Label="@localizer["Password"]" Variant="Variant.Outlined" InputType="InputType.Password" />
+                    <MudTextField T="string" @bind-Value="passwordModel.NewPassword" For="@(() => passwordModel.NewPassword)" Label="@localizer["Password"]" Variant="Variant.Outlined" InputType="NewPasswordInput" Adornment="Adornment.End" AdornmentIcon="@NewPasswordInputIcon" OnAdornmentClick="@(() => TogglePasswordVisibility(true))" />
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudTextField T="string" @bind-Value="passwordModel.ConfirmNewPassword" For="@(() => passwordModel.ConfirmNewPassword)" Label="@localizer["Password Confirmation"]" Variant="Variant.Outlined" InputType="InputType.Password" />
+                    <MudTextField T="string" @bind-Value="passwordModel.ConfirmNewPassword" For="@(() => passwordModel.ConfirmNewPassword)" Label="@localizer["Password Confirmation"]" Variant="Variant.Outlined" InputType="NewPasswordInput" Adornment="Adornment.End" AdornmentIcon="@NewPasswordInputIcon" OnAdornmentClick="@(() => TogglePasswordVisibility(true))" />
                 </MudItem>
                 <MudItem xs="12">
-                    <MudTextField T="string" @bind-Value="passwordModel.Password" For="@(() => passwordModel.Password)" Label="@localizer["Current Password"]" Variant="Variant.Outlined" InputType="InputType.Password" />
+                    <MudTextField T="string" @bind-Value="passwordModel.Password" For="@(() => passwordModel.Password)" Label="@localizer["Current Password"]" Variant="Variant.Outlined" InputType="CurrentPasswordInput" Adornment="Adornment.End" AdornmentIcon="@CurrentPasswordInputIcon" OnAdornmentClick="@(() => TogglePasswordVisibility(false))" />
                 </MudItem>
             </MudGrid>
         </MudCardContent>

@@ -33,5 +33,47 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 }
             }
         }
+
+        private bool CurrentPasswordVisibility;
+        private InputType CurrentPasswordInput = InputType.Password;
+        private string CurrentPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+        private bool NewPasswordVisibility;
+        private InputType NewPasswordInput = InputType.Password;
+        private string NewPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+        private void TogglePasswordVisibility(bool newPassword)
+        {
+            if (newPassword)
+            {
+                if (NewPasswordVisibility)
+                {
+                    NewPasswordVisibility = false;
+                    NewPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+                    NewPasswordInput = InputType.Password;
+                }
+                else
+                {
+                    NewPasswordVisibility = true;
+                    NewPasswordInputIcon = Icons.Material.Filled.Visibility;
+                    NewPasswordInput = InputType.Text;
+                }
+            }
+            else
+            {
+                if (CurrentPasswordVisibility)
+                {
+                    CurrentPasswordVisibility = false;
+                    CurrentPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+                    CurrentPasswordInput = InputType.Password;
+                }
+                else
+                {
+                    CurrentPasswordVisibility = true;
+                    CurrentPasswordInputIcon = Icons.Material.Filled.Visibility;
+                    CurrentPasswordInput = InputType.Text;
+                }
+            }
+        }
     }
 }
