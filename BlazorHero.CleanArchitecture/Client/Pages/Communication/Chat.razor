@@ -1,5 +1,6 @@
 ﻿@page "/chat/{CId}"
 @page "/chat"
+@attribute [Authorize(Policy = Permissions.Communication.Chat)]
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Chat> localizer
 
 <div class="d-flex flex-grow-1 flex-row">

@@ -1,4 +1,5 @@
 ﻿@page "/catalog/products"
+@attribute [Authorize(Policy = Permissions.Products.View)]
 @using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Products> localizer
 <style>

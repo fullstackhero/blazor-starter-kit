@@ -2,8 +2,8 @@
 @using BlazorHero.CleanArchitecture.Application.Responses.Identity
 @inject Microsoft.Extensions.Localization.IStringLocalizer<RolePermissions> localizer
 @attribute [Authorize(Policy = Permissions.RoleClaims.View)]
-<HeroTitle Title="@localizer["Manage Permission"]" Description="@Description" />
 
+<HeroTitle Title="@localizer["Manage Permission"]" Description="@Description" />
 @if (model == null)
 {
     <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
@@ -20,11 +20,11 @@ else
                 <MudTable Hover="true" Elevation="25" Items="@allRoleClaimsInGroup" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<RoleClaimResponse, bool>(Search)" @bind-roleClaims="roleClaims" CommitEditTooltip="@localizer["Apply"]" @bind-SelectedItem="selectedItem">
                     <ToolBarContent>
                         @if (canEdit)
-                        {
-                        <div class="justify-center mud-text-align-center">
-                            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">@localizer["Update Role Permissions"]</MudButton>
-                        </div>
-                        }
+                                {
+                            <div class="justify-center mud-text-align-center">
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">@localizer["Update Role Permissions"]</MudButton>
+                            </div>
+                                }
                         <MudToolBarSpacer />
                         <MudTextField @bind-Value="searchString" Immediate="true" FullWidth=false Placeholder="@localizer["Search For Permissions"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
                     </ToolBarContent>
@@ -49,13 +49,13 @@ else
                         <MudTd DataLabel="@localizer["Permission Name"]">@context.Value</MudTd>
                         <MudTd DataLabel="@localizer["Description"]">
                             @if (canEdit)
-                            {
-                                <MudTextField @bind-Value="@context.Description" Margin="Margin.Dense" Disabled="@(!context.Selected)" HelperText="@localizer[$"{(context.Selected ? "Here you can leave a comment for this permission for the current role" : "Will be saved only when selected Permission")}"]"/>
-                            }
-                            else
-                            {
+                                    {
+                                <MudTextField @bind-Value="@context.Description" Margin="Margin.Dense" Disabled="@(!context.Selected)" HelperText="@localizer[$"{(context.Selected ? "Here you can leave a comment for this permission for the current role" : "Will be saved only when selected Permission")}"]" />
+                                    }
+                                    else
+                                    {
                                 @context.Description
-                            }
+                                    }
                         </MudTd>
                         <MudTd DataLabel="@localizer["Status"]"><MudCheckBox @bind-Checked="@context.Selected" Disabled="@(!canEdit)" Color="Color.Secondary" /></MudTd>
                     </RowEditingTemplate>

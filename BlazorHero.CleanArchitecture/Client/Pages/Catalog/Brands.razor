@@ -1,4 +1,5 @@
 ﻿@page "/catalog/brands"
+@attribute [Authorize(Policy = Permissions.Brands.View)]
 @using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Brands> localizer
 <style>

@@ -18,6 +18,14 @@
             public const string Delete = "Permissions.Brands.Delete";
         }
 
+        public static class Documents
+        {
+            public const string View = "Permissions.Documents.View";
+            public const string Create = "Permissions.Documents.Create";
+            public const string Edit = "Permissions.Documents.Edit";
+            public const string Delete = "Permissions.Documents.Delete";
+        }
+
         public static class Users
         {
             public const string View = "Permissions.Users.View";

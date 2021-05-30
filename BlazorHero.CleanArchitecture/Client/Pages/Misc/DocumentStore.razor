@@ -1,4 +1,5 @@
 ﻿@page "/document-store"
+@attribute [Authorize(Policy = Permissions.Documents.View)]
 @inject Microsoft.Extensions.Localization.IStringLocalizer<DocumentStore> localizer
 @using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetAll
 <style>
