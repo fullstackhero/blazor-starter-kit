@@ -1,15 +1,17 @@
-﻿using BlazorHero.CleanArchitecture.Infrastructure.Helpers;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
+using BlazorHero.CleanArchitecture.Infrastructure.Helpers;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Constants.Role;
 using BlazorHero.CleanArchitecture.Shared.Constants.User;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure
 {
@@ -38,22 +40,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
         public void Initialize()
         {
             AddAdministrator();
-            AddCustomPermissionClaims();
             AddBasicUser();
             _db.SaveChanges();
-        }
-
-        private void AddCustomPermissionClaims()
-        {
-            Task.Run(async () =>
-            {
-                var adminRoleInDb = await _roleManager.FindByNameAsync(RoleConstants.AdministratorRole);
-                if (adminRoleInDb != null)
-                {
-                    await _roleManager.AddCustomPermissionClaim(adminRoleInDb, Permissions.Communication.Chat);
-                    await _roleManager.AddCustomPermissionClaim(adminRoleInDb, Permissions.Preferences.ChangeLanguage);
-                }
-            }).GetAwaiter().GetResult();
         }
 
         private void AddAdministrator()
@@ -87,9 +75,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     var result = await _userManager.AddToRoleAsync(superUser, RoleConstants.AdministratorRole);
                     if (result.Succeeded)
                     {
-                        foreach (var module in PermissionModules.GetAllPermissionsModules())
+                        foreach (var prop in typeof(Permissions).GetNestedTypes().SelectMany(c => c.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)))
                         {
-                            await _roleManager.GeneratePermissionClaimByModule(adminRole, module);
+                            await _roleManager.AddPermissionClaim(adminRole, prop.GetValue(null).ToString());
                         }
                     }
                     _logger.LogInformation(_localizer["Seeded User with Administrator Role."]);
