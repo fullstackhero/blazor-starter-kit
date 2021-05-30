@@ -14,11 +14,21 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Helpers
     {
         public static void GetAllPermissions(this List<RoleClaimResponse> allPermissions)
         {
-            var fields = typeof(Permissions).GetNestedTypes().SelectMany(c => c.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy));
-            foreach (FieldInfo fi in fields)
+            var modules = typeof(Permissions).GetNestedTypes();
+
+            foreach (var module in modules)
             {
-                allPermissions.Add(new RoleClaimResponse { Value = fi.GetValue(null).ToString(), Type = ApplicationClaimTypes.Permission });
+                var fields = module.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+
+                foreach (FieldInfo fi in fields)
+                {
+                    var propertyValue = fi.GetValue(null);
+
+                    if (propertyValue is not null)
+                        allPermissions.Add(new RoleClaimResponse { Value = fi.GetValue(null).ToString(), Type = ApplicationClaimTypes.Permission, Group = nameof(module) });
+                }
             }
+
         }
 
         public static async Task<IdentityResult> AddPermissionClaim(this RoleManager<BlazorHeroRole> roleManager, BlazorHeroRole role, string permission)
