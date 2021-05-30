@@ -40,22 +40,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
         public void Initialize()
         {
             AddAdministrator();
-            AddCustomPermissionClaims();
             AddBasicUser();
             _db.SaveChanges();
-        }
-
-        private void AddCustomPermissionClaims()
-        {
-            Task.Run(async () =>
-            {
-                var adminRoleInDb = await _roleManager.FindByNameAsync(RoleConstants.AdministratorRole);
-                if (adminRoleInDb != null)
-                {
-                    await _roleManager.AddCustomPermissionClaim(adminRoleInDb, Permissions.Communication.Chat);
-                    await _roleManager.AddCustomPermissionClaim(adminRoleInDb, Permissions.Preferences.ChangeLanguage);
-                }
-            }).GetAwaiter().GetResult();
         }
 
         private void AddAdministrator()
