@@ -10,6 +10,7 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Blazored.FluentValidation;
 
@@ -112,6 +113,19 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 AddEditProductModel.ImageDataURL = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
                 AddEditProductModel.UploadRequest = new UploadRequest { Data = buffer, UploadType = Application.Enums.UploadType.Product, Extension = extension };
             }
+        }
+
+        private async Task<IEnumerable<int>> SearchBrands(string value)
+        {
+            // In real life use an asynchronous function for fetching data from an api.
+            await Task.Delay(5);
+
+            // if text is null or empty, show complete list
+            if (string.IsNullOrEmpty(value))
+                return Brands.Select(x => x.Id);
+
+            return Brands.Where(x => x.Name.Contains(value, StringComparison.InvariantCultureIgnoreCase))
+                .Select(x => x.Id);
         }
     }
 }

@@ -34,12 +34,7 @@
                     <MudTextField For="@(() => AddEditProductModel.Description)" @bind-Value="AddEditProductModel.Description" Label="@localizer["Description"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudSelect T="int" Label="@localizer["Brand"]" For="@(() => AddEditProductModel.BrandId)" @bind-Value="AddEditProductModel.BrandId" Variant="Variant.Filled">
-                        @foreach (var brand in Brands)
-                        {
-                            <MudSelectItem T="int" Value="@(brand.Id)">@brand.Name</MudSelectItem>
-                        }
-                    </MudSelect>
+                    <MudAutocomplete T="int" Label="@localizer["Brand"]" For="@(() => AddEditProductModel.BrandId)" @bind-Value="AddEditProductModel.BrandId" ResetValueOnEmptyText="true" SearchFunc="@SearchBrands" Variant="Variant.Filled" ToStringFunc="@(i => Brands.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true" />
                 </MudItem>
                 <MudItem xs="12" md="6">
                     <MudTextField For="@(() => AddEditProductModel.Rate)" @bind-Value="AddEditProductModel.Rate" Label="@localizer["Rate"]" />
