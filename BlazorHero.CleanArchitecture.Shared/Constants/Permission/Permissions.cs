@@ -71,5 +71,10 @@
         {
             public const string View = "Permissions.Hangfire.View";
         }
+
+        public static class AuditTrails
+        {
+            public const string View = "Permissions.AuditTrails.View";
+        }
     }
 }
