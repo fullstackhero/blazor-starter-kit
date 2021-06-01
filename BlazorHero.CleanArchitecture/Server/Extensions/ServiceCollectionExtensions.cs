@@ -43,7 +43,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
-    public static class ServiceCollectionExtensions
+    internal static class ServiceCollectionExtensions
     {
         internal static async Task<IStringLocalizer> GetRegisteredServerLocalizerAsync<T>(this IServiceCollection services) where T : class
         {
@@ -73,13 +73,13 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             }
         }
 
-        public static IServiceCollection AddServerLocalization(this IServiceCollection services)
+        internal static IServiceCollection AddServerLocalization(this IServiceCollection services)
         {
             services.TryAddTransient(typeof(IStringLocalizer<>), typeof(ServerLocalizer<>));
             return services;
         }
 
-        public static AppConfiguration GetApplicationSettings(
+        internal static AppConfiguration GetApplicationSettings(
            this IServiceCollection services,
            IConfiguration configuration)
         {
@@ -88,7 +88,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return applicationSettingsConfiguration.Get<AppConfiguration>();
         }
 
-        public static void RegisterSwagger(this IServiceCollection services)
+        internal static void RegisterSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(async c =>
             {
@@ -152,7 +152,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             });
         }
 
-        public static IServiceCollection AddDatabase(
+        internal static IServiceCollection AddDatabase(
             this IServiceCollection services,
             IConfiguration configuration)
             => services
@@ -160,14 +160,14 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                     .UseSqlServer(configuration.GetConnectionString("DefaultConnection")))
             .AddTransient<IDatabaseSeeder, DatabaseSeeder>();
 
-        public static IServiceCollection AddCurrentUserService(this IServiceCollection services)
+        internal static IServiceCollection AddCurrentUserService(this IServiceCollection services)
         {
             services.AddHttpContextAccessor();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             return services;
         }
 
-        public static IServiceCollection AddIdentity(this IServiceCollection services)
+        internal static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services
                 .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
@@ -187,7 +187,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return services;
         }
 
-        public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        internal static IServiceCollection AddSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IDateTimeService, SystemDateTimeService>();
             services.Configure<MailConfiguration>(configuration.GetSection("MailConfiguration"));
@@ -195,7 +195,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return services;
         }
 
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        internal static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<IRoleClaimService, RoleClaimService>();
             services.AddTransient<ITokenService, IdentityService>();
@@ -214,7 +214,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return services;
         }
 
-        public static IServiceCollection AddJwtAuthentication(
+        internal static IServiceCollection AddJwtAuthentication(
             this IServiceCollection services, AppConfiguration config)
         {
             var key = Encoding.ASCII.GetBytes(config.Secret);
