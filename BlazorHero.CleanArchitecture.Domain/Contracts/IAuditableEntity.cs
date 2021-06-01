@@ -1,5 +1,4 @@
 ﻿using System;
-using BlazorHero.CleanArchitecture.Domain.Entities;
 
 namespace BlazorHero.CleanArchitecture.Domain.Contracts
 {

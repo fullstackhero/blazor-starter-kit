@@ -1,4 +1,4 @@
-﻿namespace BlazorHero.CleanArchitecture.Domain.Entities
+﻿namespace BlazorHero.CleanArchitecture.Domain.Contracts
 {
     public interface IEntity<TId> : IEntity
     {

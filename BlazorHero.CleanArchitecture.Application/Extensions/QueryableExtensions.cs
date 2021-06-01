@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Domain.Entities;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
 
 namespace BlazorHero.CleanArchitecture.Application.Extensions
 {
