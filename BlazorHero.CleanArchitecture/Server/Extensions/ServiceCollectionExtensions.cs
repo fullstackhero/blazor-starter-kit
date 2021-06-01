@@ -1,12 +1,10 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
-using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
 using BlazorHero.CleanArchitecture.Infrastructure.Services;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Shared.Services;
@@ -206,11 +204,6 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             services.AddTransient<IUploadService, UploadService>();
             services.AddTransient<IAuditService, AuditService>();
             services.AddScoped<IExcelService, ExcelService>();
-
-            services.AddTransient(typeof(IRepositoryAsync<,>), typeof(RepositoryAsync<,>));
-            services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<IBrandRepository, BrandRepository>();
-            services.AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
             return services;
         }
 
