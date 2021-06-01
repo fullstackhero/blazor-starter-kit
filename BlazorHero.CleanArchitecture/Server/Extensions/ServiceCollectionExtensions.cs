@@ -110,7 +110,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Name = "Authorization",
+                    Name = localizer["Authorization"],
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer",
