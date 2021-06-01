@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
 {
-    public class RepositoryAsync<T> : IRepositoryAsync<T> where T : AuditableEntity
+    public class RepositoryAsync<T, TId> : IRepositoryAsync<T, TId> where T : AuditableEntity<TId>
     {
         private readonly BlazorHeroContext _dbContext;
 
@@ -38,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(TId id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }

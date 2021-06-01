@@ -3,7 +3,7 @@ using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 
 namespace BlazorHero.CleanArchitecture.Application.Specifications
 {
-    public class BrandFilterSpecification : HeroSpecification<Brand>
+    public class BrandFilterSpecification : HeroSpecification<Brand, int>
     {
         public BrandFilterSpecification(string searchString)
         {

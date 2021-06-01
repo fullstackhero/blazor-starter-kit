@@ -191,10 +191,10 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             services.AddTransient<IAuditService, AuditService>();
             services.AddScoped<IExcelService, ExcelService>();
 
-            services.AddTransient(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
+            services.AddTransient(typeof(IRepositoryAsync<,>), typeof(RepositoryAsync<,>));
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IBrandRepository, BrandRepository>();
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
             return services;
         }
 

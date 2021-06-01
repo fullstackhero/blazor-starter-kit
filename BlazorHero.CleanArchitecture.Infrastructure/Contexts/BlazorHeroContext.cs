@@ -46,6 +46,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                         break;
                 }
             }
+            
             if (_currentUserService.UserId == null)
             {
                 return await base.SaveChangesAsync(cancellationToken);
@@ -55,7 +56,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                 return await base.SaveChangesAsync(_currentUserService.UserId);
             }
         }
-
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             foreach (var property in builder.Model.GetEntityTypes()

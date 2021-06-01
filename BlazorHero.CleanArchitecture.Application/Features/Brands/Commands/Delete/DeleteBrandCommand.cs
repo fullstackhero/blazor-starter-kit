@@ -18,9 +18,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Dele
     {
         private readonly IProductRepository _productRepository;
         private readonly IStringLocalizer<DeleteBrandCommandHandler> _localizer;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<int> _unitOfWork;
 
-        public DeleteBrandCommandHandler(IUnitOfWork unitOfWork, IProductRepository productRepository, IStringLocalizer<DeleteBrandCommandHandler> localizer)
+        public DeleteBrandCommandHandler(IUnitOfWork<int> unitOfWork, IProductRepository productRepository, IStringLocalizer<DeleteBrandCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _productRepository = productRepository;
