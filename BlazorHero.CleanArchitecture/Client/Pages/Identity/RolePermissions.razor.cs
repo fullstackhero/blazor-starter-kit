@@ -47,6 +47,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             if (result.Succeeded)
             {
                 _model = result.Data;
+                GroupedRoleClaims.Add(_localizer["All Permissions"], _model.RoleClaims);
                 foreach (var claim in _model.RoleClaims)
                 {
                     if (GroupedRoleClaims.ContainsKey(claim.Group))

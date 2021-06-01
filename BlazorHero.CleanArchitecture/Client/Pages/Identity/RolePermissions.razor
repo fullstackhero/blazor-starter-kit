@@ -16,7 +16,7 @@ else
             var selectedRoleClaimsInGroup = GroupedRoleClaims[group].Where(c => c.Selected).ToList();
             var allRoleClaimsInGroup = GroupedRoleClaims[group].ToList();
 
-            <MudTabPanel Text="@group" BadgeData="@($"{selectedRoleClaimsInGroup.Count}/{allRoleClaimsInGroup.Count}")" Style="padding-right: 30px;" BadgeColor="@GetGroupBadgeColor(selectedRoleClaimsInGroup.Count, allRoleClaimsInGroup.Count)">
+            <MudTabPanel Text="@group" BadgeData="@($"{selectedRoleClaimsInGroup.Count}/{allRoleClaimsInGroup.Count}")" Style="padding-right: 43px;" BadgeColor="@GetGroupBadgeColor(selectedRoleClaimsInGroup.Count, allRoleClaimsInGroup.Count)">
                 <MudTable Hover="true" Elevation="25" Items="@allRoleClaimsInGroup" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<RoleClaimResponse, bool>(Search)" @bind-roleClaims="_roleClaims" CommitEditTooltip="@_localizer["Apply"]" @bind-SelectedItem="_selectedItem">
                     <ToolBarContent>
                         @if (_canEditRolePermissions)
