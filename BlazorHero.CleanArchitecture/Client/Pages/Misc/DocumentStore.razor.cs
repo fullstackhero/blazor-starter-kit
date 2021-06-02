@@ -8,13 +8,17 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 {
     public partial class DocumentStore
     {
+        [Inject] private IDocumentManager DocumentManager { get; set; }
+
         private IEnumerable<GetAllDocumentsResponse> _pagedData;
         private MudTable<GetAllDocumentsResponse> _table;
         private string CurrentUserId { get; set; }
@@ -55,7 +59,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private async Task LoadData(int pageNumber, int pageSize, TableState state)
         {
             var request = new GetAllPagedDocumentsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
-            var response = await _documentManager.GetAllAsync(request);
+            var response = await DocumentManager.GetAllAsync(request);
             if (response.Succeeded)
             {
                 _totalItems = response.TotalCount;
@@ -149,7 +153,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                var response = await _documentManager.DeleteAsync(id);
+                var response = await DocumentManager.DeleteAsync(id);
                 if (response.Succeeded)
                 {
                     OnSearch("");
