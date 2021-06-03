@@ -19,12 +19,12 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.G
 
     internal class GetDashboardDataQueryHandler : IRequestHandler<GetDashboardDataQuery, Result<DashboardDataResponse>>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<int> _unitOfWork;
         private readonly IUserService _userService;
         private readonly IRoleService _roleService;
         private readonly IStringLocalizer<GetDashboardDataQueryHandler> _localizer;
 
-        public GetDashboardDataQueryHandler(IUnitOfWork unitOfWork, IUserService userService, IRoleService roleService, IStringLocalizer<GetDashboardDataQueryHandler> localizer)
+        public GetDashboardDataQueryHandler(IUnitOfWork<int> unitOfWork, IUserService userService, IRoleService roleService, IStringLocalizer<GetDashboardDataQueryHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _userService = userService;
