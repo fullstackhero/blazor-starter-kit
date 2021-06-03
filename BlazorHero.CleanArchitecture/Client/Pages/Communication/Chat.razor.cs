@@ -12,15 +12,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communication;
 using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
 {
     public partial class Chat
     {
-        [Inject] private IChatManager ChatManager { get; set; }
-
         [CascadingParameter] private HubConnection HubConnection { get; set; }
         [Parameter] public string CurrentMessage { get; set; }
         [Parameter] public string CurrentUserId { get; set; }
@@ -44,7 +41,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                     ToUserId = CId,
                     CreatedDate = DateTime.Now
                 };
-                var response = await ChatManager.SaveMessageAsync(chatHistory);
+                var response = await _chatManager.SaveMessageAsync(chatHistory);
                 if (response.Succeeded)
                 {
                     var state = await _stateProvider.GetAuthenticationStateAsync();
@@ -149,7 +146,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 _navigationManager.NavigateTo($"chat/{CId}");
                 //Load messages from db here
                 _messages = new List<ChatHistoryResponse>();
-                var historyResponse = await ChatManager.GetChatHistoryAsync(CId);
+                var historyResponse = await _chatManager.GetChatHistoryAsync(CId);
                 if (historyResponse.Succeeded)
                 {
                     _messages = historyResponse.Data.ToList();
@@ -174,7 +171,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         private async Task GetUsersAsync()
         {
             //add get chat history from chat controller / manager
-            var response = await ChatManager.GetChatUsersAsync();
+            var response = await _chatManager.GetChatUsersAsync();
             if (response.Succeeded)
             {
                 UserList = response.Data.ToList();

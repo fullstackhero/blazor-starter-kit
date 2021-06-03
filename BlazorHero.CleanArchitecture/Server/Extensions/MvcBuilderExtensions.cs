@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
-    internal static class MvcBuilderExtensions
+    public static class MvcBuilderExtensions
     {
-        internal static IMvcBuilder AddValidators(this IMvcBuilder builder)
+        public static IMvcBuilder AddValidators(this IMvcBuilder builder)
         {
             builder.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AppConfiguration>());
             return builder;

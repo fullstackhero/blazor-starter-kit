@@ -21,11 +21,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAl
 
     internal class GetAllBrandsCachedQueryHandler : IRequestHandler<GetAllBrandsQuery, Result<List<GetAllBrandsResponse>>>
     {
-        private readonly IUnitOfWork<int> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IAppCache _cache;
 
-        public GetAllBrandsCachedQueryHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IAppCache cache)
+        public GetAllBrandsCachedQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, IAppCache cache)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

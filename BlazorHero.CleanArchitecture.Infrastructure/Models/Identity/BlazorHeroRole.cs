@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
 {
-    public class BlazorHeroRole : IdentityRole, IAuditableEntity<string>
+    public class BlazorHeroRole : IdentityRole, IAuditableEntity
     {
         public string Description { get; set; }
         public string CreatedBy { get; set; }

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Application.Interfaces.Repositories
 {
-    public interface IUnitOfWork<TId> : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
-        IRepositoryAsync<T, TId> Repository<T>() where T : AuditableEntity<TId>;
+        IRepositoryAsync<T> Repository<T>() where T : AuditableEntity;
 
         Task<int> Commit(CancellationToken cancellationToken);
 

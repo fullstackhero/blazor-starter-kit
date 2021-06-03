@@ -26,11 +26,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Exp
     internal class ExportProductsQueryHandler : IRequestHandler<ExportProductsQuery, string>
     {
         private readonly IExcelService _excelService;
-        private readonly IUnitOfWork<int> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IStringLocalizer<ExportProductsQueryHandler> _localizer;
 
         public ExportProductsQueryHandler(IExcelService excelService
-            , IUnitOfWork<int> unitOfWork
+            , IUnitOfWork unitOfWork
             , IStringLocalizer<ExportProductsQueryHandler> localizer)
         {
             _excelService = excelService;

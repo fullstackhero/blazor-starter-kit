@@ -4,9 +4,9 @@ using Serilog;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
-    internal static class HostBuilderExtensions
+    public static class HostBuilderExtensions
     {
-        internal static IHostBuilder UseSerilog(this IHostBuilder builder)
+        public static IHostBuilder UseSerilog(this IHostBuilder builder)
         {
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.Development.json")

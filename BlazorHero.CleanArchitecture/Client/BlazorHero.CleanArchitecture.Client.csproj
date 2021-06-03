@@ -5,10 +5,6 @@
     <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>BlazorHero.CleanArchitecture.Client.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <Content Remove="Shared\Components\BlazorHeroLogo.razor" />
   </ItemGroup>

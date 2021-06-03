@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
@@ -9,7 +8,6 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit
@@ -34,15 +32,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
     internal class AddEditProductCommandHandler : IRequestHandler<AddEditProductCommand, Result<int>>
     {
         private readonly IMapper _mapper;
-        private readonly IUnitOfWork<int> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IUploadService _uploadService;
         private readonly IStringLocalizer<AddEditProductCommandHandler> _localizer;
 
-        public AddEditProductCommandHandler(
-            IUnitOfWork<int> unitOfWork,
-            IMapper mapper,
-            IUploadService uploadService,
-            IStringLocalizer<AddEditProductCommandHandler> localizer)
+        public AddEditProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditProductCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -52,12 +46,6 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
 
         public async Task<Result<int>> Handle(AddEditProductCommand command, CancellationToken cancellationToken)
         {
-            if (await _unitOfWork.Repository<Product>().Entities.Where(p => p.Id != command.Id)
-                .AnyAsync(p => p.Barcode == command.Barcode, cancellationToken))
-            {
-                return await Result<int>.FailAsync(_localizer["Barcode already exists."]);
-            }
-
             var uploadRequest = command.UploadRequest;
             if (uploadRequest != null)
             {

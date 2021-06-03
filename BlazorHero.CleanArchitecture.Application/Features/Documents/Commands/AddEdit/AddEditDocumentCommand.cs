@@ -29,11 +29,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
     internal class AddEditDocumentCommandHandler : IRequestHandler<AddEditDocumentCommand, Result<int>>
     {
         private readonly IMapper _mapper;
-        private readonly IUnitOfWork<int> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IUploadService _uploadService;
         private readonly IStringLocalizer<AddEditDocumentCommandHandler> _localizer;
 
-        public AddEditDocumentCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditDocumentCommandHandler> localizer)
+        public AddEditDocumentCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditDocumentCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
