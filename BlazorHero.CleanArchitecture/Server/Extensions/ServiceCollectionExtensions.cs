@@ -1,10 +1,12 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
 using BlazorHero.CleanArchitecture.Infrastructure.Services;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Shared.Services;
@@ -31,9 +33,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
@@ -41,7 +41,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
-    internal static class ServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
         internal static async Task<IStringLocalizer> GetRegisteredServerLocalizerAsync<T>(this IServiceCollection services) where T : class
         {
@@ -71,13 +71,13 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             }
         }
 
-        internal static IServiceCollection AddServerLocalization(this IServiceCollection services)
+        public static IServiceCollection AddServerLocalization(this IServiceCollection services)
         {
             services.TryAddTransient(typeof(IStringLocalizer<>), typeof(ServerLocalizer<>));
             return services;
         }
 
-        internal static AppConfiguration GetApplicationSettings(
+        public static AppConfiguration GetApplicationSettings(
            this IServiceCollection services,
            IConfiguration configuration)
         {
@@ -86,29 +86,14 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return applicationSettingsConfiguration.Get<AppConfiguration>();
         }
 
-        internal static void RegisterSwagger(this IServiceCollection services)
+        public static void RegisterSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(async c =>
             {
                 //TODO - Lowercase Swagger Documents
                 //c.DocumentFilter<LowercaseDocumentFilter>();
                 //Refer - https://gist.github.com/rafalkasa/01d5e3b265e5aa075678e0adfd54e23f
-
-                // include all project's xml comments
-                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-                {
-                    if (!assembly.IsDynamic)
-                    {
-                        var xmlFile = $"{assembly.GetName().Name}.xml";
-                        var xmlPath = Path.Combine(baseDirectory, xmlFile);
-                        if (File.Exists(xmlPath))
-                        {
-                            c.IncludeXmlComments(xmlPath);
-                        }
-                    }
-                }
-
+                c.IncludeXmlComments(string.Format(@"{0}\BlazorHero.CleanArchitecture.Server.xml", System.AppDomain.CurrentDomain.BaseDirectory));
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
@@ -124,7 +109,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Name = localizer["Authorization"],
+                    Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer",
@@ -150,7 +135,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             });
         }
 
-        internal static IServiceCollection AddDatabase(
+        public static IServiceCollection AddDatabase(
             this IServiceCollection services,
             IConfiguration configuration)
             => services
@@ -158,14 +143,14 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                     .UseSqlServer(configuration.GetConnectionString("DefaultConnection")))
             .AddTransient<IDatabaseSeeder, DatabaseSeeder>();
 
-        internal static IServiceCollection AddCurrentUserService(this IServiceCollection services)
+        public static IServiceCollection AddCurrentUserService(this IServiceCollection services)
         {
             services.AddHttpContextAccessor();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             return services;
         }
 
-        internal static IServiceCollection AddIdentity(this IServiceCollection services)
+        public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services
                 .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
@@ -185,7 +170,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return services;
         }
 
-        internal static IServiceCollection AddSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IDateTimeService, SystemDateTimeService>();
             services.Configure<MailConfiguration>(configuration.GetSection("MailConfiguration"));
@@ -193,7 +178,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return services;
         }
 
-        internal static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<IRoleClaimService, RoleClaimService>();
             services.AddTransient<ITokenService, IdentityService>();
@@ -204,10 +189,15 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             services.AddTransient<IUploadService, UploadService>();
             services.AddTransient<IAuditService, AuditService>();
             services.AddScoped<IExcelService, ExcelService>();
+
+            services.AddTransient(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IBrandRepository, BrandRepository>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             return services;
         }
 
-        internal static IServiceCollection AddJwtAuthentication(
+        public static IServiceCollection AddJwtAuthentication(
             this IServiceCollection services, AppConfiguration config)
         {
             var key = Encoding.ASCII.GetBytes(config.Secret);
@@ -237,44 +227,22 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                     {
                         OnAuthenticationFailed = c =>
                         {
-                            if (c.Exception is SecurityTokenExpiredException)
-                            {
-                                c.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                                c.Response.ContentType = "application/json";
-                                var result = JsonConvert.SerializeObject(Result.Fail(localizer["The Token is expired."]));
-                                return c.Response.WriteAsync(result);
-                            }
-                            else
-                            {
-#if DEBUG
-                                c.NoResult();
-                                c.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                                c.Response.ContentType = "text/plain";
-                                return c.Response.WriteAsync(c.Exception.ToString());
-#else
-                                c.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                                c.Response.ContentType = "application/json";
-                                var result = JsonConvert.SerializeObject(Result.Fail(localizer["An unhandled error has occurred."]));
-                                return c.Response.WriteAsync(result);
-#endif
-                            }
+                            c.NoResult();
+                            c.Response.StatusCode = 500;
+                            c.Response.ContentType = "text/plain";
+                            return c.Response.WriteAsync(c.Exception.ToString());
                         },
                         OnChallenge = context =>
                         {
                             context.HandleResponse();
-                            if (!context.Response.HasStarted)
-                            {
-                                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                                context.Response.ContentType = "application/json";
-                                var result = JsonConvert.SerializeObject(Result.Fail(localizer["You are not Authorized."]));
-                                return context.Response.WriteAsync(result);
-                            }
-
-                            return Task.CompletedTask;
+                            context.Response.StatusCode = 401;
+                            context.Response.ContentType = "application/json";
+                            var result = JsonConvert.SerializeObject(Result.Fail(localizer["You are not Authorized."]));
+                            return context.Response.WriteAsync(result);
                         },
                         OnForbidden = context =>
                         {
-                            context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                            context.Response.StatusCode = 403;
                             context.Response.ContentType = "application/json";
                             var result = JsonConvert.SerializeObject(Result.Fail(localizer["You are not authorized to access this resource."]));
                             return context.Response.WriteAsync(result);

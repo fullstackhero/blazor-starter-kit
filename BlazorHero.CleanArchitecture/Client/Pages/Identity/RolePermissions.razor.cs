@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Roles;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 
@@ -19,8 +18,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class RolePermissions
     {
-        [Inject] private IRoleManager RoleManager { get; set; }
-
         [CascadingParameter] private HubConnection HubConnection { get; set; }
         [Parameter] public string Id { get; set; }
         [Parameter] public string Title { get; set; }
@@ -46,11 +43,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
             _mapper = new MapperConfiguration(c => { c.AddProfile<RoleProfile>(); }).CreateMapper();
             var roleId = Id;
-            var result = await RoleManager.GetPermissionsAsync(roleId);
+            var result = await _roleManager.GetPermissionsAsync(roleId);
             if (result.Succeeded)
             {
                 _model = result.Data;
-                GroupedRoleClaims.Add(_localizer["All Permissions"], _model.RoleClaims);
                 foreach (var claim in _model.RoleClaims)
                 {
                     if (GroupedRoleClaims.ContainsKey(claim.Group))
@@ -85,7 +81,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private async Task SaveAsync()
         {
             var request = _mapper.Map<PermissionResponse, PermissionRequest>(_model);
-            var result = await RoleManager.UpdatePermissionsAsync(request);
+            var result = await _roleManager.UpdatePermissionsAsync(request);
             if (result.Succeeded)
             {
                 _snackBar.Add(result.Messages[0], Severity.Success);

@@ -6,14 +6,11 @@ using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.Threading.Tasks;
 using Blazored.FluentValidation;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Roles;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class RoleModal
     {
-        [Inject] private IRoleManager RoleManager { get; set; }
-
         [Parameter] public RoleRequest RoleModel { get; set; } = new();
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
         [CascadingParameter] private HubConnection HubConnection { get; set; }
@@ -37,7 +34,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task SaveAsync()
         {
-            var response = await RoleManager.SaveAsync(RoleModel);
+            var response = await _roleManager.SaveAsync(RoleModel);
             if (response.Succeeded)
             {
                 _snackBar.Add(response.Messages[0], Severity.Success);

@@ -28,9 +28,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
 
     internal class GGetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, PaginatedResult<GetAllPagedProductsResponse>>
     {
-        private readonly IUnitOfWork<int> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GGetAllProductsQueryHandler(IUnitOfWork<int> unitOfWork)
+        public GGetAllProductsQueryHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

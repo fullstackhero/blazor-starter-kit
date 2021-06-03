@@ -10,7 +10,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Roles;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 
@@ -18,8 +17,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Roles
     {
-        [Inject] private IRoleManager RoleManager { get; set; }
-
         [CascadingParameter] private HubConnection HubConnection { get; set; }
 
         private List<RoleResponse> _roleList = new();
@@ -53,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private async Task GetRolesAsync()
         {
-            var response = await RoleManager.GetRolesAsync();
+            var response = await _roleManager.GetRolesAsync();
             if (response.Succeeded)
             {
                 _roleList = response.Data.ToList();
@@ -79,7 +76,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                var response = await RoleManager.DeleteAsync(id);
+                var response = await _roleManager.DeleteAsync(id);
                 if (response.Succeeded)
                 {
                     await Reset();

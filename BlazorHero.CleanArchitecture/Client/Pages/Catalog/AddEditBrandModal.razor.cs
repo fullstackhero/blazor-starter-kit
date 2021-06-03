@@ -6,14 +6,11 @@ using MudBlazor;
 using System.Threading.Tasks;
 using Blazored.FluentValidation;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Brand;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
     public partial class AddEditBrandModal
     {
-        [Inject] private IBrandManager BrandManager { get; set; }
-
         [Parameter] public AddEditBrandCommand AddEditBrandModel { get; set; } = new();
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
         [CascadingParameter] private HubConnection HubConnection { get; set; }
@@ -28,7 +25,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task SaveAsync()
         {
-            var response = await BrandManager.SaveAsync(AddEditBrandModel);
+            var response = await _brandManager.SaveAsync(AddEditBrandModel);
             if (response.Succeeded)
             {
                 _snackBar.Add(response.Messages[0], Severity.Success);

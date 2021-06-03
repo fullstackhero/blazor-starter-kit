@@ -12,8 +12,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Shared.Services
 {
     public class SMTPMailService : IMailService
     {
-        private readonly MailConfiguration _config;
-        private readonly ILogger<SMTPMailService> _logger;
+        public MailConfiguration _config { get; }
+        public ILogger<SMTPMailService> _logger { get; }
 
         public SMTPMailService(IOptions<MailConfiguration> config, ILogger<SMTPMailService> logger)
         {
@@ -25,21 +25,18 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Shared.Services
         {
             try
             {
-                var email = new MimeMessage
-                {
-                    Sender = new MailboxAddress(_config.DisplayName, request.From ?? _config.From),
-                    Subject = request.Subject,
-                    Body = new BodyBuilder
-                    {
-                        HtmlBody = request.Body
-                    }.ToMessageBody()
-                };
+                var email = new MimeMessage();
+                email.Sender = MailboxAddress.Parse(request.From ?? _config.From);
                 email.To.Add(MailboxAddress.Parse(request.To));
+                email.Subject = request.Subject;
+                var builder = new BodyBuilder();
+                builder.HtmlBody = request.Body;
+                email.Body = builder.ToMessageBody();
                 using var smtp = new SmtpClient();
-                await smtp.ConnectAsync(_config.Host, _config.Port, SecureSocketOptions.StartTls);
-                await smtp.AuthenticateAsync(_config.UserName, _config.Password);
+                smtp.Connect(_config.Host, _config.Port, SecureSocketOptions.StartTls);
+                smtp.Authenticate(_config.UserName, _config.Password);
                 await smtp.SendAsync(email);
-                await smtp.DisconnectAsync(true);
+                smtp.Disconnect(true);
             }
             catch (System.Exception ex)
             {

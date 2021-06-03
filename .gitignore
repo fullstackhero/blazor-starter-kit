@@ -341,6 +341,3 @@ healthchecksdb
 **/Server/Logs
 **/Server/Files/Images/ProfilePictures
 **/Server/Files/Documents
-
-# Project's xml-files
-*.xml

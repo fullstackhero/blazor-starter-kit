@@ -12,7 +12,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 {
     public abstract class AuditableContext : IdentityDbContext<BlazorHeroUser, BlazorHeroRole, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, BlazorHeroRoleClaim, IdentityUserToken<string>>
     {
-        protected AuditableContext(DbContextOptions options) : base(options)
+        public AuditableContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -69,7 +69,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                             break;
 
                         case EntityState.Modified:
-                            if (property.IsModified && property.OriginalValue?.Equals(property.CurrentValue) == false)
+                            if (property.IsModified)
                             {
                                 auditEntry.ChangedColumns.Add(propertyName);
                                 auditEntry.AuditType = AuditType.Update;

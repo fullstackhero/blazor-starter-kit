@@ -2,7 +2,7 @@
 
 namespace BlazorHero.CleanArchitecture.Domain.Entities
 {
-    public class Document : AuditableEntity<int>
+    public class Document : AuditableEntity
     {
         public string Title { get; set; }
         public string Description { get; set; }

@@ -21,9 +21,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
 
     internal class GetProductImageQueryHandler : IRequestHandler<GetProductImageQuery, Result<string>>
     {
-        private readonly IUnitOfWork<int> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GetProductImageQueryHandler(IUnitOfWork<int> unitOfWork)
+        public GetProductImageQueryHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

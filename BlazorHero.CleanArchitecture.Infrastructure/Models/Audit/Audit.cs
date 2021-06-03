@@ -1,9 +1,9 @@
 ﻿using System;
-using BlazorHero.CleanArchitecture.Domain.Contracts;
+using BlazorHero.CleanArchitecture.Domain.Entities;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Audit
 {
-    public class Audit : IEntity<int>
+    public class Audit : IEntity
     {
         public int Id { get; set; }
         public string UserId { get; set; }

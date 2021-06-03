@@ -8,7 +8,7 @@ using BlazorHero.CleanArchitecture.Application.Models.Chat;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
 {
-    public class BlazorHeroUser : IdentityUser<string>, IChatUser, IAuditableEntity<string>
+    public class BlazorHeroUser : IdentityUser<string>, IChatUser, IAuditableEntity
     {
         public string FirstName { get; set; }
 

@@ -10,7 +10,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Brand;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.JSInterop;
@@ -19,8 +18,6 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
     public partial class Brands
     {
-        [Inject] private IBrandManager BrandManager { get; set; }
-
         [CascadingParameter] private HubConnection HubConnection { get; set; }
 
         private List<GetAllBrandsResponse> _brandList = new();
@@ -52,7 +49,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task GetBrandsAsync()
         {
-            var response = await BrandManager.GetAllAsync();
+            var response = await _brandManager.GetAllAsync();
             if (response.Succeeded)
             {
                 _brandList = response.Data.ToList();
@@ -78,7 +75,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                var response = await BrandManager.DeleteAsync(id);
+                var response = await _brandManager.DeleteAsync(id);
                 if (response.Succeeded)
                 {
                     await Reset();
@@ -98,7 +95,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task ExportToExcel()
         {
-            var base64 = await BrandManager.ExportToExcelAsync(_searchString);
+            var base64 = await _brandManager.ExportToExcelAsync(_searchString);
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
                 ByteArray = base64,

@@ -46,7 +46,6 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddJwtAuthentication(services.GetApplicationSettings(_configuration));
             services.AddApplicationLayer();
             services.AddApplicationServices();
-            services.AddRepositories();
             services.AddSharedInfrastructure(_configuration);
             services.RegisterSwagger();
             services.AddInfrastructureMappings();

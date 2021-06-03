@@ -4,10 +4,6 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>BlazorHero.CleanArchitecture.Infrastructure.xml</DocumentationFile>
-  </PropertyGroup>
-
   <!--<ItemGroup>
     <Compile Remove="Constants\**" />
     <Compile Remove="Identity\**" />
