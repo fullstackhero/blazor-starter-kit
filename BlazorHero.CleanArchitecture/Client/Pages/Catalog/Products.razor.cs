@@ -12,6 +12,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Product;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 
@@ -19,6 +20,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
     public partial class Products
     {
+        [Inject] private IProductManager ProductManager { get; set; }
+
         [CascadingParameter] private HubConnection HubConnection { get; set; }
 
         private IEnumerable<GetAllPagedProductsResponse> _pagedData;
@@ -58,7 +61,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private async Task LoadData(int pageNumber, int pageSize, TableState state)
         {
             var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
-            var response = await _productManager.GetProductsAsync(request);
+            var response = await ProductManager.GetProductsAsync(request);
             if (response.Succeeded)
             {
                 _totalItems = response.TotalCount;
@@ -119,7 +122,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task ExportToExcel()
         {
-            var base64 = await _productManager.ExportToExcelAsync(_searchString);
+            var base64 = await ProductManager.ExportToExcelAsync(_searchString);
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
                 ByteArray = base64,
@@ -171,7 +174,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
-                var response = await _productManager.DeleteAsync(id);
+                var response = await ProductManager.DeleteAsync(id);
                 if (response.Succeeded)
                 {
                     OnSearch("");
