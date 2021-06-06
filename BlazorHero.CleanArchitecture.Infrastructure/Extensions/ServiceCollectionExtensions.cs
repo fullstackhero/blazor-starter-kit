@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage.Provider;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage.Serialization;
+using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.JsonConverters;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.Provider;
@@ -21,6 +23,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Extensions
 
         public static IServiceCollection AddServerStorage(this IServiceCollection services)
             => AddServerStorage(services, null);
+
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            return services
+                .AddTransient(typeof(IRepositoryAsync<,>), typeof(RepositoryAsync<,>))
+                .AddTransient<IProductRepository, ProductRepository>()
+                .AddTransient<IBrandRepository, BrandRepository>()
+                .AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+        }
 
         public static IServiceCollection AddServerStorage(this IServiceCollection services, Action<ServerStorageOptions> configure)
         {
