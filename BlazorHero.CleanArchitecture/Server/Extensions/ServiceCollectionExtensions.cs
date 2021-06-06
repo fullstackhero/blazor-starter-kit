@@ -34,6 +34,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
@@ -109,7 +110,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Name = "Authorization",
+                    Name = localizer["Authorization"],
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer",
@@ -227,22 +228,44 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                     {
                         OnAuthenticationFailed = c =>
                         {
-                            c.NoResult();
-                            c.Response.StatusCode = 500;
-                            c.Response.ContentType = "text/plain";
-                            return c.Response.WriteAsync(c.Exception.ToString());
+                            if (c.Exception is SecurityTokenExpiredException)
+                            {
+                                c.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                                c.Response.ContentType = "application/json";
+                                var result = JsonConvert.SerializeObject(Result.Fail(localizer["The Token is expired."]));
+                                return c.Response.WriteAsync(result);
+                            }
+                            else
+                            {
+#if DEBUG
+                                c.NoResult();
+                                c.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                                c.Response.ContentType = "text/plain";
+                                return c.Response.WriteAsync(c.Exception.ToString());
+#else
+                                c.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                                c.Response.ContentType = "application/json";
+                                var result = JsonConvert.SerializeObject(Result.Fail(localizer["An unhandled error has occurred."]));
+                                return c.Response.WriteAsync(result);
+#endif
+                            }
                         },
                         OnChallenge = context =>
                         {
                             context.HandleResponse();
-                            context.Response.StatusCode = 401;
-                            context.Response.ContentType = "application/json";
-                            var result = JsonConvert.SerializeObject(Result.Fail(localizer["You are not Authorized."]));
-                            return context.Response.WriteAsync(result);
+                            if (!context.Response.HasStarted)
+                            {
+                                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                                context.Response.ContentType = "application/json";
+                                var result = JsonConvert.SerializeObject(Result.Fail(localizer["You are not Authorized."]));
+                                return context.Response.WriteAsync(result);
+                            }
+
+                            return Task.CompletedTask;
                         },
                         OnForbidden = context =>
                         {
-                            context.Response.StatusCode = 403;
+                            context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                             context.Response.ContentType = "application/json";
                             var result = JsonConvert.SerializeObject(Result.Fail(localizer["You are not authorized to access this resource."]));
                             return context.Response.WriteAsync(result);
