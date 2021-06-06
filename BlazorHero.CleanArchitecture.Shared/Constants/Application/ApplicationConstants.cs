@@ -18,6 +18,8 @@
             public const string ConnectUser = "ConnectUser";
             public const string OnDisconnect = "OnDisconnectAsync";
             public const string DisconnectUser = "DisconnectUser";
+            public const string OnChangeRolePermissions = "OnChangeRolePermissions";
+            public const string LogoutUsersByRole = "LogoutUsersByRole";
         }
         public static class Cache
         {

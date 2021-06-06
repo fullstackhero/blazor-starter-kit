@@ -90,6 +90,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 _snackBar.Add(result.Messages[0], Severity.Success);
                 await HubConnection.SendAsync(ApplicationConstants.SignalR.SendRegenerateTokens);
+                await HubConnection.SendAsync(ApplicationConstants.SignalR.OnChangeRolePermissions, _currentUser.GetUserId(), request.RoleId);
                 _navigationManager.NavigateTo("/identity/roles");
             }
             else

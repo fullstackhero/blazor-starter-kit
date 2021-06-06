@@ -5,13 +5,18 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.JSInterop;
 using MudBlazor;
 using System;
+using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Roles;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorHero.CleanArchitecture.Client.Shared
 {
     public partial class MainLayout : IDisposable
     {
+        [Inject] private IRoleManager RoleManager { get; set; }
+
         private string CurrentUserId { get; set; }
         private string ImageDataUrl { get; set; }
         private string FirstName { get; set; }
@@ -91,6 +96,28 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                     _snackBar.Add(localizer["You are Logged Out."], Severity.Error);
                     await _authenticationManager.Logout();
                     _navigationManager.NavigateTo("/");
+                }
+            });
+            hubConnection.On<string, string>(ApplicationConstants.SignalR.LogoutUsersByRole, async (userId, roleId) =>
+            {
+                if (CurrentUserId != userId)
+                {
+                    var rolesResponse = await RoleManager.GetRolesAsync();
+                    if (rolesResponse.Succeeded)
+                    {
+                        var role = rolesResponse.Data.FirstOrDefault(x => x.Id == roleId);
+                        if (role != null)
+                        {
+                            var currentUserRolesResponse = await _userManager.GetRolesAsync(CurrentUserId);
+                            if (currentUserRolesResponse.Succeeded && currentUserRolesResponse.Data.UserRoles.Any(x => x.RoleName == role.Name))
+                            {
+                                _snackBar.Add(localizer["You are logged out because the Permissions of one of your Roles have been updated."], Severity.Error);
+                                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnDisconnect, CurrentUserId);
+                                await _authenticationManager.Logout();
+                                _navigationManager.NavigateTo("/login");
+                            }
+                        }
+                    }
                 }
             });
         }
