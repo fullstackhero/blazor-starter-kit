@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorHero.CleanArchitecture.Domain.Entities.Catalog
 {
-    public class Product : AuditableEntity
+    public class Product : AuditableEntity<int>
     {
         public string Name { get; set; }
         public string Barcode { get; set; }

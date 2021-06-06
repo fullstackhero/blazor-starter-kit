@@ -32,11 +32,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
     internal class AddEditProductCommandHandler : IRequestHandler<AddEditProductCommand, Result<int>>
     {
         private readonly IMapper _mapper;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<int> _unitOfWork;
         private readonly IUploadService _uploadService;
         private readonly IStringLocalizer<AddEditProductCommandHandler> _localizer;
 
-        public AddEditProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditProductCommandHandler> localizer)
+        public AddEditProductCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IUploadService uploadService, IStringLocalizer<AddEditProductCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

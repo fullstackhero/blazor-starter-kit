@@ -26,9 +26,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddE
     {
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<AddEditBrandCommandHandler> _localizer;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork<int> _unitOfWork;
 
-        public AddEditBrandCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IStringLocalizer<AddEditBrandCommandHandler> localizer)
+        public AddEditBrandCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IStringLocalizer<AddEditBrandCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
