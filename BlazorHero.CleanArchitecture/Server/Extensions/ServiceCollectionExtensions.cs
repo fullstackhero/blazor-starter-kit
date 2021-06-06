@@ -33,6 +33,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
@@ -93,7 +94,22 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 //TODO - Lowercase Swagger Documents
                 //c.DocumentFilter<LowercaseDocumentFilter>();
                 //Refer - https://gist.github.com/rafalkasa/01d5e3b265e5aa075678e0adfd54e23f
-                c.IncludeXmlComments(string.Format(@"{0}\BlazorHero.CleanArchitecture.Server.xml", System.AppDomain.CurrentDomain.BaseDirectory));
+
+                // include all project's xml comments
+                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    if (!assembly.IsDynamic)
+                    {
+                        var xmlFile = $"{assembly.GetName().Name}.xml";
+                        var xmlPath = Path.Combine(baseDirectory, xmlFile);
+                        if (File.Exists(xmlPath))
+                        {
+                            c.IncludeXmlComments(xmlPath);
+                        }
+                    }
+                }
+
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
