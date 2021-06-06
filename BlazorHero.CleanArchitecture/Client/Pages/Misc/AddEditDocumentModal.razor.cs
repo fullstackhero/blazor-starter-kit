@@ -7,11 +7,14 @@ using MudBlazor;
 using System.IO;
 using System.Threading.Tasks;
 using Blazored.FluentValidation;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 {
     public partial class AddEditDocumentModal
     {
+        [Inject] private IDocumentManager DocumentManager { get; set; }
+
         [Parameter] public AddEditDocumentCommand AddEditDocumentModel { get; set; } = new();
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
 
@@ -25,7 +28,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 
         private async Task SaveAsync()
         {
-            var response = await _documentManager.SaveAsync(AddEditDocumentModel);
+            var response = await DocumentManager.SaveAsync(AddEditDocumentModel);
             if (response.Succeeded)
             {
                 _snackBar.Add(response.Messages[0], Severity.Success);

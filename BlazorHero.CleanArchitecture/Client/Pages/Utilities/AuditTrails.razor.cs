@@ -5,11 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
 {
     public partial class AuditTrails
     {
+        [Inject] private IAuditManager AuditManager { get; set; }
+
         public List<RelatedAuditTrail> Trails = new();
 
         private RelatedAuditTrail _trail = new();
@@ -67,7 +71,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
 
         private async Task GetDataAsync()
         {
-            var response = await _auditManager.GetCurrentUserTrailsAsync();
+            var response = await AuditManager.GetCurrentUserTrailsAsync();
             if (response.Succeeded)
             {
                 Trails = response.Data
@@ -106,7 +110,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
 
         private async Task ExportToExcelAsync()
         {
-            var base64 = await _auditManager.DownloadFileAsync(_searchString, _searchInOldValues, _searchInNewValues);
+            var base64 = await AuditManager.DownloadFileAsync(_searchString, _searchInOldValues, _searchInNewValues);
             await _jsRuntime.InvokeVoidAsync("Download", new
             {
                 ByteArray = base64,
