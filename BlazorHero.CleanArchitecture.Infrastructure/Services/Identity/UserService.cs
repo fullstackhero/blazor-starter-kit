@@ -31,6 +31,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private readonly IMailService _mailService;
         private readonly IStringLocalizer<UserService> _localizer;
         private readonly IExcelService _excelService;
+        private readonly ICurrentUserService _currentUserService;
         private readonly IMapper _mapper;
 
         public UserService(
@@ -39,7 +40,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             RoleManager<BlazorHeroRole> roleManager,
             IMailService mailService,
             IStringLocalizer<UserService> localizer,
-            IExcelService excelService)
+            IExcelService excelService,
+            ICurrentUserService currentUserService)
         {
             _userManager = userManager;
             _mapper = mapper;
@@ -47,6 +49,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             _mailService = mailService;
             _localizer = localizer;
             _excelService = excelService;
+            _currentUserService = currentUserService;
         }
 
         public async Task<Result<List<UserResponse>>> GetAllAsync()
@@ -180,10 +183,28 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         public async Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request)
         {
             var user = await _userManager.FindByIdAsync(request.UserId);
-            if (user.Email == "mukesh@blazorhero.com") return await Result.FailAsync(_localizer["Not Allowed."]);
+            if (user.Email == "mukesh@blazorhero.com")
+            {
+                return await Result.FailAsync(_localizer["Not Allowed."]);
+            }
+
             var roles = await _userManager.GetRolesAsync(user);
+            var selectedRoles = request.UserRoles.Where(x => x.Selected).ToList();
+
+            var currentUser = await _userManager.FindByIdAsync(_currentUserService.UserId);
+            if (!await _userManager.IsInRoleAsync(currentUser, RoleConstants.AdministratorRole))
+            {
+                var tryToAddAdministratorRole = selectedRoles
+                    .Any(x => x.RoleName == RoleConstants.AdministratorRole);
+                var userHasAdministratorRole = roles.Any(x => x == RoleConstants.AdministratorRole);
+                if (tryToAddAdministratorRole && !userHasAdministratorRole || !tryToAddAdministratorRole && userHasAdministratorRole)
+                {
+                    return await Result.FailAsync(_localizer["Not Allowed to add or delete Administrator Role if you have not this role."]);
+                }
+            }
+
             var result = await _userManager.RemoveFromRolesAsync(user, roles);
-            result = await _userManager.AddToRolesAsync(user, request.UserRoles.Where(x => x.Selected).Select(y => y.RoleName));
+            result = await _userManager.AddToRolesAsync(user, selectedRoles.Select(y => y.RoleName));
             return await Result.SuccessAsync(_localizer["Roles Updated"]);
         }
 

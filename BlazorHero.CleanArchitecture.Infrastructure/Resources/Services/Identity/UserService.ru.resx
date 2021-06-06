@@ -159,8 +159,11 @@
   <data name="LastName" xml:space="preserve">
     <value>Фамилия</value>
   </data>
+  <data name="Not Allowed to add or delete Administrator Role if you have not this role." xml:space="preserve">
+    <value>Недоступно добавление или удаление роли Администратора, если у вас нет этой роли.</value>
+  </data>
   <data name="Not Allowed." xml:space="preserve">
-    <value>Нет доступно.</value>
+    <value>Не доступно.</value>
   </data>
   <data name="Password Reset Mail has been sent to your authorized Email." xml:space="preserve">
     <value>На ваш подтверждённый адрес электронной почты было отправлено письмо для сброса пароля.</value>
