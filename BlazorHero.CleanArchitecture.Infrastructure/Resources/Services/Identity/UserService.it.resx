@@ -159,6 +159,9 @@
   <data name="LastName" xml:space="preserve">
     <value>LastName</value>
   </data>
+  <data name="Not Allowed to add or delete Administrator Role if you have not this role." xml:space="preserve">
+    <value>Not Allowed to add or delete Administrator Role if you have not this role.</value>
+  </data>
   <data name="Not Allowed." xml:space="preserve">
     <value>Non Autorizzato.</value>
   </data>

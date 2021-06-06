@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
@@ -22,6 +24,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         private readonly UserManager<BlazorHeroUser> _userManager;
         private readonly IRoleClaimService _roleClaimService;
         private readonly IStringLocalizer<RoleService> _localizer;
+        private readonly ICurrentUserService _currentUserService;
         private readonly IMapper _mapper;
 
         public RoleService(
@@ -29,13 +32,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             IMapper mapper,
             UserManager<BlazorHeroUser> userManager,
             IRoleClaimService roleClaimService,
-            IStringLocalizer<RoleService> localizer)
+            IStringLocalizer<RoleService> localizer,
+            ICurrentUserService currentUserService)
         {
             _roleManager = roleManager;
             _mapper = mapper;
             _userManager = userManager;
             _roleClaimService = roleClaimService;
             _localizer = localizer;
+            _currentUserService = currentUserService;
         }
 
         public async Task<Result<string>> DeleteAsync(string id)
@@ -177,14 +182,31 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 var role = await _roleManager.FindByIdAsync(request.RoleId);
                 if (role.Name == RoleConstants.AdministratorRole)
                 {
-                    return await Result<string>.FailAsync(_localizer["Not allowed to modify Permissions for this Role."]);
+                    var currentUser = await _userManager.Users.SingleAsync(x => x.Id == _currentUserService.UserId);
+                    if (!await _userManager.IsInRoleAsync(currentUser, RoleConstants.AdministratorRole))
+                    {
+                        return await Result<string>.FailAsync(_localizer["Not allowed to modify Permissions for this Role."]);
+                    }
                 }
+
+                var selectedClaims = request.RoleClaims.Where(a => a.Selected).ToList();
+                if (role.Name == RoleConstants.AdministratorRole)
+                {
+                    if (!selectedClaims.Any(x => x.Value == Permissions.Roles.View)
+                       || !selectedClaims.Any(x => x.Value == Permissions.RoleClaims.View)
+                       || !selectedClaims.Any(x => x.Value == Permissions.RoleClaims.Edit))
+                    {
+                        return await Result<string>.FailAsync(string.Format(
+                            _localizer["Not allowed to deselect {0} or {1} or {2} for this Role."],
+                            Permissions.Roles.View, Permissions.RoleClaims.View, Permissions.RoleClaims.Edit));
+                    }
+                }
+
                 var claims = await _roleManager.GetClaimsAsync(role);
                 foreach (var claim in claims)
                 {
                     await _roleManager.RemoveClaimAsync(role, claim);
                 }
-                var selectedClaims = request.RoleClaims.Where(a => a.Selected).ToList();
                 foreach (var claim in selectedClaims)
                 {
                     var addResult = await _roleManager.AddPermissionClaim(role, claim.Value);

@@ -123,6 +123,9 @@
   <data name="Not allowed to delete {0} Role." xml:space="preserve">
     <value>Not allowed to delete {0} Role.</value>
   </data>
+  <data name="Not allowed to deselect {0} or {1} or {2} for this Role." xml:space="preserve">
+    <value>Not allowed to deselect {0} or {1} or {2} for this Role.</value>
+  </data>
   <data name="Not allowed to modify Permissions for this Role." xml:space="preserve">
     <value>Not allowed to modify Permissions for this Role.</value>
   </data>

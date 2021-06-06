@@ -8,7 +8,7 @@
 <MudTable Hover="true" Elevation="25" Items="UserRolesList" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<UserRoleModel, bool>(Search)" @bind-userRole="_userRole">
     <ToolBarContent>
         <div class="justify-center mud-text-align-center">
-            @if (_canCreateUserRoles || _canEditUserRoles)
+            @if (_canEditUsers)
             {
                 <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">@_localizer["Update User Roles"]</MudButton>
             }
@@ -28,7 +28,7 @@
         <MudTd DataLabel="@_localizer["Description"]">
             <MudHighlighter Text="@context.RoleDescription" HighlightedText="@_searchString" />
         </MudTd>
-        <MudTd DataLabel="Role"><MudCheckBox @bind-Checked="@context.Selected" Disabled="@(!_canCreateUserRoles)" Color="Color.Secondary"></MudCheckBox></MudTd>
+        <MudTd DataLabel="Role"><MudCheckBox @bind-Checked="@context.Selected" Disabled="@(!_canEditUsers)" Color="Color.Secondary"></MudCheckBox></MudTd>
     </RowTemplate>
     <FooterContent>
         <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@_localizer["Dense"]</MudSwitch>

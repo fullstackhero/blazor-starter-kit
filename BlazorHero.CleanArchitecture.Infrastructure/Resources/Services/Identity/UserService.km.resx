@@ -138,6 +138,9 @@
   <data name="Email {0} is already registered." xml:space="preserve">
     <value>អ៊ីម៉ែល {0} ត្រូវបានចុះឈ្មោះរួចហើយ</value>
   </data>
+  <data name="Not Allowed to add or delete Administrator Role if you have not this role." xml:space="preserve">
+    <value>Not Allowed to add or delete Administrator Role if you have not this role.</value>
+  </data>
   <data name="Not Allowed." xml:space="preserve">
     <value>មិនអនុញ្ញាត្ត</value>
   </data>

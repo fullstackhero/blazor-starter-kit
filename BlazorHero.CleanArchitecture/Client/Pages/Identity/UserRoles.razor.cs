@@ -25,14 +25,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private bool _bordered = false;
 
         private ClaimsPrincipal _currentUser;
-        private bool _canCreateUserRoles;
-        private bool _canEditUserRoles;
+        private bool _canEditUsers;
 
         protected override async Task OnInitializedAsync()
         {
             _currentUser = await _authenticationManager.CurrentUser();
-            _canCreateUserRoles = _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.Create).Result.Succeeded;
-            _canEditUserRoles = _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.Edit).Result.Succeeded;
+            _canEditUsers = _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Edit).Result.Succeeded;
 
             var userId = Id;
             var result = await _userManager.GetAsync(userId);

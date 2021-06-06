@@ -121,7 +121,7 @@
     <value>Роль Администратора с полными правами</value>
   </data>
   <data name="Basic role with default permissions" xml:space="preserve">
-    <value>Базовая роль с разрешениями по умолчанию</value>
+    <value>Базовая роль с правами по умолчанию</value>
   </data>
   <data name="Seeded Administrator Role." xml:space="preserve">
     <value>Добавлена роль Администратора.</value>
