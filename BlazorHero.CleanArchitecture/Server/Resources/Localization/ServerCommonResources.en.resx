@@ -120,6 +120,9 @@
   <data name="An unhandled error has occurred." xml:space="preserve">
     <value>An unhandled error has occurred.</value>
   </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
   <data name="Input your Bearer token in this format - Bearer {your token here} to access this API" xml:space="preserve">
     <value>Input your Bearer token in this format - Bearer {your token here} to access this API</value>
   </data>
