@@ -9,6 +9,8 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit
 {
@@ -46,6 +48,12 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Commands.Ad
 
         public async Task<Result<int>> Handle(AddEditProductCommand command, CancellationToken cancellationToken)
         {
+            if (await _unitOfWork.Repository<Product>().Entities.Where(p => p.Id != command.Id)
+                .AnyAsync(p => p.Barcode == command.Barcode, cancellationToken))
+            {
+                return await Result<int>.FailAsync(_localizer["Barcode already exists."]);
+            }
+
             var uploadRequest = command.UploadRequest;
             if (uploadRequest != null)
             {
