@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
 {
-    public class BlazorHeroRoleClaim : IdentityRoleClaim<string>, IAuditableEntity
+    public class BlazorHeroRoleClaim : IdentityRoleClaim<string>, IAuditableEntity<int>
     {
         public string Description { get; set; }
         public string Group { get; set; }
