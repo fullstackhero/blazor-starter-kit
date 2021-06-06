@@ -1,5 +1,5 @@
 ﻿using System;
-using BlazorHero.CleanArchitecture.Domain.Entities;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Audit
 {

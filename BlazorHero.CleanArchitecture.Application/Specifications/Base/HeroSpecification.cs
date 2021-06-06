@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using BlazorHero.CleanArchitecture.Domain.Entities;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
 
 namespace BlazorHero.CleanArchitecture.Application.Specifications.Base
 {
