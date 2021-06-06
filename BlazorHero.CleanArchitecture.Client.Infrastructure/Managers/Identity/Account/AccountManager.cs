@@ -36,7 +36,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.A
 
         public async Task<IResult<string>> UpdateProfilePictureAsync(UpdateProfilePictureRequest request, string userId)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.AccountEndpoints.GetProfilePicture(userId), request);
+            var response = await _httpClient.PostAsJsonAsync(Routes.AccountEndpoints.UpdateProfilePicture(userId), request);
             return await response.ToResult<string>();
         }
     }

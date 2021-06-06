@@ -48,6 +48,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         /// <param name="userId"></param>
         /// <returns>Status 200 OK </returns>
         [HttpGet("profile-picture/{userId}")]
+        [ResponseCache(NoStore = false, Location = ResponseCacheLocation.Client, Duration = 60)]
         public async Task<IActionResult> GetProfilePictureAsync(string userId)
         {
             return Ok(await _accountService.GetProfilePictureAsync(userId));
