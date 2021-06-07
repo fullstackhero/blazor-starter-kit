@@ -26,6 +26,7 @@
         <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentIdField">@_localizer["Id"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentTitleField">@_localizer["Title"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentDescriptionField">@_localizer["Description"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentDocumentTypeField">@_localizer["Document Type"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentIsPublicField">@_localizer["Is Public"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentDateCreatedField">@_localizer["Date Created"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentOwnerField">@_localizer["Owner"]</MudTableSortLabel></MudTh>
@@ -38,6 +39,9 @@
         </MudTd>
         <MudTd DataLabel="Description">
             <MudHighlighter Text="@context.Description" HighlightedText="@_searchString" />
+        </MudTd>
+        <MudTd DataLabel="DocumentType">
+            <MudHighlighter Text="@context.DocumentType" HighlightedText="@_searchString" />
         </MudTd>
         <MudTd DataLabel="IsPublic"><MudCheckBox @bind-Checked="@context.IsPublic" ReadOnly="true" Color="Color.Secondary" /></MudTd>
         <MudTd DataLabel="Date Created">@context.CreatedOn</MudTd>

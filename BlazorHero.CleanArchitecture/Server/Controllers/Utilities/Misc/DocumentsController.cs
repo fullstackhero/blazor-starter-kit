@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 
-namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
+namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc
 {
     [Route("api/[controller]")]
     [ApiController]

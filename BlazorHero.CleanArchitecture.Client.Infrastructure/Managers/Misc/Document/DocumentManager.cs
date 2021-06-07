@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document
+namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Misc.Document
 {
     public class DocumentManager : IDocumentManager
     {

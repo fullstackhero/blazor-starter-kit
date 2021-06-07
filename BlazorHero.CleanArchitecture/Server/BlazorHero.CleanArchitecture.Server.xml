@@ -217,7 +217,7 @@
             <param name="searchInNewValues"></param>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.DocumentsController.GetAll(System.Int32,System.Int32,System.String)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.GetAll(System.Int32,System.Int32,System.String)">
             <summary>
             Get All Documents
             </summary>
@@ -226,19 +226,53 @@
             <param name="searchString"></param>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.DocumentsController.Post(BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit.AddEditDocumentCommand)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.Post(BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit.AddEditDocumentCommand)">
             <summary>
             Add/Edit Documents
             </summary>
             <param name="command"></param>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.DocumentsController.Delete(System.Int32)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.Delete(System.Int32)">
             <summary>
             Delete a Document
             </summary>
             <param name="id"></param>
             <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentTypesController.GetAll">
+            <summary>
+            Get All Document Types
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentTypesController.GetById(System.Int32)">
+            <summary>
+            Get Document Type By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentTypesController.Post(BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Commands.AddEdit.AddEditDocumentTypeCommand)">
+            <summary>
+            Create/Update a Document Type
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentTypesController.Delete(System.Int32)">
+            <summary>
+            Delete a Document Type 
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentTypesController.Export(System.String)">
+            <summary>
+            Search Document Types and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.PreferencesController.ChangeLanguageAsync(System.String)">
             <summary>
@@ -255,7 +289,7 @@
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.BrandsController.GetById(System.Int32)">
             <summary>
-            Get Brands By Id
+            Get a Brand By Id
             </summary>
             <param name="id"></param>
             <returns>Status 200 Ok</returns>
@@ -276,7 +310,7 @@
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.BrandsController.Export(System.String)">
             <summary>
-            Search Brand and Export to Excel
+            Search Brands and Export to Excel
             </summary>
             <param name="searchString"></param>
             <returns></returns>

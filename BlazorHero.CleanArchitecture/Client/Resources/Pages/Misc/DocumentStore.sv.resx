@@ -141,6 +141,9 @@
   <data name="Document Store" xml:space="preserve">
     <value>Dokument Förvaring</value>
   </data>
+  <data name="Document Type" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>Ladda Ner</value>
   </data>

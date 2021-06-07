@@ -4,7 +4,7 @@ using BlazorHero.CleanArchitecture.Application.Requests.Documents;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document
+namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Misc.Document
 {
     public interface IDocumentManager : IManager
     {

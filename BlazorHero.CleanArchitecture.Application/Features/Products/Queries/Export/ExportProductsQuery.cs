@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Extensions;
-using BlazorHero.CleanArchitecture.Application.Specifications;
+using BlazorHero.CleanArchitecture.Application.Specifications.Catalog;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 

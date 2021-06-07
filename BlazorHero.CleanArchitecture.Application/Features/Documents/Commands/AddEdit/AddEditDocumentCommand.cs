@@ -2,7 +2,7 @@
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Requests;
-using BlazorHero.CleanArchitecture.Domain.Entities;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System;
@@ -23,6 +23,8 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
         public bool IsPublic { get; set; } = false;
         [Required]
         public string URL { get; set; }
+        [Required]
+        public int DocumentTypeId { get; set; }
         public UploadRequest UploadRequest { get; set; }
     }
 
@@ -72,6 +74,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.A
                     {
                         doc.URL = _uploadService.UploadAsync(uploadRequest);
                     }
+                    doc.DocumentTypeId = (command.DocumentTypeId == 0) ? doc.DocumentTypeId : command.DocumentTypeId;
                     await _unitOfWork.Repository<Document>().UpdateAsync(doc);
                     await _unitOfWork.Commit(cancellationToken);
                     return await Result<int>.SuccessAsync(doc.Id, _localizer["Document Updated"]);

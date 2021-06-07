@@ -8,7 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Misc.Document;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
@@ -73,6 +73,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                         return true;
                     if (element.Description.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
                         return true;
+                    if (element.DocumentType.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+                        return true;
                     return false;
                 });
                 switch (state.SortLabel)
@@ -85,6 +87,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                         break;
                     case "documentDescriptionField":
                         loadedData = loadedData.OrderByDirection(state.SortDirection, d => d.Description);
+                        break;
+                    case "documentDocumentTypeField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.DocumentType);
                         break;
                     case "documentIsPublicField":
                         loadedData = loadedData.OrderByDirection(state.SortDirection, d => d.IsPublic);
@@ -128,7 +133,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                         Title = doc.Title,
                         Description = doc.Description,
                         URL = doc.URL,
-                        IsPublic = doc.IsPublic
+                        IsPublic = doc.IsPublic,
+                        DocumentTypeId = doc.DocumentTypeId
                     });
                 }
             }

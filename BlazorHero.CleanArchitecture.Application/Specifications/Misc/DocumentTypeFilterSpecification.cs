@@ -1,11 +1,11 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Specifications.Base;
-using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 
-namespace BlazorHero.CleanArchitecture.Application.Specifications
+namespace BlazorHero.CleanArchitecture.Application.Specifications.Misc
 {
-    public class BrandFilterSpecification : HeroSpecification<Brand, int>
+    public class DocumentTypeFilterSpecification : HeroSpecification<DocumentType, int>
     {
-        public BrandFilterSpecification(string searchString)
+        public DocumentTypeFilterSpecification(string searchString)
         {
             if (!string.IsNullOrEmpty(searchString))
             {

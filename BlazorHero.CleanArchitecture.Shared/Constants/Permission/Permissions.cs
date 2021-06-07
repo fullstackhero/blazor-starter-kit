@@ -26,6 +26,14 @@
             public const string Delete = "Permissions.Documents.Delete";
         }
 
+        public static class DocumentTypes
+        {
+            public const string View = "Permissions.DocumentTypes.View";
+            public const string Create = "Permissions.DocumentTypes.Create";
+            public const string Edit = "Permissions.DocumentTypes.Edit";
+            public const string Delete = "Permissions.DocumentTypes.Delete";
+        }
+
         public static class Users
         {
             public const string View = "Permissions.Users.View";

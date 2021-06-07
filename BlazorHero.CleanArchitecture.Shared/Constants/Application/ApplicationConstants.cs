@@ -22,6 +22,7 @@
         public static class Cache
         {
             public const string GetAllBrandsCacheKey = "all-brands";
+            public const string GetAllDocumentTypesCacheKey = "all-document-types";
         }
     }
 }

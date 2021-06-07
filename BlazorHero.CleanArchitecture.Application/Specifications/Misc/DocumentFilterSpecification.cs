@@ -1,7 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Specifications.Base;
-using BlazorHero.CleanArchitecture.Domain.Entities;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 
-namespace BlazorHero.CleanArchitecture.Application.Specifications
+namespace BlazorHero.CleanArchitecture.Application.Specifications.Misc
 {
     public class DocumentFilterSpecification : HeroSpecification<Document, int>
     {

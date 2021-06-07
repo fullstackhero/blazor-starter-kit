@@ -1,6 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Domain.Contracts;
 
-namespace BlazorHero.CleanArchitecture.Domain.Entities
+namespace BlazorHero.CleanArchitecture.Domain.Entities.Misc
 {
     public class Document : AuditableEntity<int>
     {
@@ -8,5 +8,7 @@ namespace BlazorHero.CleanArchitecture.Domain.Entities
         public string Description { get; set; }
         public bool IsPublic { get; set; } = false;
         public string URL { get; set; }
+        public int DocumentTypeId { get; set; }
+        public virtual DocumentType DocumentType { get; set; }
     }
 }
