@@ -126,4 +126,7 @@
   <data name="Document Type Updated" xml:space="preserve">
     <value>Тип документа обновлён</value>
   </data>
+  <data name="Document type with this name already exists." xml:space="preserve">
+    <value>Тип документа с таким названием уже существует.</value>
+  </data>
 </root>

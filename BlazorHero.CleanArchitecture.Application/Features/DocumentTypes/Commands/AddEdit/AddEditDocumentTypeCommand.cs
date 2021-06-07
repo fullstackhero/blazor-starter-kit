@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -7,6 +8,7 @@ using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Commands.AddEdit
@@ -35,6 +37,12 @@ namespace BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Comman
 
         public async Task<Result<int>> Handle(AddEditDocumentTypeCommand command, CancellationToken cancellationToken)
         {
+            if (await _unitOfWork.Repository<DocumentType>().Entities.Where(p => p.Id != command.Id)
+                .AnyAsync(p => p.Name == command.Name, cancellationToken))
+            {
+                return await Result<int>.FailAsync(_localizer["Document type with this name already exists."]);
+            }
+
             if (command.Id == 0)
             {
                 var documentType = _mapper.Map<DocumentType>(command);
@@ -50,7 +58,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Comman
                     documentType.Name = command.Name ?? documentType.Name;
                     documentType.Description = command.Description ?? documentType.Description;
                     await _unitOfWork.Repository<DocumentType>().UpdateAsync(documentType);
-                    await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
+                    await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllDocumentTypesCacheKey);
                     return await Result<int>.SuccessAsync(documentType.Id, _localizer["Document Type Updated"]);
                 }
                 else
