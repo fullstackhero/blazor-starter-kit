@@ -26,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Misc.Docum
 
         public async Task<PaginatedResult<GetAllDocumentsResponse>> GetAllAsync(GetAllPagedDocumentsRequest request)
         {
-            var response = await _httpClient.GetAsync(Routes.DocumentsEndpoints.GetAllPaged(request.PageNumber, request.PageSize));
+            var response = await _httpClient.GetAsync(Routes.DocumentsEndpoints.GetAllPaged(request.PageNumber, request.PageSize, request.SearchString));
             return await response.ToPaginatedResult<GetAllDocumentsResponse>();
         }
 

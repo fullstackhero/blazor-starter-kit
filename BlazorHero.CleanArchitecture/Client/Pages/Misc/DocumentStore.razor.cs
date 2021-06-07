@@ -58,7 +58,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 
         private async Task LoadData(int pageNumber, int pageSize, TableState state)
         {
-            var request = new GetAllPagedDocumentsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
+            var request = new GetAllPagedDocumentsRequest { PageSize = pageSize, PageNumber = pageNumber + 1, SearchString = _searchString };
             var response = await DocumentManager.GetAllAsync(request);
             if (response.Succeeded)
             {

@@ -2,9 +2,9 @@
 {
     public static class ProductsEndpoints
     {
-        public static string GetAllPaged(int pageNumber, int pageSize)
+        public static string GetAllPaged(int pageNumber, int pageSize, string searchString)
         {
-            return $"api/v1/products?pageNumber={pageNumber}&pageSize={pageSize}";
+            return $"api/v1/products?pageNumber={pageNumber}&pageSize={pageSize}&searchString={searchString}";
         }
 
         public static string GetCount = "api/v1/products/count";

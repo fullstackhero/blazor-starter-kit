@@ -60,7 +60,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task LoadData(int pageNumber, int pageSize, TableState state)
         {
-            var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
+            var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1, SearchString = _searchString };
             var response = await ProductManager.GetProductsAsync(request);
             if (response.Succeeded)
             {
