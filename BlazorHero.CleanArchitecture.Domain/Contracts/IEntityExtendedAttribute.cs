@@ -29,19 +29,24 @@ namespace BlazorHero.CleanArchitecture.Domain.Contracts
         public string Key { get; set; }
 
         /// <summary>
-        /// Value for extended attribute with type 2
-        /// </summary>
-        public string? Text { get; set; }
-
-        /// <summary>
         /// Value for extended attribute with type 1
         /// </summary>
         public decimal? Decimal { get; set; }
 
         /// <summary>
+        /// Value for extended attribute with type 2
+        /// </summary>
+        public string? Text { get; set; }
+
+        /// <summary>
         /// Value for extended attribute with type 3
         /// </summary>
         public DateTime? DateTime { get; set; }
+
+        /// <summary>
+        /// Value for extended attribute with type 4
+        /// </summary>
+        public string? Json { get; set; }
 
         /// <summary>
         /// Extended attribute external id

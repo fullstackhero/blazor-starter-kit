@@ -1,12 +1,10 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
-using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
 using BlazorHero.CleanArchitecture.Infrastructure.Services;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Shared.Services;
@@ -40,6 +38,13 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Options;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Serializers;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Settings;
+using BlazorHero.CleanArchitecture.Application.Serialization.JsonConverters;
+using BlazorHero.CleanArchitecture.Application.Serialization.Options;
+using BlazorHero.CleanArchitecture.Application.Serialization.Serializers;
+using BlazorHero.CleanArchitecture.Application.Serialization.Settings;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
@@ -150,6 +155,21 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                     },
                 });
             });
+        }
+
+        public static IServiceCollection AddSerialization(this IServiceCollection services)
+        {
+            services
+                .AddScoped<IJsonSerializerOptions, SystemTextJsonOptions>()
+                .Configure<SystemTextJsonOptions>(configureOptions =>
+                {
+                    if (!configureOptions.JsonSerializerOptions.Converters.Any(c => c.GetType() == typeof(TimespanJsonConverter)))
+                        configureOptions.JsonSerializerOptions.Converters.Add(new TimespanJsonConverter());
+                });
+            services.AddScoped<IJsonSerializerSettings, NewtonsoftJsonSettings>();
+
+            services.AddScoped<IJsonSerializer, SystemTextJsonSerializer>(); // you can change it
+            return services;
         }
 
         public static IServiceCollection AddDatabase(

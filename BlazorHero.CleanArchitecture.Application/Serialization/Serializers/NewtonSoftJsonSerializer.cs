@@ -1,15 +1,15 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage.Serialization;
-using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.StorageOptions;
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Serializers;
+using BlazorHero.CleanArchitecture.Application.Serialization.Settings;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
-namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.Serialization
+namespace BlazorHero.CleanArchitecture.Application.Serialization.Serializers
 {
     public class NewtonSoftJsonSerializer : IJsonSerializer
     {
         private readonly JsonSerializerSettings _settings;
 
-        public NewtonSoftJsonSerializer(IOptions<ServerStorageOptions> settings)
+        public NewtonSoftJsonSerializer(IOptions<NewtonsoftJsonSettings> settings)
         {
             _settings = settings.Value.JsonSerializerSettings;
         }

@@ -1,4 +1,4 @@
-﻿namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage.Serialization
+﻿namespace BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Serializers
 {
     public interface IJsonSerializer
     {

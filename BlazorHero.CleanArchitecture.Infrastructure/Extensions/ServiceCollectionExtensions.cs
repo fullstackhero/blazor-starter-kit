@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage.Provider;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage.Serialization;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Serializers;
+using BlazorHero.CleanArchitecture.Application.Serialization.JsonConverters;
 using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage;
-using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.JsonConverters;
+using BlazorHero.CleanArchitecture.Application.Serialization.Options;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.Provider;
-using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.Serialization;
-using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.StorageOptions;
+using BlazorHero.CleanArchitecture.Application.Serialization.Serializers;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Extensions
 {
@@ -20,9 +21,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Extensions
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
-
-        public static IServiceCollection AddServerStorage(this IServiceCollection services)
-            => AddServerStorage(services, null);
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
@@ -35,17 +33,21 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Extensions
                 .AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
         }
 
-        public static IServiceCollection AddServerStorage(this IServiceCollection services, Action<ServerStorageOptions> configure)
+        public static IServiceCollection AddServerStorage(this IServiceCollection services)
+            => AddServerStorage(services, null);
+
+        public static IServiceCollection AddServerStorage(this IServiceCollection services, Action<SystemTextJsonOptions> configure)
         {
             return services
                 .AddScoped<IJsonSerializer, SystemTextJsonSerializer>()
                 .AddScoped<IStorageProvider, ServerStorageProvider>()
                 .AddScoped<IServerStorageService, ServerStorageService>()
                 .AddScoped<ISyncServerStorageService, ServerStorageService>()
-                .Configure<ServerStorageOptions>(configureOptions =>
+                .Configure<SystemTextJsonOptions>(configureOptions =>
                 {
                     configure?.Invoke(configureOptions);
-                    configureOptions.JsonSerializerOptions.Converters.Add(new TimespanJsonConverter());
+                    if (!configureOptions.JsonSerializerOptions.Converters.Any(c => c.GetType() == typeof(TimespanJsonConverter)))
+                        configureOptions.JsonSerializerOptions.Converters.Add(new TimespanJsonConverter());
                 });
         }
     }

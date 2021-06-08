@@ -1,15 +1,15 @@
 ﻿using System.Text.Json;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage.Serialization;
-using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.StorageOptions;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Serializers;
+using BlazorHero.CleanArchitecture.Application.Serialization.Options;
 using Microsoft.Extensions.Options;
 
-namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.Serialization
+namespace BlazorHero.CleanArchitecture.Application.Serialization.Serializers
 {
-    internal class SystemTextJsonSerializer : IJsonSerializer
+    public class SystemTextJsonSerializer : IJsonSerializer
     {
         private readonly JsonSerializerOptions _options;
 
-        public SystemTextJsonSerializer(IOptions<ServerStorageOptions> options)
+        public SystemTextJsonSerializer(IOptions<SystemTextJsonOptions> options)
         {
             _options = options.Value.JsonSerializerOptions;
         }

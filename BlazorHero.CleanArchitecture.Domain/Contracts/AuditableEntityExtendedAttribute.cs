@@ -30,6 +30,9 @@ namespace BlazorHero.CleanArchitecture.Domain.Contracts
         public DateTime? DateTime { get; set; }
 
         /// <inheritdoc/>
+        public string? Json { get; set; }
+
+        /// <inheritdoc/>
         public string? ExternalId { get; set; } = typeof(TEntity).FullName;
 
         /// <inheritdoc/>

@@ -6,6 +6,8 @@
 
         Text = 2,
 
-        DateTime = 3
+        DateTime = 3,
+
+        Json = 4
     }
 }

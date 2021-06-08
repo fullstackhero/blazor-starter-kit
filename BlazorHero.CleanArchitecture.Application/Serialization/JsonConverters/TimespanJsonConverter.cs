@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
-namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.JsonConverters
+namespace BlazorHero.CleanArchitecture.Application.Serialization.JsonConverters
 {
     /// <summary>
     /// The new Json.NET doesn't support Timespan at this time

@@ -38,6 +38,7 @@ namespace BlazorHero.CleanArchitecture.Server
                 options.ResourcesPath = "Resources";
             });
             services.AddCurrentUserService();
+            services.AddSerialization();
             services.AddDatabase(_configuration);
             services.AddServerStorage(); //TODO - should implement ServerStorageProvider to work correctly!
             services.AddScoped<ServerPreferenceManager>();
