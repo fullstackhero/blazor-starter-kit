@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(BlazorHeroContext))]
-    [Migration("20210607115201_AddDicumentType")]
-    partial class AddDicumentType
+    [Migration("20210608145507_AddDocumentTypeAndDocumentExtendedAttribute")]
+    partial class AddDocumentTypeAndDocumentExtendedAttribute
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,6 +124,60 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                     b.HasIndex("BrandId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes.DocumentExtendedAttribute", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("Decimal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EntityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ExternalId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Type")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntityId");
+
+                    b.ToTable("DocumentExtendedAttributes");
                 });
 
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.Misc.Document", b =>
@@ -525,6 +579,17 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("Brand");
                 });
 
+            modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes.DocumentExtendedAttribute", b =>
+                {
+                    b.HasOne("BlazorHero.CleanArchitecture.Domain.Entities.Misc.Document", "Entity")
+                        .WithMany("DocumentExtendedAttributes")
+                        .HasForeignKey("EntityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Entity");
+                });
+
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.Misc.Document", b =>
                 {
                     b.HasOne("BlazorHero.CleanArchitecture.Domain.Entities.Misc.DocumentType", "DocumentType")
@@ -586,6 +651,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.Misc.Document", b =>
+                {
+                    b.Navigation("DocumentExtendedAttributes");
                 });
 
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Infrastructure.Models.Identity.BlazorHeroRole", b =>

@@ -1,4 +1,6 @@
-﻿using BlazorHero.CleanArchitecture.Domain.Contracts;
+﻿using System.Collections.Generic;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
+using BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes;
 
 namespace BlazorHero.CleanArchitecture.Domain.Entities.Misc
 {
@@ -10,5 +12,11 @@ namespace BlazorHero.CleanArchitecture.Domain.Entities.Misc
         public string URL { get; set; }
         public int DocumentTypeId { get; set; }
         public virtual DocumentType DocumentType { get; set; }
+        public virtual ICollection<DocumentExtendedAttribute> DocumentExtendedAttributes { get; set; }
+
+        public Document()
+        {
+            DocumentExtendedAttributes = new HashSet<DocumentExtendedAttribute>();
+        }
     }
 }

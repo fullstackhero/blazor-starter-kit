@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 {
-    public partial class AddDicumentType : Migration
+    public partial class AddDocumentTypeAndDocumentExtendedAttribute : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,6 +18,37 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
+
+            migrationBuilder.CreateTable(
+                name: "DocumentExtendedAttributes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EntityId = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<byte>(type: "tinyint", nullable: false),
+                    Key = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Decimal = table.Column<decimal>(type: "decimal(19,3)", nullable: true),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExternalId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DocumentExtendedAttributes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DocumentExtendedAttributes_Documents_EntityId",
+                        column: x => x.EntityId,
+                        principalTable: "Documents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "DocumentTypes",
@@ -41,6 +72,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                 name: "IX_Documents_DocumentTypeId",
                 table: "Documents",
                 column: "DocumentTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocumentExtendedAttributes_EntityId",
+                table: "DocumentExtendedAttributes",
+                column: "EntityId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Documents_DocumentTypes_DocumentTypeId",
@@ -71,6 +107,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                 name: "FK_RoleClaims_Roles_RoleId",
                 schema: "Identity",
                 table: "RoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "DocumentExtendedAttributes");
 
             migrationBuilder.DropTable(
                 name: "DocumentTypes");

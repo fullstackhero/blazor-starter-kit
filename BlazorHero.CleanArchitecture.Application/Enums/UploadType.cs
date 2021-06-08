@@ -2,7 +2,7 @@
 
 namespace BlazorHero.CleanArchitecture.Application.Enums
 {
-    public enum UploadType
+    public enum UploadType : byte
     {
         [Description(@"Images\Products")]
         Product,
