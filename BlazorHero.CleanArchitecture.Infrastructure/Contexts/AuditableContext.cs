@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
@@ -18,10 +19,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 
         public DbSet<Audit> AuditTrails { get; set; }
 
-        public virtual async Task<int> SaveChangesAsync(string userId = null)
+        public virtual async Task<int> SaveChangesAsync(string userId = null, CancellationToken cancellationToken = new())
         {
             var auditEntries = OnBeforeSaveChanges(userId);
-            var result = await base.SaveChangesAsync();
+            var result = await base.SaveChangesAsync(cancellationToken);
             await OnAfterSaveChanges(auditEntries);
             return result;
         }
