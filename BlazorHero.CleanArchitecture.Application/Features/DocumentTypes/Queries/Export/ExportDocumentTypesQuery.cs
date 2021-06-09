@@ -41,10 +41,10 @@ namespace BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Querie
         public async Task<string> Handle(ExportDocumentTypesQuery request, CancellationToken cancellationToken)
         {
             var documentTypeFilterSpec = new DocumentTypeFilterSpecification(request.SearchString);
-            var brands = await _unitOfWork.Repository<DocumentType>().Entities
+            var documentTypes = await _unitOfWork.Repository<DocumentType>().Entities
                 .Specify(documentTypeFilterSpec)
                 .ToListAsync(cancellationToken);
-            var data = await _excelService.ExportAsync(brands, mappers: new Dictionary<string, Func<DocumentType, object>>
+            var data = await _excelService.ExportAsync(documentTypes, mappers: new Dictionary<string, Func<DocumentType, object>>
             {
                 { _localizer["Id"], item => item.Id },
                 { _localizer["Name"], item => item.Name },

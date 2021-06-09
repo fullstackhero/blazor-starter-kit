@@ -123,4 +123,7 @@
   <data name="Document Type Deleted" xml:space="preserve">
     <value>Тип документа удалён</value>
   </data>
+  <data name="Document Type Not Found!" xml:space="preserve">
+    <value>Тип документа не найден!</value>
+  </data>
 </root>

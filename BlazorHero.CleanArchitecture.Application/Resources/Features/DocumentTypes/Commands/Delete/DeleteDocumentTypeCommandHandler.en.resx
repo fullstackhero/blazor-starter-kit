@@ -123,4 +123,7 @@
   <data name="Document Type Deleted" xml:space="preserve">
     <value>Document Type Deleted</value>
   </data>
+  <data name="Document Type Not Found!" xml:space="preserve">
+    <value>Document Type Not Found!</value>
+  </data>
 </root>

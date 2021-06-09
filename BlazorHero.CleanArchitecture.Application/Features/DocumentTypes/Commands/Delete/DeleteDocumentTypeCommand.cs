@@ -33,9 +33,16 @@ namespace BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Comman
             if (!isDocumentTypeUsed)
             {
                 var documentType = await _unitOfWork.Repository<DocumentType>().GetByIdAsync(command.Id);
-                await _unitOfWork.Repository<DocumentType>().DeleteAsync(documentType);
-                await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllDocumentTypesCacheKey);
-                return await Result<int>.SuccessAsync(documentType.Id, _localizer["Document Type Deleted"]);
+                if (documentType != null)
+                {
+                    await _unitOfWork.Repository<DocumentType>().DeleteAsync(documentType);
+                    await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllDocumentTypesCacheKey);
+                    return await Result<int>.SuccessAsync(documentType.Id, _localizer["Document Type Deleted"]);
+                }
+                else
+                {
+                    return await Result<int>.FailAsync(_localizer["Document Type Not Found!"]);
+                }
             }
             else
             {
