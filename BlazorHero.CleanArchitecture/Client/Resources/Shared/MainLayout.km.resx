@@ -159,6 +159,9 @@
   <data name="Toggle Dark Mode" xml:space="preserve">
     <value>បិទ / បើកស្បែកងងឹត</value>
   </data>
+  <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
+    <value>You are logged out because the Permissions of one of your Roles have been updated.</value>
+  </data>
   <data name="You are Logged Out." xml:space="preserve">
     <value>អ្នកត្រូវបានចាកចេញ</value>
   </data>
