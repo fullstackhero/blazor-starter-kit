@@ -63,7 +63,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.DocumentExtendedAttr
                         EntityExtendedAttributeType.Text => item.Text,
                         EntityExtendedAttributeType.DateTime => item.DateTime,
                         EntityExtendedAttributeType.Json => item.Json,
-                        _ => throw new ArgumentOutOfRangeException(nameof(item.Type), _localizer["TODO"])
+                        _ => throw new ArgumentOutOfRangeException(nameof(item.Type), _localizer["Type should be valid"])
                     }
                 },
                 {_localizer["ExternalId"], item => item.ExternalId},
