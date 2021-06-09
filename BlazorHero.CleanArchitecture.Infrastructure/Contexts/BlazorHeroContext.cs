@@ -55,7 +55,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             }
             else
             {
-                return await base.SaveChangesAsync(_currentUserService.UserId);
+                return await base.SaveChangesAsync(_currentUserService.UserId, cancellationToken);
             }
         }
 

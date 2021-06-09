@@ -23,7 +23,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         {
             var auditEntries = OnBeforeSaveChanges(userId);
             var result = await base.SaveChangesAsync(cancellationToken);
-            await OnAfterSaveChanges(auditEntries);
+            await OnAfterSaveChanges(auditEntries, cancellationToken);
             return result;
         }
 
@@ -88,7 +88,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             return auditEntries.Where(_ => _.HasTemporaryProperties).ToList();
         }
 
-        private Task OnAfterSaveChanges(List<AuditEntry> auditEntries)
+        private Task OnAfterSaveChanges(List<AuditEntry> auditEntries, CancellationToken cancellationToken = new())
         {
             if (auditEntries == null || auditEntries.Count == 0)
                 return Task.CompletedTask;
@@ -108,7 +108,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                 }
                 AuditTrails.Add(auditEntry.ToAudit());
             }
-            return SaveChangesAsync();
+            return SaveChangesAsync(cancellationToken);
         }
     }
 }
