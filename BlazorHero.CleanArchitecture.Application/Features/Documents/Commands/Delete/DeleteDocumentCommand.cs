@@ -4,6 +4,7 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.Delete
@@ -27,9 +28,16 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.D
         public async Task<Result<int>> Handle(DeleteDocumentCommand command, CancellationToken cancellationToken)
         {
             var document = await _unitOfWork.Repository<Document>().GetByIdAsync(command.Id);
-            await _unitOfWork.Repository<Document>().DeleteAsync(document);
-            await _unitOfWork.Commit(cancellationToken);
-            return await Result<int>.SuccessAsync(document.Id, _localizer["Document Deleted"]);
+            if (document != null)
+            {
+                await _unitOfWork.Repository<Document>().DeleteAsync(document);
+                await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllDocumentExtendedAttributesCacheKey);
+                return await Result<int>.SuccessAsync(document.Id, _localizer["Document Deleted"]);
+            }
+            else
+            {
+                return await Result<int>.FailAsync(_localizer["Document Not Found!"]);
+            }
         }
     }
 }

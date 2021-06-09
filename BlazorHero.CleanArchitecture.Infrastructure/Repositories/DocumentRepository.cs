@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
         public async Task<bool> IsDocumentTypeUsed(int documentTypeId)
         {
             return await _repository.Entities.AnyAsync(b => b.DocumentTypeId == documentTypeId);
+        }
+
+        public async Task<bool> IsDocumentExtendedAttributeUsed(int documentExtendedAttributeId)
+        {
+            return await _repository.Entities.AnyAsync(b => b.DocumentExtendedAttributes.Any(x => x.Id == documentExtendedAttributeId));
         }
     }
 }

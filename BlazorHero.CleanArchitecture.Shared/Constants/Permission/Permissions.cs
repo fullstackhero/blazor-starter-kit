@@ -34,6 +34,14 @@
             public const string Delete = "Permissions.DocumentTypes.Delete";
         }
 
+        public static class DocumentExtendedAttributes
+        {
+            public const string View = "Permissions.DocumentExtendedAttributes.View";
+            public const string Create = "Permissions.DocumentExtendedAttributes.Create";
+            public const string Edit = "Permissions.DocumentExtendedAttributes.Edit";
+            public const string Delete = "Permissions.DocumentExtendedAttributes.Delete";
+        }
+
         public static class Users
         {
             public const string View = "Permissions.Users.View";

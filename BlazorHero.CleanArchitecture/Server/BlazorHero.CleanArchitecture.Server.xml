@@ -217,6 +217,42 @@
             <param name="searchInNewValues"></param>
             <returns>Status 200 OK</returns>
         </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentExtendedAttributesController.GetAll">
+            <summary>
+            Get All Document Extended Attributes
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentExtendedAttributesController.GetById(System.Int32)">
+            <summary>
+            Get Document Extended Attribute By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentExtendedAttributesController.Post(BlazorHero.CleanArchitecture.Application.Features.DocumentExtendedAttributes.Commands.AddEdit.AddEditDocumentExtendedAttributeCommand)">
+            <summary>
+            Create/Update a Document Extended Attribute
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentExtendedAttributesController.Delete(System.Int32)">
+            <summary>
+            Delete a Document Extended Attribute
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentExtendedAttributesController.Export(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Search Document Extended Attribute and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <param name="includeDocument"></param>
+            <param name="includeDocumentType"></param>
+            <returns></returns>
+        </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.GetAll(System.Int32,System.Int32,System.String)">
             <summary>
             Get All Documents
