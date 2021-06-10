@@ -162,4 +162,7 @@
   <data name="Upload" xml:space="preserve">
     <value>ផ្ទុកឡើង</value>
   </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
 </root>

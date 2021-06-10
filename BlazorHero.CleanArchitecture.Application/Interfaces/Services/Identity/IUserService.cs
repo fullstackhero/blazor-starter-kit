@@ -25,8 +25,10 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity
 
         Task<IResult<string>> ConfirmEmailAsync(string userId, string code);
 
-        Task<IResult> ForgotPasswordAsync(string emailId, string origin);
+        Task<IResult> ForgotPasswordAsync(ForgotPasswordRequest request, string origin);
 
         Task<IResult> ResetPasswordAsync(ResetPasswordRequest request);
+
+        Task<string> ExportToExcelAsync(string searchString = "");
     }
 }

@@ -123,14 +123,26 @@
   <data name="Active" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordered</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>Create</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Dense</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="Email Confirmation" xml:space="preserve">
     <value>Email Confirmation</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Filtered Users exported" xml:space="preserve">
+    <value>Filtered Users exported</value>
   </data>
   <data name="First Name" xml:space="preserve">
     <value>First Name</value>
@@ -147,6 +159,9 @@
   <data name="Not Allowed." xml:space="preserve">
     <value>Not Allowed.</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>PhoneNumber</value>
+  </data>
   <data name="Register New User" xml:space="preserve">
     <value>Register New User</value>
   </data>
@@ -156,8 +171,17 @@
   <data name="Search For Users" xml:space="preserve">
     <value>Search For Users</value>
   </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Striped</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>UserName</value>
+  </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="Users exported" xml:space="preserve">
+    <value>Users exported</value>
   </data>
   <data name="View Profile" xml:space="preserve">
     <value>View Profile</value>

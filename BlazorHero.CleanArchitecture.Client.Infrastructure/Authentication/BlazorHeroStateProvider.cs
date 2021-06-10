@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
 {
@@ -48,17 +49,16 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
 
         public async Task<ClaimsPrincipal> GetAuthenticationStateProviderUserAsync()
         {
-            ClaimsPrincipal AuthenticationStateProviderUser = new ClaimsPrincipal();
             var state = await this.GetAuthenticationStateAsync();
-            AuthenticationStateProviderUser = state.User;
-            return AuthenticationStateProviderUser;
+            var authenticationStateProviderUser = state.User;
+            return authenticationStateProviderUser;
         }
 
         public ClaimsPrincipal AuthenticationStateUser { get; set; }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var savedToken = await _localStorage.GetItemAsync<string>("authToken");
+            var savedToken = await _localStorage.GetItemAsync<string>(StorageConstants.Local.AuthToken);
             if (string.IsNullOrWhiteSpace(savedToken))
             {
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
@@ -76,41 +76,43 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
             var jsonBytes = ParseBase64WithoutPadding(payload);
             var keyValuePairs = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonBytes);
 
-            keyValuePairs.TryGetValue(ClaimTypes.Role, out var roles);
-
-            if (roles != null)
+            if (keyValuePairs != null)
             {
-                if (roles.ToString().Trim().StartsWith("["))
-                {
-                    var parsedRoles = JsonSerializer.Deserialize<string[]>(roles.ToString());
+                keyValuePairs.TryGetValue(ClaimTypes.Role, out var roles);
 
-                    claims.AddRange(parsedRoles.Select(role => new Claim(ClaimTypes.Role, role)));
-                }
-                else
+                if (roles != null)
                 {
-                    claims.Add(new Claim(ClaimTypes.Role, roles.ToString()));
+                    if (roles.ToString().Trim().StartsWith("["))
+                    {
+                        var parsedRoles = JsonSerializer.Deserialize<string[]>(roles.ToString());
+
+                        claims.AddRange(parsedRoles.Select(role => new Claim(ClaimTypes.Role, role)));
+                    }
+                    else
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, roles.ToString()));
+                    }
+
+                    keyValuePairs.Remove(ClaimTypes.Role);
                 }
 
-                keyValuePairs.Remove(ClaimTypes.Role);
+                keyValuePairs.TryGetValue(ApplicationClaimTypes.Permission, out var permissions);
+                if (permissions != null)
+                {
+                    if (permissions.ToString().Trim().StartsWith("["))
+                    {
+                        var parsedPermissions = JsonSerializer.Deserialize<string[]>(permissions.ToString());
+                        claims.AddRange(parsedPermissions.Select(permission => new Claim(ApplicationClaimTypes.Permission, permission)));
+                    }
+                    else
+                    {
+                        claims.Add(new Claim(ApplicationClaimTypes.Permission, permissions.ToString()));
+                    }
+                    keyValuePairs.Remove(ApplicationClaimTypes.Permission);
+                }
+
+                claims.AddRange(keyValuePairs.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString())));
             }
-
-            keyValuePairs.TryGetValue(ApplicationClaimTypes.Permission, out var permissions);
-            if (permissions != null)
-            {
-                if (permissions.ToString().Trim().StartsWith("["))
-                {
-                    var parsedPermissions = JsonSerializer.Deserialize<string[]>(permissions.ToString());
-                    claims.AddRange(parsedPermissions.Select(permission => new Claim(ApplicationClaimTypes.Permission, permission)));
-                }
-                else
-                {
-                    claims.Add(new Claim(ApplicationClaimTypes.Permission, permissions.ToString()));
-                }
-                keyValuePairs.Remove(ApplicationClaimTypes.Permission);
-            }
-
-            claims.AddRange(keyValuePairs.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString())));
-
             return claims;
         }
 

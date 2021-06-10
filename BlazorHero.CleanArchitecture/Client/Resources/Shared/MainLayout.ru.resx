@@ -120,6 +120,12 @@
   <data name="Account" xml:space="preserve">
     <value>Аккаунт</value>
   </data>
+  <data name="Buy Me A Coffee!" xml:space="preserve">
+    <value>Купить мне кофе!</value>
+  </data>
+  <data name="Chat?" xml:space="preserve">
+    <value>К чату?</value>
+  </data>
   <data name="Community" xml:space="preserve">
     <value>Сообщество</value>
   </data>
@@ -144,6 +150,9 @@
   <data name="Quick-Start Guide" xml:space="preserve">
     <value>Краткое руководство пользователя</value>
   </data>
+  <data name="Refreshed Token." xml:space="preserve">
+    <value>Токен обновлён.</value>
+  </data>
   <data name="Resources" xml:space="preserve">
     <value>Ресурсы</value>
   </data>
@@ -152,5 +161,11 @@
   </data>
   <data name="Toggle Dark Mode" xml:space="preserve">
     <value>Переключить Тёмный режим</value>
+  </data>
+  <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
+    <value>Вы вышли из системы, потому что были обновлены разрешения одной из ваших ролей.</value>
+  </data>
+  <data name="You are Logged Out." xml:space="preserve">
+    <value>Вы вышли из системы.</value>
   </data>
 </root>

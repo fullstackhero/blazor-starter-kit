@@ -11,25 +11,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communication;
+using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
 {
     public partial class Chat
     {
-        [CascadingParameter] public HubConnection hubConnection { get; set; }
+        [Inject] private IChatManager ChatManager { get; set; }
+
+        [CascadingParameter] private HubConnection HubConnection { get; set; }
         [Parameter] public string CurrentMessage { get; set; }
         [Parameter] public string CurrentUserId { get; set; }
         [Parameter] public string CurrentUserImageURL { get; set; }
-        [CascadingParameter] private bool IsConnected { get; set; }
-        private List<ChatHistoryResponse> messages = new List<ChatHistoryResponse>();
 
-        private class MessageRequest
-        {
-            public string userName { get; set; }
-            public string message { get; set; }
-        }
-
-        private MessageRequest model = new MessageRequest();
+        private List<ChatHistoryResponse> _messages = new();
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -41,13 +38,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             if (!string.IsNullOrEmpty(CurrentMessage) && !string.IsNullOrEmpty(CId))
             {
                 //Save Message to DB
-                var chatHistory = new ChatHistory()
+                var chatHistory = new ChatHistory<IChatUser>
                 {
                     Message = CurrentMessage,
                     ToUserId = CId,
                     CreatedDate = DateTime.Now
                 };
-                var response = await _chatManager.SaveMessageAsync(chatHistory);
+                var response = await ChatManager.SaveMessageAsync(chatHistory);
                 if (response.Succeeded)
                 {
                     var state = await _stateProvider.GetAuthenticationStateAsync();
@@ -55,14 +52,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                     CurrentUserId = user.GetUserId();
                     chatHistory.FromUserId = CurrentUserId;
                     var userName = $"{user.GetFirstName()} {user.GetLastName()}";
-                    await hubConnection.SendAsync(ApplicationConstants.SignalR.SendMessage, chatHistory, userName);
+                    await HubConnection.SendAsync(ApplicationConstants.SignalR.SendMessage, chatHistory, userName);
                     CurrentMessage = string.Empty;
                 }
                 else
                 {
                     foreach (var message in response.Messages)
                     {
-                        _snackBar.Add(localizer[message], Severity.Error);
+                        _snackBar.Add(message, Severity.Error);
                     }
                 }
             }
@@ -78,23 +75,44 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
 
         protected override async Task OnInitializedAsync()
         {
-            hubConnection = hubConnection.TryInitialize(_navigationManager);
-            if (hubConnection.State == HubConnectionState.Disconnected)
+            HubConnection = HubConnection.TryInitialize(_navigationManager);
+            if (HubConnection.State == HubConnectionState.Disconnected)
             {
-                await hubConnection.StartAsync();
+                await HubConnection.StartAsync();
             }
-            hubConnection.On<ChatHistory, string>("ReceiveMessage", async (chatHistory, userName) =>
+
+            HubConnection.On<string>(ApplicationConstants.SignalR.ConnectUser, (userId) =>
+            {
+                var connectedUser = UserList.Find(x => x.Id.Equals(userId));
+                if (connectedUser is {IsOnline: false})
+                {
+                    connectedUser.IsOnline = true;
+                    _snackBar.Add($"{connectedUser.UserName} {_localizer["Logged In."]}", Severity.Info);
+                    StateHasChanged();
+                }
+            });
+            HubConnection.On<string>(ApplicationConstants.SignalR.DisconnectUser, (userId) =>
+            {
+                var disconnectedUser = UserList.Find(x => x.Id.Equals(userId));
+                if (disconnectedUser is {IsOnline: true})
+                {
+                    disconnectedUser.IsOnline = false;
+                    _snackBar.Add($"{disconnectedUser.UserName} {_localizer["Logged Out."]}", Severity.Info);
+                    StateHasChanged();
+                }
+            });
+            HubConnection.On<ChatHistory<IChatUser>, string>(ApplicationConstants.SignalR.ReceiveMessage, async (chatHistory, userName) =>
              {
                  if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId) || (CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                  {
                      if ((CId == chatHistory.ToUserId && CurrentUserId == chatHistory.FromUserId))
                      {
-                         messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
-                         await hubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, $"New Message From {userName}", CId, CurrentUserId);
+                         _messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CurrentUserImageURL });
+                         await HubConnection.SendAsync(ApplicationConstants.SignalR.SendChatNotification, string.Format(_localizer["New Message From {0}"], userName), CId, CurrentUserId);
                      }
                      else if ((CId == chatHistory.FromUserId && CurrentUserId == chatHistory.ToUserId))
                      {
-                         messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CImageURL });
+                         _messages.Add(new ChatHistoryResponse { Message = chatHistory.Message, FromUserFullName = userName, CreatedDate = chatHistory.CreatedDate, FromUserImageURL = CImageURL });
                      }
                      await _jsRuntime.InvokeAsync<string>("ScrollToBottom", "chatContainer");
                      StateHasChanged();
@@ -104,14 +122,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             CurrentUserId = user.GetUserId();
-            CurrentUserImageURL = await _localStorage.GetItemAsync<string>("userImageURL");
+            CurrentUserImageURL = await _localStorage.GetItemAsync<string>(StorageConstants.Local.UserImageURL);
             if (!string.IsNullOrEmpty(CId))
             {
                 await LoadUserChat(CId);
             }
         }
 
-        public List<ChatUserResponse> UserList = new List<ChatUserResponse>();
+        public List<ChatUserResponse> UserList = new();
         [Parameter] public string CFullName { get; set; }
         [Parameter] public string CId { get; set; }
         [Parameter] public string CUserName { get; set; }
@@ -119,7 +137,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
 
         private async Task LoadUserChat(string userId)
         {
-            open = false;
+            _open = false;
             var response = await _userManager.GetAsync(userId);
             if (response.Succeeded)
             {
@@ -130,17 +148,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
                 CImageURL = contact.ProfilePictureDataUrl;
                 _navigationManager.NavigateTo($"chat/{CId}");
                 //Load messages from db here
-                messages = new List<ChatHistoryResponse>();
-                var historyResponse = await _chatManager.GetChatHistoryAsync(CId);
+                _messages = new List<ChatHistoryResponse>();
+                var historyResponse = await ChatManager.GetChatHistoryAsync(CId);
                 if (historyResponse.Succeeded)
                 {
-                    messages = historyResponse.Data.ToList();
+                    _messages = historyResponse.Data.ToList();
                 }
                 else
                 {
                     foreach (var message in historyResponse.Messages)
                     {
-                        _snackBar.Add(localizer[message], Severity.Error);
+                        _snackBar.Add(message, Severity.Error);
                     }
                 }
             }
@@ -148,7 +166,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }
@@ -156,7 +174,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
         private async Task GetUsersAsync()
         {
             //add get chat history from chat controller / manager
-            var response = await _chatManager.GetChatUsersAsync();
+            var response = await ChatManager.GetChatUsersAsync();
             if (response.Succeeded)
             {
                 UserList = response.Data.ToList();
@@ -165,18 +183,29 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[message], Severity.Error);
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }
 
-        private bool open;
+        private bool _open;
         private Anchor ChatDrawer { get; set; }
 
         private void OpenDrawer(Anchor anchor)
         {
             ChatDrawer = anchor;
-            open = true;
+            _open = true;
+        }
+
+        private Color GetUserStatusBadgeColor(bool isOnline)
+        {
+            switch (isOnline)
+            {
+                case false:
+                    return Color.Error;
+                case true:
+                    return Color.Success;
+            }
         }
     }
 }

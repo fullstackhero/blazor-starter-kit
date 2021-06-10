@@ -1,61 +1,75 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Security
     {
-        [Inject] private Microsoft.Extensions.Localization.IStringLocalizer<Security> localizer { get; set; }
-
-        private readonly ChangePasswordRequest passwordModel = new ChangePasswordRequest();
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+        private readonly ChangePasswordRequest _passwordModel = new();
 
         private async Task ChangePasswordAsync()
         {
-            var response = await _accountManager.ChangePasswordAsync(passwordModel);
+            var response = await _accountManager.ChangePasswordAsync(_passwordModel);
             if (response.Succeeded)
             {
-                _snackBar.Add(localizer["Password Changed!"], Severity.Success);
-                passwordModel.Password = string.Empty;
-                passwordModel.NewPassword = string.Empty;
-                passwordModel.ConfirmNewPassword = string.Empty;
+                _snackBar.Add(_localizer["Password Changed!"], Severity.Success);
+                _passwordModel.Password = string.Empty;
+                _passwordModel.NewPassword = string.Empty;
+                _passwordModel.ConfirmNewPassword = string.Empty;
             }
             else
             {
                 foreach (var error in response.Messages)
                 {
-                    _snackBar.Add(localizer[error], Severity.Error);
+                    _snackBar.Add(error, Severity.Error);
                 }
             }
         }
 
-        private IEnumerable<string> PasswordStrength(string pw)
+        private bool _currentPasswordVisibility;
+        private InputType _currentPasswordInput = InputType.Password;
+        private string _currentPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+        private bool _newPasswordVisibility;
+        private InputType _newPasswordInput = InputType.Password;
+        private string _newPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+        private void TogglePasswordVisibility(bool newPassword)
         {
-            if (string.IsNullOrWhiteSpace(pw))
+            if (newPassword)
             {
-                yield return localizer["Password is required!"];
-                yield break;
+                if (_newPasswordVisibility)
+                {
+                    _newPasswordVisibility = false;
+                    _newPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+                    _newPasswordInput = InputType.Password;
+                }
+                else
+                {
+                    _newPasswordVisibility = true;
+                    _newPasswordInputIcon = Icons.Material.Filled.Visibility;
+                    _newPasswordInput = InputType.Text;
+                }
             }
-            if (pw.Length < 8)
-                yield return localizer["Password must be at least of length 8"];
-            if (!Regex.IsMatch(pw, @"[A-Z]"))
-                yield return localizer["Password must contain at least one capital letter"];
-            if (!Regex.IsMatch(pw, @"[a-z]"))
-                yield return localizer["Password must contain at least one lowercase letter"];
-            if (!Regex.IsMatch(pw, @"[0-9]"))
-                yield return localizer["Password must contain at least one digit"];
-        }
-
-        private MudTextField<string> pwField;
-
-        private string PasswordMatch(string arg)
-        {
-            if (pwField.Value != arg)
-                return localizer["Passwords don't match"];
-            return null;
+            else
+            {
+                if (_currentPasswordVisibility)
+                {
+                    _currentPasswordVisibility = false;
+                    _currentPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+                    _currentPasswordInput = InputType.Password;
+                }
+                else
+                {
+                    _currentPasswordVisibility = true;
+                    _currentPasswordInputIcon = Icons.Material.Filled.Visibility;
+                    _currentPasswordInput = InputType.Text;
+                }
+            }
         }
     }
 }

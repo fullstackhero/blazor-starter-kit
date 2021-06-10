@@ -123,6 +123,9 @@
   <data name="Barcode" xml:space="preserve">
     <value>Баркод</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Обрамлённый</value>
+  </data>
   <data name="Brand" xml:space="preserve">
     <value>Бренд</value>
   </data>
@@ -135,6 +138,9 @@
   <data name="Delete Content" xml:space="preserve">
     <value>Удалить контент</value>
   </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Компактный</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Описание</value>
   </data>
@@ -143,6 +149,9 @@
   </data>
   <data name="Export" xml:space="preserve">
     <value>Экспорт в Excel</value>
+  </data>
+  <data name="Filtered Products exported" xml:space="preserve">
+    <value>Отфильтрованные продукты экспортированы</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
@@ -153,11 +162,11 @@
   <data name="Name" xml:space="preserve">
     <value>Наименование</value>
   </data>
-  <data name="Product Deleted" xml:space="preserve">
-    <value>Продукт удалён</value>
-  </data>
   <data name="Products" xml:space="preserve">
     <value>Продукты</value>
+  </data>
+  <data name="Products exported" xml:space="preserve">
+    <value>Продукты экспортированы</value>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Рейтинг</value>
@@ -167,5 +176,8 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Поиск продуктов...</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Чередующийся</value>
   </data>
 </root>

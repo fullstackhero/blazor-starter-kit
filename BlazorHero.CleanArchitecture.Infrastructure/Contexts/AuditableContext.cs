@@ -1,6 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Enums;
-using BlazorHero.CleanArchitecture.Application.Models.Audit;
-using BlazorHero.CleanArchitecture.Application.Models.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Audit;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 {
-    public abstract class AuditableContext : IdentityDbContext<BlazorHeroUser, IdentityRole, string>
+    public abstract class AuditableContext : IdentityDbContext<BlazorHeroUser, BlazorHeroRole, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, BlazorHeroRoleClaim, IdentityUserToken<string>>
     {
-        public AuditableContext(DbContextOptions options) : base(options)
+        protected AuditableContext(DbContextOptions options) : base(options)
         {
         }
 
@@ -35,9 +35,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                 if (entry.Entity is Audit || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged)
                     continue;
 
-                var auditEntry = new AuditEntry(entry);
-                auditEntry.TableName = entry.Entity.GetType().Name;
-                auditEntry.UserId = userId;
+                var auditEntry = new AuditEntry(entry)
+                {
+                    TableName = entry.Entity.GetType().Name,
+                    UserId = userId
+                };
                 auditEntries.Add(auditEntry);
                 foreach (var property in entry.Properties)
                 {
@@ -67,7 +69,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                             break;
 
                         case EntityState.Modified:
-                            if (property.IsModified)
+                            if (property.IsModified && property.OriginalValue?.Equals(property.CurrentValue) == false)
                             {
                                 auditEntry.ChangedColumns.Add(propertyName);
                                 auditEntry.AuditType = AuditType.Update;

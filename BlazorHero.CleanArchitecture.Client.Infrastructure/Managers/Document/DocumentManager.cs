@@ -20,19 +20,19 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document
 
         public async Task<IResult<int>> DeleteAsync(int id)
         {
-            var response = await _httpClient.DeleteAsync($"{Routes.DocumentsEndpoint.Delete}/{id}");
+            var response = await _httpClient.DeleteAsync($"{Routes.DocumentsEndpoints.Delete}/{id}");
             return await response.ToResult<int>();
         }
 
         public async Task<PaginatedResult<GetAllDocumentsResponse>> GetAllAsync(GetAllPagedDocumentsRequest request)
         {
-            var response = await _httpClient.GetAsync(Routes.DocumentsEndpoint.GetAllPaged(request.PageNumber, request.PageSize));
+            var response = await _httpClient.GetAsync(Routes.DocumentsEndpoints.GetAllPaged(request.PageNumber, request.PageSize));
             return await response.ToPaginatedResult<GetAllDocumentsResponse>();
         }
 
         public async Task<IResult<int>> SaveAsync(AddEditDocumentCommand request)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.DocumentsEndpoint.Save, request);
+            var response = await _httpClient.PostAsJsonAsync(Routes.DocumentsEndpoints.Save, request);
             return await response.ToResult<int>();
         }
     }

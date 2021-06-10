@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using Microsoft.AspNetCore.Identity;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Mappings
 {
@@ -8,7 +8,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Mappings
     {
         public RoleProfile()
         {
-            CreateMap<RoleResponse, IdentityRole>().ReverseMap();
+            CreateMap<RoleResponse, BlazorHeroRole>().ReverseMap();
         }
     }
 }

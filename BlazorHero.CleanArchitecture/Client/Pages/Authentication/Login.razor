@@ -1,74 +1,52 @@
 ﻿@page "/login"
 @layout MainLayout
 @attribute [AllowAnonymous]
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Login> localizer
-<EditForm Model="@model" OnValidSubmit="SubmitAsync">
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Login> _localizer
+
+<EditForm Model="@_tokenModel" OnValidSubmit="SubmitAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
     <MudGrid>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width:100px; height:100px;" />
+                <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width: 100px; height: 100px;" />
             </div>
         </MudItem>
         <DataAnnotationsValidator />
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudText Typo="Typo.h4">@localizer["Title"]</MudText>
+                <MudText Typo="Typo.h4">@_localizer["Title"]</MudText>
             </div>
         </MudItem>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudText>@localizer["Description"]</MudText>
+                <MudText>@_localizer["Description"]</MudText>
             </div>
         </MudItem>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudText>@localizer["Don't have an account?"] <MudLink Href="/register">@localizer["Register here"]</MudLink></MudText>
+                <MudText>@_localizer["Don't have an account?"] <MudLink Href="/register">@_localizer["Register here"]</MudLink></MudText>
             </div>
         </MudItem>
         <MudItem xs="12">
-            <MudTextField T="string" Label="@localizer["E-mail"]" Variant="Variant.Outlined"
-                          @bind-Value="model.Email" For="@(() => model.Email)" Required="true" RequiredError="@localizer["Email is required!"]"></MudTextField>
+            <MudTextField T="string" Label="@_localizer["E-mail"]" Variant="Variant.Outlined"
+                          @bind-Value="_tokenModel.Email" For="@(() => _tokenModel.Email)" />
         </MudItem>
         <MudItem xs="12">
-            <MudTextField Label="@localizer["Password"]" Variant="Variant.Outlined"
-                          @bind-Value="model.Password" For="@(() => model.Password)" Required="true" RequiredError="@localizer["Password is required!"]"
-                          InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
+            <MudTextField Label="@_localizer["Password"]" Variant="Variant.Outlined"
+                          @bind-Value="_tokenModel.Password" For="@(() => _tokenModel.Password)"
+                          InputType="@_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-space-between align-center">
-            <MudCheckBox T="bool" Label="@localizer["Remember me?"]" Color="Color.Primary" Class="ml-n1"></MudCheckBox> <MudLink Href="/account/forgot-password">@localizer["Forgot password?"]</MudLink>
+            <MudCheckBox T="bool" Label="@_localizer["Remember me?"]" Color="Color.Primary" Class="ml-n1"></MudCheckBox> <MudLink Href="/account/forgot-password">@_localizer["Forgot password?"]</MudLink>
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-center">
-            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">@localizer["Sign In"]</MudButton>
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Disabled="@(!Validated)" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">@_localizer["Sign In"]</MudButton>
         </MudItem>
         <MudItem xs="12">
-            <MudButton OnClick="FillAdminstratorCredentials">@localizer["Fill Administrator Credentials"]</MudButton>
+            <MudButton OnClick="FillAdministratorCredentials">@_localizer["Fill Administrator Credentials"]</MudButton>
         </MudItem>
         <MudItem xs="12">
-            <MudButton OnClick="FillBasicUserCredentials">@localizer["Fill Basic User Credentials"]</MudButton>
+            <MudButton OnClick="FillBasicUserCredentials">@_localizer["Fill Basic User Credentials"]</MudButton>
         </MudItem>
     </MudGrid>
 </EditForm>
-
-@code {
-    string Password { get; set; }
-
-    bool PasswordVisibility;
-    InputType PasswordInput = InputType.Password;
-    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-
-    void TogglePasswordVisibility()
-    {
-        @if (PasswordVisibility)
-        {
-            PasswordVisibility = false;
-            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-            PasswordInput = InputType.Password;
-        }
-        else
-        {
-            PasswordVisibility = true;
-            PasswordInputIcon = Icons.Material.Filled.Visibility;
-            PasswordInput = InputType.Text;
-        }
-    }
-}

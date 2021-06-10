@@ -1,8 +1,8 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Dashboard.GetData;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
+﻿using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.GetData;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard
 {
@@ -17,7 +17,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard
 
         public async Task<IResult<DashboardDataResponse>> GetDataAsync()
         {
-            var response = await _httpClient.GetAsync(Routes.DashboardEndpoint.GetData);
+            var response = await _httpClient.GetAsync(Routes.DashboardEndpoints.GetData);
             var data = await response.ToResult<DashboardDataResponse>();
             return data;
         }

@@ -117,32 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="deleted." xml:space="preserve">
-    <value>deleted.</value>
+  <data name="Not allowed to delete {0} Role as it is being used." xml:space="preserve">
+    <value>Not allowed to delete {0} Role as it is being used.</value>
   </data>
-  <data name="Not allowed to delete" xml:space="preserve">
-    <value>Not allowed to delete</value>
+  <data name="Not allowed to delete {0} Role." xml:space="preserve">
+    <value>Not allowed to delete {0} Role.</value>
   </data>
-  <data name="Not allowed to modify" xml:space="preserve">
-    <value>Not allowed to modify</value>
+  <data name="Not allowed to deselect {0} or {1} or {2} for this Role." xml:space="preserve">
+    <value>Not allowed to deselect {0} or {1} or {2} for this Role.</value>
   </data>
   <data name="Not allowed to modify Permissions for this Role." xml:space="preserve">
     <value>Not allowed to modify Permissions for this Role.</value>
   </data>
-  <data name="Permission Updated." xml:space="preserve">
-    <value>Permission Updated.</value>
+  <data name="Not allowed to modify {0} Role." xml:space="preserve">
+    <value>Not allowed to modify {0} Role.</value>
   </data>
-  <data name="Role" xml:space="preserve">
-    <value>Role</value>
+  <data name="Permissions Updated." xml:space="preserve">
+    <value>Permissions Updated.</value>
   </data>
-  <data name="Role as it is being used." xml:space="preserve">
-    <value>Role as it is being used.</value>
+  <data name="Role {0} Created." xml:space="preserve">
+    <value>Role {0} Created.</value>
   </data>
-  <data name="Role Created" xml:space="preserve">
-    <value>Role Created</value>
+  <data name="Role {0} Deleted." xml:space="preserve">
+    <value>Role {0} Deleted.</value>
   </data>
-  <data name="Role Updated." xml:space="preserve">
-    <value>Role Updated.</value>
+  <data name="Role {0} Updated." xml:space="preserve">
+    <value>Role {0} Updated.</value>
   </data>
   <data name="Similar Role already exists." xml:space="preserve">
     <value>Similar Role already exists.</value>

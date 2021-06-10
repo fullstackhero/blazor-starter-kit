@@ -1,36 +1,37 @@
 ﻿@page "/account/reset-password/"
 @layout MainLayout
 @attribute [AllowAnonymous]
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Reset> localizer
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Reset> _localizer
 
-<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+<EditForm Model="@_resetPasswordModel" OnValidSubmit="SubmitAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
     <MudGrid>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width:100px; height:100px;" />
+                <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width: 100px; height: 100px;" />
             </div>
         </MudItem>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudText Typo="Typo.h4">@localizer["Reset password"]</MudText>
+                <MudText Typo="Typo.h4">@_localizer["Reset password"]</MudText>
             </div>
         </MudItem>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudText Typo="Typo.subtitle2" Class="mb-n4">@localizer["Enter email for password reset"]</MudText>
+                <MudText Typo="Typo.subtitle2" Class="mb-n4">@_localizer["Enter email for password reset"]</MudText>
             </div>
         </MudItem>
         <MudItem xs="12">
-            <MudTextField T="string" Label="@localizer["E-mail"]" @bind-Value="Email" For="@(() => Email)" Required="true" Variant="Variant.Outlined"></MudTextField>
+            <MudTextField T="string" Label="@_localizer["E-mail"]" @bind-Value="_resetPasswordModel.Email" For="@(() => _resetPasswordModel.Email)" Variant="Variant.Outlined" />
         </MudItem>
         <MudItem xs="12">
-            <MudTextField T="string" Label="@localizer["Password"]" @bind-Value="Password" For="@(() => Password)" Required="true" Variant="Variant.Outlined" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" @ref="pwField" Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))"></MudTextField>
+            <MudTextField T="string" Label="@_localizer["Password"]" @bind-Value="_resetPasswordModel.Password" For="@(() => _resetPasswordModel.Password)" Variant="Variant.Outlined" InputType="@_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
         </MudItem>
         <MudItem xs="12">
-            <MudTextField T="string" Label="@localizer["Confirm Password"]" @bind-Value="ConfirmPassword" For="@(() => ConfirmPassword)" Required="true" Variant="Variant.Outlined" Validation="@(new Func<string, string>(PasswordMatch))" InputType="InputType.Password"></MudTextField>
+            <MudTextField T="string" Label="@_localizer["Confirm Password"]" @bind-Value="_resetPasswordModel.ConfirmPassword" For="@(() => _resetPasswordModel.ConfirmPassword)" Variant="Variant.Outlined" InputType="InputType.Password" />
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-center">
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SubmitAsync" Size="Size.Large" FullWidth="true">@localizer["Reset Password"]</MudButton>
+            <MudButton Variant="Variant.Filled" Disabled="@(!Validated)" Color="Color.Primary" ButtonType="ButtonType.Submit" Size="Size.Large" FullWidth="true">@_localizer["Reset Password"]</MudButton>
         </MudItem>
     </MudGrid>
-</MudForm>
+</EditForm>

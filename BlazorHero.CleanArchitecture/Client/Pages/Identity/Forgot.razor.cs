@@ -1,40 +1,29 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class Forgot
     {
-        private bool success;
-        private string[] errors = { };
-        private MudForm form;
-
-        [Parameter]
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+        private readonly ForgotPasswordRequest _emailModel = new();
 
         private async Task SubmitAsync()
         {
-            form.Validate();
-            if (form.IsValid)
+            var result = await _userManager.ForgotPasswordAsync(_emailModel);
+            if (result.Succeeded)
             {
-                var request = new ForgotPasswordRequest() { Email = Email };
-                var result = await _userManager.ForgotPasswordAsync(request);
-                if (result.Succeeded)
+                _snackBar.Add(_localizer["Done!"], Severity.Success);
+                _navigationManager.NavigateTo("/");
+            }
+            else
+            {
+                foreach (var message in result.Messages)
                 {
-                    _snackBar.Add(localizer["Done!"], Severity.Success);
-                    _navigationManager.NavigateTo("/");
-                }
-                else
-                {
-                    foreach (var message in result.Messages)
-                    {
-                        _snackBar.Add(localizer[message], Severity.Error);
-                    }
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }

@@ -1,4 +1,6 @@
-﻿<MudGrid>
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<Profile> _localizer
+
+<MudGrid>
     <MudItem xs="12" sm="4" md="3">
         <MudCard Elevation="25">
             <MudCardContent>
@@ -9,11 +11,11 @@
                     }
                     else
                     {
-                        <MudAvatar Color="Color.Secondary" Style="height:250px; width:250px;">@FirstLetterOfName</MudAvatar>
+                        <MudAvatar Color="Color.Secondary" Style="height:250px; width:250px;">@_firstLetterOfName</MudAvatar>
                     }
                 </div>
-                <MudText Typo="Typo.h6" Align="Align.Center">@profileModel.FirstName @profileModel.LastName</MudText>
-                <MudText Align="Align.Center">@profileModel.Email</MudText>
+                <MudText Typo="Typo.h6" Align="Align.Center">@_profileModel.FirstName @_profileModel.LastName</MudText>
+                <MudText Align="Align.Center">@_profileModel.Email</MudText>
             </MudCardContent>
             <MudCardActions Class="d-flex justify-center">
                 <InputFile id="fileInput" OnChange="UploadFiles" hidden />
@@ -23,7 +25,7 @@
                            Size="Size.Small"
                            StartIcon="@Icons.Filled.CloudUpload"
                            for="fileInput">
-                    @localizer["Upload Image"]
+                    @_localizer["Upload Image"]
                 </MudButton>
                 @if (!string.IsNullOrEmpty(@ImageDataUrl))
                 {
@@ -32,38 +34,39 @@
                                StartIcon="@Icons.Filled.Delete"
                                Size="Size.Small"
                                OnClick="DeleteAsync">
-                        @localizer["Delete Image"]
+                        @_localizer["Delete Image"]
                     </MudButton>
                 }
             </MudCardActions>
         </MudCard>
     </MudItem>
     <MudItem xs="12" sm="8" md="9">
-        <EditForm Model="@profileModel" OnValidSubmit="UpdateProfileAsync">
+        <EditForm Model="@_profileModel" OnValidSubmit="UpdateProfileAsync">
+            <FluentValidationValidator @ref="_fluentValidationValidator" />
             <MudCard Elevation="25">
                 <MudCardHeader>
                     <CardHeaderContent>
-                        <MudText>@localizer["Profile Details"]</MudText>
+                        <MudText>@_localizer["Profile Details"]</MudText>
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
                     <MudGrid>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@profileModel.FirstName" For="@(() => profileModel.FirstName)" Label="@localizer["First Name"]" Variant="Variant.Outlined" Required="true" />
+                            <MudTextField @bind-Value="@_profileModel.FirstName" For="@(() => _profileModel.FirstName)" Label="@_localizer["First Name"]" Variant="Variant.Outlined" />
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@profileModel.LastName" For="@(() => profileModel.LastName)" Label="@localizer["Last Name"]" Variant="Variant.Outlined" Required="true" />
+                            <MudTextField @bind-Value="@_profileModel.LastName" For="@(() => _profileModel.LastName)" Label="@_localizer["Last Name"]" Variant="Variant.Outlined" />
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@profileModel.PhoneNumber" For="@(() => profileModel.PhoneNumber)" Label="@localizer["Phone Number"]" Variant="Variant.Outlined" />
+                            <MudTextField @bind-Value="@_profileModel.PhoneNumber" For="@(() => _profileModel.PhoneNumber)" Label="@_localizer["Phone Number"]" Variant="Variant.Outlined" />
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudTextField @bind-Value="@profileModel.Email" Label="@localizer["Email"]" For="@(() => profileModel.Email)" Variant="Variant.Outlined" InputType="InputType.Email" Disabled=true />
+                            <MudTextField @bind-Value="@_profileModel.Email" Label="@_localizer["Email"]" For="@(() => _profileModel.Email)" Variant="Variant.Outlined" InputType="InputType.Email" Disabled=true />
                         </MudItem>
                     </MudGrid>
                 </MudCardContent>
                 <MudCardActions Class="pb-4 pl-4">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" ButtonType="ButtonType.Submit">@localizer["Save Changes"]</MudButton>
+                    <MudButton Variant="Variant.Filled" Disabled="@(!Validated)" Color="Color.Primary" Class="ml-auto" ButtonType="ButtonType.Submit">@_localizer["Save Changes"]</MudButton>
                 </MudCardActions>
             </MudCard>
         </EditForm>

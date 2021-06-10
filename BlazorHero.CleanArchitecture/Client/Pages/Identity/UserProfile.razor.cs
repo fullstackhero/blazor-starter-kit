@@ -8,45 +8,36 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 {
     public partial class UserProfile
     {
-        [Parameter]
-        public string Id { get; set; }
+        [Parameter] public string Id { get; set; }
+        [Parameter] public string Title { get; set; }
+        [Parameter] public string Description { get; set; }
 
-        [Parameter]
-        public string Title { get; set; }
-
-        [Parameter]
-        public string Description { get; set; }
-
-        public bool Active { get; set; }
-        private char FirstLetterOfName { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
-        public Color AvatarButtonColor { get; set; } = Color.Error;
-        public IEnumerable<string> Errors { get; set; }
+        private bool _active;
+        private char _firstLetterOfName;
+        private string _firstName;
+        private string _lastName;
+        private string _phoneNumber;
+        private string _email;
 
         private async Task ToggleUserStatus()
         {
-            var request = new ToggleUserStatusRequest { ActivateUser = Active, UserId = Id };
+            var request = new ToggleUserStatusRequest { ActivateUser = _active, UserId = Id };
             var result = await _userManager.ToggleUserStatusAsync(request);
             if (result.Succeeded)
             {
-                _snackBar.Add(localizer["Updated User Status."], Severity.Success);
+                _snackBar.Add(_localizer["Updated User Status."], Severity.Success);
                 _navigationManager.NavigateTo("/identity/users");
             }
             else
             {
                 foreach (var error in result.Messages)
                 {
-                    _snackBar.Add(localizer[error], Severity.Error);
+                    _snackBar.Add(error, Severity.Error);
                 }
             }
         }
 
-        [Parameter]
-        public string ImageDataUrl { get; set; }
+        [Parameter] public string ImageDataUrl { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -57,22 +48,22 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 var user = result.Data;
                 if (user != null)
                 {
-                    FirstName = user.FirstName;
-                    LastName = user.LastName;
-                    Email = user.Email;
-                    PhoneNumber = user.PhoneNumber;
-                    Active = user.IsActive;
+                    _firstName = user.FirstName;
+                    _lastName = user.LastName;
+                    _email = user.Email;
+                    _phoneNumber = user.PhoneNumber;
+                    _active = user.IsActive;
                     var data = await _accountManager.GetProfilePictureAsync(userId);
                     if (data.Succeeded)
                     {
                         ImageDataUrl = data.Data;
                     }
                 }
-                Title = $"{FirstName} {LastName}'s {localizer["Profile"]}";
-                Description = Email;
-                if (FirstName.Length > 0)
+                Title = $"{_firstName} {_lastName}'s {_localizer["Profile"]}";
+                Description = _email;
+                if (_firstName.Length > 0)
                 {
-                    FirstLetterOfName = FirstName[0];
+                    _firstLetterOfName = _firstName[0];
                 }
             }
         }

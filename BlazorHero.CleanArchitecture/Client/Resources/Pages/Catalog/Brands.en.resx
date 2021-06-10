@@ -123,8 +123,14 @@
   <data name="Add Brand" xml:space="preserve">
     <value>Add Brand</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordered</value>
+  </data>
   <data name="Brands" xml:space="preserve">
     <value>Brands</value>
+  </data>
+  <data name="Brands exported" xml:space="preserve">
+    <value>Brands exported</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Create</value>
@@ -135,11 +141,20 @@
   <data name="Delete Content" xml:space="preserve">
     <value>Delete Content</value>
   </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Dense</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Filtered Brands exported" xml:space="preserve">
+    <value>Filtered Brands exported</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Search for Brands" xml:space="preserve">
     <value>Search for Brands</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Striped</value>
   </data>
   <data name="Tax" xml:space="preserve">
     <value>Tax</value>

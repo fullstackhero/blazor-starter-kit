@@ -117,16 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Manage" xml:space="preserve">
-    <value>Pengaturan</value>
+  <data name="All Permissions" xml:space="preserve">
+    <value>All Permissions</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Here you can leave a comment for this permission for the current role" xml:space="preserve">
+    <value>Here you can leave a comment for this permission for the current role</value>
   </data>
   <data name="Manage Permission" xml:space="preserve">
     <value>Pengaturan Izin</value>
   </data>
-  <data name="Permissions" xml:space="preserve">
-    <value>Izin</value>
+  <data name="Manage {0} {1}'s Permissions" xml:space="preserve">
+    <value>Pengaturan {0} {1} Izin</value>
   </data>
-  <data name="Role Name" xml:space="preserve">
+  <data name="Permission Name" xml:space="preserve">
     <value>Nama Wewenang</value>
   </data>
   <data name="Status" xml:space="preserve">
@@ -137,5 +146,8 @@
   </data>
   <data name="Update Role Permissions" xml:space="preserve">
     <value>Perbarui Izin Wewenang</value>
+  </data>
+  <data name="Will be saved only when selected Permission" xml:space="preserve">
+    <value>Will be saved only when selected Permission</value>
   </data>
 </root>

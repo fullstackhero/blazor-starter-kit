@@ -123,11 +123,11 @@
   <data name="Add Brand" xml:space="preserve">
     <value>Tambah Merek</value>
   </data>
-  <data name="Brand Deleted" xml:space="preserve">
-    <value>Merek Dihapus!</value>
-  </data>
   <data name="Brands" xml:space="preserve">
     <value>Merek</value>
+  </data>
+  <data name="Brands exported" xml:space="preserve">
+    <value>Brands exported</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Tambah</value>
@@ -143,6 +143,12 @@
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Sunting</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Ekspor</value>
+  </data>
+  <data name="Filtered Brands exported" xml:space="preserve">
+    <value>Filtered Brands exported</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>

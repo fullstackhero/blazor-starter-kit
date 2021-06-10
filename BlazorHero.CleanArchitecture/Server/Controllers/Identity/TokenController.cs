@@ -18,14 +18,22 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             _identityService = identityService;
             this.currentUserService = currentUserService;
         }
-
+        /// <summary>
+        /// Get Token (Email, Password)
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Status 200 OK</returns>
         [HttpPost]
         public async Task<ActionResult> Get(TokenRequest model)
         {
             var response = await _identityService.LoginAsync(model);
             return Ok(response);
         }
-
+        /// <summary>
+        /// Refresh Token
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Status 200 OK</returns>
         [HttpPost("refresh")]
         public async Task<ActionResult> Refresh([FromBody] RefreshTokenRequest model)
         {

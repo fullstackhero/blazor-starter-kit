@@ -13,6 +13,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
@@ -38,10 +39,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 })
                 .AddAuthorizationCore(options =>
                 {
-                    foreach (var permissionModule in PermissionModules.GetAllPermissionsModules())
-                    {
-                        RegisterPermissionClaimPolicyByModule(options, permissionModule);
-                    }
+                    RegisterPermissionClaims(options);
                 })
                 .AddBlazoredLocalStorage()
                 .AddMudServices(configuration =>
@@ -98,15 +96,16 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
             return services;
         }
 
-        private static void RegisterPermissionClaimPolicyByModule(AuthorizationOptions options, string module)
+        private static void RegisterPermissionClaims(AuthorizationOptions options)
         {
-            var allPermissions = PermissionModules.GeneratePermissionsForModule(module);
-            foreach (var permission in allPermissions)
+            foreach (var prop in typeof(Permissions).GetNestedTypes().SelectMany(c => c.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)))
             {
-                options.AddPolicy(permission, policy => policy.RequireClaim(ApplicationClaimTypes.Permission, permission));
+                var propertyValue = prop.GetValue(null);
+                if (propertyValue is not null)
+                {
+                    options.AddPolicy(propertyValue.ToString(), policy => policy.RequireClaim(ApplicationClaimTypes.Permission, propertyValue.ToString()));
+                }
             }
-            //Test
-            options.AddPolicy("Permissions.Communication.Chat", policy => policy.RequireClaim(ApplicationClaimTypes.Permission, "Permissions.Communication.Chat"));
         }
     }
 }

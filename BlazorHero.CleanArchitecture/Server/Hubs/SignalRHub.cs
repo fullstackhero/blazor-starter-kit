@@ -2,12 +2,28 @@
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
 
 namespace BlazorHero.CleanArchitecture.Server.Hubs
 {
     public class SignalRHub : Hub
     {
-        public async Task SendMessageAsync(ChatHistory chatHistory, string userName)
+        public async Task OnConnectAsync(string userId)
+        {
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.ConnectUser, userId);
+        }
+
+        public async Task OnDisconnectAsync(string userId)
+        {
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.DisconnectUser, userId);
+        }
+
+        public async Task OnChangeRolePermissions(string userId, string roleId)
+        {
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.LogoutUsersByRole, userId, roleId);
+        }
+
+        public async Task SendMessageAsync(ChatHistory<IChatUser> chatHistory, string userName)
         {
             await Clients.All.SendAsync(ApplicationConstants.SignalR.ReceiveMessage, chatHistory, userName);
         }
@@ -19,12 +35,12 @@ namespace BlazorHero.CleanArchitecture.Server.Hubs
 
         public async Task UpdateDashboardAsync()
         {
-            await Clients.All.SendAsync(ApplicationConstants.SignalR.RecievieUpdateDashboard);
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.ReceiveUpdateDashboard);
         }
 
         public async Task RegenerateTokensAsync()
         {
-            await Clients.All.SendAsync(ApplicationConstants.SignalR.RecievieRegenerateTokens);
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.ReceiveRegenerateTokens);
         }
     }
 }

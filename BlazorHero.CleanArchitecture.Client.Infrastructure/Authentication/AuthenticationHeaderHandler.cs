@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
 {
@@ -19,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
         {
             if (request.Headers.Authorization?.Scheme != "Bearer")
             {
-                var savedToken = await this.localStorage.GetItemAsync<string>("authToken");
+                var savedToken = await this.localStorage.GetItemAsync<string>(StorageConstants.Local.AuthToken);
 
                 if (!string.IsNullOrWhiteSpace(savedToken))
                 {

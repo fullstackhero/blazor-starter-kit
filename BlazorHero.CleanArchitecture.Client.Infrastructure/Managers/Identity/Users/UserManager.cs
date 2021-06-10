@@ -20,50 +20,59 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
 
         public async Task<IResult<List<UserResponse>>> GetAllAsync()
         {
-            var response = await _httpClient.GetAsync(Routes.UserEndpoint.GetAll);
+            var response = await _httpClient.GetAsync(Routes.UserEndpoints.GetAll);
             return await response.ToResult<List<UserResponse>>();
         }
 
         public async Task<IResult<UserResponse>> GetAsync(string userId)
         {
-            var response = await _httpClient.GetAsync(Routes.UserEndpoint.Get(userId));
+            var response = await _httpClient.GetAsync(Routes.UserEndpoints.Get(userId));
             return await response.ToResult<UserResponse>();
         }
 
         public async Task<IResult> RegisterUserAsync(RegisterRequest request)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.Register, request);
+            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoints.Register, request);
             return await response.ToResult();
         }
 
         public async Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.ToggleUserStatus, request);
+            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoints.ToggleUserStatus, request);
             return await response.ToResult();
         }
 
         public async Task<IResult<UserRolesResponse>> GetRolesAsync(string userId)
         {
-            var response = await _httpClient.GetAsync(Routes.UserEndpoint.GetUserRoles(userId));
+            var response = await _httpClient.GetAsync(Routes.UserEndpoints.GetUserRoles(userId));
             return await response.ToResult<UserRolesResponse>();
         }
 
         public async Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request)
         {
-            var response = await _httpClient.PutAsJsonAsync(Routes.UserEndpoint.GetUserRoles(request.UserId), request);
+            var response = await _httpClient.PutAsJsonAsync(Routes.UserEndpoints.GetUserRoles(request.UserId), request);
             return await response.ToResult<UserRolesResponse>();
         }
 
         public async Task<IResult> ForgotPasswordAsync(ForgotPasswordRequest model)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.ForgotPassword, model);
+            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoints.ForgotPassword, model);
             return await response.ToResult();
         }
 
         public async Task<IResult> ResetPasswordAsync(ResetPasswordRequest request)
         {
-            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoint.ResetPassword, request);
+            var response = await _httpClient.PostAsJsonAsync(Routes.UserEndpoints.ResetPassword, request);
             return await response.ToResult();
+        }
+
+        public async Task<string> ExportToExcelAsync(string searchString = "")
+        {
+            var response = await _httpClient.GetAsync(string.IsNullOrWhiteSpace(searchString)
+                ? Routes.UserEndpoints.Export
+                : Routes.UserEndpoints.ExportFiltered(searchString));
+            var data = await response.Content.ReadAsStringAsync();
+            return data;
         }
     }
 }

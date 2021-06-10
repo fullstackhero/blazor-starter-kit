@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
 
 namespace BlazorHero.CleanArchitecture.Application.Extensions
 {
@@ -21,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Application.Extensions
             return PaginatedResult<T>.Success(items, count, pageNumber, pageSize);
         }
 
-        public static IQueryable<T> Specify<T>(this IQueryable<T> query, ISpecification<T> spec) where T : class
+        public static IQueryable<T> Specify<T, TId>(this IQueryable<T> query, ISpecification<T, TId> spec) where T : class, IEntity<TId>
         {
             var queryableResultWithIncludes = spec.Includes
                 .Aggregate(query,

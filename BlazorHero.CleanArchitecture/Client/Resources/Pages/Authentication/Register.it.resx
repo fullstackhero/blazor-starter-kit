@@ -126,9 +126,6 @@
   <data name="E-mail" xml:space="preserve">
     <value>E-mail</value>
   </data>
-  <data name="Email is required!" xml:space="preserve">
-    <value>Email è richiesta!</value>
-  </data>
   <data name="First Name" xml:space="preserve">
     <value>Nome</value>
   </data>
@@ -136,25 +133,10 @@
     <value>Cognome</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Accetto i termini e la privacy</value>
   </data>
-  <data name="Password is required!" xml:space="preserve">
-    <value>Password è richiesta!</value>
-  </data>
-  <data name="Password must be at least of length 8" xml:space="preserve">
-    <value>La password deve essere almeno di lunghezza 8 caratteri</value>
-  </data>
-  <data name="Password must contain at least one capital letter" xml:space="preserve">
-    <value>La password deve contenere almeno una lettera maiuscola</value>
-  </data>
-  <data name="Password must contain at least one digit" xml:space="preserve">
-    <value>La password deve contenere almeno una cifra</value>
-  </data>
-  <data name="Password must contain at least one lowercase letter" xml:space="preserve">
-    <value>La password deve contenere almeno una lettera minuscola</value>
-  </data>
-  <data name="Passwords don't match" xml:space="preserve">
-    <value>Le password non corrispondono</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Telefono</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Registrati</value>

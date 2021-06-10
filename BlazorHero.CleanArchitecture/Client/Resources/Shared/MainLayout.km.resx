@@ -120,6 +120,12 @@
   <data name="Account" xml:space="preserve">
     <value>គណនី</value>
   </data>
+  <data name="Buy Me A Coffee!" xml:space="preserve">
+    <value>Buy Me A Coffee!</value>
+  </data>
+  <data name="Chat?" xml:space="preserve">
+    <value>Chat?</value>
+  </data>
   <data name="Community" xml:space="preserve">
     <value>សហគមន៍</value>
   </data>
@@ -141,6 +147,9 @@
   <data name="Quick-Start Guide" xml:space="preserve">
     <value>ម​គ្គុ​ទេស​ក៍​ចាប់​ផ្តើ​ម​រហ័ស</value>
   </data>
+  <data name="Refreshed Token." xml:space="preserve">
+    <value>Refreshed Token.</value>
+  </data>
   <data name="Resources" xml:space="preserve">
     <value>ធនធាន</value>
   </data>
@@ -149,5 +158,11 @@
   </data>
   <data name="Toggle Dark Mode" xml:space="preserve">
     <value>បិទ / បើកស្បែកងងឹត</value>
+  </data>
+  <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
+    <value>You are logged out because the Permissions of one of your Roles have been updated.</value>
+  </data>
+  <data name="You are Logged Out." xml:space="preserve">
+    <value>អ្នកត្រូវបានចាកចេញ</value>
   </data>
 </root>

@@ -120,6 +120,9 @@
   <data name="Actions" xml:space="preserve">
     <value>Действия</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Обрамлённый</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>Создать</value>
   </data>
@@ -129,8 +132,17 @@
   <data name="Delete Content" xml:space="preserve">
     <value>Вы действительно хотите удалить роль с Id {0}?</value>
   </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Компактный</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="Manage Permission" xml:space="preserve">
     <value>Управление правами</value>
@@ -149,5 +161,8 @@
   </data>
   <data name="Search for Roles..." xml:space="preserve">
     <value>Поиск ролей...</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Чередующийся</value>
   </data>
 </root>

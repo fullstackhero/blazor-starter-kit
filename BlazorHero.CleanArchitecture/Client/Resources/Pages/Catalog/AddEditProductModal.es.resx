@@ -162,4 +162,7 @@
   <data name="Upload" xml:space="preserve">
     <value>Cargar</value>
   </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
 </root>

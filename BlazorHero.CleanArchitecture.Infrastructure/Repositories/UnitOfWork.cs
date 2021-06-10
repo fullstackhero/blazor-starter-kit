@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork<TId> : IUnitOfWork<TId>
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly BlazorHeroContext _dbContext;
@@ -26,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
             _cache = cache;
         }
 
-        public IRepositoryAsync<TEntity> Repository<TEntity>() where TEntity : AuditableEntity
+        public IRepositoryAsync<TEntity, TId> Repository<TEntity>() where TEntity : AuditableEntity<TId>
         {
             if (_repositories == null)
                 _repositories = new Hashtable();
@@ -35,14 +35,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
 
             if (!_repositories.ContainsKey(type))
             {
-                var repositoryType = typeof(RepositoryAsync<>);
+                var repositoryType = typeof(RepositoryAsync<,>);
 
-                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _dbContext);
+                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity), typeof(TId)), _dbContext);
 
                 _repositories.Add(type, repositoryInstance);
             }
 
-            return (IRepositoryAsync<TEntity>)_repositories[type];
+            return (IRepositoryAsync<TEntity, TId>)_repositories[type];
         }
 
         public async Task<int> Commit(CancellationToken cancellationToken)
@@ -50,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
             return await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<int> ComitAndRemoveCache(CancellationToken cancellationToken, string cacheKey)
+        public async Task<int> CommitAndRemoveCache(CancellationToken cancellationToken, string cacheKey)
         {
             var result =  await _dbContext.SaveChangesAsync(cancellationToken);
             _cache.Remove(cacheKey);

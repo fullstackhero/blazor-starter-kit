@@ -1,39 +1,25 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
+﻿using System;
+using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Application.Requests;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Threading.Tasks;
+using Blazored.FluentValidation;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 {
     public partial class AddEditDocumentModal
     {
-        private bool success;
-        private string[] errors = { };
-        private MudForm form;
+        [Inject] private IDocumentManager DocumentManager { get; set; }
 
-        [Parameter]
-        public int Id { get; set; }
-
-        [Parameter]
-        [Required]
-        public string Title { get; set; }
-
-        [Parameter]
-        [Required]
-        public string URL { get; set; }
-
-        [Parameter]
-        public bool IsPublic { get; set; }
-
-        [Parameter]
-        [Required]
-        public string Description { get; set; }
-
+        [Parameter] public AddEditDocumentCommand AddEditDocumentModel { get; set; } = new();
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         public void Cancel()
         {
@@ -42,22 +28,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 
         private async Task SaveAsync()
         {
-            form.Validate();
-            if (form.IsValid)
+            var response = await DocumentManager.SaveAsync(AddEditDocumentModel);
+            if (response.Succeeded)
             {
-                var request = new AddEditDocumentCommand() { Title = Title, Description = Description, Id = Id, URL = URL, IsPublic = IsPublic, UploadRequest = UploadRequest };
-                var response = await _documentManager.SaveAsync(request);
-                if (response.Succeeded)
+                _snackBar.Add(response.Messages[0], Severity.Success);
+                MudDialog.Close();
+            }
+            else
+            {
+                foreach (var message in response.Messages)
                 {
-                    _snackBar.Add(localizer[response.Messages[0]], Severity.Success);
-                    MudDialog.Close();
-                }
-                else
-                {
-                    foreach (var message in response.Messages)
-                    {
-                        _snackBar.Add(localizer[message], Severity.Error);
-                    }
+                    _snackBar.Add(message, Severity.Error);
                 }
             }
         }
@@ -72,20 +53,19 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             await Task.CompletedTask;
         }
 
-        public IBrowserFile file { get; set; }
-
-        [Parameter]
-        public UploadRequest UploadRequest { get; set; }
+        private IBrowserFile _file;
 
         private async Task UploadFiles(InputFileChangeEventArgs e)
         {
-            file = e.File;
-            if (file != null)
+            _file = e.File;
+            if (_file != null)
             {
-                var buffer = new byte[file.Size];
-                var extension = Path.GetExtension(file.Name);
-                var document = await e.File.OpenReadStream().ReadAsync(buffer);
-                UploadRequest = new UploadRequest() { Data = buffer, UploadType = Application.Enums.UploadType.Document, Extension = extension };
+                var buffer = new byte[_file.Size];
+                var extension = Path.GetExtension(_file.Name);
+                var format = "application/octet-stream";
+                await _file.OpenReadStream(_file.Size).ReadAsync(buffer);
+                AddEditDocumentModel.URL = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+                AddEditDocumentModel.UploadRequest = new UploadRequest { Data = buffer, UploadType = Application.Enums.UploadType.Document, Extension = extension };
             }
         }
     }

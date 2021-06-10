@@ -117,41 +117,77 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account Confirmed for" xml:space="preserve">
-    <value>Аккаунт подтверждён для</value>
+  <data name="Account Confirmed for {0}. You can now use the /api/identity/token endpoint to generate JWT." xml:space="preserve">
+    <value>Аккаунт подтверждён для {0}. Теперь вы можете использовать endpoint - /api/identity/token для создания JWT.</value>
   </data>
   <data name="Administrators Profile's Status cannot be toggled" xml:space="preserve">
     <value>Невозможно переключить статус профиля администратора</value>
   </data>
-  <data name="An Error has occured!" xml:space="preserve">
+  <data name="An Error has occurred!" xml:space="preserve">
     <value>Произошла ошибка!</value>
   </data>
-  <data name="An error occured while confirming" xml:space="preserve">
-    <value>Произошла ошибка при подтверждении</value>
+  <data name="An error occurred while confirming {0}" xml:space="preserve">
+    <value>Произошла ошибка при подтверждении {0}</value>
   </data>
-  <data name="clicking here" xml:space="preserve">
-    <value>этой ссылки</value>
+  <data name="Confirm Registration" xml:space="preserve">
+    <value>Подтверждение регистрации</value>
+  </data>
+  <data name="CreatedOn (Local)" xml:space="preserve">
+    <value>Дата создания (локальное)</value>
+  </data>
+  <data name="CreatedOn (UTC)" xml:space="preserve">
+    <value>Дата создания (UTC)</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="is already registered." xml:space="preserve">
-    <value>уже зарегистрирован.</value>
+  <data name="Email {0} is already registered." xml:space="preserve">
+    <value>Email {0} уже зарегистрирован.</value>
   </data>
-  <data name="is already taken." xml:space="preserve">
-    <value>занят.</value>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>Email подтверждён</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Активный</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="Not Allowed to add or delete Administrator Role if you have not this role." xml:space="preserve">
+    <value>Недоступно добавление или удаление роли Администратора, если у вас нет этой роли.</value>
   </data>
   <data name="Not Allowed." xml:space="preserve">
-    <value>Нет доступно.</value>
+    <value>Не доступно.</value>
   </data>
-  <data name="Password Reset Mail has been sent to your authorized EmailId." xml:space="preserve">
+  <data name="Password Reset Mail has been sent to your authorized Email." xml:space="preserve">
     <value>На ваш подтверждённый адрес электронной почты было отправлено письмо для сброса пароля.</value>
   </data>
   <data name="Password Reset Successful!" xml:space="preserve">
     <value>Сброс пароля выполнен успешно!</value>
   </data>
-  <data name="Please reset your password by" xml:space="preserve">
-    <value>Пожалуйста, сбросьте пароль с помощью</value>
+  <data name="Phone number {0} is already registered." xml:space="preserve">
+    <value>Номер телефона {0} уже зарегистрирован.</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="PhoneNumberConfirmed" xml:space="preserve">
+    <value>Номер телефона подтверждён</value>
+  </data>
+  <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>Пожалуйста, подтвердите аккаунт с помощью &lt;a href='{0}'&gt;этой ссылки&lt;/a&gt;.</value>
+  </data>
+  <data name="Please reset your password by &lt;a href='{0}&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>Пожалуйста, сбросьте пароль с помощью &lt;a href='{0}&gt;этой ссылки&lt;/a&gt;.</value>
+  </data>
+  <data name="ProfilePictureDataUrl" xml:space="preserve">
+    <value>Url изображения профиля</value>
   </data>
   <data name="Reset Password" xml:space="preserve">
     <value>Сброс пароля</value>
@@ -159,16 +195,16 @@
   <data name="Roles Updated" xml:space="preserve">
     <value>Роли обновлены</value>
   </data>
-  <data name="User Registered" xml:space="preserve">
-    <value>Пользователь зарегистрирован</value>
+  <data name="User {0} Registered." xml:space="preserve">
+    <value>Пользователь {0} зарегистрирован.</value>
   </data>
-  <data name="User Registered. Please check your Mailbox to verify!" xml:space="preserve">
-    <value>Пользователь зарегистрирован. Пожалуйста, проверьте свой почтовый ящик для подтверждения!</value>
+  <data name="User {0} Registered. Please check your Mailbox to verify!" xml:space="preserve">
+    <value>Пользователь {0} зарегистрирован. Пожалуйста, проверьте свой почтовый ящик для подтверждения!</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
-  <data name="You can now use the /api/identity/token endpoint to generate JWT." xml:space="preserve">
-    <value>Теперь вы можете использовать endpoint - /api/identity/token для создания JWT.</value>
+  <data name="Username {0} is already taken." xml:space="preserve">
+    <value>Username {0} занят.</value>
   </data>
 </root>

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communication
 {
@@ -32,7 +33,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Communicat
             return data;
         }
 
-        public async Task<IResult> SaveMessageAsync(ChatHistory chatHistory)
+        public async Task<IResult> SaveMessageAsync(ChatHistory<IChatUser> chatHistory)
         {
             var response = await _httpClient.PostAsJsonAsync(Routes.ChatEndpoint.SaveMessage, chatHistory);
             var data = await response.ToResult();

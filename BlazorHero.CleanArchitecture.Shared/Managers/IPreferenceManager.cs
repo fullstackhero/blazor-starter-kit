@@ -1,5 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Shared.Settings;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Shared.Managers
 {
@@ -8,5 +9,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Managers
         Task SetPreference(IPreference preference);
 
         Task<IPreference> GetPreference();
+
+        Task<IResult> ChangeLanguageAsync(string languageCode);
     }
 }

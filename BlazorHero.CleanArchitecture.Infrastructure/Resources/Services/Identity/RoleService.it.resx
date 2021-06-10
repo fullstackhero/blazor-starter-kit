@@ -117,32 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="deleted." xml:space="preserve">
-    <value>cancellato.</value>
+  <data name="Not allowed to delete {0} Role as it is being used." xml:space="preserve">
+    <value>Non è consentito eliminare {0} Ruolo come viene utilizzato.</value>
   </data>
-  <data name="Not allowed to delete" xml:space="preserve">
-    <value>Non è consentito eliminare</value>
+  <data name="Not allowed to delete {0} Role." xml:space="preserve">
+    <value>Non è consentito eliminare {0} Ruolo.</value>
   </data>
-  <data name="Not allowed to modify" xml:space="preserve">
-    <value>Non è consentito modificare</value>
+  <data name="Not allowed to deselect {0} or {1} or {2} for this Role." xml:space="preserve">
+    <value>Not allowed to deselect {0} or {1} or {2} for this Role.</value>
   </data>
   <data name="Not allowed to modify Permissions for this Role." xml:space="preserve">
     <value>Non è consentito modificare le autorizzazioni per questo ruolo.</value>
   </data>
-  <data name="Permission Updated." xml:space="preserve">
+  <data name="Not allowed to modify {0} Role." xml:space="preserve">
+    <value>Non è consentito modificare {0} Ruolo.</value>
+  </data>
+  <data name="Permissions Updated." xml:space="preserve">
     <value>Autorizzazione aggiornata.</value>
   </data>
-  <data name="Role" xml:space="preserve">
-    <value>Ruolo</value>
+  <data name="Role {0} Created." xml:space="preserve">
+    <value>Ruolo {0} Creato.</value>
   </data>
-  <data name="Role as it is being used." xml:space="preserve">
-    <value>Ruolo come viene utilizzato.</value>
+  <data name="Role {0} Deleted." xml:space="preserve">
+    <value>Ruolo {0} Deleted.</value>
   </data>
-  <data name="Role Created" xml:space="preserve">
-    <value>Ruolo Creato</value>
-  </data>
-  <data name="Role Updated." xml:space="preserve">
-    <value>Ruolo Aggiornato</value>
+  <data name="Role {0} Updated." xml:space="preserve">
+    <value>Ruolo {0} Aggiornato</value>
   </data>
   <data name="Similar Role already exists." xml:space="preserve">
     <value>Un ruolo simile esiste già. Un ruolo simile esiste già.</value>

@@ -126,9 +126,6 @@
   <data name="E-mail" xml:space="preserve">
     <value>E-mail</value>
   </data>
-  <data name="Email is required!" xml:space="preserve">
-    <value>Email wajib diisi!</value>
-  </data>
   <data name="First Name" xml:space="preserve">
     <value>Nama Depan</value>
   </data>
@@ -138,23 +135,8 @@
   <data name="Password" xml:space="preserve">
     <value>Sandi</value>
   </data>
-  <data name="Password is required!" xml:space="preserve">
-    <value>Sandi wajib diisi!</value>
-  </data>
-  <data name="Password must be at least of length 8" xml:space="preserve">
-    <value>Minimum panjang sandi adalah 8 karakter</value>
-  </data>
-  <data name="Password must contain at least one capital letter" xml:space="preserve">
-    <value>Sandi harus terdiri dari minimum satu huruf kapital</value>
-  </data>
-  <data name="Password must contain at least one digit" xml:space="preserve">
-    <value>Sandi harus terdiri dari minimum satu angka</value>
-  </data>
-  <data name="Password must contain at least one lowercase letter" xml:space="preserve">
-    <value>Sandi harus terdiri dari minimum satu huruf kecil</value>
-  </data>
-  <data name="Passwords don't match" xml:space="preserve">
-    <value>Sandi tidak sesuai</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Nomor Telepon</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Daftar</value>

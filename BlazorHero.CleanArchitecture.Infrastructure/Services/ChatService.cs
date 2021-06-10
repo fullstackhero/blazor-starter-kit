@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services
@@ -56,7 +58,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
                         ToUserImageURL = x.ToUser.ProfilePictureDataUrl,
                         FromUserImageURL = x.FromUser.ProfilePictureDataUrl
                     }).ToListAsync();
-                return Result<IEnumerable<ChatHistoryResponse>>.Success(query);
+                return await Result<IEnumerable<ChatHistoryResponse>>.SuccessAsync(query);
             }
             else
             {
@@ -68,15 +70,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
         {
             var allUsers = await _context.Users.Where(user => user.Id != userId).ToListAsync();
             var chatUsers = _mapper.Map<IEnumerable<ChatUserResponse>>(allUsers);
-            return Result<IEnumerable<ChatUserResponse>>.Success(chatUsers);
+            return await Result<IEnumerable<ChatUserResponse>>.SuccessAsync(chatUsers);
         }
 
-        public async Task<IResult> SaveMessageAsync(ChatHistory message)
+        public async Task<IResult> SaveMessageAsync(ChatHistory<IChatUser> message)
         {
             message.ToUser = await _context.Users.Where(user => user.Id == message.ToUserId).FirstOrDefaultAsync();
-            await _context.ChatHistories.AddAsync(message);
+            await _context.ChatHistories.AddAsync(_mapper.Map<ChatHistory<BlazorHeroUser>>(message));
             await _context.SaveChangesAsync();
-            return Result.Success();
+            return await Result.SuccessAsync();
         }
     }
 }

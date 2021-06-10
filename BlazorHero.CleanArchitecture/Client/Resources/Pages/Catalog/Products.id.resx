@@ -144,6 +144,9 @@
   <data name="Export" xml:space="preserve">
     <value>Ekspor</value>
   </data>
+  <data name="Filtered Products exported" xml:space="preserve">
+    <value>Filtered Products exported</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
@@ -153,11 +156,11 @@
   <data name="Name" xml:space="preserve">
     <value>Nama</value>
   </data>
-  <data name="Product Deleted" xml:space="preserve">
-    <value>Produk Dihapus.</value>
-  </data>
   <data name="Products" xml:space="preserve">
     <value>Produk</value>
+  </data>
+  <data name="Products exported" xml:space="preserve">
+    <value>Products exported</value>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Nilai</value>

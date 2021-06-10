@@ -8,5 +8,6 @@ namespace BlazorHero.CleanArchitecture.Application.Requests.Identity
 
         [Required]
         public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

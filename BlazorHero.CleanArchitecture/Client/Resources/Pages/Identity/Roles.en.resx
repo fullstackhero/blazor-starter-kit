@@ -120,6 +120,9 @@
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordered</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>Create</value>
   </data>
@@ -129,8 +132,17 @@
   <data name="Delete Content" xml:space="preserve">
     <value>Do you want to delete the role with Id {0}?</value>
   </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Dense</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="Manage Permission" xml:space="preserve">
     <value>Manage Permission</value>
@@ -149,5 +161,8 @@
   </data>
   <data name="Search for Roles..." xml:space="preserve">
     <value>Search for Roles...</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Striped</value>
   </data>
 </root>

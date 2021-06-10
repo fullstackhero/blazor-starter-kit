@@ -129,25 +129,4 @@
   <data name="Password Confirmation" xml:space="preserve">
     <value>Confirmación de contraseña</value>
   </data>
-  <data name="Password Confirmation is required!" xml:space="preserve">
-    <value>Confirmación de contraseña requerida!</value>
-  </data>
-  <data name="Password is required!" xml:space="preserve">
-    <value>Contraseña requerida!</value>
-  </data>
-  <data name="Password must be at least of length 8" xml:space="preserve">
-    <value>La contraseña debe tener mínimo 8 caracteres</value>
-  </data>
-  <data name="Password must contain at least one capital letter" xml:space="preserve">
-    <value>La contraseña debe tener mínimo una mayúscula</value>
-  </data>
-  <data name="Password must contain at least one digit" xml:space="preserve">
-    <value>La contraseña debe tener mínimo un número</value>
-  </data>
-  <data name="Password must contain at least one lowercase letter" xml:space="preserve">
-    <value>La contraseña debe tener mínimo una minúscula</value>
-  </data>
-  <data name="Passwords don't match" xml:space="preserve">
-    <value>Las contraseñas no coinciden</value>
-  </data>
 </root>

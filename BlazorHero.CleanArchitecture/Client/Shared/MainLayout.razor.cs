@@ -5,14 +5,20 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.JSInterop;
 using MudBlazor;
 using System;
+using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.Roles;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorHero.CleanArchitecture.Client.Shared
 {
     public partial class MainLayout : IDisposable
     {
+        [Inject] private IRoleManager RoleManager { get; set; }
+
         private string CurrentUserId { get; set; }
+        private string ImageDataUrl { get; set; }
         private string FirstName { get; set; }
         private string SecondName { get; set; }
         private string Email { get; set; }
@@ -23,24 +29,34 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
             if (user == null) return;
-            if (user.Identity.IsAuthenticated)
+            if (user.Identity?.IsAuthenticated == true)
             {
                 CurrentUserId = user.GetUserId();
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);
                 this.FirstName = user.GetFirstName();
                 if (this.FirstName.Length > 0)
                 {
                     FirstLetterOfName = FirstName[0];
                 }
+                this.SecondName = user.GetLastName();
+                this.Email = user.GetEmail();
+
+                var imageResponse = await _accountManager.GetProfilePictureAsync(CurrentUserId);
+                if (imageResponse.Succeeded)
+                {
+                    ImageDataUrl = imageResponse.Data;
+                }
             }
         }
 
-        private MudTheme currentTheme;
+        private MudTheme _currentTheme;
         private bool _drawerOpen = true;
 
         protected override async Task OnInitializedAsync()
         {
+            _currentTheme = BlazorHeroTheme.DefaultTheme;
+            _currentTheme = await _clientPreferenceManager.GetCurrentThemeAsync();
             _interceptor.RegisterEvent();
-            currentTheme = await _clientPreferenceManager.GetCurrentThemeAsync();
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             await hubConnection.StartAsync();
             hubConnection.On<string, string, string>(ApplicationConstants.SignalR.ReceiveChatNotification, (message, receiverUserId, senderUserId) =>
@@ -53,7 +69,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                         config.VisibleStateDuration = 10000;
                         config.HideTransitionDuration = 500;
                         config.ShowTransitionDuration = 500;
-                        config.Action = "Chat?";
+                        config.Action = localizer["Chat?"];
                         config.ActionColor = Color.Primary;
                         config.Onclick = snackbar =>
                         {
@@ -63,39 +79,63 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                     });
                 }
             });
-            hubConnection.On(ApplicationConstants.SignalR.RecievieRegenerateTokens, async () =>
+            hubConnection.On(ApplicationConstants.SignalR.ReceiveRegenerateTokens, async () =>
             {
                 try
                 {
                     var token = await _authenticationManager.TryForceRefreshToken();
                     if (!string.IsNullOrEmpty(token))
                     {
-                        _snackBar.Add("Refreshed Token.", Severity.Success);
+                        _snackBar.Add(localizer["Refreshed Token."], Severity.Success);
                         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                     }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    _snackBar.Add("You are Logged Out.", Severity.Error);
+                    _snackBar.Add(localizer["You are Logged Out."], Severity.Error);
                     await _authenticationManager.Logout();
                     _navigationManager.NavigateTo("/");
+                }
+            });
+            hubConnection.On<string, string>(ApplicationConstants.SignalR.LogoutUsersByRole, async (userId, roleId) =>
+            {
+                if (CurrentUserId != userId)
+                {
+                    var rolesResponse = await RoleManager.GetRolesAsync();
+                    if (rolesResponse.Succeeded)
+                    {
+                        var role = rolesResponse.Data.FirstOrDefault(x => x.Id == roleId);
+                        if (role != null)
+                        {
+                            var currentUserRolesResponse = await _userManager.GetRolesAsync(CurrentUserId);
+                            if (currentUserRolesResponse.Succeeded && currentUserRolesResponse.Data.UserRoles.Any(x => x.RoleName == role.Name))
+                            {
+                                _snackBar.Add(localizer["You are logged out because the Permissions of one of your Roles have been updated."], Severity.Error);
+                                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnDisconnect, CurrentUserId);
+                                await _authenticationManager.Logout();
+                                _navigationManager.NavigateTo("/login");
+                            }
+                        }
+                    }
                 }
             });
         }
 
         private void Logout()
         {
-            string logoutConfirmationText = localizer["Logout Confirmation"];
-            string logoutText = localizer["Logout"];
-            var parameters = new DialogParameters();
-            parameters.Add("ContentText", logoutConfirmationText);
-            parameters.Add("ButtonText", logoutText);
-            parameters.Add("Color", Color.Error);
+            var parameters = new DialogParameters
+            {
+                {nameof(Dialogs.Logout.ContentText), $"{localizer["Logout Confirmation"]}"},
+                {nameof(Dialogs.Logout.ButtonText), $"{localizer["Logout"]}"},
+                {nameof(Dialogs.Logout.Color), Color.Error},
+                {nameof(Dialogs.Logout.CurrentUserId), CurrentUserId},
+                {nameof(Dialogs.Logout.HubConnection), hubConnection}
+            };
 
-            var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
 
-            _dialogService.Show<Dialogs.Logout>("Logout", parameters, options);
+             _dialogService.Show<Dialogs.Logout>(localizer["Logout"], parameters, options);
         }
 
         private void DrawerToggle()
@@ -106,14 +146,9 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         private async Task DarkMode()
         {
             bool isDarkMode = await _clientPreferenceManager.ToggleDarkModeAsync();
-            if (isDarkMode)
-            {
-                currentTheme = BlazorHeroTheme.DefaultTheme;
-            }
-            else
-            {
-                currentTheme = BlazorHeroTheme.DarkTheme;
-            }
+            _currentTheme = isDarkMode
+                ? BlazorHeroTheme.DefaultTheme
+                : BlazorHeroTheme.DarkTheme;
         }
 
         public void Dispose()

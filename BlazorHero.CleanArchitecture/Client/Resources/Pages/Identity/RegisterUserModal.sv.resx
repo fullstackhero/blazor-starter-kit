@@ -141,24 +141,6 @@
   <data name="Password" xml:space="preserve">
     <value>Lösenord</value>
   </data>
-  <data name="Password is required!" xml:space="preserve">
-    <value>Lösenord krävs!</value>
-  </data>
-  <data name="Password must be at least of length 8" xml:space="preserve">
-    <value>Lösenordet måste vara minst 8 tecken</value>
-  </data>
-  <data name="Password must contain at least one capital letter" xml:space="preserve">
-    <value>Lösenordet måste innehålla minst en stor bokstav</value>
-  </data>
-  <data name="Password must contain at least one digit" xml:space="preserve">
-    <value>Lösenordet måste innehålla minst en siffra</value>
-  </data>
-  <data name="Password must contain at least one lowercase letter" xml:space="preserve">
-    <value>Lösenordet måste innehålla minst en gemener</value>
-  </data>
-  <data name="Passwords don't match" xml:space="preserve">
-    <value>Lösenorden matchar inte</value>
-  </data>
   <data name="Phone Number" xml:space="preserve">
     <value>Telefonnummer</value>
   </data>

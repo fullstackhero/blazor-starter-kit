@@ -23,5 +23,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Identity.U
         Task<IResult> ToggleUserStatusAsync(ToggleUserStatusRequest request);
 
         Task<IResult> UpdateRolesAsync(UpdateUserRolesRequest request);
+
+        Task<string> ExportToExcelAsync(string searchString = "");
     }
 }

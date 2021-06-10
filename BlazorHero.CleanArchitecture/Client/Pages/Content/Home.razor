@@ -1,6 +1,7 @@
 ﻿@page "/home"
 @page "/"
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Home> _localizer
+
 <MudContainer>
     <MudGrid>
         <MudItem xs="12" sm="12" md="12">
@@ -9,7 +10,7 @@
             </div>
         </MudItem>
         <MudItem xs="12" sm="12" md="12">
-            <MudText Align="Align.Center" Typo="Typo.h2">@_localizer["Title"] v2.0</MudText>
+            <MudText Align="Align.Center" Typo="Typo.h2">@_localizer["Title"] v2.1</MudText>
             <MudText Align="Align.Center" Typo="Typo.h5" Class="smaller">@_localizer["Description"]</MudText>
         </MudItem>
         <MudItem xs="12" sm="12" md="12">

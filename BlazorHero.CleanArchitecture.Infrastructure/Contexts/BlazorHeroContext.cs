@@ -1,6 +1,6 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Models.Chat;
-using BlazorHero.CleanArchitecture.Application.Models.Identity;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Domain.Contracts;
 using BlazorHero.CleanArchitecture.Domain.Entities;
 using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
@@ -24,14 +24,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             _dateTimeService = dateTimeService;
         }
 
-        public DbSet<ChatHistory> ChatHistories { get; set; }
+        public DbSet<ChatHistory<BlazorHeroUser>> ChatHistories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Document> Documents { get; set; }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
-            foreach (var entry in ChangeTracker.Entries<AuditableEntity>().ToList())
+            foreach (var entry in ChangeTracker.Entries<IAuditableEntity>().ToList())
             {
                 switch (entry.State)
                 {
@@ -65,7 +65,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                 property.SetColumnType("decimal(18,2)");
             }
             base.OnModelCreating(builder);
-            builder.Entity<ChatHistory>(entity =>
+            builder.Entity<ChatHistory<BlazorHeroUser>>(entity =>
             {
                 entity.ToTable("ChatHistory");
 
@@ -82,9 +82,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             builder.Entity<BlazorHeroUser>(entity =>
             {
                 entity.ToTable(name: "Users", "Identity");
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
-            builder.Entity<IdentityRole>(entity =>
+            builder.Entity<BlazorHeroRole>(entity =>
             {
                 entity.ToTable(name: "Roles", "Identity");
             });
@@ -103,9 +104,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                 entity.ToTable("UserLogins", "Identity");
             });
 
-            builder.Entity<IdentityRoleClaim<string>>(entity =>
+            builder.Entity<BlazorHeroRoleClaim>(entity =>
             {
-                entity.ToTable("RoleClaims", "Identity");
+                entity.ToTable(name: "RoleClaims", "Identity");
+
+                entity.HasOne(d => d.Role)
+                    .WithMany(p => p.RoleClaims)
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             builder.Entity<IdentityUserToken<string>>(entity =>

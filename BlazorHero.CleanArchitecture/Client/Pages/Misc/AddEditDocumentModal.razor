@@ -1,55 +1,56 @@
-﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditDocumentModal> localizer
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditDocumentModal> _localizer
 
-<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+<EditForm Model="@AddEditDocumentModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
     <MudDialog>
         <TitleContent>
             @{
-                if (Id == 0)
+                if (AddEditDocumentModel.Id == 0)
                 {
                     <MudText Typo="Typo.h6">
                         <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
-                        @localizer["Add Document"]
+                        @_localizer["Add Document"]
                     </MudText>
                 }
                 else
                 {
                     <MudText Typo="Typo.h6">
                         <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
-                        @localizer["Update Document"]
+                        @_localizer["Update Document"]
                     </MudText>
                 }
             }
         </TitleContent>
         <DialogContent>
             <MudGrid>
-                @if (Id != 0)
+                @if (AddEditDocumentModel.Id != 0)
                 {
                     <MudItem xs="12" md="6">
-                        <MudTextField Disabled For="@(() => Id)" @bind-Value="Id" Required="true" Label="@localizer["Id"]" />
+                        <MudTextField Disabled For="@(() => AddEditDocumentModel.Id)" @bind-Value="AddEditDocumentModel.Id" Label="@_localizer["Id"]" />
                     </MudItem>
                 }
                 <MudItem xs="12" md="6">
-                    <MudTextField For="@(() => Title)" @bind-Value="Title" Required="true" Label="@localizer["Title"]" />
+                    <MudTextField For="@(() => AddEditDocumentModel.Title)" @bind-Value="AddEditDocumentModel.Title" Label="@_localizer["Title"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudTextField For="@(() => Description)" @bind-Value="Description" Required="true" Label="@localizer["Description"]" />
+                    <MudTextField For="@(() => AddEditDocumentModel.Description)" @bind-Value="AddEditDocumentModel.Description" Label="@_localizer["Description"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudCheckBox For="@(() => IsPublic)" @bind-Checked="IsPublic" Label="@localizer["Is Public?"]" />
+                    <MudCheckBox For="@(() => AddEditDocumentModel.IsPublic)" @bind-Checked="AddEditDocumentModel.IsPublic" Label="@_localizer["Is Public?"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
                     <MudItem>
-                        @if (file != null)
+                        @if (_file != null)
                         {
-                            <MudAlert>@file.Name</MudAlert>
+                            <MudAlert>@_file.Name</MudAlert>
                         }
-                        @if (!string.IsNullOrEmpty(URL))
+                        @if (AddEditDocumentModel.Id != 0 && !string.IsNullOrEmpty(AddEditDocumentModel.URL))
                         {
-                            <MudAlert>@URL</MudAlert>
+                            <MudAlert>@(AddEditDocumentModel.URL)</MudAlert>
                         }
                         <InputFile id="fileInput" hidden OnChange="UploadFiles" />
                         <div>
-                            @if (Id == 0)
+                            @if (AddEditDocumentModel.Id == 0)
                             {
                                 <MudButton HtmlTag="label"
                                            Variant="Variant.Text"
@@ -57,18 +58,17 @@
                                            Size="Size.Small"
                                            StartIcon="@Icons.Filled.CloudUpload"
                                            for="fileInput">
-                                    @localizer["Upload"]
+                                    @_localizer["Upload"]
                                 </MudButton>
                             }
-
-                            @if (!string.IsNullOrEmpty(URL))
+                            else if (!string.IsNullOrEmpty(AddEditDocumentModel.URL))
                             {
                                 <MudButton Variant="Variant.Text"
                                            Color="Color.Secondary"
                                            StartIcon="@Icons.Filled.CloudDownload"
                                            Size="Size.Small"
-                                           Link="@URL" Target="_blank">
-                                    @localizer["Download"]
+                                           Link="@(AddEditDocumentModel.URL)" Target="_blank">
+                                    @_localizer["Download"]
                                 </MudButton>
 
                             }
@@ -78,15 +78,15 @@
             </MudGrid>
         </DialogContent>
         <DialogActions>
-            <MudButton Variant="Variant.Filled" OnClick="Cancel">@localizer["Cancel"]</MudButton>
-            @if (Id != 0)
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditDocumentModel.Id != 0)
             {
-                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Secondary">@localizer["Update"]</MudButton>
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
             }
             else
             {
-                <MudButton Variant="Variant.Filled" OnClick="SaveAsync" Color="Color.Success">@localizer["Save"]</MudButton>
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
             }
         </DialogActions>
     </MudDialog>
-</MudForm>
+</EditForm>

@@ -120,6 +120,12 @@
   <data name="Account" xml:space="preserve">
     <value>Cuenta</value>
   </data>
+  <data name="Buy Me A Coffee!" xml:space="preserve">
+    <value>Buy Me A Coffee!</value>
+  </data>
+  <data name="Chat?" xml:space="preserve">
+    <value>Chat?</value>
+  </data>
   <data name="Community" xml:space="preserve">
     <value>Comunidad</value>
   </data>
@@ -141,6 +147,9 @@
   <data name="Quick-Start Guide" xml:space="preserve">
     <value>Guía de Inicio Rápido</value>
   </data>
+  <data name="Refreshed Token." xml:space="preserve">
+    <value>Refreshed Token.</value>
+  </data>
   <data name="Resources" xml:space="preserve">
     <value>Recursos</value>
   </data>
@@ -149,5 +158,11 @@
   </data>
   <data name="Toggle Dark Mode" xml:space="preserve">
     <value>Alternar modo oscuro</value>
+  </data>
+  <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
+    <value>You are logged out because the Permissions of one of your Roles have been updated.</value>
+  </data>
+  <data name="You are Logged Out." xml:space="preserve">
+    <value>You are Logged Out.</value>
   </data>
 </root>

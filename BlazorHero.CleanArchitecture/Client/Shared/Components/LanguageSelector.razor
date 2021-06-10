@@ -10,7 +10,18 @@
 {
     private async Task ChangeLanguageAsync(string languageCode)
     {
-        await _clientPreferenceManager.ChangeLanguageAsync(languageCode);
-        _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+        var result = await _clientPreferenceManager.ChangeLanguageAsync(languageCode);
+        if (result.Succeeded)
+        {
+            _snackBar.Add(result.Messages[0], Severity.Success);
+            _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+        }
+        else
+        {
+            foreach (var error in result.Messages)
+            {
+                _snackBar.Add(error, Severity.Error);
+            }
+        }
     }
 }

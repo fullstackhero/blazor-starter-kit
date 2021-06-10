@@ -117,41 +117,77 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account Confirmed for" xml:space="preserve">
-    <value>Account confermato per</value>
+  <data name="Account Confirmed for {0}. You can now use the /api/identity/token endpoint to generate JWT." xml:space="preserve">
+    <value>Account confermato per {0}. È ora possibile utilizzare l'endpoint / api / identity / token per generare JWT.</value>
   </data>
   <data name="Administrators Profile's Status cannot be toggled" xml:space="preserve">
     <value>Lo stato del profilo amministratore non può essere modificato</value>
   </data>
-  <data name="An Error has occured!" xml:space="preserve">
+  <data name="An Error has occurred!" xml:space="preserve">
     <value>C'è stato un errore!</value>
   </data>
-  <data name="An error occured while confirming" xml:space="preserve">
-    <value>Si è verificato un errore durante la conferma</value>
+  <data name="An error occurred while confirming {0}" xml:space="preserve">
+    <value>Si è verificato un errore durante la conferma {0}</value>
   </data>
-  <data name="clicking here" xml:space="preserve">
-    <value>cliccando qui</value>
+  <data name="CreatedOn (Local)" xml:space="preserve">
+    <value>CreatedOn (Local)</value>
+  </data>
+  <data name="CreatedOn (UTC)" xml:space="preserve">
+    <value>CreatedOn (UTC)</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="is already registered." xml:space="preserve">
-    <value>è già registrato.</value>
+  <data name="Email {0} is already registered." xml:space="preserve">
+    <value>Email {0} è già registrato.</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>EmailConfirmed</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>FirstName</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
   </data>
   <data name="is already taken." xml:space="preserve">
     <value>è già stato preso.</value>
   </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>IsActive</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>LastName</value>
+  </data>
+  <data name="Not Allowed to add or delete Administrator Role if you have not this role." xml:space="preserve">
+    <value>Not Allowed to add or delete Administrator Role if you have not this role.</value>
+  </data>
   <data name="Not Allowed." xml:space="preserve">
     <value>Non Autorizzato.</value>
   </data>
-  <data name="Password Reset Mail has been sent to your authorized EmailId." xml:space="preserve">
+  <data name="Password Reset Mail has been sent to your authorized Email." xml:space="preserve">
     <value>La mail per il ripristino della password è stata inviata al tuo indirizzo emial autorizzato.</value>
   </data>
   <data name="Password Reset Successful!" xml:space="preserve">
     <value>Reimpostazione della password riuscita!</value>
   </data>
-  <data name="Please reset your password by" xml:space="preserve">
-    <value>Reimposta la password entro</value>
+  <data name="Phone number {0} is already registered." xml:space="preserve">
+    <value>Phone number {0} è già registrato.</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>PhoneNumber</value>
+  </data>
+  <data name="PhoneNumberConfirmed" xml:space="preserve">
+    <value>PhoneNumberConfirmed</value>
+  </data>
+  <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>Please confirm your account by &lt;a href='{0}'&gt;cliccando qui&lt;/a&gt;.</value>
+  </data>
+  <data name="Please reset your password by &lt;a href='{0}&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>Reimposta la password entro &lt;a href='{0}&gt;cliccando qui&lt;/a&gt;.</value>
+  </data>
+  <data name="ProfilePictureDataUrl" xml:space="preserve">
+    <value>ProfilePictureDataUrl</value>
   </data>
   <data name="Reset Password" xml:space="preserve">
     <value>Resetta la password</value>
@@ -162,13 +198,16 @@
   <data name="User Registered" xml:space="preserve">
     <value>Utente Registrato</value>
   </data>
-  <data name="User Registered. Please check your Mailbox to verify!" xml:space="preserve">
-    <value>Utente registrato. Controlla la tua casella di posta per verificare!</value>
+  <data name="User {0} Registered." xml:space="preserve">
+    <value>Utente {0} Registrato</value>
+  </data>
+  <data name="User {0} Registered. Please check your Mailbox to verify!" xml:space="preserve">
+    <value>Utente {0} registrato. Controlla la tua casella di posta per verificare!</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
-  <data name="You can now use the /api/identity/token endpoint to generate JWT." xml:space="preserve">
-    <value>È ora possibile utilizzare l'endpoint / api / identity / token per generare JWT.</value>
+  <data name="Username {0} is already taken." xml:space="preserve">
+    <value>Username {0} è già stato preso.</value>
   </data>
 </root>

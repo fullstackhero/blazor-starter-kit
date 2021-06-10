@@ -135,6 +135,9 @@
   <data name="Edit" xml:space="preserve">
     <value>កែប្រែ</value>
   </data>
+  <data name="Filtered Products exported" xml:space="preserve">
+    <value>Filtered Products exported</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>លេខកូដសម្ងាល់</value>
   </data>
@@ -144,11 +147,11 @@
   <data name="Name" xml:space="preserve">
     <value>ឈ្មោះ</value>
   </data>
-  <data name="Product Deleted" xml:space="preserve">
-    <value>ផលិតផលត្រូវបានលុប</value>
-  </data>
   <data name="Products" xml:space="preserve">
     <value>ផលិតផល</value>
+  </data>
+  <data name="Products exported" xml:space="preserve">
+    <value>Products exported</value>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>អត្រា</value>

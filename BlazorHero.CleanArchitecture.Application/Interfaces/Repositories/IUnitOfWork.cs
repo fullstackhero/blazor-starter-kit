@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Application.Interfaces.Repositories
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork<TId> : IDisposable
     {
-        IRepositoryAsync<T> Repository<T>() where T : AuditableEntity;
+        IRepositoryAsync<T, TId> Repository<T>() where T : AuditableEntity<TId>;
 
         Task<int> Commit(CancellationToken cancellationToken);
 
-        Task<int> ComitAndRemoveCache(CancellationToken cancellationToken, string cacheKey);
+        Task<int> CommitAndRemoveCache(CancellationToken cancellationToken, string cacheKey);
 
         Task Rollback();
     }

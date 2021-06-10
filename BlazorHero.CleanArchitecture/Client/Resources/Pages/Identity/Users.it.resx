@@ -132,6 +132,12 @@
   <data name="Email Confirmation" xml:space="preserve">
     <value>Conferma E-Mail </value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Filtered Users exported" xml:space="preserve">
+    <value>Filtered Users exported</value>
+  </data>
   <data name="First Name" xml:space="preserve">
     <value>Nome</value>
   </data>
@@ -158,6 +164,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Utenti</value>
+  </data>
+  <data name="Users exported" xml:space="preserve">
+    <value>Users exported</value>
   </data>
   <data name="View Profile" xml:space="preserve">
     <value>Vedi profilo</value>

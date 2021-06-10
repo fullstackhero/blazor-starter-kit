@@ -1,30 +1,31 @@
 ﻿@page "/account/forgot-password"
 @layout MainLayout
 @attribute [AllowAnonymous]
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Forgot> localizer
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Forgot> _localizer
 
-<MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+<EditForm Model="@_emailModel" OnValidSubmit="SubmitAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
     <MudGrid>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width:100px; height:100px;" />
+                <MudIcon Icon="@CustomIcons.BlazorHero" Color="Color.Primary" Size="Size.Large" ViewBox="0 0 500 500" Style="width: 100px; height: 100px;" />
             </div>
         </MudItem>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudText Typo="Typo.h4">@localizer["Forgot password?"]</MudText>
+                <MudText Typo="Typo.h4">@_localizer["Forgot password?"]</MudText>
             </div>
         </MudItem>
         <MudItem xs="12">
             <div class="d-flex justify-center">
-                <MudText Typo="Typo.subtitle2" Class="mb-n4">@localizer["Enter email for password reset"]</MudText>
+                <MudText Typo="Typo.subtitle2" Class="mb-n4">@_localizer["Enter email for password reset"]</MudText>
             </div>
         </MudItem>
         <MudItem xs="12">
-            <MudTextField Label="@localizer["E-mail"]" @bind-Value="Email" For="@(() => Email)" Required="true" Variant="Variant.Outlined"></MudTextField>
+            <MudTextField Label="@_localizer["E-mail"]" @bind-Value="_emailModel.Email" For="@(() => _emailModel.Email)" Variant="Variant.Outlined"></MudTextField>
         </MudItem>
         <MudItem xs="12" Class="d-flex justify-center">
-            <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" OnClick="SubmitAsync" FullWidth="true">@localizer["Reset Password"]</MudButton>
+            <MudButton Variant="Variant.Filled" Disabled="@(!Validated)" Color="Color.Primary" Size="Size.Large" ButtonType="ButtonType.Submit" FullWidth="true">@_localizer["Reset Password"]</MudButton>
         </MudItem>
     </MudGrid>
-</MudForm>
+</EditForm>

@@ -123,8 +123,14 @@
   <data name="Add Brand" xml:space="preserve">
     <value>Добавить бренд</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Обрамлённый</value>
+  </data>
   <data name="Brands" xml:space="preserve">
     <value>Бренды</value>
+  </data>
+  <data name="Brands exported" xml:space="preserve">
+    <value>Бренды экспортированы</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Создать</value>
@@ -135,11 +141,20 @@
   <data name="Delete Content" xml:space="preserve">
     <value>Удалить контент</value>
   </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Компактный</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Описание</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Экспорт в Excel</value>
+  </data>
+  <data name="Filtered Brands exported" xml:space="preserve">
+    <value>Отфильтрованные бренды экспортированы</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Search for Brands" xml:space="preserve">
     <value>Поиск брендов...</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Чередующийся</value>
   </data>
   <data name="Tax" xml:space="preserve">
     <value>Сбор</value>

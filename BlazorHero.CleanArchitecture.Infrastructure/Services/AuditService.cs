@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Application.Models.Audit;
+using BlazorHero.CleanArchitecture.Infrastructure.Models.Audit;
 using BlazorHero.CleanArchitecture.Application.Responses.Audit;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Extensions;
+using BlazorHero.CleanArchitecture.Infrastructure.Specifications;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services
@@ -36,15 +38,18 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
         {
             var trails = await _context.AuditTrails.Where(a => a.UserId == userId).OrderByDescending(a => a.Id).Take(250).ToListAsync();
             var mappedLogs = _mapper.Map<List<AuditResponse>>(trails);
-            return Result<IEnumerable<AuditResponse>>.Success(mappedLogs);
+            return await Result<IEnumerable<AuditResponse>>.SuccessAsync(mappedLogs);
         }
 
-        public async Task<string> ExportToExcelAsync(string userId)
+        public async Task<string> ExportToExcelAsync(string userId, string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false)
         {
-            var trails = await _context.AuditTrails.Where(x => x.UserId == userId)
-                .OrderByDescending(a => a.DateTime).ToListAsync();
+            var auditSpec = new AuditFilterSpecification(userId, searchString, searchInOldValues, searchInNewValues);
+            var trails = await _context.AuditTrails
+                .Specify(auditSpec)
+                .OrderByDescending(a => a.DateTime)
+                .ToListAsync();
             var result = await _excelService.ExportAsync(trails, sheetName: _localizer["Audit trails"],
-                mappers: new Dictionary<string, Func<Audit, object>>()
+                mappers: new Dictionary<string, Func<Audit, object>>
                 {
                     { _localizer["Table Name"], item => item.TableName },
                     { _localizer["Type"], item => item.Type },
