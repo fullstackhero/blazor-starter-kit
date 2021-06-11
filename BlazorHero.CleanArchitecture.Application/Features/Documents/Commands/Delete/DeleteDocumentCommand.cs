@@ -38,9 +38,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.D
 
                 // delete all caches related with deleted entity
                 var cacheKeys = await documentsWithExtendedAttributes.SelectMany(x => x.ExtendedAttributes).Where(x => x.EntityId == command.Id).Distinct().Select(x => ApplicationConstants.Cache.GetAllEntityExtendedAttributesByEntityIdCacheKey(nameof(Document), x.EntityId))
-                    .ToArrayAsync(cancellationToken);
-                await _unitOfWork.CommitAndRemoveCache(cancellationToken, cacheKeys);
-                await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllEntityExtendedAttributesCacheKey(nameof(Document)));
+                    .ToListAsync(cancellationToken);
+                cacheKeys.Add(ApplicationConstants.Cache.GetAllEntityExtendedAttributesCacheKey(nameof(Document)));
+                await _unitOfWork.CommitAndRemoveCache(cancellationToken, cacheKeys.ToArray());
 
                 return await Result<int>.SuccessAsync(document.Id, _localizer["Document Deleted"]);
             }

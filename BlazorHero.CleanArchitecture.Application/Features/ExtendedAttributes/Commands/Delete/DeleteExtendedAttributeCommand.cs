@@ -33,47 +33,35 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.C
             where TId : IEquatable<TId>
     {
         private readonly IStringLocalizer<DeleteExtendedAttributeCommandLocalization> _localizer;
-        private readonly IUnitOfWork<TEntityId> _entityUnitOfWork;
         private readonly IExtendedAttributeUnitOfWork<TId, TEntityId, TEntity> _unitOfWork;
 
         public DeleteExtendedAttributeCommandHandler(
             IExtendedAttributeUnitOfWork<TId, TEntityId, TEntity> unitOfWork,
-            IStringLocalizer<DeleteExtendedAttributeCommandLocalization> localizer,
-            IUnitOfWork<TEntityId> entityUnitOfWork)
+            IStringLocalizer<DeleteExtendedAttributeCommandLocalization> localizer)
         {
             _unitOfWork = unitOfWork;
             _localizer = localizer;
-            _entityUnitOfWork = entityUnitOfWork;
         }
 
         public async Task<Result<TId>> Handle(DeleteExtendedAttributeCommand<TId, TEntityId, TEntity, TExtendedAttribute> command, CancellationToken cancellationToken)
         {
-            var isExtendedAttributeUsed = await _entityUnitOfWork.Repository<TEntity>().Entities
-                .Include(x => x.ExtendedAttributes)
-                .AnyAsync(x => x.ExtendedAttributes.Any(e => e.Id.Equals(command.Id)), cancellationToken);
-            if (!isExtendedAttributeUsed)
+            var extendedAttribute = await _unitOfWork.Repository<TExtendedAttribute>().GetByIdAsync(command.Id);
+            if (extendedAttribute != null)
             {
-                var extendedAttribute = await _unitOfWork.Repository<TExtendedAttribute>().GetByIdAsync(command.Id);
-                if (extendedAttribute != null)
-                {
-                    await _unitOfWork.Repository<TExtendedAttribute>().DeleteAsync(extendedAttribute);
-                    await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllEntityExtendedAttributesCacheKey(typeof(TEntity).Name));
+                await _unitOfWork.Repository<TExtendedAttribute>().DeleteAsync(extendedAttribute);
 
-                    var cacheKeys = await _unitOfWork.Repository<TExtendedAttribute>().Entities.Select(x =>
-                        ApplicationConstants.Cache.GetAllEntityExtendedAttributesByEntityIdCacheKey(
-                            typeof(TEntity).Name, x.Entity.Id)).Distinct().ToArrayAsync(cancellationToken);
-                    await _unitOfWork.CommitAndRemoveCache(cancellationToken, cacheKeys);
+                // delete all caches related with deleted entity extended attribute
+                var cacheKeys = await _unitOfWork.Repository<TExtendedAttribute>().Entities.Select(x =>
+                    ApplicationConstants.Cache.GetAllEntityExtendedAttributesByEntityIdCacheKey(
+                        typeof(TEntity).Name, x.Entity.Id)).Distinct().ToListAsync(cancellationToken);
+                cacheKeys.Add(ApplicationConstants.Cache.GetAllEntityExtendedAttributesCacheKey(typeof(TEntity).Name));
+                await _unitOfWork.CommitAndRemoveCache(cancellationToken, cacheKeys.ToArray());
 
-                    return await Result<TId>.SuccessAsync(extendedAttribute.Id, _localizer["Extended Attribute Deleted"]);
-                }
-                else
-                {
-                    return await Result<TId>.FailAsync(_localizer["Extended Attribute Not Found!"]);
-                }
+                return await Result<TId>.SuccessAsync(extendedAttribute.Id, _localizer["Extended Attribute Deleted"]);
             }
             else
             {
-                return await Result<TId>.FailAsync(_localizer["Deletion Not Allowed"]);
+                return await Result<TId>.FailAsync(_localizer["Extended Attribute Not Found!"]);
             }
         }
     }

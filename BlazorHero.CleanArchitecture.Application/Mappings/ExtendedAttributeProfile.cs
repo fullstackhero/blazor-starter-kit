@@ -3,7 +3,6 @@ using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Comma
 using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queries.GetAllByEntityId;
 using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queries.GetById;
-using BlazorHero.CleanArchitecture.Application.Responses.ExtendedAttribute;
 using BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes;
 
 namespace BlazorHero.CleanArchitecture.Application.Mappings
@@ -12,7 +11,6 @@ namespace BlazorHero.CleanArchitecture.Application.Mappings
     {
         public ExtendedAttributeProfile()
         {
-            // TODO - add more
             CreateMap(typeof(AddEditExtendedAttributeCommand<,,,>), typeof(DocumentExtendedAttribute))
                 .ForMember(nameof(DocumentExtendedAttribute.Entity), opt => opt.Ignore())
                 .ForMember(nameof(DocumentExtendedAttribute.CreatedBy), opt => opt.Ignore())
@@ -23,7 +21,6 @@ namespace BlazorHero.CleanArchitecture.Application.Mappings
             CreateMap(typeof(GetExtendedAttributeByIdResponse<,>), typeof(DocumentExtendedAttribute)).ReverseMap();
             CreateMap(typeof(GetAllExtendedAttributesResponse<,>), typeof(DocumentExtendedAttribute)).ReverseMap();
             CreateMap(typeof(GetAllExtendedAttributesByEntityIdResponse<,>), typeof(DocumentExtendedAttribute)).ReverseMap();
-            //CreateMap(typeof(ExtendedAttributesResponse<,>), typeof(DocumentExtendedAttribute)).ReverseMap();
         }
     }
 }

@@ -34,21 +34,11 @@
                     <MudItem xs="12" md="6">
                         <MudTextField Disabled For="@(() => AddEditExtendedAttributeModel.Id)" @bind-Value="AddEditExtendedAttributeModel.Id" Label="@_localizer["Id"]" />
                     </MudItem>
-                    @if (AddEditExtendedAttributeModel.EntityId.Equals(default) != true)
-                    {
-                        //TODO - add EntityId selectionbox
-                        <MudItem xs="12" md="6">
-                            <MudTextField Disabled For="@(() => AddEditExtendedAttributeModel.EntityId)" @bind-Value="AddEditExtendedAttributeModel.EntityId" Label="@_localizer["EntityId"]" />
-                        </MudItem>
-                    }
                 }
-                else
-                {
-                    //TODO - add EntityId selectionbox
-                    <MudItem xs="12" md="6">
-                        <MudTextField For="@(() => AddEditExtendedAttributeModel.EntityId)" @bind-Value="AddEditExtendedAttributeModel.EntityId" Label="@_localizer["EntityId"]" />
-                    </MudItem>
-                }
+                @*//TODO - add EntityId selectionbox*@
+                <MudItem xs="12" md="6">
+                    <MudTextField Disabled For="@(() => AddEditExtendedAttributeModel.EntityId)" @bind-Value="AddEditExtendedAttributeModel.EntityId" Label="@_localizer["EntityId"]" />
+                </MudItem>
                 <MudItem xs="12" md="6">
                     <MudSelect T="EntityExtendedAttributeType" Label="@_localizer["Type"]" For="@(() => AddEditExtendedAttributeModel.Type)" @bind-Value="AddEditExtendedAttributeModel.Type" Variant="Variant.Filled">
                         @foreach (var typeName in Enum.GetNames(typeof(EntityExtendedAttributeType)))

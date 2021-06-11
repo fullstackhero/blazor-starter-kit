@@ -63,7 +63,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.C
 
         public async Task<Result<TId>> Handle(AddEditExtendedAttributeCommand<TId, TEntityId, TEntity, TExtendedAttribute> command, CancellationToken cancellationToken)
         {
-            if (await _unitOfWork.Repository<TExtendedAttribute>().Entities.Where(x => x.Id.Equals(command.Id))
+            if (await _unitOfWork.Repository<TExtendedAttribute>().Entities.Where(x => x.Id.Equals(command.Id) && !x.EntityId.Equals(command.EntityId))
                 .AnyAsync(p => p.Key == command.Key, cancellationToken))
             {
                 return await Result<TId>.FailAsync(_localizer["Extended Attribute with this Key already exists."]);
@@ -75,6 +75,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.C
                 await _unitOfWork.Repository<TExtendedAttribute>().AddAsync(extendedAttribute);
                 await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllEntityExtendedAttributesCacheKey(typeof(TEntity).Name));
 
+                // delete all caches related with added entity
                 var cacheKeys = await _unitOfWork.Repository<TExtendedAttribute>().Entities.Select(x =>
                     ApplicationConstants.Cache.GetAllEntityExtendedAttributesByEntityIdCacheKey(
                         typeof(TEntity).Name, x.Entity.Id)).Distinct().ToArrayAsync(cancellationToken);
@@ -100,6 +101,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.C
                     await _unitOfWork.Repository<TExtendedAttribute>().UpdateAsync(extendedAttribute);
                     await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllEntityExtendedAttributesCacheKey(typeof(TEntity).Name));
 
+                    // delete all caches related with updated entity
                     var cacheKeys = await _unitOfWork.Repository<TExtendedAttribute>().Entities.Select(x =>
                         ApplicationConstants.Cache.GetAllEntityExtendedAttributesByEntityIdCacheKey(
                             typeof(TEntity).Name, x.Entity.Id)).Distinct().ToArrayAsync(cancellationToken);

@@ -10,6 +10,7 @@ using BlazorHero.CleanArchitecture.Application.Mappings;
 using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.ExtendedAttribute;
 using BlazorHero.CleanArchitecture.Domain.Contracts;
+using BlazorHero.CleanArchitecture.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -41,22 +42,22 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         public abstract string ExtendedAttributesDeletePolicyName { get; }
         public abstract string ExtendedAttributesExportPolicyName { get; }
 
-        private string CurrentUserId { get; set; }
-        private List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>> _model;
-        private Dictionary<string, List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>> GroupedExtendedAttributes { get; } = new();
-        private IMapper _mapper;
-        private GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> _extendedAttributes = new();
-        private GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> _selectedItem = new();
-        private string _searchString = "";
-        private bool _dense = true;
-        private bool _striped = true;
-        private bool _bordered = false;
+        protected string CurrentUserId { get; set; }
+        protected List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>> _model;
+        protected Dictionary<string, List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>> GroupedExtendedAttributes { get; } = new();
+        protected IMapper _mapper;
+        protected GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> _extendedAttributes = new();
+        protected GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> _selectedItem = new();
+        protected string _searchString = "";
+        protected bool _dense = true;
+        protected bool _striped = true;
+        protected bool _bordered = false;
 
         private ClaimsPrincipal _currentUser;
-        private bool _canEditExtendedAttributes;
-        private bool _canCreateExtendedAttributes;
-        private bool _canDeleteExtendedAttributes;
-        private bool _canExportExtendedAttributes;
+        protected bool _canEditExtendedAttributes;
+        protected bool _canCreateExtendedAttributes;
+        protected bool _canDeleteExtendedAttributes;
+        protected bool _canExportExtendedAttributes;
 
         protected override async Task OnInitializedAsync()
         {
@@ -86,7 +87,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             }
         }
 
-        private async Task GetExtendedAttributesAsync()
+        protected async Task GetExtendedAttributesAsync()
         {
             var response = await ExtendedAttributeManager.GetAllByEntityIdAsync(EntityId);
             if (response.Succeeded)
@@ -124,13 +125,13 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             }
         }
 
-        private async Task OnSearch(string text)
+        protected async Task OnSearch(string text)
         {
             _searchString = text;
             await GetExtendedAttributesAsync();
         }
 
-        private async Task InvokeModal(TId id = default)
+        protected async Task InvokeModal(TId id = default)
         {
             var parameters = new DialogParameters();
             if (!id.Equals(default))
@@ -138,7 +139,6 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                 var documentExtendedAttribute = _model.FirstOrDefault(c => c.Id.Equals(id));
                 if (documentExtendedAttribute != null)
                 {
-                    //TODO - использовать маппер?
                     parameters.Add(nameof(AddEditExtendedAttributeModal<TId, TEntityId, TEntity, TExtendedAttribute>.AddEditExtendedAttributeModel), new AddEditExtendedAttributeCommand<TId, TEntityId, TEntity, TExtendedAttribute>
                     {
                         Id = documentExtendedAttribute.Id,
@@ -155,6 +155,14 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                     });
                 }
             }
+            else
+            {
+                parameters.Add(nameof(AddEditExtendedAttributeModal<TId, TEntityId, TEntity, TExtendedAttribute>.AddEditExtendedAttributeModel), new AddEditExtendedAttributeCommand<TId, TEntityId, TEntity, TExtendedAttribute>
+                {
+                    EntityId = EntityId,
+                    Type = EntityExtendedAttributeType.Text
+                });
+            }
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
             var dialog = _dialogService.Show<AddEditExtendedAttributeModal<TId, TEntityId, TEntity, TExtendedAttribute>>(id.Equals(default) ? _localizer["Create"] : _localizer["Edit"], parameters, options);
             var result = await dialog.Result;
@@ -164,7 +172,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             }
         }
 
-        private async Task Delete(TId id)
+        protected async Task Delete(TId id)
         {
             string deleteContent = _localizer["Delete Content"];
             var parameters = new DialogParameters
@@ -193,13 +201,18 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             }
         }
 
-        private async Task Reset()
+        protected async Task Reset()
         {
             _model = new List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>();
             await GetExtendedAttributesAsync();
         }
 
-        private bool Search(GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> extendedAttributes)
+        protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByExternalId = response => response.ExternalId;
+        protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByType = response => response.Type;
+        protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByDescription = response => response.Description;
+        protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByIsActive = response => response.IsActive;
+
+        protected bool Search(GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> extendedAttributes)
         {
             if (string.IsNullOrWhiteSpace(_searchString)) return true;
             if (extendedAttributes.Key.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
@@ -233,7 +246,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             return false;
         }
 
-        private Color GetGroupBadgeColor(int selected, int all)
+        protected Color GetGroupBadgeColor(int selected, int all)
         {
             if (selected == 0)
                 return Color.Error;
