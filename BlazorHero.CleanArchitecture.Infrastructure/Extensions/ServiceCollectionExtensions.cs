@@ -12,6 +12,8 @@ using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage;
 using BlazorHero.CleanArchitecture.Application.Serialization.Options;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.Provider;
 using BlazorHero.CleanArchitecture.Application.Serialization.Serializers;
+using BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Extensions
 {
@@ -31,6 +33,15 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Extensions
                 .AddTransient<IDocumentRepository, DocumentRepository>()
                 .AddTransient<IDocumentTypeRepository, DocumentTypeRepository>()
                 .AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+        }
+
+        public static IServiceCollection AddExtendedAttributesRepositories(this IServiceCollection services)
+        {
+            //TODO - add repositories with reflection!
+
+            return services
+                .AddTransient(typeof(IExtendedAttributeRepository<int, int>), typeof(ExtendedAttributeRepository<int, int, Document, DocumentExtendedAttribute>))
+                .AddTransient(typeof(IExtendedAttributeUnitOfWork<,,>), typeof(ExtendedAttributeUnitOfWork<,,>));
         }
 
         public static IServiceCollection AddServerStorage(this IServiceCollection services)

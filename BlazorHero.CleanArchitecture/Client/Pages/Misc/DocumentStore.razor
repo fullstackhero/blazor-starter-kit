@@ -64,6 +64,10 @@
                 <MudMenu Label="@_localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
                     @if (context.CreatedBy == CurrentUserId)
                     {
+                        @if (_canViewDocumentExtendedAttributes)
+                        {
+                            <MudMenuItem @onclick="@(() => ManageExtendedAttributes(@context.Id))">@_localizer["Manage Extended Attributes"]</MudMenuItem>
+                        }
                         @if (_canEditDocuments)
                         {
                             <MudMenuItem @onclick="@(() => InvokeModal(@context.Id))">@_localizer["Edit"]</MudMenuItem>

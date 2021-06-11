@@ -22,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
 
         public async Task<bool> IsDocumentExtendedAttributeUsed(int documentExtendedAttributeId)
         {
-            return await _repository.Entities.AnyAsync(b => b.DocumentExtendedAttributes.Any(x => x.Id == documentExtendedAttributeId));
+            return await _repository.Entities.AnyAsync(b => b.ExtendedAttributes.Any(x => x.Id == documentExtendedAttributeId));
         }
     }
 }

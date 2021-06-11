@@ -157,7 +157,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             });
         }
 
-        public static IServiceCollection AddSerialization(this IServiceCollection services)
+        internal static IServiceCollection AddSerialization(this IServiceCollection services)
         {
             services
                 .AddScoped<IJsonSerializerOptions, SystemTextJsonOptions>()
@@ -172,7 +172,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return services;
         }
 
-        public static IServiceCollection AddDatabase(
+        internal static IServiceCollection AddDatabase(
             this IServiceCollection services,
             IConfiguration configuration)
             => services

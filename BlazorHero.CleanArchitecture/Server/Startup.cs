@@ -48,12 +48,14 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddApplicationLayer();
             services.AddApplicationServices();
             services.AddRepositories();
+            services.AddExtendedAttributesRepositories();
             services.AddSharedInfrastructure(_configuration);
             services.RegisterSwagger();
             services.AddInfrastructureMappings();
             services.AddHangfire(x => x.UseSqlServerStorage(_configuration.GetConnectionString("DefaultConnection")));
             services.AddHangfireServer();
-            services.AddControllers().AddValidators();
+            services.AddControllers().AddValidators(services);
+            services.AddExtendedAttributesHandlers();
             services.AddRazorPages();
             services.AddApiVersioning(config =>
             {

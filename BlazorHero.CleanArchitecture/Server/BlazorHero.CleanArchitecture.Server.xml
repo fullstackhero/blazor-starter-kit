@@ -217,40 +217,46 @@
             <param name="searchInNewValues"></param>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentExtendedAttributesController.GetAll">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.ExtendedAttributesController`4.GetAll">
             <summary>
-            Get All Document Extended Attributes
+            Get All Entity Extended Attributes
             </summary>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentExtendedAttributesController.GetById(System.Int32)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.ExtendedAttributesController`4.GetAllByEntityId(`1)">
             <summary>
-            Get Document Extended Attribute By Id
+            Get All Entity Extended Attributes by entity id
+            </summary>
+            <param name="entityId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.ExtendedAttributesController`4.GetById(`0)">
+            <summary>
+            Get Entity Extended Attribute By Id
             </summary>
             <param name="id"></param>
             <returns>Status 200 Ok</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentExtendedAttributesController.Post(BlazorHero.CleanArchitecture.Application.Features.DocumentExtendedAttributes.Commands.AddEdit.AddEditDocumentExtendedAttributeCommand)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.ExtendedAttributesController`4.Post(BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Commands.AddEdit.AddEditExtendedAttributeCommand{`0,`1,`2,`3})">
             <summary>
-            Create/Update a Document Extended Attribute
+            Create/Update a Entity Extended Attribute
             </summary>
             <param name="command"></param>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentExtendedAttributesController.Delete(System.Int32)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.ExtendedAttributesController`4.Delete(`0)">
             <summary>
-            Delete a Document Extended Attribute
+            Delete a Entity Extended Attribute
             </summary>
             <param name="id"></param>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentExtendedAttributesController.Export(System.String,System.Boolean,System.Boolean)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.ExtendedAttributesController`4.Export(System.String,System.Boolean)">
             <summary>
-            Search Document Extended Attribute and Export to Excel
+            Search Entity Extended Attribute and Export to Excel
             </summary>
             <param name="searchString"></param>
-            <param name="includeDocument"></param>
-            <param name="includeDocumentType"></param>
+            <param name="includeEntity"></param>
             <returns></returns>
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.GetAll(System.Int32,System.Int32,System.String)">

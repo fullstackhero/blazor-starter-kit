@@ -24,6 +24,16 @@
             public const string GetAllBrandsCacheKey = "all-brands";
             public const string GetAllDocumentTypesCacheKey = "all-document-types";
             public const string GetAllDocumentExtendedAttributesCacheKey = "all-document-extended-attributes";
+
+            public static string GetAllEntityExtendedAttributesCacheKey(string entityFullName)
+            {
+                return $"all-{entityFullName}-extended-attributes";
+            }
+
+            public static string GetAllEntityExtendedAttributesByEntityIdCacheKey<TEntityId>(string entityFullName, TEntityId entityId)
+            {
+                return $"all-{entityFullName}-extended-attributes-{entityId}";
+            }
         }
     }
 }

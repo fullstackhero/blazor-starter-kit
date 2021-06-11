@@ -4,7 +4,9 @@ using BlazorHero.CleanArchitecture.Domain.Enums;
 
 namespace BlazorHero.CleanArchitecture.Domain.Contracts
 {
-    public abstract class AuditableEntityExtendedAttribute<TId, TEntityId, TEntity> : AuditableEntity<TId>, IEntityAuditableExtendedAttribute<TId, TEntityId, TEntity> where TEntity : IEntity<TEntityId>
+    public abstract class AuditableEntityExtendedAttribute<TId, TEntityId, TEntity> 
+        : AuditableEntity<TId>, IEntityAuditableExtendedAttribute<TId, TEntityId, TEntity> 
+            where TEntity : IEntity<TEntityId>
     {
         /// <inheritdoc/>
         public TEntityId EntityId { get; set; }
@@ -33,7 +35,7 @@ namespace BlazorHero.CleanArchitecture.Domain.Contracts
         public string? Json { get; set; }
 
         /// <inheritdoc/>
-        public string? ExternalId { get; set; } = typeof(TEntity).FullName;
+        public string? ExternalId { get; set; }
 
         /// <inheritdoc/>
         public string? Description { get; set; }

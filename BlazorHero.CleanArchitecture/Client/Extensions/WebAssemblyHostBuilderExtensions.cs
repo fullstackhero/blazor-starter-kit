@@ -14,6 +14,9 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.ExtendedAttribute;
+using BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 namespace BlazorHero.CleanArchitecture.Client.Extensions
@@ -55,6 +58,7 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
                 .AddScoped<BlazorHeroStateProvider>()
                 .AddScoped<AuthenticationStateProvider, BlazorHeroStateProvider>()
                 .AddManagers()
+                .AddExtendedAttributeManagers()
                 .AddTransient<AuthenticationHeaderHandler>()
                 .AddScoped(sp => sp
                     .GetRequiredService<IHttpClientFactory>()
@@ -94,6 +98,14 @@ namespace BlazorHero.CleanArchitecture.Client.Extensions
             }
 
             return services;
+        }
+
+        public static IServiceCollection AddExtendedAttributeManagers(this IServiceCollection services)
+        {
+            //TODO - add managers with reflection!
+
+            return services
+                .AddTransient(typeof(IExtendedAttributeManager<int, int, Document, DocumentExtendedAttribute>), typeof(ExtendedAttributeManager<int, int, Document, DocumentExtendedAttribute>));
         }
 
         private static void RegisterPermissionClaims(AuthorizationOptions options)

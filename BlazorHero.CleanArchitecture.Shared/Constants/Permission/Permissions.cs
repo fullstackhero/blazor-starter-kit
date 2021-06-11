@@ -40,6 +40,7 @@
             public const string Create = "Permissions.DocumentExtendedAttributes.Create";
             public const string Edit = "Permissions.DocumentExtendedAttributes.Edit";
             public const string Delete = "Permissions.DocumentExtendedAttributes.Delete";
+            public const string Export = "Permissions.DocumentExtendedAttributes.Export";
         }
 
         public static class Users

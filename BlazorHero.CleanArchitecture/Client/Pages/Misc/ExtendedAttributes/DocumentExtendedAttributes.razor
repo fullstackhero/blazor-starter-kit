@@ -1,0 +1,19 @@
+﻿@page "/extended-attributes/{EntityName}/{EntityIdString}"
+@attribute [Authorize(Policy = Permissions.DocumentExtendedAttributes.View)]
+
+@using BlazorHero.CleanArchitecture.Domain.Entities.Misc
+@using BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes
+@namespace BlazorHero.CleanArchitecture.Client.Pages.Misc.ExtendedAttributes
+
+@inherits ExtendedAttributes<int, int, Document, DocumentExtendedAttribute>
+
+<p>Test</p> @*TODO - разобраться, что с рендерингом*@
+
+@code
+{
+    public override int EntityId=> int.Parse(EntityIdString);
+    public override string ExtendedAttributesEditPolicyName => Permissions.DocumentExtendedAttributes.Edit;
+    public override string ExtendedAttributesCreatePolicyName => Permissions.DocumentExtendedAttributes.Create;
+    public override string ExtendedAttributesDeletePolicyName => Permissions.DocumentExtendedAttributes.Delete;
+    public override string ExtendedAttributesExportPolicyName => Permissions.DocumentExtendedAttributes.Export;
+}

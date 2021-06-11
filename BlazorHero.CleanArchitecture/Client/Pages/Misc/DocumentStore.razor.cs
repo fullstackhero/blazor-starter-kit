@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Misc.Document;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
@@ -33,6 +34,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private bool _canCreateDocuments;
         private bool _canEditDocuments;
         private bool _canDeleteDocuments;
+        private bool _canViewDocumentExtendedAttributes;
 
         protected override async Task OnInitializedAsync()
         {
@@ -40,6 +42,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             _canCreateDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Create)).Succeeded;
             _canEditDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Edit)).Succeeded;
             _canDeleteDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Delete)).Succeeded;
+            _canViewDocumentExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.DocumentExtendedAttributes.View)).Succeeded;
 
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
@@ -174,6 +177,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                     }
                 }
             }
+        }
+
+        private void ManageExtendedAttributes(int documentId)
+        {
+            _navigationManager.NavigateTo($"/extended-attributes/{typeof(Document).Name}/{documentId}");
         }
     }
 }
