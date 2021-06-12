@@ -10,7 +10,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
     public static class MvcBuilderExtensions
     {
-        public static IMvcBuilder AddValidators(this IMvcBuilder builder, IServiceCollection services)
+        internal static IMvcBuilder AddValidators(this IMvcBuilder builder, IServiceCollection services)
         {
             builder.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AppConfiguration>());
             services.AddExtendedAttributesValidators();
