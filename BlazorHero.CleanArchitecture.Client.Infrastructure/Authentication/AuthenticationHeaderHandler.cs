@@ -18,14 +18,21 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
             HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-            if (request.Headers.Authorization?.Scheme != "Bearer")
+            try
             {
-                var savedToken = await this.localStorage.GetItemAsync<string>(StorageConstants.Local.AuthToken);
-
-                if (!string.IsNullOrWhiteSpace(savedToken))
+                if (request.Headers.Authorization?.Scheme != "Bearer")
                 {
-                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", savedToken);
+                    var savedToken = await this.localStorage.GetItemAsync<string>(StorageConstants.Local.AuthToken);
+
+                    if (!string.IsNullOrWhiteSpace(savedToken))
+                    {
+                        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", savedToken);
+                    }
                 }
+            }
+            catch
+            {
+
             }
 
             return await base.SendAsync(request, cancellationToken);
