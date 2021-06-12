@@ -114,7 +114,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.RoleClaims)
                     .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             builder.Entity<IdentityUserToken<string>>(entity =>
