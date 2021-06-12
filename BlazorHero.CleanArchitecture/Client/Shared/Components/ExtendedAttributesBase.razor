@@ -1,0 +1,114 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<ExtendedAttributesLocalization> _localizer
+
+@using BlazorHero.CleanArchitecture.Domain.Enums
+
+@typeparam TId
+@typeparam TEntityId
+@typeparam TEntity
+@typeparam TExtendedAttribute
+
+<HeroTitle Title="@string.Format(_localizer["Manage {0} Extended Attributes"], EntityName)" Description="@Description" />
+@if (_model == null)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudTabs Elevation="25" Rounded="true" Centered="true" ApplyEffectsToContainer="true" AlwaysShowScrollButtons="true">
+        @foreach (var @group in GroupedExtendedAttributes.Keys)
+        {
+            var selectedExtendedAttributesInGroup = GroupedExtendedAttributes[@group].Where(c => c.IsActive).ToList();
+            var allSelectedExtendedAttributesInGroup = GroupedExtendedAttributes[@group].ToList();
+
+            <MudTabPanel Text="@group" BadgeData="@($"{selectedExtendedAttributesInGroup.Count}/{allSelectedExtendedAttributesInGroup.Count}")" Style="padding-right: 43px;" BadgeColor="@GetGroupBadgeColor(selectedExtendedAttributesInGroup.Count, allSelectedExtendedAttributesInGroup.Count)">
+                <MudTable Hover="true" Elevation="25" Items="@allSelectedExtendedAttributesInGroup" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="Search" @bind-roleClaims="_extendedAttributes" @bind-SelectedItem="_selectedItem">
+                    <ToolBarContent>
+                        <div class="justify-center mud-text-align-center">
+                            @if (_canCreateExtendedAttributes)
+                            {
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())">@_localizer["Create"]</MudButton>
+                            }
+                            <MudButton Variant="Variant.Filled" OnClick="OnSearch" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                            @if (_canExportExtendedAttributes)
+                            {
+                                <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface">@_localizer["Export"]</MudButton>
+                            }
+                        </div>
+                        <MudToolBarSpacer />
+                        <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@string.Format(_localizer["Search For {0} Extended Attributes"], EntityName)" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+                    </ToolBarContent>
+                    <HeaderContent>
+                        <MudTh><MudTableSortLabel SortBy="SortById">@_localizer["Id"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="SortById">@_localizer["EntityId"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="SortByType">@_localizer["Type"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="SortByKey">@_localizer["Key"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="SortByValue">@_localizer["Value"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="SortByExternalId">@_localizer["External Id"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="SortByDescription">@_localizer["Description"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="SortByIsActive">@_localizer["Is Active"]</MudTableSortLabel></MudTh>
+                        <MudTh Style="text-align:right">@_localizer["Actions"]</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="@_localizer["Id"]">@context.Id</MudTd>
+                        <MudTd DataLabel="@_localizer["EntityId"]">@context.EntityId</MudTd>
+                        <MudTd DataLabel="@_localizer["Type"]">@context.Type</MudTd>
+                        <MudTd DataLabel="@_localizer["Key"]">
+                            <MudHighlighter Text="@context.Key" HighlightedText="@_searchString" />
+                        </MudTd>
+                        <MudTd DataLabel="@_localizer["Value"]">
+                            @if (context.Type == EntityExtendedAttributeType.Decimal)
+                            {
+                                <MudHighlighter Text="@context.Decimal?.ToString()" HighlightedText="@_searchString" />
+                            }
+                            else if (context.Type == EntityExtendedAttributeType.Text)
+                            {
+                                <MudHighlighter Text="@context.Text" HighlightedText="@_searchString" />
+                            }
+                            else if (context.Type == EntityExtendedAttributeType.DateTime)
+                            {
+                                <MudHighlighter Text="@context.DateTime?.ToString()" HighlightedText="@_searchString" />
+                            }
+                            else if (context.Type == EntityExtendedAttributeType.Json)
+                            {
+                                <MudHighlighter Text="@context.Json" HighlightedText="@_searchString" />
+                            }
+                        </MudTd>
+                        <MudTd DataLabel="@_localizer["External Id"]">
+                            <MudHighlighter Text="@context.ExternalId" HighlightedText="@_searchString" />
+                        </MudTd>
+                        <MudTd DataLabel="@_localizer["Description"]">
+                            <MudHighlighter Text="@context.Description" HighlightedText="@_searchString" />
+                        </MudTd>
+                        <MudTd DataLabel="@_localizer["Is Active"]"><MudCheckBox ReadOnly @bind-Checked="@context.IsActive" Disabled="@(!_canEditExtendedAttributes)" Color="Color.Secondary" /></MudTd>
+                        <MudTd DataLabel="@_localizer["Actions"]" Style="text-align: right">
+                            @if (_canEditExtendedAttributes || _canDeleteExtendedAttributes)
+                            {
+                                <MudMenu Label="@_localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
+                                    @if (context.CreatedBy == CurrentUserId)
+                                    {
+                                        @if (_canEditExtendedAttributes)
+                                        {
+                                            <MudMenuItem @onclick="@(() => InvokeModal(@context.Id))">@_localizer["Edit"]</MudMenuItem>
+                                        }
+                                        @if (_canDeleteExtendedAttributes)
+                                        {
+                                            <MudMenuItem @onclick="@(() => Delete(@context.Id))">@_localizer["Delete"]</MudMenuItem>
+                                        }
+                                    }
+                                </MudMenu>
+                            }
+                        </MudTd>
+                    </RowTemplate>
+                    <FooterContent>
+                        <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@_localizer["Dense"]</MudSwitch>
+                        <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@_localizer["Striped"]</MudSwitch>
+                        <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@_localizer["Bordered"]</MudSwitch>
+                    </FooterContent>
+                    <PagerContent>
+                        <TablePager />
+                    </PagerContent>
+                </MudTable>
+            </MudTabPanel>
+        }
+    </MudTabs>
+}
