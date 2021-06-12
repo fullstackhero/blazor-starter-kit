@@ -135,11 +135,11 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="EntityId" xml:space="preserve">
-    <value>EntityId</value>
+  <data name="Entity Id" xml:space="preserve">
+    <value>Entity Id</value>
   </data>
-  <data name="ExternalId" xml:space="preserve">
-    <value>ExternalId</value>
+  <data name="External Id" xml:space="preserve">
+    <value>External Id</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>

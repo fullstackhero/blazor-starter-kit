@@ -44,7 +44,6 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 
         private async Task SaveAsync()
         {
-            //TODO - add switch and null other fields
             if (AddEditExtendedAttributeModel.Type == EntityExtendedAttributeType.DateTime)
             {
                 AddEditExtendedAttributeModel.DateTime = _date ?? new DateTime(0, 0, 0);

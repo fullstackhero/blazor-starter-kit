@@ -135,16 +135,16 @@
   <data name="Description" xml:space="preserve">
     <value>Описание</value>
   </data>
-  <data name="EntityId" xml:space="preserve">
+  <data name="Entity Id" xml:space="preserve">
     <value>Id сущности</value>
   </data>
-  <data name="ExternalId" xml:space="preserve">
+  <data name="External Id" xml:space="preserve">
     <value>Внешний Id</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
-  <data name="IsActive" xml:space="preserve">
+  <data name="Is Active" xml:space="preserve">
     <value>Активный?</value>
   </data>
   <data name="Json" xml:space="preserve">

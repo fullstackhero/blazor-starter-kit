@@ -39,6 +39,7 @@ else
                     </ToolBarContent>
                     <HeaderContent>
                         <MudTh><MudTableSortLabel SortBy="SortById">@_localizer["Id"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="SortById">@_localizer["EntityId"]</MudTableSortLabel></MudTh>
                         <MudTh><MudTableSortLabel SortBy="SortByType">@_localizer["Type"]</MudTableSortLabel></MudTh>
                         <MudTh><MudTableSortLabel SortBy="SortByKey">@_localizer["Key"]</MudTableSortLabel></MudTh>
                         <MudTh><MudTableSortLabel SortBy="SortByValue">@_localizer["Value"]</MudTableSortLabel></MudTh>
@@ -49,6 +50,7 @@ else
                     </HeaderContent>
                     <RowTemplate>
                         <MudTd DataLabel="@_localizer["Id"]">@context.Id</MudTd>
+                        <MudTd DataLabel="@_localizer["EntityId"]">@context.EntityId</MudTd>
                         <MudTd DataLabel="@_localizer["Type"]">@context.Type</MudTd>
                         <MudTd DataLabel="@_localizer["Key"]">
                             <MudHighlighter Text="@context.Key" HighlightedText="@_searchString" />
