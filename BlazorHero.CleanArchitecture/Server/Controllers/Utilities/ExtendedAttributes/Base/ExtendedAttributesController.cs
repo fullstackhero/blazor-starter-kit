@@ -9,8 +9,11 @@ using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queri
 using BlazorHero.CleanArchitecture.Domain.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes
+namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.Base
 {
+    /// <summary>
+    /// Abstract Extended Attributes Controller Class
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public abstract class ExtendedAttributesController<TId, TEntityId, TEntity, TExtendedAttribute>

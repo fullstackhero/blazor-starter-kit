@@ -16,6 +16,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
         {
             _serverPreferenceManager = serverPreferenceManager;
         }
+
         /// <summary>
         /// Change Language Preference
         /// </summary>

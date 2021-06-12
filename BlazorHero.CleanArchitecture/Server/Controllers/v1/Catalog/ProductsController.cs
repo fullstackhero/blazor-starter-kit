@@ -26,8 +26,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             var products = await _mediator.Send(new GetAllProductsQuery(pageNumber, pageSize, searchString));
             return Ok(products);
         }
+
         /// <summary>
-        /// Get Product Image by Id
+        /// Get a Product Image by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status 200 OK</returns>
@@ -38,20 +39,21 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             var result = await _mediator.Send(new GetProductImageQuery(id));
             return Ok(result);
         }
+
         /// <summary>
-        /// Add/Edit Product
+        /// Add/Edit a Product
         /// </summary>
         /// <param name="command"></param>
         /// <returns>Status 200 OK</returns>
-
         [Authorize(Policy = Permissions.Products.Create)]
         [HttpPost]
         public async Task<IActionResult> Post(AddEditProductCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
+
         /// <summary>
-        /// Delete Product
+        /// Delete a Product
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status 200 OK response</returns>
@@ -61,12 +63,12 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         {
             return Ok(await _mediator.Send(new DeleteProductCommand { Id = id }));
         }
+
         /// <summary>
-        /// Search Product and Export to Excel
+        /// Search Products and Export to Excel
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns>Status 200 OK</returns>
-
         [Authorize(Policy = Permissions.Products.View)]
         [HttpGet("export")]
         public async Task<IActionResult> Export(string searchString = "")

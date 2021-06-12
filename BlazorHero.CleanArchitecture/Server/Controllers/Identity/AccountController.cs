@@ -20,6 +20,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             _accountService = accountService;
             _currentUser = currentUser;
         }
+
         /// <summary>
         /// Update Profile
         /// </summary>
@@ -31,6 +32,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var response = await _accountService.UpdateProfileAsync(model, _currentUser.UserId);
             return Ok(response);
         }
+
         /// <summary>
         /// Change Password
         /// </summary>
@@ -42,6 +44,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var response = await _accountService.ChangePasswordAsync(model, _currentUser.UserId);
             return Ok(response);
         }
+
         /// <summary>
         /// Get Profile picture by Id
         /// </summary>
@@ -53,6 +56,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             return Ok(await _accountService.GetProfilePictureAsync(userId));
         }
+
         /// <summary>
         /// Update Profile Picture
         /// </summary>

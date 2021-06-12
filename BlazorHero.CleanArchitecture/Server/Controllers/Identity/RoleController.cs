@@ -17,6 +17,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
         {
             _roleService = roleService;
         }
+
         /// <summary>
         /// Get All Roles (basic, admin etc.)
         /// </summary>
@@ -28,6 +29,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             var roles = await _roleService.GetAllAsync();
             return Ok(roles);
         }
+
         /// <summary>
         /// Add a Role
         /// </summary>
@@ -40,6 +42,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             var response = await _roleService.SaveAsync(request);
             return Ok(response);
         }
+
         /// <summary>
         /// Delete a Role
         /// </summary>
@@ -52,8 +55,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             var response = await _roleService.DeleteAsync(id);
             return Ok(response);
         }
+
         /// <summary>
-        /// Get Permission By Role Id
+        /// Get Permissions By Role Id
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns>Status 200 Ok</returns>
@@ -64,6 +68,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             var response = await _roleService.GetAllPermissionsAsync(roleId);
             return Ok(response);
         }
+
         /// <summary>
         /// Edit a Role Claim
         /// </summary>

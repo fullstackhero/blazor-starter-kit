@@ -22,6 +22,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Communication
             _currentUserService = currentUserService;
             _chatService = chatService;
         }
+
         /// <summary>
         /// Get user wise chat history
         /// </summary>
@@ -43,6 +44,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Communication
         {
             return Ok(await _chatService.GetChatUsersAsync(_currentUserService.UserId));
         }
+
         /// <summary>
         /// Save Chat Message
         /// </summary>

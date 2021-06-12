@@ -26,8 +26,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc
             var docs = await _mediator.Send(new GetAllDocumentsQuery(pageNumber, pageSize, searchString));
             return Ok(docs);
         }
+
         /// <summary>
-        /// Add/Edit Documents
+        /// Add/Edit Document
         /// </summary>
         /// <param name="command"></param>
         /// <returns>Status 200 OK</returns>
@@ -37,6 +38,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc
         {
             return Ok(await _mediator.Send(command));
         }
+
         /// <summary>
         /// Delete a Document
         /// </summary>

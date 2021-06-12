@@ -1,5 +1,4 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Commands.Delete;
 using BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Queries.Export;
@@ -53,7 +52,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc
         }
 
         /// <summary>
-        /// Delete a Document Type 
+        /// Delete a Document Type
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status 200 OK</returns>

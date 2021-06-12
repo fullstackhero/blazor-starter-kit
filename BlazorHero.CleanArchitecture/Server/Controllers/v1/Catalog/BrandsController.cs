@@ -50,7 +50,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         }
 
         /// <summary>
-        /// Delete a Brand 
+        /// Delete a Brand
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status 200 OK</returns>
