@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -293,8 +294,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                     { _localizer["PhoneNumber"], item => item.PhoneNumber },
                     { _localizer["PhoneNumberConfirmed"], item => item.PhoneNumberConfirmed },
                     { _localizer["IsActive"], item => item.IsActive },
-                    { _localizer["CreatedOn (Local)"], item => DateTime.SpecifyKind(item.CreatedOn, DateTimeKind.Utc).ToLocalTime().ToString("dd/MM/yyyy HH:mm:ss") },
-                    { _localizer["CreatedOn (UTC)"], item => item.CreatedOn.ToString("dd/MM/yyyy HH:mm:ss") },
+                    { _localizer["CreatedOn (Local)"], item => DateTime.SpecifyKind(item.CreatedOn, DateTimeKind.Utc).ToLocalTime().ToString("G", CultureInfo.CurrentCulture) },
+                    { _localizer["CreatedOn (UTC)"], item => item.CreatedOn.ToString("G", CultureInfo.CurrentCulture) },
                     { _localizer["ProfilePictureDataUrl"], item => item.ProfilePictureDataUrl },
                 });
 

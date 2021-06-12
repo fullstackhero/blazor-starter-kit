@@ -80,12 +80,13 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttr
         /// Search Entity Extended Attribute and Export to Excel
         /// </summary>
         /// <param name="searchString"></param>
+        /// <param name="entityId"></param>
         /// <param name="includeEntity"></param>
         /// <returns></returns>
         [HttpGet("export")]
-        public virtual async Task<IActionResult> Export(string searchString = "", bool includeEntity = false)
+        public virtual async Task<IActionResult> Export(string searchString = "", TEntityId entityId = default, bool includeEntity = false)
         {
-            return Ok(await _mediator.Send(new ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute>(searchString, includeEntity)));
+            return Ok(await _mediator.Send(new ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute>(searchString, entityId, includeEntity)));
         }
     }
 }

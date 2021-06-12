@@ -5,6 +5,7 @@ using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Comma
 using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.ExtendedAttribute;
 using BlazorHero.CleanArchitecture.Domain.Contracts;
+using BlazorHero.CleanArchitecture.Domain.Enums;
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -32,6 +33,9 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         private MudDatePicker _datePicker;
+        private DateTime? _date = DateTime.Today;
+        private MudTimePicker _timePicker;
+        private TimeSpan? _time = DateTime.Now.TimeOfDay;
 
         public void Cancel()
         {
@@ -40,6 +44,13 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 
         private async Task SaveAsync()
         {
+            //TODO - add switch and null other fields
+            if (AddEditExtendedAttributeModel.Type == EntityExtendedAttributeType.DateTime)
+            {
+                AddEditExtendedAttributeModel.DateTime = _date ?? new DateTime(0, 0, 0);
+                AddEditExtendedAttributeModel.DateTime += _time ?? new TimeSpan(0, 0, 0);
+            }
+
             var response = await ExtendedAttributeManager.SaveAsync(AddEditExtendedAttributeModel);
             if (response.Succeeded)
             {

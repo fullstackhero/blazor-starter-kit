@@ -4,8 +4,8 @@
     {
         public static string GetAll(string entityName) => $"api/{entityName}ExtendedAttributes";
         public static string GetAllByEntityId<TEntityId>(string entityName, TEntityId entityId) => $"{GetAll(entityName)}/by-entity/{entityId}";
-        public static string Export(string entityName) => $"api/{entityName}ExtendedAttributes/export";
-        public static string ExportFiltered(string entityName, string searchString, bool includeEntity) => $"{Export(entityName)}?searchString={searchString}&{nameof(includeEntity)}={includeEntity}";
+        public static string Export<TEntityId>(string entityName, TEntityId entityId) => $"api/{entityName}ExtendedAttributes/export?{nameof(entityId)}={entityId}";
+        public static string ExportFiltered<TEntityId>(string entityName, string searchString, TEntityId entityId, bool includeEntity) => $"api/{entityName}ExtendedAttributes/export?{nameof(searchString)}={searchString}&{nameof(entityId)}={entityId}&{nameof(includeEntity)}={includeEntity}";
         public static string Delete(string entityName) => $"api/{entityName}ExtendedAttributes";
         public static string Save(string entityName) => $"api/{entityName}ExtendedAttributes";
         public static string GetCount(string entityName) => $"api/{entityName}ExtendedAttributes/count";

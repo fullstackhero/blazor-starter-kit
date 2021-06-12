@@ -22,6 +22,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.ExtendedAt
 
         Task<IResult<TId>> DeleteAsync(TId id);
 
-        Task<string> ExportToExcelAsync(string searchString = "", bool includeEntity = false);
+        Task<string> ExportToExcelAsync(string searchString = "", TEntityId entityId = default, bool includeEntity = false);
     }
 }

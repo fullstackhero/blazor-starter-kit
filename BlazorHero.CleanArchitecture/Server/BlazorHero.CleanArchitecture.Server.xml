@@ -251,11 +251,12 @@
             <param name="id"></param>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.ExtendedAttributesController`4.Export(System.String,System.Boolean)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.ExtendedAttributesController`4.Export(System.String,`1,System.Boolean)">
             <summary>
             Search Entity Extended Attribute and Export to Excel
             </summary>
             <param name="searchString"></param>
+            <param name="entityId"></param>
             <param name="includeEntity"></param>
             <returns></returns>
         </member>

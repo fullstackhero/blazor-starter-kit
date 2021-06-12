@@ -156,6 +156,9 @@
   <data name="Is Public" xml:space="preserve">
     <value>E' Pubblico</value>
   </data>
+  <data name="Manage Extended Attributes" xml:space="preserve">
+    <value>Manage Extended Attributes</value>
+  </data>
   <data name="Owner" xml:space="preserve">
     <value>Proprietario</value>
   </data>

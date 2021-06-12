@@ -117,70 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Действия</value>
+  <data name="Add Extended Attribute" xml:space="preserve">
+    <value>Add Extended Attribute</value>
   </data>
-  <data name="Bordered" xml:space="preserve">
-    <value>Обрамлённый</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="Browse Available Documents." xml:space="preserve">
-    <value>Обзор доступных документов.</value>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
   </data>
-  <data name="Create" xml:space="preserve">
-    <value>Создать</value>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="Date Created" xml:space="preserve">
-    <value>Дата создания</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Удалить</value>
-  </data>
-  <data name="Delete Content" xml:space="preserve">
-    <value>Удалить контент</value>
-  </data>
-  <data name="Dense" xml:space="preserve">
-    <value>Компактный</value>
+  <data name="Decimal" xml:space="preserve">
+    <value>Decimal</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Описание</value>
+    <value>Description</value>
   </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Хранилище документов</value>
+  <data name="EntityId" xml:space="preserve">
+    <value>EntityId</value>
   </data>
-  <data name="Document Type" xml:space="preserve">
-    <value>Тип документа</value>
-  </data>
-  <data name="Download" xml:space="preserve">
-    <value>Скачать</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Редактировать</value>
+  <data name="ExternalId" xml:space="preserve">
+    <value>ExternalId</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
-  <data name="Is Public" xml:space="preserve">
-    <value>Публичный</value>
+  <data name="IsActive" xml:space="preserve">
+    <value>IsActive</value>
   </data>
-  <data name="Manage Extended Attributes" xml:space="preserve">
-    <value>Управление атрибутами</value>
+  <data name="Json" xml:space="preserve">
+    <value>Json</value>
   </data>
-  <data name="Owner" xml:space="preserve">
-    <value>Владелец</value>
+  <data name="Key" xml:space="preserve">
+    <value>Key</value>
   </data>
-  <data name="Reload" xml:space="preserve">
-    <value>Перезагрузить</value>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Поиск документов</value>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="Striped" xml:space="preserve">
-    <value>Чередующийся</value>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Заголовок</value>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
   </data>
-  <data name="you" xml:space="preserve">
-    <value>Вы</value>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Update Extended Attribute" xml:space="preserve">
+    <value>Update Extended Attribute</value>
   </data>
 </root>

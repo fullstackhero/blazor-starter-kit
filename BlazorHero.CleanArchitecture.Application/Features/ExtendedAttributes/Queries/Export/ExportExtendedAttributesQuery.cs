@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Extensions;
@@ -26,11 +27,13 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
             where TId : IEquatable<TId>
     {
         public string SearchString { get; set; }
+        public TEntityId EntityId { get; set; }
         public bool IncludeEntity { get; set; }
 
-        public ExportExtendedAttributesQuery(string searchString = "", bool includeEntity = false)
+        public ExportExtendedAttributesQuery(string searchString = "", TEntityId entityId = default, bool includeEntity = false)
         {
             SearchString = searchString;
+            EntityId = entityId;
             IncludeEntity = includeEntity;
         }
     }
@@ -56,7 +59,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
 
         public async Task<string> Handle(ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute> request, CancellationToken cancellationToken)
         {
-            var extendedAttributeFilterSpec = new ExtendedAttributeFilterSpecification<TId, TEntityId, TEntity, TExtendedAttribute>(request.SearchString, request.IncludeEntity);
+            var extendedAttributeFilterSpec = new ExtendedAttributeFilterSpecification<TId, TEntityId, TEntity, TExtendedAttribute>(request.SearchString, request.EntityId, request.IncludeEntity);
             var extendedAttributes = await _unitOfWork.Repository<TExtendedAttribute>().Entities
                 .Specify(extendedAttributeFilterSpec)
                 .ToListAsync(cancellationToken);
@@ -72,7 +75,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
                     {
                         EntityExtendedAttributeType.Decimal => item.Decimal,
                         EntityExtendedAttributeType.Text => item.Text,
-                        EntityExtendedAttributeType.DateTime => item.DateTime,
+                        EntityExtendedAttributeType.DateTime => item.DateTime != null ? DateTime.SpecifyKind((DateTime)item.DateTime, DateTimeKind.Utc).ToLocalTime().ToString("G", CultureInfo.CurrentCulture) : string.Empty,
                         EntityExtendedAttributeType.Json => item.Json,
                         _ => throw new ArgumentOutOfRangeException(nameof(item.Type), _localizer["Type should be valid"])
                     }

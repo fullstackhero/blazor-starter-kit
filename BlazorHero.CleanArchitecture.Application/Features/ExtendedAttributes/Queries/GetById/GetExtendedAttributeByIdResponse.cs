@@ -5,7 +5,7 @@ using BlazorHero.CleanArchitecture.Domain.Enums;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queries.GetById
 {
-    public class GetExtendedAttributeByIdResponse<TId, TEntityId> : IEntityExtendedAttribute
+    public class GetExtendedAttributeByIdResponse<TId, TEntityId> : IEntityAuditableExtendedAttribute
     {
         public TId Id { get; set; }
         public TEntityId EntityId { get; set; }
@@ -18,5 +18,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
         public string? ExternalId { get; set; }
         public string? Description { get; set; }
         public bool IsActive { get; set; } = true;
+        public string CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime? LastModifiedOn { get; set; }
     }
 }

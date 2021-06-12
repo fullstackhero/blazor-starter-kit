@@ -14,6 +14,7 @@ using BlazorHero.CleanArchitecture.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.JSInterop;
 using MudBlazor;
 
 namespace BlazorHero.CleanArchitecture.Client.Shared.Components
@@ -36,11 +37,12 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         [Parameter] public string Title { get; set; }
         [Parameter] public string Description { get; set; }
 
-        public abstract TEntityId EntityId { get; }
-        public abstract string ExtendedAttributesEditPolicyName { get; }
-        public abstract string ExtendedAttributesCreatePolicyName { get; }
-        public abstract string ExtendedAttributesDeletePolicyName { get; }
-        public abstract string ExtendedAttributesExportPolicyName { get; }
+        protected abstract TEntityId EntityId { get; }
+        protected abstract string ExtendedAttributesEditPolicyName { get; }
+        protected abstract string ExtendedAttributesCreatePolicyName { get; }
+        protected abstract string ExtendedAttributesDeletePolicyName { get; }
+        protected abstract string ExtendedAttributesExportPolicyName { get; }
+        protected abstract RenderFragment Inherited();
 
         protected string CurrentUserId { get; set; }
         protected List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>> _model;
@@ -49,6 +51,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         protected GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> _extendedAttributes = new();
         protected GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> _selectedItem = new();
         protected string _searchString = "";
+        protected bool _includeEntity;
         protected bool _dense = true;
         protected bool _striped = true;
         protected bool _bordered = false;
@@ -61,8 +64,6 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 
         protected override async Task OnInitializedAsync()
         {
-            base.OnInitializedAsync();
-
             _currentUser = await _authenticationManager.CurrentUser();
             _canEditExtendedAttributes = _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesEditPolicyName).Result.Succeeded;
             _canCreateExtendedAttributes = _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesCreatePolicyName).Result.Succeeded;
@@ -125,10 +126,24 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             }
         }
 
-        protected async Task OnSearch(string text)
+        protected async Task OnSearch()
         {
-            _searchString = text;
+            _searchString = string.Empty;
             await GetExtendedAttributesAsync();
+        }
+
+        protected async Task ExportToExcel()
+        {
+            var base64 = await ExtendedAttributeManager.ExportToExcelAsync(_searchString, EntityId, _includeEntity);
+            await _jsRuntime.InvokeVoidAsync("Download", new
+            {
+                ByteArray = base64,
+                FileName = $"{typeof(TExtendedAttribute).Name.ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            });
+            _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
+                ? _localizer["Extended Attributes exported"]
+                : _localizer["Filtered Extended Attributes exported"], Severity.Success);
         }
 
         protected async Task InvokeModal(TId id = default)
@@ -174,7 +189,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 
         protected async Task Delete(TId id)
         {
-            string deleteContent = _localizer["Delete Content"];
+            string deleteContent = _localizer["Delete Extended Attribute?"];
             var parameters = new DialogParameters
             {
                 {nameof(Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
@@ -187,12 +202,12 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                 var response = await ExtendedAttributeManager.DeleteAsync(id);
                 if (response.Succeeded)
                 {
-                     await  OnSearch("");
+                     await  OnSearch();
                     _snackBar.Add(response.Messages[0], Severity.Success);
                 }
                 else
-                {                 
-                    await OnSearch("");
+                {
+                    await OnSearch();
                     foreach (var message in response.Messages)
                     {
                         _snackBar.Add(message, Severity.Error);
@@ -207,8 +222,17 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             await GetExtendedAttributesAsync();
         }
 
-        protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByExternalId = response => response.ExternalId;
+        protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortById = response => response.Id;
         protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByType = response => response.Type;
+        protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByKey = response => response.Key;
+        protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByValue = response => response.Type switch
+        {
+            EntityExtendedAttributeType.Decimal => response.Decimal,
+            EntityExtendedAttributeType.Text => response.Text,
+            EntityExtendedAttributeType.DateTime => response.DateTime,
+            EntityExtendedAttributeType.Json => response.Json
+        };
+        protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByExternalId = response => response.ExternalId;
         protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByDescription = response => response.Description;
         protected Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByIsActive = response => response.IsActive;
 

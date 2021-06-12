@@ -120,23 +120,20 @@
   <data name="Actions" xml:space="preserve">
     <value>Действия</value>
   </data>
+  <data name="All Groups" xml:space="preserve">
+    <value>Все группы</value>
+  </data>
   <data name="Bordered" xml:space="preserve">
     <value>Обрамлённый</value>
-  </data>
-  <data name="Browse Available Documents." xml:space="preserve">
-    <value>Обзор доступных документов.</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Создать</value>
   </data>
-  <data name="Date Created" xml:space="preserve">
-    <value>Дата создания</value>
-  </data>
   <data name="Delete" xml:space="preserve">
     <value>Удалить</value>
   </data>
-  <data name="Delete Content" xml:space="preserve">
-    <value>Удалить контент</value>
+  <data name="Delete Extended Attribute?" xml:space="preserve">
+    <value>Удалить расширенный атрибут?</value>
   </data>
   <data name="Dense" xml:space="preserve">
     <value>Компактный</value>
@@ -144,43 +141,49 @@
   <data name="Description" xml:space="preserve">
     <value>Описание</value>
   </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Хранилище документов</value>
-  </data>
-  <data name="Document Type" xml:space="preserve">
-    <value>Тип документа</value>
-  </data>
-  <data name="Download" xml:space="preserve">
-    <value>Скачать</value>
-  </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="Extended Attributes exported" xml:space="preserve">
+    <value>Расширенные атрибуты экспортированы</value>
+  </data>
+  <data name="External Id" xml:space="preserve">
+    <value>Внешний Id</value>
+  </data>
+  <data name="Filtered Extended Attributes exported" xml:space="preserve">
+    <value>Отфильтрованные расширенные атрибуты экспортированы</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
-  <data name="Is Public" xml:space="preserve">
-    <value>Публичный</value>
+  <data name="Is Active" xml:space="preserve">
+    <value>Активный?</value>
   </data>
-  <data name="Manage Extended Attributes" xml:space="preserve">
-    <value>Управление атрибутами</value>
+  <data name="Key" xml:space="preserve">
+    <value>Ключ</value>
   </data>
-  <data name="Owner" xml:space="preserve">
-    <value>Владелец</value>
+  <data name="Manage {0} Extended Attributes" xml:space="preserve">
+    <value>Управление расширенными атрибутами {0}</value>
+  </data>
+  <data name="Manage {0} {1}'s Extended Attributes" xml:space="preserve">
+    <value>Управление расширенными атрибутами {1} с Id = {0}</value>
   </data>
   <data name="Reload" xml:space="preserve">
     <value>Перезагрузить</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Поиск документов</value>
+  <data name="Search For {0} Extended Attributes" xml:space="preserve">
+    <value>Поиск расширенных атрибутов {0}</value>
   </data>
   <data name="Striped" xml:space="preserve">
     <value>Чередующийся</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Заголовок</value>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
   </data>
-  <data name="you" xml:space="preserve">
-    <value>Вы</value>
+  <data name="Value" xml:space="preserve">
+    <value>Значение</value>
   </data>
 </root>
