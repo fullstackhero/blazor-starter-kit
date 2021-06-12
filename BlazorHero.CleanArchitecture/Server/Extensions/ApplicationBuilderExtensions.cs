@@ -13,9 +13,9 @@ using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
-    public static class ApplicationBuilderExtensions
+    internal static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseExceptionHandling(
+        internal static IApplicationBuilder UseExceptionHandling(
             this IApplicationBuilder app,
             IWebHostEnvironment env)
         {
@@ -28,7 +28,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return app;
         }
 
-        public static void ConfigureSwagger(this IApplicationBuilder app)
+        internal static void ConfigureSwagger(this IApplicationBuilder app)
         {
             app.UseSwagger();
             app.UseSwaggerUI(options =>
@@ -39,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             });
         }
 
-        public static IApplicationBuilder UseEndpoints(this IApplicationBuilder app)
+        internal static IApplicationBuilder UseEndpoints(this IApplicationBuilder app)
             => app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
@@ -48,7 +48,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 endpoints.MapHub<SignalRHub>(ApplicationConstants.SignalR.HubUrl);
             });
 
-        public static IApplicationBuilder UseRequestLocalizationByCulture(this IApplicationBuilder app)
+        internal static IApplicationBuilder UseRequestLocalizationByCulture(this IApplicationBuilder app)
         {
             var supportedCultures = LocalizationConstants.SupportedLanguages.Select(l => new CultureInfo(l.Code)).ToArray();
             app.UseRequestLocalization(options =>
@@ -64,7 +64,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return app;
         }
 
-        public static IApplicationBuilder Initialize(this IApplicationBuilder app, Microsoft.Extensions.Configuration.IConfiguration _configuration)
+        internal static IApplicationBuilder Initialize(this IApplicationBuilder app, Microsoft.Extensions.Configuration.IConfiguration _configuration)
         {
             using var serviceScope = app.ApplicationServices.CreateScope();
 

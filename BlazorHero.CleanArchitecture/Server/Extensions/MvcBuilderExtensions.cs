@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
-    public static class MvcBuilderExtensions
+    internal static class MvcBuilderExtensions
     {
         internal static IMvcBuilder AddValidators(this IMvcBuilder builder, IServiceCollection services)
         {

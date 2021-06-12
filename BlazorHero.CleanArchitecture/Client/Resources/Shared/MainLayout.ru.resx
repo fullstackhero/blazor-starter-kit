@@ -162,6 +162,9 @@
   <data name="Toggle Dark Mode" xml:space="preserve">
     <value>Переключить Тёмный режим</value>
   </data>
+  <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
+    <value>Вы вышли из системы, потому что были обновлены разрешения одной из ваших ролей.</value>
+  </data>
   <data name="You are Logged Out." xml:space="preserve">
     <value>Вы вышли из системы.</value>
   </data>

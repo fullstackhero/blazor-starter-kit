@@ -18,6 +18,11 @@ namespace BlazorHero.CleanArchitecture.Server.Hubs
             await Clients.All.SendAsync(ApplicationConstants.SignalR.DisconnectUser, userId);
         }
 
+        public async Task OnChangeRolePermissions(string userId, string roleId)
+        {
+            await Clients.All.SendAsync(ApplicationConstants.SignalR.LogoutUsersByRole, userId, roleId);
+        }
+
         public async Task SendMessageAsync(ChatHistory<IChatUser> chatHistory, string userName)
         {
             await Clients.All.SendAsync(ApplicationConstants.SignalR.ReceiveMessage, chatHistory, userName);
