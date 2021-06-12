@@ -1,14 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
+using LazyCache;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queries.GetAllByEntityId
 {
-    public class GetAllExtendedAttributesByEntityIdQuery<TId, TEntityId>
+    public class GetAllExtendedAttributesByEntityIdQuery<TId, TEntityId, TEntity, TExtendedAttribute>
         : IRequest<Result<List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>>>
+            where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
+            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TEntityId>
+            where TId : IEquatable<TId>
     {
         public TEntityId EntityId { get; set; }
 
@@ -18,19 +28,29 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
         }
     }
 
-    internal class GetAllExtendedAttributesByEntityIdQueryHandler<TId, TEntityId>
-        : IRequestHandler<GetAllExtendedAttributesByEntityIdQuery<TId, TEntityId>, Result<List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>>>
+    internal class GetAllExtendedAttributesByEntityIdQueryHandler<TId, TEntityId, TEntity, TExtendedAttribute>
+        : IRequestHandler<GetAllExtendedAttributesByEntityIdQuery<TId, TEntityId, TEntity, TExtendedAttribute>, Result<List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>>>
+            where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
+            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TEntityId>
+            where TId : IEquatable<TId>
     {
-        private readonly IExtendedAttributeRepository<TId, TEntityId> _repository;
+        private readonly IUnitOfWork<TId> _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly IAppCache _cache;
 
-        public GetAllExtendedAttributesByEntityIdQueryHandler(IExtendedAttributeRepository<TId, TEntityId> repository)
+        public GetAllExtendedAttributesByEntityIdQueryHandler(IUnitOfWork<TId> unitOfWork, IMapper mapper, IAppCache cache)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+            _cache = cache;
         }
 
-        public async Task<Result<List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>>> Handle(GetAllExtendedAttributesByEntityIdQuery<TId, TEntityId> request, CancellationToken cancellationToken)
+        public async Task<Result<List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>>> Handle(GetAllExtendedAttributesByEntityIdQuery<TId, TEntityId, TEntity, TExtendedAttribute> request, CancellationToken cancellationToken)
         {
-            return await _repository.GetAllByEntityIdAsync(request.EntityId);
+            Func<Task<List<TExtendedAttribute>>> getAllExtendedAttributesByEntityId = () => _unitOfWork.Repository<TExtendedAttribute>().Entities.Where(x => x.EntityId.Equals(request.EntityId)).ToListAsync(cancellationToken);
+            var extendedAttributeList = await _cache.GetOrAddAsync(ApplicationConstants.Cache.GetAllEntityExtendedAttributesByEntityIdCacheKey(typeof(TEntity).Name, request.EntityId), getAllExtendedAttributesByEntityId);
+            var mappedExtendedAttributes = _mapper.Map<List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>>(extendedAttributeList);
+            return await Result<List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>>.SuccessAsync(mappedExtendedAttributes);
         }
     }
 }

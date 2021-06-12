@@ -48,7 +48,7 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddApplicationLayer();
             services.AddApplicationServices();
             services.AddRepositories();
-            services.AddExtendedAttributesRepositories();
+            services.AddExtendedAttributesUnitOfWork();
             services.AddSharedInfrastructure(_configuration);
             services.RegisterSwagger();
             services.AddInfrastructureMappings();

@@ -38,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttr
         [HttpGet("by-entity/{entityId}")]
         public virtual async Task<IActionResult> GetAllByEntityId(TEntityId entityId)
         {
-            var extendedAttributes = await _mediator.Send(new GetAllExtendedAttributesByEntityIdQuery<TId, TEntityId>(entityId));
+            var extendedAttributes = await _mediator.Send(new GetAllExtendedAttributesByEntityIdQuery<TId, TEntityId, TEntity, TExtendedAttribute>(entityId));
             return Ok(extendedAttributes);
         }
 

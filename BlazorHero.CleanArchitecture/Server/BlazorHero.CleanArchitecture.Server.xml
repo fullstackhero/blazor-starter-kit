@@ -190,7 +190,7 @@
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.RoleController.GetPermissionsByRoleId(System.String)">
             <summary>
-            Get Permission By Role Id
+            Get Permissions By Role Id
             </summary>
             <param name="roleId"></param>
             <returns>Status 200 Ok</returns>
