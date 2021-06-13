@@ -120,14 +120,8 @@
   <data name="DateTime value is required using {0} type!" xml:space="preserve">
     <value>Значение DateTime необходимо при использовании типа {0}!</value>
   </data>
-  <data name="DateTime value should be null using {0} type!" xml:space="preserve">
-    <value>Значение DateTime должно быть null при использовании типа {0}!</value>
-  </data>
   <data name="Decimal value is required using {0} type!" xml:space="preserve">
     <value>Значение Decimal необходимо при использовании типа {0}!</value>
-  </data>
-  <data name="Decimal value should be null using {0} type!" xml:space="preserve">
-    <value>Значение Decimal должно быть null при использовании типа {0}!</value>
   </data>
   <data name="Entity is required!" xml:space="preserve">
     <value>Сущность обязательна!</value>
@@ -138,16 +132,10 @@
   <data name="Json value must be a valid json string using {0} type!" xml:space="preserve">
     <value>Значение Json должно быть валидной json строкой при использовании типа {0}!</value>
   </data>
-  <data name="Json value should be null using {0} type!" xml:space="preserve">
-    <value>Значение Json должно быть null при использовании типа {0}!</value>
-  </data>
   <data name="Key is required!" xml:space="preserve">
     <value>Ключ обязателен!</value>
   </data>
   <data name="Text value is required using {0} type!" xml:space="preserve">
     <value>Значение Text необходимо при использовании типа {0}!</value>
-  </data>
-  <data name="Text value should be null using {0} type!" xml:space="preserve">
-    <value>Значение Text должно быть null при использовании типа {0}!</value>
   </data>
 </root>
