@@ -91,6 +91,9 @@
                     <MudTextField T="string" For="@(() => AddEditExtendedAttributeModel.ExternalId)" @bind-Value="AddEditExtendedAttributeModel.ExternalId" Label="@_localizer["External Id"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditExtendedAttributeModel.Group)" @bind-Value="AddEditExtendedAttributeModel.Group" Label="@_localizer["Group"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
                     <MudTextField For="@(() => AddEditExtendedAttributeModel.Description)" @bind-Value="AddEditExtendedAttributeModel.Description" Label="@_localizer["Description"]" />
                 </MudItem>
                 <MudItem xs="12" md="6">

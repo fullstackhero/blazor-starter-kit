@@ -16,6 +16,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
         public DateTime? DateTime { get; set; }
         public string? Json { get; set; }
         public string? ExternalId { get; set; }
+        public string? Group { get; set; }
         public string? Description { get; set; }
         public bool IsActive { get; set; } = true;
         public string CreatedBy { get; set; }

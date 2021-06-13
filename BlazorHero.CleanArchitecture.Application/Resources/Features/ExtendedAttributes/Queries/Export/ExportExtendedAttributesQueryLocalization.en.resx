@@ -138,6 +138,9 @@
   <data name="ExternalId" xml:space="preserve">
     <value>ExternalId</value>
   </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>

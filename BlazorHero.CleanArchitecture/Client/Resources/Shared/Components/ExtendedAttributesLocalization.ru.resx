@@ -159,6 +159,9 @@
   <data name="Filtered Extended Attributes exported" xml:space="preserve">
     <value>Отфильтрованные расширенные атрибуты экспортированы</value>
   </data>
+  <data name="Group" xml:space="preserve">
+    <value>Группа</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
@@ -174,6 +177,9 @@
   <data name="Manage {0} {1}'s Extended Attributes" xml:space="preserve">
     <value>Управление расширенными атрибутами {1} с Id = {0}</value>
   </data>
+  <data name="Owner" xml:space="preserve">
+    <value>Владелец</value>
+  </data>
   <data name="Reload" xml:space="preserve">
     <value>Перезагрузить</value>
   </data>
@@ -188,5 +194,8 @@
   </data>
   <data name="Value" xml:space="preserve">
     <value>Значение</value>
+  </data>
+  <data name="you" xml:space="preserve">
+    <value>Вы</value>
   </data>
 </root>

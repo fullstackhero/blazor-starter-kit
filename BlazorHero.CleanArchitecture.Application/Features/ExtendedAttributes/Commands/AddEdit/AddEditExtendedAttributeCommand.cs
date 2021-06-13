@@ -37,6 +37,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.C
         public DateTime? DateTime { get; set; }
         public string? Json { get; set; }
         public string? ExternalId { get; set; }
+        public string? Group { get; set; }
         public string? Description { get; set; }
         public bool IsActive { get; set; }
     }
@@ -96,6 +97,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.C
                     extendedAttribute.DateTime = command.DateTime ?? extendedAttribute.DateTime;
                     extendedAttribute.Json = command.Json ?? extendedAttribute.Json;
                     extendedAttribute.ExternalId = command.ExternalId ?? extendedAttribute.ExternalId;
+                    extendedAttribute.Group = command.Group ?? extendedAttribute.Group;
                     extendedAttribute.Description = command.Description ?? extendedAttribute.Description;
                     extendedAttribute.IsActive = command.IsActive;
                     await _unitOfWork.Repository<TExtendedAttribute>().UpdateAsync(extendedAttribute);

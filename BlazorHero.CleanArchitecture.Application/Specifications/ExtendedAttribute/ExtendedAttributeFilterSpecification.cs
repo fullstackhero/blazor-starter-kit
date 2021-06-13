@@ -21,6 +21,7 @@ namespace BlazorHero.CleanArchitecture.Application.Specifications.ExtendedAttrib
                         || p.DateTime != null ? p.DateTime.ToString().Contains(searchString) : false
                         || p.Json != null ? p.Json.Contains(searchString) : false
                         || p.ExternalId != null ? p.ExternalId.Contains(searchString) : false
+                        || p.Group != null ? p.Group.Contains(searchString) : false
                         || p.Description != null ? p.Description.Contains(searchString) : false);
             }
             else

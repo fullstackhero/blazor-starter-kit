@@ -81,6 +81,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
                     }
                 },
                 {_localizer["ExternalId"], item => item.ExternalId},
+                {_localizer["Group"], item => item.Group},
                 {_localizer["Description"], item => item.Description},
                 {_localizer["IsActive"], item => item.IsActive}
             };

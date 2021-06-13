@@ -99,15 +99,15 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                 GroupedExtendedAttributes.Add(_localizer["All Groups"], _model);
                 foreach (var extendedAttribute in _model)
                 {
-                    if (!string.IsNullOrWhiteSpace(extendedAttribute.ExternalId))
+                    if (!string.IsNullOrWhiteSpace(extendedAttribute.Group))
                     {
-                        if (GroupedExtendedAttributes.ContainsKey(extendedAttribute.ExternalId))
+                        if (GroupedExtendedAttributes.ContainsKey(extendedAttribute.Group))
                         {
-                            GroupedExtendedAttributes[extendedAttribute.ExternalId].Add(extendedAttribute);
+                            GroupedExtendedAttributes[extendedAttribute.Group].Add(extendedAttribute);
                         }
                         else
                         {
-                            GroupedExtendedAttributes.Add(extendedAttribute.ExternalId, new List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>> { extendedAttribute });
+                            GroupedExtendedAttributes.Add(extendedAttribute.Group, new List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>> { extendedAttribute });
                         }
                     }
                 }
@@ -166,6 +166,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                         DateTime = documentExtendedAttribute.DateTime,
                         Json = documentExtendedAttribute.Json,
                         ExternalId = documentExtendedAttribute.ExternalId,
+                        Group = documentExtendedAttribute.Group,
                         Description = documentExtendedAttribute.Description,
                         IsActive = documentExtendedAttribute.IsActive
                     });
@@ -234,6 +235,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             EntityExtendedAttributeType.Json => response.Json
         };
         private Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByExternalId = response => response.ExternalId;
+        private Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByGroup = response => response.Group;
         private Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByDescription = response => response.Description;
         private Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByIsActive = response => response.IsActive;
 
@@ -261,6 +263,10 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                 return true;
             }
             if (extendedAttributes.ExternalId?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+            {
+                return true;
+            }
+            if (extendedAttributes.Group?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }

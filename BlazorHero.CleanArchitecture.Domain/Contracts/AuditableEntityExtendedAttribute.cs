@@ -38,6 +38,9 @@ namespace BlazorHero.CleanArchitecture.Domain.Contracts
         public string? ExternalId { get; set; }
 
         /// <inheritdoc/>
+        public string? Group { get; set; }
+
+        /// <inheritdoc/>
         public string? Description { get; set; }
 
         /// <inheritdoc/>

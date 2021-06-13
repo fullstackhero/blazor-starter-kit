@@ -54,6 +54,11 @@ namespace BlazorHero.CleanArchitecture.Domain.Contracts
         public string? ExternalId { get; set; }
 
         /// <summary>
+        /// Extended attribute group
+        /// </summary>
+        public string? Group { get; set; }
+
+        /// <summary>
         /// Extended attribute description
         /// </summary>
         public string? Description { get; set; }

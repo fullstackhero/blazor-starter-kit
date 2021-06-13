@@ -138,6 +138,9 @@
   <data name="ExternalId" xml:space="preserve">
     <value>Внешний Id</value>
   </data>
+  <data name="Group" xml:space="preserve">
+    <value>Группа</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
