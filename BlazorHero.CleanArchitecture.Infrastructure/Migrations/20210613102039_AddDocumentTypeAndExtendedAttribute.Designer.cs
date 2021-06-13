@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(BlazorHeroContext))]
-    [Migration("20210608145507_AddDocumentTypeAndDocumentExtendedAttribute")]
-    partial class AddDocumentTypeAndDocumentExtendedAttribute
+    [Migration("20210613102039_AddDocumentTypeAndExtendedAttribute")]
+    partial class AddDocumentTypeAndExtendedAttribute
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -154,8 +154,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("ExternalId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Group")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Json")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Key")
                         .IsRequired()
@@ -582,7 +588,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes.DocumentExtendedAttribute", b =>
                 {
                     b.HasOne("BlazorHero.CleanArchitecture.Domain.Entities.Misc.Document", "Entity")
-                        .WithMany("DocumentExtendedAttributes")
+                        .WithMany("ExtendedAttributes")
                         .HasForeignKey("EntityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -606,6 +612,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                     b.HasOne("BlazorHero.CleanArchitecture.Infrastructure.Models.Identity.BlazorHeroRole", "Role")
                         .WithMany("RoleClaims")
                         .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Role");
@@ -655,7 +662,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.Misc.Document", b =>
                 {
-                    b.Navigation("DocumentExtendedAttributes");
+                    b.Navigation("ExtendedAttributes");
                 });
 
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Infrastructure.Models.Identity.BlazorHeroRole", b =>

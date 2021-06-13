@@ -3,15 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 {
-    public partial class AddDocumentTypeAndDocumentExtendedAttribute : Migration
+    public partial class AddDocumentTypeAndExtendedAttribute : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_RoleClaims_Roles_RoleId",
-                schema: "Identity",
-                table: "RoleClaims");
-
             migrationBuilder.AddColumn<int>(
                 name: "DocumentTypeId",
                 table: "Documents",
@@ -33,9 +28,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                     Type = table.Column<byte>(type: "tinyint", nullable: false),
                     Key = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Decimal = table.Column<decimal>(type: "decimal(19,3)", nullable: true),
+                    Decimal = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Json = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExternalId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Group = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -85,16 +82,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                 principalTable: "DocumentTypes",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_RoleClaims_Roles_RoleId",
-                schema: "Identity",
-                table: "RoleClaims",
-                column: "RoleId",
-                principalSchema: "Identity",
-                principalTable: "Roles",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -102,11 +89,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Documents_DocumentTypes_DocumentTypeId",
                 table: "Documents");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_RoleClaims_Roles_RoleId",
-                schema: "Identity",
-                table: "RoleClaims");
 
             migrationBuilder.DropTable(
                 name: "DocumentExtendedAttributes");
@@ -121,16 +103,6 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
             migrationBuilder.DropColumn(
                 name: "DocumentTypeId",
                 table: "Documents");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_RoleClaims_Roles_RoleId",
-                schema: "Identity",
-                table: "RoleClaims",
-                column: "RoleId",
-                principalSchema: "Identity",
-                principalTable: "Roles",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
     }
 }
