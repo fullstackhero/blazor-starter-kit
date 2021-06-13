@@ -4,7 +4,7 @@
     {
         public static string GetAll(string entityName) => $"api/{entityName}ExtendedAttributes";
         public static string GetAllByEntityId<TEntityId>(string entityName, TEntityId entityId) => $"{GetAll(entityName)}/by-entity/{entityId}";
-        public static string Export<TEntityId>(string entityName, TEntityId entityId) => $"api/{entityName}ExtendedAttributes/export?{nameof(entityId)}={entityId}";
+        public static string Export<TEntityId>(string entityName, TEntityId entityId, bool includeEntity) => $"api/{entityName}ExtendedAttributes/export?{nameof(entityId)}={entityId}&{nameof(includeEntity)}={includeEntity}";
         public static string ExportFiltered<TEntityId>(string entityName, string searchString, TEntityId entityId, bool includeEntity) => $"api/{entityName}ExtendedAttributes/export?{nameof(searchString)}={searchString}&{nameof(entityId)}={entityId}&{nameof(includeEntity)}={includeEntity}";
         public static string Delete(string entityName) => $"api/{entityName}ExtendedAttributes";
         public static string Save(string entityName) => $"api/{entityName}ExtendedAttributes";

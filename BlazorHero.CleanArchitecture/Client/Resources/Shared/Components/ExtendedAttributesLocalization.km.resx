@@ -165,6 +165,9 @@
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
+  <data name="Include Entity fields (Export)" xml:space="preserve">
+    <value>Include Entity fields (Export)</value>
+  </data>
   <data name="Is Active" xml:space="preserve">
     <value>Is Active</value>
   </data>

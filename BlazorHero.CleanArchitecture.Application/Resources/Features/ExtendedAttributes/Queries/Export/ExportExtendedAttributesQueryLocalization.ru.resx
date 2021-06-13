@@ -123,8 +123,11 @@
   <data name="EntityCreatedBy" xml:space="preserve">
     <value>Сущность создал</value>
   </data>
-  <data name="EntityCreatedOn" xml:space="preserve">
-    <value>Дата создания сущности</value>
+  <data name="EntityCreatedOn (Local)" xml:space="preserve">
+    <value>Дата создания сущности (локальное)</value>
+  </data>
+  <data name="EntityCreatedOn (UTC)" xml:space="preserve">
+    <value>Дата создания сущности (UTC)</value>
   </data>
   <data name="EntityId" xml:space="preserve">
     <value>Id сущности</value>
@@ -132,8 +135,11 @@
   <data name="EntityLastModifiedBy" xml:space="preserve">
     <value>Сущность обновил</value>
   </data>
-  <data name="EntityLastModifiedOn" xml:space="preserve">
-    <value>Дата обновления сущности</value>
+  <data name="EntityLastModifiedOn (Local)" xml:space="preserve">
+    <value>Дата обновления сущности (локальное)</value>
+  </data>
+  <data name="EntityLastModifiedOn (UTC)" xml:space="preserve">
+    <value>Дата обновления сущности (UTC)</value>
   </data>
   <data name="ExternalId" xml:space="preserve">
     <value>Внешний Id</value>

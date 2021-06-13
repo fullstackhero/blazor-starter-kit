@@ -123,8 +123,11 @@
   <data name="EntityCreatedBy" xml:space="preserve">
     <value>EntityCreatedBy</value>
   </data>
-  <data name="EntityCreatedOn" xml:space="preserve">
-    <value>EntityCreatedOn</value>
+  <data name="EntityCreatedOn (Local)" xml:space="preserve">
+    <value>EntityCreatedOn (Local)</value>
+  </data>
+  <data name="EntityCreatedOn (UTC)" xml:space="preserve">
+    <value>EntityCreatedOn (UTC)</value>
   </data>
   <data name="EntityId" xml:space="preserve">
     <value>EntityId</value>
@@ -132,8 +135,11 @@
   <data name="EntityLastModifiedBy" xml:space="preserve">
     <value>EntityLastModifiedBy</value>
   </data>
-  <data name="EntityLastModifiedOn" xml:space="preserve">
-    <value>EntityLastModifiedOn</value>
+  <data name="EntityLastModifiedOn (Local)" xml:space="preserve">
+    <value>EntityLastModifiedOn (Local)</value>
+  </data>
+  <data name="EntityLastModifiedOn (UTC)" xml:space="preserve">
+    <value>EntityLastModifiedOn (UTC)</value>
   </data>
   <data name="ExternalId" xml:space="preserve">
     <value>ExternalId</value>

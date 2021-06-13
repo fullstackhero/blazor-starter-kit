@@ -90,9 +90,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
             if (request.IncludeEntity)
             {
                 mappers.Add(_localizer["EntityCreatedBy"], item => item.Entity.CreatedBy);
-                mappers.Add(_localizer["EntityCreatedOn"], item => item.Entity.CreatedOn);
+                mappers.Add(_localizer["EntityCreatedOn (Local)"], item => item.Entity.CreatedOn.ToString("G", CultureInfo.CurrentCulture));
+                mappers.Add(_localizer["EntityCreatedOn (UTC)"], item => DateTime.SpecifyKind(item.Entity.CreatedOn, DateTimeKind.Utc).ToLocalTime().ToString("G", CultureInfo.CurrentCulture));
                 mappers.Add(_localizer["EntityLastModifiedBy"], item => item.Entity.LastModifiedBy);
-                mappers.Add(_localizer["EntityLastModifiedOn"], item => item.Entity.LastModifiedOn);
+                mappers.Add(_localizer["EntityLastModifiedOn (Local)"], item => item.Entity.LastModifiedOn?.ToString("G", CultureInfo.CurrentCulture));
+                mappers.Add(_localizer["EntityLastModifiedOn (UTC)"], item => item.Entity.LastModifiedOn != null ? DateTime.SpecifyKind((DateTime)item.Entity.LastModifiedOn, DateTimeKind.Utc).ToLocalTime().ToString("G", CultureInfo.CurrentCulture) : string.Empty);
             }
 
             var data = await _excelService.ExportAsync(extendedAttributes, mappers: mappers,

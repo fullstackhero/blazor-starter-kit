@@ -38,17 +38,27 @@ else
                         <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@string.Format(_localizer["Search For {0} Extended Attributes"], EntityName)" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
                     </ToolBarContent>
                     <HeaderContent>
-                        <MudTh><MudTableSortLabel SortBy="SortById">@_localizer["Id"]</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="SortById">@_localizer["Entity Id"]</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="SortByType">@_localizer["Type"]</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="SortByKey">@_localizer["Key"]</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="SortByValue">@_localizer["Value"]</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="SortByExternalId">@_localizer["External Id"]</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="SortByGroup">@_localizer["Group"]</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="SortByDescription">@_localizer["Description"]</MudTableSortLabel></MudTh>
-                        <MudTh><MudTableSortLabel SortBy="SortByIsActive">@_localizer["Is Active"]</MudTableSortLabel></MudTh>
-                        <MudTh>@_localizer["Owner"]</MudTh>
-                        <MudTh Style="text-align:right">@_localizer["Actions"]</MudTh>
+                        @if (_canExportExtendedAttributes)
+                        {
+                            <MudTHeadRow IgnoreCheckbox="true">
+                                <MudTh colspan="11">
+                                    <MudSwitch @bind-Checked="@_includeEntity" Color="Color.Primary" Style="margin-left: 5px;">@_localizer["Include Entity fields (Export)"]</MudSwitch>
+                                </MudTh>
+                            </MudTHeadRow>
+                        }
+                        <MudTHeadRow IgnoreCheckbox="true">
+                            <MudTh><MudTableSortLabel SortBy="SortById">@_localizer["Id"]</MudTableSortLabel></MudTh>
+                            <MudTh><MudTableSortLabel SortBy="SortById">@_localizer["Entity Id"]</MudTableSortLabel></MudTh>
+                            <MudTh><MudTableSortLabel SortBy="SortByType">@_localizer["Type"]</MudTableSortLabel></MudTh>
+                            <MudTh><MudTableSortLabel SortBy="SortByKey">@_localizer["Key"]</MudTableSortLabel></MudTh>
+                            <MudTh><MudTableSortLabel SortBy="SortByValue">@_localizer["Value"]</MudTableSortLabel></MudTh>
+                            <MudTh><MudTableSortLabel SortBy="SortByExternalId">@_localizer["External Id"]</MudTableSortLabel></MudTh>
+                            <MudTh><MudTableSortLabel SortBy="SortByGroup">@_localizer["Group"]</MudTableSortLabel></MudTh>
+                            <MudTh><MudTableSortLabel SortBy="SortByDescription">@_localizer["Description"]</MudTableSortLabel></MudTh>
+                            <MudTh><MudTableSortLabel SortBy="SortByIsActive">@_localizer["Is Active"]</MudTableSortLabel></MudTh>
+                            <MudTh>@_localizer["Owner"]</MudTh>
+                            <MudTh Style="text-align: right">@_localizer["Actions"]</MudTh>
+                        </MudTHeadRow>
                     </HeaderContent>
                     <RowTemplate>
                         <MudTd DataLabel="@_localizer["Id"]">@context.Id</MudTd>

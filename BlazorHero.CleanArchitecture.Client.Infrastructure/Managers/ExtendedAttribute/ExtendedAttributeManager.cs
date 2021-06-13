@@ -28,7 +28,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.ExtendedAt
         public async Task<IResult<string>> ExportToExcelAsync(string searchString = "", TEntityId entityId = default, bool includeEntity = false)
         {
             var response = await _httpClient.GetAsync(string.IsNullOrWhiteSpace(searchString)
-                ? Routes.ExtendedAttributesEndpoints.Export(typeof(TEntity).Name, entityId)
+                ? Routes.ExtendedAttributesEndpoints.Export(typeof(TEntity).Name, entityId, includeEntity)
                 : Routes.ExtendedAttributesEndpoints.ExportFiltered(typeof(TEntity).Name, searchString, entityId, includeEntity));
             return await response.ToResult<string>();
         }
