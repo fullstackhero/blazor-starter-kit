@@ -64,7 +64,7 @@
                 else if (AddEditExtendedAttributeModel.Type == EntityExtendedAttributeType.DateTime)
                 {
                     <MudItem xs="12" md="6">
-                        <MudDatePicker @ref="_datePicker" PickerVariant="PickerVariant.Dialog" Label="@_localizer["Date"]" @bind-Date="_date">
+                        <MudDatePicker @ref="_datePicker" PickerVariant="PickerVariant.Dialog" @bind-Date="AddEditExtendedAttributeModel.DateTime" Label="@_localizer["Date"]">
                             <PickerActions>
                                 <MudButton Class="mr-auto align-self-start" OnClick="@(() => _datePicker.Clear())">@_localizer["Clear"]</MudButton>
                                 <MudButton OnClick="@(() => _datePicker.Close(false))">@_localizer["Cancel"]</MudButton>

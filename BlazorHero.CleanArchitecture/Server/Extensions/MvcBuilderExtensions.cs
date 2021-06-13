@@ -1,7 +1,7 @@
-﻿using BlazorHero.CleanArchitecture.Application.Configurations;
+﻿using System.Linq;
+using BlazorHero.CleanArchitecture.Application.Configurations;
 using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes;
-using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
+using BlazorHero.CleanArchitecture.Application.Validators.Features.ExtendedAttributes.Commands.AddEdit;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,18 +10,37 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
     internal static class MvcBuilderExtensions
     {
-        internal static IMvcBuilder AddValidators(this IMvcBuilder builder, IServiceCollection services)
+        internal static IMvcBuilder AddValidators(this IMvcBuilder builder)
         {
             builder.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AppConfiguration>());
-            services.AddExtendedAttributesValidators();
             return builder;
         }
 
-        private static void AddExtendedAttributesValidators(this IServiceCollection services)
+        internal static void AddExtendedAttributesValidators(this IServiceCollection services)
         {
-            //TODO - add more
-            //services.AddScoped(typeof(IValidator<AddEditExtendedAttributeCommand<int, int, Document, DocumentExtendedAttribute>>), typeof(AddEditExtendedAttributeCommandValidator<int, int, Document, DocumentExtendedAttribute>));
-            //services.AddScoped(typeof(AbstractValidator<AddEditExtendedAttributeCommand<int, int, Document, DocumentExtendedAttribute>>), typeof(AddEditExtendedAttributeCommandValidator<int, int, Document, DocumentExtendedAttribute>));
+            #region AddEditExtendedAttributeCommandValidator
+
+            var addEditExtendedAttributeCommandValidatorType = typeof(AddEditExtendedAttributeCommandValidator<,,,>);
+            var validatorTypes = addEditExtendedAttributeCommandValidatorType
+                .Assembly
+                .GetExportedTypes()
+                .Where(t => t.IsClass && !t.IsAbstract && t.BaseType?.IsGenericType == true)
+                .Select(t => new
+                {
+                    BaseGenericType = t.BaseType,
+                    CurrentType = t
+                })
+                .Where(t => t.BaseGenericType?.GetGenericTypeDefinition() == typeof(AddEditExtendedAttributeCommandValidator<,,,>))
+                .ToList();
+
+            foreach (var validatorType in validatorTypes)
+            {
+                var addEditExtendedAttributeCommandType = typeof(AddEditExtendedAttributeCommand<,,,>).MakeGenericType(validatorType.BaseGenericType.GetGenericArguments());
+                var iValidator = typeof(IValidator<>).MakeGenericType(addEditExtendedAttributeCommandType);
+                services.AddScoped(iValidator, validatorType.CurrentType);
+            }
+
+            #endregion AddEditExtendedAttributeCommandValidator
         }
     }
 }

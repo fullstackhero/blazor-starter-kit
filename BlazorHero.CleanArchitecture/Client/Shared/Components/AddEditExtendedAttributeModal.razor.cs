@@ -33,9 +33,8 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
         private MudDatePicker _datePicker;
-        private DateTime? _date = DateTime.Today;
         private MudTimePicker _timePicker;
-        private TimeSpan? _time = DateTime.Now.TimeOfDay;
+        private TimeSpan? _time;
 
         public void Cancel()
         {
@@ -44,10 +43,30 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 
         private async Task SaveAsync()
         {
-            if (AddEditExtendedAttributeModel.Type == EntityExtendedAttributeType.DateTime)
+            switch (AddEditExtendedAttributeModel.Type)
             {
-                AddEditExtendedAttributeModel.DateTime = _date ?? new DateTime(0, 0, 0);
-                AddEditExtendedAttributeModel.DateTime += _time ?? new TimeSpan(0, 0, 0);
+                case EntityExtendedAttributeType.Decimal:
+                    AddEditExtendedAttributeModel.DateTime = null;
+                    AddEditExtendedAttributeModel.Text = null;
+                    AddEditExtendedAttributeModel.Json = null;
+                    break;
+                case EntityExtendedAttributeType.Text:
+                    AddEditExtendedAttributeModel.Decimal = null;
+                    AddEditExtendedAttributeModel.DateTime = null;
+                    AddEditExtendedAttributeModel.Json = null;
+                    break;
+                case EntityExtendedAttributeType.DateTime:
+                    AddEditExtendedAttributeModel.DateTime ??= new DateTime(0, 0, 0);
+                    AddEditExtendedAttributeModel.DateTime += _time ?? new TimeSpan(0, 0, 0);
+                    AddEditExtendedAttributeModel.Decimal = null;
+                    AddEditExtendedAttributeModel.Text = null;
+                    AddEditExtendedAttributeModel.Json = null;
+                    break;
+                case EntityExtendedAttributeType.Json:
+                    AddEditExtendedAttributeModel.Decimal = null;
+                    AddEditExtendedAttributeModel.Text = null;
+                    AddEditExtendedAttributeModel.DateTime = null;
+                    break;
             }
 
             var response = await ExtendedAttributeManager.SaveAsync(AddEditExtendedAttributeModel);
