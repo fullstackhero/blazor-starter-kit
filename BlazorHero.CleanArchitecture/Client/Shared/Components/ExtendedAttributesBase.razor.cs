@@ -38,6 +38,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         [Parameter] public string Description { get; set; }
 
         protected abstract Func<string, TEntityId> FromStringToEntityIdTypeConverter { get; }
+        protected abstract string ExtendedAttributesViewPolicyName { get; }
         protected abstract string ExtendedAttributesEditPolicyName { get; }
         protected abstract string ExtendedAttributesCreatePolicyName { get; }
         protected abstract string ExtendedAttributesDeletePolicyName { get; }
@@ -48,7 +49,6 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         private string CurrentUserId { get; set; }
         private List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>> _model;
         private Dictionary<string, List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>> GroupedExtendedAttributes { get; } = new();
-        private IMapper _mapper;
         private GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> _extendedAttributes = new();
         private GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> _selectedItem = new();
         private string _searchString = "";
@@ -58,6 +58,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         private bool _bordered = false;
 
         private ClaimsPrincipal _currentUser;
+        private bool _canViewExtendedAttributes;
         private bool _canEditExtendedAttributes;
         private bool _canCreateExtendedAttributes;
         private bool _canDeleteExtendedAttributes;
@@ -66,12 +67,17 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         protected override async Task OnInitializedAsync()
         {
             _currentUser = await _authenticationManager.CurrentUser();
-            _canEditExtendedAttributes = _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesEditPolicyName).Result.Succeeded;
-            _canCreateExtendedAttributes = _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesCreatePolicyName).Result.Succeeded;
-            _canDeleteExtendedAttributes = _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesDeletePolicyName).Result.Succeeded;
-            _canExportExtendedAttributes = _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesExportPolicyName).Result.Succeeded;
+            _canViewExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesViewPolicyName)).Succeeded;
+            if (!_canViewExtendedAttributes)
+            {
+                _snackBar.Add(_localizer["Not Allowed."], Severity.Error);
+                _navigationManager.NavigateTo("/");
+            }
+            _canEditExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesEditPolicyName)).Succeeded;
+            _canCreateExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesCreatePolicyName)).Succeeded;
+            _canDeleteExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesDeletePolicyName)).Succeeded;
+            _canExportExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesExportPolicyName)).Succeeded;
 
-            _mapper = new MapperConfiguration(c => { c.AddProfile<ExtendedAttributeProfile>(); }).CreateMapper();
             await GetExtendedAttributesAsync();
 
             var state = await _stateProvider.GetAuthenticationStateAsync();

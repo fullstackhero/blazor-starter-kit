@@ -99,7 +99,7 @@ else
                             }
                         </MudTd>
                         <MudTd DataLabel="@_localizer["Actions"]" Style="text-align: right">
-                            @if (_canEditExtendedAttributes || _canDeleteExtendedAttributes)
+                            @if ((_canEditExtendedAttributes || _canDeleteExtendedAttributes) && CurrentUserId == context.CreatedBy)
                             {
                                 <MudMenu Label="@_localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
                                     @if (context.CreatedBy == CurrentUserId)
@@ -114,6 +114,17 @@ else
                                         }
                                     }
                                 </MudMenu>
+                            }
+                            else
+                            {
+                                <MudButton Variant="Variant.Filled"
+                                           DisableElevation="true"
+                                           StartIcon="@Icons.Material.Filled.DoNotTouch"
+                                           IconColor="Color.Secondary"
+                                           Size="Size.Small"
+                                           Color="Color.Surface">
+                                    @_localizer["No Allowed Actions"]
+                                </MudButton>
                             }
                         </MudTd>
                     </RowTemplate>

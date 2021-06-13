@@ -165,6 +165,9 @@
   <data name="Name" xml:space="preserve">
     <value>Наименование</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>Нет доступных действий</value>
+  </data>
   <data name="Reload" xml:space="preserve">
     <value>Перезагрузить</value>
   </data>

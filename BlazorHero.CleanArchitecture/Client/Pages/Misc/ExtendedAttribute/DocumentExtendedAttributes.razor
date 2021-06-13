@@ -13,6 +13,7 @@
 {
     protected override Func<string, int> FromStringToEntityIdTypeConverter => s => int.Parse(s);
 
+    protected override string ExtendedAttributesViewPolicyName => Permissions.DocumentExtendedAttributes.View;
     protected override string ExtendedAttributesEditPolicyName => Permissions.DocumentExtendedAttributes.Edit;
     protected override string ExtendedAttributesCreatePolicyName => Permissions.DocumentExtendedAttributes.Create;
     protected override string ExtendedAttributesDeletePolicyName => Permissions.DocumentExtendedAttributes.Delete;

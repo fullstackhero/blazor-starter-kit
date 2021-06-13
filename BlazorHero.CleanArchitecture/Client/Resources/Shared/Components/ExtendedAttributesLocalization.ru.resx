@@ -177,6 +177,12 @@
   <data name="Manage {0} {1}'s Extended Attributes" xml:space="preserve">
     <value>Управление расширенными атрибутами {1} с Id = {0}</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>Нет доступных действий</value>
+  </data>
+  <data name="Not Allowed." xml:space="preserve">
+    <value>Нет доступа.</value>
+  </data>
   <data name="Owner" xml:space="preserve">
     <value>Владелец</value>
   </data>

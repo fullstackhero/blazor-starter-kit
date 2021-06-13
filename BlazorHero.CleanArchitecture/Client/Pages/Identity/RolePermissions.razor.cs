@@ -42,7 +42,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         protected override async Task OnInitializedAsync()
         {
             _currentUser = await _authenticationManager.CurrentUser();
-            _canEditRolePermissions = _authorizationService.AuthorizeAsync(_currentUser, Permissions.RoleClaims.Edit).Result.Succeeded;
+            _canEditRolePermissions = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.RoleClaims.Edit)).Succeeded;
 
             _mapper = new MapperConfiguration(c => { c.AddProfile<RoleProfile>(); }).CreateMapper();
             var roleId = Id;

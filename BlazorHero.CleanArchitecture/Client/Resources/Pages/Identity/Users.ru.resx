@@ -156,6 +156,9 @@
   <data name="Manage Users" xml:space="preserve">
     <value>Управление пользователями</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>Нет доступных действий</value>
+  </data>
   <data name="Not Allowed." xml:space="preserve">
     <value>Не разрешено.</value>
   </data>

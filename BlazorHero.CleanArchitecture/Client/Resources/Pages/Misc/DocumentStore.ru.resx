@@ -165,6 +165,9 @@
   <data name="Manage Extended Attributes" xml:space="preserve">
     <value>Управление атрибутами</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>Нет доступных действий</value>
+  </data>
   <data name="Owner" xml:space="preserve">
     <value>Владелец</value>
   </data>

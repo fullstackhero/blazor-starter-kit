@@ -147,6 +147,9 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>No Allowed Actions</value>
+  </data>
   <data name="Products" xml:space="preserve">
     <value>Produkte</value>
   </data>

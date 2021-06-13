@@ -177,6 +177,12 @@
   <data name="Manage {0} {1}'s Extended Attributes" xml:space="preserve">
     <value>Manage {0} {1}'s Extended Attributes</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>No Allowed Actions</value>
+  </data>
+  <data name="Not Allowed." xml:space="preserve">
+    <value>Not Allowed.</value>
+  </data>
   <data name="Owner" xml:space="preserve">
     <value>Owner</value>
   </data>

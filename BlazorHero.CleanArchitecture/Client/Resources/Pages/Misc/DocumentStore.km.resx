@@ -159,6 +159,9 @@
   <data name="Manage Extended Attributes" xml:space="preserve">
     <value>Manage Extended Attributes</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>No Allowed Actions</value>
+  </data>
   <data name="Owner" xml:space="preserve">
     <value>ម្ខាស់</value>
   </data>

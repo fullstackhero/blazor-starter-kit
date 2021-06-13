@@ -30,7 +30,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         protected override async Task OnInitializedAsync()
         {
             _currentUser = await _authenticationManager.CurrentUser();
-            _canEditUsers = _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Edit).Result.Succeeded;
+            _canEditUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Edit)).Succeeded;
 
             var userId = Id;
             var result = await _userManager.GetAsync(userId);

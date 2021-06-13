@@ -150,6 +150,9 @@
   <data name="Manage Roles." xml:space="preserve">
     <value>Управление ролями.</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>Нет доступных действий</value>
+  </data>
   <data name="Reload" xml:space="preserve">
     <value>Перезагрузить</value>
   </data>

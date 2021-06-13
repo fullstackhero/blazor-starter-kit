@@ -53,6 +53,17 @@
                     }
                 </MudMenu>
             }
+            else
+            {
+                <MudButton Variant="Variant.Filled"
+                           DisableElevation="true"
+                           StartIcon="@Icons.Material.Filled.DoNotTouch"
+                           IconColor="Color.Secondary"
+                           Size="Size.Small"
+                           Color="Color.Surface">
+                    @_localizer["No Allowed Actions"]
+                </MudButton>
+            }
         </MudTd>
     </RowTemplate>
     <FooterContent>

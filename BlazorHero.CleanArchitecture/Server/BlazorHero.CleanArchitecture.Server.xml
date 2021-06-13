@@ -274,6 +274,13 @@
             <param name="searchString"></param>
             <returns>Status 200 OK</returns>
         </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.GetById(System.Int32)">
+            <summary>
+            Get Document By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.Post(BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit.AddEditDocumentCommand)">
             <summary>
             Add/Edit Document

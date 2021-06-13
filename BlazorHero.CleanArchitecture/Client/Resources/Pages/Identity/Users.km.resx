@@ -150,6 +150,9 @@
   <data name="Manage Users" xml:space="preserve">
     <value>កំណត់អ្នកប្រើប្រាស់</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>No Allowed Actions</value>
+  </data>
   <data name="Register New User" xml:space="preserve">
     <value>ចុះឈ្មោះអ្នកប្រើប្រាស់ថ្មី</value>
   </data>
