@@ -7,13 +7,14 @@ using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Specifications.Misc;
 using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
+using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Queries.Export
 {
-    public class ExportDocumentTypesQuery : IRequest<string>
+    public class ExportDocumentTypesQuery : IRequest<Result<string>>
     {
         public string SearchString { get; set; }
 
@@ -23,7 +24,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Querie
         }
     }
 
-    internal class ExportDocumentTypesQueryHandler : IRequestHandler<ExportDocumentTypesQuery, string>
+    internal class ExportDocumentTypesQueryHandler : IRequestHandler<ExportDocumentTypesQuery, Result<string>>
     {
         private readonly IExcelService _excelService;
         private readonly IUnitOfWork<int> _unitOfWork;
@@ -38,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Querie
             _localizer = localizer;
         }
 
-        public async Task<string> Handle(ExportDocumentTypesQuery request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(ExportDocumentTypesQuery request, CancellationToken cancellationToken)
         {
             var documentTypeFilterSpec = new DocumentTypeFilterSpecification(request.SearchString);
             var documentTypes = await _unitOfWork.Repository<DocumentType>().Entities
@@ -51,7 +52,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Querie
                 { _localizer["Description"], item => item.Description }
             }, sheetName: _localizer["Document Types"]);
 
-            return data;
+            return await Result<string>.SuccessAsync(data: data);
         }
     }
 }

@@ -9,6 +9,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit
     {
         Task<IResult<IEnumerable<AuditResponse>>> GetCurrentUserTrailsAsync();
 
-        Task<string> DownloadFileAsync(string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false);
+        Task<IResult<string>> DownloadFileAsync(string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false);
     }
 }

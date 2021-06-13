@@ -9,6 +9,7 @@ using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Specifications.ExtendedAttribute;
 using BlazorHero.CleanArchitecture.Domain.Contracts;
 using BlazorHero.CleanArchitecture.Domain.Enums;
+using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
@@ -21,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
     }
 
     public class ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute>
-        : IRequest<string>
+        : IRequest<Result<string>>
             where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
             where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TEntityId>
             where TId : IEquatable<TId>
@@ -39,7 +40,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
     }
 
     internal class ExportExtendedAttributesQueryHandler<TId, TEntityId, TEntity, TExtendedAttribute>
-        : IRequestHandler<ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute>, string>
+        : IRequestHandler<ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute>, Result<string>>
             where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
             where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TEntityId>
             where TId : IEquatable<TId>
@@ -57,7 +58,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
             _localizer = localizer;
         }
 
-        public async Task<string> Handle(ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute> request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute> request, CancellationToken cancellationToken)
         {
             var extendedAttributeFilterSpec = new ExtendedAttributeFilterSpecification<TId, TEntityId, TEntity, TExtendedAttribute>(request.SearchString, request.EntityId, request.IncludeEntity);
             var extendedAttributes = await _unitOfWork.Repository<TExtendedAttribute>().Entities
@@ -97,7 +98,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
             var data = await _excelService.ExportAsync(extendedAttributes, mappers: mappers,
                 sheetName: string.Format(_localizer["{0} Extended Attributes"], typeof(TEntity).Name));
 
-            return data;
+            return await Result<string>.SuccessAsync(data: data);
         }
     }
 }

@@ -136,7 +136,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.Users.View)]
+        [Authorize(Policy = Permissions.Users.Export)]
         [HttpGet("export")]
         public async Task<IActionResult> Export(string searchString = "")
         {

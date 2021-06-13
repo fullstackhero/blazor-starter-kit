@@ -38,7 +38,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities
         /// <param name="searchInOldValues"></param>
         /// <param name="searchInNewValues"></param>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.AuditTrails.View)]
+        [Authorize(Policy = Permissions.AuditTrails.Export)]
         [HttpGet("export")]
         public async Task<IActionResult> ExportExcel(string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false)
         {

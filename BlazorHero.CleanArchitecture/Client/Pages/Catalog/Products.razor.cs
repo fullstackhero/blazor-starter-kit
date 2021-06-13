@@ -37,6 +37,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private bool _canCreateProducts;
         private bool _canEditProducts;
         private bool _canDeleteProducts;
+        private bool _canExportProducts;
 
         protected override async Task OnInitializedAsync()
         {
@@ -44,6 +45,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             _canCreateProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Create)).Succeeded;
             _canEditProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Edit)).Succeeded;
             _canDeleteProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Delete)).Succeeded;
+            _canExportProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Export)).Succeeded;
 
             HubConnection = HubConnection.TryInitialize(_navigationManager);
             if (HubConnection.State == HubConnectionState.Disconnected)
@@ -122,16 +124,26 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task ExportToExcel()
         {
-            var base64 = await ProductManager.ExportToExcelAsync(_searchString);
-            await _jsRuntime.InvokeVoidAsync("Download", new
+            var response = await ProductManager.ExportToExcelAsync(_searchString);
+            if (response.Succeeded)
             {
-                ByteArray = base64,
-                FileName = $"{nameof(Products).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            });
-            _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
-                ? _localizer["Products exported"]
-                : _localizer["Filtered Products exported"], Severity.Success);
+                await _jsRuntime.InvokeVoidAsync("Download", new
+                {
+                    ByteArray = response.Data,
+                    FileName = $"{nameof(Products).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                    MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                });
+                _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
+                    ? _localizer["Products exported"]
+                    : _localizer["Filtered Products exported"], Severity.Success);
+            }
+            else
+            {
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
+            }
         }
 
         private async Task InvokeModal(int id = 0)

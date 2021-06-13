@@ -34,6 +34,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private bool _canCreateDocumentTypes;
         private bool _canEditDocumentTypes;
         private bool _canDeleteDocumentTypes;
+        private bool _canExportDocumentTypes;
 
         protected override async Task OnInitializedAsync()
         {
@@ -41,6 +42,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             _canCreateDocumentTypes = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.DocumentTypes.Create)).Succeeded;
             _canEditDocumentTypes = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.DocumentTypes.Edit)).Succeeded;
             _canDeleteDocumentTypes = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.DocumentTypes.Delete)).Succeeded;
+            _canExportDocumentTypes = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.DocumentTypes.Export)).Succeeded;
 
             await GetDocumentTypesAsync();
             HubConnection = HubConnection.TryInitialize(_navigationManager);
@@ -98,16 +100,26 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 
         private async Task ExportToExcel()
         {
-            var base64 = await DocumentTypeManager.ExportToExcelAsync(_searchString);
-            await _jsRuntime.InvokeVoidAsync("Download", new
+            var response = await DocumentTypeManager.ExportToExcelAsync(_searchString);
+            if (response.Succeeded)
             {
-                ByteArray = base64,
-                FileName = $"{nameof(DocumentTypes).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            });
-            _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
-                ? _localizer["Document Types exported"]
-                : _localizer["Filtered Document Types exported"], Severity.Success);
+                await _jsRuntime.InvokeVoidAsync("Download", new
+                {
+                    ByteArray = response.Data,
+                    FileName = $"{nameof(DocumentTypes).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                    MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                });
+                _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
+                    ? _localizer["Document Types exported"]
+                    : _localizer["Filtered Document Types exported"], Severity.Success);
+            }
+            else
+            {
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
+            }
         }
 
         private async Task InvokeModal(int id = 0)

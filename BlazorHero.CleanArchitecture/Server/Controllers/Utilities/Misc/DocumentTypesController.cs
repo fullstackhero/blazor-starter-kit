@@ -68,7 +68,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns></returns>
-        [Authorize(Policy = Permissions.DocumentTypes.View)]
+        [Authorize(Policy = Permissions.DocumentTypes.Export)]
         [HttpGet("export")]
         public async Task<IActionResult> Export(string searchString = "")
         {

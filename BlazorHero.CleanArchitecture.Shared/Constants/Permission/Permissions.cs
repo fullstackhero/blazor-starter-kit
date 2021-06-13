@@ -8,6 +8,7 @@
             public const string Create = "Permissions.Products.Create";
             public const string Edit = "Permissions.Products.Edit";
             public const string Delete = "Permissions.Products.Delete";
+            public const string Export = "Permissions.Products.Export";
         }
 
         public static class Brands
@@ -16,6 +17,7 @@
             public const string Create = "Permissions.Brands.Create";
             public const string Edit = "Permissions.Brands.Edit";
             public const string Delete = "Permissions.Brands.Delete";
+            public const string Export = "Permissions.Brands.Export";
         }
 
         public static class Documents
@@ -32,6 +34,7 @@
             public const string Create = "Permissions.DocumentTypes.Create";
             public const string Edit = "Permissions.DocumentTypes.Edit";
             public const string Delete = "Permissions.DocumentTypes.Delete";
+            public const string Export = "Permissions.DocumentTypes.Export";
         }
 
         public static class DocumentExtendedAttributes
@@ -49,6 +52,7 @@
             public const string Create = "Permissions.Users.Create";
             public const string Edit = "Permissions.Users.Edit";
             public const string Delete = "Permissions.Users.Delete";
+            public const string Export = "Permissions.Users.Export";
         }
 
         public static class Roles
@@ -92,6 +96,7 @@
         public static class AuditTrails
         {
             public const string View = "Permissions.AuditTrails.View";
+            public const string Export = "Permissions.AuditTrails.Export";
         }
     }
 }

@@ -25,13 +25,12 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.ExtendedAt
             _httpClient = httpClient;
         }
 
-        public async Task<string> ExportToExcelAsync(string searchString = "", TEntityId entityId = default, bool includeEntity = false)
+        public async Task<IResult<string>> ExportToExcelAsync(string searchString = "", TEntityId entityId = default, bool includeEntity = false)
         {
             var response = await _httpClient.GetAsync(string.IsNullOrWhiteSpace(searchString)
                 ? Routes.ExtendedAttributesEndpoints.Export(typeof(TEntity).Name, entityId)
                 : Routes.ExtendedAttributesEndpoints.ExportFiltered(typeof(TEntity).Name, searchString, entityId, includeEntity));
-            var data = await response.Content.ReadAsStringAsync();
-            return data;
+            return await response.ToResult<string>();
         }
 
         public async Task<IResult<TId>> DeleteAsync(TId id)

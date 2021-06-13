@@ -34,6 +34,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private bool _canCreateBrands;
         private bool _canEditBrands;
         private bool _canDeleteBrands;
+        private bool _canExportBrands;
 
         protected override async Task OnInitializedAsync()
         {
@@ -41,6 +42,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             _canCreateBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Create)).Succeeded;
             _canEditBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Edit)).Succeeded;
             _canDeleteBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Delete)).Succeeded;
+            _canExportBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Export)).Succeeded;
 
             await GetBrandsAsync();
             HubConnection = HubConnection.TryInitialize(_navigationManager);
@@ -98,16 +100,26 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task ExportToExcel()
         {
-            var base64 = await BrandManager.ExportToExcelAsync(_searchString);
-            await _jsRuntime.InvokeVoidAsync("Download", new
+            var response = await BrandManager.ExportToExcelAsync(_searchString);
+            if (response.Succeeded)
             {
-                ByteArray = base64,
-                FileName = $"{nameof(Brands).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            });
-            _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
-                ? _localizer["Brands exported"]
-                : _localizer["Filtered Brands exported"], Severity.Success);
+                await _jsRuntime.InvokeVoidAsync("Download", new
+                {
+                    ByteArray = response.Data,
+                    FileName = $"{nameof(Brands).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                    MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                });
+                _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
+                    ? _localizer["Brands exported"]
+                    : _localizer["Filtered Brands exported"], Severity.Success);
+            }
+            else
+            {
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
+            }
         }
 
         private async Task InvokeModal(int id = 0)

@@ -42,14 +42,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
             return await Result<IEnumerable<AuditResponse>>.SuccessAsync(mappedLogs);
         }
 
-        public async Task<string> ExportToExcelAsync(string userId, string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false)
+        public async Task<IResult<string>> ExportToExcelAsync(string userId, string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false)
         {
             var auditSpec = new AuditFilterSpecification(userId, searchString, searchInOldValues, searchInNewValues);
             var trails = await _context.AuditTrails
                 .Specify(auditSpec)
                 .OrderByDescending(a => a.DateTime)
                 .ToListAsync();
-            var result = await _excelService.ExportAsync(trails, sheetName: _localizer["Audit trails"],
+            var data = await _excelService.ExportAsync(trails, sheetName: _localizer["Audit trails"],
                 mappers: new Dictionary<string, Func<Audit, object>>
                 {
                     { _localizer["Table Name"], item => item.TableName },
@@ -61,7 +61,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
                     { _localizer["New Values"], item => item.NewValues },
                 });
 
-            return result;
+            return await Result<string>.SuccessAsync(data: data);
         }
     }
 }

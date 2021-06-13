@@ -129,7 +129,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                 {
                     _snackBar.Add(message, Severity.Error);
                 }
-                _navigationManager.NavigateTo("/document-store");
+                _navigationManager.NavigateTo("/");
             }
         }
 
@@ -141,16 +141,26 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 
         private async Task ExportToExcel()
         {
-            var base64 = await ExtendedAttributeManager.ExportToExcelAsync(_searchString, EntityId, _includeEntity);
-            await _jsRuntime.InvokeVoidAsync("Download", new
+            var response = await ExtendedAttributeManager.ExportToExcelAsync(_searchString, EntityId, _includeEntity);
+            if (response.Succeeded)
             {
-                ByteArray = base64,
-                FileName = $"{typeof(TExtendedAttribute).Name.ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            });
-            _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
-                ? _localizer["Extended Attributes exported"]
-                : _localizer["Filtered Extended Attributes exported"], Severity.Success);
+                await _jsRuntime.InvokeVoidAsync("Download", new
+                {
+                    ByteArray = response.Data,
+                    FileName = $"{typeof(TExtendedAttribute).Name.ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                    MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                });
+                _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
+                    ? _localizer["Extended Attributes exported"]
+                    : _localizer["Filtered Extended Attributes exported"], Severity.Success);
+            }
+            else
+            {
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
+            }
         }
 
         private async Task InvokeModal(TId id = default)

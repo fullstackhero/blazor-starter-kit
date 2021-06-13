@@ -102,9 +102,9 @@ namespace BlazorHero.CleanArchitecture.Application.Extensions
                 #region ExportExtendedAttributesQueryHandler
 
                 tRequest = typeof(ExportExtendedAttributesQuery<,,,>).MakeGenericType(extendedAttributeTypeGenericArguments.ToArray());
-                tResponse = typeof(string);
+                tResponse = typeof(Result<>).MakeGenericType(typeof(string));
                 serviceType = typeof(IRequestHandler<,>).MakeGenericType(tRequest, tResponse);
-                implementationType = typeof(ExportExtendedAttributesQueryHandler<,,,>).MakeGenericType( extendedAttributeTypeGenericArguments.ToArray());
+                implementationType = typeof(ExportExtendedAttributesQueryHandler<,,,>).MakeGenericType(extendedAttributeTypeGenericArguments.ToArray());
                 services.AddScoped(serviceType, implementationType);
 
                 #endregion ExportExtendedAttributesQueryHandler

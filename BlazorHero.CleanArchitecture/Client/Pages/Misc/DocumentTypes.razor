@@ -18,7 +18,10 @@
                 <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())">@_localizer["Create"]</MudButton>
             }
             <MudButton Variant="Variant.Filled" OnClick="GetDocumentTypesAsync" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
-            <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface">@_localizer["Export"]</MudButton>
+            @if (_canExportDocumentTypes)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface">@_localizer["Export"]</MudButton>
+            }
         </div>
         <MudToolBarSpacer />
         <MudTextField @bind-Value="_searchString" Immediate="true" Placeholder="@_localizer["Search for Document Types"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>

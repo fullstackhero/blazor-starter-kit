@@ -14,6 +14,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Br
 
         Task<IResult<int>> DeleteAsync(int id);
 
-        Task<string> ExportToExcelAsync(string searchString = "");
+        Task<IResult<string>> ExportToExcelAsync(string searchString = "");
     }
 }

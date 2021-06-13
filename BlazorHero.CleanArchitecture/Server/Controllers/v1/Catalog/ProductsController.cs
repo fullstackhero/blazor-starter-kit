@@ -69,7 +69,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.Products.View)]
+        [Authorize(Policy = Permissions.Products.Export)]
         [HttpGet("export")]
         public async Task<IActionResult> Export(string searchString = "")
         {
