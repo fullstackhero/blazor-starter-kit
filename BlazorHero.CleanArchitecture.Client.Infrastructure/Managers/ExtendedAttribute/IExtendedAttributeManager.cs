@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queries.Export;
 using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queries.GetAllByEntityId;
 using BlazorHero.CleanArchitecture.Domain.Contracts;
@@ -11,7 +12,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.ExtendedAt
 {
     public interface IExtendedAttributeManager<TId, TEntityId, TEntity, TExtendedAttribute>
         where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
-        where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>
+        where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TId>
         where TId : IEquatable<TId>
     {
         Task<IResult<List<GetAllExtendedAttributesResponse<TId, TEntityId>>>> GetAllAsync();
@@ -22,6 +23,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.ExtendedAt
 
         Task<IResult<TId>> DeleteAsync(TId id);
 
-        Task<IResult<string>> ExportToExcelAsync(string searchString = "", TEntityId entityId = default, bool includeEntity = false);
+        Task<IResult<string>> ExportToExcelAsync(ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute> request);
     }
 }

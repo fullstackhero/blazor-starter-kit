@@ -3,7 +3,7 @@ using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 
 namespace BlazorHero.CleanArchitecture.Application.Specifications.Misc
 {
-    public class DocumentTypeFilterSpecification : HeroSpecification<DocumentType, int>
+    public class DocumentTypeFilterSpecification : HeroSpecification<DocumentType>
     {
         public DocumentTypeFilterSpecification(string searchString)
         {

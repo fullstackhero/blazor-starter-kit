@@ -4,8 +4,8 @@ using BlazorHero.CleanArchitecture.Domain.Enums;
 
 namespace BlazorHero.CleanArchitecture.Domain.Contracts
 {
-    public abstract class AuditableEntityExtendedAttribute<TId, TEntityId, TEntity> 
-        : AuditableEntity<TId>, IEntityAuditableExtendedAttribute<TId, TEntityId, TEntity> 
+    public abstract class AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>
+        : AuditableEntity<TId>, IEntityAuditableExtendedAttribute<TId, TEntityId, TEntity>
             where TEntity : IEntity<TEntityId>
     {
         /// <inheritdoc/>

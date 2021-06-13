@@ -3,7 +3,7 @@ using BlazorHero.CleanArchitecture.Application.Specifications.Base;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Specifications
 {
-    public class AuditFilterSpecification : HeroSpecification<Audit, int>
+    public class AuditFilterSpecification : HeroSpecification<Audit>
     {
         public AuditFilterSpecification(string userId, string searchString, bool searchInOldValues, bool searchInNewValues)
         {

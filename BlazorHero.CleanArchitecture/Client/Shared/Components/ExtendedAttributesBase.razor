@@ -14,21 +14,21 @@
 }
 else
 {
-    <MudTabs Elevation="25" Rounded="true" Centered="true" ApplyEffectsToContainer="true" AlwaysShowScrollButtons="true">
+    <MudTabs Elevation="25" Rounded="true" Centered="true" ApplyEffectsToContainer="true" AlwaysShowScrollButtons="true" @bind-ActivePanelIndex="_activeGroupIndex" @ref="_mudTabs">
         @foreach (var @group in GroupedExtendedAttributes.Keys)
         {
             var selectedExtendedAttributesInGroup = GroupedExtendedAttributes[@group].Where(c => c.IsActive).ToList();
             var allSelectedExtendedAttributesInGroup = GroupedExtendedAttributes[@group].ToList();
 
             <MudTabPanel Text="@group" BadgeData="@($"{selectedExtendedAttributesInGroup.Count}/{allSelectedExtendedAttributesInGroup.Count}")" Style="padding-right: 43px;" BadgeColor="@GetGroupBadgeColor(selectedExtendedAttributesInGroup.Count, allSelectedExtendedAttributesInGroup.Count)">
-                <MudTable Hover="true" Elevation="25" Items="@allSelectedExtendedAttributesInGroup" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="Search" @bind-roleClaims="_extendedAttributes" @bind-SelectedItem="_selectedItem">
+                <MudTable Hover="true" Elevation="25" Items="@allSelectedExtendedAttributesInGroup" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="Search" @bind-roleClaims="_extendedAttributes" @bind-SelectedItem="_selectedItem" CustomHeader="true">
                     <ToolBarContent>
                         <div class="justify-center mud-text-align-center">
                             @if (_canCreateExtendedAttributes)
                             {
                                 <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())">@_localizer["Create"]</MudButton>
                             }
-                            <MudButton Variant="Variant.Filled" OnClick="OnSearch" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                            <MudButton Variant="Variant.Filled" OnClick="Reset" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
                             @if (_canExportExtendedAttributes)
                             {
                                 <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface">@_localizer["Export"]</MudButton>
@@ -41,8 +41,11 @@ else
                         @if (_canExportExtendedAttributes)
                         {
                             <MudTHeadRow IgnoreCheckbox="true">
-                                <MudTh colspan="11">
+                                <MudTh colspan="6">
                                     <MudSwitch @bind-Checked="@_includeEntity" Color="Color.Primary" Style="margin-left: 5px;">@_localizer["Include Entity fields (Export)"]</MudSwitch>
+                                </MudTh>
+                                <MudTh colspan="5">
+                                    <MudSwitch @bind-Checked="@_onlyCurrentGroup" Color="Color.Primary" Style="margin-left: 5px;">@_localizer["Only Selected Group (Export)"]</MudSwitch>
                                 </MudTh>
                             </MudTHeadRow>
                         }

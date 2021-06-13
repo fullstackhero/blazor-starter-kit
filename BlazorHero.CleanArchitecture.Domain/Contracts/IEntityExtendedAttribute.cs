@@ -4,11 +4,15 @@ using BlazorHero.CleanArchitecture.Domain.Enums;
 
 namespace BlazorHero.CleanArchitecture.Domain.Contracts
 {
-    public interface IEntityExtendedAttribute<TId, TEntityId, TEntity> : IEntityExtendedAttribute<TEntityId, TEntity>, IEntity<TId> where TEntity : IEntity<TEntityId>
+    public interface IEntityExtendedAttribute<TId, TEntityId, TEntity>
+        : IEntityExtendedAttribute<TEntityId, TEntity>, IEntity<TId>
+            where TEntity : IEntity<TEntityId>
     {
     }
 
-    public interface IEntityExtendedAttribute<TEntityId, TEntity> : IEntityExtendedAttribute where TEntity : IEntity<TEntityId>
+    public interface IEntityExtendedAttribute<TEntityId, TEntity>
+        : IEntityExtendedAttribute
+            where TEntity : IEntity<TEntityId>
     {
         /// <summary>
         /// External attribute's entity id

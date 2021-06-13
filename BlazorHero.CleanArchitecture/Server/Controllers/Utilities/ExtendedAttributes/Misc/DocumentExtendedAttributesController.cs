@@ -42,9 +42,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttr
         }
 
         [Authorize(Policy = Permissions.DocumentExtendedAttributes.Export)]
-        public override Task<IActionResult> Export(string searchString = "", int entityId = default, bool includeEntity = false)
+        public override Task<IActionResult> Export(string searchString = "", int entityId = default, bool includeEntity = false, bool onlyCurrentGroup = false, string currentGroup = "")
         {
-            return base.Export(searchString, entityId, includeEntity);
+            return base.Export(searchString, entityId, includeEntity, onlyCurrentGroup, currentGroup);
         }
     }
 }

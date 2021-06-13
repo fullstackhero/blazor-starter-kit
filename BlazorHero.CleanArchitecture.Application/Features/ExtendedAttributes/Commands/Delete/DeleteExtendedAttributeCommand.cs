@@ -20,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.C
     public class DeleteExtendedAttributeCommand<TId, TEntityId, TEntity, TExtendedAttribute>
         : IRequest<Result<TId>>
             where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
-            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>
+            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TId>
             where TId : IEquatable<TId>
     {
         public TId Id { get; set; }
@@ -29,7 +29,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.C
     internal class DeleteExtendedAttributeCommandHandler<TId, TEntityId, TEntity, TExtendedAttribute>
         : IRequestHandler<DeleteExtendedAttributeCommand<TId, TEntityId, TEntity, TExtendedAttribute>, Result<TId>>
             where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
-            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>
+            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TId>
             where TId : IEquatable<TId>
     {
         private readonly IStringLocalizer<DeleteExtendedAttributeCommandLocalization> _localizer;

@@ -186,6 +186,9 @@
   <data name="Not Allowed." xml:space="preserve">
     <value>Not Allowed.</value>
   </data>
+  <data name="Only Selected Group (Export)" xml:space="preserve">
+    <value>Only Selected Group (Export)</value>
+  </data>
   <data name="Owner" xml:space="preserve">
     <value>Owner</value>
   </data>

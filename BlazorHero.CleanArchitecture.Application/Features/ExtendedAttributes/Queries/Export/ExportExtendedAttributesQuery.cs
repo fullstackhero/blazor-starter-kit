@@ -24,25 +24,29 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
     public class ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute>
         : IRequest<Result<string>>
             where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
-            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TEntityId>
+            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TId>
             where TId : IEquatable<TId>
     {
         public string SearchString { get; set; }
         public TEntityId EntityId { get; set; }
         public bool IncludeEntity { get; set; }
+        public bool OnlyCurrentGroup { get; set; }
+        public string CurrentGroup { get; set; }
 
-        public ExportExtendedAttributesQuery(string searchString = "", TEntityId entityId = default, bool includeEntity = false)
+        public ExportExtendedAttributesQuery(string searchString = "", TEntityId entityId = default, bool includeEntity = false, bool onlyCurrentGroup = false, string currentGroup = "")
         {
             SearchString = searchString;
             EntityId = entityId;
             IncludeEntity = includeEntity;
+            OnlyCurrentGroup = onlyCurrentGroup;
+            CurrentGroup = currentGroup;
         }
     }
 
     internal class ExportExtendedAttributesQueryHandler<TId, TEntityId, TEntity, TExtendedAttribute>
         : IRequestHandler<ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute>, Result<string>>
             where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
-            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TEntityId>
+            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TId>
             where TId : IEquatable<TId>
     {
         private readonly IExcelService _excelService;
@@ -60,7 +64,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
 
         public async Task<Result<string>> Handle(ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute> request, CancellationToken cancellationToken)
         {
-            var extendedAttributeFilterSpec = new ExtendedAttributeFilterSpecification<TId, TEntityId, TEntity, TExtendedAttribute>(request.SearchString, request.EntityId, request.IncludeEntity);
+            var extendedAttributeFilterSpec = new ExtendedAttributeFilterSpecification<TId, TEntityId, TEntity, TExtendedAttribute>(request);
             var extendedAttributes = await _unitOfWork.Repository<TExtendedAttribute>().Entities
                 .Specify(extendedAttributeFilterSpec)
                 .ToListAsync(cancellationToken);

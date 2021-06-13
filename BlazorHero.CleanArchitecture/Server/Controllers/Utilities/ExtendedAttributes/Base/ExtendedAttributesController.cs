@@ -19,7 +19,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttr
     public abstract class ExtendedAttributesController<TId, TEntityId, TEntity, TExtendedAttribute>
         : BaseApiController<ExtendedAttributesController<TId, TEntityId, TEntity, TExtendedAttribute>>
             where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
-            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TEntityId>
+            where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TId>
             where TId : IEquatable<TId>
     {
         /// <summary>
@@ -85,11 +85,13 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttr
         /// <param name="searchString"></param>
         /// <param name="entityId"></param>
         /// <param name="includeEntity"></param>
+        /// <param name="onlyCurrentGroup"></param>
+        /// <param name="currentGroup"></param>
         /// <returns></returns>
         [HttpGet("export")]
-        public virtual async Task<IActionResult> Export(string searchString = "", TEntityId entityId = default, bool includeEntity = false)
+        public virtual async Task<IActionResult> Export(string searchString = "", TEntityId entityId = default, bool includeEntity = false, bool onlyCurrentGroup = false, string currentGroup = "")
         {
-            return Ok(await _mediator.Send(new ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute>(searchString, entityId, includeEntity)));
+            return Ok(await _mediator.Send(new ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute>(searchString, entityId, includeEntity, onlyCurrentGroup, currentGroup)));
         }
     }
 }

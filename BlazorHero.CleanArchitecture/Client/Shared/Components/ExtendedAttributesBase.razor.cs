@@ -5,8 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queries.Export;
 using BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Queries.GetAllByEntityId;
-using BlazorHero.CleanArchitecture.Application.Mappings;
 using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.ExtendedAttribute;
 using BlazorHero.CleanArchitecture.Domain.Contracts;
@@ -26,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 
     public abstract partial class ExtendedAttributesBase<TId, TEntityId, TEntity, TExtendedAttribute>
         where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
-        where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>
+        where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TId>
         where TId : IEquatable<TId>
     {
         [Inject] private IExtendedAttributeManager<TId, TEntityId, TEntity, TExtendedAttribute> ExtendedAttributeManager { get; set; }
@@ -53,6 +53,9 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         private GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId> _selectedItem = new();
         private string _searchString = "";
         private bool _includeEntity;
+        private bool _onlyCurrentGroup;
+        private int _activeGroupIndex;
+        private MudTabs _mudTabs;
         private bool _dense = true;
         private bool _striped = true;
         private bool _bordered = false;
@@ -133,15 +136,17 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             }
         }
 
-        private async Task OnSearch()
-        {
-            _searchString = string.Empty;
-            await GetExtendedAttributesAsync();
-        }
-
         private async Task ExportToExcel()
         {
-            var response = await ExtendedAttributeManager.ExportToExcelAsync(_searchString, EntityId, _includeEntity);
+            var request = new ExportExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute>
+            {
+                SearchString = _searchString,
+                EntityId = EntityId,
+                IncludeEntity = _includeEntity,
+                OnlyCurrentGroup = _onlyCurrentGroup && _activeGroupIndex != 0,
+                CurrentGroup = _mudTabs.Panels[_activeGroupIndex].Text
+            };
+            var response = await ExtendedAttributeManager.ExportToExcelAsync(request);
             if (response.Succeeded)
             {
                 await _jsRuntime.InvokeVoidAsync("Download", new
@@ -150,7 +155,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                     FileName = $"{typeof(TExtendedAttribute).Name.ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                     MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 });
-                _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
+                _snackBar.Add(string.IsNullOrWhiteSpace(request.SearchString) && !request.IncludeEntity && !request.OnlyCurrentGroup
                     ? _localizer["Extended Attributes exported"]
                     : _localizer["Filtered Extended Attributes exported"], Severity.Success);
             }
@@ -220,12 +225,12 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                 var response = await ExtendedAttributeManager.DeleteAsync(id);
                 if (response.Succeeded)
                 {
-                     await  OnSearch();
+                     await Reset();
                     _snackBar.Add(response.Messages[0], Severity.Success);
                 }
                 else
                 {
-                    await OnSearch();
+                    await Reset();
                     foreach (var message in response.Messages)
                     {
                         _snackBar.Add(message, Severity.Error);
@@ -237,6 +242,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         private async Task Reset()
         {
             _model = new List<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>>();
+            _searchString = "";
             await GetExtendedAttributesAsync();
         }
 
