@@ -6,6 +6,7 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetById;
 
 namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Misc.Document
 {
@@ -28,6 +29,12 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Misc.Docum
         {
             var response = await _httpClient.GetAsync(Routes.DocumentsEndpoints.GetAllPaged(request.PageNumber, request.PageSize, request.SearchString));
             return await response.ToPaginatedResult<GetAllDocumentsResponse>();
+        }
+
+        public async Task<IResult<GetDocumentByIdResponse>> GetByIdAsync(GetDocumentByIdQuery request)
+        {
+            var response = await _httpClient.GetAsync(Routes.DocumentsEndpoints.GetById(request.Id));
+            return await response.ToResult<GetDocumentByIdResponse>();
         }
 
         public async Task<IResult<int>> SaveAsync(AddEditDocumentCommand request)

@@ -7,6 +7,11 @@
             return $"api/documents?pageNumber={pageNumber}&pageSize={pageSize}&searchString={searchString}";
         }
 
+        public static string GetById(int documentId)
+        {
+            return $"api/documents/{documentId}";
+        }
+
         public static string Save = "api/documents";
         public static string Delete = "api/documents";
     }

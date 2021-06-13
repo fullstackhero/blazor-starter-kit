@@ -3,6 +3,7 @@ using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.Delet
 using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetAll;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetById;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 
@@ -25,6 +26,19 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc
         {
             var docs = await _mediator.Send(new GetAllDocumentsQuery(pageNumber, pageSize, searchString));
             return Ok(docs);
+        }
+
+        /// <summary>
+        /// Get Document By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Status 200 Ok</returns>
+        [Authorize(Policy = Permissions.Documents.View)]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var document = await _mediator.Send(new GetDocumentByIdQuery { Id = id });
+            return Ok(document);
         }
 
         /// <summary>
