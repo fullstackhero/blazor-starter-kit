@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
+using BlazorHero.CleanArchitecture.Shared.Constants.Role;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services
@@ -68,7 +69,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 
         public async Task<Result<IEnumerable<ChatUserResponse>>> GetChatUsersAsync(string userId)
         {
-            var allUsers = await _context.Users.Where(user => user.Id != userId).ToListAsync();
+            var userRoles = await _userService.GetRolesAsync(userId);
+            var userIsAdmin = userRoles.Data?.UserRoles?.Any(x => x.Selected && x.RoleName == RoleConstants.AdministratorRole) == true;
+            var allUsers = await _context.Users.Where(user => user.Id != userId && (userIsAdmin || user.IsActive && user.EmailConfirmed)).ToListAsync();
             var chatUsers = _mapper.Map<IEnumerable<ChatUserResponse>>(allUsers);
             return await Result<IEnumerable<ChatUserResponse>>.SuccessAsync(chatUsers);
         }
