@@ -135,6 +135,15 @@
   <data name="Dec" xml:space="preserve">
     <value>Дек</value>
   </data>
+  <data name="Document Extended Attributes" xml:space="preserve">
+    <value>Расширенных атрибутов документов</value>
+  </data>
+  <data name="Document Types" xml:space="preserve">
+    <value>Типов документов</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Документов</value>
+  </data>
   <data name="Feb" xml:space="preserve">
     <value>Фев</value>
   </data>

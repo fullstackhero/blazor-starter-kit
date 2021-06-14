@@ -126,6 +126,15 @@
   <data name="Dashboard" xml:space="preserve">
     <value>Instrumentpanel</value>
   </data>
+  <data name="Document Extended Attributes" xml:space="preserve">
+    <value>Document Extended Attributes</value>
+  </data>
+  <data name="Document Types" xml:space="preserve">
+    <value>Document Types</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
   <data name="Products" xml:space="preserve">
     <value>Produkter</value>
   </data>

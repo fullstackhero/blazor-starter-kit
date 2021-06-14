@@ -30,6 +30,33 @@ else
         </MudItem>
         <MudItem xs="12" sm="6" md="3">
             <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                <MudIcon Icon="@Icons.Material.Filled.AttachFile" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["Documents"]</MudText>
+                    <MudText @bind-Value="@DocumentCount" Typo="Typo.h5">@DocumentCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                <MudIcon Icon="@Icons.Material.Filled.FileCopy" Color="Color.Secondary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["Document Types"]</MudText>
+                    <MudText @bind-Value="@DocumentTypeCount" Typo="Typo.h5">@DocumentTypeCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                <MudIcon Icon="@Icons.Material.Filled.Assignment" Color="Color.Error" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["Document Extended Attributes"]</MudText>
+                    <MudText @bind-Value="@DocumentExtendedAttributeCount" Typo="Typo.h5">@DocumentExtendedAttributeCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
                 <MudIcon Icon="@Icons.Material.Filled.Face" Color="Color.Success" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
                 <div>
                     <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">@_localizer["Registered Users"]</MudText>

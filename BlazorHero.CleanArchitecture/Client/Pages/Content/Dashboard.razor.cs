@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard;
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
@@ -16,6 +17,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
         [CascadingParameter] private HubConnection HubConnection { get; set; }
         [Parameter] public int ProductCount { get; set; }
         [Parameter] public int BrandCount { get; set; }
+        [Parameter] public int DocumentCount { get; set; }
+        [Parameter] public int DocumentTypeCount { get; set; }
+        [Parameter] public int DocumentExtendedAttributeCount { get; set; }
         [Parameter] public int UserCount { get; set; }
         [Parameter] public int RoleCount { get; set; }
 
@@ -45,6 +49,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
             {
                 ProductCount = response.Data.ProductCount;
                 BrandCount = response.Data.BrandCount;
+                DocumentCount = response.Data.DocumentCount;
+                DocumentTypeCount = response.Data.DocumentTypeCount;
+                DocumentExtendedAttributeCount = response.Data.DocumentExtendedAttributeCount;
                 UserCount = response.Data.UserCount;
                 RoleCount = response.Data.RoleCount;
                 foreach (var item in response.Data.DataEnterBarChart)

@@ -138,4 +138,13 @@
   <data name="Registered Roles" xml:space="preserve">
     <value>Ruoli registrati</value>
   </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="Document Types" xml:space="preserve">
+    <value>Document Types</value>
+  </data>
+  <data name="Document Extended Attributes" xml:space="preserve">
+    <value>Document Extended Attributes</value>
+  </data>
 </root>
