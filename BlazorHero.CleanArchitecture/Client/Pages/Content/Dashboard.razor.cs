@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
 using System.Collections.Generic;
@@ -48,6 +49,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
                 RoleCount = response.Data.RoleCount;
                 foreach (var item in response.Data.DataEnterBarChart)
                 {
+                    _dataEnterBarChartSeries
+                        .RemoveAll(x => x.Name.Equals(item.Name, StringComparison.OrdinalIgnoreCase));
                     _dataEnterBarChartSeries.Add(new ChartSeries { Name = item.Name, Data = item.Data });
                 }
             }
