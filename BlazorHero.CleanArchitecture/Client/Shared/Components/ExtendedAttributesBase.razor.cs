@@ -43,6 +43,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         protected abstract string ExtendedAttributesCreatePolicyName { get; }
         protected abstract string ExtendedAttributesDeletePolicyName { get; }
         protected abstract string ExtendedAttributesExportPolicyName { get; }
+        protected abstract string ExtendedAttributesSearchPolicyName { get; }
         protected abstract RenderFragment Inherited();
 
         private TEntityId EntityId => FromStringToEntityIdTypeConverter.Invoke(EntityIdString);
@@ -66,6 +67,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         private bool _canCreateExtendedAttributes;
         private bool _canDeleteExtendedAttributes;
         private bool _canExportExtendedAttributes;
+        private bool _canSearchExtendedAttributes;
 
         protected override async Task OnInitializedAsync()
         {
@@ -80,6 +82,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             _canCreateExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesCreatePolicyName)).Succeeded;
             _canDeleteExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesDeletePolicyName)).Succeeded;
             _canExportExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesExportPolicyName)).Succeeded;
+            _canSearchExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesSearchPolicyName)).Succeeded;
 
             await GetExtendedAttributesAsync();
 

@@ -24,7 +24,10 @@
             }
         </div>
         <MudToolBarSpacer />
-        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@_localizer["Search"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        @if (_canSearchProducts)
+        {
+            <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@_localizer["Search"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        }
     </ToolBarContent>
     <HeaderContent>
         <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="productIdField">@_localizer["Id"]</MudTableSortLabel></MudTh>

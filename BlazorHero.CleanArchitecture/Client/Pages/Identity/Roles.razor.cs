@@ -33,6 +33,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private bool _canCreateRoles;
         private bool _canEditRoles;
         private bool _canDeleteRoles;
+        private bool _canSearchRoles;
         private bool _canViewRoleClaims;
 
         protected override async Task OnInitializedAsync()
@@ -41,6 +42,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             _canCreateRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.Create)).Succeeded;
             _canEditRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.Edit)).Succeeded;
             _canDeleteRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.Delete)).Succeeded;
+            _canSearchRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.Search)).Succeeded;
             _canViewRoleClaims = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.RoleClaims.View)).Succeeded;
 
             await GetRolesAsync();

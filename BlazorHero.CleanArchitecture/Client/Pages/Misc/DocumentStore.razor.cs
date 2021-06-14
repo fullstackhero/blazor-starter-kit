@@ -34,6 +34,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private bool _canCreateDocuments;
         private bool _canEditDocuments;
         private bool _canDeleteDocuments;
+        private bool _canSearchDocuments;
         private bool _canViewDocumentExtendedAttributes;
 
         protected override async Task OnInitializedAsync()
@@ -42,6 +43,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             _canCreateDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Create)).Succeeded;
             _canEditDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Edit)).Succeeded;
             _canDeleteDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Delete)).Succeeded;
+            _canSearchDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Search)).Succeeded;
             _canViewDocumentExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.DocumentExtendedAttributes.View)).Succeeded;
 
             var state = await _stateProvider.GetAuthenticationStateAsync();

@@ -20,7 +20,10 @@
             <MudButton Variant="Variant.Filled" OnClick="@(() => OnSearch(""))" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
         </div>
         <MudToolBarSpacer />
-        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@_localizer["Search"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        @if (_canSearchDocuments)
+        {
+            <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="@_localizer["Search"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        }
     </ToolBarContent>
     <HeaderContent>
         <MudTh><MudTableSortLabel T="GetAllDocumentsResponse" SortLabel="documentIdField">@_localizer["Id"]</MudTableSortLabel></MudTh>

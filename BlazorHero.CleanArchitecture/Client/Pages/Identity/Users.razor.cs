@@ -23,12 +23,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private ClaimsPrincipal _currentUser;
         private bool _canCreateUsers;
+        private bool _canSearchUsers;
         private bool _canViewRoles;
 
         protected override async Task OnInitializedAsync()
         {
             _currentUser = await _authenticationManager.CurrentUser();
             _canCreateUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Create)).Succeeded;
+            _canSearchUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Search)).Succeeded;
             _canViewRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.View)).Succeeded;
 
             await GetUsersAsync();

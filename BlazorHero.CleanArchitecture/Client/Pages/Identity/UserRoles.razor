@@ -14,7 +14,10 @@
             }
         </div>
         <MudToolBarSpacer />
-        <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@_localizer["Search For User Roles"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        @if (_canSearchRoles)
+        {
+            <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@_localizer["Search For User Roles"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        }
     </ToolBarContent>
     <HeaderContent>
         <MudTh><MudTableSortLabel SortBy="new Func<UserRoleModel, object>(x => x.RoleName)">@_localizer["Role Name"]</MudTableSortLabel></MudTh>

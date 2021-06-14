@@ -19,24 +19,30 @@
             }
         </div>
         <MudToolBarSpacer />
-        <MudTextField @bind-Value="_searchString" Immediate="true" Placeholder="@_localizer["Search for Trails"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        @if (_canSearchAuditTrails)
+        {
+            <MudTextField @bind-Value="_searchString" Immediate="true" Placeholder="@_localizer["Search for Trails"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        }
     </ToolBarContent>
     <HeaderContent>
-        <MudTHeadRow IgnoreCheckbox="true">
-            <MudTh colspan="2">
-                <MudDateRangePicker @ref="_dateRangePicker" PickerVariant="PickerVariant.Dialog" Label="@_localizer["Date Range For Searching"]" @bind-DateRange="_dateRange">
-                    <PickerActions>
-                        <MudButton Class="mr-auto align-self-start" OnClick="@(() => _dateRangePicker.Clear())">@_localizer["Clear"]</MudButton>
-                        <MudButton OnClick="@(() => _dateRangePicker.Close(false))">@_localizer["Cancel"]</MudButton>
-                        <MudButton Color="Color.Primary" OnClick="@(() => _dateRangePicker.Close())">@_localizer["Ok"]</MudButton>
-                    </PickerActions>
-                </MudDateRangePicker>
-            </MudTh>
-            <MudTh colspan="3" Style="text-align: right">
-                <MudSwitch @bind-Checked="@_searchInOldValues" Color="Color.Primary" Style="margin-left: 5px;">@_localizer["Search in Old Values"]</MudSwitch>
-                <MudSwitch @bind-Checked="@_searchInNewValues" Color="Color.Primary" Style="margin-left: 5px;">@_localizer["Search in New Values"]</MudSwitch>
-            </MudTh>
-        </MudTHeadRow>
+        @if (_canSearchAuditTrails)
+        {
+            <MudTHeadRow IgnoreCheckbox="true">
+                <MudTh colspan="2">
+                    <MudDateRangePicker @ref="_dateRangePicker" PickerVariant="PickerVariant.Dialog" Label="@_localizer["Date Range For Searching"]" @bind-DateRange="_dateRange">
+                        <PickerActions>
+                            <MudButton Class="mr-auto align-self-start" OnClick="@(() => _dateRangePicker.Clear())">@_localizer["Clear"]</MudButton>
+                            <MudButton OnClick="@(() => _dateRangePicker.Close(false))">@_localizer["Cancel"]</MudButton>
+                            <MudButton Color="Color.Primary" OnClick="@(() => _dateRangePicker.Close())">@_localizer["Ok"]</MudButton>
+                        </PickerActions>
+                    </MudDateRangePicker>
+                </MudTh>
+                <MudTh colspan="3" Style="text-align: right">
+                    <MudSwitch @bind-Checked="@_searchInOldValues" Color="Color.Primary" Style="margin-left: 5px;">@_localizer["Search in Old Values"]</MudSwitch>
+                    <MudSwitch @bind-Checked="@_searchInNewValues" Color="Color.Primary" Style="margin-left: 5px;">@_localizer["Search in New Values"]</MudSwitch>
+                </MudTh>
+            </MudTHeadRow>
+        }
         <MudTHeadRow IgnoreCheckbox="true">
             <MudTh><MudTableSortLabel SortBy="new Func<RelatedAuditTrail, object>(x => x.Id)">@_localizer["Id"]</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<RelatedAuditTrail, object>(x => x.TableName)">@_localizer["Table Name"]</MudTableSortLabel></MudTh>

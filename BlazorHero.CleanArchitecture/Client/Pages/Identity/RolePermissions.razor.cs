@@ -38,11 +38,13 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private ClaimsPrincipal _currentUser;
         private bool _canEditRolePermissions;
+        private bool _canSearchRolePermissions;
 
         protected override async Task OnInitializedAsync()
         {
             _currentUser = await _authenticationManager.CurrentUser();
             _canEditRolePermissions = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.RoleClaims.Edit)).Succeeded;
+            _canSearchRolePermissions = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.RoleClaims.Search)).Succeeded;
 
             _mapper = new MapperConfiguration(c => { c.AddProfile<RoleProfile>(); }).CreateMapper();
             var roleId = Id;

@@ -24,7 +24,10 @@
             }
         </div>
         <MudToolBarSpacer />
-        <MudTextField @bind-Value="_searchString" Immediate="true" Placeholder="@_localizer["Search for Document Types"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        @if (_canSearchDocumentTypes)
+        {
+            <MudTextField @bind-Value="_searchString" Immediate="true" Placeholder="@_localizer["Search for Document Types"]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+        }
     </ToolBarContent>
     <HeaderContent>
         <MudTh><MudTableSortLabel SortBy="new Func<GetAllDocumentTypesResponse, object>(x => x.Id)">@_localizer["Id"]</MudTableSortLabel></MudTh>
