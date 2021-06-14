@@ -27,6 +27,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private ClaimsPrincipal _currentUser;
         private bool _canEditUsers;
         private bool _canSearchRoles;
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
@@ -47,6 +48,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     UserRolesList = response.Data.UserRoles;
                 }
             }
+
+            _loaded = true;
         }
 
         private async Task SaveAsync()

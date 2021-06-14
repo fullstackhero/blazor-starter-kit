@@ -8,7 +8,7 @@
 @typeparam TExtendedAttribute
 
 <HeroTitle Title="@string.Format(_localizer["Manage {0} Extended Attributes"], EntityName)" Description="@Description" />
-@if (_model == null)
+@if (!_loaded)
 {
     <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
 }

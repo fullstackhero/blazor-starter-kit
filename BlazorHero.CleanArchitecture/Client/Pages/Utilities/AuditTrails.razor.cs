@@ -33,6 +33,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
         private ClaimsPrincipal _currentUser;
         private bool _canExportAuditTrails;
         private bool _canSearchAuditTrails;
+        private bool _loaded;
 
         private bool Search(AuditResponse response)
         {
@@ -79,6 +80,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
             _canSearchAuditTrails = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.AuditTrails.Search)).Succeeded;
 
             await GetDataAsync();
+            _loaded = true;
         }
 
         private async Task GetDataAsync()

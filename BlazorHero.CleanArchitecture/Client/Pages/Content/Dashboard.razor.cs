@@ -20,10 +20,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 
         private readonly string[] _dataEnterBarChartXAxisLabels = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
         private readonly List<ChartSeries> _dataEnterBarChartSeries = new();
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
             await LoadDataAsync();
+            _loaded = true;
             HubConnection = new HubConnectionBuilder()
             .WithUrl(_navigationManager.ToAbsoluteUri(ApplicationConstants.SignalR.HubUrl))
             .Build();

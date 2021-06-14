@@ -25,6 +25,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private bool _canCreateUsers;
         private bool _canSearchUsers;
         private bool _canViewRoles;
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
@@ -34,6 +35,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             _canViewRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.View)).Succeeded;
 
             await GetUsersAsync();
+            _loaded = true;
         }
 
         private async Task GetUsersAsync()

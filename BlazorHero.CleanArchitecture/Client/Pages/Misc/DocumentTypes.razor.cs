@@ -36,6 +36,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private bool _canDeleteDocumentTypes;
         private bool _canExportDocumentTypes;
         private bool _canSearchDocumentTypes;
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
@@ -47,6 +48,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             _canSearchDocumentTypes = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.DocumentTypes.Search)).Succeeded;
 
             await GetDocumentTypesAsync();
+            _loaded = true;
             HubConnection = HubConnection.TryInitialize(_navigationManager);
             if (HubConnection.State == HubConnectionState.Disconnected)
             {

@@ -4,7 +4,7 @@
 @attribute [Authorize(Policy = Permissions.RoleClaims.View)]
 
 <HeroTitle Title="@_localizer["Manage Permission"]" Description="@Description" />
-@if (_model == null)
+@if (!_loaded)
 {
     <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
 }

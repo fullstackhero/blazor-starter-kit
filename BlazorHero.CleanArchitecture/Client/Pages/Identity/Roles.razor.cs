@@ -35,6 +35,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private bool _canDeleteRoles;
         private bool _canSearchRoles;
         private bool _canViewRoleClaims;
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
@@ -46,6 +47,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             _canViewRoleClaims = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.RoleClaims.View)).Succeeded;
 
             await GetRolesAsync();
+            _loaded = true;
             HubConnection = HubConnection.TryInitialize(_navigationManager);
             if (HubConnection.State == HubConnectionState.Disconnected)
             {

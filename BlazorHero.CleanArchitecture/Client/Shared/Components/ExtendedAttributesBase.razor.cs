@@ -68,6 +68,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         private bool _canDeleteExtendedAttributes;
         private bool _canExportExtendedAttributes;
         private bool _canSearchExtendedAttributes;
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
@@ -85,6 +86,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             _canSearchExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesSearchPolicyName)).Succeeded;
 
             await GetExtendedAttributesAsync();
+            _loaded = true;
 
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;

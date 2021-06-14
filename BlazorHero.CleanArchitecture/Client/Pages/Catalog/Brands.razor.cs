@@ -36,6 +36,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private bool _canDeleteBrands;
         private bool _canExportBrands;
         private bool _canSearchBrands;
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
@@ -47,6 +48,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             _canSearchBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Search)).Succeeded;
 
             await GetBrandsAsync();
+            _loaded = true;
             HubConnection = HubConnection.TryInitialize(_navigationManager);
             if (HubConnection.State == HubConnectionState.Disconnected)
             {

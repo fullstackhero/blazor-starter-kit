@@ -19,6 +19,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private string _phoneNumber;
         private string _email;
 
+        private bool _loaded;
+
         private async Task ToggleUserStatus()
         {
             var request = new ToggleUserStatusRequest { ActivateUser = _active, UserId = Id };
@@ -66,6 +68,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     _firstLetterOfName = _firstName[0];
                 }
             }
+
+            _loaded = true;
         }
     }
 }
