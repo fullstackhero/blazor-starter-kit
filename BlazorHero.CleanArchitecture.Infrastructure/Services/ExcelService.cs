@@ -56,7 +56,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
                 colIndex++;
             }
 
-            foreach (var item in data)
+            var dataList = data.ToList();
+            foreach (var item in dataList)
             {
                 colIndex = 1;
                 rowIndex++;
@@ -67,6 +68,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
                 {
                     ws.Cells[rowIndex, colIndex++].Value = value;
                 }
+            }
+
+            using (ExcelRange autoFilterCells = ws.Cells[1, 1, dataList.Count + 1, headers.Count])
+            {
+                autoFilterCells.AutoFilter = true;
             }
 
             var byteArray = await p.GetAsByteArrayAsync();
