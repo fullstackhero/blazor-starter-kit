@@ -73,6 +73,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
             using (ExcelRange autoFilterCells = ws.Cells[1, 1, dataList.Count + 1, headers.Count])
             {
                 autoFilterCells.AutoFilter = true;
+                autoFilterCells.AutoFitColumns();
             }
 
             var byteArray = await p.GetAsByteArrayAsync();
