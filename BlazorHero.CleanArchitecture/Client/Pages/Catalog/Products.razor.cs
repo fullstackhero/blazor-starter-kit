@@ -58,6 +58,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
         {
+            if (!string.IsNullOrWhiteSpace(_searchString))
+            {
+                state.Page = 0;
+            }
             await LoadData(state.Page, state.PageSize, state);
             return new TableData<GetAllPagedProductsResponse> { TotalItems = _totalItems, Items = _pagedData };
         }
