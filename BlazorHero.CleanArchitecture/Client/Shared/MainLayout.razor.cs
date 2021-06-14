@@ -46,6 +46,13 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 {
                     ImageDataUrl = imageResponse.Data;
                 }
+
+                var currentUserResult = await _userManager.GetAsync(CurrentUserId);
+                if (!currentUserResult.Succeeded || currentUserResult.Data == null)
+                {
+                    _snackBar.Add(localizer["You are logged out because the user with your Token has been deleted."], Severity.Error);
+                    await _authenticationManager.Logout();
+                }
             }
         }
 

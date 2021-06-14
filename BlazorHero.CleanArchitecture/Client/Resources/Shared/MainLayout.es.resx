@@ -162,6 +162,9 @@
   <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
     <value>You are logged out because the Permissions of one of your Roles have been updated.</value>
   </data>
+  <data name="You are logged out because the user with your Token has been deleted." xml:space="preserve">
+    <value>You are logged out because the user with your Token has been deleted.</value>
+  </data>
   <data name="You are Logged Out." xml:space="preserve">
     <value>You are Logged Out.</value>
   </data>
