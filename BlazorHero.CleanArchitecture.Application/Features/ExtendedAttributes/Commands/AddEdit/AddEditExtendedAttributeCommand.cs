@@ -64,7 +64,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.C
 
         public async Task<Result<TId>> Handle(AddEditExtendedAttributeCommand<TId, TEntityId, TEntity, TExtendedAttribute> command, CancellationToken cancellationToken)
         {
-            if (await _unitOfWork.Repository<TExtendedAttribute>().Entities.Where(x => x.Id.Equals(command.Id) && !x.EntityId.Equals(command.EntityId))
+            if (await _unitOfWork.Repository<TExtendedAttribute>().Entities.Where(x => !x.Id.Equals(command.Id) && x.EntityId.Equals(command.EntityId))
                 .AnyAsync(p => p.Key == command.Key, cancellationToken))
             {
                 return await Result<TId>.FailAsync(_localizer["Extended Attribute with this Key already exists."]);
