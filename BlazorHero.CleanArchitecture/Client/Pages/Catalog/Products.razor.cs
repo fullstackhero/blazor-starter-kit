@@ -131,7 +131,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 {
                     ByteArray = response.Data,
                     FileName = $"{nameof(Products).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                    MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    MimeType = ApplicationConstants.MimeTypes.OpenXml
                 });
                 _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
                     ? _localizer["Products exported"]

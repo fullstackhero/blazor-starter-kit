@@ -15,21 +15,24 @@ namespace BlazorHero.CleanArchitecture.Application.Specifications.ExtendedAttrib
         {
             if (!string.IsNullOrEmpty(request.SearchString))
             {
-                Criteria = p => (p.EntityId.Equals(request.EntityId) || request.EntityId.Equals(default))
+                Criteria = p =>
+                    (p.EntityId.Equals(request.EntityId) || request.EntityId.Equals(default))
                     && (!request.OnlyCurrentGroup || request.CurrentGroup.Equals(p.Group))
-                    && (p.Key.Contains(request.SearchString)
-                        || p.Text != null ? p.Text.Contains(request.SearchString) : false
-                        || p.Decimal != null ? p.Decimal.ToString().Contains(request.SearchString) : false
-                        || p.DateTime != null ? p.DateTime.ToString().Contains(request.SearchString) : false
-                        || p.Json != null ? p.Json.Contains(request.SearchString) : false
-                        || p.ExternalId != null ? p.ExternalId.Contains(request.SearchString) : false
-                        || p.Group != null ? p.Group.Contains(request.SearchString) : false
-                        || p.Description != null ? p.Description.Contains(request.SearchString) : false);
+                    //&& (p.Key != null ? p.Key.Contains(request.SearchString) : false
+                    //    || p.Text != null ? p.Text.Contains(request.SearchString) : false
+                    //    || p.Decimal != null ? p.Decimal.ToString().Contains(request.SearchString) : false
+                    //    || p.DateTime != null ? p.DateTime.ToString().Contains(request.SearchString) : false
+                    //    || p.Json != null ? p.Json.Contains(request.SearchString) : false
+                    //    || p.ExternalId != null ? p.ExternalId.Contains(request.SearchString) : false
+                    //    || p.Group != null ? p.Group.Contains(request.SearchString) : false
+                    //    || p.Description != null ? p.Description.Contains(request.SearchString) : false)
+                    ;
             }
             else
             {
-                Criteria = p => (p.EntityId.Equals(request.EntityId) || request.EntityId.Equals(default))
-                                && (!request.OnlyCurrentGroup || request.CurrentGroup.Equals(p.Group));
+                Criteria = p =>
+                    (p.EntityId.Equals(request.EntityId) || request.EntityId.Equals(default))
+                    && (!request.OnlyCurrentGroup || request.CurrentGroup.Equals(p.Group));
             }
 
             if (request.IncludeEntity)

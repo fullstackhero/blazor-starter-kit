@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.JSInterop;
@@ -82,7 +83,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 ByteArray = base64,
                 FileName = $"{nameof(Users).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                MimeType = ApplicationConstants.MimeTypes.OpenXml
             });
             _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
                 ? _localizer["Users exported"]

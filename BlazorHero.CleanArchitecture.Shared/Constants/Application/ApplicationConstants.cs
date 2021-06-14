@@ -36,5 +36,10 @@
                 return $"all-{entityFullName}-extended-attributes-{entityId}";
             }
         }
+
+        public static class MimeTypes
+        {
+            public const string OpenXml = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+        }
     }
 }

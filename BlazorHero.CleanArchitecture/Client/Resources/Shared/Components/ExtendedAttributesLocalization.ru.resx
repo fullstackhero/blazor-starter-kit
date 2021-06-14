@@ -148,7 +148,7 @@
     <value>Id сущности</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Экспорт</value>
+    <value>Экспорт в Excel</value>
   </data>
   <data name="Extended Attributes exported" xml:space="preserve">
     <value>Расширенные атрибуты экспортированы</value>

@@ -107,7 +107,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                 {
                     ByteArray = response.Data,
                     FileName = $"{nameof(DocumentTypes).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                    MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    MimeType = ApplicationConstants.MimeTypes.OpenXml
                 });
                 _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
                     ? _localizer["Document Types exported"]
