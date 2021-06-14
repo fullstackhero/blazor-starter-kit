@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Extensions;
@@ -68,6 +69,22 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
             var extendedAttributes = await _unitOfWork.Repository<TExtendedAttribute>().Entities
                 .Specify(extendedAttributeFilterSpec)
                 .ToListAsync(cancellationToken);
+
+            // check SearchString outside of specification because of
+            // an expression tree lambda may not contain a null propagating operator
+            if (!string.IsNullOrWhiteSpace(request.SearchString))
+            {
+                extendedAttributes = extendedAttributes.Where(p =>
+                        p.Key.Contains(request.SearchString, StringComparison.InvariantCultureIgnoreCase)
+                        || p.Decimal?.ToString().Contains(request.SearchString, StringComparison.InvariantCultureIgnoreCase) == true
+                        || p.Text?.Contains(request.SearchString, StringComparison.InvariantCultureIgnoreCase) == true
+                        || p.DateTime?.ToString("G", CultureInfo.CurrentCulture).Contains(request.SearchString, StringComparison.InvariantCultureIgnoreCase) == true
+                        || p.Json?.Contains(request.SearchString, StringComparison.InvariantCultureIgnoreCase) == true
+                        || p.ExternalId?.Contains(request.SearchString, StringComparison.InvariantCultureIgnoreCase) == true
+                        || p.Description?.Contains(request.SearchString, StringComparison.InvariantCultureIgnoreCase) == true
+                        || p.Group?.Contains(request.SearchString, StringComparison.InvariantCultureIgnoreCase) == true)
+                    .ToList();
+            }
 
             var mappers = new Dictionary<string, Func<TExtendedAttribute, object>>
             {
