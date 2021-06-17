@@ -7,6 +7,7 @@ using MediatR;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Linq.Dynamic.Core;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,12 +18,14 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public string SearchString { get; set; }
+        public string[] OrderBy { get; set; } // of the form fieldname [ascending|descending],fieldname [ascending|descending]...
 
-        public GetAllProductsQuery(int pageNumber, int pageSize, string searchString)
+        public GetAllProductsQuery(int pageNumber, int pageSize, string searchString,string[] orderBy)
         {
             PageNumber = pageNumber;
             PageSize = pageSize;
             SearchString = searchString;
+            OrderBy = orderBy;
         }
     }
 
@@ -48,11 +51,25 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
                 BrandId = e.BrandId
             };
             var productFilterSpec = new ProductFilterSpecification(request.SearchString);
-            var data = await _unitOfWork.Repository<Product>().Entities
-               .Specify(productFilterSpec)
-               .Select(expression)
-               .ToPaginatedListAsync(request.PageNumber, request.PageSize);
-            return data;
+            if (request.OrderBy == null || request.OrderBy.Length == 0)
+            {
+                var data = await _unitOfWork.Repository<Product>().Entities
+                   .Specify(productFilterSpec)
+                   .Select(expression)
+                   .ToPaginatedListAsync(request.PageNumber, request.PageSize);
+                return data;
+            }
+            else
+            {
+                string Ordering = string.Join(",", request.OrderBy); // of the form fieldname [ascending|descending], ...
+                var data = await _unitOfWork.Repository<Product>().Entities
+                   .Specify(productFilterSpec)
+                   .OrderBy(Ordering) // require system.linq.dynamic.core
+                   .Select(expression)
+                   .ToPaginatedListAsync(request.PageNumber, request.PageSize);
+                return data;
+
+            }
         }
     }
 }

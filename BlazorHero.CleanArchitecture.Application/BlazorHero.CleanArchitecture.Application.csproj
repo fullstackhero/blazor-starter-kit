@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.10" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlazorHero.CleanArchitecture.Domain\BlazorHero.CleanArchitecture.Domain.csproj" />
