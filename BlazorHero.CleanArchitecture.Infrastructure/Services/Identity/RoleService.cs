@@ -83,7 +83,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
         public async Task<Result<PermissionResponse>> GetAllPermissionsAsync(string roleId)
         {
             var model = new PermissionResponse();
-            var allPermissions = GetAllPermissions();
+            var allPermissions = ClaimsHelper.AllPermissions;
             var role = await _roleManager.FindByIdAsync(roleId);
             if (role != null)
             {
@@ -119,23 +119,10 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                     return await Result<PermissionResponse>.FailAsync(roleClaimsResult.Messages);
                 }
             }
-            model.RoleClaims = allPermissions;
+            model.RoleClaims = allPermissions.ToList();
             return await Result<PermissionResponse>.SuccessAsync(model);
         }
-
-        private List<RoleClaimResponse> GetAllPermissions()
-        {
-            var allPermissions = new List<RoleClaimResponse>();
-
-            #region GetPermissions
-
-            allPermissions.GetAllPermissions();
-
-            #endregion GetPermissions
-
-            return allPermissions;
-        }
-
+ 
         public async Task<Result<RoleResponse>> GetByIdAsync(string id)
         {
             var roles = await _roleManager.Roles.SingleOrDefaultAsync(x => x.Id == id);

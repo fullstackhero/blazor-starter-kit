@@ -28,6 +28,12 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             var roles = await _roleService.GetAllAsync();
             return Ok(roles);
         }
+        //[Authorize(Policy = Permissions.Roles.View)]
+        //public async Task<IActionResult> GetPermissions()
+        //{
+        //    var permissions = ApplicationPermissions.AllPermissions;
+        //    return Ok(permissions);
+        //}
         /// <summary>
         /// Add a Role
         /// </summary>

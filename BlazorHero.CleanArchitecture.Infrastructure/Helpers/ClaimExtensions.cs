@@ -3,6 +3,8 @@ using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
@@ -12,26 +14,40 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Helpers
 {
     public static class ClaimsHelper
     {
-        public static void GetAllPermissions(this List<RoleClaimResponse> allPermissions)
+        public static ReadOnlyCollection<RoleClaimResponse> AllPermissions;
+        static ClaimsHelper()
         {
-            var modules = typeof(Permissions).GetNestedTypes();
-
-            foreach (var module in modules)
+            List<RoleClaimResponse> allPermissions = new List<RoleClaimResponse>();
+            IEnumerable<object> permissionClasses = typeof(Permissions).GetNestedTypes(BindingFlags.Static | BindingFlags.Public).Cast<TypeInfo>();
+            foreach (TypeInfo permissionClass in permissionClasses)
             {
-                var fields = module.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-
-                foreach (FieldInfo fi in fields)
+                IEnumerable<FieldInfo> permissions = permissionClass.DeclaredFields.Where(f => f.IsLiteral);
+                foreach (FieldInfo permission in permissions)
                 {
-                    var propertyValue = fi.GetValue(null);
-
-                    if (propertyValue is not null)
-                        allPermissions.Add(new RoleClaimResponse { Value = propertyValue.ToString(), Type = ApplicationClaimTypes.Permission, Group = module.Name });
-                    //TODO - take descriptions from description attribute
+                    RoleClaimResponse applicationPermission = new RoleClaimResponse
+                    {
+                        Value = permission.GetValue(null).ToString(),
+                        Type = ApplicationClaimTypes.Permission,
+                        Group =permissionClass.Name
+                    };
+                    DescriptionAttribute[] attributes = (DescriptionAttribute[])permission.GetCustomAttributes(typeof(DescriptionAttribute), false);
+                    if (attributes != null && attributes.Length > 0)
+                    {
+                        applicationPermission.Description = attributes[0].Description;
+                    }
+                    else
+                    {
+                        applicationPermission.Description = permission.GetValue(null).ToString().Replace('.', ' ');
+                    }
+                    allPermissions.Add(applicationPermission);
                 }
+                AllPermissions = allPermissions.AsReadOnly();
             }
-
         }
-
+        public static string[] GetAllPermissionValues()
+        {
+            return AllPermissions.Select(p => p.Value).ToArray();
+        }
         public static async Task<IdentityResult> AddPermissionClaim(this RoleManager<BlazorHeroRole> roleManager, BlazorHeroRole role, string permission)
         {
             var allClaims = await roleManager.GetClaimsAsync(role);
