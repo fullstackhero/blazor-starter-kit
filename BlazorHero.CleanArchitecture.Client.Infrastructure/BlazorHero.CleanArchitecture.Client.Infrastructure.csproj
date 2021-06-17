@@ -10,10 +10,10 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.6" />
-    <PackageReference Include="MudBlazor" Version="5.0.10" />
-    <PackageReference Include="Blazored.LocalStorage" Version="4.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.7" />
+    <PackageReference Include="MudBlazor" Version="5.0.13" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.1.2" />
     <PackageReference Include="Toolbelt.Blazor.HttpClientInterceptor" Version="9.2.1" />
   </ItemGroup>
   <ItemGroup>
