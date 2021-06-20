@@ -15,13 +15,13 @@
         <div class="justify-center mud-text-align-center">
             @if (_canCreateBrands)
             {
-                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">@_localizer["Create"]</MudButton>
-                <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetBrandsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Secondary" Color="Color.Surface">@_localizer["Reload"]</MudButton>
+                <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">@_localizer["Create"]</MudButton>
+                <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetBrandsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
                 <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface">@_localizer["Export"]</MudButton>
             }
             else
             {
-                <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetBrandsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Secondary" Color="Color.Surface">@_localizer["Reload"]</MudButton>
+                <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetBrandsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
                 <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface">@_localizer["Export"]</MudButton>
             }
         </div>

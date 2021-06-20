@@ -29,7 +29,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private int _totalItems;
         private int _currentPage;
         private string _searchString = "";
-        private bool _dense = true;
+        private bool _dense = false;
         private bool _striped = true;
         private bool _bordered = false;
 
