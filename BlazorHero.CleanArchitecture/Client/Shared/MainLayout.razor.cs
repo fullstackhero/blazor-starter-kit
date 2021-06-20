@@ -51,11 +51,19 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
         private MudTheme _currentTheme;
         private bool _drawerOpen = true;
+        private bool _rightToLeft = false;
+        private async Task RightToLeftToggle()
+        {
+            bool IsRTL = await _clientPreferenceManager.ToggleLayoutDirection();
+            _rightToLeft = IsRTL;
+            _drawerOpen = false;           
+        }
 
         protected override async Task OnInitializedAsync()
         {
             _currentTheme = BlazorHeroTheme.DefaultTheme;
             _currentTheme = await _clientPreferenceManager.GetCurrentThemeAsync();
+            _rightToLeft = await _clientPreferenceManager.IsRTL();
             _interceptor.RegisterEvent();
             hubConnection = hubConnection.TryInitialize(_navigationManager);
             await hubConnection.StartAsync();
