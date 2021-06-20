@@ -75,11 +75,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     var result = await _userManager.AddToRoleAsync(superUser, RoleConstants.AdministratorRole);
                     if (result.Succeeded)
                     {
-                        foreach (var prop in typeof(Permissions).GetNestedTypes().SelectMany(c => c.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)))
+                        foreach (var permission in Permissions.GetRegisteredPermissions())
                         {
-                            var propertyValue = prop.GetValue(null);
-                            if (propertyValue is not null)
-                                await _roleManager.AddPermissionClaim(adminRole, propertyValue.ToString());
+                            await _roleManager.AddPermissionClaim(adminRole, permission);
                         }
                     }
                     _logger.LogInformation(_localizer["Seeded User with Administrator Role."]);
