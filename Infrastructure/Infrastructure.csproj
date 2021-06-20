@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>BlazorHero.CleanArchitecture.Infrastructure</RootNamespace>
+    <AssemblyName>BlazorHero.CleanArchitecture.Infrastructure</AssemblyName>
   </PropertyGroup>
 
   <!--<ItemGroup>
@@ -32,8 +34,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Application\BlazorHero.CleanArchitecture.Application.csproj" />
-    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Shared\BlazorHero.CleanArchitecture.Shared.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

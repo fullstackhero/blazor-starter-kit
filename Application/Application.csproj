@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>BlazorHero.CleanArchitecture.Application</RootNamespace>
+    <AssemblyName>BlazorHero.CleanArchitecture.Application</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
@@ -16,8 +18,8 @@
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.10" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Domain\BlazorHero.CleanArchitecture.Domain.csproj" />
-    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Shared\BlazorHero.CleanArchitecture.Shared.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

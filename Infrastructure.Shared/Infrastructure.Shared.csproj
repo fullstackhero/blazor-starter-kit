@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>BlazorHero.CleanArchitecture.Infrastructure.Shared</RootNamespace>
+    <AssemblyName>BlazorHero.CleanArchitecture.Infrastructure.Shared</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorHero.CleanArchitecture.Application\BlazorHero.CleanArchitecture.Application.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.13.0" />

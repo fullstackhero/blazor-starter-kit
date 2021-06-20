@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>BlazorHero.CleanArchitecture.Server</RootNamespace>
+    <AssemblyName>BlazorHero.CleanArchitecture.Server</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>
     <DocumentationFile>BlazorHero.CleanArchitecture.Server.xml</DocumentationFile>
@@ -35,11 +37,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Application\BlazorHero.CleanArchitecture.Application.csproj" />
-    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Infrastructure.Shared\BlazorHero.CleanArchitecture.Infrastructure.Shared.csproj" />
-    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Infrastructure\BlazorHero.CleanArchitecture.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\BlazorHero.CleanArchitecture.Shared\BlazorHero.CleanArchitecture.Shared.csproj" />
-    <ProjectReference Include="..\Client\BlazorHero.CleanArchitecture.Client.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure.Shared\Infrastructure.Shared.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Client\Client.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\Images\ProfilePictures\" />
