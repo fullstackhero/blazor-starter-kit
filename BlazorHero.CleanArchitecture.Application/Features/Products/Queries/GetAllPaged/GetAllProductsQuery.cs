@@ -20,12 +20,15 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
         public string SearchString { get; set; }
         public string[] OrderBy { get; set; } // of the form fieldname [ascending|descending],fieldname [ascending|descending]...
 
-        public GetAllProductsQuery(int pageNumber, int pageSize, string searchString,string[] orderBy)
+        public GetAllProductsQuery(int pageNumber, int pageSize, string searchString, string orderBy)
         {
             PageNumber = pageNumber;
             PageSize = pageSize;
             SearchString = searchString;
-            OrderBy = orderBy;
+            if (!string.IsNullOrWhiteSpace(orderBy))
+            {
+                OrderBy = orderBy.Split(',');
+            }
         }
     }
 
@@ -51,7 +54,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
                 BrandId = e.BrandId
             };
             var productFilterSpec = new ProductFilterSpecification(request.SearchString);
-            if (request.OrderBy == null || request.OrderBy.Length == 0)
+            if (request.OrderBy?.Any() != true)
             {
                 var data = await _unitOfWork.Repository<Product>().Entities
                    .Specify(productFilterSpec)
@@ -61,10 +64,10 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Get
             }
             else
             {
-                string Ordering = string.Join(",", request.OrderBy); // of the form fieldname [ascending|descending], ...
+                var ordering = string.Join(",", request.OrderBy); // of the form fieldname [ascending|descending], ...
                 var data = await _unitOfWork.Repository<Product>().Entities
                    .Specify(productFilterSpec)
-                   .OrderBy(Ordering) // require system.linq.dynamic.core
+                   .OrderBy(ordering) // require system.linq.dynamic.core
                    .Select(expression)
                    .ToPaginatedListAsync(request.PageNumber, request.PageSize);
                 return data;
