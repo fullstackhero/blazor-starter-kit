@@ -57,7 +57,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         private bool _onlyCurrentGroup;
         private int _activeGroupIndex;
         private MudTabs _mudTabs;
-        private bool _dense = true;
+        private bool _dense = false;
         private bool _striped = true;
         private bool _bordered = false;
 

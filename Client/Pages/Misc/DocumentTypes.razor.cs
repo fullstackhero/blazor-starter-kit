@@ -26,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private List<GetAllDocumentTypesResponse> _documentTypeList = new();
         private GetAllDocumentTypesResponse _documentType = new();
         private string _searchString = "";
-        private bool _dense = true;
+        private bool _dense = false;
         private bool _striped = true;
         private bool _bordered = false;
 

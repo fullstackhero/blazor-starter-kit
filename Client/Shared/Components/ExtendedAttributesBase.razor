@@ -26,9 +26,9 @@ else
                         <div class="justify-center mud-text-align-center">
                             @if (_canCreateExtendedAttributes)
                             {
-                                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())">@_localizer["Create"]</MudButton>
+                                <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())">@_localizer["Create"]</MudButton>
                             }
-                            <MudButton Variant="Variant.Filled" OnClick="Reset" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Reset" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
                             @if (_canExportExtendedAttributes)
                             {
                                 <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface">@_localizer["Export"]</MudButton>
