@@ -2,9 +2,18 @@
 {
     public static class ProductsEndpoints
     {
-        public static string GetAllPaged(int pageNumber, int pageSize, string searchString)
+        public static string GetAllPaged(int pageNumber, int pageSize, string searchString, string[] orderBy)
         {
-            return $"api/v1/products?pageNumber={pageNumber}&pageSize={pageSize}&searchString={searchString}";
+            string url = $"api/v1/products?pageNumber={pageNumber}&pageSize={pageSize}&searchString={searchString}&orderBy=";
+            if (!(orderBy == null || orderBy.Length == 0))
+            {
+                foreach (string OrderByPart in orderBy)
+                {
+                    url = url + OrderByPart + ",";
+                }
+                url = url.Substring(0, url.Length - 1); // loose training ,
+            }
+            return url;
         }
 
         public static string GetCount = "api/v1/products/count";

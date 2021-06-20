@@ -54,6 +54,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                 if (adminRoleInDb == null)
                 {
                     await _roleManager.CreateAsync(adminRole);
+                    adminRoleInDb = await _roleManager.FindByNameAsync(RoleConstants.AdministratorRole);
                     _logger.LogInformation(_localizer["Seeded Administrator Role."]);
                 }
                 //Check if User Exists
@@ -75,14 +76,19 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     var result = await _userManager.AddToRoleAsync(superUser, RoleConstants.AdministratorRole);
                     if (result.Succeeded)
                     {
-                        foreach (var prop in typeof(Permissions).GetNestedTypes().SelectMany(c => c.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)))
+                        _logger.LogInformation(_localizer["Seeded Default SuperAdmin User."]);
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
                         {
-                            var propertyValue = prop.GetValue(null);
-                            if (propertyValue is not null)
-                                await _roleManager.AddPermissionClaim(adminRole, propertyValue.ToString());
+                            _logger.LogError(error.Description);
                         }
                     }
-                    _logger.LogInformation(_localizer["Seeded User with Administrator Role."]);
+                }
+                foreach (var permission in Permissions.GetRegisteredPermissions())
+                {
+                    await _roleManager.AddPermissionClaim(adminRoleInDb, permission);
                 }
             }).GetAwaiter().GetResult();
         }

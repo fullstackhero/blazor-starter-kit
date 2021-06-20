@@ -1,7 +1,18 @@
-﻿namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+
+namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
 {
     public static class Permissions
     {
+        public static class Test
+        {
+            public const string View = "Permissions.Test.View";
+            public const string Create = "Permissions.Test.Create";
+            public const string Edit = "Permissions.Test.Edit";
+            public const string Delete = "Permissions.Test.Delete";
+        }
         public static class Products
         {
             public const string View = "Permissions.Products.View";
@@ -106,6 +117,21 @@
             public const string View = "Permissions.AuditTrails.View";
             public const string Export = "Permissions.AuditTrails.Export";
             public const string Search = "Permissions.AuditTrails.Search";
+        }
+       /// <summary>
+       /// Returns a list of Permissions.
+       /// </summary>
+       /// <returns></returns>
+        public static List<string> GetRegisteredPermissions()
+        {
+            var permssions = new List<string>();
+            foreach (var prop in typeof(Permissions).GetNestedTypes().SelectMany(c => c.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)))
+            {
+                var propertyValue = prop.GetValue(null);
+                if (propertyValue is not null)
+                    permssions.Add(propertyValue.ToString());
+            }
+            return permssions;
         }
     }
 }

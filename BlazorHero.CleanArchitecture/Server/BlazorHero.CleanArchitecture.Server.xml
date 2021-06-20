@@ -372,13 +372,14 @@
             <param name="searchString"></param>
             <returns></returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.ProductsController.GetAll(System.Int32,System.Int32,System.String)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.ProductsController.GetAll(System.Int32,System.Int32,System.String,System.String)">
             <summary>
             Get All Products
             </summary>
             <param name="pageNumber"></param>
             <param name="pageSize"></param>
             <param name="searchString"></param>
+            <param name="orderBy"></param>
             <returns>Status 200 OK</returns>
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.ProductsController.GetProductImageAsync(System.Int32)">

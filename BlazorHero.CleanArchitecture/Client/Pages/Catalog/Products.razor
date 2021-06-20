@@ -36,12 +36,12 @@ else
             }
         </ToolBarContent>
         <HeaderContent>
-            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="productIdField">@_localizer["Id"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="productNameField">@_localizer["Name"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="productBrandField">@_localizer["Brand"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="productDescriptionField">@_localizer["Description"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="productBarcodeField">@_localizer["Barcode"]</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="productRateField">@_localizer["Rate"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="Id">@_localizer["Id"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="Name">@_localizer["Name"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="Brand">@_localizer["Brand"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="Description">@_localizer["Description"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="Barcode">@_localizer["Barcode"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel T="GetAllPagedProductsResponse" SortLabel="Rate">@_localizer["Rate"]</MudTableSortLabel></MudTh>
             <MudTh Style="text-align:right">@_localizer["Actions"]</MudTh>
         </HeaderContent>
         <RowTemplate>
@@ -61,7 +61,7 @@ else
             <MudTd DataLabel="Rate">@context.Rate</MudTd>
             <MudTd DataLabel="Actions" Style="text-align: right">
                 @if (_canEditProducts || _canDeleteProducts)
-                    {
+                {
                     <MudMenu Label="@_localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
                         @if (_canEditProducts)
                             {
@@ -83,7 +83,7 @@ else
                                Color="Color.Surface">
                         @_localizer["No Allowed Actions"]
                     </MudButton>
-                    }
+                }
             </MudTd>
         </RowTemplate>
         <FooterContent>

@@ -70,49 +70,66 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task LoadData(int pageNumber, int pageSize, TableState state)
         {
-            var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1, SearchString = _searchString };
+            string[] Orderings;
+            if (!string.IsNullOrEmpty(state.SortLabel))
+            {
+                if (state.SortDirection != SortDirection.None)
+                {
+                    Orderings = new string[] { string.Format("{0} {1}", state.SortLabel, state.SortDirection.ToString()) }; // just the 1 field
+                }
+                else
+                {
+                    Orderings = new string[] { string.Format("{0}", state.SortLabel) }; // just the 1 field
+                }
+            }
+            else
+            {
+                Orderings = null;
+            }
+
+            var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1, SearchString = _searchString, Orderby = Orderings };
             var response = await ProductManager.GetProductsAsync(request);
             if (response.Succeeded)
             {
                 _totalItems = response.TotalCount;
                 _currentPage = response.CurrentPage;
                 var data = response.Data;
-                var loadedData = data.Where(element =>
-                {
-                    if (string.IsNullOrWhiteSpace(_searchString))
-                        return true;
-                    if (element.Name?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-                        return true;
-                    if (element.Brand?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-                        return true;
-                    if (element.Description?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-                        return true;
-                    if (element.Barcode?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-                        return true;
-                    return false;
-                });
-                switch (state.SortLabel)
-                {
-                    case "productIdField":
-                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Id);
-                        break;
-                    case "productNameField":
-                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Name);
-                        break;
-                    case "productBrandField":
-                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Brand);
-                        break;
-                    case "productDescriptionField":
-                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Description);
-                        break;
-                    case "productBarcodeField":
-                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Barcode);
-                        break;
-                    case "productRateField":
-                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Rate);
-                        break;
-                }
-                data = loadedData.ToList();
+                //var loadedData = data.Where(element =>
+                //{
+                //    if (string.IsNullOrWhiteSpace(_searchString))
+                //        return true;
+                //    if (element.Name?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+                //        return true;
+                //    if (element.Brand?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+                //        return true;
+                //    if (element.Description?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+                //        return true;
+                //    if (element.Barcode?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+                //        return true;
+                //    return false;
+                //});
+                //switch (state.SortLabel)
+                //{
+                //    case "productIdField":
+                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Id);
+                //        break;
+                //    case "productNameField":
+                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Name);
+                //        break;
+                //    case "productBrandField":
+                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Brand);
+                //        break;
+                //    case "productDescriptionField":
+                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Description);
+                //        break;
+                //    case "productBarcodeField":
+                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Barcode);
+                //        break;
+                //    case "productRateField":
+                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Rate);
+                //        break;
+                //}
+                //data = loadedData.ToList();
                 _pagedData = data;
             }
             else
