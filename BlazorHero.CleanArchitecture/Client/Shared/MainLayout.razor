@@ -45,7 +45,7 @@
                             <MudMenuItem Link="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/" Target="_blank">@localizer["Quick-Start Guide"]</MudMenuItem>
                         </MudMenu>
                         <LanguageSelector />
-                        <MudTooltip Text="Toggle right-to-left/left-to-right">
+                        <MudTooltip Text="@localizer["Toggle right-to-left/left-to-right"]">
                             <MudIconButton Icon="@Icons.Material.Filled.FormatTextdirectionRToL" Color="Color.Inherit" OnClick="@((e) => RightToLeftToggle())" />
                         </MudTooltip>
                         <MudTooltip Text="@localizer["Toggle Dark Mode"]">

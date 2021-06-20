@@ -61,9 +61,9 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         private bool _rightToLeft = false;
         private async Task RightToLeftToggle()
         {
-            bool IsRTL = await _clientPreferenceManager.ToggleLayoutDirection();
-            _rightToLeft = IsRTL;
-            _drawerOpen = false;           
+            var isRtl = await _clientPreferenceManager.ToggleLayoutDirection();
+            _rightToLeft = isRtl;
+            _drawerOpen = false;
         }
 
         protected override async Task OnInitializedAsync()
