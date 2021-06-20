@@ -31,21 +31,20 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             if (user == null) return;
             if (user.Identity?.IsAuthenticated == true)
             {
-                CurrentUserId = user.GetUserId();
-                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);
-                this.FirstName = user.GetFirstName();
-                if (this.FirstName.Length > 0)
+                CurrentUserId = user.GetUserId();                
+                FirstName = user.GetFirstName();
+                if (FirstName.Length > 0)
                 {
                     FirstLetterOfName = FirstName[0];
                 }
                 this.SecondName = user.GetLastName();
                 this.Email = user.GetEmail();
-
                 var imageResponse = await _accountManager.GetProfilePictureAsync(CurrentUserId);
                 if (imageResponse.Succeeded)
                 {
                     ImageDataUrl = imageResponse.Data;
                 }
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);
             }
         }
 
