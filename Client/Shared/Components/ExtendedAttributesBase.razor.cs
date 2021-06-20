@@ -259,7 +259,8 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             EntityExtendedAttributeType.Decimal => response.Decimal,
             EntityExtendedAttributeType.Text => response.Text,
             EntityExtendedAttributeType.DateTime => response.DateTime,
-            EntityExtendedAttributeType.Json => response.Json
+            EntityExtendedAttributeType.Json => response.Json,
+            _ => response.Text
         };
         private Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByExternalId = response => response.ExternalId;
         private Func<GetAllExtendedAttributesByEntityIdResponse<TId, TEntityId>, object> SortByGroup = response => response.Group;

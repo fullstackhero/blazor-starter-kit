@@ -6,7 +6,7 @@
     <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">@_localizer["Home"]</MudNavLink>
     @if (_canViewHangfire)
     {
-        <MudNavLink Href="/jobs" Icon="@Icons.Material.Outlined.Work">
+        <MudNavLink Href="/jobs" Target="_blank" Icon="@Icons.Material.Outlined.Work">
             @_localizer["Hangfire"]
         </MudNavLink>
     }
