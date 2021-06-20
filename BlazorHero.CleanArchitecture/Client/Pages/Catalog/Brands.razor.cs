@@ -26,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private List<GetAllBrandsResponse> _brandList = new();
         private GetAllBrandsResponse _brand = new();
         private string _searchString = "";
-        private bool _dense = true;
+        private bool _dense = false;
         private bool _striped = true;
         private bool _bordered = false;
 

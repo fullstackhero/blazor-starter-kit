@@ -32,14 +32,13 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             if (user.Identity?.IsAuthenticated == true)
             {
                 CurrentUserId = user.GetUserId();
-                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);
-                this.FirstName = user.GetFirstName();
-                if (this.FirstName.Length > 0)
+                FirstName = user.GetFirstName();
+                if (FirstName.Length > 0)
                 {
                     FirstLetterOfName = FirstName[0];
                 }
-                this.SecondName = user.GetLastName();
-                this.Email = user.GetEmail();
+                SecondName = user.GetLastName();
+                Email = user.GetEmail();
 
                 var imageResponse = await _accountManager.GetProfilePictureAsync(CurrentUserId);
                 if (imageResponse.Succeeded)
@@ -53,6 +52,8 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                     _snackBar.Add(localizer["You are logged out because the user with your Token has been deleted."], Severity.Error);
                     await _authenticationManager.Logout();
                 }
+
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);
             }
         }
 

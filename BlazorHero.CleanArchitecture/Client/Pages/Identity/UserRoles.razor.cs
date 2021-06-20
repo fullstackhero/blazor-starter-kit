@@ -20,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private UserRoleModel _userRole = new();
         private string _searchString = "";
-        private bool _dense = true;
+        private bool _dense = false;
         private bool _striped = true;
         private bool _bordered = false;
 

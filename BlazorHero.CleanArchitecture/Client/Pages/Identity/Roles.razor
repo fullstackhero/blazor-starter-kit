@@ -22,9 +22,13 @@ else
             <div class="justify-center mud-text-align-center">
                 @if (_canCreateRoles)
                 {
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())">@_localizer["Create"]</MudButton>
+                    <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">@_localizer["Create"]</MudButton>
+                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetRolesAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
                 }
-                <MudButton Variant="Variant.Filled" OnClick="GetRolesAsync" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                else
+                {
+                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetRolesAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                }
             </div>
             <MudToolBarSpacer />
             @if (_canSearchRoles)

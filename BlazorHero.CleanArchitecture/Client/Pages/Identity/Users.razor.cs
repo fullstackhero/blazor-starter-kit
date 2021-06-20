@@ -17,13 +17,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private List<UserResponse> _userList = new();
         private UserResponse _user = new();
         private string _searchString = "";
-        private bool _dense = true;
+        private bool _dense = false;
         private bool _striped = true;
         private bool _bordered = false;
 
         private ClaimsPrincipal _currentUser;
         private bool _canCreateUsers;
         private bool _canSearchUsers;
+        private bool _canExportUsers;
         private bool _canViewRoles;
         private bool _loaded;
 
@@ -32,6 +33,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             _currentUser = await _authenticationManager.CurrentUser();
             _canCreateUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Create)).Succeeded;
             _canSearchUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Search)).Succeeded;
+            _canExportUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Export)).Succeeded;
             _canViewRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.View)).Succeeded;
 
             await GetUsersAsync();

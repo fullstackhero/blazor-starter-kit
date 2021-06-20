@@ -25,7 +25,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
         private List<RoleResponse> _roleList = new();
         private RoleResponse _role = new();
         private string _searchString = "";
-        private bool _dense = true;
+        private bool _dense = false;
         private bool _striped = true;
         private bool _bordered = false;
 
