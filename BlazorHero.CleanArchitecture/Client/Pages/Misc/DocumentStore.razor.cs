@@ -8,7 +8,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Document;
+using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Misc.Document;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
@@ -33,6 +34,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
         private bool _canCreateDocuments;
         private bool _canEditDocuments;
         private bool _canDeleteDocuments;
+        private bool _canSearchDocuments;
+        private bool _canViewDocumentExtendedAttributes;
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
@@ -40,6 +44,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
             _canCreateDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Create)).Succeeded;
             _canEditDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Edit)).Succeeded;
             _canDeleteDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Delete)).Succeeded;
+            _canSearchDocuments = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Documents.Search)).Succeeded;
+            _canViewDocumentExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.DocumentExtendedAttributes.View)).Succeeded;
+
+            _loaded = true;
 
             var state = await _stateProvider.GetAuthenticationStateAsync();
             var user = state.User;
@@ -52,13 +60,17 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 
         private async Task<TableData<GetAllDocumentsResponse>> ServerReload(TableState state)
         {
+            if (!string.IsNullOrWhiteSpace(_searchString))
+            {
+                state.Page = 0;
+            }
             await LoadData(state.Page, state.PageSize, state);
             return new TableData<GetAllDocumentsResponse> { TotalItems = _totalItems, Items = _pagedData };
         }
 
         private async Task LoadData(int pageNumber, int pageSize, TableState state)
         {
-            var request = new GetAllPagedDocumentsRequest { PageSize = pageSize, PageNumber = pageNumber + 1 };
+            var request = new GetAllPagedDocumentsRequest { PageSize = pageSize, PageNumber = pageNumber + 1, SearchString = _searchString };
             var response = await DocumentManager.GetAllAsync(request);
             if (response.Succeeded)
             {
@@ -73,6 +85,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                         return true;
                     if (element.Description.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
                         return true;
+                    if (element.DocumentType.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+                        return true;
                     return false;
                 });
                 switch (state.SortLabel)
@@ -85,6 +99,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                         break;
                     case "documentDescriptionField":
                         loadedData = loadedData.OrderByDirection(state.SortDirection, d => d.Description);
+                        break;
+                    case "documentDocumentTypeField":
+                        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.DocumentType);
                         break;
                     case "documentIsPublicField":
                         loadedData = loadedData.OrderByDirection(state.SortDirection, d => d.IsPublic);
@@ -128,7 +145,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                         Title = doc.Title,
                         Description = doc.Description,
                         URL = doc.URL,
-                        IsPublic = doc.IsPublic
+                        IsPublic = doc.IsPublic,
+                        DocumentTypeId = doc.DocumentTypeId
                     });
                 }
             }
@@ -168,6 +186,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
                     }
                 }
             }
+        }
+
+        private void ManageExtendedAttributes(int documentId)
+        {
+            _navigationManager.NavigateTo($"/extended-attributes/{typeof(Document).Name}/{documentId}");
         }
     }
 }

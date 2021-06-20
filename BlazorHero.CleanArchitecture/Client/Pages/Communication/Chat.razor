@@ -1,5 +1,6 @@
 ﻿@page "/chat/{CId}"
 @page "/chat"
+@using System.Globalization
 @attribute [Authorize(Policy = Permissions.Communication.Chat)]
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Chat> _localizer
 
@@ -39,7 +40,7 @@
                     </div>
                     <div>
                         <MudText Typo="Typo.body1">@message.FromUserFullName</MudText>
-                        <MudText Typo="Typo.caption" Style="font-size: xx-small!important;">@message.CreatedDate.ToString("dd MMM, yyyy hh:mm tt")</MudText>
+                        <MudText Typo="Typo.caption" Style="font-size: xx-small!important;">@message.CreatedDate.ToString("G", CultureInfo.CurrentCulture)</MudText>
                         <MudText Typo="Typo.body2" Style=" padding: 15px;background-color: var(--mud-palette-background-grey);border-radius: 5px;margin-top:5px">@message.Message</MudText>
                     </div>
                 </div>

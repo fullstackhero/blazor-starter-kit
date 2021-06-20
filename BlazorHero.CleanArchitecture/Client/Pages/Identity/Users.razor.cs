@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.JSInterop;
@@ -22,15 +23,21 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private ClaimsPrincipal _currentUser;
         private bool _canCreateUsers;
+        private bool _canSearchUsers;
+        private bool _canExportUsers;
         private bool _canViewRoles;
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
             _currentUser = await _authenticationManager.CurrentUser();
             _canCreateUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Create)).Succeeded;
+            _canSearchUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Search)).Succeeded;
+            _canExportUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Export)).Succeeded;
             _canViewRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.View)).Succeeded;
 
             await GetUsersAsync();
+            _loaded = true;
         }
 
         private async Task GetUsersAsync()
@@ -82,7 +89,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
             {
                 ByteArray = base64,
                 FileName = $"{nameof(Users).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                MimeType = ApplicationConstants.MimeTypes.OpenXml
             });
             _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
                 ? _localizer["Users exported"]

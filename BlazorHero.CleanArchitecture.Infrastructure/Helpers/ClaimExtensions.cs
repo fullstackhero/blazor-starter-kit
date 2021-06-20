@@ -42,14 +42,5 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Helpers
 
             return IdentityResult.Failed();
         }
-
-        public static async Task AddCustomPermissionClaim(this RoleManager<BlazorHeroRole> roleManager, BlazorHeroRole role, string permission)
-        {
-            var allClaims = await roleManager.GetClaimsAsync(role);
-            if (!allClaims.Any(a => a.Type == ApplicationClaimTypes.Permission && a.Value == permission))
-            {
-                await roleManager.AddClaimAsync(role, new Claim(ApplicationClaimTypes.Permission, permission));
-            }
-        }
     }
 }

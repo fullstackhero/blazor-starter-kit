@@ -3,7 +3,7 @@ using BlazorHero.CleanArchitecture.Application.Specifications.Base;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Specifications
 {
-    public class UserFilterSpecification : HeroSpecification<BlazorHeroUser, string>
+    public class UserFilterSpecification : HeroSpecification<BlazorHeroUser>
     {
         public UserFilterSpecification(string searchString)
         {

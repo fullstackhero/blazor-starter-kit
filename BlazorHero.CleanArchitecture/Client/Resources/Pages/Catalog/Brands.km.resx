@@ -156,6 +156,9 @@
   <data name="Name" xml:space="preserve">
     <value>ឈ្មោះ</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>No Allowed Actions</value>
+  </data>
   <data name="Reload" xml:space="preserve">
     <value>ផ្ទុកឡើងវិញ</value>
   </data>

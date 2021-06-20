@@ -26,11 +26,14 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
 
         private ClaimsPrincipal _currentUser;
         private bool _canEditUsers;
+        private bool _canSearchRoles;
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
             _currentUser = await _authenticationManager.CurrentUser();
-            _canEditUsers = _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Edit).Result.Succeeded;
+            _canEditUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Edit)).Succeeded;
+            _canSearchRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.Search)).Succeeded;
 
             var userId = Id;
             var result = await _userManager.GetAsync(userId);
@@ -45,6 +48,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                     UserRolesList = response.Data.UserRoles;
                 }
             }
+
+            _loaded = true;
         }
 
         private async Task SaveAsync()

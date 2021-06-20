@@ -33,9 +33,16 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Dele
             if (!isBrandUsed)
             {
                 var brand = await _unitOfWork.Repository<Brand>().GetByIdAsync(command.Id);
-                await _unitOfWork.Repository<Brand>().DeleteAsync(brand);
-                await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
-                return await Result<int>.SuccessAsync(brand.Id, _localizer["Brand Deleted"]);
+                if (brand != null)
+                {
+                    await _unitOfWork.Repository<Brand>().DeleteAsync(brand);
+                    await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
+                    return await Result<int>.SuccessAsync(brand.Id, _localizer["Brand Deleted"]);
+                }
+                else
+                {
+                    return await Result<int>.FailAsync(_localizer["Brand Not Found!"]);
+                }
             }
             else
             {

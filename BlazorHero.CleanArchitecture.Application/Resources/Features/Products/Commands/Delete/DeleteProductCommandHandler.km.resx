@@ -120,4 +120,7 @@
   <data name="Product Deleted" xml:space="preserve">
     <value>ផលិតផលត្រូវបានលុប</value>
   </data>
+  <data name="Product Not Found!" xml:space="preserve">
+    <value>ផលិតផលរកមិនឃើញ!</value>
+  </data>
 </root>

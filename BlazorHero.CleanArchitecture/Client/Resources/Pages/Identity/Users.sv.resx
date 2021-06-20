@@ -150,6 +150,9 @@
   <data name="Manage Users" xml:space="preserve">
     <value>Hantera Användare</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>No Allowed Actions</value>
+  </data>
   <data name="Not Allowed." xml:space="preserve">
     <value>Inte Tillåtet.</value>
   </data>

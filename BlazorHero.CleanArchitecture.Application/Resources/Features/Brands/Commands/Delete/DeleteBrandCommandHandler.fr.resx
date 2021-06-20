@@ -120,4 +120,10 @@
   <data name="Brand Deleted" xml:space="preserve">
     <value>Brand Deleted</value>
   </data>
+  <data name="Brand Not Found!" xml:space="preserve">
+    <value>Brand Not Found!</value>
+  </data>
+  <data name="Deletion Not Allowed" xml:space="preserve">
+    <value>Deletion Not Allowed</value>
+  </data>
 </root>

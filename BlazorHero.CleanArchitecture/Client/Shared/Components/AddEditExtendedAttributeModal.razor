@@ -1,0 +1,116 @@
+﻿@using BlazorHero.CleanArchitecture.Domain.Enums
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditExtendedAttributeModalLocalization> _localizer
+
+@typeparam TId
+@typeparam TEntityId
+@typeparam TEntity
+@typeparam TExtendedAttribute
+
+<EditForm Model="@AddEditExtendedAttributeModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditExtendedAttributeModel.Id.Equals(default))
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Extended Attribute"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Extended Attribute"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @if (AddEditExtendedAttributeModel.Id.Equals(default) != true)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditExtendedAttributeModel.Id)" @bind-Value="AddEditExtendedAttributeModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField Disabled For="@(() => AddEditExtendedAttributeModel.EntityId)" @bind-Value="AddEditExtendedAttributeModel.EntityId" Label="@_localizer["Entity Id"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudSelect T="EntityExtendedAttributeType" Label="@_localizer["Type"]" For="@(() => AddEditExtendedAttributeModel.Type)" @bind-Value="AddEditExtendedAttributeModel.Type" Variant="Variant.Filled">
+                        @foreach (var typeName in Enum.GetNames(typeof(EntityExtendedAttributeType)))
+                        {
+                            <MudSelectItem T="EntityExtendedAttributeType" Value="@(Enum.GetValues<EntityExtendedAttributeType>().FirstOrDefault(x => x.ToString() == typeName))">@typeName</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditExtendedAttributeModel.Key)" @bind-Value="AddEditExtendedAttributeModel.Key" Label="@_localizer["Key"]" />
+                </MudItem>
+                @if (AddEditExtendedAttributeModel.Type == EntityExtendedAttributeType.Decimal)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudNumericField For="@(() => AddEditExtendedAttributeModel.Decimal)" @bind-Value="AddEditExtendedAttributeModel.Decimal" Label="@_localizer["Decimal"]" />
+                    </MudItem>
+                }
+                else if (AddEditExtendedAttributeModel.Type == EntityExtendedAttributeType.Text)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField For="@(() => AddEditExtendedAttributeModel.Text)" @bind-Value="AddEditExtendedAttributeModel.Text" Label="@_localizer["Text"]" />
+                    </MudItem>
+                }
+                else if (AddEditExtendedAttributeModel.Type == EntityExtendedAttributeType.DateTime)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudDatePicker @ref="_datePicker" PickerVariant="PickerVariant.Dialog" @bind-Date="AddEditExtendedAttributeModel.DateTime" Label="@_localizer["Date"]">
+                            <PickerActions>
+                                <MudButton Class="mr-auto align-self-start" OnClick="@(() => _datePicker.Clear())">@_localizer["Clear"]</MudButton>
+                                <MudButton OnClick="@(() => _datePicker.Close(false))">@_localizer["Cancel"]</MudButton>
+                                <MudButton Color="Color.Primary" OnClick="@(() => _datePicker.Close())">@_localizer["Ok"]</MudButton>
+                            </PickerActions>
+                        </MudDatePicker>
+
+                        <MudTimePicker @ref="_timePicker" PickerVariant="PickerVariant.Dialog" Label="@_localizer["Time"]" @bind-Time="_time">
+                            <PickerActions>
+                                <MudButton Class="mr-auto align-self-start" OnClick="@(() => _timePicker.Clear())">@_localizer["Clear"]</MudButton>
+                                <MudButton OnClick="@(() => _timePicker.Close(false))">@_localizer["Cancel"]</MudButton>
+                                <MudButton Color="Color.Primary" OnClick="@(() => _timePicker.Close())">@_localizer["Ok"]</MudButton>
+                            </PickerActions>
+                        </MudTimePicker>
+                    </MudItem>
+                }
+                else if (AddEditExtendedAttributeModel.Type == EntityExtendedAttributeType.Json)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField For="@(() => AddEditExtendedAttributeModel.Json)" @bind-Value="AddEditExtendedAttributeModel.Json" Label="@_localizer["Json"]" Variant="Variant.Outlined" Lines="10" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditExtendedAttributeModel.ExternalId)" @bind-Value="AddEditExtendedAttributeModel.ExternalId" Label="@_localizer["External Id"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditExtendedAttributeModel.Group)" @bind-Value="AddEditExtendedAttributeModel.Group" Label="@_localizer["Group"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditExtendedAttributeModel.Description)" @bind-Value="AddEditExtendedAttributeModel.Description" Label="@_localizer["Description"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudCheckBox For="@(() => AddEditExtendedAttributeModel.IsActive)" @bind-Checked="@AddEditExtendedAttributeModel.IsActive" Color="Color.Secondary" Label="@_localizer["Is Active"]" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditExtendedAttributeModel.Id.Equals(default) != true)
+            {
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

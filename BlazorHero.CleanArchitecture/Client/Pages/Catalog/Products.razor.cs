@@ -37,6 +37,9 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
         private bool _canCreateProducts;
         private bool _canEditProducts;
         private bool _canDeleteProducts;
+        private bool _canExportProducts;
+        private bool _canSearchProducts;
+        private bool _loaded;
 
         protected override async Task OnInitializedAsync()
         {
@@ -44,7 +47,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             _canCreateProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Create)).Succeeded;
             _canEditProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Edit)).Succeeded;
             _canDeleteProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Delete)).Succeeded;
+            _canExportProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Export)).Succeeded;
+            _canSearchProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Search)).Succeeded;
 
+            _loaded = true;
             HubConnection = HubConnection.TryInitialize(_navigationManager);
             if (HubConnection.State == HubConnectionState.Disconnected)
             {
@@ -54,73 +60,29 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
         {
+            if (!string.IsNullOrWhiteSpace(_searchString))
+            {
+                state.Page = 0;
+            }
             await LoadData(state.Page, state.PageSize, state);
             return new TableData<GetAllPagedProductsResponse> { TotalItems = _totalItems, Items = _pagedData };
         }
 
         private async Task LoadData(int pageNumber, int pageSize, TableState state)
         {
-            string[] Orderings;
+            string[] orderings = null;
             if (!string.IsNullOrEmpty(state.SortLabel))
             {
-                if (state.SortDirection != SortDirection.None)
-                {
-                    Orderings = new string[] { string.Format("{0} {1}", state.SortLabel, state.SortDirection.ToString()) }; // just the 1 field
-                }
-                else
-                {
-                    Orderings = new string[] { string.Format("{0}", state.SortLabel) }; // just the 1 field
-                }
-            }
-            else
-            {
-                Orderings = null;
+                orderings = state.SortDirection != SortDirection.None ? new[] {$"{state.SortLabel} {state.SortDirection}"} : new[] {$"{state.SortLabel}"};
             }
 
-            var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1, SearchString = _searchString, Orderby = Orderings };
+            var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1, SearchString = _searchString, Orderby = orderings };
             var response = await ProductManager.GetProductsAsync(request);
             if (response.Succeeded)
             {
                 _totalItems = response.TotalCount;
                 _currentPage = response.CurrentPage;
-                var data = response.Data;
-                //var loadedData = data.Where(element =>
-                //{
-                //    if (string.IsNullOrWhiteSpace(_searchString))
-                //        return true;
-                //    if (element.Name?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-                //        return true;
-                //    if (element.Brand?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-                //        return true;
-                //    if (element.Description?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-                //        return true;
-                //    if (element.Barcode?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-                //        return true;
-                //    return false;
-                //});
-                //switch (state.SortLabel)
-                //{
-                //    case "productIdField":
-                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Id);
-                //        break;
-                //    case "productNameField":
-                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Name);
-                //        break;
-                //    case "productBrandField":
-                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Brand);
-                //        break;
-                //    case "productDescriptionField":
-                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Description);
-                //        break;
-                //    case "productBarcodeField":
-                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Barcode);
-                //        break;
-                //    case "productRateField":
-                //        loadedData = loadedData.OrderByDirection(state.SortDirection, p => p.Rate);
-                //        break;
-                //}
-                //data = loadedData.ToList();
-                _pagedData = data;
+                _pagedData = response.Data;
             }
             else
             {
@@ -139,16 +101,26 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 
         private async Task ExportToExcel()
         {
-            var base64 = await ProductManager.ExportToExcelAsync(_searchString);
-            await _jsRuntime.InvokeVoidAsync("Download", new
+            var response = await ProductManager.ExportToExcelAsync(_searchString);
+            if (response.Succeeded)
             {
-                ByteArray = base64,
-                FileName = $"{nameof(Products).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            });
-            _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
-                ? _localizer["Products exported"]
-                : _localizer["Filtered Products exported"], Severity.Success);
+                await _jsRuntime.InvokeVoidAsync("Download", new
+                {
+                    ByteArray = response.Data,
+                    FileName = $"{nameof(Products).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                    MimeType = ApplicationConstants.MimeTypes.OpenXml
+                });
+                _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
+                    ? _localizer["Products exported"]
+                    : _localizer["Filtered Products exported"], Severity.Success);
+            }
+            else
+            {
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
+            }
         }
 
         private async Task InvokeModal(int id = 0)

@@ -1,8 +1,8 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Application.Specifications;
-using BlazorHero.CleanArchitecture.Domain.Entities;
+using BlazorHero.CleanArchitecture.Application.Specifications.Misc;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using System;
@@ -49,7 +49,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.Ge
                 IsPublic = e.IsPublic,
                 CreatedOn = e.CreatedOn,
                 Description = e.Description,
-                URL = e.URL
+                URL = e.URL,
+                DocumentType = e.DocumentType.Name,
+                DocumentTypeId = e.DocumentTypeId
             };
             var docSpec = new DocumentFilterSpecification(request.SearchString, _currentUserService.UserId);
             var data = await _unitOfWork.Repository<Document>().Entities

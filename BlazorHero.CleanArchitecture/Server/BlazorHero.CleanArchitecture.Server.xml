@@ -4,7 +4,7 @@
         <name>BlazorHero.CleanArchitecture.Server</name>
     </assembly>
     <members>
-        <member name="F:BlazorHero.CleanArchitecture.Server.Controllers.BaseApiController`1._mediatorInstance">
+        <member name="T:BlazorHero.CleanArchitecture.Server.Controllers.BaseApiController`1">
             <summary>
             Abstract BaseApi Controller Class
             </summary>
@@ -122,7 +122,7 @@
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Identity.UserController.ForgotPasswordAsync(BlazorHero.CleanArchitecture.Application.Requests.Identity.ForgotPasswordRequest)">
             <summary>
-            Forgot Password 
+            Forgot Password
             </summary>
             <param name="request"></param>
             <returns>Status 200 OK</returns>
@@ -190,7 +190,7 @@
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.RoleController.GetPermissionsByRoleId(System.String)">
             <summary>
-            Get Permission By Role Id
+            Get Permissions By Role Id
             </summary>
             <param name="roleId"></param>
             <returns>Status 200 Ok</returns>
@@ -204,20 +204,70 @@
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.AuditsController.GetUserTrailsAsync">
             <summary>
-            Get Current User Trails
+            Get Current User Audit Trails
             </summary>
             <returns>Status 200 OK</returns>
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.AuditsController.ExportExcel(System.String,System.Boolean,System.Boolean)">
             <summary>
-            Export Audit Train to Excel
+            Search Audit Trails and Export to Excel
             </summary>
             <param name="searchString"></param>
             <param name="searchInOldValues"></param>
             <param name="searchInNewValues"></param>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.DocumentsController.GetAll(System.Int32,System.Int32,System.String)">
+        <member name="T:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4">
+            <summary>
+            Abstract Extended Attributes Controller Class
+            </summary>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetAll">
+            <summary>
+            Get All Entity Extended Attributes
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetAllByEntityId(`1)">
+            <summary>
+            Get All Entity Extended Attributes by entity id
+            </summary>
+            <param name="entityId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetById(`0)">
+            <summary>
+            Get Entity Extended Attribute By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Post(BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Commands.AddEdit.AddEditExtendedAttributeCommand{`0,`1,`2,`3})">
+            <summary>
+            Create/Update a Entity Extended Attribute
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Delete(`0)">
+            <summary>
+            Delete a Entity Extended Attribute
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Export(System.String,`1,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Search Entity Extended Attribute and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <param name="entityId"></param>
+            <param name="includeEntity"></param>
+            <param name="onlyCurrentGroup"></param>
+            <param name="currentGroup"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.GetAll(System.Int32,System.Int32,System.String)">
             <summary>
             Get All Documents
             </summary>
@@ -226,19 +276,60 @@
             <param name="searchString"></param>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.DocumentsController.Post(BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit.AddEditDocumentCommand)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.GetById(System.Int32)">
             <summary>
-            Add/Edit Documents
+            Get Document By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.Post(BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit.AddEditDocumentCommand)">
+            <summary>
+            Add/Edit Document
             </summary>
             <param name="command"></param>
             <returns>Status 200 OK</returns>
         </member>
-        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.DocumentsController.Delete(System.Int32)">
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentsController.Delete(System.Int32)">
             <summary>
             Delete a Document
             </summary>
             <param name="id"></param>
             <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentTypesController.GetAll">
+            <summary>
+            Get All Document Types
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentTypesController.GetById(System.Int32)">
+            <summary>
+            Get Document Type By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentTypesController.Post(BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Commands.AddEdit.AddEditDocumentTypeCommand)">
+            <summary>
+            Create/Update a Document Type
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentTypesController.Delete(System.Int32)">
+            <summary>
+            Delete a Document Type
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.Misc.DocumentTypesController.Export(System.String)">
+            <summary>
+            Search Document Types and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.Utilities.PreferencesController.ChangeLanguageAsync(System.String)">
             <summary>
@@ -255,7 +346,7 @@
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.BrandsController.GetById(System.Int32)">
             <summary>
-            Get Brands By Id
+            Get a Brand By Id
             </summary>
             <param name="id"></param>
             <returns>Status 200 Ok</returns>
@@ -269,14 +360,14 @@
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.BrandsController.Delete(System.Int32)">
             <summary>
-            Delete a Brand 
+            Delete a Brand
             </summary>
             <param name="id"></param>
             <returns>Status 200 OK</returns>
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.BrandsController.Export(System.String)">
             <summary>
-            Search Brand and Export to Excel
+            Search Brands and Export to Excel
             </summary>
             <param name="searchString"></param>
             <returns></returns>
@@ -293,28 +384,28 @@
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.ProductsController.GetProductImageAsync(System.Int32)">
             <summary>
-            Get Product Image by Id
+            Get a Product Image by Id
             </summary>
             <param name="id"></param>
             <returns>Status 200 OK</returns>
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.ProductsController.Post(BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit.AddEditProductCommand)">
             <summary>
-            Add/Edit Product
+            Add/Edit a Product
             </summary>
             <param name="command"></param>
             <returns>Status 200 OK</returns>
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.ProductsController.Delete(System.Int32)">
             <summary>
-            Delete Product
+            Delete a Product
             </summary>
             <param name="id"></param>
             <returns>Status 200 OK response</returns>
         </member>
         <member name="M:BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog.ProductsController.Export(System.String)">
             <summary>
-            Search Product and Export to Excel
+            Search Products and Export to Excel
             </summary>
             <param name="searchString"></param>
             <returns>Status 200 OK</returns>

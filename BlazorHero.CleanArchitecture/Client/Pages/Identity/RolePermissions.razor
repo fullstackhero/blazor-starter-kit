@@ -4,7 +4,7 @@
 @attribute [Authorize(Policy = Permissions.RoleClaims.View)]
 
 <HeroTitle Title="@_localizer["Manage Permission"]" Description="@Description" />
-@if (_model == null)
+@if (!_loaded)
 {
     <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
 }
@@ -26,7 +26,10 @@ else
                             </div>
                         }
                         <MudToolBarSpacer />
-                        <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@_localizer["Search For Permissions"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+                        @if (_canSearchRolePermissions)
+                        {
+                            <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@_localizer["Search For Permissions"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+                        }
                     </ToolBarContent>
                     <HeaderContent>
                         <MudTh><MudTableSortLabel SortBy="new Func<RoleClaimResponse, object>(x => x.Type)">@_localizer["Type"]</MudTableSortLabel></MudTh>

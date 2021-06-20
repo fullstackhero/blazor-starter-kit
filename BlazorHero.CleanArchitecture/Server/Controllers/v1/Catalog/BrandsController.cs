@@ -23,8 +23,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             var brands = await _mediator.Send(new GetAllBrandsQuery());
             return Ok(brands);
         }
+
         /// <summary>
-        /// Get Brands By Id
+        /// Get a Brand By Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status 200 Ok</returns>
@@ -35,6 +36,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             var brand = await _mediator.Send(new GetBrandByIdQuery() { Id = id });
             return Ok(brand);
         }
+
         /// <summary>
         /// Create/Update a Brand
         /// </summary>
@@ -46,8 +48,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         {
             return Ok(await _mediator.Send(command));
         }
+
         /// <summary>
-        /// Delete a Brand 
+        /// Delete a Brand
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status 200 OK</returns>
@@ -57,12 +60,13 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         {
             return Ok(await _mediator.Send(new DeleteBrandCommand { Id = id }));
         }
+
         /// <summary>
-        /// Search Brand and Export to Excel
+        /// Search Brands and Export to Excel
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns></returns>
-        [Authorize(Policy = Permissions.Brands.View)]
+        [Authorize(Policy = Permissions.Brands.Export)]
         [HttpGet("export")]
         public async Task<IActionResult> Export(string searchString = "")
         {

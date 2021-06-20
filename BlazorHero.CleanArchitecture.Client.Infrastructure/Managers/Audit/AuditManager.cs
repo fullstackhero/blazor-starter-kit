@@ -23,13 +23,12 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit
             return data;
         }
 
-        public async Task<string> DownloadFileAsync(string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false)
+        public async Task<IResult<string>> DownloadFileAsync(string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false)
         {
             var response = await _httpClient.GetAsync(string.IsNullOrWhiteSpace(searchString)
                 ? Routes.AuditEndpoints.DownloadFile
                 : Routes.AuditEndpoints.DownloadFileFiltered(searchString, searchInOldValues, searchInNewValues));
-            var data = await response.Content.ReadAsStringAsync();
-            return data;
+            return await response.ToResult<string>();
         }
     }
 }

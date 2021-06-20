@@ -162,8 +162,14 @@
   <data name="Toggle Dark Mode" xml:space="preserve">
     <value>Переключить Тёмный режим</value>
   </data>
+  <data name="Toggle right-to-left/left-to-right" xml:space="preserve">
+    <value>Переключить справа-на-лево/слева-на-право</value>
+  </data>
   <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
     <value>Вы вышли из системы, потому что были обновлены разрешения одной из ваших ролей.</value>
+  </data>
+  <data name="You are logged out because the user with your Token has been deleted." xml:space="preserve">
+    <value>Вы вышли из системы, потому что пользователь с вашим токеном был удален.</value>
   </data>
   <data name="You are Logged Out." xml:space="preserve">
     <value>Вы вышли из системы.</value>

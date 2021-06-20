@@ -5,7 +5,7 @@ using BlazorHero.CleanArchitecture.Domain.Contracts;
 
 namespace BlazorHero.CleanArchitecture.Application.Specifications.Base
 {
-    public abstract class HeroSpecification<T, TId> : ISpecification<T, TId> where T : class, IEntity<TId>
+    public abstract class HeroSpecification<T> : ISpecification<T> where T : class, IEntity
     {
         public Expression<Func<T, bool>> Criteria { get; set; }
         public List<Expression<Func<T, object>>> Includes { get; } = new();

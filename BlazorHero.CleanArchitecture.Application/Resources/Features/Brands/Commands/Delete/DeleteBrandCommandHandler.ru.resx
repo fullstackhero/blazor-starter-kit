@@ -120,6 +120,9 @@
   <data name="Brand Deleted" xml:space="preserve">
     <value>Бренд удалён</value>
   </data>
+  <data name="Brand Not Found!" xml:space="preserve">
+    <value>Бренд не найден!</value>
+  </data>
   <data name="Deletion Not Allowed" xml:space="preserve">
     <value>Удаление недоступно</value>
   </data>

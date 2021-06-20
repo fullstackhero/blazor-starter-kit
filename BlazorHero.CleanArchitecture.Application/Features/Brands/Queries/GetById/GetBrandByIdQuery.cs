@@ -26,9 +26,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetBy
 
         public async Task<Result<GetBrandByIdResponse>> Handle(GetBrandByIdQuery query, CancellationToken cancellationToken)
         {
-            var product = await _unitOfWork.Repository<Brand>().GetByIdAsync(query.Id);
-            var mappedProduct = _mapper.Map<GetBrandByIdResponse>(product);
-            return await Result<GetBrandByIdResponse>.SuccessAsync(mappedProduct);
+            var brand = await _unitOfWork.Repository<Brand>().GetByIdAsync(query.Id);
+            var mappedBrand = _mapper.Map<GetBrandByIdResponse>(brand);
+            return await Result<GetBrandByIdResponse>.SuccessAsync(mappedBrand);
         }
     }
 }

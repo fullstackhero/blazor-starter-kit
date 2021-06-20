@@ -4,8 +4,12 @@ using MudBlazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Audit;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
@@ -25,6 +29,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
         private bool _searchInNewValues = false;
         private MudDateRangePicker _dateRangePicker;
         private DateRange _dateRange;
+
+        private ClaimsPrincipal _currentUser;
+        private bool _canExportAuditTrails;
+        private bool _canSearchAuditTrails;
+        private bool _loaded;
 
         private bool Search(AuditResponse response)
         {
@@ -66,7 +75,12 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
 
         protected override async Task OnInitializedAsync()
         {
+            _currentUser = await _authenticationManager.CurrentUser();
+            _canExportAuditTrails = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.AuditTrails.Export)).Succeeded;
+            _canSearchAuditTrails = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.AuditTrails.Search)).Succeeded;
+
             await GetDataAsync();
+            _loaded = true;
         }
 
         private async Task GetDataAsync()
@@ -110,16 +124,26 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Utilities
 
         private async Task ExportToExcelAsync()
         {
-            var base64 = await AuditManager.DownloadFileAsync(_searchString, _searchInOldValues, _searchInNewValues);
-            await _jsRuntime.InvokeVoidAsync("Download", new
+            var response = await AuditManager.DownloadFileAsync(_searchString, _searchInOldValues, _searchInNewValues);
+            if (response.Succeeded)
             {
-                ByteArray = base64,
-                FileName = $"{nameof(AuditTrails).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                MimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            });
-            _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
-                ? _localizer["Audit Trails exported"]
-                : _localizer["Filtered Audit Trails exported"], Severity.Success);
+                await _jsRuntime.InvokeVoidAsync("Download", new
+                {
+                    ByteArray = response.Data,
+                    FileName = $"{nameof(AuditTrails).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                    MimeType = ApplicationConstants.MimeTypes.OpenXml
+                });
+                _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
+                    ? _localizer["Audit Trails exported"]
+                    : _localizer["Filtered Audit Trails exported"], Severity.Success);
+            }
+            else
+            {
+                foreach (var message in response.Messages)
+                {
+                    _snackBar.Add(message, Severity.Error);
+                }
+            }
         }
 
         public class RelatedAuditTrail : AuditResponse

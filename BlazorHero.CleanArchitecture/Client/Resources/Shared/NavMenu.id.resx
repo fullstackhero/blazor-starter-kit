@@ -141,8 +141,14 @@
   <data name="Dashboard" xml:space="preserve">
     <value>Dasbor</value>
   </data>
+  <data name="Document Management" xml:space="preserve">
+    <value>Document Management</value>
+  </data>
   <data name="Document Store" xml:space="preserve">
     <value>Document Store</value>
+  </data>
+  <data name="Document Types" xml:space="preserve">
+    <value>Document Types</value>
   </data>
   <data name="FAQs" xml:space="preserve">
     <value>FAQs</value>

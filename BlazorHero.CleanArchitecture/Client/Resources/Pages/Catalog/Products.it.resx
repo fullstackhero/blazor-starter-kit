@@ -168,4 +168,7 @@
   <data name="Filtered Products exported" xml:space="preserve">
     <value>Filtered Products exported</value>
   </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>No Allowed Actions</value>
+  </data>
 </root>

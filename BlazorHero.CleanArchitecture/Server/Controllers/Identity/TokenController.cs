@@ -11,13 +11,12 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
     public class TokenController : ControllerBase
     {
         private readonly ITokenService _identityService;
-        private readonly ICurrentUserService currentUserService;
 
         public TokenController(ITokenService identityService, ICurrentUserService currentUserService)
         {
             _identityService = identityService;
-            this.currentUserService = currentUserService;
         }
+
         /// <summary>
         /// Get Token (Email, Password)
         /// </summary>
@@ -29,6 +28,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var response = await _identityService.LoginAsync(model);
             return Ok(response);
         }
+
         /// <summary>
         /// Refresh Token
         /// </summary>

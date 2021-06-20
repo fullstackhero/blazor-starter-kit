@@ -18,17 +18,19 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             _userService = userService;
         }
+
         /// <summary>
         /// Get User Details
         /// </summary>
         /// <returns>Status 200 OK</returns>
-        //[Authorize(Policy = Permissions.Users.View)]
+        [Authorize(Policy = Permissions.Users.View)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var users = await _userService.GetAllAsync();
             return Ok(users);
         }
+
         /// <summary>
         /// Get User By Id
         /// </summary>
@@ -41,6 +43,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var user = await _userService.GetAsync(id);
             return Ok(user);
         }
+
         /// <summary>
         /// Get User Roles By Id
         /// </summary>
@@ -53,6 +56,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var userRoles = await _userService.GetRolesAsync(id);
             return Ok(userRoles);
         }
+
         /// <summary>
         /// Update Roles for User
         /// </summary>
@@ -64,6 +68,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             return Ok(await _userService.UpdateRolesAsync(request));
         }
+
         /// <summary>
         /// Register a User
         /// </summary>
@@ -76,6 +81,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var origin = Request.Headers["origin"];
             return Ok(await _userService.RegisterAsync(request, origin));
         }
+
         /// <summary>
         /// Confirm Email
         /// </summary>
@@ -88,6 +94,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             return Ok(await _userService.ConfirmEmailAsync(userId, code));
         }
+
         /// <summary>
         /// Toggle User Status (Activate and Deactivate)
         /// </summary>
@@ -98,8 +105,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             return Ok(await _userService.ToggleUserStatusAsync(request));
         }
+
         /// <summary>
-        /// Forgot Password 
+        /// Forgot Password
         /// </summary>
         /// <param name="request"></param>
         /// <returns>Status 200 OK</returns>
@@ -110,6 +118,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
             var origin = Request.Headers["origin"];
             return Ok(await _userService.ForgotPasswordAsync(request, origin));
         }
+
         /// <summary>
         /// Reset Password
         /// </summary>
@@ -121,12 +130,13 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         {
             return Ok(await _userService.ResetPasswordAsync(request));
         }
+
         /// <summary>
         /// Export to Excel
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.Users.View)]
+        [Authorize(Policy = Permissions.Users.Export)]
         [HttpGet("export")]
         public async Task<IActionResult> Export(string searchString = "")
         {

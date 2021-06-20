@@ -8,13 +8,15 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes;
+using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.GetData
 {
     public class GetDashboardDataQuery : IRequest<Result<DashboardDataResponse>>
     {
-        
+
     }
 
     internal class GetDashboardDataQueryHandler : IRequestHandler<GetDashboardDataQuery, Result<DashboardDataResponse>>
@@ -38,6 +40,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.G
             {
                 ProductCount = await _unitOfWork.Repository<Product>().Entities.CountAsync(cancellationToken),
                 BrandCount = await _unitOfWork.Repository<Brand>().Entities.CountAsync(cancellationToken),
+                DocumentCount = await _unitOfWork.Repository<Document>().Entities.CountAsync(cancellationToken),
+                DocumentTypeCount = await _unitOfWork.Repository<DocumentType>().Entities.CountAsync(cancellationToken),
+                DocumentExtendedAttributeCount = await _unitOfWork.Repository<DocumentExtendedAttribute>().Entities.CountAsync(cancellationToken),
                 UserCount = await _userService.GetCountAsync(),
                 RoleCount = await _roleService.GetCountAsync()
             };
@@ -45,6 +50,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.G
             var selectedYear = DateTime.Now.Year;
             double[] productsFigure = new double[13];
             double[] brandsFigure = new double[13];
+            double[] documentsFigure = new double[13];
+            double[] documentTypesFigure = new double[13];
+            double[] documentExtendedAttributesFigure = new double[13];
             for (int i = 1; i <= 12; i++)
             {
                 var month = i;
@@ -53,11 +61,16 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.G
 
                 productsFigure[i - 1] = await _unitOfWork.Repository<Product>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
                 brandsFigure[i - 1] = await _unitOfWork.Repository<Brand>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
-
+                documentsFigure[i - 1] = await _unitOfWork.Repository<Document>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
+                documentTypesFigure[i - 1] = await _unitOfWork.Repository<DocumentType>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
+                documentExtendedAttributesFigure[i - 1] = await _unitOfWork.Repository<DocumentExtendedAttribute>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
             }
 
             response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Products"], Data = productsFigure });
             response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Brands"], Data = brandsFigure });
+            response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Documents"], Data = documentsFigure });
+            response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Document Types"], Data = documentTypesFigure });
+            response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Document Extended Attributes"], Data = documentExtendedAttributesFigure });
 
             return await Result<DashboardDataResponse>.SuccessAsync(response);
         }

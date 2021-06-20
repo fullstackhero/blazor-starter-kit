@@ -147,6 +147,9 @@
   <data name="Document Store" xml:space="preserve">
     <value>Хранилище документов</value>
   </data>
+  <data name="Document Type" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>Скачать</value>
   </data>
@@ -158,6 +161,12 @@
   </data>
   <data name="Is Public" xml:space="preserve">
     <value>Публичный</value>
+  </data>
+  <data name="Manage Extended Attributes" xml:space="preserve">
+    <value>Управление атрибутами</value>
+  </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>Нет доступных действий</value>
   </data>
   <data name="Owner" xml:space="preserve">
     <value>Владелец</value>

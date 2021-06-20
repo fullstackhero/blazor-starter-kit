@@ -1,17 +1,19 @@
-﻿namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Routes
+﻿using System.Linq;
+
+namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Routes
 {
     public static class ProductsEndpoints
     {
         public static string GetAllPaged(int pageNumber, int pageSize, string searchString, string[] orderBy)
         {
-            string url = $"api/v1/products?pageNumber={pageNumber}&pageSize={pageSize}&searchString={searchString}&orderBy=";
-            if (!(orderBy == null || orderBy.Length == 0))
+            var url = $"api/v1/products?pageNumber={pageNumber}&pageSize={pageSize}&searchString={searchString}&orderBy=";
+            if (orderBy?.Any() == true)
             {
-                foreach (string OrderByPart in orderBy)
+                foreach (var orderByPart in orderBy)
                 {
-                    url = url + OrderByPart + ",";
+                    url += $"{orderByPart},";
                 }
-                url = url.Substring(0, url.Length - 1); // loose training ,
+                url = url[..^1]; // loose training ,
             }
             return url;
         }

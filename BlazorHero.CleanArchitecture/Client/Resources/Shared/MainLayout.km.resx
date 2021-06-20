@@ -159,8 +159,14 @@
   <data name="Toggle Dark Mode" xml:space="preserve">
     <value>បិទ / បើកស្បែកងងឹត</value>
   </data>
+  <data name="Toggle right-to-left/left-to-right" xml:space="preserve">
+    <value>Toggle right-to-left/left-to-right</value>
+  </data>
   <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
     <value>You are logged out because the Permissions of one of your Roles have been updated.</value>
+  </data>
+  <data name="You are logged out because the user with your Token has been deleted." xml:space="preserve">
+    <value>You are logged out because the user with your Token has been deleted.</value>
   </data>
   <data name="You are Logged Out." xml:space="preserve">
     <value>អ្នកត្រូវបានចាកចេញ</value>

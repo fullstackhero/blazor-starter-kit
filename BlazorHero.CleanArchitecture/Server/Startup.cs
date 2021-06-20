@@ -38,6 +38,7 @@ namespace BlazorHero.CleanArchitecture.Server
                 options.ResourcesPath = "Resources";
             });
             services.AddCurrentUserService();
+            services.AddSerialization();
             services.AddDatabase(_configuration);
             services.AddServerStorage(); //TODO - should implement ServerStorageProvider to work correctly!
             services.AddScoped<ServerPreferenceManager>();
@@ -47,12 +48,15 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddApplicationLayer();
             services.AddApplicationServices();
             services.AddRepositories();
+            services.AddExtendedAttributesUnitOfWork();
             services.AddSharedInfrastructure(_configuration);
             services.RegisterSwagger();
             services.AddInfrastructureMappings();
             services.AddHangfire(x => x.UseSqlServerStorage(_configuration.GetConnectionString("DefaultConnection")));
             services.AddHangfireServer();
             services.AddControllers().AddValidators();
+            services.AddExtendedAttributesValidators();
+            services.AddExtendedAttributesHandlers();
             services.AddRazorPages();
             services.AddApiVersioning(config =>
             {

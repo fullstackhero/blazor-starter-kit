@@ -11,5 +11,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.Ge
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string URL { get; set; }
+        public string DocumentType { get; set; }
+        public int DocumentTypeId { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
         {
             _roleClaimService = roleClaimService;
         }
+
         /// <summary>
         /// Get All Role Claims(e.g. Product Create Permission)
         /// </summary>
@@ -28,6 +29,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             var roleClaims = await _roleClaimService.GetAllAsync();
             return Ok(roleClaims);
         }
+
         /// <summary>
         /// Get All Role Claims By Id
         /// </summary>
@@ -40,6 +42,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             var response = await _roleClaimService.GetAllByRoleIdAsync(roleId);
             return Ok(response);
         }
+
         /// <summary>
         /// Add a Role Claim
         /// </summary>
@@ -52,6 +55,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers
             var response = await _roleClaimService.SaveAsync(request);
             return Ok(response);
         }
+
         /// <summary>
         /// Delete a Role Claim
         /// </summary>

@@ -120,6 +120,9 @@
   <data name="Description is required!" xml:space="preserve">
     <value>Описание обязательно!</value>
   </data>
+  <data name="Document Type is required!" xml:space="preserve">
+    <value>Тип документа обязателен!</value>
+  </data>
   <data name="File is required!" xml:space="preserve">
     <value>Файл обязателен!</value>
   </data>

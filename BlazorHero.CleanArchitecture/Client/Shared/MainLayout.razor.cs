@@ -37,13 +37,21 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 {
                     FirstLetterOfName = FirstName[0];
                 }
-                this.SecondName = user.GetLastName();
-                this.Email = user.GetEmail();
+                SecondName = user.GetLastName();
+                Email = user.GetEmail();
                 var imageResponse = await _accountManager.GetProfilePictureAsync(CurrentUserId);
                 if (imageResponse.Succeeded)
                 {
                     ImageDataUrl = imageResponse.Data;
                 }
+
+                var currentUserResult = await _userManager.GetAsync(CurrentUserId);
+                if (!currentUserResult.Succeeded || currentUserResult.Data == null)
+                {
+                    _snackBar.Add(localizer["You are logged out because the user with your Token has been deleted."], Severity.Error);
+                    await _authenticationManager.Logout();
+                }
+
                 await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);
             }
         }
@@ -53,9 +61,9 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         private bool _rightToLeft = false;
         private async Task RightToLeftToggle()
         {
-            bool IsRTL = await _clientPreferenceManager.ToggleLayoutDirection();
-            _rightToLeft = IsRTL;
-            _drawerOpen = false;           
+            var isRtl = await _clientPreferenceManager.ToggleLayoutDirection();
+            _rightToLeft = isRtl;
+            _drawerOpen = false;
         }
 
         protected override async Task OnInitializedAsync()

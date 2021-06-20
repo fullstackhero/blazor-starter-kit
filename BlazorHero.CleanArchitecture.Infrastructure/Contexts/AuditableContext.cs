@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
@@ -18,11 +19,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 
         public DbSet<Audit> AuditTrails { get; set; }
 
-        public virtual async Task<int> SaveChangesAsync(string userId = null)
+        public virtual async Task<int> SaveChangesAsync(string userId = null, CancellationToken cancellationToken = new())
         {
             var auditEntries = OnBeforeSaveChanges(userId);
-            var result = await base.SaveChangesAsync();
-            await OnAfterSaveChanges(auditEntries);
+            var result = await base.SaveChangesAsync(cancellationToken);
+            await OnAfterSaveChanges(auditEntries, cancellationToken);
             return result;
         }
 
@@ -87,7 +88,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             return auditEntries.Where(_ => _.HasTemporaryProperties).ToList();
         }
 
-        private Task OnAfterSaveChanges(List<AuditEntry> auditEntries)
+        private Task OnAfterSaveChanges(List<AuditEntry> auditEntries, CancellationToken cancellationToken = new())
         {
             if (auditEntries == null || auditEntries.Count == 0)
                 return Task.CompletedTask;
@@ -107,7 +108,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
                 }
                 AuditTrails.Add(auditEntry.ToAudit());
             }
-            return SaveChangesAsync();
+            return SaveChangesAsync(cancellationToken);
         }
     }
 }

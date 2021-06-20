@@ -9,6 +9,6 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services
     {
         Task<IResult<IEnumerable<AuditResponse>>> GetCurrentUserTrailsAsync(string userId);
 
-        Task<string> ExportToExcelAsync(string userId, string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false);
+        Task<IResult<string>> ExportToExcelAsync(string userId, string searchString = "", bool searchInOldValues = false, bool searchInNewValues = false);
     }
 }

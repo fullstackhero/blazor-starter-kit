@@ -7,13 +7,14 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Extensions;
-using BlazorHero.CleanArchitecture.Application.Specifications;
+using BlazorHero.CleanArchitecture.Application.Specifications.Catalog;
+using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Export
 {
-    public class ExportProductsQuery : IRequest<string>
+    public class ExportProductsQuery : IRequest<Result<string>>
     {
         public string SearchString { get; set; }
 
@@ -23,7 +24,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Exp
         }
     }
 
-    internal class ExportProductsQueryHandler : IRequestHandler<ExportProductsQuery, string>
+    internal class ExportProductsQueryHandler : IRequestHandler<ExportProductsQuery, Result<string>>
     {
         private readonly IExcelService _excelService;
         private readonly IUnitOfWork<int> _unitOfWork;
@@ -38,7 +39,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Exp
             _localizer = localizer;
         }
 
-        public async Task<string> Handle(ExportProductsQuery request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(ExportProductsQuery request, CancellationToken cancellationToken)
         {
             var productFilterSpec = new ProductFilterSpecification(request.SearchString);
             var products = await _unitOfWork.Repository<Product>().Entities
@@ -53,7 +54,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Products.Queries.Exp
                 { _localizer["Rate"], item => item.Rate }
             }, sheetName: _localizer["Products"]);
 
-            return data;
+            return await Result<string>.SuccessAsync(data: data);
         }
     }
 }
