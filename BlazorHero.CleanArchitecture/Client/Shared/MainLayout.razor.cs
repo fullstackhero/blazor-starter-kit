@@ -31,7 +31,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
             if (user == null) return;
             if (user.Identity?.IsAuthenticated == true)
             {
-                CurrentUserId = user.GetUserId();
+                CurrentUserId = user.GetUserId();                
                 FirstName = user.GetFirstName();
                 if (FirstName.Length > 0)
                 {
@@ -39,7 +39,6 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 }
                 SecondName = user.GetLastName();
                 Email = user.GetEmail();
-
                 var imageResponse = await _accountManager.GetProfilePictureAsync(CurrentUserId);
                 if (imageResponse.Succeeded)
                 {

@@ -114,6 +114,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
             Palette = new Palette()
             {
                 Primary = "#1E88E5",
+                AppbarBackground = "#1E88E5",
                 Background = Colors.Grey.Lighten5,
                 DrawerBackground = "#FFF",
                 DrawerText = "rgba(0,0,0, 0.7)",
@@ -135,7 +136,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Settings
                 Surface = "#373740",
                 DrawerBackground = "#27272f",
                 DrawerText = "rgba(255,255,255, 0.50)",
-                AppbarBackground = "#27272f",
+                AppbarBackground = "#373740",
                 AppbarText = "rgba(255,255,255, 0.70)",
                 TextPrimary = "rgba(255,255,255, 0.70)",
                 TextSecondary = "rgba(255,255,255, 0.50)",
