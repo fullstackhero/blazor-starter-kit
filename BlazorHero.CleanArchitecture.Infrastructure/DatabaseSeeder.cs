@@ -1,5 +1,4 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Helpers;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
@@ -10,10 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure
@@ -76,25 +73,17 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                 {
                     await _userManager.CreateAsync(superUser, UserConstants.DefaultPassword);
                     var result = await _userManager.AddToRoleAsync(superUser, RoleConstants.AdministratorRole);
-                }
-                adminRole = await _roleManager.FindByNameAsync(RoleConstants.AdministratorRole);
-                var RoleClaims = (await _roleManager.GetClaimsAsync(adminRole)).Select(c => c.Value).ToList();
-                string[] permissions = ClaimsHelper.GetAllPermissionValues();
-                var NewClaims = permissions.Except(RoleClaims);
-                foreach (string claim in NewClaims)
-                {
-                    await _roleManager.AddClaimAsync(adminRole, new Claim(ApplicationClaimTypes.Permission, claim));
-                }
-                var DeprecatedClaims = RoleClaims.Except(permissions);
-                var roles = _roleManager.Roles.ToList();
-                foreach (string claim in DeprecatedClaims)
-                {
-                    foreach (var role in roles)
+                    if (result.Succeeded)
                     {
-                        await _roleManager.RemoveClaimAsync(role, new Claim(ApplicationClaimTypes.Permission, claim));
+                        foreach (var prop in typeof(Permissions).GetNestedTypes().SelectMany(c => c.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)))
+                        {
+                            var propertyValue = prop.GetValue(null);
+                            if (propertyValue is not null)
+                                await _roleManager.AddPermissionClaim(adminRole, propertyValue.ToString());
+                        }
                     }
+                    _logger.LogInformation(_localizer["Seeded User with Administrator Role."]);
                 }
-                _logger.LogInformation(_localizer["Seeded User with Administrator Role."]);
             }).GetAwaiter().GetResult();
         }
 
