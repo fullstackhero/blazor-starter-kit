@@ -8,7 +8,6 @@ services:
       dockerfile: src/Server/Dockerfile
     environment:
       - "ConnectionStrings__DefaultConnection=Server=db;Database=BlazorHero;User=sa;Password=Your_password123;MultipleActiveResultSets=true"
-      - "IdentityServer__Key__Type=Development"
       - "ASPNETCORE_Kestrel__Certificates__Default__Password=Your_password123"
       - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
     volumes:
@@ -19,9 +18,11 @@ services:
     depends_on:
       - db
     restart: on-failure
+    container_name: blazorhero
 
   db:
     image: "mcr.microsoft.com/mssql/server"
     environment:
       - "SA_PASSWORD=Your_password123"
       - "ACCEPT_EULA=Y"
+    container_name: mssql
