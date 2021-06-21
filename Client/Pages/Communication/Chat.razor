@@ -1,0 +1,134 @@
+﻿@page "/chat/{CId}"
+@page "/chat"
+@using System.Globalization
+@attribute [Authorize(Policy = Permissions.Communication.Chat)]
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Chat> _localizer
+
+<div class="d-flex flex-grow-1 flex-row">
+    <MudPaper Elevation="25" Class="py-4 flex-grow-1">
+        <MudToolBar Dense="true">
+
+            @if (string.IsNullOrEmpty(CFullName))
+            {
+                <MudIcon Icon="@Icons.Material.Outlined.Person" Style="margin-right:10px">  </MudIcon>
+                <MudText Typo="Typo.h6">@_localizer["chat"]</MudText>
+            }
+            else
+            {
+                <MudIcon Icon="@Icons.Material.Outlined.ChatBubble" Style="margin-right:10px">  </MudIcon>
+                <MudText Typo="Typo.h6">@CFullName</MudText>
+            }
+
+            <MudToolBarSpacer />
+            <MudHidden Breakpoint="Breakpoint.MdAndUp">
+                <MudIconButton OnClick="@(() => OpenDrawer(Anchor.Right))" Icon="@Icons.Material.Outlined.PeopleAlt" Color="Color.Inherit" Class="ml-3" />
+            </MudHidden>
+        </MudToolBar>
+        <div class="d-flex flex-column px-4" style="max-height:65vh;min-height:65vh; overflow:scroll;" id="chatContainer">
+            @foreach (var message in _messages)
+            {
+                <div class="d-flex flex-row my-4">
+                    <div class="mr-4">
+                        @if (string.IsNullOrEmpty(message.FromUserImageURL))
+                        {
+                            <MudAvatar Color="Color.Secondary" Style="height:50px; width:50px;">@message.FromUserFullName.ToUpper().FirstOrDefault()</MudAvatar>
+                        }
+                        else
+                        {
+                            <MudAvatar Image="@message.FromUserImageURL" Style="height:50px; width:50px;"> </MudAvatar>
+                        }
+                    </div>
+                    <div>
+                        <MudText Typo="Typo.body1">@message.FromUserFullName</MudText>
+                        <MudText Typo="Typo.caption" Style="font-size: xx-small!important;">@message.CreatedDate.ToString("G", CultureInfo.CurrentCulture)</MudText>
+                        <MudText Typo="Typo.body2" Style=" padding: 15px;background-color: var(--mud-palette-background-grey);border-radius: 5px;margin-top:5px">@message.Message</MudText>
+                    </div>
+                </div>
+            }
+        </div>
+        <MudPaper Elevation="25" Class="d-flex flex-row px-2 mx-4" Style="">
+            <MudTextField T="string" Placeholder="@_localizer["Enter your message..."]" @onkeypress="OnKeyPressInChat" DisableUnderLine="true" Class="mt-n2 mx-4"
+                          @bind-Value="CurrentMessage" For="@(()=> CurrentMessage)" />
+            <MudButton OnClick="SubmitAsync" StartIcon="@Icons.Material.Outlined.Send" Color="Color.Secondary" ButtonType="ButtonType.Button">@_localizer["Send"]</MudButton>
+        </MudPaper>
+    </MudPaper>
+    <MudHidden Breakpoint="Breakpoint.SmAndDown">
+        <MudPaper Elevation="25" Class="pa-3 ml-6" MinWidth="350px">
+            <MudToolBar Dense="true">
+                <MudText Typo="Typo.h6" Inline="true" Class="mr-2">#</MudText>
+                <MudText Typo="Typo.h6">@_localizer["contacts"]</MudText>
+            </MudToolBar>
+            <div class="d-flex flex-column px-4" style="max-height:70vh;min-height:70vh; overflow:scroll;">
+                <MudList Clickable="true">
+                    @foreach (var user in UserList)
+                    {
+                        <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
+                            <div class="d-flex flex-row mt-n1 mb-n1">
+                                <div class="mr-4">
+                                    <MudBadge Class="my-2" Color="@(GetUserStatusBadgeColor(user.IsOnline))" Overlap="true" Bottom="true" Dot="true">
+                                        @if (string.IsNullOrEmpty(user.ProfilePictureDataUrl))
+                                        {
+                                            @if (user.Id == CId)
+                                            {
+                                                <MudAvatar Color="Color.Secondary" Style="height:50px; width:50px;">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                            }
+                                            else
+                                            {
+                                                <MudAvatar Color="Color.Dark" Style="height:50px; width:50px;">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <MudAvatar Image="@user.ProfilePictureDataUrl" Style="height:50px; width:50px;"> </MudAvatar>
+                                        }
+                                    </MudBadge>
+                                </div>
+                                <div>
+                                    <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>
+                                    <MudText Typo="Typo.caption" Style="font-size: xx-small!important;">@user.EmailAddress</MudText>
+                                </div>
+                            </div>
+                        </MudListItem>
+                    }
+                </MudList>
+            </div>
+        </MudPaper>
+    </MudHidden>
+</div>
+<MudDrawer @bind-Open="@_open" Anchor="@ChatDrawer" Elevation="1" Variant="@DrawerVariant.Temporary">
+    <div class="pa-3">
+        <MudList Clickable="true">
+            @foreach (var user in UserList)
+            {
+                <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
+                    <div class="d-flex flex-row mt-n1 mb-n1">
+                        <div class="mr-4">
+                            <MudBadge Class="my-2" Color="@(GetUserStatusBadgeColor(user.IsOnline))" Overlap="true" Bottom="true" Dot="true">
+                                @if (string.IsNullOrEmpty(user.ProfilePictureDataUrl))
+                                {
+                                    @if (user.Id == CId)
+                                    {
+                                        <MudAvatar Color="Color.Secondary" Style="height: 50px; width: 50px;">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                    }
+                                    else
+                                    {
+                                        <MudAvatar Color="Color.Dark" Style="height: 50px; width: 50px;">@user.UserName.ToUpper().FirstOrDefault()</MudAvatar>
+                                    }
+                                }
+                                else
+                                {
+                                    <MudAvatar Image="@user.ProfilePictureDataUrl" Style="height: 50px; width: 50px;"> </MudAvatar>
+                                }
+                            </MudBadge>
+                        </div>
+                        <div>
+                            <MudText Typo="Typo.body2" Class="mt-3 mb-n2">@user.FirstName @user.LastName</MudText>
+                            <MudText Typo="Typo.caption" Style="font-size: xx-small!important;">@user.EmailAddress</MudText>
+                        </div>
+                    </div>
+                </MudListItem>
+            }
+        </MudList>
+    </div>
+</MudDrawer>
+<MudAlert Style="margin-top:10px;margin-bottom:20px" Severity="Severity.Success">@_localizer["Want to understand how Chat is implemented in BlazorHero ? Refer this"] <MudLink Href="https://codewithmukesh.com/blog/realtime-chat-application-with-blazor">@_localizer["detailed guide for more."]</MudLink></MudAlert>
