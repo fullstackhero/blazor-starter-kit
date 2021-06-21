@@ -1,0 +1,77 @@
+﻿@page "/identity/role-permissions/{Id}"
+@using BlazorHero.CleanArchitecture.Application.Responses.Identity
+@inject Microsoft.Extensions.Localization.IStringLocalizer<RolePermissions> _localizer
+@attribute [Authorize(Policy = Permissions.RoleClaims.View)]
+
+<HeroTitle Title="@_localizer["Manage Permission"]" Description="@Description" />
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudTabs Elevation="25" Rounded="true" Centered="true" ApplyEffectsToContainer="true" AlwaysShowScrollButtons="true">
+        @foreach (var group in GroupedRoleClaims.Keys)
+        {
+            var selectedRoleClaimsInGroup = GroupedRoleClaims[group].Where(c => c.Selected).ToList();
+            var allRoleClaimsInGroup = GroupedRoleClaims[group].ToList();
+
+            <MudTabPanel Text="@group" BadgeData="@($"{selectedRoleClaimsInGroup.Count}/{allRoleClaimsInGroup.Count}")" Style="padding-right: 43px;" BadgeColor="@GetGroupBadgeColor(selectedRoleClaimsInGroup.Count, allRoleClaimsInGroup.Count)">
+                <MudTable Hover="true" Elevation="25" Items="@allRoleClaimsInGroup" Dense="@_dense" Bordered="@_bordered" Striped="@_striped" Filter="new Func<RoleClaimResponse, bool>(Search)" @bind-roleClaims="_roleClaims" CommitEditTooltip="@_localizer["Apply"]" @bind-SelectedItem="_selectedItem">
+                    <ToolBarContent>
+                        @if (_canEditRolePermissions)
+                        {
+                            <div class="justify-center mud-text-align-center">
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">@_localizer["Update Role Permissions"]</MudButton>
+                            </div>
+                        }
+                        <MudToolBarSpacer />
+                        @if (_canSearchRolePermissions)
+                        {
+                            <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@_localizer["Search For Permissions"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+                        }
+                    </ToolBarContent>
+                    <HeaderContent>
+                        <MudTh><MudTableSortLabel SortBy="new Func<RoleClaimResponse, object>(x => x.Type)">@_localizer["Type"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<RoleClaimResponse, object>(x => x.Value)">@_localizer["Permission Name"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<RoleClaimResponse, object>(x => x.Description)">@_localizer["Description"]</MudTableSortLabel></MudTh>
+                        <MudTh><MudTableSortLabel SortBy="new Func<RoleClaimResponse, object>(x => x.Selected)">@_localizer["Status"]</MudTableSortLabel></MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="@_localizer["Type"]">@context.Type</MudTd>
+                        <MudTd DataLabel="@_localizer["Permission Name"]">
+                            <MudHighlighter Text="@context.Value" HighlightedText="@_searchString" />
+                        </MudTd>
+                        <MudTd DataLabel="@_localizer["Description"]">
+                            <MudHighlighter Text="@context.Description" HighlightedText="@_searchString" />
+                        </MudTd>
+                        <MudTd DataLabel="@_localizer["Status"]"><MudCheckBox @bind-Checked="@context.Selected" Disabled="@(!_canEditRolePermissions)" Color="Color.Secondary" /></MudTd>
+                    </RowTemplate>
+                    <RowEditingTemplate>
+                        <MudTd DataLabel="@_localizer["Type"]">@context.Type</MudTd>
+                        <MudTd DataLabel="@_localizer["Permission Name"]">@context.Value</MudTd>
+                        <MudTd DataLabel="@_localizer["Description"]">
+                            @if (_canEditRolePermissions)
+                            {
+                                <MudTextField @bind-Value="@context.Description" Margin="Margin.Dense" Disabled="@(!context.Selected)" HelperText="@_localizer[$"{(context.Selected ? "Here you can leave a comment for this permission for the current role" : "Will be saved only when selected Permission")}"]" />
+                            }
+                            else
+                            {
+                                @context.Description
+                            }
+                        </MudTd>
+                        <MudTd DataLabel="@_localizer["Status"]"><MudCheckBox @bind-Checked="@context.Selected" Disabled="@(!_canEditRolePermissions)" Color="Color.Secondary" /></MudTd>
+                    </RowEditingTemplate>
+                    <FooterContent>
+                        <MudSwitch @bind-Checked="@_dense" Color="Color.Secondary" Style="margin-left: 5px;">@_localizer["Dense"]</MudSwitch>
+                        <MudSwitch @bind-Checked="@_striped" Color="Color.Tertiary" Style="margin-left: 5px;">@_localizer["Striped"]</MudSwitch>
+                        <MudSwitch @bind-Checked="@_bordered" Color="Color.Warning" Style="margin-left: 5px;">@_localizer["Bordered"]</MudSwitch>
+                    </FooterContent>
+                    <PagerContent>
+                        <TablePager />
+                    </PagerContent>
+                </MudTable>
+            </MudTabPanel>
+        }
+    </MudTabs>
+}
