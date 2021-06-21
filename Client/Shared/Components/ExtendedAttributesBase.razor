@@ -27,11 +27,19 @@ else
                             @if (_canCreateExtendedAttributes)
                             {
                                 <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())">@_localizer["Create"]</MudButton>
+                                <MudButton DisableElevation Variant="Variant.Filled" OnClick="Reset" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                                @if (_canExportExtendedAttributes)
+                                {
+                                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
+                                }
                             }
-                            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Reset" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
-                            @if (_canExportExtendedAttributes)
+                            else
                             {
-                                <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface">@_localizer["Export"]</MudButton>
+                                <MudButton DisableElevation Variant="Variant.Filled" OnClick="Reset" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                                @if (_canExportExtendedAttributes)
+                                {
+                                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
+                                }
                             }
                         </div>
                         <MudToolBarSpacer />
