@@ -16,7 +16,7 @@ COPY ["src/Infrastructure.Shared/Infrastructure.Shared.csproj", "src/Infrastruct
 COPY ["src/Infrastructure/Infrastructure.csproj", "src/Infrastructure/"]
 COPY ["src/Client/Client.csproj", "src/Client/"]
 COPY ["src/Client.Infrastructure/Client.Infrastructure.csproj", "src/Client.Infrastructure/"]
-RUN dotnet restore "src/Server/Server.csproj"
+RUN dotnet restore "src/Server/Server.csproj" --disable-parallel
 COPY . .
 WORKDIR "/src/src/Server"
 RUN dotnet build "Server.csproj" -c Release -o /app/build

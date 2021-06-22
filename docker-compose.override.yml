@@ -1,9 +1,0 @@
-version: '3.4'
-
-services:
-  blazorhero:
-    environment:
-      - "ASPNETCORE_ENVIRONMENT=Development"
-  db:
-    ports:
-      - "1433:1433"
