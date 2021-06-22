@@ -6,13 +6,6 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
 {
     public static class Permissions
     {
-        public static class Test
-        {
-            public const string View = "Permissions.Test.View";
-            public const string Create = "Permissions.Test.Create";
-            public const string Edit = "Permissions.Test.Edit";
-            public const string Delete = "Permissions.Test.Delete";
-        }
         public static class Products
         {
             public const string View = "Permissions.Products.View";
