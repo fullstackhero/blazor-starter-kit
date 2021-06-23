@@ -60,6 +60,8 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 
 # BlazorHero v2.2
 
+### PS, Clone the Repository to experience the latest Features & Fixes.
+
 - UI Improvements
 - Docker Support
 - Better Permissions Management
