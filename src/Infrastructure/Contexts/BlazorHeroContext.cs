@@ -67,6 +67,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             {
                 property.SetColumnType("decimal(18,2)");
             }
+            
+            foreach (var property in builder.Model.GetEntityTypes()
+                .SelectMany(t => t.GetProperties())
+                .Where(p => p.Name is "LastModifiedBy" or "CreatedBy"))
+            {
+                property.SetColumnType("nvarchar(128)");
+            }
+            
             base.OnModelCreating(builder);
             builder.Entity<ChatHistory<BlazorHeroUser>>(entity =>
             {
