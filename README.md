@@ -76,6 +76,8 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 - Dedicated Documentation Website - [Here](https://blazorhero.github.io/docs/)
 - Tutorials to add new entities, controllers
 - UI Updates
+- Support for PostgreSQL / MySQL - Easy DB Switching
+- You can suggest your requirements as well!
 
 # Down the Roadmap
 
