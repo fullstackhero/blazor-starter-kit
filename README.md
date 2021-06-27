@@ -77,6 +77,7 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 - Tutorials to add new entities, controllers
 - UI Updates
 - Support for PostgreSQL / MySQL - Easy DB Switching
+- Theme Manager Integration to change UI Color Palletes / Fonts on the go.
 - You can suggest your requirements as well!
 
 # Down the Roadmap
