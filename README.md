@@ -60,7 +60,6 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 
 # BlazorHero v2.2
 
-### PS, Clone the Repository to experience the latest Features & Fixes.
 
 - UI Improvements
 - Docker Support
@@ -69,6 +68,20 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 - RTL Support
 - Minor Bug Fixes
 - Better Project Structure
+
+# What to Excpect in BlazorHero 3.0?
+
+- Modular Architecture
+- Cleaner Seperation Of Code
+- Dedicated Documentation Website - [Here](https://blazorhero.github.io/docs/)
+- Tutorials to add new entities, controllers
+- UI Updates
+
+# Down the Roadmap
+
+ - Migration to .NET 6
+ - Multi Tenancy
+ - Better Localization - JSON
 
 # Getting Started 🦸
 
