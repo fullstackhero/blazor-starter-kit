@@ -183,7 +183,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 if (role.Name == RoleConstants.AdministratorRole)
                 {
                     var currentUser = await _userManager.Users.SingleAsync(x => x.Id == _currentUserService.UserId);
-                    if (!await _userManager.IsInRoleAsync(currentUser, RoleConstants.AdministratorRole))
+                    if (await _userManager.IsInRoleAsync(currentUser, RoleConstants.AdministratorRole))
                     {
                         return await Result<string>.FailAsync(_localizer["Not allowed to modify Permissions for this Role."]);
                     }
