@@ -8,6 +8,7 @@
         }
 
         public static string Export = "api/v1/brands/export";
+        public static string Import = "api/v1/brands/import";
 
         public static string GetAll = "api/v1/brands";
         public static string Delete = "api/v1/brands";

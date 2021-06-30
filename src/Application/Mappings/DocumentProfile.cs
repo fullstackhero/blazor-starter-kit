@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.GetById;
 using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 
@@ -11,6 +12,7 @@ namespace BlazorHero.CleanArchitecture.Application.Mappings
         {
             CreateMap<AddEditDocumentCommand, Document>().ReverseMap();
             CreateMap<GetDocumentByIdResponse, Document>().ReverseMap();
+            CreateMap<GetAllDocumentsResponse, Document>().ReverseMap();
         }
     }
 }

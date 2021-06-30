@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Delete;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.Export;
+using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.ImportExcel;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
 {
@@ -49,6 +50,8 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             return Ok(await _mediator.Send(command));
         }
 
+        
+
         /// <summary>
         /// Delete a Brand
         /// </summary>
@@ -71,6 +74,17 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         public async Task<IActionResult> Export(string searchString = "")
         {
             return Ok(await _mediator.Send(new ExportBrandsQuery(searchString)));
+        }
+        /// <summary>
+        /// Import data from excel
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [Authorize(Policy = Permissions.Brands.Create)]
+        [HttpPost("import")]
+        public async Task<IActionResult> Import(ImportBrandCommand command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }

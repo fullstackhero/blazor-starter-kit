@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Extensions;
+﻿using AutoMapper;
+using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Specifications.Misc;
@@ -30,33 +31,36 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Documents.Queries.Ge
     internal class GetAllDocumentsQueryHandler : IRequestHandler<GetAllDocumentsQuery, PaginatedResult<GetAllDocumentsResponse>>
     {
         private readonly IUnitOfWork<int> _unitOfWork;
-
+        private readonly IMapper mapper;
         private readonly ICurrentUserService _currentUserService;
 
-        public GetAllDocumentsQueryHandler(IUnitOfWork<int> unitOfWork, ICurrentUserService currentUserService)
+        public GetAllDocumentsQueryHandler(IUnitOfWork<int> unitOfWork, 
+            AutoMapper.IMapper mapper,
+            ICurrentUserService currentUserService)
         {
             _unitOfWork = unitOfWork;
+            this.mapper = mapper;
             _currentUserService = currentUserService;
         }
 
         public async Task<PaginatedResult<GetAllDocumentsResponse>> Handle(GetAllDocumentsQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<Document, GetAllDocumentsResponse>> expression = e => new GetAllDocumentsResponse
-            {
-                Id = e.Id,
-                Title = e.Title,
-                CreatedBy = e.CreatedBy,
-                IsPublic = e.IsPublic,
-                CreatedOn = e.CreatedOn,
-                Description = e.Description,
-                URL = e.URL,
-                DocumentType = e.DocumentType.Name,
-                DocumentTypeId = e.DocumentTypeId
-            };
+            //Expression<Func<Document, GetAllDocumentsResponse>> expression = e => new GetAllDocumentsResponse
+            //{
+            //    Id = e.Id,
+            //    Title = e.Title,
+            //    CreatedBy = e.CreatedBy,
+            //    IsPublic = e.IsPublic,
+            //    CreatedOn = e.CreatedOn,
+            //    Description = e.Description,
+            //    URL = e.URL,
+            //    DocumentType = e.DocumentType.Name,
+            //    DocumentTypeId = e.DocumentTypeId
+            //};
             var docSpec = new DocumentFilterSpecification(request.SearchString, _currentUserService.UserId);
             var data = await _unitOfWork.Repository<Document>().Entities
                .Specify(docSpec)
-               .Select(expression)
+               .Select(x=>this.mapper.Map<GetAllDocumentsResponse>(x))
                .ToPaginatedListAsync(request.PageNumber, request.PageSize);
             return data;
         }

@@ -22,6 +22,7 @@ else
                 @if (_canCreateBrands)
                 {
                     <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">@_localizer["Create"]</MudButton>
+                    <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeImportModal())" StartIcon="@Icons.Material.Filled.UploadFile" IconColor="Color.Surface">@_localizer["Import"]</MudButton>
                     <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetBrandsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
                     @if (_canExportBrands)
                     {

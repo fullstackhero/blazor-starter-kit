@@ -14,6 +14,7 @@ using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Brand;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.JSInterop;
+using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.ImportExcel;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
 {
@@ -151,7 +152,28 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                 await Reset();
             }
         }
-
+        private async Task InvokeImportModal(int id = 0)
+        {
+            var parameters = new DialogParameters();
+            if (id != 0)
+            {
+                _brand = _brandList.FirstOrDefault(c => c.Id == id);
+                if (_brand != null)
+                {
+                    parameters.Add(nameof(ImportBrandModal.ImportBrandCommand), new ImportBrandCommand
+                    {
+                        
+                    });
+                }
+            }
+            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
+            var dialog = _dialogService.Show<ImportBrandModal>(_localizer["Import"], parameters, options);
+            var result = await dialog.Result;
+            if (!result.Cancelled)
+            {
+                await Reset();
+            }
+        }
         private async Task Reset()
         {
             _brand = new GetAllBrandsResponse();
