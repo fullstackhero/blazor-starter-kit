@@ -126,6 +126,9 @@
   <data name="Building A Chat Application With Blazor, Identity, And SignalR" xml:space="preserve">
     <value>Bygga en Chattapplikation med Blazor, Identity och SignalR</value>
   </data>
+  <data name="Celebrating 1,500 Stars on Github!" xml:space="preserve">
+    <value>Celebrating 1,500 Stars on Github!</value>
+  </data>
   <data name="Component Library" xml:space="preserve">
     <value>Komponentbibliotek</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Ren arkitekturmall för Blazor Web-Assembly</value>
+  </data>
+  <data name="Documentation - Coming Soon" xml:space="preserve">
+    <value>Documentation - Coming Soon</value>
   </data>
   <data name="Exploring Blazor Project Structure" xml:space="preserve">
     <value>Utforska Blazor-projektets struktur</value>
@@ -161,6 +167,9 @@
   </data>
   <data name="Learning Resources" xml:space="preserve">
     <value>Lärande resurser</value>
+  </data>
+  <data name="Liked BlazorHero? Star us on Github!" xml:space="preserve">
+    <value>Liked BlazorHero? Star us on Github!</value>
   </data>
   <data name="Onion Architecture In ASP.NET Core With CQRS – Detailed" xml:space="preserve">
     <value>Onion Architecture In ASP.NET Core With CQRS – Detaljerad</value>
