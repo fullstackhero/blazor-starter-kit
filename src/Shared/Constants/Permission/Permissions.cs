@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
@@ -6,6 +7,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
 {
     public static class Permissions
     {
+        [DisplayName("Products")]
         public static class Products
         {
             public const string View = "Permissions.Products.View";
@@ -16,6 +18,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Search = "Permissions.Products.Search";
         }
 
+        [DisplayName("Brands")]
         public static class Brands
         {
             public const string View = "Permissions.Brands.View";
@@ -26,6 +29,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Search = "Permissions.Brands.Search";
         }
 
+        [DisplayName("Documents")]
         public static class Documents
         {
             public const string View = "Permissions.Documents.View";
@@ -35,6 +39,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Search = "Permissions.Documents.Search";
         }
 
+        [DisplayName("Document Types")]
         public static class DocumentTypes
         {
             public const string View = "Permissions.DocumentTypes.View";
@@ -45,6 +50,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Search = "Permissions.DocumentTypes.Search";
         }
 
+        [DisplayName("Document Extended Attributes")]
         public static class DocumentExtendedAttributes
         {
             public const string View = "Permissions.DocumentExtendedAttributes.View";
@@ -55,6 +61,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Search = "Permissions.DocumentExtendedAttributes.Search";
         }
 
+        [DisplayName("Users")]
         public static class Users
         {
             public const string View = "Permissions.Users.View";
@@ -65,6 +72,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Search = "Permissions.Users.Search";
         }
 
+        [DisplayName("Roles")]
         public static class Roles
         {
             public const string View = "Permissions.Roles.View";
@@ -74,6 +82,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Search = "Permissions.Roles.Search";
         }
 
+        [DisplayName("Role Claims")]
         public static class RoleClaims
         {
             public const string View = "Permissions.RoleClaims.View";
@@ -83,11 +92,13 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Search = "Permissions.RoleClaims.Search";
         }
 
+        [DisplayName("Communication")]
         public static class Communication
         {
             public const string Chat = "Permissions.Communication.Chat";
         }
 
+        [DisplayName("Preferences")]
         public static class Preferences
         {
             public const string ChangeLanguage = "Permissions.Preferences.ChangeLanguage";
@@ -95,26 +106,29 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             //TODO - add permissions
         }
 
+        [DisplayName("Dashboards")]
         public static class Dashboards
         {
             public const string View = "Permissions.Dashboards.View";
         }
 
+        [DisplayName("Hangfire")]
         public static class Hangfire
         {
             public const string View = "Permissions.Hangfire.View";
         }
 
+        [DisplayName("Audit Trails")]
         public static class AuditTrails
         {
             public const string View = "Permissions.AuditTrails.View";
             public const string Export = "Permissions.AuditTrails.Export";
             public const string Search = "Permissions.AuditTrails.Search";
         }
-       /// <summary>
-       /// Returns a list of Permissions.
-       /// </summary>
-       /// <returns></returns>
+        /// <summary>
+        /// Returns a list of Permissions.
+        /// </summary>
+        /// <returns></returns>
         public static List<string> GetRegisteredPermissions()
         {
             var permssions = new List<string>();
