@@ -14,6 +14,12 @@
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Permission\**" />
+    <Content Remove="Permission\**" />
+    <EmbeddedResource Remove="Permission\**" />
+    <None Remove="Permission\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.2.3" />
     <PackageReference Include="Hangfire" Version="1.7.23" />
     <PackageReference Include="LazyCache.AspNetCore" Version="2.1.3" />
