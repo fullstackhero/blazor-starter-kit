@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-@inject Microsoft.Extensions.Localization.IStringLocalizer<MainLayout> localizer
+@inject Microsoft.Extensions.Localization.IStringLocalizer<MainLayout> _localizer
 
     <audio id="notification" src="/media/notification.mp3" />
     <MudThemeProvider Theme="_currentTheme" />
@@ -10,7 +10,7 @@
             <MudAppBar Elevation="4" Color="Color.Primary">
                 <MudAppBarSpacer />
                 <LanguageSelector />
-                <MudTooltip Text="@localizer["Toggle Dark Mode"]">
+                <MudTooltip Text="@_localizer["Toggle Dark Mode"]">
                     <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
                 </MudTooltip>
             </MudAppBar>
