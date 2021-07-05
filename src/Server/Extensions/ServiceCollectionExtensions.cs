@@ -1,7 +1,14 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Configurations;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Options;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Serializers;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Settings;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Account;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
+using BlazorHero.CleanArchitecture.Application.Serialization.JsonConverters;
+using BlazorHero.CleanArchitecture.Application.Serialization.Options;
+using BlazorHero.CleanArchitecture.Application.Serialization.Serializers;
+using BlazorHero.CleanArchitecture.Application.Serialization.Settings;
 using BlazorHero.CleanArchitecture.Infrastructure;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
@@ -10,14 +17,12 @@ using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Shared.Services;
 using BlazorHero.CleanArchitecture.Server.Localization;
 using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
-using BlazorHero.CleanArchitecture.Server.Permission;
 using BlazorHero.CleanArchitecture.Server.Services;
 using BlazorHero.CleanArchitecture.Server.Settings;
 using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -38,13 +43,6 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Options;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Serializers;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Settings;
-using BlazorHero.CleanArchitecture.Application.Serialization.JsonConverters;
-using BlazorHero.CleanArchitecture.Application.Serialization.Options;
-using BlazorHero.CleanArchitecture.Application.Serialization.Serializers;
-using BlazorHero.CleanArchitecture.Application.Serialization.Settings;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
@@ -190,8 +188,6 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
         internal static IServiceCollection AddIdentity(this IServiceCollection services)
         {
             services
-                .AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>()
-                .AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>()
                 .AddIdentity<BlazorHeroUser, BlazorHeroRole>(options =>
                 {
                     options.Password.RequiredLength = 6;

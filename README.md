@@ -68,7 +68,7 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 - Minor Bug Fixes
 - Better Project Structure
 
-# What to Excpect in BlazorHero 3.0?
+# What to Expect in BlazorHero 3.0?
 
 - Modular Architecture
 - Cleaner Seperation Of Code
