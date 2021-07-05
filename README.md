@@ -24,7 +24,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/blazorhero/CleanArchitecture">
-    <img src="https://codewithmukesh.com/wp-content/uploads/2021/05/BlazorHeroBannerv2.1.jpg" alt="Blazor Hero">
+    <img src="https://codewithmukesh.com/wp-content/uploads/2021/03/BlazorHeroBanner-1.png" alt="Blazor Hero">
   </a>
   <h3 align="center">BlazorHero - Clean Architecture Template</h3>
   <p align="center">
@@ -60,8 +60,6 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 
 # BlazorHero v2.2
 
-### PS, Clone the Repository to experience the latest Features & Fixes.
-
 - UI Improvements
 - Docker Support
 - Better Permissions Management
@@ -69,6 +67,23 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 - RTL Support
 - Minor Bug Fixes
 - Better Project Structure
+
+# What to Expect in BlazorHero 3.0?
+
+- Modular Architecture
+- Cleaner Seperation Of Code
+- Dedicated Documentation Website - [Here](https://blazorhero.github.io/docs/)
+- Tutorials to add new entities, controllers
+- UI Updates
+- Support for PostgreSQL / MySQL - Easy DB Switching
+- Theme Manager Integration to change UI Color Palletes / Fonts on the go.
+- You can suggest your requirements as well!
+
+# Down the Roadmap
+
+ - Migration to .NET 6
+ - Multi Tenancy
+ - Better Localization - JSON
 
 # Getting Started 🦸
 
