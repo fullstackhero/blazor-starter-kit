@@ -26,18 +26,6 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
             _localStorage = localStorage;
         }
 
-        public void MarkUserAsAuthenticated(string userName)
-        {
-            var authenticatedUser = new ClaimsPrincipal(
-                new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.Name, userName)
-                }, "apiauth"));
-
-            var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
-
-            NotifyAuthenticationStateChanged(authState);
-        }
         public async Task StateChangedAsync()
         {
             var authState = Task.FromResult(await GetAuthenticationStateAsync());

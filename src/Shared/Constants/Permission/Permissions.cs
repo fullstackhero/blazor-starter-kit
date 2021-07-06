@@ -8,6 +8,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
     public static class Permissions
     {
         [DisplayName("Products")]
+        [Description("Products Permissions")]
         public static class Products
         {
             public const string View = "Permissions.Products.View";
@@ -19,6 +20,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         }
 
         [DisplayName("Brands")]
+        [Description("Brands Permissions")]
         public static class Brands
         {
             public const string View = "Permissions.Brands.View";
@@ -30,6 +32,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         }
 
         [DisplayName("Documents")]
+        [Description("Documents Permissions")]
         public static class Documents
         {
             public const string View = "Permissions.Documents.View";
@@ -40,6 +43,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         }
 
         [DisplayName("Document Types")]
+        [Description("Document Types Permissions")]
         public static class DocumentTypes
         {
             public const string View = "Permissions.DocumentTypes.View";
@@ -51,6 +55,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         }
 
         [DisplayName("Document Extended Attributes")]
+        [Description("Document Extended Attributes Permissions")]
         public static class DocumentExtendedAttributes
         {
             public const string View = "Permissions.DocumentExtendedAttributes.View";
@@ -62,6 +67,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         }
 
         [DisplayName("Users")]
+        [Description("Users Permissions")]
         public static class Users
         {
             public const string View = "Permissions.Users.View";
@@ -73,6 +79,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         }
 
         [DisplayName("Roles")]
+        [Description("Roles Permissions")]
         public static class Roles
         {
             public const string View = "Permissions.Roles.View";
@@ -83,6 +90,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         }
 
         [DisplayName("Role Claims")]
+        [Description("Role Claims Permissions")]
         public static class RoleClaims
         {
             public const string View = "Permissions.RoleClaims.View";
@@ -93,12 +101,14 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         }
 
         [DisplayName("Communication")]
+        [Description("Communication Permissions")]
         public static class Communication
         {
             public const string Chat = "Permissions.Communication.Chat";
         }
 
         [DisplayName("Preferences")]
+        [Description("Preferences Permissions")]
         public static class Preferences
         {
             public const string ChangeLanguage = "Permissions.Preferences.ChangeLanguage";
@@ -107,38 +117,42 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         }
 
         [DisplayName("Dashboards")]
+        [Description("Dashboards Permissions")]
         public static class Dashboards
         {
             public const string View = "Permissions.Dashboards.View";
         }
 
         [DisplayName("Hangfire")]
+        [Description("Hangfire Permissions")]
         public static class Hangfire
         {
             public const string View = "Permissions.Hangfire.View";
         }
 
         [DisplayName("Audit Trails")]
+        [Description("Audit Trails Permissions")]
         public static class AuditTrails
         {
             public const string View = "Permissions.AuditTrails.View";
             public const string Export = "Permissions.AuditTrails.Export";
             public const string Search = "Permissions.AuditTrails.Search";
         }
+
         /// <summary>
         /// Returns a list of Permissions.
         /// </summary>
         /// <returns></returns>
         public static List<string> GetRegisteredPermissions()
         {
-            var permssions = new List<string>();
+            var permissions = new List<string>();
             foreach (var prop in typeof(Permissions).GetNestedTypes().SelectMany(c => c.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)))
             {
                 var propertyValue = prop.GetValue(null);
                 if (propertyValue is not null)
-                    permssions.Add(propertyValue.ToString());
+                    permissions.Add(propertyValue.ToString());
             }
-            return permssions;
+            return permissions;
         }
     }
 }

@@ -14,7 +14,6 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 {
     public partial class MainBody
     {
-
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
@@ -34,6 +33,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         private string Email { get; set; }
         private char FirstLetterOfName { get; set; }
         private bool _rightToLeft = false;
+
         private async Task RightToLeftToggle()
         {
             var isRtl = await _clientPreferenceManager.ToggleLayoutDirection();
@@ -65,7 +65,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                         config.VisibleStateDuration = 10000;
                         config.HideTransitionDuration = 500;
                         config.ShowTransitionDuration = 500;
-                        config.Action = localizer["Chat?"];
+                        config.Action = _localizer["Chat?"];
                         config.ActionColor = Color.Primary;
                         config.Onclick = snackbar =>
                         {
@@ -82,14 +82,14 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                     var token = await _authenticationManager.TryForceRefreshToken();
                     if (!string.IsNullOrEmpty(token))
                     {
-                        _snackBar.Add(localizer["Refreshed Token."], Severity.Success);
+                        _snackBar.Add(_localizer["Refreshed Token."], Severity.Success);
                         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                     }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    _snackBar.Add(localizer["You are Logged Out."], Severity.Error);
+                    _snackBar.Add(_localizer["You are Logged Out."], Severity.Error);
                     await _authenticationManager.Logout();
                     _navigationManager.NavigateTo("/");
                 }
@@ -107,7 +107,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                             var currentUserRolesResponse = await _userManager.GetRolesAsync(CurrentUserId);
                             if (currentUserRolesResponse.Succeeded && currentUserRolesResponse.Data.UserRoles.Any(x => x.RoleName == role.Name))
                             {
-                                _snackBar.Add(localizer["You are logged out because the Permissions of one of your Roles have been updated."], Severity.Error);
+                                _snackBar.Add(_localizer["You are logged out because the Permissions of one of your Roles have been updated."], Severity.Error);
                                 await hubConnection.SendAsync(ApplicationConstants.SignalR.OnDisconnect, CurrentUserId);
                                 await _authenticationManager.Logout();
                                 _navigationManager.NavigateTo("/login");
@@ -119,7 +119,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
             await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);
 
-            _snackBar.Add($"Welcome { FirstName}", Severity.Success);
+            _snackBar.Add(string.Format(_localizer["Welcome {0}"], FirstName), Severity.Success);
         }
 
         private async Task LoadDataAsync()
@@ -146,11 +146,12 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                 var currentUserResult = await _userManager.GetAsync(CurrentUserId);
                 if (!currentUserResult.Succeeded || currentUserResult.Data == null)
                 {
-                    _snackBar.Add(localizer["You are logged out because the user with your Token has been deleted."], Severity.Error);
+                    _snackBar.Add(_localizer["You are logged out because the user with your Token has been deleted."], Severity.Error);
                     await _authenticationManager.Logout();
                 }
             }
         }
+
         private void DrawerToggle()
         {
             _drawerOpen = !_drawerOpen;
@@ -160,8 +161,8 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         {
             var parameters = new DialogParameters
             {
-                {nameof(Dialogs.Logout.ContentText), $"{localizer["Logout Confirmation"]}"},
-                {nameof(Dialogs.Logout.ButtonText), $"{localizer["Logout"]}"},
+                {nameof(Dialogs.Logout.ContentText), $"{_localizer["Logout Confirmation"]}"},
+                {nameof(Dialogs.Logout.ButtonText), $"{_localizer["Logout"]}"},
                 {nameof(Dialogs.Logout.Color), Color.Error},
                 {nameof(Dialogs.Logout.CurrentUserId), CurrentUserId},
                 {nameof(Dialogs.Logout.HubConnection), hubConnection}
@@ -169,7 +170,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
 
-            _dialogService.Show<Dialogs.Logout>(localizer["Logout"], parameters, options);
+            _dialogService.Show<Dialogs.Logout>(_localizer["Logout"], parameters, options);
         }
 
         private HubConnection hubConnection;
