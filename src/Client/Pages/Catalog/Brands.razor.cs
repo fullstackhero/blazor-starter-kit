@@ -165,11 +165,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
             {
                 return true;
             }
-            if (brand.Description?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-            {
-                return true;
-            }
-            return false;
+            return brand.Description?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true;
         }
     }
 }
