@@ -3,6 +3,7 @@ using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
@@ -18,15 +19,25 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Helpers
 
             foreach (var module in modules)
             {
+                var moduleName = string.Empty;
+                var moduleDescription = string.Empty;
+
+                if (module.GetCustomAttributes(typeof(DisplayNameAttribute), true)
+                    .FirstOrDefault() is DisplayNameAttribute displayNameAttribute)
+                    moduleName = displayNameAttribute.DisplayName;
+
+                if (module.GetCustomAttributes(typeof(DescriptionAttribute), true)
+                    .FirstOrDefault() is DescriptionAttribute descriptionAttribute)
+                    moduleDescription = descriptionAttribute.Description;
+
                 var fields = module.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
 
-                foreach (FieldInfo fi in fields)
+                foreach (var fi in fields)
                 {
                     var propertyValue = fi.GetValue(null);
 
                     if (propertyValue is not null)
-                        allPermissions.Add(new RoleClaimResponse { Value = propertyValue.ToString(), Type = ApplicationClaimTypes.Permission, Group = module.Name });
-                    //TODO - take descriptions from description attribute
+                        allPermissions.Add(new RoleClaimResponse { Value = propertyValue.ToString(), Type = ApplicationClaimTypes.Permission, Group = moduleName, Description = moduleDescription });
                 }
             }
 
