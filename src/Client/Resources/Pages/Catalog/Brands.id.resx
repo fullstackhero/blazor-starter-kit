@@ -153,6 +153,9 @@
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
   <data name="Manage Brands." xml:space="preserve">
     <value>Kelola Merek.</value>
   </data>
