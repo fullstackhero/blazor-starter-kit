@@ -13,5 +13,6 @@
         public static string Delete = "api/v1/brands";
         public static string Save = "api/v1/brands";
         public static string GetCount = "api/v1/brands/count";
-    }
+        public static string Import = "api/v1/brands/import";
+  }
 }
