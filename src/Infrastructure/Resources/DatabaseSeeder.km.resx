@@ -117,34 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Not allowed to delete {0} Role as it is being used." xml:space="preserve">
-    <value>មិនអនុញ្ញាត្តឲ្យលុប {0} តូនាទីកំពុងប្រើប្រាស់</value>
+  <data name="Administrator role with full permissions" xml:space="preserve">
+    <value>អ្នកប្រើប្រាស់រដ្ឋបាលមានសិទ្ធិទាំងអស់</value>
   </data>
-  <data name="Not allowed to delete {0} Role." xml:space="preserve">
-    <value>មិនអនុញ្ញាត្តឲ្យលុប {0} តួនាទី.</value>
+  <data name="Basic role with default permissions" xml:space="preserve">
+    <value>អ្នកប្រើប្រាស់ទូទៅមានសិទ្ធិកំណត់ដោយប្រព័ន្ធគោល</value>
   </data>
-  <data name="Not allowed to deselect {0} or {1} or {2} for this Role." xml:space="preserve">
-    <value>មិនអនុញ្ញាត្តមិនជ្រើសរើស {0} ឬ {1} ឬ {2} សម្រាប់តួនាទីមួយនេះ.</value>
+  <data name="Seeded Administrator Role." xml:space="preserve">
+    <value>Seeded Administrator Role.</value>
   </data>
-  <data name="Not allowed to modify Permissions for this Role." xml:space="preserve">
-    <value>មិនអនុញ្ញាត្តឲ្យកែប្រែសិទ្ធិសម្រាប់តួនាទីនេះ</value>
+  <data name="Seeded Basic Role." xml:space="preserve">
+    <value>Seeded Basic Role.</value>
   </data>
-  <data name="Not allowed to modify {0} Role." xml:space="preserve">
-    <value>មិនអនុញ្ញាត្តឲ្យកែប្រែ {0} តួនាទី.</value>
+  <data name="Seeded Default SuperAdmin User." xml:space="preserve">
+    <value>Seeded Default SuperAdmin User.</value>
   </data>
-  <data name="Permissions Updated." xml:space="preserve">
-    <value>សិទ្ធិបានធ្វើបច្ចុប្បន្នភាព</value>
-  </data>
-  <data name="Role {0} Created." xml:space="preserve">
-    <value>តួនាទី {0} បានបង្កើត.</value>
-  </data>
-  <data name="Role {0} Deleted." xml:space="preserve">
-    <value>តួនាទី {0} បានលុប</value>
-  </data>
-  <data name="Role {0} Updated." xml:space="preserve">
-    <value>តួនាទី {0} បានធ្វើបច្ចុប្បន្នភាព</value>
-  </data>
-  <data name="Similar Role already exists." xml:space="preserve">
-    <value>តួនាទីស្រដៀងគ្នាបានបង្កើតឡើងរួចហើយ</value>
+  <data name="Seeded User with Basic Role." xml:space="preserve">
+    <value>Seeded User with Basic Role.</value>
   </data>
 </root>
