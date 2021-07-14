@@ -10,70 +10,74 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 
 namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 {
-  public partial class ImportExcelModal
-  {
-    private IBrowserFile _file;
-    [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
-    [Parameter] public UploadRequest UploadRequest { get; set; } = new();
-    [Parameter] public string ModelName { get; set; }
-    [Parameter] public Func<UploadRequest,Task<IResult<int>>> OnSaved { get; set; }
-
-    private FluentValidationValidator _fluentValidationValidator;
-    private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-
-    public void Cancel()
+    public partial class ImportExcelModal
     {
-      MudDialog.Cancel();
-    }
+        private IBrowserFile _file;
+        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+        [Parameter] public UploadRequest UploadRequest { get; set; } = new();
+        [Parameter] public string ModelName { get; set; }
+        [Parameter] public Func<UploadRequest, Task<IResult<int>>> OnSaved { get; set; }
 
-    private async Task SaveAsync()
-    {
-      if (OnSaved != null)
-      {
-        var result =await OnSaved.Invoke(this.UploadRequest);
-        if (result.Succeeded)
+        private FluentValidationValidator _fluentValidationValidator;
+        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+
+        public void Cancel()
         {
-          MudDialog.Close();
+            MudDialog.Cancel();
         }
-        else
+
+        private async Task SaveAsync()
         {
-          foreach (var message in result.Messages)
-          {
-            _snackBar.Add(message, Severity.Error);
-          }
+            if (OnSaved != null)
+            {
+                var result = await OnSaved.Invoke(UploadRequest);
+                if (result.Succeeded)
+                {
+                    _snackBar.Add(result.Messages[0], Severity.Success);
+                    MudDialog.Close();
+                }
+                else
+                {
+                    foreach (var message in result.Messages)
+                    {
+                        _snackBar.Add(message, Severity.Error);
+                    }
+                }
+            }
+            else
+            {
+                MudDialog.Close();
+            }
+
+            await Task.CompletedTask;
         }
-       
-      }
-      else
-      {
-        MudDialog.Close();
-      }
-      await Task.CompletedTask;
+
+        private async Task UploadFiles(InputFileChangeEventArgs e)
+        {
+            _file = e.File;
+            if (_file != null)
+            {
+                var buffer = new byte[_file.Size];
+                var extension = Path.GetExtension(_file.Name);
+                await _file.OpenReadStream(_file.Size).ReadAsync(buffer);
+                UploadRequest = new UploadRequest
+                {
+                    Data = buffer,
+                    FileName = _file.Name,
+                    UploadType = Application.Enums.UploadType.Document,
+                    Extension = extension
+                };
+            }
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            await LoadDataAsync();
+        }
+
+        private async Task LoadDataAsync()
+        {
+            await Task.CompletedTask;
+        }
     }
-
-
-    private async Task UploadFiles(InputFileChangeEventArgs e)
-    {
-      _file = e.File;
-      if (_file != null)
-      {
-        var buffer = new byte[_file.Size];
-        var extension = Path.GetExtension(_file.Name);
-        var format = "application/octet-stream";
-        await _file.OpenReadStream(_file.Size).ReadAsync(buffer);
-        this.UploadRequest = new UploadRequest { Data = buffer, FileName=_file.Name, UploadType = Application.Enums.UploadType.Document, Extension = extension };
-      }
-    }
-
-
-    protected override async Task OnInitializedAsync()
-    {
-      await LoadDataAsync();
-    }
-
-    private async Task LoadDataAsync()
-    {
-      await Task.CompletedTask;
-    }
-  }
 }

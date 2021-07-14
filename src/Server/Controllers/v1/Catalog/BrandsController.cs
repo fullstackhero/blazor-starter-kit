@@ -50,8 +50,6 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             return Ok(await _mediator.Send(command));
         }
 
-        
-
         /// <summary>
         /// Delete a Brand
         /// </summary>
@@ -75,8 +73,9 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         {
             return Ok(await _mediator.Send(new ExportBrandsQuery(searchString)));
         }
+
         /// <summary>
-        /// Import data from excel
+        /// Import Brands from Excel
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
