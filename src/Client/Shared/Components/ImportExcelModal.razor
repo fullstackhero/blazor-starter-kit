@@ -4,29 +4,32 @@
     <FluentValidationValidator @ref="_fluentValidationValidator" />
     <MudDialog>
         <TitleContent>
-            @_localizer["Import"] @ModelName
+            @_localizer["Import"] - @ModelName
         </TitleContent>
         <DialogContent>
             <MudGrid>
                 <MudItem xs="12">
-                     <MudButton HtmlTag="label"
-                                           Variant="Variant.Filled"
-                                           Color="Color.Primary"
-                                          Size="Size.Large"
-                                           StartIcon="@Icons.Filled.CloudUpload"
-                                           for="fileInput"
-                                           Class="mb-1">
-                                    @_localizer["Upload"]
-                     </MudButton>
-                    <InputFile id="fileInput" hidden OnChange="UploadFiles" accept=".xlsx"/>
+                    <MudButton HtmlTag="label"
+                               Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               Size="Size.Large"
+                               StartIcon="@Icons.Filled.CloudUpload"
+                               for="fileInput"
+                               Class="mb-1">
+                        @_localizer["Upload"]
+                    </MudButton>
+                    <InputFile id="fileInput" hidden OnChange="UploadFiles" accept=".xlsx" />
+                    <br />
+                    <br />
                     @if (_file != null)
-                   {
-                    <MudAlert ShowCloseIcon="true" CloseIconClicked="(() => _file=null )" OnClick="(() => _file=null)" >@_file.Name</MudAlert>
-                    }else{
-                      <MudAlert Severity="Severity.Info"> @_localizer["Please upload excel file!"]</MudAlert>
+                    {
+                        <MudAlert ShowCloseIcon="true" CloseIconClicked="(() => _file = null)" OnClick="(() => _file = null)">@_file.Name</MudAlert>
+                    }
+                    else
+                    {
+                        <MudAlert Severity="Severity.Info">@_localizer["Please upload excel file!"]</MudAlert>
                     }
                 </MudItem>
-
             </MudGrid>
         </DialogContent>
         <DialogActions>
