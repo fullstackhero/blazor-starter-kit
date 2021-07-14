@@ -117,70 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Действия</value>
-  </data>
-  <data name="Add Brand" xml:space="preserve">
-    <value>Добавить бренд</value>
-  </data>
-  <data name="Bordered" xml:space="preserve">
-    <value>Обрамлённый</value>
-  </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Бренды</value>
-  </data>
-  <data name="Brands exported" xml:space="preserve">
-    <value>Бренды экспортированы</value>
-  </data>
-  <data name="Create" xml:space="preserve">
-    <value>Создать</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Удалить</value>
-  </data>
-  <data name="Delete Content" xml:space="preserve">
-    <value>Удалить контент</value>
-  </data>
-  <data name="Dense" xml:space="preserve">
-    <value>Компактный</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Редактировать</value>
-  </data>
-  <data name="Export" xml:space="preserve">
-    <value>Экспорт в Excel</value>
-  </data>
-  <data name="Filtered Brands exported" xml:space="preserve">
-    <value>Отфильтрованные бренды экспортированы</value>
-  </data>
-  <data name="Id" xml:space="preserve">
-    <value>Id</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Импорт</value>
   </data>
-  <data name="Manage Brands." xml:space="preserve">
-    <value>Управление брендами.</value>
+  <data name="Please upload excel file!" xml:space="preserve">
+    <value>Пожалуйста, загрузите excel файл!</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Наименование</value>
-  </data>
-  <data name="No Allowed Actions" xml:space="preserve">
-    <value>Нет доступных действий</value>
-  </data>
-  <data name="Reload" xml:space="preserve">
-    <value>Перезагрузить</value>
-  </data>
-  <data name="Search for Brands" xml:space="preserve">
-    <value>Поиск брендов...</value>
-  </data>
-  <data name="Striped" xml:space="preserve">
-    <value>Чередующийся</value>
-  </data>
-  <data name="Tax" xml:space="preserve">
-    <value>Сбор</value>
+  <data name="Upload" xml:space="preserve">
+    <value>Загрузить</value>
   </data>
 </root>

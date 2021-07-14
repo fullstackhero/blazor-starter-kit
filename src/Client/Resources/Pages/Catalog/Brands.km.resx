@@ -150,6 +150,9 @@
   <data name="Id" xml:space="preserve">
     <value>លេខកូដសម្ងាល់</value>
   </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
   <data name="Manage Brands." xml:space="preserve">
     <value>គ្រប់គ្រងម៉ាក</value>
   </data>

@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
+using System.IO;
+using System.Data;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 {
@@ -78,6 +80,39 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
 
             var byteArray = await p.GetAsByteArrayAsync();
             return Convert.ToBase64String(byteArray);
+        }
+
+        public async Task<IEnumerable<TEntity>> ImportAsync<TEntity>(Stream stream, Dictionary<string, Func<DataRow, TEntity, object>> mappers, string sheetName = "Sheet1")
+        {
+            var result =new List<TEntity>();
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using var p = new ExcelPackage();
+            stream.Position = 0;
+            await p.LoadAsync(stream);
+            var ws = p.Workbook.Worksheets[sheetName];
+            var dt = new DataTable();
+            var titlesInFirstRow = true;
+            foreach (var firstRowCell in ws.Cells[1, 1, 1, ws.Dimension.End.Column])
+            {
+                dt.Columns.Add(titlesInFirstRow ? firstRowCell.Text : $"Column {firstRowCell.Start.Column}");
+            }
+            var startRow = titlesInFirstRow ? 2 : 1;
+            var headers = mappers.Keys.Select(x => x).ToList();
+
+            for (var rowNum = startRow; rowNum <= ws.Dimension.End.Row; rowNum++)
+            {
+                var wsRow = ws.Cells[rowNum, 1, rowNum, ws.Dimension.End.Column];
+                DataRow row = dt.Rows.Add();
+                var item = (TEntity)Activator.CreateInstance(typeof(TEntity));
+                foreach (var cell in wsRow)
+                {
+                    row[cell.Start.Column - 1] = cell.Text;
+                }
+                headers.ForEach(x => mappers[x](row, item));
+                result.Add(item);
+            }
+
+            return await Task.FromResult(result);
         }
     }
 }

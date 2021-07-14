@@ -1,0 +1,40 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<ImportExcelModal> _localizer
+
+<EditForm Model="@UploadRequest" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @_localizer["Import"] - @ModelName
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudButton HtmlTag="label"
+                               Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               Size="Size.Large"
+                               StartIcon="@Icons.Filled.CloudUpload"
+                               for="fileInput"
+                               Class="mb-1">
+                        @_localizer["Upload"]
+                    </MudButton>
+                    <InputFile id="fileInput" hidden OnChange="UploadFiles" accept=".xlsx" />
+                    <br />
+                    <br />
+                    @if (_file != null)
+                    {
+                        <MudAlert ShowCloseIcon="true" CloseIconClicked="(() => _file = null)" OnClick="(() => _file = null)">@_file.Name</MudAlert>
+                    }
+                    else
+                    {
+                        <MudAlert Severity="Severity.Info">@_localizer["Please upload excel file!"]</MudAlert>
+                    }
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(_file == null)" Color="Color.Success">@_localizer["Import"]</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>

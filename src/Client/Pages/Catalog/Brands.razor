@@ -22,7 +22,12 @@ else
                 @if (_canCreateBrands)
                 {
                     <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">@_localizer["Create"]</MudButton>
-                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetBrandsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                    @if (_canImportBrands)
+                    {
+                        <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="InvokeImportModal" StartIcon="@Icons.Material.Filled.FileUpload" IconColor="Color.Surface" Style="margin-left: 5px;">@_localizer["Import"]</MudButton>
+                    }
+
+                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetBrandsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary" Style="margin-left: 5px;">@_localizer["Reload"]</MudButton>
                     @if (_canExportBrands)
                     {
                         <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
@@ -30,7 +35,7 @@ else
                 }
                 else
                 {
-                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetBrandsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
+                    <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetBrandsAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary" Style="margin-left: 5px;">@_localizer["Reload"]</MudButton>
                     @if (_canExportBrands)
                     {
                         <MudButton DisableElevation Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
@@ -61,20 +66,20 @@ else
             <MudTd DataLabel="Tax">@context.Tax</MudTd>
             <MudTd DataLabel="Actions" Style="text-align: right">
                 @if (_canEditBrands || _canDeleteBrands)
-                    {
+                {
                     <MudMenu Label="@_localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
                         @if (_canEditBrands)
-                            {
+                        {
                             <MudMenuItem @onclick="@(() => InvokeModal(@context.Id))">@_localizer["Edit"]</MudMenuItem>
-                            }
+                        }
                         @if (_canDeleteBrands)
-                            {
+                        {
                             <MudMenuItem @onclick="@(() => Delete(@context.Id))">@_localizer["Delete"]</MudMenuItem>
-                            }
+                        }
                     </MudMenu>
-                    }
-                    else
-                    {
+                }
+                else
+                {
                     <MudButton Variant="Variant.Filled"
                                DisableElevation="true"
                                StartIcon="@Icons.Material.Filled.DoNotTouch"
@@ -83,7 +88,7 @@ else
                                Color="Color.Surface">
                         @_localizer["No Allowed Actions"]
                     </MudButton>
-                    }
+                }
             </MudTd>
         </RowTemplate>
         <FooterContent>
