@@ -136,7 +136,7 @@
     <value>កែប្រែ</value>
   </data>
   <data name="Filtered Products exported" xml:space="preserve">
-    <value>Filtered Products exported</value>
+    <value>ច្រោះផលិតផលបាននាំចេញ</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>លេខកូដសម្ងាល់</value>
@@ -148,13 +148,13 @@
     <value>ឈ្មោះ</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>គ្មានសិទ្ធិ</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>ផលិតផល</value>
   </data>
   <data name="Products exported" xml:space="preserve">
-    <value>Products exported</value>
+    <value>ផលិតផលនាំចេញ</value>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>អត្រា</value>

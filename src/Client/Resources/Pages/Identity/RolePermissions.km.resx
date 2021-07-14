@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="All Permissions" xml:space="preserve">
-    <value>All Permissions</value>
+    <value>សិទ្ធិទាំងអស់</value>
   </data>
   <data name="Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>អនុវត្ត</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>ពិពណ៌នា</value>
   </data>
   <data name="Here you can leave a comment for this permission for the current role" xml:space="preserve">
-    <value>Here you can leave a comment for this permission for the current role</value>
+    <value>ទីនេះអ្នកអាចដាក់កំណត់សម្គាល់សិទ្ធិសម្រាប់តួនាទីមួយនេះបាន</value>
   </data>
   <data name="Manage Permission" xml:space="preserve">
     <value>គ្រង់គ្រងសិទ្ធិ</value>
@@ -136,7 +136,7 @@
     <value>គ្រប់គ្រង {0} {1} សិទ្ធិ</value>
   </data>
   <data name="Permission Name" xml:space="preserve">
-    <value>Permission Name</value>
+    <value>ឈ្មោះសិទ្ធិ</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>ស្ថានភាព</value>
@@ -148,6 +148,6 @@
     <value>បច្ចុប្បន្នភាពសិទ្ធិរបស់តួនាទី</value>
   </data>
   <data name="Will be saved only when selected Permission" xml:space="preserve">
-    <value>Will be saved only when selected Permission</value>
+    <value>ត្រូវបានរក្សាទុកចំពោះសិទ្ធិដែលបានជ្រើសរើសតែប៉ុណ្ណោះ</value>
   </data>
 </root>

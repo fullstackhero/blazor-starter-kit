@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Blazor For Beginners – Getting Started With Blazor" xml:space="preserve">
-    <value>Blazor For Beginners – Getting Started With Blazor</value>
+    <value>ប្លេហ្សឺសម្រាប់ការចាប់ផ្តើម - ចាំផ្តើមជាមួយប្លេហ្សឺ</value>
   </data>
   <data name="Blazor Hero Description" xml:space="preserve">
     <value>Blazor Hero is an All-In-One Clean Architecture Solution Template For Blazor Web-Assembly built with</value>
@@ -139,13 +139,13 @@
     <value>គំរូកម្មវិធីដែលអភិវឌ្ឍតាមបច្ចេកវិទ្យា Blazor Web-Assembly</value>
   </data>
   <data name="Documentation - Coming Soon" xml:space="preserve">
-    <value>Documentation - Coming Soon</value>
+    <value>ឯកសារណែនាំលម្អិត មកដល់ឆាប់ៗនេះ</value>
   </data>
   <data name="Exploring Blazor Project Structure" xml:space="preserve">
-    <value>Exploring Blazor Project Structure</value>
+    <value>គ្រោងថតរបស់គម្រោង</value>
   </data>
   <data name="Getting Started" xml:space="preserve">
-    <value>Getting Started</value>
+    <value>ចាប់ផ្តើម</value>
   </data>
   <data name="Github Repository : Do Not Forget to Leave a Star ;)" xml:space="preserve">
     <value>Github Repository : Do Not Forget to Leave a Star ;)</value>
@@ -166,7 +166,7 @@
     <value>Increase you are stuck anywhere or have any queries regarding this implementation, I have compiled a Quick Start Guide for you reference.</value>
   </data>
   <data name="Learning Resources" xml:space="preserve">
-    <value>Learning Resources</value>
+    <value>ធនធានសិក្សា</value>
   </data>
   <data name="Liked BlazorHero? Star us on Github!" xml:space="preserve">
     <value>Liked BlazorHero? Star us on Github!</value>
@@ -178,10 +178,10 @@
     <value>ទំព័រគម្រោង</value>
   </data>
   <data name="Quick Start Guide" xml:space="preserve">
-    <value>Quick Start Guide</value>
+    <value>ការណែនាំសង្ខេប</value>
   </data>
   <data name="Read The Guide" xml:space="preserve">
-    <value>Read The Guide</value>
+    <value>អានការណែនា</value>
   </data>
   <data name="Support Me" xml:space="preserve">
     <value>គាំទ្រយើងខ្ញុំ!</value>
