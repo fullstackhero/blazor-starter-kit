@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add Extended Attribute" xml:space="preserve">
-    <value>Add Extended Attribute</value>
+    <value>បន្ធែមជួរឈរ</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>បោះបង់</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>សម្អាត</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
@@ -133,7 +133,7 @@
     <value>Decimal</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>ពិពណ៌នា</value>
   </data>
   <data name="Entity Id" xml:space="preserve">
     <value>Entity Id</value>
@@ -142,13 +142,13 @@
     <value>External Id</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>ក្រុម</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
   <data name="Is Active" xml:space="preserve">
-    <value>Is Active</value>
+    <value>គឺសកម្ម</value>
   </data>
   <data name="Json" xml:space="preserve">
     <value>Json</value>
@@ -157,10 +157,10 @@
     <value>Key</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
+    <value>អូខេ</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>រក្សាទុក</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>Text</value>
@@ -169,12 +169,12 @@
     <value>Time</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Type</value>
+    <value>ប្រភេទ</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Update</value>
+    <value>បច្ចុប្បន្នភាព</value>
   </data>
   <data name="Update Extended Attribute" xml:space="preserve">
-    <value>Update Extended Attribute</value>
+    <value>បច្ចុប្បន្នភាពជួរឈរបន្ថែម</value>
   </data>
 </root>

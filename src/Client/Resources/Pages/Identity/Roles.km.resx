@@ -130,19 +130,19 @@
     <value>តើអ្នកចង់លុបតួនាទីជាមួយលេខសម្គាល់ {0} ទេ?</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>ពិពណ៌នា</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>កែប្រែ</value>
   </data>
   <data name="Id" xml:space="preserve">
-    <value>Id</value>
+    <value>លេខកូដ</value>
   </data>
   <data name="Manage Roles." xml:space="preserve">
     <value>គ្រប់គ្រងតួនាទី</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>សកម្មភាពមិនត្រូវបានអនុញ្ញាត្ត</value>
   </data>
   <data name="Reload" xml:space="preserve">
     <value>ផ្ទុកឡើងវិញ</value>

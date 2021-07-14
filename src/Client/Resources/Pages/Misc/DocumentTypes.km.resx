@@ -118,16 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Actions" xml:space="preserve">
-    <value>មុខងារ</value>
+    <value>សកម្មភាព</value>
   </data>
-  <data name="Add Brand" xml:space="preserve">
-    <value>បន្ថែមម៉ាក</value>
-  </data>
-  <data name="Brands" xml:space="preserve">
-    <value>ម៉ាក</value>
-  </data>
-  <data name="Brands exported" xml:space="preserve">
-    <value>ម៉ាកបាននាំចេញ</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>ព្រុំប្រទល់</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>បង្កើត</value>
@@ -135,8 +129,20 @@
   <data name="Delete" xml:space="preserve">
     <value>លុប</value>
   </data>
+  <data name="Delete Content" xml:space="preserve">
+    <value>លុបខ្លឹមសារ</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>ពង្រួម</value>
+  </data>
   <data name="Description" xml:space="preserve">
-    <value>ការពិពណ៌នា</value>
+    <value>ពិពណ៌នា</value>
+  </data>
+  <data name="Document Types" xml:space="preserve">
+    <value>ប្រភេទឯកសារ</value>
+  </data>
+  <data name="Document Types exported" xml:space="preserve">
+    <value>ប្រភេទឯកសារនាំចេញ</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>កែប្រែ</value>
@@ -144,28 +150,28 @@
   <data name="Export" xml:space="preserve">
     <value>នាំចេញ</value>
   </data>
-  <data name="Filtered Brands exported" xml:space="preserve">
-    <value>ច្រោះម៉ាកបាននាំចេញ</value>
+  <data name="Filtered Document Types exported" xml:space="preserve">
+    <value>ច្រោះប្រភេទឯកសារនាំចេញ</value>
   </data>
   <data name="Id" xml:space="preserve">
-    <value>លេខកូដសម្ងាល់</value>
+    <value>លេខកូដ</value>
   </data>
-  <data name="Manage Brands." xml:space="preserve">
-    <value>គ្រប់គ្រងម៉ាក</value>
+  <data name="Manage Document Types." xml:space="preserve">
+    <value>គ្រប់គ្រងប្រភេទឯកសារ</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>ឈ្មោះ</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>មិនមានសិទ្ធិ</value>
+    <value>សកម្មភាពមិនអនុញ្ញាត្ត</value>
   </data>
   <data name="Reload" xml:space="preserve">
     <value>ផ្ទុកឡើងវិញ</value>
   </data>
-  <data name="Search for Brands" xml:space="preserve">
-    <value>ស្វែងរកម៉ាក</value>
+  <data name="Search for Document Types" xml:space="preserve">
+    <value>ស្វែងរកប្រភេទឯកសារ</value>
   </data>
-  <data name="Tax" xml:space="preserve">
-    <value>ពន្ធ</value>
+  <data name="Striped" xml:space="preserve">
+    <value>ឆ្លាស់ពណ៌</value>
   </data>
 </root>

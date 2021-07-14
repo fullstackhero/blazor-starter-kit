@@ -121,7 +121,7 @@
     <value>កំណត់ត្រាប្រព័ន្ធ</value>
   </data>
   <data name="Audit Trails exported" xml:space="preserve">
-    <value>Audit Trails exported</value>
+    <value>កំណត់ត្រាប្រព័ន្ធ នាំចេញ</value>
   </data>
   <data name="Columns Affected" xml:space="preserve">
     <value>ជួរឈរដែលបានកែប្រែ</value>
@@ -136,7 +136,7 @@
     <value>បម្លែងជា​ Excel</value>
   </data>
   <data name="Filtered Audit Trails exported" xml:space="preserve">
-    <value>Filtered Audit Trails exported</value>
+    <value>ច្រោះកំណត់ត្រាប្រព័ន្ធនាំចេញ</value>
   </data>
   <data name="Hide" xml:space="preserve">
     <value>បិទ</value>
