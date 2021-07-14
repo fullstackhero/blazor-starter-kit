@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Deletion Not Allowed" xml:space="preserve">
-    <value>Deletion Not Allowed</value>
+    <value>ការលុបមិនត្រូវបានអនុញ្ញាត្ត!</value>
   </data>
   <data name="Extended Attribute Deleted" xml:space="preserve">
-    <value>Extended Attribute Deleted</value>
+    <value>ជួរឈរបន្ថែមត្រូវបានលុប!</value>
   </data>
   <data name="Extended Attribute Not Found!" xml:space="preserve">
-    <value>Extended Attribute Not Found!</value>
+    <value>ជួរឈរបន្ថែមរកមិនឃើញ!</value>
   </data>
 </root>

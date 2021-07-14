@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Extended Attribute Not Found!" xml:space="preserve">
-    <value>ជួរឈរបន្ថែមរកមិនឃើញ!</value>
+  <data name="Document Type Not Found!" xml:space="preserve">
+    <value>គ្មានប្រភេទឯកសារ</value>
   </data>
-  <data name="Extended Attribute Saved" xml:space="preserve">
-    <value>ជួរឈរបន្ថែមបានរក្សាទុក!</value>
+  <data name="Document Type Saved" xml:space="preserve">
+    <value>ប្រភេទឯកសារបានរក្សាទុក</value>
   </data>
-  <data name="Extended Attribute Updated" xml:space="preserve">
-    <value>ជួរឈរបន្ថែមបានធ្វើបច្ចុប្បន្នភាព!</value>
+  <data name="Document Type Updated" xml:space="preserve">
+    <value>ប្រភេទឯកសារបានធ្វើបច្ចុប្បន្នភាព</value>
   </data>
-  <data name="Extended Attribute with this Key already exists." xml:space="preserve">
-    <value>ជួរឈរបន្ធែមជាមួយកូដឃីនេះមានរួចហើយ!</value>
+  <data name="Document type with this name already exists." xml:space="preserve">
+    <value>ប្រភេទឯកសារដែលមានឈ្មោះនេះគឺមានរួចហើយ</value>
   </data>
 </root>
