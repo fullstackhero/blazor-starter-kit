@@ -120,4 +120,13 @@
   <data name="Audit Trails" xml:space="preserve">
     <value>Audit Trails</value>
   </data>
+  <data name="Header '{0}' does not exist in table!" xml:space="preserve">
+    <value>Header '{0}' does not exist in table!</value>
+  </data>
+  <data name="Import Success" xml:space="preserve">
+    <value>Import Success</value>
+  </data>
+  <data name="Sheet with name {0} does not exist!" xml:space="preserve">
+    <value>Sheet with name {0} does not exist!</value>
+  </data>
 </root>

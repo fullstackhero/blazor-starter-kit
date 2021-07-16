@@ -54,31 +54,39 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Impo
                 { _localizer["Name"], (row,item) => item.Name = row[_localizer["Name"]].ToString() },
                 { _localizer["Description"], (row,item) => item.Description = row[_localizer["Description"]].ToString() },
                 { _localizer["Tax"], (row,item) => item.Tax = decimal.TryParse(row[_localizer["Tax"]].ToString(), out var tax) ? tax : 1 }
-            }, _localizer["Brands"])).ToList();
+            }, _localizer["Brands"]));
 
-            var errors = new List<string>();
-            var errorsOccurred = false;
-            foreach(var item in result)
+            if (result.Succeeded)
             {
-                var validationResult = await _addBrandValidator.ValidateAsync(_mapper.Map<AddEditBrandCommand>(item), cancellationToken);
-                if (validationResult.IsValid)
+                var importedBrands = result.Data;
+                var errors = new List<string>();
+                var errorsOccurred = false;
+                foreach (var brand in importedBrands)
                 {
-                    await _unitOfWork.Repository<Brand>().AddAsync(item);
+                    var validationResult = await _addBrandValidator.ValidateAsync(_mapper.Map<AddEditBrandCommand>(brand), cancellationToken);
+                    if (validationResult.IsValid)
+                    {
+                        await _unitOfWork.Repository<Brand>().AddAsync(brand);
+                    }
+                    else
+                    {
+                        errorsOccurred = true;
+                        errors.AddRange(validationResult.Errors.Select(e => $"{(!string.IsNullOrWhiteSpace(brand.Name) ? $"{brand.Name} - " : string.Empty)}{e.ErrorMessage}"));
+                    }
                 }
-                else
-                {
-                    errorsOccurred = true;
-                    errors.AddRange(validationResult.Errors.Select(e => $"{(!string.IsNullOrWhiteSpace(item.Name) ? $"{item.Name} - " : string.Empty)}{e.ErrorMessage}"));
-                }
-            }
 
-            if (errorsOccurred)
+                if (errorsOccurred)
+                {
+                    return await Result<int>.FailAsync(errors);
+                }
+
+                await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
+                return await Result<int>.SuccessAsync(result.Data.Count(), result.Messages[0]);
+            }
+            else
             {
-                return await Result<int>.FailAsync(errors);
+                return await Result<int>.FailAsync(result.Messages);
             }
-
-            await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
-            return await Result<int>.SuccessAsync(result.Count, _localizer["Import Success"]);
         }
     }
 }
