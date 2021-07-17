@@ -159,6 +159,9 @@
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
+  <data name="Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
   <data name="Manage Brands." xml:space="preserve">
     <value>Управление брендами.</value>
   </data>

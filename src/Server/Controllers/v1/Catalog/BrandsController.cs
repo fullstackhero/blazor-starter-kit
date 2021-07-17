@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Delete;
 using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.Export;
+using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Import;
 
 namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
 {
@@ -71,6 +72,18 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         public async Task<IActionResult> Export(string searchString = "")
         {
             return Ok(await _mediator.Send(new ExportBrandsQuery(searchString)));
+        }
+
+        /// <summary>
+        /// Import Brands from Excel
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        [Authorize(Policy = Permissions.Brands.Import)]
+        [HttpPost("import")]
+        public async Task<IActionResult> Import(ImportBrandsCommand command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }

@@ -121,18 +121,18 @@
     <value>Role Claim does not exist.</value>
   </data>
   <data name="Role Claim {0} created." xml:space="preserve">
-    <value>Role Claim {0} created.</value>
+    <value>Role Claim {0} បង្កើត</value>
   </data>
   <data name="Role Claim {0} for Role {1} updated." xml:space="preserve">
-    <value>Role Claim {0} for Role {1} updated.</value>
+    <value>Role Claim {0} សម្រាប់តួនាទី {1} បានបច្ចុប្បន្នភាព</value>
   </data>
   <data name="Role Claim {0} for {1} Role deleted." xml:space="preserve">
-    <value>Role Claim {0} for {1} Role deleted.</value>
+    <value>Role Claim {0} សម្រាប់តួនាទី​ {1}​ បានលុប</value>
   </data>
   <data name="Role is required." xml:space="preserve">
-    <value>Role is required.</value>
+    <value>តួនាទីត្រូវបំបេញ</value>
   </data>
   <data name="Similar Role Claim already exists." xml:space="preserve">
-    <value>Similar Role Claim already exists.</value>
+    <value>តួនាទីស្រដៀងគ្នាគឺមានហើយ</value>
   </data>
 </root>

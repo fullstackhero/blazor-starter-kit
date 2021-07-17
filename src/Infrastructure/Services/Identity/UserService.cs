@@ -241,7 +241,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var passwordResetURL = QueryHelpers.AddQueryString(endpointUri.ToString(), "Token", code);
             var mailRequest = new MailRequest
             {
-                Body = string.Format(_localizer["Please reset your password by <a href='{0}>clicking here</a>."], HtmlEncoder.Default.Encode(passwordResetURL)),
+                Body = string.Format(_localizer["Please reset your password by <a href='{0}'>clicking here</a>."], HtmlEncoder.Default.Encode(passwordResetURL)),
                 Subject = _localizer["Reset Password"],
                 To = request.Email
             };

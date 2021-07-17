@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Barcode already exists." xml:space="preserve">
-    <value>Barcode already exists.</value>
+    <value>បារកូដមានរួចហើយៗ</value>
   </data>
   <data name="Product Not Found!" xml:space="preserve">
     <value>ផលិតផលរកមិនឃើញ!</value>

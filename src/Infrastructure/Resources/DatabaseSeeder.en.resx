@@ -129,8 +129,8 @@
   <data name="Seeded Basic Role." xml:space="preserve">
     <value>Seeded Basic Role.</value>
   </data>
-  <data name="Seeded User with Administrator Role." xml:space="preserve">
-    <value>Seeded User with Administrator Role.</value>
+  <data name="Seeded Default SuperAdmin User." xml:space="preserve">
+    <value>Seeded Default SuperAdmin User.</value>
   </data>
   <data name="Seeded User with Basic Role." xml:space="preserve">
     <value>Seeded User with Basic Role.</value>

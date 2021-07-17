@@ -165,6 +165,9 @@
   <data name="Toggle right-to-left/left-to-right" xml:space="preserve">
     <value>Toggle right-to-left/left-to-right</value>
   </data>
+  <data name="Welcome {0}" xml:space="preserve">
+    <value>Selamat Datang {0}</value>
+  </data>
   <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
     <value>You are logged out because the Permissions of one of your Roles have been updated.</value>
   </data>

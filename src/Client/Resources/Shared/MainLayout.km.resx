@@ -121,10 +121,10 @@
     <value>គណនី</value>
   </data>
   <data name="Buy Me A Coffee!" xml:space="preserve">
-    <value>Buy Me A Coffee!</value>
+    <value>ទិញកាហ្វេមួយមក!</value>
   </data>
   <data name="Chat?" xml:space="preserve">
-    <value>Chat?</value>
+    <value>ឆាត?</value>
   </data>
   <data name="Community" xml:space="preserve">
     <value>សហគមន៍</value>
@@ -162,11 +162,14 @@
   <data name="Toggle right-to-left/left-to-right" xml:space="preserve">
     <value>Toggle right-to-left/left-to-right</value>
   </data>
+  <data name="Welcome {0}" xml:space="preserve">
+    <value>ស្វាគមន៏ {0}</value>
+  </data>
   <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
-    <value>You are logged out because the Permissions of one of your Roles have been updated.</value>
+    <value>អ្នកត្រូវបានចាកចេញពីប្រព័ន្ធព្រោះសិទ្ធិនៃមុខងារបស់អ្នកត្រូវបានធ្វើបច្ចុប្បន្នភាព</value>
   </data>
   <data name="You are logged out because the user with your Token has been deleted." xml:space="preserve">
-    <value>You are logged out because the user with your Token has been deleted.</value>
+    <value>អ្នកត្រូវបានចាកចេញពីប្រព័ន្ធព្រោះកូដធូឃីនអ្នកត្រូវបានលុប</value>
   </data>
   <data name="You are Logged Out." xml:space="preserve">
     <value>អ្នកត្រូវបានចាកចេញ</value>

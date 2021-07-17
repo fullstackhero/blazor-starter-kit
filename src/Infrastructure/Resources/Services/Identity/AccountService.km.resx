@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Email {0} is already used." xml:space="preserve">
-    <value>Email {0} is already used.</value>
+    <value>អ៊ីម៉ែល{0} បានប្រើប្រាស់ហើយ</value>
   </data>
   <data name="Incorrect password." xml:space="preserve">
-    <value>Incorrect password.</value>
+    <value>លេខកូដមិនត្រឹមត្រូវ</value>
   </data>
   <data name="Phone number {0} is already used." xml:space="preserve">
-    <value>Phone number {0} is already used.</value>
+    <value>លេខទូរស័ព្ទ {0} បានប្រើប្រាស់ហើយ</value>
   </data>
   <data name="User Not Found." xml:space="preserve">
     <value>គណនីរកមិនឃើញ</value>

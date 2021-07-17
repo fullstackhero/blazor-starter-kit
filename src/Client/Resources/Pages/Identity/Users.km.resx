@@ -133,10 +133,10 @@
     <value>អ៊ីម៉ែលបញ្ជាក់</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export</value>
+    <value>នាំចេញ</value>
   </data>
   <data name="Filtered Users exported" xml:space="preserve">
-    <value>Filtered Users exported</value>
+    <value>ច្រោះអ្នកប្រើប្រាស់បាននាំចេញ</value>
   </data>
   <data name="First Name" xml:space="preserve">
     <value>នាមខ្លួន</value>
@@ -151,7 +151,7 @@
     <value>កំណត់អ្នកប្រើប្រាស់</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>សកម្មភាពមិនអនុញ្ញាត្ត</value>
   </data>
   <data name="Register New User" xml:space="preserve">
     <value>ចុះឈ្មោះអ្នកប្រើប្រាស់ថ្មី</value>
@@ -166,7 +166,7 @@
     <value>អ្នកប្រើប្រាស់</value>
   </data>
   <data name="Users exported" xml:space="preserve">
-    <value>Users exported</value>
+    <value>អ្នកប្រើប្រាស់បាននាំចេញ</value>
   </data>
   <data name="View Profile" xml:space="preserve">
     <value>បង្ហាញព័ត៌មានផ្ទាល់ខ្លួន</value>

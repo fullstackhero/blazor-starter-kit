@@ -165,6 +165,9 @@
   <data name="Toggle right-to-left/left-to-right" xml:space="preserve">
     <value>Переключить справа-на-лево/слева-на-право</value>
   </data>
+  <data name="Welcome {0}" xml:space="preserve">
+    <value>Добро пожаловать {0}</value>
+  </data>
   <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
     <value>Вы вышли из системы, потому что были обновлены разрешения одной из ваших ролей.</value>
   </data>

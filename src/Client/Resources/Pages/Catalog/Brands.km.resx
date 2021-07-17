@@ -127,7 +127,7 @@
     <value>ម៉ាក</value>
   </data>
   <data name="Brands exported" xml:space="preserve">
-    <value>Brands exported</value>
+    <value>ម៉ាកបាននាំចេញ</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>បង្កើត</value>
@@ -142,13 +142,16 @@
     <value>កែប្រែ</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export</value>
+    <value>នាំចេញ</value>
   </data>
   <data name="Filtered Brands exported" xml:space="preserve">
-    <value>Filtered Brands exported</value>
+    <value>ច្រោះម៉ាកបាននាំចេញ</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>លេខកូដសម្ងាល់</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
   </data>
   <data name="Manage Brands." xml:space="preserve">
     <value>គ្រប់គ្រងម៉ាក</value>
@@ -157,7 +160,7 @@
     <value>ឈ្មោះ</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>មិនមានសិទ្ធិ</value>
   </data>
   <data name="Reload" xml:space="preserve">
     <value>ផ្ទុកឡើងវិញ</value>

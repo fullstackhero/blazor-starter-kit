@@ -139,7 +139,7 @@
     <value>អ៊ីម៉ែល {0} ត្រូវបានចុះឈ្មោះរួចហើយ</value>
   </data>
   <data name="Not Allowed to add or delete Administrator Role if you have not this role." xml:space="preserve">
-    <value>Not Allowed to add or delete Administrator Role if you have not this role.</value>
+    <value> មិនអនុញ្ញាត្តបន្ថែម ឬ លុបតួនាទីអ្នកប្រើប្រាស់រដ្ឋបាលប្រសិនបើអ្នកគ្មានតួនាទីនេះ</value>
   </data>
   <data name="Not Allowed." xml:space="preserve">
     <value>មិនអនុញ្ញាត្ត</value>
@@ -151,7 +151,7 @@
     <value>លេខកូដសម្ងាត់បានកំណត់ឡើងវិញដោយជោគជ័យ</value>
   </data>
   <data name="Phone number {0} is already registered." xml:space="preserve">
-    <value>Phone number {0} ត្រូវបានចុះឈ្មោះរួចហើយ</value>
+    <value>លេខទូរស័ព្ទ {0} ត្រូវបានចុះឈ្មោះរួចហើយ</value>
   </data>
   <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
     <value>សូមបញ្ជាក់គណនីរបស់អ្នកដោយ &lt;a href='{0}'&gt;ចុចទីនេះ&lt;/a&gt;.</value>

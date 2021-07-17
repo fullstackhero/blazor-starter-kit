@@ -124,7 +124,7 @@
     <value>មិនអនុញ្ញាត្តឲ្យលុប {0} តួនាទី.</value>
   </data>
   <data name="Not allowed to deselect {0} or {1} or {2} for this Role." xml:space="preserve">
-    <value>Not allowed to deselect {0} or {1} or {2} for this Role.</value>
+    <value>មិនអនុញ្ញាត្តមិនជ្រើសរើស {0} ឬ {1} ឬ {2} សម្រាប់តួនាទីមួយនេះ.</value>
   </data>
   <data name="Not allowed to modify Permissions for this Role." xml:space="preserve">
     <value>មិនអនុញ្ញាត្តឲ្យកែប្រែសិទ្ធិសម្រាប់តួនាទីនេះ</value>
@@ -136,13 +136,13 @@
     <value>សិទ្ធិបានធ្វើបច្ចុប្បន្នភាព</value>
   </data>
   <data name="Role {0} Created." xml:space="preserve">
-    <value>Role {0} Created.</value>
+    <value>តួនាទី {0} បានបង្កើត.</value>
   </data>
   <data name="Role {0} Deleted." xml:space="preserve">
-    <value>Role {0} Deleted.</value>
+    <value>តួនាទី {0} បានលុប</value>
   </data>
   <data name="Role {0} Updated." xml:space="preserve">
-    <value>Role {0} Updated.</value>
+    <value>តួនាទី {0} បានធ្វើបច្ចុប្បន្នភាព</value>
   </data>
   <data name="Similar Role already exists." xml:space="preserve">
     <value>តួនាទីស្រដៀងគ្នាបានបង្កើតឡើងរួចហើយ</value>

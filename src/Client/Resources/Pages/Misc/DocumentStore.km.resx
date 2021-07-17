@@ -142,7 +142,7 @@
     <value>តំបន់រក្សាទុកឯកសារ</value>
   </data>
   <data name="Document Type" xml:space="preserve">
-    <value>Document Type</value>
+    <value>ប្រភេទឯកសារ</value>
   </data>
   <data name="Download" xml:space="preserve">
     <value>ទាញយក</value>
@@ -157,10 +157,10 @@
     <value>ធ្វើអោយជាសាធារណះ</value>
   </data>
   <data name="Manage Extended Attributes" xml:space="preserve">
-    <value>Manage Extended Attributes</value>
+    <value>គ្រប់គ្រង ជួរឈរបន្ថែម</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>សកម្មភាពមិនបានអនុញ្ញាត្ត</value>
   </data>
   <data name="Owner" xml:space="preserve">
     <value>ម្ខាស់</value>

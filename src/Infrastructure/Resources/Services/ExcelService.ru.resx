@@ -120,4 +120,13 @@
   <data name="Audit Trails" xml:space="preserve">
     <value>Журналы аудита</value>
   </data>
+  <data name="Header '{0}' does not exist in table!" xml:space="preserve">
+    <value>Заголовок '{0}' не существует в таблице!</value>
+  </data>
+  <data name="Import Success" xml:space="preserve">
+    <value>Импорт завершён</value>
+  </data>
+  <data name="Sheet with name {0} does not exist!" xml:space="preserve">
+    <value>Лист с именем {0} не существует!</value>
+  </data>
 </root>
