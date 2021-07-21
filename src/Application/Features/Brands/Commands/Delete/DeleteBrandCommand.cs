@@ -6,6 +6,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Delete
 {
@@ -13,8 +16,14 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Dele
     {
         public int Id { get; set; }
     }
+  public class DeleteCheckedBrandsCommand : IRequest<Result<int[]>>
+  {
+    public int[] Id { get; set; }
+  }
 
-    internal class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommand, Result<int>>
+  internal class DeleteBrandCommandHandler :
+     IRequestHandler<DeleteCheckedBrandsCommand, Result<int[]>>,
+    IRequestHandler<DeleteBrandCommand, Result<int>>
     {
         private readonly IProductRepository _productRepository;
         private readonly IStringLocalizer<DeleteBrandCommandHandler> _localizer;
@@ -49,5 +58,32 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Dele
                 return await Result<int>.FailAsync(_localizer["Deletion Not Allowed"]);
             }
         }
+
+    public async Task<Result<int[]>> Handle(DeleteCheckedBrandsCommand request, CancellationToken cancellationToken)
+    {
+       var brands= await  _unitOfWork.Repository<Brand>().Entities.Where(x=>request.Id.Contains(x.Id)).ToListAsync();
+      var errors = new List<string>();
+       foreach(var brand in brands)
+      {
+        var isBrandUsed = await _productRepository.IsBrandUsed(brand.Id);
+        if (!isBrandUsed)
+        {
+          await _unitOfWork.Repository<Brand>().DeleteAsync(brand);
+        }
+        else
+        {
+          errors.Add(string.Format(_localizer["{0}:Deletion Not Allowed"],brand.Name));
+        }
+      }
+      if (errors.Count == 0)
+      {
+        await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
+        return await Result<int[]>.SuccessAsync(request.Id, string.Format(_localizer["{0} Brands Deleted"],request.Id.Length));
+      }
+      else
+      {
+        return await Result<int[]>.FailAsync(errors);
+      }
     }
+  }
 }

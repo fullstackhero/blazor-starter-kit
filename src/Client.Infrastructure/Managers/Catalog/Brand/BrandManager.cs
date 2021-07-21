@@ -32,8 +32,13 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Br
             var response = await _httpClient.DeleteAsync($"{Routes.BrandsEndpoints.Delete}/{id}");
             return await response.ToResult<int>();
         }
+    public async Task<IResult<int[]>> DeleteCheckedAsync(int[] id)
+    {
+      var response = await _httpClient.DeleteAsync(Routes.BrandsEndpoints.DeleteChecked(id));
+      return await response.ToResult<int[]>();
+    }
 
-        public async Task<IResult<List<GetAllBrandsResponse>>> GetAllAsync()
+    public async Task<IResult<List<GetAllBrandsResponse>>> GetAllAsync()
         {
             var response = await _httpClient.GetAsync(Routes.BrandsEndpoints.GetAll);
             return await response.ToResult<List<GetAllBrandsResponse>>();

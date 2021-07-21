@@ -23,8 +23,12 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Pr
             var response = await _httpClient.DeleteAsync($"{Routes.ProductsEndpoints.Delete}/{id}");
             return await response.ToResult<int>();
         }
-
-        public async Task<IResult<string>> ExportToExcelAsync(string searchString = "")
+    public async Task<IResult<int[]>> DeleteCheckedAsync(int[] id)
+    {
+      var response = await _httpClient.DeleteAsync(Routes.ProductsEndpoints.DeleteChecked(id));
+      return await response.ToResult<int[]>();
+    }
+    public async Task<IResult<string>> ExportToExcelAsync(string searchString = "")
         {
             var response = await _httpClient.GetAsync(string.IsNullOrWhiteSpace(searchString)
                 ? Routes.ProductsEndpoints.Export
