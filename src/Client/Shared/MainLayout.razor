@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @inject Microsoft.Extensions.Localization.IStringLocalizer<MainLayout> _localizer
 
+<MudRTLProvider RightToLeft="@_rightToLeft">
     <audio id="notification" src="/media/notification.mp3" />
     <MudThemeProvider Theme="_currentTheme" />
     <MudDialogProvider />
@@ -22,10 +23,11 @@
             </MudContainer>
         </NotAuthorized>
         <Authorized>
-            <MudLayout RightToLeft="@_rightToLeft">
+            <MudLayout>
                 <MainBody OnDarkModeToggle="@DarkMode" OnRightToLeftToggle="@RightToLeftToggle">
                     @Body
                 </MainBody>
             </MudLayout>
         </Authorized>
     </AuthorizeView>
+</MudRTLProvider>
