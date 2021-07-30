@@ -20,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 
         private FluentValidationValidator _fluentValidationValidator;
         private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-    private bool _uploading = false;
+        private bool _uploading = false;
         public void Cancel()
         {
             MudDialog.Cancel();
@@ -30,7 +30,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         {
             if (OnSaved != null)
             {
-        _uploading = true;
+                _uploading = true;
                 var result = await OnSaved.Invoke(UploadRequest);
                 if (result.Succeeded)
                 {
@@ -44,8 +44,8 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                         _snackBar.Add(message, Severity.Error);
                     }
                 }
-        _uploading = false;
-      }
+                _uploading = false;
+            }
             else
             {
                 MudDialog.Close();
