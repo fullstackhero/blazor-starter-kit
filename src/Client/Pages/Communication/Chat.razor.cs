@@ -80,7 +80,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 await HubConnection.StartAsync();
             }
-
+            HubConnection.On<string>(ApplicationConstants.SignalR.PingResponse, (userId) =>
+            {
+                var connectedUser = UserList.Find(x => x.Id.Equals(userId));
+                if (connectedUser is { IsOnline: false })
+                {
+                    connectedUser.IsOnline = true;
+                    //_snackBar.Add($"{connectedUser.UserName} {_localizer["Logged In."]}", Severity.Info);
+                    StateHasChanged();
+                }
+            });
             HubConnection.On<string>(ApplicationConstants.SignalR.ConnectUser, (userId) =>
             {
                 var connectedUser = UserList.Find(x => x.Id.Equals(userId));
@@ -127,6 +136,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Communication
             {
                 await LoadUserChat(CId);
             }
+
+            await HubConnection.SendAsync(ApplicationConstants.SignalR.PingRequest, CurrentUserId);
         }
 
         public List<ChatUserResponse> UserList = new();

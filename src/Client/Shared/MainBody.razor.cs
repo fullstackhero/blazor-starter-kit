@@ -116,6 +116,11 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                     }
                 }
             });
+            hubConnection.On<string>(ApplicationConstants.SignalR.PingRequest, async (userName) =>
+            {
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.PingResponse, CurrentUserId, userName);
+
+            });
 
             await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);
 
