@@ -19,6 +19,7 @@ using BlazorHero.CleanArchitecture.Server.Localization;
 using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
 using BlazorHero.CleanArchitecture.Server.Services;
 using BlazorHero.CleanArchitecture.Server.Settings;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
@@ -253,6 +254,20 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
                     bearer.Events = new JwtBearerEvents
                     {
+                        OnMessageReceived = context =>
+                        {
+                            var accessToken = context.Request.Query["access_token"];
+
+                            // If the request is for our hub...
+                            var path = context.HttpContext.Request.Path;
+                            if (!string.IsNullOrEmpty(accessToken) &&
+                                (path.StartsWithSegments(ApplicationConstants.SignalR.HubUrl)))
+                            {
+                                // Read the token out of the query string
+                                context.Token = accessToken;
+                            }
+                            return Task.CompletedTask;
+                        },
                         OnAuthenticationFailed = c =>
                         {
                             if (c.Exception is SecurityTokenExpiredException)

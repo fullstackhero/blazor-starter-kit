@@ -3,11 +3,13 @@ using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorHero.CleanArchitecture.Server.Hubs
 {
     public class SignalRHub : Hub
     {
+        [Authorize]
         public async Task OnConnectAsync(string userId)
         {
             await Clients.All.SendAsync(ApplicationConstants.SignalR.ConnectUser, userId);
