@@ -7,6 +7,7 @@ using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard;
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+using BlazorHero.CleanArchitecture.Client.Extensions;
 
 namespace BlazorHero.CleanArchitecture.Client.Pages.Content
 {
@@ -31,15 +32,16 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
         {
             await LoadDataAsync();
             _loaded = true;
-            HubConnection = new HubConnectionBuilder()
-            .WithUrl(_navigationManager.ToAbsoluteUri(ApplicationConstants.SignalR.HubUrl))
-            .Build();
+            HubConnection = HubConnection.TryInitialize(_navigationManager, _localStorage);
             HubConnection.On(ApplicationConstants.SignalR.ReceiveUpdateDashboard, async () =>
             {
                 await LoadDataAsync();
                 StateHasChanged();
             });
-            await HubConnection.StartAsync();
+            if (HubConnection.State == HubConnectionState.Disconnected)
+            {
+                await HubConnection.StartAsync();
+            }
         }
 
         private async Task LoadDataAsync()
