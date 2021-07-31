@@ -88,7 +88,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         protected override async Task OnInitializedAsync()
         {
             await LoadDataAsync();
-            HubConnection = HubConnection.TryInitialize(_navigationManager);
+            HubConnection = HubConnection.TryInitialize(_navigationManager, _localStorage);
             if (HubConnection.State == HubConnectionState.Disconnected)
             {
                 await HubConnection.StartAsync();

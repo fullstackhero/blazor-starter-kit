@@ -53,7 +53,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
             _rightToLeft = await _clientPreferenceManager.IsRTL();
             _interceptor.RegisterEvent();
-            hubConnection = hubConnection.TryInitialize(_navigationManager);
+            hubConnection = hubConnection.TryInitialize(_navigationManager, _localStorage);
             await hubConnection.StartAsync();
             hubConnection.On<string, string, string>(ApplicationConstants.SignalR.ReceiveChatNotification, (message, receiverUserId, senderUserId) =>
             {
@@ -115,6 +115,11 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
                         }
                     }
                 }
+            });
+            hubConnection.On<string>(ApplicationConstants.SignalR.PingRequest, async (userName) =>
+            {
+                await hubConnection.SendAsync(ApplicationConstants.SignalR.PingResponse, CurrentUserId, userName);
+
             });
 
             await hubConnection.SendAsync(ApplicationConstants.SignalR.OnConnect, CurrentUserId);

@@ -49,7 +49,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
 
             await GetDocumentTypesAsync();
             _loaded = true;
-            HubConnection = HubConnection.TryInitialize(_navigationManager);
+            HubConnection = HubConnection.TryInitialize(_navigationManager, _localStorage);
             if (HubConnection.State == HubConnectionState.Disconnected)
             {
                 await HubConnection.StartAsync();
