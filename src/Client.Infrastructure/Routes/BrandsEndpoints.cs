@@ -1,4 +1,6 @@
-﻿namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Routes
+﻿using System.Linq;
+
+namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Routes
 {
     public static class BrandsEndpoints
     {
@@ -6,13 +8,25 @@
         {
             return $"{Export}?searchString={searchString}";
         }
+    public static string DeleteChecked(int[] id)
+    {
+      var url = "api/v1/brands?";
+      if (id.Any() == true)
+      {
+        foreach (var p in id)
+        {
+          url += $"id={p}&";
+        }
+        url = url[..^1];
+      }
+      return url;
+    }
 
         public static string Export = "api/v1/brands/export";
-
+        public static string Import = "api/v1/brands/import";
         public static string GetAll = "api/v1/brands";
         public static string Delete = "api/v1/brands";
         public static string Save = "api/v1/brands";
         public static string GetCount = "api/v1/brands/count";
-        public static string Import = "api/v1/brands/import";
-  }
+   }
 }
