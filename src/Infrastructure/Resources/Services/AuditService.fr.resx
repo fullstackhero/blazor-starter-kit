@@ -117,22 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Role Claim does not exist." xml:space="preserve">
-    <value>Revendication de rôle inexistante</value>
+  <data name="Audit trails" xml:space="preserve">
+    <value>Pistes d'audit</value>
   </data>
-  <data name="Role Claim {0} created." xml:space="preserve">
-    <value>Revendication de rôle {0} créé.</value>
+  <data name="Date Time (Local)" xml:space="preserve">
+    <value>Date et heure (Local)</value>
   </data>
-  <data name="Role Claim {0} for Role {1} updated." xml:space="preserve">
-    <value>Revendication de rôle {0} pour le rôle {1} mise à jour.</value>
+  <data name="Date Time (UTC)" xml:space="preserve">
+    <value>Date et heure (UTC)</value>
   </data>
-  <data name="Role Claim {0} for {1} Role deleted." xml:space="preserve">
-    <value>Revendication de rôle {0} pour le rôle {1} supprimée.</value>
+  <data name="New Values" xml:space="preserve">
+    <value>Nouvelles valeurs</value>
   </data>
-  <data name="Role is required." xml:space="preserve">
-    <value>Rôle requis.</value>
+  <data name="Old Values" xml:space="preserve">
+    <value>Anciennes valeurs</value>
   </data>
-  <data name="Similar Role Claim already exists." xml:space="preserve">
-    <value>Revendication de rôle similaire existante.</value>
+  <data name="Primary Key" xml:space="preserve">
+    <value>Clé primaire</value>
+  </data>
+  <data name="Table Name" xml:space="preserve">
+    <value>Nom de la table</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>

@@ -117,22 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Role Claim does not exist." xml:space="preserve">
-    <value>Revendication de rôle inexistante</value>
+  <data name="E-Mail not confirmed." xml:space="preserve">
+    <value>Courriel non confirmé.</value>
   </data>
-  <data name="Role Claim {0} created." xml:space="preserve">
-    <value>Revendication de rôle {0} créé.</value>
+  <data name="Invalid Client Token." xml:space="preserve">
+    <value>Jeton client invalide.</value>
   </data>
-  <data name="Role Claim {0} for Role {1} updated." xml:space="preserve">
-    <value>Revendication de rôle {0} pour le rôle {1} mise à jour.</value>
+  <data name="Invalid Credentials." xml:space="preserve">
+    <value>Identifiants invalides.</value>
   </data>
-  <data name="Role Claim {0} for {1} Role deleted." xml:space="preserve">
-    <value>Revendication de rôle {0} pour le rôle {1} supprimée.</value>
+  <data name="Invalid token" xml:space="preserve">
+    <value>Jeton invalide</value>
   </data>
-  <data name="Role is required." xml:space="preserve">
-    <value>Rôle requis.</value>
+  <data name="User Not Active. Please contact the administrator." xml:space="preserve">
+    <value>Utilisateur inactif. Veuillez contacter l'administrateur.</value>
   </data>
-  <data name="Similar Role Claim already exists." xml:space="preserve">
-    <value>Revendication de rôle similaire existante.</value>
+  <data name="User Not Found." xml:space="preserve">
+    <value>Utilisateur introuvable.</value>
   </data>
 </root>

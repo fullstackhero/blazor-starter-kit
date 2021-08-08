@@ -117,22 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Role Claim does not exist." xml:space="preserve">
-    <value>Revendication de rôle inexistante</value>
+  <data name="Account Confirmed for {0}. You can now use the /api/identity/token endpoint to generate JWT." xml:space="preserve">
+    <value>Compte confirmé pour {0}. Vous pouvez maintenant utiliser l'URI /api/identity/token pour générer un JWT.</value>
   </data>
-  <data name="Role Claim {0} created." xml:space="preserve">
-    <value>Revendication de rôle {0} créé.</value>
+  <data name="Administrators Profile's Status cannot be toggled" xml:space="preserve">
+    <value>Le statut d'un profil d'administrateur ne peut pas être changé</value>
   </data>
-  <data name="Role Claim {0} for Role {1} updated." xml:space="preserve">
-    <value>Revendication de rôle {0} pour le rôle {1} mise à jour.</value>
+  <data name="An Error has occurred!" xml:space="preserve">
+    <value>Une erreur s'est produite !</value>
   </data>
-  <data name="Role Claim {0} for {1} Role deleted." xml:space="preserve">
-    <value>Revendication de rôle {0} pour le rôle {1} supprimée.</value>
+  <data name="An error occurred while confirming {0}" xml:space="preserve">
+    <value>Une erreur s'est produite durant la confirmation {0}</value>
   </data>
-  <data name="Role is required." xml:space="preserve">
-    <value>Rôle requis.</value>
+  <data name="Confirm Registration" xml:space="preserve">
+    <value>Confirmer l'enregistrement</value>
   </data>
-  <data name="Similar Role Claim already exists." xml:space="preserve">
-    <value>Revendication de rôle similaire existante.</value>
+  <data name="CreatedOn (Local)" xml:space="preserve">
+    <value>Créé le (Local)</value>
+  </data>
+  <data name="CreatedOn (UTC)" xml:space="preserve">
+    <value>Créé le (UTC)</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Courriel</value>
+  </data>
+  <data name="Email {0} is already registered." xml:space="preserve">
+    <value>Le courriel {0} est déjà enregistré.</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>Courriel confirmé</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Identifiant</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Est actif</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Not Allowed to add or delete Administrator Role if you have not this role." xml:space="preserve">
+    <value>Vous n'êtes pas autorisé à supprimer un rôle administrateur si vous ne l'avez pas vous-même.</value>
+  </data>
+  <data name="Not Allowed." xml:space="preserve">
+    <value>Non autorisé.</value>
+  </data>
+  <data name="Password Reset Mail has been sent to your authorized Email." xml:space="preserve">
+    <value>Un lien de réinitialisation de votre mot de passe vous a été envoyé à votre couriel vérifié.</value>
+  </data>
+  <data name="Password Reset Successful!" xml:space="preserve">
+    <value>Mot de passe réinitialisé avec succès.</value>
+  </data>
+  <data name="Phone number {0} is already registered." xml:space="preserve">
+    <value>Le numéro de téléphone {0} est déjà enregistré.</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Numéro de téléphone</value>
+  </data>
+  <data name="PhoneNumberConfirmed" xml:space="preserve">
+    <value>Numéro de téléphone confirmé</value>
+  </data>
+  <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>Veuillez confirmer votre compte en &lt;a href='{0}'&gt;cliquant ici&lt;/a&gt;.</value>
+  </data>
+  <data name="Please reset your password by &lt;a href='{0}&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>Veuillez réinitialiser votre mot de passe en &lt;a href='{0}&gt;cliquant ici&lt;/a&gt;.</value>
+  </data>
+  <data name="ProfilePictureDataUrl" xml:space="preserve">
+    <value>ProfilePictureDataUrl</value>
+  </data>
+  <data name="Reset Password" xml:space="preserve">
+    <value>Réinitialiser le mot de passe</value>
+  </data>
+  <data name="Roles Updated" xml:space="preserve">
+    <value>Rôles mis à jour</value>
+  </data>
+  <data name="User {0} Registered." xml:space="preserve">
+    <value>Utilisateur {0} enregistré.</value>
+  </data>
+  <data name="User {0} Registered. Please check your Mailbox to verify!" xml:space="preserve">
+    <value>Utilisateur {0} enregistré. Veuillez consulter votre boîte courriel pour le vérifier !</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="Username {0} is already taken." xml:space="preserve">
+    <value>Le nom d'utilisateur {0} est déjà pris.</value>
   </data>
 </root>

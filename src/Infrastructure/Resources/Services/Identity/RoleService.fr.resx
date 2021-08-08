@@ -117,22 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Role Claim does not exist." xml:space="preserve">
-    <value>Revendication de rôle inexistante</value>
+  <data name="Not allowed to delete {0} Role as it is being used." xml:space="preserve">
+    <value>Vous ne pouvez pas supprimer le rôle {0} durant son utilisation.</value>
   </data>
-  <data name="Role Claim {0} created." xml:space="preserve">
-    <value>Revendication de rôle {0} créé.</value>
+  <data name="Not allowed to delete {0} Role." xml:space="preserve">
+    <value>Vous ne pouvez pas supprimer le rôle {0}.</value>
   </data>
-  <data name="Role Claim {0} for Role {1} updated." xml:space="preserve">
-    <value>Revendication de rôle {0} pour le rôle {1} mise à jour.</value>
+  <data name="Not allowed to deselect {0} or {1} or {2} for this Role." xml:space="preserve">
+    <value>Vous ne pouvez pas désélectionner {0}, {1} ou {2} pour ce rôle.</value>
   </data>
-  <data name="Role Claim {0} for {1} Role deleted." xml:space="preserve">
-    <value>Revendication de rôle {0} pour le rôle {1} supprimée.</value>
+  <data name="Not allowed to modify Permissions for this Role." xml:space="preserve">
+    <value>Vous n'êtes pas autorisé à modifier les permission de ce rôle.</value>
   </data>
-  <data name="Role is required." xml:space="preserve">
-    <value>Rôle requis.</value>
+  <data name="Not allowed to modify {0} Role." xml:space="preserve">
+    <value>Vous ne pouvez pas modifier le rôle {0}.</value>
   </data>
-  <data name="Similar Role Claim already exists." xml:space="preserve">
-    <value>Revendication de rôle similaire existante.</value>
+  <data name="Permissions Updated." xml:space="preserve">
+    <value>Permissions mises à jour.</value>
+  </data>
+  <data name="Role {0} Created." xml:space="preserve">
+    <value>Rôle {0} créé.</value>
+  </data>
+  <data name="Role {0} Deleted." xml:space="preserve">
+    <value>Rôle {0} supprimé.</value>
+  </data>
+  <data name="Role {0} Updated." xml:space="preserve">
+    <value>Rôle {0} mis à jour.</value>
+  </data>
+  <data name="Similar Role already exists." xml:space="preserve">
+    <value>Un rôle similaire existe déjà.</value>
   </data>
 </root>
