@@ -117,70 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Compte</value>
+  <data name="Delete Image" xml:space="preserve">
+    <value>Supprimer image</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrateur</value>
+  <data name="Delete Picture" xml:space="preserve">
+    <value>Supprimer photo</value>
   </data>
-  <data name="Audit Trails" xml:space="preserve">
-    <value>Pistes d'audit</value>
+  <data name="Do you want to delete the profile picture of {0}" xml:space="preserve">
+    <value>Voulez-vous supprimer la photo de profil de {0}</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Marques</value>
-  </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Gestion du catalogue</value>
-  </data>
-  <data name="Chat" xml:space="preserve">
-    <value>Conversations</value>
-  </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
-  </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Tableau de bord</value>
-  </data>
-  <data name="Document Management" xml:space="preserve">
-    <value>Gestion des documents</value>
-  </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Stockage des documents</value>
-  </data>
-  <data name="Document Types" xml:space="preserve">
-    <value>Types de documents</value>
-  </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQ</value>
-  </data>
-  <data name="Features" xml:space="preserve">
-    <value>Fonctionnalités</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
-  </data>
-  <data name="Mail" xml:space="preserve">
+  <data name="Email" xml:space="preserve">
     <value>Courriel</value>
   </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Renseignements personnels</value>
+  <data name="First Name" xml:space="preserve">
+    <value>Prénom</value>
   </data>
-  <data name="Products" xml:space="preserve">
-    <value>Produits</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>Nom</value>
   </data>
-  <data name="Quick Start Guide" xml:space="preserve">
-    <value>Guide de démarrage rapide</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>Numéro de téléphone</value>
   </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Ressources</value>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Rôles</value>
+  <data name="Profile Details" xml:space="preserve">
+    <value>Détails du profil</value>
   </data>
-  <data name="Swagger" xml:space="preserve">
-    <value>Swagger</value>
+  <data name="Profile picture added." xml:space="preserve">
+    <value>Photo de profil ajouté.</value>
   </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
+  <data name="Profile picture deleted." xml:space="preserve">
+    <value>Photo de profil supprimée.</value>
+  </data>
+  <data name="Save Changes" xml:space="preserve">
+    <value>Sauvagarder les changements</value>
+  </data>
+  <data name="Upload Image" xml:space="preserve">
+    <value>Téléverser une image</value>
+  </data>
+  <data name="Your Profile has been updated. Please Login to Continue." xml:space="preserve">
+    <value>Votre profil a été mis à jour. Merci de vous reconnecter pour continuer.</value>
   </data>
 </root>

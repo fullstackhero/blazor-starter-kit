@@ -121,27 +121,27 @@
     <value>Connectez-vous avec vos identifiants.</value>
   </data>
   <data name="E-mail" xml:space="preserve">
-    <value>E-mail</value>
+    <value>Courriel</value>
   </data>
   <data name="Email is required!" xml:space="preserve">
-    <value>Un e-mail est requis!</value>
+    <value>Un courriel est requis !</value>
   </data>
   <data name="Forgot password?" xml:space="preserve">
-    <value>mot de passe oublié?</value>
+    <value>Mot de passe oublié ?</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Mot de passe</value>
   </data>
   <data name="Password is required!" xml:space="preserve">
-    <value>Mot de passe requis!</value>
+    <value>Mot de passe requis !</value>
   </data>
   <data name="Remember me?" xml:space="preserve">
-    <value>Souviens-toi de moi?</value>
+    <value>Se souvenir de moi ?</value>
   </data>
   <data name="Sign In" xml:space="preserve">
-    <value>S'identifier</value>
+    <value>Connexion</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>S'identifier</value>
+    <value>Connexion</value>
   </data>
 </root>

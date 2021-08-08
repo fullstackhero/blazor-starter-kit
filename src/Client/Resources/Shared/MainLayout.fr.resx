@@ -120,67 +120,61 @@
   <data name="Account" xml:space="preserve">
     <value>Compte</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrateur</value>
+  <data name="Buy Me A Coffee!" xml:space="preserve">
+    <value>Buy Me A Coffee!</value>
   </data>
-  <data name="Audit Trails" xml:space="preserve">
-    <value>Pistes d'audit</value>
+  <data name="Chat?" xml:space="preserve">
+    <value>Chatter ?</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Marques</value>
+  <data name="Community" xml:space="preserve">
+    <value>Communauté</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Gestion du catalogue</value>
+  <data name="Facebook Group" xml:space="preserve">
+    <value>Grouppe Facebook</value>
   </data>
-  <data name="Chat" xml:space="preserve">
-    <value>Conversations</value>
+  <data name="Facebook Page" xml:space="preserve">
+    <value>Page Facebook</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+  <data name="Fork Repository" xml:space="preserve">
+    <value>Forker le dépôt</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Tableau de bord</value>
+  <data name="Logout" xml:space="preserve">
+    <value>Déconnexion</value>
   </data>
-  <data name="Document Management" xml:space="preserve">
-    <value>Gestion des documents</value>
+  <data name="Logout Confirmation" xml:space="preserve">
+    <value>Voulez-vous vraiment vous déconnecter ?</value>
   </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Stockage des documents</value>
+  <data name="MudBlazor Documentation" xml:space="preserve">
+    <value>Documentation MudBlazor</value>
   </data>
-  <data name="Document Types" xml:space="preserve">
-    <value>Types de documents</value>
-  </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQ</value>
-  </data>
-  <data name="Features" xml:space="preserve">
-    <value>Fonctionnalités</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
-  </data>
-  <data name="Mail" xml:space="preserve">
-    <value>Courriel</value>
-  </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Renseignements personnels</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Produits</value>
-  </data>
-  <data name="Quick Start Guide" xml:space="preserve">
+  <data name="Quick-Start Guide" xml:space="preserve">
     <value>Guide de démarrage rapide</value>
+  </data>
+  <data name="Refreshed Token." xml:space="preserve">
+    <value>Jeton raffraîchi</value>
   </data>
   <data name="Resources" xml:space="preserve">
     <value>Ressources</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Rôles</value>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
   </data>
-  <data name="Swagger" xml:space="preserve">
-    <value>Swagger</value>
+  <data name="Toggle Dark Mode" xml:space="preserve">
+    <value>Basculer le mode sombre / mode clair</value>
   </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
+  <data name="Toggle right-to-left/left-to-right" xml:space="preserve">
+    <value>Basculer affichage gauche-droite / droite-gauche</value>
+  </data>
+  <data name="Welcome {0}" xml:space="preserve">
+    <value>Bienvenu {0}</value>
+  </data>
+  <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
+    <value>Vous avez été déconnecté car les permissions de l'un de vos rôles ont été mise à jour.</value>
+  </data>
+  <data name="You are logged out because the user with your Token has been deleted." xml:space="preserve">
+    <value>Vous avez été déconnecté car l'utilisateur lié au jeton a été supprimé.</value>
+  </data>
+  <data name="You are Logged Out." xml:space="preserve">
+    <value>Vous êtes déconnecté.</value>
   </data>
 </root>

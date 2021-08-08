@@ -127,37 +127,37 @@
     <value>Créer</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>E-mail</value>
+    <value>Courriel</value>
   </data>
   <data name="Email Confirmation" xml:space="preserve">
-    <value>confirmation de l'émail</value>
+    <value>Confirmation du courriel</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export</value>
+    <value>Exporter</value>
   </data>
   <data name="Filtered Users exported" xml:space="preserve">
-    <value>Filtered Users exported</value>
+    <value>Utilisateurs filtrés exportés</value>
   </data>
   <data name="First Name" xml:space="preserve">
     <value>Prénom</value>
   </data>
   <data name="Last Name" xml:space="preserve">
-    <value>Nom de famille</value>
+    <value>Nom</value>
   </data>
   <data name="Manage Roles" xml:space="preserve">
     <value>Gérer les rôles</value>
   </data>
   <data name="Manage Users" xml:space="preserve">
-    <value>gérer les utilisateurs</value>
+    <value>Gérer les utilisateurs</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>Aucune action autorisée</value>
   </data>
   <data name="Register New User" xml:space="preserve">
-    <value>Register New User</value>
+    <value>Enregistrer un nouvel utilisateur</value>
   </data>
   <data name="Reload" xml:space="preserve">
-    <value>Reload</value>
+    <value>Recharger</value>
   </data>
   <data name="Search For Users" xml:space="preserve">
     <value>Rechercher des utilisateurs</value>
@@ -166,7 +166,7 @@
     <value>Utilisateurs</value>
   </data>
   <data name="Users exported" xml:space="preserve">
-    <value>Users exported</value>
+    <value>Utilisateurs exportés</value>
   </data>
   <data name="View Profile" xml:space="preserve">
     <value>Voir le profil</value>

@@ -118,63 +118,63 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add Extended Attribute" xml:space="preserve">
-    <value>Add Extended Attribute</value>
+    <value>Ajouter un attribut étendu</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annuler</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>Effacer</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
   <data name="Decimal" xml:space="preserve">
-    <value>Decimal</value>
+    <value>Décimal</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="Entity Id" xml:space="preserve">
-    <value>Entity Id</value>
+    <value>Identifiant de l'entité</value>
   </data>
   <data name="External Id" xml:space="preserve">
-    <value>External Id</value>
+    <value>Identifiant externe</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Groupe</value>
   </data>
   <data name="Id" xml:space="preserve">
-    <value>Id</value>
+    <value>Identifiant</value>
   </data>
   <data name="Is Active" xml:space="preserve">
-    <value>Is Active</value>
+    <value>Est actif</value>
   </data>
   <data name="Json" xml:space="preserve">
     <value>Json</value>
   </data>
   <data name="Key" xml:space="preserve">
-    <value>Key</value>
+    <value>Clé</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Sauvegarder</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>Text</value>
+    <value>Texte</value>
   </data>
   <data name="Time" xml:space="preserve">
-    <value>Time</value>
+    <value>Heure</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Update</value>
+    <value>Mettre à jour</value>
   </data>
   <data name="Update Extended Attribute" xml:space="preserve">
-    <value>Update Extended Attribute</value>
+    <value>Mettre à jour l'attribut étendu</value>
   </data>
 </root>

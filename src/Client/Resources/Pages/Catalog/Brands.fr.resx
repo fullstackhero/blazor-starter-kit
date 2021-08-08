@@ -117,70 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Compte</value>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrateur</value>
+  <data name="Add Brand" xml:space="preserve">
+    <value>Ajouter un marque</value>
   </data>
-  <data name="Audit Trails" xml:space="preserve">
-    <value>Pistes d'audit</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>Avec bordures</value>
   </data>
   <data name="Brands" xml:space="preserve">
     <value>Marques</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Gestion du catalogue</value>
+  <data name="Brands exported" xml:space="preserve">
+    <value>Marques exportées</value>
   </data>
-  <data name="Chat" xml:space="preserve">
-    <value>Conversations</value>
+  <data name="Create" xml:space="preserve">
+    <value>Créer</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Tableau de bord</value>
+  <data name="Delete Content" xml:space="preserve">
+    <value>Supprimer la marque</value>
   </data>
-  <data name="Document Management" xml:space="preserve">
-    <value>Gestion des documents</value>
+  <data name="Dense" xml:space="preserve">
+    <value>Dense</value>
   </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Stockage des documents</value>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="Document Types" xml:space="preserve">
-    <value>Types de documents</value>
+  <data name="Edit" xml:space="preserve">
+    <value>Éditer</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQ</value>
+  <data name="Export" xml:space="preserve">
+    <value>Exporter</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Fonctionnalités</value>
+  <data name="Filtered Brands exported" xml:space="preserve">
+    <value>Marques filtrées exportées</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
+  <data name="Id" xml:space="preserve">
+    <value>Identifiant</value>
   </data>
-  <data name="Mail" xml:space="preserve">
-    <value>Courriel</value>
+  <data name="Import" xml:space="preserve">
+    <value>Importer</value>
   </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Renseignements personnels</value>
+  <data name="Manage Brands." xml:space="preserve">
+    <value>Gérer les marques</value>
   </data>
-  <data name="Products" xml:space="preserve">
-    <value>Produits</value>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
   </data>
-  <data name="Quick Start Guide" xml:space="preserve">
-    <value>Guide de démarrage rapide</value>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>Aucune action autorisée</value>
   </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Ressources</value>
+  <data name="Reload" xml:space="preserve">
+    <value>Recharger</value>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Rôles</value>
+  <data name="Search for Brands" xml:space="preserve">
+    <value>Chercher des marques</value>
   </data>
-  <data name="Swagger" xml:space="preserve">
-    <value>Swagger</value>
+  <data name="Striped" xml:space="preserve">
+    <value>Rayé</value>
   </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
+  <data name="Tax" xml:space="preserve">
+    <value>Taxe</value>
   </data>
 </root>

@@ -117,70 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Compte</value>
-  </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrateur</value>
-  </data>
-  <data name="Audit Trails" xml:space="preserve">
-    <value>Pistes d'audit</value>
-  </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Marques</value>
-  </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Gestion du catalogue</value>
-  </data>
-  <data name="Chat" xml:space="preserve">
+  <data name="chat" xml:space="preserve">
     <value>Conversations</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+  <data name="contacts" xml:space="preserve">
+    <value>Contacts</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Tableau de bord</value>
+  <data name="detailed guide for more." xml:space="preserve">
+    <value>guide détaillé pour en savoir plus.</value>
   </data>
-  <data name="Document Management" xml:space="preserve">
-    <value>Gestion des documents</value>
+  <data name="Enter your message..." xml:space="preserve">
+    <value>Entrez votre message.</value>
   </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Stockage des documents</value>
+  <data name="Logged In." xml:space="preserve">
+    <value>Connecté.</value>
   </data>
-  <data name="Document Types" xml:space="preserve">
-    <value>Types de documents</value>
+  <data name="Logged Out." xml:space="preserve">
+    <value>Déconnecté.</value>
   </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQ</value>
+  <data name="New Message From {0}" xml:space="preserve">
+    <value>Nouveau message de {0}</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Fonctionnalités</value>
+  <data name="Send" xml:space="preserve">
+    <value>Envoyer</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
-  </data>
-  <data name="Mail" xml:space="preserve">
-    <value>Courriel</value>
-  </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Renseignements personnels</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Produits</value>
-  </data>
-  <data name="Quick Start Guide" xml:space="preserve">
-    <value>Guide de démarrage rapide</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Ressources</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Rôles</value>
-  </data>
-  <data name="Swagger" xml:space="preserve">
-    <value>Swagger</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
+  <data name="Want to understand how Chat is implemented in BlazorHero ? Refer this" xml:space="preserve">
+    <value>Vous voulez comprendre comment le chat est implémenté dans BlazorHero ? Jettez un œil à ce</value>
   </data>
 </root>

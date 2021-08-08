@@ -117,70 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Compte</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>Avec bordures</value>
   </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrateur</value>
+  <data name="Dense" xml:space="preserve">
+    <value>Dense</value>
   </data>
-  <data name="Audit Trails" xml:space="preserve">
-    <value>Pistes d'audit</value>
+  <data name="Manage {0} {1}'s Roles" xml:space="preserve">
+    <value>Gérer les rôles de {0} {1}</value>
   </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Marques</value>
+  <data name="Role Name" xml:space="preserve">
+    <value>Nom du rôle</value>
   </data>
-  <data name="Catalog Management" xml:space="preserve">
-    <value>Gestion du catalogue</value>
+  <data name="Roles Updated" xml:space="preserve">
+    <value>Rôles mis à jour</value>
   </data>
-  <data name="Chat" xml:space="preserve">
-    <value>Conversations</value>
+  <data name="Search For User Roles" xml:space="preserve">
+    <value>Rechercher parmis les rôles de l'utilisateur</value>
   </data>
-  <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+  <data name="Status" xml:space="preserve">
+    <value>Statut</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Tableau de bord</value>
+  <data name="Striped" xml:space="preserve">
+    <value>Rayé</value>
   </data>
-  <data name="Document Management" xml:space="preserve">
-    <value>Gestion des documents</value>
-  </data>
-  <data name="Document Store" xml:space="preserve">
-    <value>Stockage des documents</value>
-  </data>
-  <data name="Document Types" xml:space="preserve">
-    <value>Types de documents</value>
-  </data>
-  <data name="FAQs" xml:space="preserve">
-    <value>FAQ</value>
-  </data>
-  <data name="Features" xml:space="preserve">
-    <value>Fonctionnalités</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Accueil</value>
-  </data>
-  <data name="Mail" xml:space="preserve">
-    <value>Courriel</value>
-  </data>
-  <data name="Personal" xml:space="preserve">
-    <value>Renseignements personnels</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Produits</value>
-  </data>
-  <data name="Quick Start Guide" xml:space="preserve">
-    <value>Guide de démarrage rapide</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Ressources</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Rôles</value>
-  </data>
-  <data name="Swagger" xml:space="preserve">
-    <value>Swagger</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
+  <data name="Update User Roles" xml:space="preserve">
+    <value>Mettre à jour les rôles de l'utilisateur</value>
   </data>
 </root>
