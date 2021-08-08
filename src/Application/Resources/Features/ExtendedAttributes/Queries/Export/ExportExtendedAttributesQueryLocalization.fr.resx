@@ -121,51 +121,51 @@
     <value>Description</value>
   </data>
   <data name="EntityCreatedBy" xml:space="preserve">
-    <value>EntityCreatedBy</value>
+    <value>Entité créée par</value>
   </data>
   <data name="EntityCreatedOn (Local)" xml:space="preserve">
-    <value>EntityCreatedOn (Local)</value>
+    <value>Entité créée le (Local)</value>
   </data>
   <data name="EntityCreatedOn (UTC)" xml:space="preserve">
-    <value>EntityCreatedOn (UTC)</value>
+    <value>Entité créée le (UTC)</value>
   </data>
   <data name="EntityId" xml:space="preserve">
-    <value>EntityId</value>
+    <value>Identifiant de l'entité</value>
   </data>
   <data name="EntityLastModifiedBy" xml:space="preserve">
-    <value>EntityLastModifiedBy</value>
+    <value>Dernière modification de l'entité par</value>
   </data>
   <data name="EntityLastModifiedOn (Local)" xml:space="preserve">
-    <value>EntityLastModifiedOn (Local)</value>
+    <value>Dernière modification de l'entité le (Local)</value>
   </data>
   <data name="EntityLastModifiedOn (UTC)" xml:space="preserve">
-    <value>EntityLastModifiedOn (UTC)</value>
+    <value>Dernière modification de l'entité le (UTC)</value>
   </data>
   <data name="ExternalId" xml:space="preserve">
-    <value>ExternalId</value>
+    <value>Identifiant externe</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Groupe</value>
   </data>
   <data name="Id" xml:space="preserve">
-    <value>Id</value>
+    <value>Identifiant</value>
   </data>
   <data name="IsActive" xml:space="preserve">
-    <value>IsActive</value>
+    <value>Est active</value>
   </data>
   <data name="Key" xml:space="preserve">
-    <value>Key</value>
+    <value>Clé</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
   <data name="Type should be valid" xml:space="preserve">
-    <value>Type should be valid</value>
+    <value>Le type doit être valide</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Value</value>
+    <value>Valeur</value>
   </data>
   <data name="{0} Extended Attributes" xml:space="preserve">
-    <value>{0} Extended Attributes</value>
+    <value>{0} Attributs étendus</value>
   </data>
 </root>

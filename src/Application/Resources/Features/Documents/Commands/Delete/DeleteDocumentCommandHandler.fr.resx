@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Barcode is required!" xml:space="preserve">
-    <value>Code bar requis !</value>
+  <data name="Document Deleted" xml:space="preserve">
+    <value>Document supprimé</value>
   </data>
-  <data name="Brand is required!" xml:space="preserve">
-    <value>Marque requise !</value>
-  </data>
-  <data name="Description is required!" xml:space="preserve">
-    <value>Description requise !</value>
-  </data>
-  <data name="Name is required!" xml:space="preserve">
-    <value>Nom requis !</value>
-  </data>
-  <data name="Rate must be greater than 0" xml:space="preserve">
-    <value>La note doit être supérieure à 0</value>
+  <data name="Document Not Found!" xml:space="preserve">
+    <value>Document introuvable !</value>
   </data>
 </root>

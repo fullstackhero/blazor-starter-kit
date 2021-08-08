@@ -175,7 +175,7 @@
     <value>Clé</value>
   </data>
   <data name="Manage {0} Extended Attributes" xml:space="preserve">
-    <value>Manage {0} Extended Attributes</value>
+    <value>Gérer les attributs étendus de {0} </value>
   </data>
   <data name="Manage {0} {1}'s Extended Attributes" xml:space="preserve">
     <value>Gérer les attributs étendus de {0} {1}</value>

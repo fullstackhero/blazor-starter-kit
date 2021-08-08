@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Barcode is required!" xml:space="preserve">
-    <value>Code bar requis !</value>
+  <data name="Brands" xml:space="preserve">
+    <value>Marques</value>
   </data>
-  <data name="Brand is required!" xml:space="preserve">
-    <value>Marque requise !</value>
+  <data name="Document Extended Attributes" xml:space="preserve">
+    <value>Attributs étendus de documents</value>
   </data>
-  <data name="Description is required!" xml:space="preserve">
-    <value>Description requise !</value>
+  <data name="Document Types" xml:space="preserve">
+    <value>Types de documents</value>
   </data>
-  <data name="Name is required!" xml:space="preserve">
-    <value>Nom requis !</value>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
   </data>
-  <data name="Rate must be greater than 0" xml:space="preserve">
-    <value>La note doit être supérieure à 0</value>
+  <data name="Products" xml:space="preserve">
+    <value>Produits</value>
   </data>
 </root>

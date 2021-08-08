@@ -121,7 +121,7 @@
     <value>Blazor For Beginners – Getting Started With Blazor</value>
   </data>
   <data name="Blazor Hero Description" xml:space="preserve">
-    <value>Blazor Hero is an All-In-One Clean Architecture Solution Template For Blazor Web-Assembly built with</value>
+    <value>Blazor Hero est un modèle de solution propre et tout en un pour Blazor Web-Assembly, construit avec la bibliothèque de composants</value>
   </data>
   <data name="Building A Chat Application With Blazor, Identity, And SignalR" xml:space="preserve">
     <value>Building A Chat Application With Blazor, Identity, And SignalR</value>
@@ -130,13 +130,13 @@
     <value>Celebrating 1,500 Stars on Github!</value>
   </data>
   <data name="Component Library" xml:space="preserve">
-    <value>Component Library</value>
+    <value />
   </data>
   <data name="Custom Authentication In Blazor WebAssembly – Detailed" xml:space="preserve">
     <value>Custom Authentication In Blazor WebAssembly – Detailed</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Modèle d'architecture propre pour l'assemblage Web Blazor</value>
+    <value>Modèle d'architecture propre pour Blasor Web-Assembly</value>
   </data>
   <data name="Documentation - Coming Soon" xml:space="preserve">
     <value>Documentation - Coming Soon</value>
