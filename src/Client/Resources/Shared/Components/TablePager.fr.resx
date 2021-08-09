@@ -121,6 +121,6 @@
     <value>{first_item}-{last_item} sur {all_items}</value>
   </data>
   <data name="RowsPerPageString" xml:space="preserve">
-    <value>Lignes par pages :</value>
+    <value>Lignes par page :</value>
   </data>
 </root>
