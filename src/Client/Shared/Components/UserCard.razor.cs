@@ -1,6 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Client.Extensions;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
+using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
 
 namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 {
@@ -33,10 +34,10 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                 FirstLetterOfName = FirstName[0];
             }
             var UserId = user.GetUserId();
-            var imageResponse = await _accountManager.GetProfilePictureAsync(UserId);
-            if (imageResponse.Succeeded)
+            var imageResponse = await _localStorage.GetItemAsync<string>(StorageConstants.Local.UserImageURL);
+            if (!string.IsNullOrEmpty(imageResponse))
             {
-                ImageDataUrl = imageResponse.Data;
+                ImageDataUrl = imageResponse;
             }
         }
     }
