@@ -16,9 +16,12 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
         [Parameter]
         public string ImageDataUrl { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await LoadDataAsync();
+            if (firstRender)
+            {
+                await LoadDataAsync();
+            }
         }
 
         private async Task LoadDataAsync()
@@ -39,6 +42,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
             {
                 ImageDataUrl = imageResponse;
             }
+            StateHasChanged();
         }
     }
 }
