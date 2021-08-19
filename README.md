@@ -71,7 +71,7 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 # What to Expect in BlazorHero 3.0?
 
 - Modular Architecture
-- Cleaner Seperation Of Code
+- Cleaner Separation Of Code
 - Dedicated Documentation Website - [Here](https://blazorhero.github.io/docs/)
 - Tutorials to add new entities, controllers
 - UI Updates
@@ -88,7 +88,7 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 # Getting Started 🦸
 
 > **Important**
-If you are already using Blazor Hero v1.x, make sure that you drop your existing database and re-update your database using the CLI as there are couple of new migrations added that may clash with your existing schema. Also, install the latest version of BlazorHero.
+If you are already using Blazor Hero v1.x, make sure that you drop your existing database and re-update your database using the CLI as there are a couple of new migrations added that might clash with your existing schema. Also, install the latest version of BlazorHero.
 
 The easiest way to get started with Blazor Hero is to install the [NuGet package](https://www.nuget.org/packages/BlazorHero.CleanArchitecture/) and run `dotnet new BlazorHero.CleanArchitecture`:
 
@@ -113,7 +113,7 @@ What to do next? Read the [entire guide on my blog](https://codewithmukesh.com/b
 - Now navigate back to the root of the BlazorHero Project on your local machine and run the following via terminal - `docker-compose -f 'docker-compose.yml' up --build`
 - This will start pulling MSSQL Server Image from Docker Hub if you don't already have this image. It's around 500+ Mbs of download.
 - Once that is done, dotnet SDKs and runtimes are downloaded, if not present already. That's almost 200+ more Mbs of download.
-- PS If you find any issues while Docker installs the nuget packages, it is most likelt that your ssl certificates are not intalled properly. Apart from that I also added the `--disable-parallel` in the `Server\Dockerfile`to ensure network issues don't pop-up. You can remove this option to speed up the build process.
+- PS If you find any issues while Docker installs the nuget packages, it is most likely that your ssl certificates are not installed properly. Apart from that I also added the `--disable-parallel` in the `Server\Dockerfile`to ensure network issues don't pop-up. You can remove this option to speed up the build process.
 - That's almost everything. Once the containers are available, migrations are updated in the MSSQL DB, default data is seeded.
 - Browse to https://localhost:5005/ to use your version of BlazorHero !
 
@@ -121,7 +121,7 @@ What to do next? Read the [entire guide on my blog](https://codewithmukesh.com/b
 
 Getting started with Blazor Hero – A Clean Architecture Template built for Blazor WebAssembly using MudBlazor Components. This project will make your Blazor Learning Process much easier than you anticipate. Blazor Hero is meant to be an Enterprise Level Boilerplate, which comes free of cost, completely open sourced. 
 
-The provided documentation / guide will get you started with BlazorHero in no-time. It provides a complete walkthrough about the project with to-the-point guides and notes.
+The provided documentation / guide will get you started with BlazorHero in no time. It provides a complete walkthrough for the project with to-the-point guides and notes.
 
 <a href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/"><strong>Read the Quick Start Guide</strong></a>
 
@@ -131,7 +131,7 @@ All the completed and the upcoming features are mentioned in the [Features.MD Fi
 
 ## Contributing
 
-Contributions are what make the open-source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community such an amazing place to be, learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -143,7 +143,7 @@ Here are the few contributions that I would highly appreciate ;)
 
 - [ ] Need someone to add in the API Documentation for Swagger.
 - [ ] Need someone to implement localization throughout every Razor Component of the solution under the WASM(Client) Project. You can take the Pages/Authentication/Login.razor as the point of reference. It is as simple as adding `@inject Microsoft.Extensions.Localization.IStringLocalizer<Login> localizer` to every page, changing the texts to `@localizer["Text Here"]` and finally adding resx files to the Resources Folder as per the folder structure.
-- [ ] Need few contributors to add in various language transalations as per the implemented Location. I got time to only add a few transalations for French as of now.
+- [ ] Need few contributors to add in various language translations as per the implemented Location. I got time to only add a few translations for French as of now.
 - [ ] Need a UI contributor to look at the UX/UI of the entire project
 - [ ] Need someone to buildup a cool Material Logo for BlazorHero (BH):D Do contact me on LinkedIn (https://www.linkedin.com/in/iammukeshm/).
 - [ ] And finally, Stars from everyone! :D
