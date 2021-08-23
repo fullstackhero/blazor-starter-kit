@@ -124,7 +124,7 @@
     <value>E-mail</value>
   </data>
   <data name="Enter email for password reset" xml:space="preserve">
-    <value>E-mail invoeren voor het opnieuw instellen van wachtwoorden</value>
+    <value>Voer uw E-mail in voor het opnieuw instellen van het wachtwoord!</value>
   </data>
   <data name="Forgot password?" xml:space="preserve">
     <value>Wachtwoord vergeten?</value>

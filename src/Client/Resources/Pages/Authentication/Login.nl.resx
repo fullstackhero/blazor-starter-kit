@@ -135,9 +135,6 @@
   <data name="Password is required!" xml:space="preserve">
     <value>Wachtwoord is vereist!</value>
   </data>
-  <data name="Remember me?" xml:space="preserve">
-    <value>Ken je me nog?</value>
-  </data>
   <data name="Sign In" xml:space="preserve">
     <value>Aanmelden</value>
   </data>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="chat" xml:space="preserve">
-    <value>babbelen</value>
+    <value>Gesprek</value>
   </data>
   <data name="contacts" xml:space="preserve">
     <value>Contactpersonen</value>
@@ -142,6 +142,6 @@
     <value>Verzenden</value>
   </data>
   <data name="Want to understand how Chat is implemented in BlazorHero ? Refer this" xml:space="preserve">
-    <value>Wilt u begrijpen hoe Chat wordt geïmplementeerd in BlazorHero ? Verwijs dit</value>
+    <value>Wilt u begrijpen hoe een Chat wordt geïmplementeerd in BlazorHero ? Ga dan naar deze</value>
   </data>
 </root>

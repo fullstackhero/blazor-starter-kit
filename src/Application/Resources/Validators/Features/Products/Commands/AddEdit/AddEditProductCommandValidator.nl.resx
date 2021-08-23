@@ -130,6 +130,6 @@
     <value>Naam is vereist!</value>
   </data>
   <data name="Rate must be greater than 0" xml:space="preserve">
-    <value>Bedrag moet hoger dan 0 zijn!</value>
+    <value>Bedrag moet hoger dan 0 zijn</value>
   </data>
 </root>

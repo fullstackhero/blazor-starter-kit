@@ -123,9 +123,6 @@
   <data name="Email is required" xml:space="preserve">
     <value>Email is vereist</value>
   </data>
-  <data name="First Name is required" xml:space="preserve">
-    <value>Voornaam is vereist</value>
-  </data>
   <data name="Last Name is required" xml:space="preserve">
     <value>Achternaam is vereist</value>
   </data>
