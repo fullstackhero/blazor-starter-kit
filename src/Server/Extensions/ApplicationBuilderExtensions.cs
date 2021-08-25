@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+using BlazorHero.CleanArchitecture.Application.Configurations;
+using Microsoft.Extensions.Configuration;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
@@ -26,6 +28,20 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             }
 
             return app;
+        }
+
+        internal static IApplicationBuilder AddForwardingOptions(this IApplicationBuilder app, IConfiguration configuration)
+        {
+            AppConfiguration config = GetApplicationSettings(configuration);
+            if (config.BehindSSLProxy)
+            {
+                app.UseCors();
+                app.UseForwardedHeaders();
+
+                return app;
+            }
+            else
+                return app;
         }
 
         internal static void ConfigureSwagger(this IApplicationBuilder app)
@@ -76,6 +92,12 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             }
 
             return app;
+        }
+
+        private static AppConfiguration GetApplicationSettings(IConfiguration configuration)
+        {
+            var applicationSettingsConfiguration = configuration.GetSection(nameof(AppConfiguration));
+            return applicationSettingsConfiguration.Get<AppConfiguration>();
         }
     }
 }
