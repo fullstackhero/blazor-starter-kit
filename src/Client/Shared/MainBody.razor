@@ -33,12 +33,8 @@
         <LanguageSelector />
         <MudMenu Icon="@Icons.Filled.Settings" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
             <div class="px-2">
-                <MudTooltip Text="@_localizer["Toggle Dark Mode"]">
                     <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => ToggleDarkMode())" />
-                </MudTooltip>
-                <MudTooltip Text="@_localizer["Fork Repository"]">
                     <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/blazorhero/CleanArchitecture" Target="_blank" />
-                </MudTooltip>
             </div>
             <MudText Typo="Typo.body2" Class="px-4 py-2"><b>@_localizer["Community"]</b></MudText>
             <MudMenuItem Link="https://www.facebook.com/codewithmukesh" Target="_blank">@_localizer["Facebook Page"]</MudMenuItem>
