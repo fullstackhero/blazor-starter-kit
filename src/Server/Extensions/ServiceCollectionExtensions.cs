@@ -24,7 +24,9 @@ using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +36,7 @@ using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -56,6 +59,43 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             var localizer = serviceProvider.GetService<IStringLocalizer<T>>();
             await serviceProvider.DisposeAsync();
             return localizer;
+        }
+        internal static IServiceCollection AddForwardingOptions(this IServiceCollection services, IConfiguration configuration)
+        {
+            var applicationSettingsConfiguration = configuration.GetSection(nameof(AppConfiguration));
+            AppConfiguration config = applicationSettingsConfiguration.Get<AppConfiguration>(); 
+            if (config.BehindSSLProxy)
+            {
+                services.Configure<ForwardedHeadersOptions>(options =>
+                {
+                    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                    if (config.ProxyIP != "")
+                    {
+                        string ipCheck = config.ProxyIP;
+                        if (IPAddress.TryParse(ipCheck, out IPAddress proxyIP))
+                            options.KnownProxies.Add(proxyIP);
+                        else
+                            Log.Logger.Warning($"Invalid Proxy IP of \"{ipCheck}\", Not Loaded");
+                    }
+                });
+
+                services.AddCors(options =>
+                {
+                    options.AddDefaultPolicy(
+                        builder =>
+                        {
+                            builder
+                                .AllowCredentials()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .WithOrigins(config.ApplicationUrl.TrimEnd('/'));
+                        });
+                });
+
+                return services;
+            }
+            else
+                return services;
         }
 
         private static async Task SetCultureFromServerPreferenceAsync(IServiceProvider serviceProvider)
