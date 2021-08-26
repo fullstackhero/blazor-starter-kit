@@ -67,3 +67,7 @@
         transform: scale(1);
     }
 }
+
+::-webkit-scrollbar {
+    width: 2px!important;
+}
