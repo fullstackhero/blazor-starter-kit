@@ -25,6 +25,11 @@
             },
             new LanguageCode
             {
+                Code = "nl-NL",
+                DisplayName = "Dutch - Netherlands"
+            },
+            new LanguageCode
+            {
                 Code = "es-ES",
                 DisplayName = "Spanish"
             },
