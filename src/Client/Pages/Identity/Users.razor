@@ -37,7 +37,7 @@ else
                     }
                 }
             </div>
-            <MudToolBarSpacer />
+            <MudSpacer />
             @if (_canSearchUsers)
             {
                 <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@_localizer["Search For Users"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>

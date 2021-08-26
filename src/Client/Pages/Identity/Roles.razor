@@ -30,7 +30,7 @@ else
                     <MudButton DisableElevation Variant="Variant.Filled" OnClick="GetRolesAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
                 }
             </div>
-            <MudToolBarSpacer />
+            <MudSpacer />
             @if (_canSearchRoles)
             {
                 <MudTextField @bind-Value="_searchString" Immediate="true" Placeholder="@_localizer["Search for Roles..."]" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
