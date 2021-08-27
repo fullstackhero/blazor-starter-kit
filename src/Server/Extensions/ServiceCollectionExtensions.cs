@@ -60,22 +60,23 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             await serviceProvider.DisposeAsync();
             return localizer;
         }
+
         internal static IServiceCollection AddForwardingOptions(this IServiceCollection services, IConfiguration configuration)
         {
             var applicationSettingsConfiguration = configuration.GetSection(nameof(AppConfiguration));
-            AppConfiguration config = applicationSettingsConfiguration.Get<AppConfiguration>(); 
+            var config = applicationSettingsConfiguration.Get<AppConfiguration>(); 
             if (config.BehindSSLProxy)
             {
                 services.Configure<ForwardedHeadersOptions>(options =>
                 {
                     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-                    if (config.ProxyIP != "")
+                    if (!string.IsNullOrWhiteSpace(config.ProxyIP))
                     {
-                        string ipCheck = config.ProxyIP;
-                        if (IPAddress.TryParse(ipCheck, out IPAddress proxyIP))
+                        var ipCheck = config.ProxyIP;
+                        if (IPAddress.TryParse(ipCheck, out var proxyIP))
                             options.KnownProxies.Add(proxyIP);
                         else
-                            Log.Logger.Warning($"Invalid Proxy IP of \"{ipCheck}\", Not Loaded");
+                            Log.Logger.Warning("Invalid Proxy IP of {IpCheck}, Not Loaded", ipCheck);
                     }
                 });
 
@@ -105,11 +106,10 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             {
                 // TODO - should implement ServerStorageProvider to work correctly!
                 CultureInfo culture;
-                var preference = await storageService.GetPreference() as ServerPreference;
-                if (preference != null)
-                    culture = new CultureInfo(preference.LanguageCode);
+                if (await storageService.GetPreference() is ServerPreference preference)
+                    culture = new(preference.LanguageCode);
                 else
-                    culture = new CultureInfo(LocalizationConstants.SupportedLanguages.FirstOrDefault()?.Code ?? "en-US");
+                    culture = new(LocalizationConstants.SupportedLanguages.FirstOrDefault()?.Code ?? "en-US");
                 CultureInfo.DefaultThreadCurrentCulture = culture;
                 CultureInfo.DefaultThreadCurrentUICulture = culture;
                 CultureInfo.CurrentCulture = culture;
