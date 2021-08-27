@@ -92,8 +92,6 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                                 .WithOrigins(config.ApplicationUrl.TrimEnd('/'));
                         });
                 });
-
-                return services;
             }
             
             return services;

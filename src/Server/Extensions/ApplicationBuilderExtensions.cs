@@ -37,8 +37,6 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             {
                 app.UseCors();
                 app.UseForwardedHeaders();
-
-                return app;
             }
             
             return app;
