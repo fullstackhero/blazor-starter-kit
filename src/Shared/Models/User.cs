@@ -7,6 +7,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
         public string CreatedBy { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -18,6 +19,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
         public bool IsActive { get; set; }
     }
 }

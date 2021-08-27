@@ -30,18 +30,16 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return app;
         }
 
-        internal static IApplicationBuilder AddForwardingOptions(this IApplicationBuilder app, IConfiguration configuration)
+        internal static IApplicationBuilder UseForwarding(this IApplicationBuilder app, IConfiguration configuration)
         {
             AppConfiguration config = GetApplicationSettings(configuration);
             if (config.BehindSSLProxy)
             {
                 app.UseCors();
                 app.UseForwardedHeaders();
-
-                return app;
             }
-            else
-                return app;
+            
+            return app;
         }
 
         internal static void ConfigureSwagger(this IApplicationBuilder app)
