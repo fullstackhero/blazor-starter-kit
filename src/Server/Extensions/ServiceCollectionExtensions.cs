@@ -61,7 +61,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
             return localizer;
         }
 
-        internal static IServiceCollection AddForwardingOptions(this IServiceCollection services, IConfiguration configuration)
+        internal static IServiceCollection AddForwarding(this IServiceCollection services, IConfiguration configuration)
         {
             var applicationSettingsConfiguration = configuration.GetSection(nameof(AppConfiguration));
             var config = applicationSettingsConfiguration.Get<AppConfiguration>(); 
@@ -95,8 +95,8 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
 
                 return services;
             }
-            else
-                return services;
+            
+            return services;
         }
 
         private static async Task SetCultureFromServerPreferenceAsync(IServiceProvider serviceProvider)

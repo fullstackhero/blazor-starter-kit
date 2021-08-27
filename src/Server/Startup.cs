@@ -31,7 +31,7 @@ namespace BlazorHero.CleanArchitecture.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddForwardingOptions(_configuration);
+            services.AddForwarding(_configuration);
             services.AddLocalization(options =>
             {
                 options.ResourcesPath = "Resources";
@@ -69,7 +69,7 @@ namespace BlazorHero.CleanArchitecture.Server
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IStringLocalizer<Startup> localizer)
         {
-            app.AddForwardingOptions(_configuration);
+            app.UseForwarding(_configuration);
             app.UseExceptionHandling(env);
             app.UseHttpsRedirection();
             app.UseMiddleware<ErrorHandlerMiddleware>();
