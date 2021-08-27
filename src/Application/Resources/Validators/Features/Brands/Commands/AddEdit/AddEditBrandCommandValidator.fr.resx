@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Description is required!" xml:space="preserve">
-    <value>Description is required!</value>
+    <value>Description requise !</value>
   </data>
   <data name="Name is required!" xml:space="preserve">
-    <value>Name is required!</value>
+    <value>Nom requis !</value>
   </data>
   <data name="Tax must be greater than 0" xml:space="preserve">
-    <value>Tax must be greater than 0</value>
+    <value>Les taxes doivent-être plus grandes que 0</value>
   </data>
 </root>

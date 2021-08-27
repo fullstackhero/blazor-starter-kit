@@ -121,19 +121,19 @@
     <value>Actions</value>
   </data>
   <data name="All Groups" xml:space="preserve">
-    <value>All Groups</value>
+    <value>Tous les groupes</value>
   </data>
   <data name="Bordered" xml:space="preserve">
-    <value>Bordered</value>
+    <value>Avec bordure</value>
   </data>
   <data name="Create" xml:space="preserve">
-    <value>Create</value>
+    <value>Créer</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Supprimer</value>
   </data>
   <data name="Delete Extended Attribute?" xml:space="preserve">
-    <value>Delete Extended Attribute?</value>
+    <value>Supprimer l'attribut étendu ?</value>
   </data>
   <data name="Dense" xml:space="preserve">
     <value>Dense</value>
@@ -142,72 +142,72 @@
     <value>Description</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Éditer</value>
   </data>
   <data name="Entity Id" xml:space="preserve">
-    <value>Entity Id</value>
+    <value>Identifiant de l'entité</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export</value>
+    <value>Exporter</value>
   </data>
   <data name="Extended Attributes exported" xml:space="preserve">
-    <value>Extended Attributes exported</value>
+    <value>Attributs étendus exportés</value>
   </data>
   <data name="External Id" xml:space="preserve">
-    <value>External Id</value>
+    <value>Identifiant externe</value>
   </data>
   <data name="Filtered Extended Attributes exported" xml:space="preserve">
-    <value>Filtered Extended Attributes exported</value>
+    <value>Attributs étendus filtrés exportés</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Groupe</value>
   </data>
   <data name="Id" xml:space="preserve">
-    <value>Id</value>
+    <value>Identifiant</value>
   </data>
   <data name="Include Entity fields (Export)" xml:space="preserve">
-    <value>Include Entity fields (Export)</value>
+    <value>Inclure tous les champs (export)</value>
   </data>
   <data name="Is Active" xml:space="preserve">
-    <value>Is Active</value>
+    <value>Est actif</value>
   </data>
   <data name="Key" xml:space="preserve">
-    <value>Key</value>
+    <value>Clé</value>
   </data>
   <data name="Manage {0} Extended Attributes" xml:space="preserve">
-    <value>Manage {0} Extended Attributes</value>
+    <value>Gérer les attributs étendus de {0} </value>
   </data>
   <data name="Manage {0} {1}'s Extended Attributes" xml:space="preserve">
-    <value>Manage {0} {1}'s Extended Attributes</value>
+    <value>Gérer les attributs étendus de {0} {1}</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>Aucune action autorisée</value>
   </data>
   <data name="Not Allowed." xml:space="preserve">
-    <value>Not Allowed.</value>
+    <value>Non autorisé.</value>
   </data>
   <data name="Only Selected Group (Export)" xml:space="preserve">
-    <value>Only Selected Group (Export)</value>
+    <value>Seulement les groupes sélectionné (export)</value>
   </data>
   <data name="Owner" xml:space="preserve">
-    <value>Owner</value>
+    <value>Propriétaire</value>
   </data>
   <data name="Reload" xml:space="preserve">
-    <value>Reload</value>
+    <value>Recharger</value>
   </data>
   <data name="Search For {0} Extended Attributes" xml:space="preserve">
-    <value>Search For {0} Extended Attributes</value>
+    <value>Rechercher les attributs étendus de {0}</value>
   </data>
   <data name="Striped" xml:space="preserve">
-    <value>Striped</value>
+    <value>Rayé</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Value</value>
+    <value>Valeur</value>
   </data>
   <data name="you" xml:space="preserve">
-    <value>you</value>
+    <value>vous</value>
   </data>
 </root>
