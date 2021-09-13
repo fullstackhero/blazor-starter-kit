@@ -111,14 +111,10 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Authentication
             return claims;
         }
 
-        private byte[] ParseBase64WithoutPadding(string base64)
+        private byte[] ParseBase64WithoutPadding(string payload)
         {
-            switch (base64.Length % 4)
-            {
-                case 2: base64 += "=="; break;
-                case 3: base64 += "="; break;
-            }
-
+            payload = payload.Trim().Replace('-', '+').Replace('_', '/');
+            var base64 = payload.PadRight(payload.Length + (4 - payload.Length % 4) % 4, '=');
             return Convert.FromBase64String(base64);
         }
     }

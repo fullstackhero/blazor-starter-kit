@@ -19,7 +19,7 @@
                 <MudText Typo="Typo.h6">@CFullName</MudText>
             }
 
-            <MudToolBarSpacer />
+            <MudSpacer />
             <MudHidden Breakpoint="Breakpoint.MdAndUp">
                 <MudIconButton OnClick="@(() => OpenDrawer(Anchor.Right))" Icon="@Icons.Material.Outlined.PeopleAlt" Color="Color.Inherit" Class="ml-3" />
             </MudHidden>
@@ -41,7 +41,7 @@
                     <div>
                         <MudText Typo="Typo.body1">@message.FromUserFullName</MudText>
                         <MudText Typo="Typo.caption" Style="font-size: xx-small!important;">@message.CreatedDate.ToString("G", CultureInfo.CurrentCulture)</MudText>
-                        <MudText Typo="Typo.body2" Style=" padding: 15px;background-color: var(--mud-palette-background-grey);border-radius: 5px;margin-top:5px">@message.Message</MudText>
+                        <MudText Typo="Typo.body2" Style=" padding: 15px;border-radius: 5px;margin-top:5px">@message.Message</MudText>
                     </div>
                 </div>
             }

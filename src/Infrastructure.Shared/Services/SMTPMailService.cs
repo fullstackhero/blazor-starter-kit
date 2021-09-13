@@ -34,6 +34,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Shared.Services
                         HtmlBody = request.Body
                     }.ToMessageBody()
                 };
+                email.To.Add(MailboxAddress.Parse(request.To));
                 using var smtp = new SmtpClient();
                 await smtp.ConnectAsync(_config.Host, _config.Port, SecureSocketOptions.StartTls);
                 await smtp.AuthenticateAsync(_config.UserName, _config.Password);

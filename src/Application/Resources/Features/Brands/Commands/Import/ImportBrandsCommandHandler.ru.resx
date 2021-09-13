@@ -123,9 +123,6 @@
   <data name="Description" xml:space="preserve">
     <value>Описание</value>
   </data>
-  <data name="Import Success" xml:space="preserve">
-    <value>Импорт завершён</value>
-  </data>
   <data name="Name" xml:space="preserve">
     <value>Наименование</value>
   </data>

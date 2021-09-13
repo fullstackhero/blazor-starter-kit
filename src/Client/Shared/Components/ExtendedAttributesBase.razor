@@ -42,7 +42,7 @@ else
                                 }
                             }
                         </div>
-                        <MudToolBarSpacer />
+                        <MudSpacer />
                         @if (_canSearchExtendedAttributes)
                         {
                             <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@string.Format(_localizer["Search For {0} Extended Attributes"], EntityName)" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>

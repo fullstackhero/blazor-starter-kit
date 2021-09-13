@@ -36,5 +36,9 @@
             <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
             <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(_file == null)" Color="Color.Success">@_localizer["Import"]</MudButton>
         </DialogActions>
+
     </MudDialog>
+    <MudOverlay Visible="_uploading" LightBackground="true" Absolute="true">
+        <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+    </MudOverlay>
 </EditForm>

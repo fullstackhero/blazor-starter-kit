@@ -6,7 +6,7 @@
     <MudToolBar DisableGutters="true">
         <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
     </MudToolBar>
-    <MudAppBarSpacer />
+    <MudSpacer />
     <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
         <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Secondary" Link="https://www.buymeacoffee.com/codewithmukesh" Target="_blank" StartIcon="@Icons.Material.Filled.LocalDrink">@_localizer["Buy Me A Coffee"]</MudButton>
         <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" Class="mx-4 my-5" />
@@ -33,12 +33,8 @@
         <LanguageSelector />
         <MudMenu Icon="@Icons.Filled.Settings" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
             <div class="px-2">
-                <MudTooltip Text="@_localizer["Toggle Dark Mode"]">
                     <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => ToggleDarkMode())" />
-                </MudTooltip>
-                <MudTooltip Text="@_localizer["Fork Repository"]">
                     <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/blazorhero/CleanArchitecture" Target="_blank" />
-                </MudTooltip>
             </div>
             <MudText Typo="Typo.body2" Class="px-4 py-2"><b>@_localizer["Community"]</b></MudText>
             <MudMenuItem Link="https://www.facebook.com/codewithmukesh" Target="_blank">@_localizer["Facebook Page"]</MudMenuItem>

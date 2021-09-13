@@ -9,7 +9,7 @@
 - [x] Logout Users / Regenerate Token from Multiple Client Browsers when Permission Changes
 - [x] FIX: Token Issue Fixed from v1.0.1
 - [x] User Images in Chat Component
-- [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB scehmas)
+- [x] Chat - Integrated with Identity to support Private Chats (Will require re-migrating the DB schemas)
 - [x] Notifications System using SignalR
 - [x] Document Management
 - [x] Export to Excel

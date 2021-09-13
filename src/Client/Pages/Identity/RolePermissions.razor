@@ -25,7 +25,7 @@ else
                                 <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" ButtonType="ButtonType.Submit">@_localizer["Update Role Permissions"]</MudButton>
                             </div>
                         }
-                        <MudToolBarSpacer />
+                        <MudSpacer />
                         @if (_canSearchRolePermissions)
                         {
                             <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false Placeholder="@_localizer["Search For Permissions"]" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>

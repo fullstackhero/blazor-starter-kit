@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name is required" xml:space="preserve">
-    <value>Name is required</value>
+    <value>Nom requis</value>
   </data>
 </root>

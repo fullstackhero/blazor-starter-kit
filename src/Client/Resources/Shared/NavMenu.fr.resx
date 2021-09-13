@@ -123,20 +123,32 @@
   <data name="Administrator" xml:space="preserve">
     <value>Administrateur</value>
   </data>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>Pistes d'audit</value>
+  </data>
   <data name="Brands" xml:space="preserve">
-    <value>Brands</value>
+    <value>Marques</value>
   </data>
   <data name="Catalog Management" xml:space="preserve">
-    <value>Catalog Management</value>
+    <value>Gestion du catalogue</value>
+  </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Conversations</value>
   </data>
   <data name="Communication" xml:space="preserve">
     <value>Communication</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Tableau de bord</value>
+  </data>
   <data name="Document Management" xml:space="preserve">
-    <value>Document Management</value>
+    <value>Gestion des documents</value>
+  </data>
+  <data name="Document Store" xml:space="preserve">
+    <value>Stockage des documents</value>
   </data>
   <data name="Document Types" xml:space="preserve">
-    <value>Document Types</value>
+    <value>Types de documents</value>
   </data>
   <data name="FAQs" xml:space="preserve">
     <value>FAQ</value>
@@ -145,19 +157,28 @@
     <value>Fonctionnalités</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Maison</value>
+    <value>Accueil</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Courriel</value>
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Renseignements personnels</value>
   </data>
   <data name="Products" xml:space="preserve">
-    <value>Products</value>
+    <value>Produits</value>
+  </data>
+  <data name="Quick Start Guide" xml:space="preserve">
+    <value>Guide de démarrage rapide</value>
   </data>
   <data name="Resources" xml:space="preserve">
     <value>Ressources</value>
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Rôles</value>
+  </data>
+  <data name="Swagger" xml:space="preserve">
+    <value>Swagger</value>
   </data>
   <data name="Users" xml:space="preserve">
     <value>Utilisateurs</value>
