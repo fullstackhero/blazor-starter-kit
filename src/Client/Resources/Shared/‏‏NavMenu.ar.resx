@@ -117,37 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Account" xml:space="preserve">
+    <value>الحساب</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Administrator" xml:space="preserve">
+    <value>الإدارة</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>مسارات المراجعة</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Brands" xml:space="preserve">
+    <value>العلامات التجارية</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Catalog Management" xml:space="preserve">
+    <value>إدارة الكتالوج</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Chat" xml:space="preserve">
+    <value>الدردشة</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Communication" xml:space="preserve">
+    <value>التواصل</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Dashboard" xml:space="preserve">
+    <value>لوحة الإدارة</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Document Management" xml:space="preserve">
+    <value>إدارة المستندات</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Document Store" xml:space="preserve">
+    <value>مخزن المستندات</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Document Types" xml:space="preserve">
+    <value>أنواع المستندات</value>
+  </data>
+  <data name="FAQs" xml:space="preserve">
+    <value>أسئلة وأجوبة</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>سمات</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>بريد</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>شخصي</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>المنتجات</value>
+  </data>
+  <data name="Quick Start Guide" xml:space="preserve">
+    <value>دليل البدء السريع</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>الموارد</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>الأدوار</value>
+  </data>
+  <data name="Swagger" xml:space="preserve">
+    <value>Swagger</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>المستخدمون </value>
   </data>
 </root>

@@ -117,37 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Delete Image" xml:space="preserve">
+    <value>حذف صورة</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Delete Picture" xml:space="preserve">
+    <value>حذف الصورة</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Do you want to delete the profile picture of {0}" xml:space="preserve">
+    <value>هل تريد حذف صورة ملف تعريف {0}</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Email" xml:space="preserve">
+    <value>بريد الالكتروني</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="First Name" xml:space="preserve">
+    <value>الاسم الأول</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>الكنية</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>رقم الهاتف</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Profile" xml:space="preserve">
+    <value>الملف الشخصي</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Profile Details" xml:space="preserve">
+    <value>تفاصيل الملف الشخصي</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Profile picture added." xml:space="preserve">
+    <value>تمت إضافة صورة الملف الشخصي.</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Profile picture deleted." xml:space="preserve">
+    <value>تم حذف صورة الملف الشخصي.</value>
+  </data>
+  <data name="Save Changes" xml:space="preserve">
+    <value>حفظ التغييرات</value>
+  </data>
+  <data name="Upload Image" xml:space="preserve">
+    <value>تحميل الصور</value>
+  </data>
+  <data name="Your Profile has been updated. Please Login to Continue." xml:space="preserve">
+    <value>تم تحديث ملفك الشخصي. الرجاء تسجيل الدخول للمتابعة. </value>
   </data>
 </root>

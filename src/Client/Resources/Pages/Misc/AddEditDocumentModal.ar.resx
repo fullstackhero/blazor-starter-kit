@@ -117,37 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Add Document" xml:space="preserve">
+    <value>أضف مستند</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>الغاء</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Description" xml:space="preserve">
+    <value>وصف</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Document Type" xml:space="preserve">
+    <value>نوع المستند</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Download" xml:space="preserve">
+    <value>تنزيل</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Id" xml:space="preserve">
+    <value>رقم المعرف</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Is Public?" xml:space="preserve">
+    <value>عام؟</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Save" xml:space="preserve">
+    <value>حفظ</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Title" xml:space="preserve">
+    <value>عنوان</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Update" xml:space="preserve">
+    <value>تحديث</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Update Document" xml:space="preserve">
+    <value>تحديث المستند</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>رفع</value>
   </data>
 </root>

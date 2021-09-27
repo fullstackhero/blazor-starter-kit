@@ -117,37 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="E-Mail not confirmed." xml:space="preserve">
+    <value>تم تأكيد البريد الإلكتروني.</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Invalid Client Token." xml:space="preserve">
+    <value>شفرة توكن غير صحيحة.</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Invalid Credentials." xml:space="preserve">
+    <value>بيانات دخول غير صحيحة.</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Invalid token" xml:space="preserve">
+    <value>شفرة توكن غير صحيحة</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="User Not Active. Please contact the administrator." xml:space="preserve">
+    <value>حساب المستخدم غير مُفعل، الرجاء الاتصال بمدير النظام.</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
-  </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
-  </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
-  </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="User Not Found." xml:space="preserve">
+    <value>المستخدم غير موجود.</value>
   </data>
 </root>

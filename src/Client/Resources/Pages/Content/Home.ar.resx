@@ -117,37 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Blazor For Beginners – Getting Started With Blazor" xml:space="preserve">
+    <value>بليزر للمبتدئين - بدء استخدام بليزر</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Blazor Hero Description" xml:space="preserve">
+    <value>Blazor Hero عبارة عن نموذج للحل الشامل للهندسة المعمارية النظيفة لتجميع الويب Blazor الذي تم إنشاؤه باستخدام</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Building A Chat Application With Blazor, Identity, And SignalR" xml:space="preserve">
+    <value>بناء تطبيق دردشة مع Blazor ، Identity ، و SignalR</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Celebrating 1,500 Stars on Github!" xml:space="preserve">
+    <value>الاحتفال بـ 1500 نجمة على جيثب!</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Component Library" xml:space="preserve">
+    <value>مكتبة المكونات</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Custom Authentication In Blazor WebAssembly – Detailed" xml:space="preserve">
+    <value>المصادقة المخصصة في Blazor WebAssembly - بالتفصيل</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Description" xml:space="preserve">
+    <value>قالب معماري نظيف لـ Blazor Web-Assembly</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Documentation - Coming Soon" xml:space="preserve">
+    <value>التوثيق - قريبا</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Exploring Blazor Project Structure" xml:space="preserve">
+    <value>استكشاف هيكل مشروع Blazor</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Getting Started" xml:space="preserve">
+    <value>ابدء</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Github Repository : Do Not Forget to Leave a Star ;)" xml:space="preserve">
+    <value>مستودع جيثب: لا تنسى ترك نجم ؛)</value>
+  </data>
+  <data name="Here are few articles that should help you get started with Blazor." xml:space="preserve">
+    <value>إليك بعض المقالات التي من المفترض أن تساعدك في البدء باستخدام Blazor.</value>
+  </data>
+  <data name="How To Implement Blazor CRUD Using Entity Framework Core?" xml:space="preserve">
+    <value>كيفية تنفيذ Blazor CRUD باستخدام Entity Framework Core؟</value>
+  </data>
+  <data name="Implementing Blazor CRUD Using Mudblazor Component Library In .NET 5" xml:space="preserve">
+    <value>تنفيذ Blazor CRUD باستخدام مكتبة مكونات Mudblazor في .NET 5</value>
+  </data>
+  <data name="Important Links" xml:space="preserve">
+    <value>روابط مهمة</value>
+  </data>
+  <data name="In case you are stuck anywhere or have any queries regarding this implementation, I have compiled a Quick Start Guide for you reference." xml:space="preserve">
+    <value>في حال كنت عالقًا في أي مكان أو كان لديك أي استفسارات بخصوص هذا التنفيذ ، فقد قمت بتجميع دليل البدء السريع للرجوع إليه</value>
+  </data>
+  <data name="Learning Resources" xml:space="preserve">
+    <value>مصادر التعلم</value>
+  </data>
+  <data name="Liked BlazorHero? Star us on Github!" xml:space="preserve">
+    <value>أحب BlazorHero؟ نجمة لنا على جيثب!</value>
+  </data>
+  <data name="Onion Architecture In ASP.NET Core With CQRS – Detailed" xml:space="preserve">
+    <value>هندسة البصل في ASP.NET Core مع CQRS - مفصل</value>
+  </data>
+  <data name="Project Page" xml:space="preserve">
+    <value>صفحة المشروع</value>
+  </data>
+  <data name="Quick Start Guide" xml:space="preserve">
+    <value>دليل البدء السريع</value>
+  </data>
+  <data name="Read The Guide" xml:space="preserve">
+    <value>اقرأ الدليل</value>
+  </data>
+  <data name="Support Me" xml:space="preserve">
+    <value>ادعمني!</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>بلازور هيرو </value>
   </data>
 </root>

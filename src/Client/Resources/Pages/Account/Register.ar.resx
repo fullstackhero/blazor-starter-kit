@@ -117,37 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Already have an account?" xml:space="preserve">
+    <value>هل لديك حساب؟</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="E-mail" xml:space="preserve">
+    <value>بريد الالكتروني</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="I agree to the terms and privacy" xml:space="preserve">
+    <value>أوافق على الشروط والخصوصية</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Password" xml:space="preserve">
+    <value>كلمه السر</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>رقم الهاتف</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Register" xml:space="preserve">
+    <value>اشتراك</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Sign In" xml:space="preserve">
+    <value>تسجيل الدخول</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Sign Up" xml:space="preserve">
+    <value>اشتراك</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Username" xml:space="preserve">
+    <value>اسم المستخدم </value>
   </data>
 </root>

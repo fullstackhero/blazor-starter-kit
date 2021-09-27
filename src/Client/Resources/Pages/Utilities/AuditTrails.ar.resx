@@ -117,37 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>مسارات المراجعة</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Audit Trails exported" xml:space="preserve">
+    <value>تم تصدير مسارات التدقيق</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>يحدها</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>الغاء</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Clear" xml:space="preserve">
+    <value>مسح</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Columns Affected" xml:space="preserve">
+    <value>تتأثر الأعمدة</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Date" xml:space="preserve">
+    <value>تاريخ</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Date Range For Searching" xml:space="preserve">
+    <value>النطاق الزمني للبحث</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Dense" xml:space="preserve">
+    <value>كثيف</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Details for Trail ID" xml:space="preserve">
+    <value>تفاصيل معرف الممر</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Export To Excel" xml:space="preserve">
+    <value>تصدير إلى Excel</value>
+  </data>
+  <data name="Filtered Audit Trails exported" xml:space="preserve">
+    <value>تم تصدير مسارات التدقيق المصفاة</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>إخفاء</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>المعرف</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>محلي</value>
+  </data>
+  <data name="New Values" xml:space="preserve">
+    <value>قيم جديدة</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>موافق</value>
+  </data>
+  <data name="Old Values" xml:space="preserve">
+    <value>المفتاح الأساسي</value>
+  </data>
+  <data name="Primary Key" xml:space="preserve">
+    <value>ابحث عن مسارات</value>
+  </data>
+  <data name="Search for Trails" xml:space="preserve">
+    <value>ابحث في القيم الجديدة</value>
+  </data>
+  <data name="Search in New Values" xml:space="preserve">
+    <value>ابحث في القيم القديمة</value>
+  </data>
+  <data name="Search in Old Values" xml:space="preserve">
+    <value>ابحث في القيم القديمة</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>مخطط</value>
+  </data>
+  <data name="Table Name" xml:space="preserve">
+    <value>اسم الجدول</value>
+  </data>
+  <data name="Trail Details" xml:space="preserve">
+    <value>تفاضيل</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>نوع</value>
+  </data>
+  <data name="UTC" xml:space="preserve">
+    <value>التوقيت العالمي</value>
+  </data>
+  <data name="Your Recent Activities." xml:space="preserve">
+    <value>أنشطتك الأخيرة. </value>
   </data>
 </root>

@@ -117,37 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Not allowed to delete {0} Role as it is being used." xml:space="preserve">
+    <value>لا يمكنك حذف صلاحية {0} لانها قيد الاستخدام.</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Not allowed to delete {0} Role." xml:space="preserve">
+    <value>لا يمكنك حذف صلاحية {0}.</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Not allowed to deselect {0} or {1} or {2} for this Role." xml:space="preserve">
+    <value>لا يمكنك الغاء اختيار {0} or {1} or {2} لهذه الصلاحية.</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Not allowed to modify Permissions for this Role." xml:space="preserve">
+    <value>لا يمكنك تعديل مهام هذه الصلاحية.</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Not allowed to modify {0} Role." xml:space="preserve">
+    <value>لا يمكنك تعديل صلاحية {0}.</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Permissions Updated." xml:space="preserve">
+    <value>تم تحديث المهام.</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Role {0} Created." xml:space="preserve">
+    <value>تم انشاء الصلاحية {0}.</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Role {0} Deleted." xml:space="preserve">
+    <value>تم حذف الصلاحية {0}.</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Role {0} Updated." xml:space="preserve">
+    <value>تم تحديث الصلاحية {0}.</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Similar Role already exists." xml:space="preserve">
+    <value>يوجد صلاحية مماثلة</value>
   </data>
 </root>

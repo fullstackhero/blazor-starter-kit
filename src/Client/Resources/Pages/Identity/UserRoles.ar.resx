@@ -117,37 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordered</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Dense" xml:space="preserve">
+    <value>Dense</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Manage {0} {1}'s Roles" xml:space="preserve">
+    <value>Manage {0} {1}'s Roles</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Role Name" xml:space="preserve">
+    <value>Role Name</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Roles Updated" xml:space="preserve">
+    <value>Roles Updated!</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Search For User Roles" xml:space="preserve">
+    <value>Search For User Roles</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Striped" xml:space="preserve">
+    <value>Striped</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Update User Roles" xml:space="preserve">
+    <value>Update User Roles</value>
   </data>
 </root>

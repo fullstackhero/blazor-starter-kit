@@ -117,37 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Apr" xml:space="preserve">
+    <value>أبريل</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Aug" xml:space="preserve">
+    <value>أغسطس</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Brands" xml:space="preserve">
+    <value>العلامات التجارية</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Charts comming soon ish..." xml:space="preserve">
+    <value>الرسوم البيانية قادمة قريبا</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Dashboard" xml:space="preserve">
+    <value>لوحة القيادة</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Dec" xml:space="preserve">
+    <value>ديسمبر</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Document Extended Attributes" xml:space="preserve">
+    <value>سمات المستند الممتدة</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Document Types" xml:space="preserve">
+    <value>أنواع المستندات</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Documents" xml:space="preserve">
+    <value>وثائق</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Feb" xml:space="preserve">
+    <value>فبراير</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Jan" xml:space="preserve">
+    <value>يناير</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>يوليو</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>يونيو</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>مارس</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>مايو</value>
+  </data>
+  <data name="Nov" xml:space="preserve">
+    <value>نوفمبر</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>أكتوبر</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>منتجات</value>
+  </data>
+  <data name="Quick Insights." xml:space="preserve">
+    <value>رؤى سريعة.</value>
+  </data>
+  <data name="Realtime Updates &amp; Insights with SignalR." xml:space="preserve">
+    <value>تحديثات الوقت الحقيقي &amp; رؤى مع SignalR.</value>
+  </data>
+  <data name="Registered Roles" xml:space="preserve">
+    <value>الأدوار المسجلة</value>
+  </data>
+  <data name="Registered Users" xml:space="preserve">
+    <value>المستخدمون المسجلون</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>سبتمبر</value>
   </data>
 </root>

@@ -117,37 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Actions" xml:space="preserve">
+    <value>أجراءات</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Active" xml:space="preserve">
+    <value>نشيط</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>يحدها</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Create" xml:space="preserve">
+    <value>إنشاء</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Dense" xml:space="preserve">
+    <value>كثيف</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Email" xml:space="preserve">
+    <value>بريد الالكتروني</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Email Confirmation" xml:space="preserve">
+    <value>تأكيد البريد الإلكتروني</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Export" xml:space="preserve">
+    <value>تصدير</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Filtered Users exported" xml:space="preserve">
+    <value>تم تصدير المستخدمين الذين تمت تصفيتهم</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="First Name" xml:space="preserve">
+    <value>الاسم الأول</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>الكنية</value>
+  </data>
+  <data name="Manage Roles" xml:space="preserve">
+    <value>إدارة الأدوار</value>
+  </data>
+  <data name="Manage Users" xml:space="preserve">
+    <value>ادارة المستخدمين</value>
+  </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>لا توجد إجراءات مسموح بها</value>
+  </data>
+  <data name="Not Allowed." xml:space="preserve">
+    <value>غير مسموح.</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="Register New User" xml:space="preserve">
+    <value>تسجيل مستخدم جديد</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>إعادة تحميل</value>
+  </data>
+  <data name="Search For Users" xml:space="preserve">
+    <value>البحث عن المستخدمين</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>مخطط</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>اسم االمستخدم</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>المستخدمون</value>
+  </data>
+  <data name="Users exported" xml:space="preserve">
+    <value>تصدير المستخدمين</value>
+  </data>
+  <data name="View Profile" xml:space="preserve">
+    <value>عرض الصفحة الشخصية</value>
   </data>
 </root>
