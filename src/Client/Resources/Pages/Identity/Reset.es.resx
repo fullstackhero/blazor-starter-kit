@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Confirm Password" xml:space="preserve">
-    <value>Confirm Password</value>
+    <value>Confirmar Contraseña</value>
   </data>
   <data name="E-mail" xml:space="preserve">
-    <value>E-mail</value>
+    <value>Correo</value>
   </data>
   <data name="Enter email for password reset" xml:space="preserve">
-    <value>Enter email for password reset</value>
+    <value>Ingrese correo para blanquear contraseña</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Contraseña</value>
   </data>
   <data name="Reset password" xml:space="preserve">
-    <value>Reset password</value>
+    <value>Blanquear Contraseña</value>
   </data>
   <data name="Token Not Found!" xml:space="preserve">
-    <value>Token Not Found!</value>
+    <value>Token no encontrado!</value>
   </data>
 </root>

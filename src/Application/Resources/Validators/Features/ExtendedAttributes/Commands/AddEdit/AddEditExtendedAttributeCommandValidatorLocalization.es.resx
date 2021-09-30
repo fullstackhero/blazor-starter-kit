@@ -118,24 +118,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DateTime value is required using {0} type!" xml:space="preserve">
-    <value>DateTime value is required using {0} type!</value>
+    <value>El valor DateTime es requerido usando el tipo {0}!</value>
   </data>
   <data name="Decimal value is required using {0} type!" xml:space="preserve">
-    <value>Decimal value is required using {0} type!</value>
+    <value>El valor Decimal es requerido usando el tipo {0}!</value>
   </data>
   <data name="Entity is required!" xml:space="preserve">
-    <value>Entity is required!</value>
+    <value>La Entidad es requerida!</value>
   </data>
   <data name="Json value is required using {0} type!" xml:space="preserve">
-    <value>Json value is required using {0} type!</value>
+    <value>El valor Json es requerido usando el tipo {0}!</value>
   </data>
   <data name="Json value must be a valid json string using {0} type!" xml:space="preserve">
-    <value>Json value must be a valid json string using {0} type!</value>
+    <value>El valor Json debe ser un texto json válido usando el tipo {0}!</value>
   </data>
   <data name="Key is required!" xml:space="preserve">
-    <value>Key is required!</value>
+    <value>La Clave es requerida!</value>
   </data>
   <data name="Text value is required using {0} type!" xml:space="preserve">
-    <value>Text value is required using {0} type!</value>
+    <value>El valor Text es requerido usando el tipo {0}!</value>
   </data>
 </root>

@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Email is not correct" xml:space="preserve">
-    <value>Email is not correct</value>
+    <value>El Email no es correcto</value>
   </data>
   <data name="Email is required" xml:space="preserve">
-    <value>Email is required</value>
+    <value>El Email es requerido</value>
   </data>
   <data name="First Name is required" xml:space="preserve">
-    <value>First Name is required</value>
+    <value>El Nombre es requerido</value>
   </data>
   <data name="Last Name is required" xml:space="preserve">
-    <value>Last Name is required</value>
+    <value>El Apellido es requerido</value>
   </data>
   <data name="Password Confirmation is required!" xml:space="preserve">
-    <value>Password Confirmation is required!</value>
+    <value>La Confirmación de Contraseña es requerida!</value>
   </data>
   <data name="Password is required!" xml:space="preserve">
-    <value>Password is required!</value>
+    <value>La Contraseña es requerida!</value>
   </data>
   <data name="Password must be at least of length 8" xml:space="preserve">
-    <value>Password must be at least of length 8</value>
+    <value>La Contraseña debe tener al menos 8 caracteres</value>
   </data>
   <data name="Password must contain at least one capital letter" xml:space="preserve">
-    <value>Password must contain at least one capital letter</value>
+    <value>La Contraseña debe tener al menos una letra mayúscula</value>
   </data>
   <data name="Password must contain at least one digit" xml:space="preserve">
-    <value>Password must contain at least one digit</value>
+    <value>La Contraseña debe tener al menos un número</value>
   </data>
   <data name="Password must contain at least one lowercase letter" xml:space="preserve">
-    <value>Password must contain at least one lowercase letter</value>
+    <value>La Contraseña debe tener al menos una letra minúscula</value>
   </data>
   <data name="Passwords don't match" xml:space="preserve">
-    <value>Passwords don't match</value>
+    <value>Las Contraseñas no coinciden</value>
   </data>
   <data name="UserName is required" xml:space="preserve">
-    <value>UserName is required</value>
+    <value>El Nombre de Usuario es requerido</value>
   </data>
   <data name="UserName must be at least of length 6" xml:space="preserve">
-    <value>UserName must be at least of length 6</value>
+    <value>El Nombre de Usuario debe tener al menos 6 caracteres</value>
   </data>
 </root>

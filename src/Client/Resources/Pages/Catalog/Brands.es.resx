@@ -123,17 +123,26 @@
   <data name="Add Brand" xml:space="preserve">
     <value>Agregar Marca</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordeado</value>
+  </data>
   <data name="Brands" xml:space="preserve">
     <value>Marcas</value>
   </data>
   <data name="Brands exported" xml:space="preserve">
-    <value>Brands exported</value>
+    <value>Marcas Exportadas</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Crear</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Borrar</value>
+  </data>
+  <data name="Delete Content" xml:space="preserve">
+    <value>¿Desea eliminar el registro?</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Denso</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
@@ -142,16 +151,16 @@
     <value>Editar</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export</value>
+    <value>Exportar</value>
   </data>
   <data name="Filtered Brands exported" xml:space="preserve">
-    <value>Filtered Brands exported</value>
+    <value>Marcas filtradas exportadas</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
   <data name="Import" xml:space="preserve">
-    <value>Import</value>
+    <value>Importar</value>
   </data>
   <data name="Manage Brands." xml:space="preserve">
     <value>Gestionar Marcas</value>
@@ -160,13 +169,16 @@
     <value>Nombre</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>Acciones no Permitidas</value>
   </data>
   <data name="Reload" xml:space="preserve">
     <value>Recargar</value>
   </data>
   <data name="Search for Brands" xml:space="preserve">
     <value>Buscar Marcas</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Rayado</value>
   </data>
   <data name="Tax" xml:space="preserve">
     <value>Impuestos</value>

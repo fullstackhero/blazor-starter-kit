@@ -124,7 +124,7 @@
     <value>Borrar Imagen</value>
   </data>
   <data name="Do you want to delete the profile picture of {0}" xml:space="preserve">
-    <value>Do you want to delete the profile picture of {0}</value>
+    <value>¿Quiere borrar la imagen de perfil de {0}</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Correo</value>
@@ -145,10 +145,10 @@
     <value>Detalle del perfil</value>
   </data>
   <data name="Profile picture added." xml:space="preserve">
-    <value>Profile picture added.</value>
+    <value>Imagen de Perfil agregada.</value>
   </data>
   <data name="Profile picture deleted." xml:space="preserve">
-    <value>Profile picture deleted.</value>
+    <value>Imagen de Perfil borrada.</value>
   </data>
   <data name="Save Changes" xml:space="preserve">
     <value>Guardar cambios</value>

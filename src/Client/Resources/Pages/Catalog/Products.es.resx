@@ -123,11 +123,23 @@
   <data name="Barcode" xml:space="preserve">
     <value>Código de barra</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordeado</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Marca</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>Crear</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Borrar</value>
+  </data>
+  <data name="Delete Content" xml:space="preserve">
+    <value>¿Desea eliminar el registro?</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Denso</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
@@ -135,34 +147,40 @@
   <data name="Edit" xml:space="preserve">
     <value>Editar</value>
   </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
   <data name="Filtered Products exported" xml:space="preserve">
-    <value>Filtered Products exported</value>
+    <value>Productos filtrados exportados</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
   <data name="Manage Products." xml:space="preserve">
-    <value>Gestiónar Productos</value>
+    <value>Gestionar Productos</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>Acciones no Permitidas</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>Productos</value>
   </data>
   <data name="Products exported" xml:space="preserve">
-    <value>Products exported</value>
+    <value>Productos exportados</value>
   </data>
   <data name="Rate" xml:space="preserve">
-    <value>Tarifa</value>
+    <value>Precio</value>
   </data>
   <data name="Reload" xml:space="preserve">
     <value>Recargar</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Buscar</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Rayado</value>
   </data>
 </root>

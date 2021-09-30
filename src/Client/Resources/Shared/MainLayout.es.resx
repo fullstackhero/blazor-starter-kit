@@ -136,10 +136,10 @@
     <value>Página de Facebook</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>Desconectar</value>
+    <value>Salir</value>
   </data>
   <data name="Logout Confirmation" xml:space="preserve">
-    <value>¿Realmente quieres desconectarte?</value>
+    <value>¿Realmente quiere salir del sistema?</value>
   </data>
   <data name="MudBlazor Documentation" xml:space="preserve">
     <value>Documentación de MudBlazor</value>
@@ -148,7 +148,7 @@
     <value>Guía de Inicio Rápido</value>
   </data>
   <data name="Refreshed Token." xml:space="preserve">
-    <value>Refreshed Token.</value>
+    <value>Token refrescado.</value>
   </data>
   <data name="Resources" xml:space="preserve">
     <value>Recursos</value>
@@ -160,18 +160,18 @@
     <value>Alternar modo oscuro</value>
   </data>
   <data name="Toggle right-to-left/left-to-right" xml:space="preserve">
-    <value>Toggle right-to-left/left-to-right</value>
+    <value>Alternar right-to-left/left-to-right</value>
   </data>
   <data name="Welcome {0}" xml:space="preserve">
-    <value>Welcome {0}</value>
+    <value>Bienvenido {0}</value>
   </data>
   <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
-    <value>You are logged out because the Permissions of one of your Roles have been updated.</value>
+    <value>Ha cerrado sesión porque los permisos de su Rol han sido actualizados.</value>
   </data>
   <data name="You are logged out because the user with your Token has been deleted." xml:space="preserve">
-    <value>You are logged out because the user with your Token has been deleted.</value>
+    <value>Ha cerrado sesión porque el usuario asociado a su Token ha sido borrado.</value>
   </data>
   <data name="You are Logged Out." xml:space="preserve">
-    <value>You are Logged Out.</value>
+    <value>Ha cerrado sesión.</value>
   </data>
 </root>

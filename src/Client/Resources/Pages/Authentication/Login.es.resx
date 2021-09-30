@@ -118,25 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Description" xml:space="preserve">
-    <value>Acceder con tus credenciales</value>
+    <value>Ingrese con sus credenciales.</value>
+  </data>
+  <data name="Don't have an account?" xml:space="preserve">
+    <value>¿No tiene una cuenta?</value>
   </data>
   <data name="E-mail" xml:space="preserve">
     <value>Correo</value>
   </data>
   <data name="Email is required!" xml:space="preserve">
-    <value>El correo es requerido!</value>
+    <value>El Correo es requerido!</value>
+  </data>
+  <data name="Fill Administrator Credentials" xml:space="preserve">
+    <value>Completar con Credenciales Administrador</value>
+  </data>
+  <data name="Fill Basic User Credentials" xml:space="preserve">
+    <value>Completar con Credenciales Usuario</value>
   </data>
   <data name="Forgot password?" xml:space="preserve">
-    <value>¿Olvidaste tu contraseña?</value>
+    <value>¿Olvidó su Contraseña?</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Contraseña</value>
   </data>
   <data name="Password is required!" xml:space="preserve">
-    <value>La contraseña es requerida!</value>
+    <value>La Contraseña es requerida!</value>
+  </data>
+  <data name="Register here" xml:space="preserve">
+    <value>Registrarse aquí</value>
   </data>
   <data name="Remember me?" xml:space="preserve">
-    <value>Recordarme</value>
+    <value>¿Recordarme?</value>
   </data>
   <data name="Sign In" xml:space="preserve">
     <value>Ingresar</value>

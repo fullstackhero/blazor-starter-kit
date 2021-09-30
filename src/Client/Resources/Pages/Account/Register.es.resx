@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Already have an account?" xml:space="preserve">
-    <value>¿Ya tienes una cuenta?</value>
+    <value>¿Ya tiene una cuenta?</value>
   </data>
   <data name="E-mail" xml:space="preserve">
     <value>Correo</value>
@@ -133,13 +133,13 @@
     <value>Teléfono</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Registrate</value>
+    <value>Registrarse</value>
   </data>
   <data name="Sign In" xml:space="preserve">
     <value>Ingresar</value>
   </data>
   <data name="Sign Up" xml:space="preserve">
-    <value>Registrate</value>
+    <value>Registrarse</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Usuario</value>

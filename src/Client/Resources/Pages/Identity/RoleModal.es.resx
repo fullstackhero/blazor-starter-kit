@@ -124,18 +124,18 @@
     <value>Cancelar</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Descripción</value>
   </data>
   <data name="Role ID" xml:space="preserve">
-    <value>Rol Id</value>
+    <value>ID de Rol</value>
   </data>
   <data name="Role Name" xml:space="preserve">
-    <value>Nombre Rol</value>
+    <value>Nombre de Rol</value>
   </data>
   <data name="Save Role" xml:space="preserve">
-    <value>Guardar Rol</value>
+    <value>Guardar</value>
   </data>
   <data name="Update Role" xml:space="preserve">
-    <value>Actualizar Rol</value>
+    <value>Actualizar</value>
   </data>
 </root>

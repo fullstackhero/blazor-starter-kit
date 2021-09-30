@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="I agree to the terms and privacy" xml:space="preserve">
-    <value>Acepto los terminos y condiciones</value>
+    <value>Acepto los términos y condiciones</value>
   </data>
   <data name="New Password" xml:space="preserve">
     <value>Nueva contraseña</value>
