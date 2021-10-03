@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Deletion Not Allowed" xml:space="preserve">
-    <value>Deletion Not Allowed</value>
+    <value>No se permite el borrado</value>
   </data>
   <data name="Extended Attribute Deleted" xml:space="preserve">
-    <value>Extended Attribute Deleted</value>
+    <value>Atributo Extendido Borrado</value>
   </data>
   <data name="Extended Attribute Not Found!" xml:space="preserve">
-    <value>Extended Attribute Not Found!</value>
+    <value>Atributo Extendido no encontrado!</value>
   </data>
 </root>

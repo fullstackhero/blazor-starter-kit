@@ -148,7 +148,7 @@
     <value>Producto Actualizado!</value>
   </data>
   <data name="Rate" xml:space="preserve">
-    <value>Tarifa</value>
+    <value>Precio</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Guardar</value>
@@ -160,9 +160,9 @@
     <value>Actualizar Producto</value>
   </data>
   <data name="Upload" xml:space="preserve">
-    <value>Cargar</value>
+    <value>Subir</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>View</value>
+    <value>Ver</value>
   </data>
 </root>

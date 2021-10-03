@@ -121,7 +121,7 @@
     <value>¿Activo?</value>
   </data>
   <data name="Administrator Settings." xml:space="preserve">
-    <value>Configuraciones de administrador</value>
+    <value>Configuraciones de Administrador</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Correo</value>
@@ -139,7 +139,7 @@
     <value>Perfil</value>
   </data>
   <data name="Public Profile" xml:space="preserve">
-    <value>Perfil público</value>
+    <value>Perfil Público</value>
   </data>
   <data name="Save Changes" xml:space="preserve">
     <value>Guardar cambios</value>

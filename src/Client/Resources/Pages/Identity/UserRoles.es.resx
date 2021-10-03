@@ -117,19 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordeado</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Denso</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
   <data name="Manage {0} {1}'s Roles" xml:space="preserve">
-    <value>Manage {0} {1}'s Roles</value>
+    <value>Administrar Roles de {0} {1}</value>
   </data>
   <data name="Role Name" xml:space="preserve">
-    <value>Nombre Rol</value>
+    <value>Nombre del Rol</value>
   </data>
   <data name="Roles Updated" xml:space="preserve">
-    <value>Roles Actualizados!</value>
+    <value>Roles actualizados!</value>
+  </data>
+  <data name="Search For User Roles" xml:space="preserve">
+    <value>Buscar por Rol de Usuario</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Estado</value>
   </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Rayado</value>
+  </data>
   <data name="Update User Roles" xml:space="preserve">
-    <value>Actualizar roles de usuario</value>
+    <value>Actualizar Roles de Usuario</value>
   </data>
 </root>

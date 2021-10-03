@@ -121,7 +121,7 @@
     <value>¿Activar usuario?</value>
   </data>
   <data name="Auto Confirm Email?" xml:space="preserve">
-    <value>¿Auto confirmar correo?</value>
+    <value>¿Autoconfirmar correo?</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
@@ -151,7 +151,7 @@
     <value>Detalle del perfil</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Registrarse</value>
+    <value>Registrar</value>
   </data>
   <data name="Register User" xml:space="preserve">
     <value>Usuario registrado</value>
@@ -166,6 +166,6 @@
     <value>Usuario Registrado!</value>
   </data>
   <data name="User Registered Mailbox" xml:space="preserve">
-    <value>Usuario Registrado. Un correo de confirmación fue enviado a tu casilla de correo.</value>
+    <value>Usuario Registrado. Un correo de confirmación fue enviado a su casilla de correo.</value>
   </data>
 </root>

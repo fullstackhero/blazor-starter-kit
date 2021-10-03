@@ -120,6 +120,9 @@
   <data name="Actions" xml:space="preserve">
     <value>Acciones</value>
   </data>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordeado</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>Crear</value>
   </data>
@@ -127,10 +130,13 @@
     <value>Borrar</value>
   </data>
   <data name="Delete Content" xml:space="preserve">
-    <value>¿Deseas borrar el rol con el siguiente Id {0}?</value>
+    <value>¿Deseas borrar el rol con el Id {0}?</value>
+  </data>
+  <data name="Dense" xml:space="preserve">
+    <value>Denso</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Descripción</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Editar</value>
@@ -138,19 +144,28 @@
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
+  <data name="Manage Permission" xml:space="preserve">
+    <value>Administrar Permisos</value>
+  </data>
   <data name="Manage Roles." xml:space="preserve">
     <value>Gestionar Roles</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>Acciones no Permitidas</value>
   </data>
   <data name="Reload" xml:space="preserve">
     <value>Recargar</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Rol</value>
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Roles</value>
   </data>
   <data name="Search for Roles..." xml:space="preserve">
     <value>Buscar Roles</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>Rayado</value>
   </data>
 </root>

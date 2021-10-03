@@ -121,6 +121,6 @@
     <value>Ir a Inicio!</value>
   </data>
   <data name="Message" xml:space="preserve">
-    <value>La página que buscas no existe</value>
+    <value>La página que busca no existe</value>
   </data>
 </root>

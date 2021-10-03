@@ -118,54 +118,54 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Descripción</value>
   </data>
   <data name="EntityCreatedBy" xml:space="preserve">
-    <value>EntityCreatedBy</value>
+    <value>Entidad Creada Por</value>
   </data>
   <data name="EntityCreatedOn (Local)" xml:space="preserve">
-    <value>EntityCreatedOn (Local)</value>
+    <value>Fecha Entidad Creada (Local)</value>
   </data>
   <data name="EntityCreatedOn (UTC)" xml:space="preserve">
-    <value>EntityCreatedOn (UTC)</value>
+    <value>Fecha Entidad Creada (UTC)</value>
   </data>
   <data name="EntityId" xml:space="preserve">
-    <value>EntityId</value>
+    <value>ID Entidad</value>
   </data>
   <data name="EntityLastModifiedBy" xml:space="preserve">
-    <value>EntityLastModifiedBy</value>
+    <value>Última Modificación Por</value>
   </data>
   <data name="EntityLastModifiedOn (Local)" xml:space="preserve">
-    <value>EntityLastModifiedOn (Local)</value>
+    <value>Fecha Última Modificación (Local)</value>
   </data>
   <data name="EntityLastModifiedOn (UTC)" xml:space="preserve">
-    <value>EntityLastModifiedOn (UTC)</value>
+    <value>Fecha Última Modificación (UTC)</value>
   </data>
   <data name="ExternalId" xml:space="preserve">
-    <value>ExternalId</value>
+    <value>ID Externo</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Grupo</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
   <data name="IsActive" xml:space="preserve">
-    <value>IsActive</value>
+    <value>Está Activo</value>
   </data>
   <data name="Key" xml:space="preserve">
-    <value>Key</value>
+    <value>Clave</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Type</value>
+    <value>Tipo</value>
   </data>
   <data name="Type should be valid" xml:space="preserve">
-    <value>Type should be valid</value>
+    <value>El Tipo debe ser váido</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Value</value>
+    <value>Valor</value>
   </data>
   <data name="{0} Extended Attributes" xml:space="preserve">
-    <value>{0} Extended Attributes</value>
+    <value>{0} Atributos Extendidos</value>
   </data>
 </root>

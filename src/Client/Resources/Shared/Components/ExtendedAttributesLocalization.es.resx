@@ -118,96 +118,96 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Actions" xml:space="preserve">
-    <value>Actions</value>
+    <value>Acciones</value>
   </data>
   <data name="All Groups" xml:space="preserve">
-    <value>All Groups</value>
+    <value>Todos los Grupos</value>
   </data>
   <data name="Bordered" xml:space="preserve">
-    <value>Bordered</value>
+    <value>Bordeado</value>
   </data>
   <data name="Create" xml:space="preserve">
-    <value>Create</value>
+    <value>Crear</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Borrar</value>
   </data>
   <data name="Delete Extended Attribute?" xml:space="preserve">
-    <value>Delete Extended Attribute?</value>
+    <value>¿Eliminar Atributo Extendido?</value>
   </data>
   <data name="Dense" xml:space="preserve">
-    <value>Dense</value>
+    <value>Denso</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Descripción</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Editar</value>
   </data>
   <data name="Entity Id" xml:space="preserve">
-    <value>Entity Id</value>
+    <value>Id de Entidad</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export</value>
+    <value>Exportar</value>
   </data>
   <data name="Extended Attributes exported" xml:space="preserve">
-    <value>Extended Attributes exported</value>
+    <value>Atributos Extendidos exportados</value>
   </data>
   <data name="External Id" xml:space="preserve">
-    <value>External Id</value>
+    <value>Id Externo</value>
   </data>
   <data name="Filtered Extended Attributes exported" xml:space="preserve">
-    <value>Filtered Extended Attributes exported</value>
+    <value>Atributos Extendidos Filtrados exportados</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Group</value>
+    <value>Grupo</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
   <data name="Include Entity fields (Export)" xml:space="preserve">
-    <value>Include Entity fields (Export)</value>
+    <value>Incluir campos de Entidad (Exportar)</value>
   </data>
   <data name="Is Active" xml:space="preserve">
-    <value>Is Active</value>
+    <value>¿Está Activo?</value>
   </data>
   <data name="Key" xml:space="preserve">
-    <value>Key</value>
+    <value>Clave</value>
   </data>
   <data name="Manage {0} Extended Attributes" xml:space="preserve">
-    <value>Manage {0} Extended Attributes</value>
+    <value>Administrar Atributos Extendidos ({0})</value>
   </data>
   <data name="Manage {0} {1}'s Extended Attributes" xml:space="preserve">
-    <value>Manage {0} {1}'s Extended Attributes</value>
+    <value>Administrar los Atributos Extendidos de: {0}-{1}</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
-    <value>No Allowed Actions</value>
+    <value>Acciones no Permitidas</value>
   </data>
   <data name="Not Allowed." xml:space="preserve">
-    <value>Not Allowed.</value>
+    <value>No Permitido.</value>
   </data>
   <data name="Only Selected Group (Export)" xml:space="preserve">
-    <value>Only Selected Group (Export)</value>
+    <value>Solo el Grupo Seleccionado (Exportar)</value>
   </data>
   <data name="Owner" xml:space="preserve">
-    <value>Owner</value>
+    <value>Propietario</value>
   </data>
   <data name="Reload" xml:space="preserve">
-    <value>Reload</value>
+    <value>Recargar</value>
   </data>
   <data name="Search For {0} Extended Attributes" xml:space="preserve">
-    <value>Search For {0} Extended Attributes</value>
+    <value>Buscar Atributos Extendidos ({0})</value>
   </data>
   <data name="Striped" xml:space="preserve">
-    <value>Striped</value>
+    <value>Rayado</value>
   </data>
   <data name="Type" xml:space="preserve">
-    <value>Type</value>
+    <value>Tipo</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Value</value>
+    <value>Valor</value>
   </data>
   <data name="you" xml:space="preserve">
-    <value>you</value>
+    <value>Ud.</value>
   </data>
 </root>

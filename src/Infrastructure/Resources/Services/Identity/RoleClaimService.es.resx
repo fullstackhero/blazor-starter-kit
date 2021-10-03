@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Role Claim does not exist." xml:space="preserve">
-    <value>Role Claim does not exist.</value>
+    <value>No existe el Role Claim.</value>
   </data>
   <data name="Role Claim {0} created." xml:space="preserve">
-    <value>Role Claim {0} created.</value>
+    <value>Role Claim {0} creado.</value>
   </data>
   <data name="Role Claim {0} for Role {1} updated." xml:space="preserve">
-    <value>Role Claim {0} for Role {1} updated.</value>
+    <value>Role Claim {0} para el Rol {1} actualizado.</value>
   </data>
   <data name="Role Claim {0} for {1} Role deleted." xml:space="preserve">
-    <value>Role Claim {0} for {1} Role deleted.</value>
+    <value>Role Claim {0} para el Rol {1} eliminado.</value>
   </data>
   <data name="Role is required." xml:space="preserve">
-    <value>Role is required.</value>
+    <value>El Rol es requerido..</value>
   </data>
   <data name="Similar Role Claim already exists." xml:space="preserve">
-    <value>Similar Role Claim already exists.</value>
+    <value>Un Role Claim similar ya existe.</value>
   </data>
 </root>

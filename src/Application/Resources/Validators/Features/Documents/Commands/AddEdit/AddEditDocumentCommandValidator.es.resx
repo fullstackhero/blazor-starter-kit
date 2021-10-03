@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Description is required!" xml:space="preserve">
-    <value>Description is required!</value>
+    <value>La Description es requerida!</value>
   </data>
   <data name="Document Type is required!" xml:space="preserve">
-    <value>Document Type is required!</value>
+    <value>El Tipo de Documento es requerido!</value>
   </data>
   <data name="File is required!" xml:space="preserve">
-    <value>File is required!</value>
+    <value>El Archivo es requerido!</value>
   </data>
   <data name="Title is required!" xml:space="preserve">
-    <value>Title is required!</value>
+    <value>El Título es requerido!</value>
   </data>
 </root>

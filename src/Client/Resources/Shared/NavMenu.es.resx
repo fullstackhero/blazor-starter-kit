@@ -123,20 +123,32 @@
   <data name="Administrator" xml:space="preserve">
     <value>Administrador</value>
   </data>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>Auditoría</value>
+  </data>
   <data name="Brands" xml:space="preserve">
     <value>Marcas</value>
   </data>
   <data name="Catalog Management" xml:space="preserve">
     <value>Gestión de catálogo</value>
   </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
   <data name="Communication" xml:space="preserve">
     <value>Comunicaciones</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Panel de Control</value>
+  </data>
   <data name="Document Management" xml:space="preserve">
-    <value>Document Management</value>
+    <value>Administración de Documentos</value>
+  </data>
+  <data name="Document Store" xml:space="preserve">
+    <value>Almacén de Documentos</value>
   </data>
   <data name="Document Types" xml:space="preserve">
-    <value>Document Types</value>
+    <value>Tipos de Documentos</value>
   </data>
   <data name="FAQs" xml:space="preserve">
     <value>FAQs</value>
@@ -147,17 +159,26 @@
   <data name="Home" xml:space="preserve">
     <value>Inicio</value>
   </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Mail</value>
+  </data>
   <data name="Personal" xml:space="preserve">
     <value>Personal</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>Productos</value>
   </data>
+  <data name="Quick Start Guide" xml:space="preserve">
+    <value>Guía de Inicio Rápido</value>
+  </data>
   <data name="Resources" xml:space="preserve">
     <value>Recursos</value>
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Roles</value>
+  </data>
+  <data name="Swagger" xml:space="preserve">
+    <value>Swagger</value>
   </data>
   <data name="Users" xml:space="preserve">
     <value>Usuarios</value>

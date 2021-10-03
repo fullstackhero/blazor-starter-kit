@@ -121,12 +121,12 @@
     <value>Correo</value>
   </data>
   <data name="Enter email for password reset" xml:space="preserve">
-    <value>Ingresa la dirección de correo vinculada a tu cuenta y recibiras un correo con un enlace para resetear la contraseña</value>
+    <value>Ingresa la dirección de correo vinculada a su cuenta y recibirá un correo con un enlace para blanquear la contraseña</value>
   </data>
   <data name="Forgot password?" xml:space="preserve">
-    <value>¿Olvidaste tu contraseña?</value>
+    <value>¿Olvidó su contraseña?</value>
   </data>
   <data name="Reset Password" xml:space="preserve">
-    <value>Resetear contraseña</value>
+    <value>Blanquear contraseña</value>
   </data>
 </root>

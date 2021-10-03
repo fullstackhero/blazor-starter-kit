@@ -201,7 +201,7 @@
   <data name="User {0} Registered. Please check your Mailbox to verify!" xml:space="preserve">
     <value>User {0} Registered. Please check your Mailbox to verify!</value>
   </data>
-  <data name="Username" xml:space="preserve">
+  <data name="UserName" xml:space="preserve">
     <value>Username</value>
   </data>
   <data name="Username {0} is already taken." xml:space="preserve">
