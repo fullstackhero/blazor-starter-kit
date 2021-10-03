@@ -20,7 +20,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
         }
 
         /// <summary>
-        /// Get User Details
+        /// Get Users Details
         /// </summary>
         /// <returns>Status 200 OK</returns>
         [Authorize(Policy = Permissions.Users.View)]
