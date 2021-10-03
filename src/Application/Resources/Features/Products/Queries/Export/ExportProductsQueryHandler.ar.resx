@@ -117,37 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Barcode" xml:space="preserve">
+    <value>شفرة الصنف</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Description" xml:space="preserve">
+    <value>الوصف</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Id" xml:space="preserve">
+    <value>الرقم</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Name" xml:space="preserve">
+    <value>الإسم</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Products" xml:space="preserve">
+    <value>الأصناف</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
-  </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
-  </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
-  </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Rate" xml:space="preserve">
+    <value>معدل</value>
   </data>
 </root>

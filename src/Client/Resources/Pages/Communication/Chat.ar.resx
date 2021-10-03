@@ -117,37 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="chat" xml:space="preserve">
+    <value>دردشة</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="contacts" xml:space="preserve">
+    <value>جهات الاتصال</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="detailed guide for more." xml:space="preserve">
+    <value>دليل مفصل للمزيد.</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Enter your message..." xml:space="preserve">
+    <value>أدخل رسالتك...</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Logged In." xml:space="preserve">
+    <value>مسجّل الدخول.</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Logged Out." xml:space="preserve">
+    <value>تسجيل الخروج.</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="New Message From {0}" xml:space="preserve">
+    <value>رسالة جديدة من {0}</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Send" xml:space="preserve">
+    <value>يرسل</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Want to understand how Chat is implemented in BlazorHero ? Refer this" xml:space="preserve">
+    <value>هل تريد أن تفهم كيف يتم تنفيذ الدردشة في BlazorHero؟ قم بإحالة هذا</value>
   </data>
 </root>

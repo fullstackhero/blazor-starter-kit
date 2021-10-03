@@ -117,37 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Audit trails" xml:space="preserve">
+    <value>مسارات المراجعة</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Date Time (Local)" xml:space="preserve">
+    <value>التاريخ الوقت (محلي)</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Date Time (UTC)" xml:space="preserve">
+    <value>التاريخ الوقت (UTC)</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="New Values" xml:space="preserve">
+    <value>قيم جديدة</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Old Values" xml:space="preserve">
+    <value>القيم القديمة</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Primary Key" xml:space="preserve">
+    <value>المفتاح الأساسي</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Table Name" xml:space="preserve">
+    <value>اسم الجدول</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
-  </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Type" xml:space="preserve">
+    <value>نوع</value>
   </data>
 </root>

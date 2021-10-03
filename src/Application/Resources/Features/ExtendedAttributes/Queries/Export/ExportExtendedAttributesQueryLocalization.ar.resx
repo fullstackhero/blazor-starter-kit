@@ -117,37 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Description" xml:space="preserve">
+    <value>الوصف</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="EntityCreatedBy" xml:space="preserve">
+    <value>أنشئه</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="EntityCreatedOn (Local)" xml:space="preserve">
+    <value>أُنشِئ في (محلي)</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="EntityCreatedOn (UTC)" xml:space="preserve">
+    <value>أُنشِئ في (عاملي)</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="EntityId" xml:space="preserve">
+    <value>الرقم</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="EntityLastModifiedBy" xml:space="preserve">
+    <value>عدلهُ</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="EntityLastModifiedOn (Local)" xml:space="preserve">
+    <value>عُدل في (محلي)</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="EntityLastModifiedOn (UTC)" xml:space="preserve">
+    <value>عُدل في (عالمي)</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="ExternalId" xml:space="preserve">
+    <value>الرقم الخارجي</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Group" xml:space="preserve">
+    <value>مجموعة</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Id" xml:space="preserve">
+    <value>رقم</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>مُفعل</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>مفتاح</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>نوع</value>
+  </data>
+  <data name="Type should be valid" xml:space="preserve">
+    <value>النوع يجب أن يكون صحيحا</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>قيمة</value>
+  </data>
+  <data name="{0} Extended Attributes" xml:space="preserve">
+    <value>{0} Extended Attributes</value>
   </data>
 </root>

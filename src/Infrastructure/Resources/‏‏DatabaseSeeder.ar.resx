@@ -117,37 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Administrator role with full permissions" xml:space="preserve">
+    <value>دور المسؤول مع أذونات كاملة</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Basic role with default permissions" xml:space="preserve">
+    <value>الدور الأساسي مع الأذونات الافتراضية</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Seeded Administrator Role." xml:space="preserve">
+    <value>دور المسؤول المصنف.</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Seeded Basic Role." xml:space="preserve">
+    <value>الدور الأساسي المصنف.</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Seeded Default SuperAdmin User." xml:space="preserve">
+    <value>مستخدم SuperAdmin الافتراضي المصنف.</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
-  </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
-  </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
-  </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Seeded User with Basic Role." xml:space="preserve">
+    <value>مستخدم مصنف له دور أساسي .</value>
   </data>
 </root>

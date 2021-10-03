@@ -117,37 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="All Permissions" xml:space="preserve">
+    <value>كل الأذونات</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Apply" xml:space="preserve">
+    <value>تطبيق</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>يحدها</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Dense" xml:space="preserve">
+    <value>كثيف</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Description" xml:space="preserve">
+    <value>وصف</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Here you can leave a comment for this permission for the current role" xml:space="preserve">
+    <value>هنا يمكنك ترك تعليق لهذا الإذن للدور الحالي</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Manage Permission" xml:space="preserve">
+    <value>إدارة الإذن</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Manage {0} {1}'s Permissions" xml:space="preserve">
+    <value>إدارة أذونات {0} {1}</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Permission Name" xml:space="preserve">
+    <value>اسم الإذن</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Search For Permissions" xml:space="preserve">
+    <value>ابحث عن أذونات</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Status" xml:space="preserve">
+    <value>حالة</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>مخطط</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>نوع</value>
+  </data>
+  <data name="Update Role Permissions" xml:space="preserve">
+    <value>تحديث أذونات الدور</value>
+  </data>
+  <data name="Will be saved only when selected Permission" xml:space="preserve">
+    <value>سيتم حفظها فقط عند تحديد الإذن </value>
   </data>
 </root>

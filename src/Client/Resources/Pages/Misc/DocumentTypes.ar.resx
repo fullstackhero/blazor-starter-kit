@@ -117,37 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Actions" xml:space="preserve">
+    <value>أجراءات</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>يحدها</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Create" xml:space="preserve">
+    <value>إنشاء</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Delete Content" xml:space="preserve">
+    <value>حذف المحتوى</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Dense" xml:space="preserve">
+    <value>كثيف</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Description" xml:space="preserve">
+    <value>وصف</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Document Types" xml:space="preserve">
+    <value>أنواع المستندات</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Document Types exported" xml:space="preserve">
+    <value>أنواع المستندات التي تم تصديرها</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Edit" xml:space="preserve">
+    <value>يحرر</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Export" xml:space="preserve">
+    <value>يصدر</value>
+  </data>
+  <data name="Filtered Document Types exported" xml:space="preserve">
+    <value>تم تصدير أنواع المستندات التي تمت تصفيتها</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>المعرف</value>
+  </data>
+  <data name="Manage Document Types." xml:space="preserve">
+    <value>إدارة أنواع المستندات.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>اسم</value>
+  </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>لا توجد إجراءات مسموح بها</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>إعادة تحميل</value>
+  </data>
+  <data name="Search for Document Types" xml:space="preserve">
+    <value>ابحث عن أنواع المستندات</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>مخطط </value>
   </data>
 </root>

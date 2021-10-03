@@ -117,37 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Activate User?" xml:space="preserve">
+    <value> المستخدم نشط؟</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Auto Confirm Email?" xml:space="preserve">
+    <value>هل تريد تأكيد البريد الإلكتروني تلقائيًا؟</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>إلغاء</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>تأكيد كلمة المرور</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Email" xml:space="preserve">
+    <value>بريد الالكتروني</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="First Name" xml:space="preserve">
+    <value>الاسم الأول</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>الكنية</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Password" xml:space="preserve">
+    <value>كلمه السر</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>رقم الهاتف</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Profile" xml:space="preserve">
+    <value>الملف الشخصي</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Profile Details" xml:space="preserve">
+    <value>تفاصيل الملف الشخصي</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>تسجيل</value>
+  </data>
+  <data name="Register User" xml:space="preserve">
+    <value>تسجيل المستخدم</value>
+  </data>
+  <data name="Save Changes" xml:space="preserve">
+    <value>حفظ التغييرات</value>
+  </data>
+  <data name="User Name" xml:space="preserve">
+    <value>اسم االمستخدم</value>
+  </data>
+  <data name="User Registered" xml:space="preserve">
+    <value>مستخدم مسجل!</value>
+  </data>
+  <data name="User Registered Mailbox" xml:space="preserve">
+    <value>مستخدم مسجل.</value>
   </data>
 </root>

@@ -117,37 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Description" xml:space="preserve">
+    <value>تسجيل الدخول مع أوراق الاعتماد الخاصة بك.</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Don't have an account?" xml:space="preserve">
+    <value>ليس لديك حساب؟</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="E-mail" xml:space="preserve">
+    <value>بريد الالكتروني</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Email is required!" xml:space="preserve">
+    <value>البريد الالكتروني مطلوب!</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Fill Administrator Credentials" xml:space="preserve">
+    <value>قم بتعبئة بيانات اعتماد المسؤول</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Fill Basic User Credentials" xml:space="preserve">
+    <value>املأ بيانات اعتماد المستخدم الأساسية</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Forgot password?" xml:space="preserve">
+    <value>هل نسيت كلمة السر؟</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Password" xml:space="preserve">
+    <value>كلمه السر</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Password is required!" xml:space="preserve">
+    <value>كلمة المرور مطلوبة!</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="Register here" xml:space="preserve">
+    <value>سجل هنا</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Remember me?" xml:space="preserve">
+    <value>تذكرنى؟</value>
+  </data>
+  <data name="Sign In" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>عنوان </value>
   </data>
 </root>

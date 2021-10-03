@@ -117,37 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Account" xml:space="preserve">
+    <value>الحساب</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>Inglese</value>
+  <data name="Buy Me A Coffee!" xml:space="preserve">
+    <value>اشتري لي قهوة!</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>Francese</value>
+  <data name="Chat?" xml:space="preserve">
+    <value>دردشة؟</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>Tedesco</value>
+  <data name="Community" xml:space="preserve">
+    <value>تواصل اجتماعي</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesiano</value>
+  <data name="Facebook Group" xml:space="preserve">
+    <value>مجموعة الفيسبوك</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italiano</value>
+  <data name="Facebook Page" xml:space="preserve">
+    <value>صفحة الفيسبوك</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Fork Repository" xml:space="preserve">
+    <value>نسخ الشوكة</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russo</value>
+  <data name="Logout" xml:space="preserve">
+    <value>تسجيل خروج</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spagnolo</value>
+  <data name="Logout Confirmation" xml:space="preserve">
+    <value>هل تريد حقًا تسجيل الخروج؟</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Svedese</value>
+  <data name="MudBlazor Documentation" xml:space="preserve">
+    <value>توثيق MudBlazor</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Quick-Start Guide" xml:space="preserve">
+    <value>دليل البدء السريع</value>
+  </data>
+  <data name="Refreshed Token." xml:space="preserve">
+    <value>Rرمز محدث.</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>الموارد</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>الدعم</value>
+  </data>
+  <data name="Toggle Dark Mode" xml:space="preserve">
+    <value>تبديل الوضع الداكن</value>
+  </data>
+  <data name="Toggle right-to-left/left-to-right" xml:space="preserve">
+    <value>التبديل من اليمين إلى اليسار / من اليسار إلى اليمين</value>
+  </data>
+  <data name="Welcome {0}" xml:space="preserve">
+    <value>مرحبًا {0}</value>
+  </data>
+  <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
+    <value>لقد تم تسجيل خروجك لأنه تم تحديث أذونات أحد الأدوار الخاصة بك.</value>
+  </data>
+  <data name="You are logged out because the user with your Token has been deleted." xml:space="preserve">
+    <value>لقد تم تسجيل خروجك لأنه تم حذف المستخدم الذي يحمل الرمز المميز الخاص بك.</value>
+  </data>
+  <data name="You are Logged Out." xml:space="preserve">
+    <value>لقد قمت بتسجيل الخروج. </value>
   </data>
 </root>

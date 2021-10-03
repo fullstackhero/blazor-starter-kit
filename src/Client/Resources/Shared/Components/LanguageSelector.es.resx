@@ -147,4 +147,7 @@
   <data name="Swedish" xml:space="preserve">
     <value>Sueco</value>
   </data>
+  <data name="Arabic" xml:space="preserve">
+    <value>عربي</value>
+  </data>
 </root>
