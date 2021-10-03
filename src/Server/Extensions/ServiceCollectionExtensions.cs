@@ -267,7 +267,7 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
         internal static IServiceCollection AddJwtAuthentication(
             this IServiceCollection services, AppConfiguration config)
         {
-            var key = Encoding.ASCII.GetBytes(config.Secret);
+            var key = Encoding.UTF8.GetBytes(config.Secret);
             services
                 .AddAuthentication(authentication =>
                 {
