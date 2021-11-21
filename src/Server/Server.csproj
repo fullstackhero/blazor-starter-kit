@@ -57,6 +57,11 @@
   <ItemGroup>
     <Folder Include="Files\Images\ProfilePictures\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Files\Images\Products\demo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 
 </Project>
