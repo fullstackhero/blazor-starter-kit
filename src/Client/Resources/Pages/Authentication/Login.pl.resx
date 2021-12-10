@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Description" xml:space="preserve">
-    <value>Login with your Credentials.</value>
+    <value>Zaloguj się loginem i hasłem.</value>
   </data>
   <data name="Don't have an account?" xml:space="preserve">
     <value>Don't have an account?</value>
@@ -130,10 +130,10 @@
     <value>Email jest wymagany!</value>
   </data>
   <data name="Fill Administrator Credentials" xml:space="preserve">
-    <value>Wstaw login i hasło administratora</value>
+    <value>Użyj danych administratora</value>
   </data>
   <data name="Fill Basic User Credentials" xml:space="preserve">
-    <value>Wstaw logi in hasło użytkownika podstawowego</value>
+    <value>Użyj danych prostego użytkownika</value>
   </data>
   <data name="Forgot password?" xml:space="preserve">
     <value>Zapomniałeś hasła?</value>
@@ -145,15 +145,15 @@
     <value>Hasło jest wymagane!</value>
   </data>
   <data name="Register here" xml:space="preserve">
-    <value>Register here</value>
+    <value>Zarejestruj</value>
   </data>
   <data name="Remember me?" xml:space="preserve">
-    <value>Remember me?</value>
+    <value>Zapamiętaj mnie?</value>
   </data>
   <data name="Sign In" xml:space="preserve">
     <value>Zaloguj się</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Sign In</value>
+    <value>Zaloguj się</value>
   </data>
 </root>

@@ -121,7 +121,7 @@
     <value>Konto</value>
   </data>
   <data name="Administrator" xml:space="preserve">
-    <value>Administrator</value>
+    <value>Zarządzanie</value>
   </data>
   <data name="Brands" xml:space="preserve">
     <value>Marki</value>
@@ -145,7 +145,7 @@
     <value>Funkcje</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Dom</value>
+    <value>Strona domowa</value>
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Osobisty</value>
@@ -157,13 +157,13 @@
     <value>Zasoby</value>
   </data>
   <data name="Roles" xml:space="preserve">
-    <value>Ról</value>
+    <value>Role</value>
   </data>
   <data name="Swagger" xml:space="preserve">
-    <value>Puszyć</value>
+    <value>Swagger</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>Użytkowników</value>
+    <value>Użytkownicy</value>
   </data>
   <data name="Audit Trails" xml:space="preserve">
     <value>Ścieżki audytu</value>

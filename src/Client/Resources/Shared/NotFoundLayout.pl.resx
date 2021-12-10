@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GoHome" xml:space="preserve">
-    <value>Idź do domu!</value>
+    <value>Idź do strony domowej!</value>
   </data>
   <data name="Message" xml:space="preserve">
     <value>Strona, której szukasz, nie istnieje.</value>

@@ -166,13 +166,13 @@
     <value>Zarządzaj markami.</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Imię i nazwisko</value>
+    <value>Nazwa</value>
   </data>
   <data name="No Allowed Actions" xml:space="preserve">
     <value>Akcja niedozwolona</value>
   </data>
   <data name="Reload" xml:space="preserve">
-    <value>Przeładować</value>
+    <value>Odśwież</value>
   </data>
   <data name="Search for Brands" xml:space="preserve">
     <value>Szukaj marek</value>

@@ -169,7 +169,7 @@
     <value>Zarejestruj nowego użytkownika</value>
   </data>
   <data name="Reload" xml:space="preserve">
-    <value>Przeładować</value>
+    <value>Odśwież</value>
   </data>
   <data name="Search For Users" xml:space="preserve">
     <value>Wyszukiwanie użytkowników</value>
@@ -181,7 +181,7 @@
     <value>Nazwa Użytkownika</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>Użytkowników</value>
+    <value>Użytkownicy</value>
   </data>
   <data name="Users exported" xml:space="preserve">
     <value>Eksportowanie użytkowników</value>

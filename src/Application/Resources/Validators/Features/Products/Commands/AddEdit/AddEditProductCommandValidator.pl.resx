@@ -127,7 +127,7 @@
     <value>Opis jest wymagany!</value>
   </data>
   <data name="Name is required!" xml:space="preserve">
-    <value>Imię i nazwisko jest wymagane!</value>
+    <value>Nazwa jest wymagana!</value>
   </data>
   <data name="Rate must be greater than 0" xml:space="preserve">
     <value>Stawka musi być większa niż 0</value>

@@ -154,13 +154,13 @@
     <value>Akcja niedozwolona</value>
   </data>
   <data name="Reload" xml:space="preserve">
-    <value>Przeładować</value>
+    <value>Odśwież</value>
   </data>
   <data name="Role" xml:space="preserve">
     <value>Rola</value>
   </data>
   <data name="Roles" xml:space="preserve">
-    <value>Ról</value>
+    <value>Role</value>
   </data>
   <data name="Search for Roles..." xml:space="preserve">
     <value>Wyszukaj role...</value>

@@ -121,7 +121,7 @@
     <value>Dodaj markę</value>
   </data>
   <data name="Brand Saved" xml:space="preserve">
-    <value>Marka uratowana!</value>
+    <value>Marka zapisana!</value>
   </data>
   <data name="Brand Updated" xml:space="preserve">
     <value>Marka zaktualizowana!</value>
@@ -136,10 +136,10 @@
     <value>Id</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Imię i nazwisko</value>
+    <value>Nazwa</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Zapisać</value>
+    <value>Zapisz</value>
   </data>
   <data name="Tax" xml:space="preserve">
     <value>VAT</value>

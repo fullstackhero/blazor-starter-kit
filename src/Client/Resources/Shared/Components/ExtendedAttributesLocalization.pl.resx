@@ -193,7 +193,7 @@
     <value>Właściciel</value>
   </data>
   <data name="Reload" xml:space="preserve">
-    <value>Przeładować</value>
+    <value>Odśwież</value>
   </data>
   <data name="Search For {0} Extended Attributes" xml:space="preserve">
     <value>Wyszukiwanie atrybutów {0} rozszerzonych</value>

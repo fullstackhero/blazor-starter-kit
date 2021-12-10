@@ -133,7 +133,7 @@
     <value>Wyczyść</value>
   </data>
   <data name="Columns Affected" xml:space="preserve">
-    <value>Kolumny, których dotyczy problem</value>
+    <value>Zmienione Kolumny</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Data</value>

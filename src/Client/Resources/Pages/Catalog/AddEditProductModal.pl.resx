@@ -139,7 +139,7 @@
     <value>Id</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Imię i nazwisko</value>
+    <value>Nazwa</value>
   </data>
   <data name="Product Saved" xml:space="preserve">
     <value>Produkt zapisany!</value>
@@ -151,7 +151,7 @@
     <value>Tempo</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Zapisać</value>
+    <value>Zapisz</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Aktualizacja</value>
@@ -160,7 +160,7 @@
     <value>Aktualizuj produkt</value>
   </data>
   <data name="Upload" xml:space="preserve">
-    <value>Przesyłać</value>
+    <value>Prześlij</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>Widok</value>

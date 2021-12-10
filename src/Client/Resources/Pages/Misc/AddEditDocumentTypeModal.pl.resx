@@ -130,10 +130,10 @@
     <value>Id</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Imię i nazwisko</value>
+    <value>Nazwa</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Zapisać</value>
+    <value>Zapisz</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Aktualizacja</value>
