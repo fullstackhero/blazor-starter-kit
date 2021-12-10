@@ -57,6 +57,11 @@
             {
                 Code = "ar",
                 DisplayName = "عربي"
+            },
+            new LanguageCode
+            {
+                Code = "pl-PL",
+                DisplayName = "Polski"
             }
         };
     }
