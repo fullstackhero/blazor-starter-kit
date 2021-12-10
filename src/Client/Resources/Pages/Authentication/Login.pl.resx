@@ -121,7 +121,7 @@
     <value>Zaloguj się loginem i hasłem.</value>
   </data>
   <data name="Don't have an account?" xml:space="preserve">
-    <value>Don't have an account?</value>
+    <value>Nie masz konta?</value>
   </data>
   <data name="E-mail" xml:space="preserve">
     <value>E-mail</value>
@@ -145,7 +145,7 @@
     <value>Hasło jest wymagane!</value>
   </data>
   <data name="Register here" xml:space="preserve">
-    <value>Zarejestruj</value>
+    <value>Zarejestruj się</value>
   </data>
   <data name="Remember me?" xml:space="preserve">
     <value>Zapamiętaj mnie?</value>
