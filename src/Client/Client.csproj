@@ -23,7 +23,7 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.1" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
-    <PackageReference Include="MudBlazor" Version="5.1.4" />
+    <PackageReference Include="MudBlazor" Version="6.0.2" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.1.5" />
   </ItemGroup>
 
