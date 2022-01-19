@@ -19,8 +19,8 @@
     <None Remove="Persistence\**" />
   </ItemGroup>-->
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.1.5" />
     <PackageReference Include="EPPlus" Version="5.8.5" />
     <PackageReference Include="Hangfire.Core" Version="1.7.28" />
