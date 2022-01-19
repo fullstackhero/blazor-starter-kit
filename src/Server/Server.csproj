@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>BlazorHero.CleanArchitecture.Server</RootNamespace>
     <AssemblyName>BlazorHero.CleanArchitecture.Server</AssemblyName>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <DocumentationFile>BlazorHero.CleanArchitecture.Server.xml</DocumentationFile>

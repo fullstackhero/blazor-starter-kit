@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>BlazorHero.CleanArchitecture.Domain</RootNamespace>
     <AssemblyName>BlazorHero.CleanArchitecture.Domain</AssemblyName>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
 </Project>
