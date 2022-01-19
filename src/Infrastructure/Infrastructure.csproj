@@ -22,8 +22,8 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.1.5" />
-    <PackageReference Include="EPPlus" Version="5.7.5" />
-    <PackageReference Include="Hangfire.Core" Version="1.7.26" />
+    <PackageReference Include="EPPlus" Version="5.8.5" />
+    <PackageReference Include="Hangfire.Core" Version="1.7.28" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
