@@ -28,7 +28,7 @@
   </a>
   <h3 align="center">BlazorHero - Clean Architecture Template</h3>
   <p align="center">
-    Open Sourced Solution Template For Blazor Web-Assembly 5.0 built with MudBlazor Components
+    Open Sourced Solution Template For Blazor Web-Assembly 6.0 built with MudBlazor Components
     <br />
     <a href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/"><strong>Read the Documentation »</strong></a>
     <br />
@@ -43,7 +43,7 @@
 
 ## About The Project :zap:
 
-BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 5.0 built with MudBlazor Components.
+BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 6.0 built with MudBlazor Components.
 
 ## Complete Overview - Youtube Video 🆕 📈
 
@@ -55,8 +55,8 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 
 ### Tech Stack :muscle:
 
-- Blazor WebAssembly 5.0 - ASP.NET Core Hosted Model
-- [Entity Framework Core 5.0](https://docs.microsoft.com/en-us/ef/core/)
+- Blazor WebAssembly 6.0 - ASP.NET Core Hosted Model
+- [Entity Framework Core 6.0](https://docs.microsoft.com/en-us/ef/core/)
 
 # BlazorHero v2.2
 
@@ -92,7 +92,7 @@ If you are already using Blazor Hero v1.x, make sure that you drop your existing
 
 The easiest way to get started with Blazor Hero is to install the [NuGet package](https://www.nuget.org/packages/BlazorHero.CleanArchitecture/) and run `dotnet new BlazorHero.CleanArchitecture`:
 
-1. Install the latest [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
+1. Install the latest [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
 2. Install the latest DOTNET & EF CLI Tools by using this command `dotnet tool install --global dotnet-ef` 
 3. Install the latest version of Visual Studio IDE 2019 (v16.8 and above) 🚀
 4. Open up Command Prompt and run `dotnet new --install BlazorHero.CleanArchitecture` to install the project template
