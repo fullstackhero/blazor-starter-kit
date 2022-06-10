@@ -117,6 +117,22 @@ What to do next? Read the [entire guide on my blog](https://codewithmukesh.com/b
 - That's almost everything. Once the containers are available, migrations are updated in the MSSQL DB, default data is seeded.
 - Browse to https://localhost:5005/ to use your version of BlazorHero !
 
+## Getting Started with Docker in Mac :rocket:
+
+- Install Docker on Mac via `https://adamtheautomator.com/docker-for-mac/`
+- Open up bash on terminal and run the following
+    - `cd c:\`
+    - `dotnet dev-certs https -ep $HOME/.aspnet/https/aspnetapp.pfx -p securePassword123`
+    - `dotnet dev-certs https --trust`
+    - Note - Make sure that you use the same password that has been configured in the `docker-compose.yml` file. By default, `securePassword123` is configured.
+- 5005 & 5006 are the ports setup to run blazorHero on Docker, so make sure that these ports are free. You could also change the ports in the `docker-compose.yml` and `Server\Dockerfile` files.
+- Now navigate back to the root of the BlazorHero Project on your local machine and run the following via terminal - `docker-compose -f 'docker-compose.yml' up --build`
+- This will start pulling MSSQL Server Image from Docker Hub if you don't already have this image. It's around 500+ Mbs of download.
+- Once that is done, dotnet SDKs and runtimes are downloaded, if not present already. That's almost 200+ more Mbs of download.
+- PS If you find any issues while Docker installs the nuget packages, it is most likely that your ssl certificates are not installed properly. Apart from that I also added the `--disable-parallel` in the `Server\Dockerfile`to ensure network issues don't pop-up. You can remove this option to speed up the build process.
+- That's almost everything. Once the containers are available, migrations are updated in the MSSQL DB, default data is seeded.
+- Browse to https://localhost:5005/ to use your version of BlazorHero !
+
 # Complete Documentation :rocket:
 
 Getting started with Blazor Hero – A Clean Architecture Template built for Blazor WebAssembly using MudBlazor Components. This project will make your Blazor Learning Process much easier than you anticipate. Blazor Hero is meant to be an Enterprise Level Boilerplate, which comes free of cost, completely open sourced. 
