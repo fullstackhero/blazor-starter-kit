@@ -41,6 +41,7 @@ namespace BlazorHero.CleanArchitecture.Application.Validators.Features.ExtendedA
             When(request => request.Type == EntityExtendedAttributeType.DateTime, () =>
             {
                 RuleFor(request => request.DateTime).NotNull().WithMessage(x => string.Format(localizer["DateTime value is required using {0} type!"], x.Type.ToString()));
+                RuleFor(request => request.Date).NotNull().WithMessage(x => string.Format(localizer["DateTime value is required using {0} type!"], x.Type.ToString()));
             });
 
             When(request => request.Type == EntityExtendedAttributeType.Json, () =>

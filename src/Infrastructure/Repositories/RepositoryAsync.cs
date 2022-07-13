@@ -25,6 +25,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
             return entity;
         }
 
+        public async Task AddRangeAsync(params T[] entities)
+        {
+            await _dbContext.Set<T>().AddRangeAsync(entities);
+        }
+
         public Task DeleteAsync(T entity)
         {
             _dbContext.Set<T>().Remove(entity);

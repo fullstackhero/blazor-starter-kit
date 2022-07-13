@@ -1,9 +1,4 @@
 ﻿#nullable enable
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using AutoMapper;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Domain.Contracts;
@@ -13,6 +8,11 @@ using BlazorHero.CleanArchitecture.Shared.Wrapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Commands.AddEdit
 {
@@ -47,6 +47,31 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.C
         public decimal? Decimal { get; set; }
 
         public DateTime? DateTime { get; set; }
+        public DateTime? Date
+        {
+            get
+            {
+                return DateTime?.Date;
+            }
+            set
+            {
+                SetDateAndTime(value, Time);
+            }
+        }
+
+        public TimeSpan? Time
+        {
+            get
+            {
+                return DateTime?.TimeOfDay;
+            }
+            set
+            {
+                SetDateAndTime(Date, value);
+            }
+}
+
+        private void SetDateAndTime(DateTime? date, TimeSpan? time) => DateTime = date?.Date.Add(time ?? new TimeSpan(0, 0, 0));
 
         public string? Json { get; set; }
 

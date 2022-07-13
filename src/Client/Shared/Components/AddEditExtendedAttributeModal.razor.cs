@@ -17,7 +17,6 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
     {
         // for localization
     }
-
     public partial class AddEditExtendedAttributeModal<TId, TEntityId, TEntity, TExtendedAttribute>
         where TEntity : AuditableEntity<TEntityId>, IEntityWithExtendedAttributes<TExtendedAttribute>, IEntity<TEntityId>
         where TExtendedAttribute : AuditableEntityExtendedAttribute<TId, TEntityId, TEntity>, IEntity<TId>
@@ -34,8 +33,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
 
         private MudDatePicker _datePicker;
         private MudTimePicker _timePicker;
-        private TimeSpan? _time;
-
+        private bool TimePickerDisabled => AddEditExtendedAttributeModel.Date == null;
         public void Cancel()
         {
             MudDialog.Cancel();
@@ -57,7 +55,6 @@ namespace BlazorHero.CleanArchitecture.Client.Shared.Components
                     break;
                 case EntityExtendedAttributeType.DateTime:
                     AddEditExtendedAttributeModel.DateTime ??= new DateTime(0, 0, 0);
-                    AddEditExtendedAttributeModel.DateTime += _time ?? new TimeSpan(0, 0, 0);
                     AddEditExtendedAttributeModel.Decimal = null;
                     AddEditExtendedAttributeModel.Text = null;
                     AddEditExtendedAttributeModel.Json = null;
