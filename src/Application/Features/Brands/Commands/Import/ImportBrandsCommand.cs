@@ -61,12 +61,13 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Impo
                 var importedBrands = result.Data;
                 var errors = new List<string>();
                 var errorsOccurred = false;
+                var validatedBrands = new List<Brand>();
                 foreach (var brand in importedBrands)
                 {
                     var validationResult = await _addBrandValidator.ValidateAsync(_mapper.Map<AddEditBrandCommand>(brand), cancellationToken);
                     if (validationResult.IsValid)
                     {
-                        await _unitOfWork.Repository<Brand>().AddAsync(brand);
+                        validatedBrands.Add(brand);
                     }
                     else
                     {
@@ -80,6 +81,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Impo
                     return await Result<int>.FailAsync(errors);
                 }
 
+                await _unitOfWork.Repository<Brand>().AddRangeAsync(validatedBrands.ToArray());
                 await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllBrandsCacheKey);
                 return await Result<int>.SuccessAsync(result.Data.Count(), result.Messages[0]);
             }
