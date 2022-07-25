@@ -67,7 +67,7 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddLazyCache();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IStringLocalizer<Startup> localizer)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseForwarding(_configuration);
             app.UseExceptionHandling(env);
@@ -86,7 +86,7 @@ namespace BlazorHero.CleanArchitecture.Server
             app.UseAuthorization();
             app.UseHangfireDashboard("/jobs", new DashboardOptions
             {
-                DashboardTitle = localizer["BlazorHero Jobs"],
+                DashboardTitle = "BlazorHero Jobs",
                 Authorization = new[] { new HangfireAuthorizationFilter() }
             });
             app.UseEndpoints();

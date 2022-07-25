@@ -1,54 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
-using BlazorHero.CleanArchitecture.Server.Extensions;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+﻿using BlazorHero.CleanArchitecture.Server;
+using Microsoft.AspNetCore.Builder;
 
-namespace BlazorHero.CleanArchitecture.Server
-{
-    public class Program
-    {
-        public async static Task Main(string[] args)
-        {
-            var host = CreateHostBuilder(args).Build();
+var builder = WebApplication.CreateBuilder(args);
 
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
+var startup = new Startup(builder.Configuration);
 
-                try
-                {
-                    var context = services.GetRequiredService<BlazorHeroContext>();
+startup.ConfigureServices(builder.Services);
 
-                    if (context.Database.IsSqlServer())
-                    {
-                        context.Database.Migrate();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+var app = builder.Build();
 
-                    logger.LogError(ex, "An error occurred while migrating or seeding the database.");
+startup.Configure(app, app.Environment);
 
-                    throw;
-                }
-            }
-
-            await host.RunAsync();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-            .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStaticWebAssets();
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+app.Run();

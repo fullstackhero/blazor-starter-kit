@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using System.Linq;
+using System.   Linq;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Server.Hubs;
 using BlazorHero.CleanArchitecture.Server.Middlewares;
@@ -12,6 +12,10 @@ using Microsoft.Extensions.Hosting;
 using BlazorHero.CleanArchitecture.Shared.Constants.Application;
 using BlazorHero.CleanArchitecture.Application.Configurations;
 using Microsoft.Extensions.Configuration;
+using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
+using Microsoft.EntityFrameworkCore;
+using System;
+using Microsoft.Extensions.Logging;
 
 namespace BlazorHero.CleanArchitecture.Server.Extensions
 {
@@ -82,8 +86,26 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
         {
             using var serviceScope = app.ApplicationServices.CreateScope();
 
-            var initializers = serviceScope.ServiceProvider.GetServices<IDatabaseSeeder>();
+            var services = serviceScope.ServiceProvider;
 
+            try
+            {
+                var context = services.GetRequiredService<BlazorHeroContext>();
+
+                if (context.Database.IsSqlServer())
+                {
+                    context.Database.Migrate();
+                }
+            }
+            catch (Exception ex)
+            {
+                var logger = serviceScope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+                logger.LogError(ex, "An error occurred while migrating or seeding the database.");
+
+                throw;
+            }
+            var initializers = serviceScope.ServiceProvider.GetServices<IDatabaseSeeder>();
             foreach (var initializer in initializers)
             {
                 initializer.Initialize();
