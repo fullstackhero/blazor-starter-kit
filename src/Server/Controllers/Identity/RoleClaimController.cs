@@ -5,7 +5,7 @@ using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlazorHero.CleanArchitecture.Server.Controllers
+namespace BlazorHero.CleanArchitecture.Server.Controllers.Identity
 {
     [Route("api/identity/roleClaim")]
     [ApiController]

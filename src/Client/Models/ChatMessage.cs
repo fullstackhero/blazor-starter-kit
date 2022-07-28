@@ -1,4 +1,4 @@
-﻿namespace AdminDashboard.Wasm.Models
+﻿namespace BlazorHero.CleanArchitecture.Client.Models
 {
     public class ChatMessage
     {
