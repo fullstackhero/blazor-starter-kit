@@ -1,12 +1,13 @@
 ﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<NavMenu> _localizer
 @using System.Security.Claims
+@using BlazorHero.CleanArchitecture.Shared.Constants.Storage
 
 <UserCard />
 <MudNavMenu>
     <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">@_localizer["Home"]</MudNavLink>
     @if (_canViewHangfire)
     {
-        <MudNavLink Href="/jobs" Target="_blank" Icon="@Icons.Material.Outlined.Work">
+        <MudNavLink Href="@_jobsLink" Target="_blank" Icon="@Icons.Material.Outlined.Work">
             @_localizer["Hangfire"]
         </MudNavLink>
     }
@@ -102,6 +103,10 @@
     private bool _canViewProducts;
     private bool _canViewBrands;
 
+    // example of authorization using token from navlink
+    private string _accessToken;
+    private string _jobsLink;
+
     protected override async Task OnParametersSetAsync()
     {
         _authenticationStateProviderUser = await _stateProvider.GetAuthenticationStateProviderUserAsync();
@@ -115,5 +120,8 @@
         _canViewChat = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Communication.Chat)).Succeeded;
         _canViewProducts = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Products.View)).Succeeded;
         _canViewBrands = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Brands.View)).Succeeded;
+
+        _accessToken = await _localStorage.GetItemAsync<string>(StorageConstants.Local.AuthToken);
+        _jobsLink = $"/jobs?token={_accessToken}";
     }
 }
