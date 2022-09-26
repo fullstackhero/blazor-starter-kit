@@ -150,4 +150,7 @@
   <data name="Arabic" xml:space="preserve">
     <value>عربي</value>
   </data>
+  <data name="Polish" xml:space="preserve">
+    <value>Polski</value>
+  </data>
 </root>
