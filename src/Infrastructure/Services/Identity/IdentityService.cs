@@ -67,7 +67,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             await _userManager.UpdateAsync(user);
 
             var token = await GenerateJwtAsync(user);
-            var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken, UserImageURL = user.ProfilePictureDataUrl };
+            var response = new TokenResponse { Token = token, RefreshToken = user.RefreshToken, RefreshTokenExpiryTime = user.RefreshTokenExpiryTime, UserImageURL = user.ProfilePictureDataUrl };
             return await Result<TokenResponse>.SuccessAsync(response);
         }
 
