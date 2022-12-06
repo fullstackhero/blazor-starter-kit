@@ -28,7 +28,7 @@
   </a>
   <h3 align="center">BlazorHero - Clean Architecture Template</h3>
   <p align="center">
-    Open Sourced Solution Template For Blazor Web-Assembly 6.0 built with MudBlazor Components
+    Open Sourced Solution Template For Blazor Web-Assembly 6.0 built with [MatBlazor](https://www.matblazor.com/) Components
     <br />
     <a href="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/"><strong>Read the Documentation »</strong></a>
     <br />
@@ -43,7 +43,7 @@
 
 ## About The Project :zap:
 
-BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 6.0 built with MudBlazor Components.
+BlazorHero is a Clean Architecture Solution Template for Blazor Webassembly 6.0 built with [MatBlazor](https://www.matblazor.com/) Components.
 
 ## Complete Overview - Youtube Video 🆕 📈
 
@@ -119,7 +119,7 @@ What to do next? Read the [entire guide on my blog](https://codewithmukesh.com/b
 
 # Complete Documentation :rocket:
 
-Getting started with Blazor Hero – A Clean Architecture Template built for Blazor WebAssembly using MudBlazor Components. This project will make your Blazor Learning Process much easier than you anticipate. Blazor Hero is meant to be an Enterprise Level Boilerplate, which comes free of cost, completely open sourced. 
+Getting started with Blazor Hero – A Clean Architecture Template built for Blazor WebAssembly using [MatBlazor](https://www.matblazor.com/) Components. This project will make your Blazor Learning Process much easier than you anticipate. Blazor Hero is meant to be an Enterprise Level Boilerplate, which comes free of cost, completely open sourced. 
 
 The provided documentation / guide will get you started with BlazorHero in no time. It provides a complete walkthrough for the project with to-the-point guides and notes.
 
