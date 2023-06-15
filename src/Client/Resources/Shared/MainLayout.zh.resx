@@ -121,7 +121,7 @@
     <value>帐户</value>
   </data>
   <data name="Buy Me A Coffee!" xml:space="preserve">
-    <value>资助我一杯咖啡！</value>
+    <value>赞助一杯咖啡噻？</value>
   </data>
   <data name="Chat?" xml:space="preserve">
     <value>聊天？</value>
@@ -145,7 +145,7 @@
     <value>你确定的要注销吗？</value>
   </data>
   <data name="MudBlazor Documentation" xml:space="preserve">
-    <value>MudBlazor Documentation</value>
+    <value>MudBlazor文档</value>
   </data>
   <data name="Quick-Start Guide" xml:space="preserve">
     <value>快速入门指南</value>

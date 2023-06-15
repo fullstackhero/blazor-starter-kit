@@ -127,7 +127,7 @@
     <value>输入E-mail以重置密码</value>
   </data>
   <data name="Forgot password?" xml:space="preserve">
-    <value>忘记了密码?</value>
+    <value>忘记密码?</value>
   </data>
   <data name="Reset Password" xml:space="preserve">
     <value>重置密码</value>
