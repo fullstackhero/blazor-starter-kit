@@ -117,40 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>审计跟踪</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Audit Trails exported" xml:space="preserve">
+    <value>审计跟踪已导出</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>网格</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Clear" xml:space="preserve">
+    <value>清空</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Columns Affected" xml:space="preserve">
+    <value>受影响的列</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Date Range For Searching" xml:space="preserve">
+    <value>搜索日期范围</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Dense" xml:space="preserve">
+    <value>紧凑显示</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Details for Trail ID" xml:space="preserve">
+    <value>跟踪 ID 的详细信息</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Export To Excel" xml:space="preserve">
+    <value>导出到Excel</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Filtered Audit Trails exported" xml:space="preserve">
+    <value>筛选的审计跟踪已导出</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>标识</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>本地</value>
+  </data>
+  <data name="New Values" xml:space="preserve">
+    <value>新值</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Old Values" xml:space="preserve">
+    <value>历史值</value>
+  </data>
+  <data name="Primary Key" xml:space="preserve">
+    <value>主键</value>
+  </data>
+  <data name="Search for Trails" xml:space="preserve">
+    <value>搜索跟踪</value>
+  </data>
+  <data name="Search in New Values" xml:space="preserve">
+    <value>在新值中搜索</value>
+  </data>
+  <data name="Search in Old Values" xml:space="preserve">
+    <value>在历史值中搜索</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>显示</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>隔行换色</value>
+  </data>
+  <data name="Table Name" xml:space="preserve">
+    <value>表格名称</value>
+  </data>
+  <data name="Trail Details" xml:space="preserve">
+    <value>跟踪详情</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="UTC" xml:space="preserve">
+    <value>UTC</value>
+  </data>
+  <data name="Your Recent Activities." xml:space="preserve">
+    <value>您最近的活动。</value>
   </data>
 </root>

@@ -117,40 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>显示网格</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Dense" xml:space="preserve">
+    <value>紧凑显示</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Manage {0} {1}'s Roles" xml:space="preserve">
+    <value>管理 {0} {1} 的角色</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Role Name" xml:space="preserve">
+    <value>角色名称</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Roles Updated" xml:space="preserve">
+    <value>角色已更新！</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Search For User Roles" xml:space="preserve">
+    <value>搜索用户角色</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Striped" xml:space="preserve">
+    <value>隔行换色</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
-  </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Update User Roles" xml:space="preserve">
+    <value>更新用户角色</value>
   </data>
 </root>

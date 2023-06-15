@@ -117,40 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Not allowed to delete {0} Role as it is being used." xml:space="preserve">
+    <value>不允许删除正在使用的{0}角色。</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Not allowed to delete {0} Role." xml:space="preserve">
+    <value>不允许删除{0}角色。</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Not allowed to deselect {0} or {1} or {2} for this Role." xml:space="preserve">
+    <value>不允许取消选择此角色的{0}或{1}或{2}。</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Not allowed to modify Permissions for this Role." xml:space="preserve">
+    <value>不允许修改此角色的权限。</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Not allowed to modify {0} Role." xml:space="preserve">
+    <value>不允许修改{0}角色。</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Permissions Updated." xml:space="preserve">
+    <value>权限已更新。</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Role {0} Created." xml:space="preserve">
+    <value>角色 {0} 已创建。</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Role {0} Deleted." xml:space="preserve">
+    <value>角色 {0} 已删除。</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Role {0} Updated." xml:space="preserve">
+    <value>角色 {0} 已更新。</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
-  </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Similar Role already exists." xml:space="preserve">
+    <value>类似的角色已存在。</value>
   </data>
 </root>

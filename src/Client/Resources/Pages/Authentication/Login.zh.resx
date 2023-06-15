@@ -117,40 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Description" xml:space="preserve">
+    <value>使用您的凭据登录。</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Don't have an account?" xml:space="preserve">
+    <value>没有帐户？</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="E-mail" xml:space="preserve">
+    <value>E-mail</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Email is required!" xml:space="preserve">
+    <value>Email为必填项！</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Fill Administrator Credentials" xml:space="preserve">
+    <value>填写管理员凭据</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Fill Basic User Credentials" xml:space="preserve">
+    <value>填写基本用户凭据</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Forgot password?" xml:space="preserve">
+    <value>忘记了密码？</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Password is required!" xml:space="preserve">
+    <value>密为必填项！</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Register here" xml:space="preserve">
+    <value>在此注册</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Remember me?" xml:space="preserve">
+    <value>记住我？</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Sign In" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>登录</value>
   </data>
 </root>

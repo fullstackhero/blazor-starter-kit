@@ -117,40 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Actions" xml:space="preserve">
+    <value>操作</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Active" xml:space="preserve">
+    <value>激活</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>显示网格</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Create" xml:space="preserve">
+    <value>创建</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Dense" xml:space="preserve">
+    <value>紧凑显示</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Email Confirmation" xml:space="preserve">
+    <value>确认邮箱</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Export" xml:space="preserve">
+    <value>导出</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Filtered Users exported" xml:space="preserve">
+    <value>筛选出的用户已导出</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="First Name" xml:space="preserve">
+    <value>名</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>姓</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Manage Roles" xml:space="preserve">
+    <value>管理角色</value>
+  </data>
+  <data name="Manage Users" xml:space="preserve">
+    <value>管理用户</value>
+  </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>不允许的操作</value>
+  </data>
+  <data name="Not Allowed." xml:space="preserve">
+    <value>不允许。</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>电话号码</value>
+  </data>
+  <data name="Register New User" xml:space="preserve">
+    <value>注册新用户</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>重新加载</value>
+  </data>
+  <data name="Search For Users" xml:space="preserve">
+    <value>搜索用户</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>隔行换色</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="Users exported" xml:space="preserve">
+    <value>用户已导出</value>
+  </data>
+  <data name="View Profile" xml:space="preserve">
+    <value>查看档案</value>
   </data>
 </root>

@@ -117,40 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="chat" xml:space="preserve">
+    <value>聊天</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="contacts" xml:space="preserve">
+    <value>联系人</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="detailed guide for more." xml:space="preserve">
+    <value>了解更多详细信息。</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Enter your message..." xml:space="preserve">
+    <value>输入你的消息...</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Logged In." xml:space="preserve">
+    <value>已登录。</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Logged Out." xml:space="preserve">
+    <value>已注销。</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="New Message From {0}" xml:space="preserve">
+    <value>来自 {0} 的新消息</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Send" xml:space="preserve">
+    <value>发送</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
-  </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Want to understand how Chat is implemented in BlazorHero ? Refer this" xml:space="preserve">
+    <value>想要了解如何在 BlazorHero 中实现聊天吗？参考这个</value>
   </data>
 </root>

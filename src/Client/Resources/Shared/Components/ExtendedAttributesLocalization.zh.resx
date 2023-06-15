@@ -117,40 +117,97 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Actions" xml:space="preserve">
+    <value>操作</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="All Groups" xml:space="preserve">
+    <value>所有分组</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>Bordered</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Create" xml:space="preserve">
+    <value>创建</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Delete Extended Attribute?" xml:space="preserve">
+    <value>是否要删除扩展属性？</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Dense" xml:space="preserve">
+    <value>紧凑显示</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Entity Id" xml:space="preserve">
+    <value>实体标识</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Export" xml:space="preserve">
+    <value>导出</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Extended Attributes exported" xml:space="preserve">
+    <value>导出的扩展属性</value>
+  </data>
+  <data name="External Id" xml:space="preserve">
+    <value>External Id</value>
+  </data>
+  <data name="Filtered Extended Attributes exported" xml:space="preserve">
+    <value>导出的筛选扩展属性</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>分组</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>标识</value>
+  </data>
+  <data name="Include Entity fields (Export)" xml:space="preserve">
+    <value>包括实体字段（导出）</value>
+  </data>
+  <data name="Is Active" xml:space="preserve">
+    <value>激活否</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>键</value>
+  </data>
+  <data name="Manage {0} Extended Attributes" xml:space="preserve">
+    <value>管理{0}扩展属性</value>
+  </data>
+  <data name="Manage {0} {1}'s Extended Attributes" xml:space="preserve">
+    <value>管理{0} {1}的扩展属性</value>
+  </data>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>不允许的操作</value>
+  </data>
+  <data name="Not Allowed." xml:space="preserve">
+    <value>不允许。</value>
+  </data>
+  <data name="Only Selected Group (Export)" xml:space="preserve">
+    <value>仅选定分组（导出）</value>
+  </data>
+  <data name="Owner" xml:space="preserve">
+    <value>所有者</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>重新加载</value>
+  </data>
+  <data name="Search For {0} Extended Attributes" xml:space="preserve">
+    <value>搜索{0}扩展属性</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>隔行换色</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="you" xml:space="preserve">
+    <value>你</value>
   </data>
 </root>

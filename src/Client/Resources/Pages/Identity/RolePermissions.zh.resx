@@ -117,40 +117,88 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="All Permissions" xml:space="preserve">
+    <value>所有权限</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Apply" xml:space="preserve">
+    <value>应用</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>审计跟踪</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>显示网格</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Brands" xml:space="preserve">
+    <value>品牌</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Communication" xml:space="preserve">
+    <value>通信</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Dashboards" xml:space="preserve">
+    <value>控制面板</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Dense" xml:space="preserve">
+    <value>紧凑显示</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Document Extended Attributes" xml:space="preserve">
+    <value>文档扩展属性</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Document Types" xml:space="preserve">
+    <value>文档类型</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Documents" xml:space="preserve">
+    <value>文档</value>
+  </data>
+  <data name="Hangfire" xml:space="preserve">
+    <value>Hangfire</value>
+  </data>
+  <data name="Here you can leave a comment for this permission for the current role" xml:space="preserve">
+    <value>您可以在此处为当前角色的此权限添加备注</value>
+  </data>
+  <data name="Manage Permission" xml:space="preserve">
+    <value>管理权限</value>
+  </data>
+  <data name="Manage {0} {1}'s Permissions" xml:space="preserve">
+    <value>管理{0} {1}的权限</value>
+  </data>
+  <data name="Permission Name" xml:space="preserve">
+    <value>权限名称</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>偏好</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>产品</value>
+  </data>
+  <data name="Role Claims" xml:space="preserve">
+    <value>角色声明</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Search For Permissions" xml:space="preserve">
+    <value>搜索权限</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>隔行换色</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="Update Role Permissions" xml:space="preserve">
+    <value>更新角色权限</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="Will be saved only when selected Permission" xml:space="preserve">
+    <value>仅当选择“权限”时才会保存</value>
   </data>
 </root>

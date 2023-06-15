@@ -117,40 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Description is required!" xml:space="preserve">
+    <value>必须提供描述！</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Name is required!" xml:space="preserve">
+    <value>必须提供名称!</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
-  </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
-  </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
-  </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
-  </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
-  </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
-  </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
-  </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Tax must be greater than 0" xml:space="preserve">
+    <value>税费必须大于 0</value>
   </data>
 </root>

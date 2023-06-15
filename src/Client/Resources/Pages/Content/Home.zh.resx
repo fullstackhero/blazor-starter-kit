@@ -117,40 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Blazor For Beginners – Getting Started With Blazor" xml:space="preserve">
+    <value>面向初学者的 Blazor – Blazor 入门</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Blazor Hero Description" xml:space="preserve">
+    <value>Blazor Hero 是用于 Blazor Web Assembly 构建的多合一干净体系结构解决方案模板</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Building A Chat Application With Blazor, Identity, And SignalR" xml:space="preserve">
+    <value>使用Blazor, Identity, 和SignalR构建一个聊天应用</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Celebrating 1,500 Stars on Github!" xml:space="preserve">
+    <value>庆祝 Github 上获得1,500 颗星星！</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Component Library" xml:space="preserve">
+    <value>组件库</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Custom Authentication In Blazor WebAssembly – Detailed" xml:space="preserve">
+    <value>Blazor WebAssembly 中的自定义身份验证 - 详情</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Description" xml:space="preserve">
+    <value>用于Blazor Web-Assembly的Clean Architecture模板</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Documentation - Coming Soon" xml:space="preserve">
+    <value>文档 - 即将推出</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Exploring Blazor Project Structure" xml:space="preserve">
+    <value>探索 Blazor 项目结构</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Getting Started" xml:space="preserve">
+    <value>开始体验</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Github Repository : Do Not Forget to Leave a Star ;)" xml:space="preserve">
+    <value>Github库 : 莫要忘了点赞哟 ;)</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Here are few articles that should help you get started with Blazor." xml:space="preserve">
+    <value>下面是一些文章，可帮助你开始使用 Blazor。</value>
+  </data>
+  <data name="How To Implement Blazor CRUD Using Entity Framework Core?" xml:space="preserve">
+    <value>如何使用Entity Framework Core实现 Blazor CRUD？</value>
+  </data>
+  <data name="Implementing Blazor CRUD Using Mudblazor Component Library In .NET 5" xml:space="preserve">
+    <value>在 .NET 5 中使用 Mudblazor 组件库实现 Blazor CRUD</value>
+  </data>
+  <data name="Important Links" xml:space="preserve">
+    <value>重要链接</value>
+  </data>
+  <data name="In case you are stuck anywhere or have any queries regarding this implementation, I have compiled a Quick Start Guide for you reference." xml:space="preserve">
+    <value>如果您遇到任何问题或对此实现有任何疑问，我编制了一份快速入门指南供您参考。</value>
+  </data>
+  <data name="Learning Resources" xml:space="preserve">
+    <value>学习资源</value>
+  </data>
+  <data name="Liked BlazorHero? Star us on Github!" xml:space="preserve">
+    <value>喜欢BlazorHero吗? 请在 Github上为我们点赞！</value>
+  </data>
+  <data name="Onion Architecture In ASP.NET Core With CQRS – Detailed" xml:space="preserve">
+    <value>Onion Architecture In ASP.NET Core With CQRS – Detailed</value>
+  </data>
+  <data name="Project Page" xml:space="preserve">
+    <value>项目主页</value>
+  </data>
+  <data name="Quick Start Guide" xml:space="preserve">
+    <value>快速入门指南</value>
+  </data>
+  <data name="Read The Guide" xml:space="preserve">
+    <value>阅读指南</value>
+  </data>
+  <data name="Support Me" xml:space="preserve">
+    <value>支持一下！</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Blazor Hero</value>
   </data>
 </root>

@@ -117,40 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="An unhandled error has occurred." xml:space="preserve">
+    <value>发生未处理的错误。</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Authorization" xml:space="preserve">
+    <value>授权</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Input your Bearer token in this format - Bearer {your token here} to access this API" xml:space="preserve">
+    <value>Input your Bearer token in this format - Bearer {your token here} to access this API</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="The Token is expired." xml:space="preserve">
+    <value>令牌已过期。</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="You are not authorized to access this resource." xml:space="preserve">
+    <value>您无权访问此资源。</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
-  </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
-  </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
-  </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
-  </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="You are not Authorized." xml:space="preserve">
+    <value>您未获得授权。</value>
   </data>
 </root>

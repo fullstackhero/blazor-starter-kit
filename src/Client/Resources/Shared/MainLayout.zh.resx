@@ -117,40 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Account" xml:space="preserve">
+    <value>帐户</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Buy Me A Coffee!" xml:space="preserve">
+    <value>资助我一杯咖啡！</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Chat?" xml:space="preserve">
+    <value>聊天？</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Community" xml:space="preserve">
+    <value>社区</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Facebook Group" xml:space="preserve">
+    <value>Facebook Group</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Facebook Page" xml:space="preserve">
+    <value>Facebook Page</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Fork Repository" xml:space="preserve">
+    <value>Fork Repository</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Logout" xml:space="preserve">
+    <value>注销</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Logout Confirmation" xml:space="preserve">
+    <value>你确定的要注销吗？</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="MudBlazor Documentation" xml:space="preserve">
+    <value>MudBlazor Documentation</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Quick-Start Guide" xml:space="preserve">
+    <value>快速入门指南</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Refreshed Token." xml:space="preserve">
+    <value>已刷新的令牌。</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>资源</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>支持</value>
+  </data>
+  <data name="Toggle Dark Mode" xml:space="preserve">
+    <value>切换为暗黑模式</value>
+  </data>
+  <data name="Toggle right-to-left/left-to-right" xml:space="preserve">
+    <value>从右到左/从左到右切换</value>
+  </data>
+  <data name="Welcome {0}" xml:space="preserve">
+    <value>欢迎使用 {0}</value>
+  </data>
+  <data name="You are logged out because the Permissions of one of your Roles have been updated." xml:space="preserve">
+    <value>您已注销，因为您的某个角色的权限已更新。</value>
+  </data>
+  <data name="You are logged out because the user with your Token has been deleted." xml:space="preserve">
+    <value>您已注销，因为具有您的令牌的用户已被删除。</value>
+  </data>
+  <data name="You are Logged Out." xml:space="preserve">
+    <value>您已注销。</value>
   </data>
 </root>

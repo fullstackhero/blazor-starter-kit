@@ -117,40 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Change Password" xml:space="preserve">
+    <value>修改密码</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Current Password" xml:space="preserve">
+    <value>当前密码</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Incorrect Password." xml:space="preserve">
+    <value>密码错误。</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Password Changed!" xml:space="preserve">
+    <value>密码已更改！</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Password Confirmation" xml:space="preserve">
+    <value>确认密码</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Password Confirmation is required!" xml:space="preserve">
+    <value>必须再次输入密码确认！</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Password is required!" xml:space="preserve">
+    <value>密码为必填项！</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Password must be at least of length 8" xml:space="preserve">
+    <value>密码长度必须至少为 8</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Password must contain at least one capital letter" xml:space="preserve">
+    <value>密码必须至少包含一个大写字母</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Password must contain at least one digit" xml:space="preserve">
+    <value>密码必须至少包含一个数字</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Password must contain at least one lowercase letter" xml:space="preserve">
+    <value>密码必须至少包含一个小写字母</value>
+  </data>
+  <data name="Passwords don't match" xml:space="preserve">
+    <value>密码不一致</value>
   </data>
 </root>

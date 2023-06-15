@@ -1,4 +1,6 @@
-﻿namespace BlazorHero.CleanArchitecture.Shared.Constants.Localization
+﻿using System.ComponentModel;
+
+namespace BlazorHero.CleanArchitecture.Shared.Constants.Localization
 {
     public static class LocalizationConstants
     {
@@ -7,6 +9,11 @@
             {
                 Code = "en-US",
                 DisplayName= "English"
+            },
+            new LanguageCode
+            {
+                Code="zh-CN",
+                DisplayName="Chinese"
             },
             new LanguageCode
             {

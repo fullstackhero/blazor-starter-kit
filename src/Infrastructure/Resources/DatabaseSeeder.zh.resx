@@ -117,40 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Administrator role with full permissions" xml:space="preserve">
+    <value>具有完全权限的管理员角色</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Basic role with default permissions" xml:space="preserve">
+    <value>具有默认权限的基本角色</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Seeded Administrator Role." xml:space="preserve">
+    <value>管理员角色种子。</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Seeded Basic Role." xml:space="preserve">
+    <value>基本角色种子。</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Seeded Default SuperAdmin User." xml:space="preserve">
+    <value>默认超级管理员用户种子。</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
-  </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
-  </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
-  </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
-  </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Seeded User with Basic Role." xml:space="preserve">
+    <value>具有基本角色的种子用户。</value>
   </data>
 </root>

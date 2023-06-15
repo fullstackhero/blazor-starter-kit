@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+    <value>荷兰语 - 荷兰</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>英语</value>
   </data>
   <data name="French" xml:space="preserve">
-    <value>French</value>
+    <value>法语</value>
   </data>
   <data name="German" xml:space="preserve">
-    <value>German</value>
+    <value>德语</value>
   </data>
   <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+    <value>印尼语</value>
   </data>
   <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+    <value>意大利</value>
   </data>
   <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+    <value>高棉语</value>
   </data>
   <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+    <value>俄语</value>
   </data>
   <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+    <value>西班牙语</value>
   </data>
   <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+    <value>瑞典语</value>
   </data>
   <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+    <value>阿拉伯语</value>
   </data>
   <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+    <value>简体中文</value>
   </data>
 </root>

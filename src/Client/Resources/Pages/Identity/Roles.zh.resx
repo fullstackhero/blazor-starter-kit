@@ -117,40 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Actions" xml:space="preserve">
+    <value>操作</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Bordered" xml:space="preserve">
+    <value>显示网格</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Create" xml:space="preserve">
+    <value>创建</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Delete Content" xml:space="preserve">
+    <value>是否要删除标识为 {0}的角色？</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Dense" xml:space="preserve">
+    <value>紧凑显示</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Id" xml:space="preserve">
+    <value>标识</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Manage Permission" xml:space="preserve">
+    <value>管理权限</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Manage Roles." xml:space="preserve">
+    <value>管理角色。</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="No Allowed Actions" xml:space="preserve">
+    <value>禁用的操作</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>重新加载</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Search for Roles..." xml:space="preserve">
+    <value>搜索角色……</value>
+  </data>
+  <data name="Striped" xml:space="preserve">
+    <value>隔行换色</value>
   </data>
 </root>

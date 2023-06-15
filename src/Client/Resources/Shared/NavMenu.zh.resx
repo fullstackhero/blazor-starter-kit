@@ -117,40 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Account" xml:space="preserve">
+    <value>账户</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Administrator" xml:space="preserve">
+    <value>管理员</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Audit Trails" xml:space="preserve">
+    <value>审计跟踪</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Brands" xml:space="preserve">
+    <value>品牌</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Catalog Management" xml:space="preserve">
+    <value>类别管理</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Chat" xml:space="preserve">
+    <value>聊天</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Communication" xml:space="preserve">
+    <value>社区</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Dashboard" xml:space="preserve">
+    <value>控制面板</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Document Management" xml:space="preserve">
+    <value>文档管理</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Document Store" xml:space="preserve">
+    <value>文档存储</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Document Types" xml:space="preserve">
+    <value>文档类型</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="FAQs" xml:space="preserve">
+    <value>FAQs</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>功能</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>邮件</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>个人</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>产品</value>
+  </data>
+  <data name="Quick Start Guide" xml:space="preserve">
+    <value>快速入门指南</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>资源</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Swagger" xml:space="preserve">
+    <value>Swagger</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>用户</value>
   </data>
 </root>
