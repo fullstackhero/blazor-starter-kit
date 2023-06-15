@@ -67,13 +67,15 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
                 GroupedRoleClaims.Add(_localizer["All Permissions"], _model.RoleClaims);
                 foreach (var claim in _model.RoleClaims)
                 {
-                    if (GroupedRoleClaims.ContainsKey(claim.Group))
+                    var localGroup = _localizer[claim.Group];
+
+                    if (GroupedRoleClaims.ContainsKey(localGroup))
                     {
-                        GroupedRoleClaims[claim.Group].Add(claim);
+                        GroupedRoleClaims[localGroup].Add(claim);
                     }
                     else
                     {
-                        GroupedRoleClaims.Add(claim.Group, new List<RoleClaimResponse> { claim });
+                        GroupedRoleClaims.Add(localGroup, new List<RoleClaimResponse> { claim });
                     }
                 }
                 if (_model != null)

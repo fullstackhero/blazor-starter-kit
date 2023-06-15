@@ -117,40 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Apr" xml:space="preserve">
+    <value>四月</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Aug" xml:space="preserve">
+    <value>八月</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Brands" xml:space="preserve">
+    <value>品牌</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Charts comming soon ish..." xml:space="preserve">
+    <value>图表即将推出...</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Dashboard" xml:space="preserve">
+    <value>控制面板</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Dec" xml:space="preserve">
+    <value>十二月</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Document Extended Attributes" xml:space="preserve">
+    <value>文档扩展属性</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Document Types" xml:space="preserve">
+    <value>文档类型</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Documents" xml:space="preserve">
+    <value>文档</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Feb" xml:space="preserve">
+    <value>二月</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Jan" xml:space="preserve">
+    <value>一月</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Jul" xml:space="preserve">
+    <value>七月</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>六月</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>三月</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>五月</value>
+  </data>
+  <data name="Nov" xml:space="preserve">
+    <value>十一月</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>十月</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>产品</value>
+  </data>
+  <data name="Quick Insights." xml:space="preserve">
+    <value>Quick Insights.</value>
+  </data>
+  <data name="Realtime Updates &amp; Insights with SignalR." xml:space="preserve">
+    <value>Realtime Updates &amp; Insights with SignalR.</value>
+  </data>
+  <data name="Registered Roles" xml:space="preserve">
+    <value>已注册角色</value>
+  </data>
+  <data name="Registered Users" xml:space="preserve">
+    <value>已注册用户</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>九月</value>
   </data>
 </root>

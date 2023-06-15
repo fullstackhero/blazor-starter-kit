@@ -117,40 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Account Confirmed for {0}. You can now use the /api/identity/token endpoint to generate JWT." xml:space="preserve">
+    <value>帐户{0}已确认。现在，您可以使用 /api/identity/token 终结点来生成 JWT。</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Administrators Profile's Status cannot be toggled" xml:space="preserve">
+    <value>无法切换管理员配置文件的状态</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="An Error has occurred!" xml:space="preserve">
+    <value>发生错误！</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="An error occurred while confirming {0}" xml:space="preserve">
+    <value>确认{0}时出错</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Confirm Registration" xml:space="preserve">
+    <value>确认注册</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="CreatedOn (Local)" xml:space="preserve">
+    <value>创建时间 (Local)</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="CreatedOn (UTC)" xml:space="preserve">
+    <value>创建时间 (UTC)</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Email {0} is already registered." xml:space="preserve">
+    <value>电子邮件{0}已注册。</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>电子邮件已确认</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>名</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Id" xml:space="preserve">
+    <value>标识</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>激活否</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="Not Allowed to add or delete Administrator Role if you have not this role." xml:space="preserve">
+    <value>如果您没有此角色，则不允许添加或删除管理员角色。</value>
+  </data>
+  <data name="Not Allowed." xml:space="preserve">
+    <value>不允许。</value>
+  </data>
+  <data name="Password Reset Mail has been sent to your authorized Email." xml:space="preserve">
+    <value>密码重置邮件已发送到您的授权电子邮件。</value>
+  </data>
+  <data name="Password Reset Successful!" xml:space="preserve">
+    <value>密码重置成功！</value>
+  </data>
+  <data name="Phone number {0} is already registered." xml:space="preserve">
+    <value>电话号码{0}已注册。</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>电话号码</value>
+  </data>
+  <data name="PhoneNumberConfirmed" xml:space="preserve">
+    <value>电话号码已确认</value>
+  </data>
+  <data name="Please confirm your account by &lt;a href='{0}'&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>请点击这里&lt;a href='{0}'&gt;确认您的帐户&lt;/a&gt;。</value>
+  </data>
+  <data name="Please reset your password by &lt;a href='{0}&gt;clicking here&lt;/a&gt;." xml:space="preserve">
+    <value>请点击这里&lt;a href='{0}&gt;重置密码&lt;/a&gt;。</value>
+  </data>
+  <data name="ProfilePictureDataUrl" xml:space="preserve">
+    <value>头像图片地址</value>
+  </data>
+  <data name="Reset Password" xml:space="preserve">
+    <value>重置密码</value>
+  </data>
+  <data name="Roles Updated" xml:space="preserve">
+    <value>角色已更新</value>
+  </data>
+  <data name="User {0} Registered." xml:space="preserve">
+    <value>用户 {0} 已注册</value>
+  </data>
+  <data name="User {0} Registered. Please check your Mailbox to verify!" xml:space="preserve">
+    <value>用户{0}注册。请检查您的邮箱进行验证！</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="Username {0} is already taken." xml:space="preserve">
+    <value>用户名{0}已被占用。</value>
   </data>
 </root>

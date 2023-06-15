@@ -7,6 +7,10 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\Services\AuditService.zh.resx~RF152208.TMP" />
+  </ItemGroup>
+
   <!--<ItemGroup>
     <Compile Remove="Constants\**" />
     <Compile Remove="Identity\**" />

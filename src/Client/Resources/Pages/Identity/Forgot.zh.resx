@@ -117,40 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Done!" xml:space="preserve">
+    <value>完成！</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="E-mail" xml:space="preserve">
+    <value>E-mail</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Enter email for password reset" xml:space="preserve">
+    <value>输入E-mail以重置密码</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Forgot password?" xml:space="preserve">
+    <value>忘记密码?</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
-  </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
-  </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
-  </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
-  </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
-  </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
-  </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
-  </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Reset Password" xml:space="preserve">
+    <value>重置密码</value>
   </data>
 </root>

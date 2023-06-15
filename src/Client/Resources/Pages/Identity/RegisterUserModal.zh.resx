@@ -117,40 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Activate User?" xml:space="preserve">
+    <value>激活用户?</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Auto Confirm Email?" xml:space="preserve">
+    <value>自动确认电子邮件？</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>确认密码</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="First Name" xml:space="preserve">
+    <value>名</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Last Name" xml:space="preserve">
+    <value>姓</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Phone Number" xml:space="preserve">
+    <value>电话号码</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Profile" xml:space="preserve">
+    <value>档案</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Profile Details" xml:space="preserve">
+    <value>档案详情</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Register" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="Register User" xml:space="preserve">
+    <value>注册用户</value>
+  </data>
+  <data name="Save Changes" xml:space="preserve">
+    <value>保存修改</value>
+  </data>
+  <data name="User Name" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="User Registered" xml:space="preserve">
+    <value>用户已注册！</value>
+  </data>
+  <data name="User Registered Mailbox" xml:space="preserve">
+    <value>用户已注册。确认邮件已投递到邮箱。</value>
   </data>
 </root>

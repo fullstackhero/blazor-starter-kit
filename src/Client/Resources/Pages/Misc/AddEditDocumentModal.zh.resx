@@ -117,40 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dutch - Netherlands" xml:space="preserve">
-    <value>Dutch - Netherlands</value>
+  <data name="Add Document" xml:space="preserve">
+    <value>添加文档</value>
   </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
   </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
   </data>
-  <data name="German" xml:space="preserve">
-    <value>German</value>
+  <data name="Document Type" xml:space="preserve">
+    <value>文档类型</value>
   </data>
-  <data name="Indonesia" xml:space="preserve">
-    <value>Indonesia</value>
+  <data name="Download" xml:space="preserve">
+    <value>下载</value>
   </data>
-  <data name="Italian" xml:space="preserve">
-    <value>Italian</value>
+  <data name="Id" xml:space="preserve">
+    <value>标识</value>
   </data>
-  <data name="Khmer" xml:space="preserve">
-    <value>Khmer</value>
+  <data name="Is Public?" xml:space="preserve">
+    <value>公开否?</value>
   </data>
-  <data name="Russian" xml:space="preserve">
-    <value>Russian</value>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
   </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+  <data name="Title" xml:space="preserve">
+    <value>标题</value>
   </data>
-  <data name="Swedish" xml:space="preserve">
-    <value>Swedish</value>
+  <data name="Update" xml:space="preserve">
+    <value>更新</value>
   </data>
-  <data name="Arabic" xml:space="preserve">
-    <value>عربي</value>
+  <data name="Update Document" xml:space="preserve">
+    <value>更新文档</value>
   </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
+  <data name="Upload" xml:space="preserve">
+    <value>上传</value>
   </data>
 </root>
