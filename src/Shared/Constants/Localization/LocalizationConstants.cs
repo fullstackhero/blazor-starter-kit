@@ -57,6 +57,11 @@
             {
                 Code = "ar",
                 DisplayName = "عربي"
+            },
+            new LanguageCode
+            {
+                Code = "fa-IR",
+                DisplayName = "فارسی"
             }
         };
     }
