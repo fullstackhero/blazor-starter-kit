@@ -81,7 +81,7 @@ So, here is an in-depth video that takes you through the BlazorHero Project! Do 
 
 # Down the Roadmap
 
- - Migration to .NET 6
+ - Migration to .NET 7
  - Multi Tenancy
  - Better Localization - JSON
 
