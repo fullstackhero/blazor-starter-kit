@@ -42,7 +42,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.ExtendedAttributes.Q
 
         public async Task<Result<List<GetAllExtendedAttributesResponse<TId, TEntityId>>>> Handle(GetAllExtendedAttributesQuery<TId, TEntityId, TEntity, TExtendedAttribute> request, CancellationToken cancellationToken)
         {
-            Func<Task<List<TExtendedAttribute>>> getAllExtendedAttributes = () => _unitOfWork.Repository<TExtendedAttribute>().GetAllAsync();
+            Func<Task<List<TExtendedAttribute>>> getAllExtendedAttributes = () => _unitOfWork.Repository<TExtendedAttribute>().GetAllListAsync();
             var extendedAttributeList = await _cache.GetOrAddAsync(ApplicationConstants.Cache.GetAllEntityExtendedAttributesCacheKey(typeof(TEntity).Name), getAllExtendedAttributes);
             var mappedExtendedAttributes = _mapper.Map<List<GetAllExtendedAttributesResponse<TId, TEntityId>>>(extendedAttributeList);
             return await Result<List<GetAllExtendedAttributesResponse<TId, TEntityId>>>.SuccessAsync(mappedExtendedAttributes);
