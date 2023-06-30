@@ -34,7 +34,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAl
 
         public async Task<Result<List<GetAllBrandsResponse>>> Handle(GetAllBrandsQuery request, CancellationToken cancellationToken)
         {
-            Func<Task<List<Brand>>> getAllBrands = () => _unitOfWork.Repository<Brand>().GetAllAsync();
+            Func<Task<List<Brand>>> getAllBrands = () => _unitOfWork.Repository<Brand>().GetAllListAsync();
             var brandList = await _cache.GetOrAddAsync(ApplicationConstants.Cache.GetAllBrandsCacheKey, getAllBrands);
             var mappedBrands = _mapper.Map<List<GetAllBrandsResponse>>(brandList);
             return await Result<List<GetAllBrandsResponse>>.SuccessAsync(mappedBrands);
