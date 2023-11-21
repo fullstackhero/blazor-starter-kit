@@ -1,28 +1,29 @@
-﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<Security> _localizer
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Security> Localizer
 
 <EditForm Model="@_passwordModel" OnValidSubmit="ChangePasswordAsync">
-    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <FluentValidationValidator @ref="_fluentValidationValidator"/>
     <MudCard Elevation="25">
         <MudCardHeader>
             <CardHeaderContent>
-                <MudText>@_localizer["Change Password"]</MudText>
+                <MudText>@Localizer["Change Password"]</MudText>
             </CardHeaderContent>
         </MudCardHeader>
         <MudCardContent>
             <MudGrid>
                 <MudItem xs="12" md="6">
-                    <MudTextField T="string" @bind-Value="_passwordModel.NewPassword" For="@(() => _passwordModel.NewPassword)" Label="@_localizer["Password"]" Variant="Variant.Outlined" InputType="_newPasswordInput" Adornment="Adornment.End" AdornmentIcon="@_newPasswordInputIcon" OnAdornmentClick="@(() => TogglePasswordVisibility(true))" />
+                    <MudTextField T="string" @bind-Value="_passwordModel.NewPassword" For="@(() => _passwordModel.NewPassword)" Label="@Localizer["Password"]" Variant="Variant.Outlined" InputType="_newPasswordInput" Adornment="Adornment.End" AdornmentIcon="@_newPasswordInputIcon" OnAdornmentClick="@(() => TogglePasswordVisibility(true))"/>
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudTextField T="string" @bind-Value="_passwordModel.ConfirmNewPassword" For="@(() => _passwordModel.ConfirmNewPassword)" Label="@_localizer["Password Confirmation"]" Variant="Variant.Outlined" InputType="_newPasswordInput" Adornment="Adornment.End" AdornmentIcon="@_newPasswordInputIcon" OnAdornmentClick="@(() => TogglePasswordVisibility(true))" />
+                    <MudTextField T="string" @bind-Value="_passwordModel.ConfirmNewPassword" For="@(() => _passwordModel.ConfirmNewPassword)" Label="@Localizer["Password Confirmation"]" Variant="Variant.Outlined" InputType="_newPasswordInput" Adornment="Adornment.End" AdornmentIcon="@_newPasswordInputIcon" OnAdornmentClick="@(() => TogglePasswordVisibility(true))"/>
                 </MudItem>
                 <MudItem xs="12">
-                    <MudTextField T="string" @bind-Value="_passwordModel.Password" For="@(() => _passwordModel.Password)" Label="@_localizer["Current Password"]" Variant="Variant.Outlined" InputType="_currentPasswordInput" Adornment="Adornment.End" AdornmentIcon="@_currentPasswordInputIcon" OnAdornmentClick="@(() => TogglePasswordVisibility(false))" />
+                    <MudTextField T="string" @bind-Value="_passwordModel.Password" For="@(() => _passwordModel.Password)" Label="@Localizer["Current Password"]" Variant="Variant.Outlined" InputType="_currentPasswordInput" Adornment="Adornment.End" AdornmentIcon="@_currentPasswordInputIcon" OnAdornmentClick="@(() => TogglePasswordVisibility(false))"/>
                 </MudItem>
             </MudGrid>
         </MudCardContent>
         <MudCardActions Class="pb-4 pl-4">
-            <MudButton Variant="Variant.Filled" Disabled="@(!Validated)" Color="Color.Primary" ButtonType="ButtonType.Submit" Class="ml-auto">@_localizer["Change Password"]</MudButton>
+            <MudButton Variant="Variant.Filled" Disabled="@(!Validated)" Color="Color.Primary" ButtonType="ButtonType.Submit" Class="ml-auto">@Localizer["Change Password"]</MudButton>
         </MudCardActions>
     </MudCard>
 </EditForm>

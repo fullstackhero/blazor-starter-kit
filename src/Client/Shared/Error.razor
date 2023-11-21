@@ -1,11 +1,11 @@
-﻿@using Microsoft.Extensions.Logging
-@inject ILogger<Error> Logger
+﻿@inject ILogger<Error> Logger
 
-<CascadingValue Value=this>
+<CascadingValue Value="this">
     @ChildContent
 </CascadingValue>
 
 @code {
+
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
@@ -13,6 +13,7 @@
     {
         Logger.LogError("Error:ProcessError - Type: {Type} Message: {Message}",
             ex.GetType(), ex.Message);
-        //StateHasChanged();
+    //StateHasChanged();
     }
+
 }

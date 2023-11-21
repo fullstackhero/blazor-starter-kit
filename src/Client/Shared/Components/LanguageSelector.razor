@@ -1,29 +1,22 @@
-﻿@using BlazorHero.CleanArchitecture.Shared.Constants.Localization
-@inject Microsoft.Extensions.Localization.IStringLocalizer<LanguageSelector> _localizer
+@using Microsoft.Extensions.Localization
+@using CleanBlazor.Shared.Constants.Localization
+@using CleanBlazor.Shared.Wrapper
+@inject IStringLocalizer<LanguageSelector> Localizer
 
 <MudMenu Icon="@Icons.Material.Outlined.Translate" Color="Color.Inherit" Direction="Direction.Bottom" OffsetY="true" Dense="true">
     @foreach (var language in LocalizationConstants.SupportedLanguages)
     {
-        <MudMenuItem OnClick="(()=> ChangeLanguageAsync(language.Code))">@_localizer[language.DisplayName]</MudMenuItem>
+        <MudMenuItem OnClick="() => ChangeLanguageAsync(language.Code)">@Localizer[language.DisplayName]</MudMenuItem>
     }
 </MudMenu>
 
 @code
 {
-    private async Task ChangeLanguageAsync(string languageCode)
-    {
-        var result = await _clientPreferenceManager.ChangeLanguageAsync(languageCode);
-        if (result.Succeeded)
-        {
-            _snackBar.Add(result.Messages[0], Severity.Success);
-            _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
-        }
-        else
-        {
-            foreach (var error in result.Messages)
+    private async Task ChangeLanguageAsync(string languageCode) =>
+        await ClientPreferenceManager.ChangeLanguageAsync(languageCode)
+            .Match(message =>
             {
-                _snackBar.Add(error, Severity.Error);
-            }
-        }
-    }
+                SnackBar.Success(message);
+                NavigationManager.NavigateTo(NavigationManager.Uri, true);
+            }, errors => SnackBar.Error(errors));
 }

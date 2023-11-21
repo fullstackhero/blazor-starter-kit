@@ -1,22 +1,16 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
-using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+using CleanBlazor.Domain.Entities.Catalog;
+using CleanBlazor.Domain.Repositories;
+using CleanBlazor.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
+namespace CleanBlazor.Infrastructure.Repositories;
+
+internal sealed class ProductRepository : GenericRepository<Product, int>, IProductRepository
 {
-    public class ProductRepository : IProductRepository
+    public ProductRepository(ApplicationDbContext dbContext) : base(dbContext)
     {
-        private readonly IRepositoryAsync<Product, int> _repository;
-
-        public ProductRepository(IRepositoryAsync<Product, int> repository)
-        {
-            _repository = repository;
-        }
-
-        public async Task<bool> IsBrandUsed(int brandId)
-        {
-            return await _repository.Entities.AnyAsync(b => b.BrandId == brandId);
-        }
     }
+
+    public async Task<bool> IsBrandUsedAsync(int brandId, CancellationToken cancellationToken = default) =>
+        await Entities.AnyAsync(b => b.BrandId == brandId, cancellationToken);
 }

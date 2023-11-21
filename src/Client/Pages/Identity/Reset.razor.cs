@@ -1,71 +1,68 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using Microsoft.AspNetCore.WebUtilities;
-using MudBlazor;
-using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
-using System.Threading.Tasks;
 using Blazored.FluentValidation;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Contracts.Identity;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Wrapper;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Primitives;
+using MudBlazor;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
+namespace CleanBlazor.Client.Pages.Identity;
+
+public partial class Reset
 {
-    public partial class Reset
+    private readonly ResetPasswordRequest _resetPasswordModel = new();
+    private FluentValidationValidator _fluentValidationValidator;
+    private InputType _passwordInput = InputType.Password;
+    private string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+    private bool _passwordVisibility;
+    private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+
+    protected override void OnInitialized()
     {
-        private FluentValidationValidator _fluentValidationValidator;
-        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private readonly ResetPasswordRequest _resetPasswordModel = new();
-
-        protected override void OnInitialized()
+        Uri uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("Token", out StringValues param))
         {
-            var uri = _navigationManager.ToAbsoluteUri(_navigationManager.Uri);
-            if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("Token", out var param))
-            {
-                var queryToken = param.First();
-                _resetPasswordModel.Token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(queryToken));
-            }
+            var queryToken = param.First();
+            _resetPasswordModel.Token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(queryToken));
         }
+    }
 
-        private async Task SubmitAsync()
+    private async Task SubmitAsync()
+    {
+        if (!string.IsNullOrEmpty(_resetPasswordModel.Token))
         {
-            if (!string.IsNullOrEmpty(_resetPasswordModel.Token))
-            {
-                var result = await _userManager.ResetPasswordAsync(_resetPasswordModel);
-                if (result.Succeeded)
-                {
-                    _snackBar.Add(result.Messages[0], Severity.Success);
-                    _navigationManager.NavigateTo("/");
-                }
-                else
-                {
-                    foreach (var message in result.Messages)
+            await HttpClient
+                .PostAsJsonAsync<ResetPasswordRequest, Result>(UsersEndpoints.ResetPassword, _resetPasswordModel)
+                .Match(message =>
                     {
-                        _snackBar.Add(message, Severity.Error);
-                    }
-                }
-            }
-            else
-            {
-                _snackBar.Add(_localizer["Token Not Found!"], Severity.Error);
-            }
+                        SnackBar.Success(message);
+                        NavigationManager.NavigateTo("/");
+                    },
+                    errors => SnackBar.Error(errors));
         }
-
-        private bool _passwordVisibility;
-        private InputType _passwordInput = InputType.Password;
-        private string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
-
-        private void TogglePasswordVisibility()
+        else
         {
-            if (_passwordVisibility)
-            {
-                _passwordVisibility = false;
-                _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
-                _passwordInput = InputType.Password;
-            }
-            else
-            {
-                _passwordVisibility = true;
-                _passwordInputIcon = Icons.Material.Filled.Visibility;
-                _passwordInput = InputType.Text;
-            }
+            SnackBar.Error(Localizer["Token Not Found!"]);
+        }
+    }
+
+    private void TogglePasswordVisibility()
+    {
+        if (_passwordVisibility)
+        {
+            _passwordVisibility = false;
+            _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+            _passwordInput = InputType.Password;
+        }
+        else
+        {
+            _passwordVisibility = true;
+            _passwordInputIcon = Icons.Material.Filled.Visibility;
+            _passwordInput = InputType.Text;
         }
     }
 }

@@ -1,13 +1,13 @@
+name: 'cleanblazor'
 version: '3.4'
 
 services:
-  blazorhero:
-    image: ${DOCKER_REGISTRY-}blazorhero
+  cleanblazor:
     build:
       context: .
       dockerfile: src/Server/Dockerfile
     environment:
-      - "ConnectionStrings__DefaultConnection=Server=db;Database=BlazorHero;User=sa;Password=Your_password123;MultipleActiveResultSets=true"
+      - "ConnectionStrings__DefaultConnection=Server=localhost,1433;Database=CleanBlazor;User=sa;Password=3Hg3QF2dQWoaeT;TrustServerCertificate=True;"
       - "ASPNETCORE_Kestrel__Certificates__Default__Password=securePassword123"
       - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
     volumes:
@@ -17,12 +17,16 @@ services:
       - "5006:5006"
     depends_on:
       - db
-    restart: on-failure
-    container_name: blazorhero
-
+    restart: no
+    container_name: cleanblazor
+    profiles:
+      - donotstart
   db:
     image: "mcr.microsoft.com/mssql/server"
     environment:
-      - "SA_PASSWORD=Your_password123"
+      - "MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}"
       - "ACCEPT_EULA=Y"
+    ports:
+        - "1433:1433"
+        - "1933:1933"
     container_name: mssql

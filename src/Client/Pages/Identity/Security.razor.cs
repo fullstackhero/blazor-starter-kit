@@ -1,74 +1,71 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using MudBlazor;
-using System.Threading.Tasks;
+using System.Net.Http.Json;
 using Blazored.FluentValidation;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Contracts.Identity;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Wrapper;
+using MudBlazor;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
+namespace CleanBlazor.Client.Pages.Identity;
+
+public partial class Security
 {
-    public partial class Security
-    {
-        private FluentValidationValidator _fluentValidationValidator;
-        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private readonly ChangePasswordRequest _passwordModel = new();
+    private readonly ChangePasswordRequest _passwordModel = new();
+    private InputType _currentPasswordInput = InputType.Password;
+    private string _currentPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
-        private async Task ChangePasswordAsync()
+    private bool _currentPasswordVisibility;
+    private FluentValidationValidator _fluentValidationValidator;
+    private InputType _newPasswordInput = InputType.Password;
+    private string _newPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+
+    private bool _newPasswordVisibility;
+    private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+
+    private async Task ChangePasswordAsync()
+    {
+        await HttpClient
+            .PutAsJsonAsync<ChangePasswordRequest, Result>(AccountsEndpoints.ChangePassword, _passwordModel)
+            .Match(_ =>
+                {
+                    SnackBar.Success(Localizer["Password Changed!"]);
+                    _passwordModel.Password = string.Empty;
+                    _passwordModel.NewPassword = string.Empty;
+                    _passwordModel.ConfirmNewPassword = string.Empty;
+                },
+                errors => SnackBar.Error(errors));
+    }
+
+    private void TogglePasswordVisibility(bool newPassword)
+    {
+        if (newPassword)
         {
-            var response = await _accountManager.ChangePasswordAsync(_passwordModel);
-            if (response.Succeeded)
+            if (_newPasswordVisibility)
             {
-                _snackBar.Add(_localizer["Password Changed!"], Severity.Success);
-                _passwordModel.Password = string.Empty;
-                _passwordModel.NewPassword = string.Empty;
-                _passwordModel.ConfirmNewPassword = string.Empty;
+                _newPasswordVisibility = false;
+                _newPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+                _newPasswordInput = InputType.Password;
             }
             else
             {
-                foreach (var error in response.Messages)
-                {
-                    _snackBar.Add(error, Severity.Error);
-                }
+                _newPasswordVisibility = true;
+                _newPasswordInputIcon = Icons.Material.Filled.Visibility;
+                _newPasswordInput = InputType.Text;
             }
         }
-
-        private bool _currentPasswordVisibility;
-        private InputType _currentPasswordInput = InputType.Password;
-        private string _currentPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-
-        private bool _newPasswordVisibility;
-        private InputType _newPasswordInput = InputType.Password;
-        private string _newPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-
-        private void TogglePasswordVisibility(bool newPassword)
+        else
         {
-            if (newPassword)
+            if (_currentPasswordVisibility)
             {
-                if (_newPasswordVisibility)
-                {
-                    _newPasswordVisibility = false;
-                    _newPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-                    _newPasswordInput = InputType.Password;
-                }
-                else
-                {
-                    _newPasswordVisibility = true;
-                    _newPasswordInputIcon = Icons.Material.Filled.Visibility;
-                    _newPasswordInput = InputType.Text;
-                }
+                _currentPasswordVisibility = false;
+                _currentPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+                _currentPasswordInput = InputType.Password;
             }
             else
             {
-                if (_currentPasswordVisibility)
-                {
-                    _currentPasswordVisibility = false;
-                    _currentPasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-                    _currentPasswordInput = InputType.Password;
-                }
-                else
-                {
-                    _currentPasswordVisibility = true;
-                    _currentPasswordInputIcon = Icons.Material.Filled.Visibility;
-                    _currentPasswordInput = InputType.Text;
-                }
+                _currentPasswordVisibility = true;
+                _currentPasswordInputIcon = Icons.Material.Filled.Visibility;
+                _currentPasswordInput = InputType.Text;
             }
         }
     }

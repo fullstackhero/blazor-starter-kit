@@ -1,100 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using BlazorHero.CleanArchitecture.Application.Features.Documents.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Application.Requests;
+using Blazored.FluentValidation;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Contracts;
+using CleanBlazor.Contracts.Documents;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Enums;
+using CleanBlazor.Shared.Wrapper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Blazored.FluentValidation;
-using BlazorHero.CleanArchitecture.Application.Features.DocumentTypes.Queries.GetAll;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Misc.Document;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Misc.DocumentType;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Misc
+namespace CleanBlazor.Client.Pages.Misc;
+
+public partial class AddEditDocumentModal
 {
-    public partial class AddEditDocumentModal
-    {
-        [Inject] private IDocumentManager DocumentManager { get; set; }
-        [Inject] private IDocumentTypeManager DocumentTypeManager { get; set; }
+    private List<GetAllDocumentTypesResponse> _documentTypes = new();
 
-        [Parameter] public AddEditDocumentCommand AddEditDocumentModel { get; set; } = new();
-        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+    private IBrowserFile _file;
 
-        private FluentValidationValidator _fluentValidationValidator;
-        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private List<GetAllDocumentTypesResponse> _documentTypes = new();
+    private FluentValidationValidator _fluentValidationValidator;
 
-        public void Cancel()
-        {
-            MudDialog.Cancel();
-        }
+    [Parameter] public AddEditDocumentRequest AddEditDocumentModel { get; set; } = new();
+    [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+    private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
-        private async Task SaveAsync()
-        {
-            var response = await DocumentManager.SaveAsync(AddEditDocumentModel);
-            if (response.Succeeded)
-            {
-                _snackBar.Add(response.Messages[0], Severity.Success);
-                MudDialog.Close();
-            }
-            else
-            {
-                foreach (var message in response.Messages)
+    public void Cancel() => MudDialog.Cancel();
+
+    private async Task SaveAsync() =>
+        await HttpClient
+            .PostAsJsonAsync<AddEditDocumentRequest, Result<int>>(DocumentsEndpoints.Save, AddEditDocumentModel)
+            .Match((message, _) =>
                 {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
-        }
+                    SnackBar.Success(message);
+                    MudDialog.Close();
+                },
+                errors => SnackBar.Error(errors));
 
-        protected override async Task OnInitializedAsync()
-        {
-            await LoadDataAsync();
-        }
+    protected override async Task OnInitializedAsync() => await LoadDataAsync();
 
-        private async Task LoadDataAsync()
-        {
-            await LoadDocumentTypesAsync();
-        }
+    private async Task LoadDataAsync() => await LoadDocumentTypesAsync();
 
-        private async Task LoadDocumentTypesAsync()
+    private async Task LoadDocumentTypesAsync() =>
+        await HttpClient.GetFromJsonAsync<Result<List<GetAllDocumentTypesResponse>>>(DocumentTypesEndpoints.GetAll)
+            .Match((_, documentTypes) => _documentTypes = documentTypes, _ => { });
+
+    private async Task UploadFiles(InputFileChangeEventArgs e)
+    {
+        _file = e.File;
+        if (_file != null)
         {
-            var data = await DocumentTypeManager.GetAllAsync();
-            if (data.Succeeded)
+            var buffer = new byte[_file.Size];
+            var extension = Path.GetExtension(_file.Name);
+            const string format = "application/octet-stream";
+            await _file.OpenReadStream(_file.Size).ReadAsync(buffer);
+            AddEditDocumentModel.Url = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+            AddEditDocumentModel.UploadRequest = new UploadRequest
             {
-                _documentTypes = data.Data;
-            }
+                Data = buffer, UploadType = UploadType.Document, Extension = extension
+            };
         }
+    }
 
-        private IBrowserFile _file;
+    private async Task<IEnumerable<int>> SearchDocumentTypes(string value)
+    {
+        // In real life use an asynchronous function for fetching data from an api.
+        await Task.Delay(5);
 
-        private async Task UploadFiles(InputFileChangeEventArgs e)
+        // if text is null or empty, show complete list
+        if (string.IsNullOrEmpty(value))
         {
-            _file = e.File;
-            if (_file != null)
-            {
-                var buffer = new byte[_file.Size];
-                var extension = Path.GetExtension(_file.Name);
-                var format = "application/octet-stream";
-                await _file.OpenReadStream(_file.Size).ReadAsync(buffer);
-                AddEditDocumentModel.URL = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-                AddEditDocumentModel.UploadRequest = new UploadRequest { Data = buffer, UploadType = Application.Enums.UploadType.Document, Extension = extension };
-            }
+            return _documentTypes.Select(x => x.Id);
         }
 
-        private async Task<IEnumerable<int>> SearchDocumentTypes(string value)
-        {
-            // In real life use an asynchronous function for fetching data from an api.
-            await Task.Delay(5);
-
-            // if text is null or empty, show complete list
-            if (string.IsNullOrEmpty(value))
-                return _documentTypes.Select(x => x.Id);
-
-            return _documentTypes.Where(x => x.Name.Contains(value, StringComparison.InvariantCultureIgnoreCase))
-                .Select(x => x.Id);
-        }
+        return _documentTypes.Where(x => x.Name.Contains(value, StringComparison.InvariantCultureIgnoreCase))
+            .Select(x => x.Id);
     }
 }

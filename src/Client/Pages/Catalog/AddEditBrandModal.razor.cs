@@ -1,62 +1,49 @@
-﻿using BlazorHero.CleanArchitecture.Client.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+using Blazored.FluentValidation;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Contracts.Catalog.Brands;
+using CleanBlazor.Shared.Constants.Application;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Wrapper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using MudBlazor;
-using System.Threading.Tasks;
-using Blazored.FluentValidation;
-using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Brand;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
+namespace CleanBlazor.Client.Pages.Catalog;
+
+public partial class AddEditBrandModal
 {
-    public partial class AddEditBrandModal
+    private FluentValidationValidator _fluentValidationValidator;
+
+    [Parameter] public AddEditBrandRequest AddEditBrandRequestModel { get; set; } = new();
+    [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter] private HubConnection HubConnection { get; set; }
+    private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+
+    public void Cancel() => MudDialog.Cancel();
+
+    private async Task SaveAsync()
     {
-        [Inject] private IBrandManager BrandManager { get; set; }
-
-        [Parameter] public AddEditBrandCommand AddEditBrandModel { get; set; } = new();
-        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
-        [CascadingParameter] private HubConnection HubConnection { get; set; }
-
-        private FluentValidationValidator _fluentValidationValidator;
-        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-
-        public void Cancel()
-        {
-            MudDialog.Cancel();
-        }
-
-        private async Task SaveAsync()
-        {
-            var response = await BrandManager.SaveAsync(AddEditBrandModel);
-            if (response.Succeeded)
-            {
-                _snackBar.Add(response.Messages[0], Severity.Success);
-                MudDialog.Close();
-            }
-            else
-            {
-                foreach (var message in response.Messages)
+        await HttpClient.PostAsJsonAsync<AddEditBrandRequest, Result<int>>(
+                BrandsEndpoints.Save, AddEditBrandRequestModel)
+            .Match((message, _) =>
                 {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
-            await HubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
-        }
+                    SnackBar.Success(message);
+                    MudDialog.Close();
+                },
+                errors => SnackBar.Error(errors));
 
-        protected override async Task OnInitializedAsync()
-        {
-            await LoadDataAsync();
-            HubConnection = HubConnection.TryInitialize(_navigationManager, _localStorage);
-            if (HubConnection.State == HubConnectionState.Disconnected)
-            {
-                await HubConnection.StartAsync();
-            }
-        }
+        await HubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
+    }
 
-        private async Task LoadDataAsync()
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+        HubConnection = HubConnection.TryInitialize(NavigationManager, LocalStorage);
+        if (HubConnection.State == HubConnectionState.Disconnected)
         {
-            await Task.CompletedTask;
+            await HubConnection.StartAsync();
         }
     }
+
+    private static async Task LoadDataAsync() => await Task.CompletedTask;
 }

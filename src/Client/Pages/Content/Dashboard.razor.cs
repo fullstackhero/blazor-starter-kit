@@ -1,75 +1,66 @@
-﻿using System;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Contracts.Dashboard;
+using CleanBlazor.Shared.Constants.Application;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Wrapper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
-using MudBlazor;
-using System.Collections.Generic;
-using System.Reflection.Metadata;
-using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Dashboard;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
-using BlazorHero.CleanArchitecture.Client.Extensions;
+using ChartSeries = MudBlazor.ChartSeries;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Content
+namespace CleanBlazor.Client.Pages.Content;
+
+public partial class Dashboard
 {
-    public partial class Dashboard
+    private readonly List<ChartSeries> _dataEnterBarChartSeries = new();
+
+    private readonly string[] _dataEnterBarChartXAxisLabels =
     {
-        [Inject] private IDashboardManager DashboardManager { get; set; }
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    };
 
-        [CascadingParameter] private HubConnection HubConnection { get; set; }
-        [Parameter] public int ProductCount { get; set; }
-        [Parameter] public int BrandCount { get; set; }
-        [Parameter] public int DocumentCount { get; set; }
-        [Parameter] public int DocumentTypeCount { get; set; }
-        [Parameter] public int DocumentExtendedAttributeCount { get; set; }
-        [Parameter] public int UserCount { get; set; }
-        [Parameter] public int RoleCount { get; set; }
+    private bool _loaded;
 
-        private readonly string[] _dataEnterBarChartXAxisLabels = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-        private readonly List<ChartSeries> _dataEnterBarChartSeries = new();
-        private bool _loaded;
+    [CascadingParameter] private HubConnection HubConnection { get; set; }
+    [Parameter] public int ProductCount { get; set; }
+    [Parameter] public int BrandCount { get; set; }
+    [Parameter] public int DocumentCount { get; set; }
+    [Parameter] public int DocumentTypeCount { get; set; }
+    [Parameter] public int UserCount { get; set; }
+    [Parameter] public int RoleCount { get; set; }
 
-        protected override async Task OnInitializedAsync()
-        {
-            await LoadDataAsync();
-            _loaded = true;
-            HubConnection = HubConnection.TryInitialize(_navigationManager, _localStorage);
-            HubConnection.On(ApplicationConstants.SignalR.ReceiveUpdateDashboard, async () =>
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+        _loaded = true;
+        HubConnection = HubConnection.TryInitialize(NavigationManager, LocalStorage);
+        HubConnection.On(ApplicationConstants.SignalR.ReceiveUpdateDashboard,
+            async () =>
             {
                 await LoadDataAsync();
                 StateHasChanged();
             });
-            if (HubConnection.State == HubConnectionState.Disconnected)
-            {
-                await HubConnection.StartAsync();
-            }
-        }
-
-        private async Task LoadDataAsync()
+        if (HubConnection.State == HubConnectionState.Disconnected)
         {
-            var response = await DashboardManager.GetDataAsync();
-            if (response.Succeeded)
-            {
-                ProductCount = response.Data.ProductCount;
-                BrandCount = response.Data.BrandCount;
-                DocumentCount = response.Data.DocumentCount;
-                DocumentTypeCount = response.Data.DocumentTypeCount;
-                DocumentExtendedAttributeCount = response.Data.DocumentExtendedAttributeCount;
-                UserCount = response.Data.UserCount;
-                RoleCount = response.Data.RoleCount;
-                foreach (var item in response.Data.DataEnterBarChart)
-                {
-                    _dataEnterBarChartSeries
-                        .RemoveAll(x => x.Name.Equals(item.Name, StringComparison.OrdinalIgnoreCase));
-                    _dataEnterBarChartSeries.Add(new ChartSeries { Name = item.Name, Data = item.Data });
-                }
-            }
-            else
-            {
-                foreach (var message in response.Messages)
-                {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
+            await HubConnection.StartAsync();
         }
     }
+
+    private async Task LoadDataAsync() =>
+        await HttpClient.GetFromJsonAsync<Result<DashboardDataResponse>>(DashboardEndpoints.GetData)
+            .Match((_, dashboard) =>
+                {
+                    ProductCount = dashboard.ProductCount;
+                    BrandCount = dashboard.BrandCount;
+                    DocumentCount = dashboard.DocumentCount;
+                    DocumentTypeCount = dashboard.DocumentTypeCount;
+                    UserCount = dashboard.UserCount;
+                    RoleCount = dashboard.RoleCount;
+                    foreach (Application.Features.Dashboards.Queries.GetData.ChartSeries item in dashboard.DataEnterBarChart)
+                    {
+                        _dataEnterBarChartSeries
+                            .RemoveAll(x => x.Name.Equals(item.Name, StringComparison.OrdinalIgnoreCase));
+                        _dataEnterBarChartSeries.Add(new ChartSeries { Name = item.Name, Data = item.Data });
+                    }
+                },
+                errors => SnackBar.Error(errors));
 }

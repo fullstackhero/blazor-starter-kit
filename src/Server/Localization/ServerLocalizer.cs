@@ -1,14 +1,10 @@
-﻿using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Localization;
 
-namespace BlazorHero.CleanArchitecture.Server.Localization
+namespace CleanBlazor.Server.Localization;
+
+internal class ServerLocalizer<T> where T : class
 {
-    internal class ServerLocalizer<T> where T : class
-    {
-        public IStringLocalizer<T> Localizer { get; }
+    public ServerLocalizer(IStringLocalizer<T> localizer) => Localizer = localizer;
 
-        public ServerLocalizer(IStringLocalizer<T> localizer)
-        {
-            Localizer = localizer;
-        }
-    }
+    public IStringLocalizer<T> Localizer { get; }
 }

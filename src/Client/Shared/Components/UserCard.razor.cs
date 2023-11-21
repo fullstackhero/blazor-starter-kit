@@ -1,48 +1,47 @@
-﻿using BlazorHero.CleanArchitecture.Client.Extensions;
+using System.Security.Claims;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Shared.Constants.Storage;
 using Microsoft.AspNetCore.Components;
-using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
+using Microsoft.AspNetCore.Components.Authorization;
 
-namespace BlazorHero.CleanArchitecture.Client.Shared.Components
+namespace CleanBlazor.Client.Shared.Components;
+
+public partial class UserCard
 {
-    public partial class UserCard
+    [Parameter] public string Class { get; set; }
+    private string FirstName { get; set; }
+    private string SecondName { get; set; }
+    private string Email { get; set; }
+    private char FirstLetterOfName { get; set; }
+
+    [Parameter] public string ImageDataUrl { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        [Parameter] public string Class { get; set; }
-        private string FirstName { get; set; }
-        private string SecondName { get; set; }
-        private string Email { get; set; }
-        private char FirstLetterOfName { get; set; }
-
-        [Parameter]
-        public string ImageDataUrl { get; set; }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        if (firstRender)
         {
-            if (firstRender)
-            {
-                await LoadDataAsync();
-            }
+            await LoadDataAsync();
+        }
+    }
+
+    private async Task LoadDataAsync()
+    {
+        ClaimsPrincipal user = await StateProvider.GetCurrentUserAsync();
+
+        Email = user.GetEmail().Replace(".com", string.Empty);
+        FirstName = user.GetFirstName();
+        SecondName = user.GetLastName();
+        if (FirstName.Length > 0)
+        {
+            FirstLetterOfName = FirstName[0];
         }
 
-        private async Task LoadDataAsync()
+        var imageResponse = await LocalStorage.GetItemAsync<string>(StorageConstants.Local.UserImageUrl);
+        if (!string.IsNullOrEmpty(imageResponse))
         {
-            var state = await _stateProvider.GetAuthenticationStateAsync();
-            var user = state.User;
-
-            this.Email = user.GetEmail().Replace(".com", string.Empty);
-            this.FirstName = user.GetFirstName();
-            this.SecondName = user.GetLastName();
-            if (this.FirstName.Length > 0)
-            {
-                FirstLetterOfName = FirstName[0];
-            }
-            var UserId = user.GetUserId();
-            var imageResponse = await _localStorage.GetItemAsync<string>(StorageConstants.Local.UserImageURL);
-            if (!string.IsNullOrEmpty(imageResponse))
-            {
-                ImageDataUrl = imageResponse;
-            }
-            StateHasChanged();
+            ImageDataUrl = imageResponse;
         }
+
+        StateHasChanged();
     }
 }

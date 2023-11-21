@@ -1,20 +1,19 @@
-﻿using BlazorHero.CleanArchitecture.Application.Specifications.Base;
-using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+using CleanBlazor.Application.Specifications.Base;
+using CleanBlazor.Domain.Entities.Catalog;
 
-namespace BlazorHero.CleanArchitecture.Application.Specifications.Catalog
+namespace CleanBlazor.Application.Specifications.Catalog;
+
+public class BrandFilterSpecification : BaseSpecification<Brand>
 {
-    public class BrandFilterSpecification : HeroSpecification<Brand>
+    public BrandFilterSpecification(string searchString)
     {
-        public BrandFilterSpecification(string searchString)
+        if (!string.IsNullOrEmpty(searchString))
         {
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                Criteria = p => p.Name.Contains(searchString) || p.Description.Contains(searchString);
-            }
-            else
-            {
-                Criteria = p => true;
-            }
+            Criteria = p => p.Name.Contains(searchString) || p.Description.Contains(searchString);
+        }
+        else
+        {
+            Criteria = p => true;
         }
     }
 }

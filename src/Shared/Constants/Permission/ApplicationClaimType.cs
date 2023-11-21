@@ -1,7 +1,6 @@
-﻿namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
+namespace CleanBlazor.Shared.Constants.Permission;
+
+public static class ApplicationClaimTypes
 {
-    public static class ApplicationClaimTypes
-    {
-        public const string Permission = "Permission";
-    }
+    public const string Permission = "Permission";
 }

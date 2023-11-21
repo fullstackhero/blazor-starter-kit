@@ -1,28 +1,16 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
-using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
+using CleanBlazor.Domain.Entities.Misc;
+using CleanBlazor.Domain.Repositories;
+using CleanBlazor.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
+namespace CleanBlazor.Infrastructure.Repositories;
+
+internal sealed class DocumentRepository : GenericRepository<Document, int>, IDocumentRepository
 {
-    public class DocumentRepository : IDocumentRepository
+    public DocumentRepository(ApplicationDbContext dbContext) : base(dbContext)
     {
-        private readonly IRepositoryAsync<Document, int> _repository;
-
-        public DocumentRepository(IRepositoryAsync<Document, int> repository)
-        {
-            _repository = repository;
-        }
-
-        public async Task<bool> IsDocumentTypeUsed(int documentTypeId)
-        {
-            return await _repository.Entities.AnyAsync(b => b.DocumentTypeId == documentTypeId);
-        }
-
-        public async Task<bool> IsDocumentExtendedAttributeUsed(int documentExtendedAttributeId)
-        {
-            return await _repository.Entities.AnyAsync(b => b.ExtendedAttributes.Any(x => x.Id == documentExtendedAttributeId));
-        }
     }
+
+    public async Task<bool> IsDocumentTypeUsedAsync(int documentTypeId) =>
+        await Entities.AnyAsync(b => b.DocumentTypeId == documentTypeId);
 }

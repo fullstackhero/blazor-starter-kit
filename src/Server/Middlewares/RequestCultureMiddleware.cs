@@ -1,42 +1,32 @@
-﻿using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using System.Globalization;
+using Microsoft.Extensions.Primitives;
 
-namespace BlazorHero.CleanArchitecture.Server.Middlewares
+namespace CleanBlazor.Server.Middlewares;
+
+public class RequestCultureMiddleware
 {
-    public class RequestCultureMiddleware
+    private readonly RequestDelegate _next;
+
+    public RequestCultureMiddleware(RequestDelegate next) => _next = next;
+
+    public async Task InvokeAsync(HttpContext context)
     {
-        private readonly RequestDelegate _next;
-
-        public RequestCultureMiddleware(RequestDelegate next)
+        StringValues cultureQuery = context.Request.Query["culture"];
+        if (!string.IsNullOrWhiteSpace(cultureQuery))
         {
-            _next = next;
+            var culture = new CultureInfo(cultureQuery);
+
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
+        }
+        else if (context.Request.Headers.TryGetValue("Accept-Language", out StringValues header) && header.Any())
+        {
+            var culture = new CultureInfo(header[0]!.Split(',')[0].Trim());
+
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
         }
 
-        public async Task InvokeAsync(HttpContext context)
-        {
-            var cultureQuery = context.Request.Query["culture"];
-            if (!string.IsNullOrWhiteSpace(cultureQuery))
-            {
-                var culture = new CultureInfo(cultureQuery);
-
-                CultureInfo.CurrentCulture = culture;
-                CultureInfo.CurrentUICulture = culture;
-            }
-            else if (context.Request.Headers.ContainsKey("Accept-Language"))
-            {
-                var cultureHeader = context.Request.Headers["Accept-Language"];
-                if (cultureHeader.Any())
-                {
-                    var culture = new CultureInfo(cultureHeader.First().Split(',').First().Trim());
-
-                    CultureInfo.CurrentCulture = culture;
-                    CultureInfo.CurrentUICulture = culture;
-                }
-            }
-
-            await _next(context);
-        }
+        await _next(context);
     }
 }

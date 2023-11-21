@@ -1,17 +1,16 @@
 ﻿@inherits LayoutComponentBase
-@inject Microsoft.Extensions.Localization.IStringLocalizer<MainLayout> _localizer
 
 <MudRTLProvider RightToLeft="@_rightToLeft">
-    <audio id="notification" src="/media/notification.mp3"/>
-    <MudThemeProvider Theme="_currentTheme" />
-    <MudDialogProvider />
-    <MudSnackbarProvider />
+    <audio id="notification" src="/media/notification.mp3"></audio>
+    <MudThemeProvider Theme="_currentTheme"/>
+    <MudDialogProvider/>
+    <MudSnackbarProvider/>
     <AuthorizeView>
         <NotAuthorized>
             <MudAppBar Elevation="4" Color="Color.Primary">
-                <MudSpacer />
-                <LanguageSelector />
-                    <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
+                <MudSpacer/>
+                <LanguageSelector/>
+                <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@(_ => DarkMode())"/>
             </MudAppBar>
 
             <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center" Style="height: 100vh;">

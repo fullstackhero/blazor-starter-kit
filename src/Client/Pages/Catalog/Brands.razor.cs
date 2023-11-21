@@ -1,208 +1,193 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Brands.Queries.GetAll;
-using BlazorHero.CleanArchitecture.Client.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+using System.Security.Claims;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Client.Shared.Components;
+using CleanBlazor.Client.Shared.Dialogs;
+using CleanBlazor.Contracts;
+using CleanBlazor.Contracts.Catalog.Brands;
+using CleanBlazor.Shared.Constants.Application;
+using CleanBlazor.Shared.Constants.Permission;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Wrapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
-using MudBlazor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Brand;
-using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.JSInterop;
-using BlazorHero.CleanArchitecture.Application.Features.Brands.Commands.Import;
-using BlazorHero.CleanArchitecture.Shared.Wrapper;
-using BlazorHero.CleanArchitecture.Application.Requests;
-using BlazorHero.CleanArchitecture.Client.Shared.Components;
+using MudBlazor;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
+namespace CleanBlazor.Client.Pages.Catalog;
+
+public partial class Brands
 {
-    public partial class Brands
+    private bool _bordered;
+    private GetAllBrandsResponse _brand = new();
+
+    private List<GetAllBrandsResponse> _brandList = new();
+    private bool _canCreateBrands;
+    private bool _canDeleteBrands;
+    private bool _canEditBrands;
+    private bool _canExportBrands;
+    private bool _canImportBrands;
+    private bool _canSearchBrands;
+
+    private ClaimsPrincipal _currentUser;
+    private bool _dense;
+    private bool _loaded;
+    private string _searchString = "";
+    private bool _striped = true;
+
+    [CascadingParameter] private HubConnection HubConnection { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        [Inject] private IBrandManager BrandManager { get; set; }
+        _currentUser = await StateProvider.GetCurrentUserAsync();
+        _canCreateBrands = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Create))
+            .Succeeded;
+        _canEditBrands = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Edit)).Succeeded;
+        _canDeleteBrands = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Delete))
+            .Succeeded;
+        _canExportBrands = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Export))
+            .Succeeded;
+        _canSearchBrands = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Search))
+            .Succeeded;
+        _canImportBrands = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Import))
+            .Succeeded;
 
-        [CascadingParameter] private HubConnection HubConnection { get; set; }
+        await GetBrandsAsync();
+        _loaded = true;
 
-        private List<GetAllBrandsResponse> _brandList = new();
-        private GetAllBrandsResponse _brand = new();
-        private string _searchString = "";
-        private bool _dense = false;
-        private bool _striped = true;
-        private bool _bordered = false;
-
-        private ClaimsPrincipal _currentUser;
-        private bool _canCreateBrands;
-        private bool _canEditBrands;
-        private bool _canDeleteBrands;
-        private bool _canExportBrands;
-        private bool _canSearchBrands;
-        private bool _canImportBrands;
-        private bool _loaded;
-
-        protected override async Task OnInitializedAsync()
+        HubConnection = HubConnection.TryInitialize(NavigationManager, LocalStorage);
+        if (HubConnection.State == HubConnectionState.Disconnected)
         {
-            _currentUser = await _authenticationManager.CurrentUser();
-            _canCreateBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Create)).Succeeded;
-            _canEditBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Edit)).Succeeded;
-            _canDeleteBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Delete)).Succeeded;
-            _canExportBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Export)).Succeeded;
-            _canSearchBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Search)).Succeeded;
-            _canImportBrands = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Brands.Import)).Succeeded;
-
-            await GetBrandsAsync();
-            _loaded = true;
-
-            HubConnection = HubConnection.TryInitialize(_navigationManager, _localStorage);
-            if (HubConnection.State == HubConnectionState.Disconnected)
-            {
-                await HubConnection.StartAsync();
-            }
+            await HubConnection.StartAsync();
         }
+    }
 
-        private async Task GetBrandsAsync()
-        {
-            var response = await BrandManager.GetAllAsync();
-            if (response.Succeeded)
-            {
-                _brandList = response.Data.ToList();
-            }
-            else
-            {
-                foreach (var message in response.Messages)
-                {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
-        }
+    private async Task GetBrandsAsync() =>
+        await HttpClient.GetFromJsonAsync<Result<List<GetAllBrandsResponse>>>(BrandsEndpoints.GetAll)
+            .Match((_, brands) => _brandList = brands.ToList(),
+                errors => SnackBar.Error(errors));
 
-        private async Task Delete(int id)
+    private async Task Delete(int id)
+    {
+        string deleteContent = Localizer["Delete Content"];
+        var parameters = new DialogParameters
         {
-            string deleteContent = _localizer["Delete Content"];
-            var parameters = new DialogParameters
-            {
-                { nameof(Shared.Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id) }
-            };
-            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(_localizer["Delete"], parameters, options);
-            var result = await dialog.Result;
-            if (!result.Cancelled)
-            {
-                var response = await BrandManager.DeleteAsync(id);
-                if (response.Succeeded)
-                {
-                    await Reset();
-                    await HubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
-                    _snackBar.Add(response.Messages[0], Severity.Success);
-                }
-                else
-                {
-                    await Reset();
-                    foreach (var message in response.Messages)
+            { nameof(DeleteConfirmation.ContentText), string.Format(deleteContent, id) }
+        };
+        var options = new DialogOptions
+        {
+            CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true
+        };
+        IDialogReference dialog = await DialogService.ShowAsync<DeleteConfirmation>(Localizer["Delete"], parameters, options);
+        DialogResult dialogResult = await dialog.Result;
+        if (!dialogResult.Canceled)
+        {
+            await HttpClient.DeleteFromJsonAsync<Result<int>>(BrandsEndpoints.DeleteById(id))
+                .Match(async (message, _) =>
                     {
-                        _snackBar.Add(message, Severity.Error);
-                    }
-                }
-            }
-        }
+                        await HubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
+                        SnackBar.Success(message);
+                    },
+                    errors => SnackBar.Error(errors));
 
-        private async Task ExportToExcel()
-        {
-            var response = await BrandManager.ExportToExcelAsync(_searchString);
-            if (response.Succeeded)
-            {
-                await _jsRuntime.InvokeVoidAsync("Download", new
-                {
-                    ByteArray = response.Data,
-                    FileName = $"{nameof(Brands).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                    MimeType = ApplicationConstants.MimeTypes.OpenXml
-                });
-                _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
-                    ? _localizer["Brands exported"]
-                    : _localizer["Filtered Brands exported"], Severity.Success);
-            }
-            else
-            {
-                foreach (var message in response.Messages)
-                {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
+            await Reset();
         }
+    }
 
-        private async Task InvokeModal(int id = 0)
-        {
-            var parameters = new DialogParameters();
-            if (id != 0)
-            {
-                _brand = _brandList.FirstOrDefault(c => c.Id == id);
-                if (_brand != null)
+    private async Task ExportToExcel()
+    {
+        var endpoint = string.IsNullOrWhiteSpace(_searchString)
+            ? BrandsEndpoints.Export
+            : BrandsEndpoints.ExportFiltered(_searchString);
+        await HttpClient.GetFromJsonAsync<Result<string>>(endpoint)
+            .Match(async (_, base64data) =>
                 {
-                    parameters.Add(nameof(AddEditBrandModal.AddEditBrandModel), new AddEditBrandCommand
+                    await JsRuntime.InvokeVoidAsync("Download",
+                        new
+                        {
+                            ByteArray = base64data,
+                            FileName = $"{nameof(Brands).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                            MimeType = ApplicationConstants.MimeTypes.OpenXml
+                        });
+                    SnackBar.Success(string.IsNullOrWhiteSpace(_searchString)
+                        ? Localizer["Brands exported"]
+                        : Localizer["Filtered Brands exported"]);
+                },
+                errors => SnackBar.Error(errors));
+    }
+
+    private async Task InvokeModal(int id = 0)
+    {
+        var parameters = new DialogParameters();
+        if (id != 0)
+        {
+            _brand = _brandList.FirstOrDefault(c => c.Id == id);
+            if (_brand != null)
+            {
+                parameters.Add(nameof(AddEditBrandModal.AddEditBrandRequestModel),
+                    new AddEditBrandRequest
                     {
-                        Id = _brand.Id,
-                        Name = _brand.Name,
-                        Description = _brand.Description,
-                        Tax = _brand.Tax
+                        Id = _brand.Id, Name = _brand.Name, Description = _brand.Description, Tax = _brand.Tax
                     });
-                }
-            }
-            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<AddEditBrandModal>(id == 0 ? _localizer["Create"] : _localizer["Edit"], parameters, options);
-            var result = await dialog.Result;
-            if (!result.Cancelled)
-            {
-                await Reset();
             }
         }
 
-        private async Task<IResult<int>> ImportExcel(UploadRequest uploadFile)
+        var options = new DialogOptions
         {
-            var request = new ImportBrandsCommand { UploadRequest = uploadFile };
-            var result = await BrandManager.ImportAsync(request);
-            return result;
+            CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true
+        };
+        IDialogReference dialog =
+            await DialogService.ShowAsync<AddEditBrandModal>(id == 0 ? Localizer["Create"] : Localizer["Edit"],
+                parameters,
+                options);
+        DialogResult result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            await Reset();
+        }
+    }
+
+    private async Task<Result<int>> ImportExcel(UploadRequest uploadFile) =>
+        await HttpClient.PostAsJsonAsync<UploadRequest, Result<int>>(BrandsEndpoints.Import, uploadFile);
+
+    private async Task InvokeImportModal()
+    {
+        var parameters = new DialogParameters
+        {
+            { nameof(ImportExcelModal.ModelName), Localizer["Brands"].ToString() }
+        };
+        Func<UploadRequest, Task<Result<int>>> importExcel = ImportExcel;
+        parameters.Add(nameof(ImportExcelModal.OnSaved), importExcel);
+        var options = new DialogOptions
+        {
+            CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true
+        };
+        IDialogReference dialog = await DialogService.ShowAsync<ImportExcelModal>(Localizer["Import"], parameters, options);
+        DialogResult result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            await Reset();
+        }
+    }
+
+    private async Task Reset()
+    {
+        _brand = new GetAllBrandsResponse();
+        await GetBrandsAsync();
+    }
+
+    private bool Search(GetAllBrandsResponse brand)
+    {
+        if (string.IsNullOrWhiteSpace(_searchString))
+        {
+            return true;
         }
 
-        private async Task InvokeImportModal()
+        if (brand.Name?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
         {
-            var parameters = new DialogParameters
-            {
-                { nameof(ImportExcelModal.ModelName), _localizer["Brands"].ToString() }
-            };
-            Func<UploadRequest, Task<IResult<int>>> importExcel = ImportExcel;
-            parameters.Add(nameof(ImportExcelModal.OnSaved), importExcel);
-            var options = new DialogOptions
-            {
-                CloseButton = true,
-                MaxWidth = MaxWidth.Small,
-                FullWidth = true,
-                DisableBackdropClick = true
-            };
-            var dialog = _dialogService.Show<ImportExcelModal>(_localizer["Import"], parameters, options);
-            var result = await dialog.Result;
-            if (!result.Cancelled)
-            {
-                await Reset();
-            }
+            return true;
         }
 
-        private async Task Reset()
-        {
-            _brand = new GetAllBrandsResponse();
-            await GetBrandsAsync();
-        }
-
-        private bool Search(GetAllBrandsResponse brand)
-        {
-            if (string.IsNullOrWhiteSpace(_searchString)) return true;
-            if (brand.Name?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-            {
-                return true;
-            }
-            return brand.Description?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true;
-        }
+        return brand.Description?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true;
     }
 }

@@ -1,46 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
-namespace BlazorHero.CleanArchitecture.Shared.Wrapper
+namespace CleanBlazor.Shared.Wrapper;
+
+public class PaginatedResult<T> : Result
 {
-    public class PaginatedResult<T> : Result
+    /// <summary>
+    /// Parameterless constructor is required for deserialization.
+    /// </summary>
+    [JsonConstructor]
+    public PaginatedResult() { }
+
+    private PaginatedResult(
+        bool isSuccess,
+        List<T> data = default,
+        string successMessage = null,
+        IEnumerable<string> errorMessages = null,
+        int count = 0,
+        int page = 1,
+        int pageSize = 10) : base(isSuccess, successMessage, errorMessages)
     {
-        public PaginatedResult(List<T> data)
-        {
-            Data = data;
-        }
-
-        public List<T> Data { get; set; }
-
-        internal PaginatedResult(bool succeeded, List<T> data = default, List<string> messages = null, int count = 0, int page = 1, int pageSize = 10)
-        {
-            Data = data;
-            CurrentPage = page;
-            Succeeded = succeeded;
-            PageSize = pageSize;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-            TotalCount = count;
-        }
-
-        public static PaginatedResult<T> Failure(List<string> messages)
-        {
-            return new PaginatedResult<T>(false, default, messages);
-        }
-
-        public static PaginatedResult<T> Success(List<T> data, int count, int page, int pageSize)
-        {
-            return new PaginatedResult<T>(true, data, null, count, page, pageSize);
-        }
-
-        public int CurrentPage { get; set; }
-
-        public int TotalPages { get; set; }
-
-        public int TotalCount { get; set; }
-        public int PageSize { get; set; }
-
-        public bool HasPreviousPage => CurrentPage > 1;
-
-        public bool HasNextPage => CurrentPage < TotalPages;
+        Data = data;
+        CurrentPage = page;
+        PageSize = pageSize;
+        TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+        TotalCount = count;
     }
+
+    [JsonInclude]
+    public List<T> Data { get; private set; }
+
+    [JsonInclude]
+    public int CurrentPage { get; private set; }
+
+    [JsonInclude]
+    public int TotalPages { get; private set; }
+
+    [JsonInclude]
+    public int TotalCount { get; private set; }
+
+    [JsonInclude]
+    public int PageSize { get; private set; }
+
+    public bool HasPreviousPage => CurrentPage > 1;
+
+    public bool HasNextPage => CurrentPage < TotalPages;
+
+    public static PaginatedResult<T> Ok(List<T> data, int count, int page, int pageSize) =>
+        new(true, data, null, null, count, page, pageSize);
 }

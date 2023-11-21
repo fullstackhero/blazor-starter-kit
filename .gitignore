@@ -344,3 +344,6 @@ healthchecksdb
 
 # Project's xml-files
 *.xml
+
+# Environment file
+.env

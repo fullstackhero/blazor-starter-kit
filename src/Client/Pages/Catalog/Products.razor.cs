@@ -1,137 +1,141 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Products.Queries.GetAllPaged;
-using BlazorHero.CleanArchitecture.Application.Requests.Catalog;
-using BlazorHero.CleanArchitecture.Client.Extensions;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+using System.Security.Claims;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Client.Shared.Dialogs;
+using CleanBlazor.Contracts.Catalog.Products;
+using CleanBlazor.Shared.Constants.Application;
+using CleanBlazor.Shared.Constants.Permission;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Wrapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.JSInterop;
 using MudBlazor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Features.Products.Commands.AddEdit;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Product;
-using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
-using Microsoft.AspNetCore.Authorization;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
+namespace CleanBlazor.Client.Pages.Catalog;
+
+public partial class Products
 {
-    public partial class Products
+    private bool _bordered;
+    private bool _canCreateProducts;
+    private bool _canDeleteProducts;
+    private bool _canEditProducts;
+    private bool _canExportProducts;
+    private bool _canSearchProducts;
+    private int _currentPage;
+
+    private ClaimsPrincipal _currentUser;
+    private bool _dense;
+    private bool _loaded;
+
+    private IEnumerable<GetAllPagedProductsResponse> _pagedData;
+    private string _searchString = "";
+    private bool _striped = true;
+    private MudTable<GetAllPagedProductsResponse> _table;
+    private int _totalItems;
+
+    [CascadingParameter] private HubConnection HubConnection { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        [Inject] private IProductManager ProductManager { get; set; }
+        _currentUser = await StateProvider.GetCurrentUserAsync();
+        _canCreateProducts = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Create))
+            .Succeeded;
+        _canEditProducts = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Edit))
+            .Succeeded;
+        _canDeleteProducts = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Delete))
+            .Succeeded;
+        _canExportProducts = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Export))
+            .Succeeded;
+        _canSearchProducts = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Search))
+            .Succeeded;
 
-        [CascadingParameter] private HubConnection HubConnection { get; set; }
-
-        private IEnumerable<GetAllPagedProductsResponse> _pagedData;
-        private MudTable<GetAllPagedProductsResponse> _table;
-        private int _totalItems;
-        private int _currentPage;
-        private string _searchString = "";
-        private bool _dense = false;
-        private bool _striped = true;
-        private bool _bordered = false;
-
-        private ClaimsPrincipal _currentUser;
-        private bool _canCreateProducts;
-        private bool _canEditProducts;
-        private bool _canDeleteProducts;
-        private bool _canExportProducts;
-        private bool _canSearchProducts;
-        private bool _loaded;
-
-        protected override async Task OnInitializedAsync()
+        _loaded = true;
+        HubConnection = HubConnection.TryInitialize(NavigationManager, LocalStorage);
+        if (HubConnection.State == HubConnectionState.Disconnected)
         {
-            _currentUser = await _authenticationManager.CurrentUser();
-            _canCreateProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Create)).Succeeded;
-            _canEditProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Edit)).Succeeded;
-            _canDeleteProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Delete)).Succeeded;
-            _canExportProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Export)).Succeeded;
-            _canSearchProducts = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Products.Search)).Succeeded;
+            await HubConnection.StartAsync();
+        }
+    }
 
-            _loaded = true;
-            HubConnection = HubConnection.TryInitialize(_navigationManager, _localStorage);
-            if (HubConnection.State == HubConnectionState.Disconnected)
-            {
-                await HubConnection.StartAsync();
-            }
+    private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
+    {
+        if (!string.IsNullOrWhiteSpace(_searchString))
+        {
+            state.Page = 0;
         }
 
-        private async Task<TableData<GetAllPagedProductsResponse>> ServerReload(TableState state)
+        await LoadData(state.Page, state.PageSize, state);
+        return new TableData<GetAllPagedProductsResponse> { TotalItems = _totalItems, Items = _pagedData };
+    }
+
+    private async Task LoadData(int pageNumber, int pageSize, TableState state)
+    {
+        string[] orderings = null;
+        if (!string.IsNullOrEmpty(state.SortLabel))
         {
-            if (!string.IsNullOrWhiteSpace(_searchString))
-            {
-                state.Page = 0;
-            }
-            await LoadData(state.Page, state.PageSize, state);
-            return new TableData<GetAllPagedProductsResponse> { TotalItems = _totalItems, Items = _pagedData };
+            orderings = state.SortDirection != SortDirection.None
+                ? new[] { $"{state.SortLabel} {state.SortDirection}" }
+                : new[] { $"{state.SortLabel}" };
         }
 
-        private async Task LoadData(int pageNumber, int pageSize, TableState state)
+        var request = new GetAllPagedProductsRequest
         {
-            string[] orderings = null;
-            if (!string.IsNullOrEmpty(state.SortLabel))
-            {
-                orderings = state.SortDirection != SortDirection.None ? new[] {$"{state.SortLabel} {state.SortDirection}"} : new[] {$"{state.SortLabel}"};
-            }
-
-            var request = new GetAllPagedProductsRequest { PageSize = pageSize, PageNumber = pageNumber + 1, SearchString = _searchString, Orderby = orderings };
-            var response = await ProductManager.GetProductsAsync(request);
-            if (response.Succeeded)
-            {
-                _totalItems = response.TotalCount;
-                _currentPage = response.CurrentPage;
-                _pagedData = response.Data;
-            }
-            else
-            {
-                foreach (var message in response.Messages)
+            PageSize = pageSize, PageNumber = pageNumber + 1, SearchString = _searchString, OrderBy = orderings
+        };
+        var endpoint = ProductsEndpoints.GetAllPaged(
+            request.PageNumber,
+            request.PageSize,
+            request.SearchString,
+            request.OrderBy);
+        await HttpClient.GetFromJsonAsync<PaginatedResult<GetAllPagedProductsResponse>>(endpoint)
+            .Match((_, result) =>
                 {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
-        }
+                    _totalItems = result.TotalCount;
+                    _currentPage = result.CurrentPage;
+                    _pagedData = result.Data;
+                },
+                errors => SnackBar.Error(errors));
+    }
 
-        private void OnSearch(string text)
-        {
-            _searchString = text;
-            _table.ReloadServerData();
-        }
+    private void OnSearch(string text)
+    {
+        _searchString = text;
+        _table.ReloadServerData();
+    }
 
-        private async Task ExportToExcel()
-        {
-            var response = await ProductManager.ExportToExcelAsync(_searchString);
-            if (response.Succeeded)
-            {
-                await _jsRuntime.InvokeVoidAsync("Download", new
+    private async Task ExportToExcel()
+    {
+        var endpoint = string.IsNullOrWhiteSpace(_searchString)
+            ? ProductsEndpoints.Export
+            : ProductsEndpoints.ExportFiltered(_searchString);
+        await HttpClient.GetFromJsonAsync<Result<string>>(endpoint)
+            .Match(async (_, base64Data) =>
                 {
-                    ByteArray = response.Data,
-                    FileName = $"{nameof(Products).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
-                    MimeType = ApplicationConstants.MimeTypes.OpenXml
-                });
-                _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
-                    ? _localizer["Products exported"]
-                    : _localizer["Filtered Products exported"], Severity.Success);
-            }
-            else
-            {
-                foreach (var message in response.Messages)
-                {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
-        }
+                    await JsRuntime.InvokeVoidAsync("Download",
+                        new
+                        {
+                            ByteArray = base64Data,
+                            FileName = $"{nameof(Products).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
+                            MimeType = ApplicationConstants.MimeTypes.OpenXml
+                        });
+                    SnackBar.Success(string.IsNullOrWhiteSpace(_searchString)
+                        ? Localizer["Products exported"]
+                        : Localizer["Filtered Products exported"]);
+                },
+                errors => SnackBar.Error(errors));
+    }
 
-        private async Task InvokeModal(int id = 0)
+    private async Task InvokeModal(int id = 0)
+    {
+        var parameters = new DialogParameters();
+        if (id != 0)
         {
-            var parameters = new DialogParameters();
-            if (id != 0)
+            GetAllPagedProductsResponse product = _pagedData.FirstOrDefault(c => c.Id == id);
+            if (product != null)
             {
-                var product = _pagedData.FirstOrDefault(c => c.Id == id);
-                if (product != null)
-                {
-                    parameters.Add(nameof(AddEditProductModal.AddEditProductModel), new AddEditProductCommand
+                parameters.Add(nameof(AddEditProductModal.AddEditProductModel),
+                    new AddEditProductRequest
                     {
                         Id = product.Id,
                         Name = product.Name,
@@ -140,45 +144,48 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
                         BrandId = product.BrandId,
                         Barcode = product.Barcode
                     });
-                }
-            }
-            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<AddEditProductModal>(id == 0 ? _localizer["Create"] : _localizer["Edit"], parameters, options);
-            var result = await dialog.Result;
-            if (!result.Cancelled)
-            {
-                OnSearch("");
             }
         }
 
-        private async Task Delete(int id)
+        var options = new DialogOptions
         {
-            string deleteContent = _localizer["Delete Content"];
-            var parameters = new DialogParameters
-            {
-                {nameof(Shared.Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
-            };
-            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Shared.Dialogs.DeleteConfirmation>(_localizer["Delete"], parameters, options);
-            var result = await dialog.Result;
-            if (!result.Cancelled)
-            {
-                var response = await ProductManager.DeleteAsync(id);
-                if (response.Succeeded)
-                {
-                    OnSearch("");
-                    await HubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
-                    _snackBar.Add(response.Messages[0], Severity.Success);
-                }
-                else
-                {
-                    OnSearch("");
-                    foreach (var message in response.Messages)
+            CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true
+        };
+        IDialogReference dialog =
+            await DialogService.ShowAsync<AddEditProductModal>(id == 0 ? Localizer["Create"] : Localizer["Edit"],
+                parameters,
+                options);
+        DialogResult result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            OnSearch("");
+        }
+    }
+
+    private async Task Delete(int id)
+    {
+        string deleteContent = Localizer["Delete Content"];
+        var parameters = new DialogParameters
+        {
+            { nameof(DeleteConfirmation.ContentText), string.Format(deleteContent, id) }
+        };
+        var options = new DialogOptions
+        {
+            CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true
+        };
+        IDialogReference dialog =
+            await DialogService.ShowAsync<DeleteConfirmation>(Localizer["Delete"], parameters, options);
+        DialogResult dialogResult = await dialog.Result;
+        if (!dialogResult.Canceled)
+        {
+            await HttpClient.DeleteFromJsonAsync<Result<int>>(ProductsEndpoints.DeleteById(id))
+                .Match(async (message, _) =>
                     {
-                        _snackBar.Add(message, Severity.Error);
-                    }
-                }
-            }
+                        await HubConnection.SendAsync(ApplicationConstants.SignalR.SendUpdateDashboard);
+                        SnackBar.Success(message);
+                    },
+                    errors => SnackBar.Error(errors));
+            OnSearch("");
         }
     }
 }

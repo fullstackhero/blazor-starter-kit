@@ -1,101 +1,107 @@
-﻿using System.Globalization;
-using System.Linq;
-using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
-using BlazorHero.CleanArchitecture.Server.Hubs;
-using BlazorHero.CleanArchitecture.Server.Middlewares;
-using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+using System.Globalization;
+using CleanBlazor.Application.Abstractions.Persistence;
+using CleanBlazor.Application.Configuration;
+using CleanBlazor.Server.Configuration;
+using CleanBlazor.Server.Hubs;
+using CleanBlazor.Server.Middlewares;
+using CleanBlazor.Shared.Constants.Application;
+using CleanBlazor.Shared.Constants.Localization;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
-using BlazorHero.CleanArchitecture.Application.Configurations;
-using Microsoft.Extensions.Configuration;
+using Serilog;
 
-namespace BlazorHero.CleanArchitecture.Server.Extensions
+namespace CleanBlazor.Server.Extensions;
+
+internal static class ApplicationBuilderExtensions
 {
-    internal static class ApplicationBuilderExtensions
+    internal static IApplicationBuilder UseExceptionHandling(
+        this IApplicationBuilder app,
+        IWebHostEnvironment env)
     {
-        internal static IApplicationBuilder UseExceptionHandling(
-            this IApplicationBuilder app,
-            IWebHostEnvironment env)
+        if (env.IsDevelopment())
         {
-            if (env.IsDevelopment())
+            app.UseDeveloperExceptionPage();
+            app.UseWebAssemblyDebugging();
+        }
+
+        return app;
+    }
+
+    internal static IApplicationBuilder UseForwarding(this IApplicationBuilder app, IConfiguration configuration)
+    {
+        var config = configuration.GetSection(nameof(AppConfiguration)).Get<AppConfiguration>();
+        if (config.BehindSslProxy)
+        {
+            app.UseCors();
+            app.UseForwardedHeaders();
+        }
+
+        return app;
+    }
+
+    internal static void ConfigureSwagger(this IApplicationBuilder app)
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", typeof(Program).Assembly.GetName().Name);
+            options.RoutePrefix = "swagger";
+            options.DisplayRequestDuration();
+        });
+    }
+
+    internal static IApplicationBuilder UseEndpoints(this IApplicationBuilder app)
+        => app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapRazorPages();
+            endpoints.MapControllers();
+            endpoints.MapFallbackToFile("index.html");
+            endpoints.MapHub<SignalRHub>(ApplicationConstants.SignalR.HubUrl);
+        });
+
+    internal static IApplicationBuilder UseServerCultureFromPreferences(
+        this IApplicationBuilder app,
+        IServiceProvider serviceProvider)
+    {
+        var storageService = serviceProvider.GetService<ServerPreferenceManager>();
+        if (storageService != null)
+        {
+            // TODO - should implement ServerStorageProvider to work correctly!
+            CultureInfo culture;
+            if (storageService.GetPreference().GetAwaiter().GetResult() is ServerPreference preference)
             {
-                app.UseDeveloperExceptionPage();
-                app.UseWebAssemblyDebugging();
+                culture = new CultureInfo(preference.LanguageCode);
+            }
+            else
+            {
+                culture = new CultureInfo(LocalizationConstants.DefaultLanguage.Code);
             }
 
-            return app;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
+
+            Log.Information("Configured {Culture} as server culture", culture.Name);
         }
 
-        internal static IApplicationBuilder UseForwarding(this IApplicationBuilder app, IConfiguration configuration)
+        return app;
+    }
+
+    internal static IApplicationBuilder UseRequestLocalizationByCulture(this IApplicationBuilder app)
+    {
+        CultureInfo[] supportedCultures =
+            LocalizationConstants.SupportedLanguages.Select(l => new CultureInfo(l.Code)).ToArray();
+
+        app.UseRequestLocalization(options =>
         {
-            AppConfiguration config = GetApplicationSettings(configuration);
-            if (config.BehindSSLProxy)
-            {
-                app.UseCors();
-                app.UseForwardedHeaders();
-            }
-            
-            return app;
-        }
+            options.SupportedUICultures = supportedCultures;
+            options.SupportedCultures = supportedCultures;
+            options.DefaultRequestCulture = new RequestCulture(LocalizationConstants.DefaultLanguage.Code);
+            options.ApplyCurrentCultureToResponseHeaders = true;
+        });
 
-        internal static void ConfigureSwagger(this IApplicationBuilder app)
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", typeof(Program).Assembly.GetName().Name);
-                options.RoutePrefix = "swagger";
-                options.DisplayRequestDuration();
-            });
-        }
+        app.UseMiddleware<RequestCultureMiddleware>();
 
-        internal static IApplicationBuilder UseEndpoints(this IApplicationBuilder app)
-            => app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-                endpoints.MapControllers();
-                endpoints.MapFallbackToFile("index.html");
-                endpoints.MapHub<SignalRHub>(ApplicationConstants.SignalR.HubUrl);
-            });
-
-        internal static IApplicationBuilder UseRequestLocalizationByCulture(this IApplicationBuilder app)
-        {
-            var supportedCultures = LocalizationConstants.SupportedLanguages.Select(l => new CultureInfo(l.Code)).ToArray();
-            app.UseRequestLocalization(options =>
-            {
-                options.SupportedUICultures = supportedCultures;
-                options.SupportedCultures = supportedCultures;
-                options.DefaultRequestCulture = new RequestCulture(supportedCultures.First());
-                options.ApplyCurrentCultureToResponseHeaders = true;
-            });
-
-            app.UseMiddleware<RequestCultureMiddleware>();
-
-            return app;
-        }
-
-        internal static IApplicationBuilder Initialize(this IApplicationBuilder app, Microsoft.Extensions.Configuration.IConfiguration _configuration)
-        {
-            using var serviceScope = app.ApplicationServices.CreateScope();
-
-            var initializers = serviceScope.ServiceProvider.GetServices<IDatabaseSeeder>();
-
-            foreach (var initializer in initializers)
-            {
-                initializer.Initialize();
-            }
-
-            return app;
-        }
-
-        private static AppConfiguration GetApplicationSettings(IConfiguration configuration)
-        {
-            var applicationSettingsConfiguration = configuration.GetSection(nameof(AppConfiguration));
-            return applicationSettingsConfiguration.Get<AppConfiguration>();
-        }
+        return app;
     }
 }

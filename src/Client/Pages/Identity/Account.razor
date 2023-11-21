@@ -1,12 +1,13 @@
 ﻿@page "/account"
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Account> localizer
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Account> Localizer
 
-<HeroTitle Title="@localizer["Account"]" Description="@localizer["Manage your account"]" />
+<HeroTitle Title="@Localizer["Account"]" Description="@Localizer["Manage your account"]"/>
 <MudTabs Elevation="25" Color="Color.Transparent" Rounded="true" PanelClass="mt-6">
-    <MudTabPanel Text="@localizer["Profile"]">
-        <Profile />
+    <MudTabPanel Text="@Localizer["Profile"]">
+        <Profile/>
     </MudTabPanel>
-    <MudTabPanel Text="@localizer["Security"]">
-        <Security />
+    <MudTabPanel Text="@Localizer["Security"]">
+        <Security/>
     </MudTabPanel>
 </MudTabs>

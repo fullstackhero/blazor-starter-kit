@@ -1,41 +1,42 @@
-﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<RoleModal> _localizer
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<RoleModal> Localizer
 
 <EditForm Model="@RoleModel" OnValidSubmit="SaveAsync">
-    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <FluentValidationValidator @ref="_fluentValidationValidator"/>
     <MudDialog>
         <TitleContent>
             @{
                 if (RoleModel.Id == null)
                 {
                     <MudText Typo="Typo.h6">
-                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
-                        @_localizer["Add Role"]
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1"/>
+                        @Localizer["Add Role"]
                     </MudText>
                 }
                 else
                 {
                     <MudText Typo="Typo.h6">
-                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
-                        @_localizer["Update Role"]
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1"/>
+                        @Localizer["Update Role"]
                     </MudText>
                 }
             }
         </TitleContent>
         <DialogContent>
-            <MudTextField For="@(() => RoleModel.Id)" @bind-Value="RoleModel.Id" Label="@_localizer["Role ID"]" Disabled />
-            <MudTextField For="@(() => RoleModel.Name)" @bind-Value="RoleModel.Name" Label="@_localizer["Role Name"]" />
-            <MudTextField For="@(() => RoleModel.Description)" @bind-Value="RoleModel.Description" Label="@_localizer["Description"]" />
+            <MudTextField For="@(() => RoleModel.Id)" @bind-Value="RoleModel.Id" Label="@Localizer["Role ID"]" Disabled/>
+            <MudTextField For="@(() => RoleModel.Name)" @bind-Value="RoleModel.Name" Label="@Localizer["Role Name"]"/>
+            <MudTextField For="@(() => RoleModel.Description)" @bind-Value="RoleModel.Description" Label="@Localizer["Description"]"/>
         </DialogContent>
         <DialogActions>
-            <MudButton Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@Localizer["Cancel"]</MudButton>
             @{
                 if (RoleModel.Id == null)
                 {
-                    <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save Role"]</MudButton>
+                    <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@Localizer["Save Role"]</MudButton>
                 }
                 else
                 {
-                    <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update Role"]</MudButton>
+                    <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@Localizer["Update Role"]</MudButton>
                 }
             }
         </DialogActions>

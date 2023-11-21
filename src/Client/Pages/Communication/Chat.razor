@@ -1,8 +1,9 @@
 ﻿@page "/chat/{CId}"
 @page "/chat"
+@using Microsoft.Extensions.Localization
 @using System.Globalization
 @attribute [Authorize(Policy = Permissions.Communication.Chat)]
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Chat> _localizer
+@inject IStringLocalizer<Chat> Localizer
 
 <div class="d-flex flex-grow-1 flex-row">
     <MudPaper Elevation="25" Class="py-4 flex-grow-1">
@@ -10,18 +11,18 @@
 
             @if (string.IsNullOrEmpty(CFullName))
             {
-                <MudIcon Icon="@Icons.Material.Outlined.Person" Style="margin-right:10px">  </MudIcon>
-                <MudText Typo="Typo.h6">@_localizer["chat"]</MudText>
+                <MudIcon Icon="@Icons.Material.Outlined.Person" Style="margin-right:10px"> </MudIcon>
+                <MudText Typo="Typo.h6">@Localizer["chat"]</MudText>
             }
             else
             {
-                <MudIcon Icon="@Icons.Material.Outlined.ChatBubble" Style="margin-right:10px">  </MudIcon>
+                <MudIcon Icon="@Icons.Material.Outlined.ChatBubble" Style="margin-right:10px"> </MudIcon>
                 <MudText Typo="Typo.h6">@CFullName</MudText>
             }
 
-            <MudSpacer />
+            <MudSpacer/>
             <MudHidden Breakpoint="Breakpoint.MdAndUp">
-                <MudIconButton OnClick="@(() => OpenDrawer(Anchor.Right))" Icon="@Icons.Material.Outlined.PeopleAlt" Color="Color.Inherit" Class="ml-3" />
+                <MudIconButton OnClick="@(() => OpenDrawer(Anchor.Right))" Icon="@Icons.Material.Outlined.PeopleAlt" Color="Color.Inherit" Class="ml-3"/>
             </MudHidden>
         </MudToolBar>
         <div class="d-flex flex-column px-4" style="max-height:65vh;min-height:65vh; overflow:scroll;" id="chatContainer">
@@ -29,13 +30,13 @@
             {
                 <div class="d-flex flex-row my-4">
                     <div class="mr-4">
-                        @if (string.IsNullOrEmpty(message.FromUserImageURL))
+                        @if (string.IsNullOrEmpty(message.FromUserImageUrl))
                         {
                             <MudAvatar Color="Color.Secondary" Style="height:50px; width:50px;">@message.FromUserFullName.ToUpper().FirstOrDefault()</MudAvatar>
                         }
                         else
                         {
-                            <MudAvatar Image="@message.FromUserImageURL" Style="height:50px; width:50px;"> </MudAvatar>
+                            <MudAvatar Image="@message.FromUserImageUrl" Style="height:50px; width:50px;"> </MudAvatar>
                         }
                     </div>
                     <div>
@@ -47,16 +48,16 @@
             }
         </div>
         <MudPaper Elevation="25" Class="d-flex flex-row px-2 mx-4" Style="">
-            <MudTextField T="string" Placeholder="@_localizer["Enter your message..."]" @onkeypress="OnKeyPressInChat" DisableUnderLine="true" Class="mt-n2 mx-4"
-                          @bind-Value="CurrentMessage" For="@(()=> CurrentMessage)" />
-            <MudButton OnClick="SubmitAsync" StartIcon="@Icons.Material.Outlined.Send" Color="Color.Secondary" ButtonType="ButtonType.Button">@_localizer["Send"]</MudButton>
+            <MudTextField T="string" Placeholder="@Localizer["Enter your message..."]" @onkeypress="OnKeyPressInChat" DisableUnderLine="true" Class="mt-n2 mx-4"
+                          @bind-Value="CurrentMessage" For="@(() => CurrentMessage)"/>
+            <MudButton OnClick="SubmitAsync" StartIcon="@Icons.Material.Outlined.Send" Color="Color.Secondary" ButtonType="ButtonType.Button">@Localizer["Send"]</MudButton>
         </MudPaper>
     </MudPaper>
     <MudHidden Breakpoint="Breakpoint.SmAndDown">
         <MudPaper Elevation="25" Class="pa-3 ml-6" MinWidth="350px">
             <MudToolBar Dense="true">
                 <MudText Typo="Typo.h6" Inline="true" Class="mr-2">#</MudText>
-                <MudText Typo="Typo.h6">@_localizer["contacts"]</MudText>
+                <MudText Typo="Typo.h6">@Localizer["contacts"]</MudText>
             </MudToolBar>
             <div class="d-flex flex-column px-4" style="max-height:70vh;min-height:70vh; overflow:scroll;">
                 <MudList Clickable="true">
@@ -131,4 +132,6 @@
         </MudList>
     </div>
 </MudDrawer>
-<MudAlert Style="margin-top:10px;margin-bottom:20px" Severity="Severity.Success">@_localizer["Want to understand how Chat is implemented in BlazorHero ? Refer this"] <MudLink Href="https://codewithmukesh.com/blog/realtime-chat-application-with-blazor">@_localizer["detailed guide for more."]</MudLink></MudAlert>
+<MudAlert Style="margin-top:10px;margin-bottom:20px" Severity="Severity.Success">
+    @Localizer["Want to understand how Chat is implemented in BlazorHero ? Refer this"] <MudLink Href="https://codewithmukesh.com/blog/realtime-chat-application-with-blazor">@Localizer["detailed guide for more."]</MudLink>
+</MudAlert>

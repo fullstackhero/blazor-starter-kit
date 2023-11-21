@@ -1,52 +1,46 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using MudBlazor;
-using System.Threading.Tasks;
 using Blazored.FluentValidation;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Contracts.Identity;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Wrapper;
+using MudBlazor;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Authentication
+namespace CleanBlazor.Client.Pages.Authentication;
+
+public partial class Register
 {
-    public partial class Register
-    {
-        private FluentValidationValidator _fluentValidationValidator;
-        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private RegisterRequest _registerUserModel = new();
+    private FluentValidationValidator _fluentValidationValidator;
+    private InputType _passwordInput = InputType.Password;
+    private string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
 
-        private async Task SubmitAsync()
-        {
-            var response = await _userManager.RegisterUserAsync(_registerUserModel);
-            if (response.Succeeded)
+    private bool _passwordVisibility;
+    private RegisterRequest _registerUserModel = new();
+    private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+
+    private async Task SubmitAsync() => await HttpClient.PostAsJsonAsync<RegisterRequest, Result>(
+            UsersEndpoints.Register, _registerUserModel)
+        .Match(message =>
             {
-                _snackBar.Add(response.Messages[0], Severity.Success);
-                _navigationManager.NavigateTo("/login");
+                SnackBar.Success(message);
+                NavigationManager.NavigateTo("/login");
                 _registerUserModel = new RegisterRequest();
-            }
-            else
-            {
-                foreach (var message in response.Messages)
-                {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
-        }
+            },
+            errors => SnackBar.Error(errors)
+        );
 
-        private bool _passwordVisibility;
-        private InputType _passwordInput = InputType.Password;
-        private string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
-
-        private void TogglePasswordVisibility()
+    private void TogglePasswordVisibility()
+    {
+        if (_passwordVisibility)
         {
-            if (_passwordVisibility)
-            {
-                _passwordVisibility = false;
-                _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
-                _passwordInput = InputType.Password;
-            }
-            else
-            {
-                _passwordVisibility = true;
-                _passwordInputIcon = Icons.Material.Filled.Visibility;
-                _passwordInput = InputType.Text;
-            }
+            _passwordVisibility = false;
+            _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+            _passwordInput = InputType.Password;
+        }
+        else
+        {
+            _passwordVisibility = true;
+            _passwordInputIcon = Icons.Material.Filled.Visibility;
+            _passwordInput = InputType.Text;
         }
     }
 }

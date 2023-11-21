@@ -1,24 +1,23 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using CleanBlazor.Application.Features.Dashboards.Queries;
+using CleanBlazor.Contracts.Dashboard;
+using CleanBlazor.Shared.Constants.Permission;
+using CleanBlazor.Shared.Wrapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.GetData;
-using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 
-namespace BlazorHero.CleanArchitecture.Server.Controllers.v1
+namespace CleanBlazor.Server.Controllers.v1;
+
+public class DashboardController : BaseApiController
 {
-    [ApiController]
-    public class DashboardController : BaseApiController<DashboardController>
+    /// <summary>
+    ///     Get Dashboard Data
+    /// </summary>
+    /// <returns>Status 200 OK </returns>
+    [Authorize(Policy = Permissions.Dashboards.View)]
+    [HttpGet]
+    public async Task<IActionResult> GetDataAsync()
     {
-        /// <summary>
-        /// Get Dashboard Data
-        /// </summary>
-        /// <returns>Status 200 OK </returns>
-        [Authorize(Policy = Permissions.Dashboards.View)]
-        [HttpGet]
-        public async Task<IActionResult> GetDataAsync()
-        {
-            var result = await _mediator.Send(new GetDashboardDataQuery());
-            return Ok(result);
-        }
+        Result<DashboardDataResponse> result = await Sender.Send(new GetDashboardDataQuery());
+        return Ok(result);
     }
 }

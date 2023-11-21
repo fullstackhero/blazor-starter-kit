@@ -1,22 +1,23 @@
-﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditDocumentTypeModal> _localizer
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<AddEditDocumentTypeModal> Localizer
 
 <EditForm Model="@AddEditDocumentTypeModel" OnValidSubmit="SaveAsync">
-    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <FluentValidationValidator @ref="_fluentValidationValidator"/>
     <MudDialog>
         <TitleContent>
             @{
                 if (AddEditDocumentTypeModel.Id == 0)
                 {
                     <MudText Typo="Typo.h6">
-                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
-                        @_localizer["Add Document Type"]
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1"/>
+                        @Localizer["Add Document Type"]
                     </MudText>
                 }
                 else
                 {
                     <MudText Typo="Typo.h6">
-                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
-                        @_localizer["Update Document Type"]
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1"/>
+                        @Localizer["Update Document Type"]
                     </MudText>
                 }
             }
@@ -26,26 +27,26 @@
                 @if (AddEditDocumentTypeModel.Id != 0)
                 {
                     <MudItem xs="12" md="6">
-                        <MudTextField Disabled For="@(() => AddEditDocumentTypeModel.Id)" @bind-Value="AddEditDocumentTypeModel.Id" Label="@_localizer["Id"]" />
+                        <MudTextField Disabled For="@(() => AddEditDocumentTypeModel.Id)" @bind-Value="AddEditDocumentTypeModel.Id" Label="@Localizer["Id"]"/>
                     </MudItem>
                 }
                 <MudItem xs="12" md="6">
-                    <MudTextField T="string" For="@(() => AddEditDocumentTypeModel.Name)" @bind-Value="AddEditDocumentTypeModel.Name" Label="@_localizer["Name"]" />
+                    <MudTextField T="string" For="@(() => AddEditDocumentTypeModel.Name)" @bind-Value="AddEditDocumentTypeModel.Name" Label="@Localizer["Name"]"/>
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudTextField For="@(() => AddEditDocumentTypeModel.Description)" @bind-Value="AddEditDocumentTypeModel.Description" Label="@_localizer["Description"]" />
+                    <MudTextField For="@(() => AddEditDocumentTypeModel.Description)" @bind-Value="AddEditDocumentTypeModel.Description" Label="@Localizer["Description"]"/>
                 </MudItem>
             </MudGrid>
         </DialogContent>
         <DialogActions>
-            <MudButton Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@Localizer["Cancel"]</MudButton>
             @if (AddEditDocumentTypeModel.Id != 0)
             {
-                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@Localizer["Update"]</MudButton>
             }
             else
             {
-                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@Localizer["Save"]</MudButton>
             }
         </DialogActions>
     </MudDialog>

@@ -1,37 +1,37 @@
-using BlazorHero.CleanArchitecture.Client.Extensions;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Preferences;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Client.Infrastructure.Settings;
-using BlazorHero.CleanArchitecture.Shared.Constants.Localization;
+using CleanBlazor.Client.Configuration;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Shared.Constants.Localization;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
-namespace BlazorHero.CleanArchitecture.Client
+namespace CleanBlazor.Client;
+
+public static class Program
 {
-    public static class Program
+    public static async Task Main(string[] args)
     {
-        public static async Task Main(string[] args)
+        WebAssemblyHostBuilder builder = WebAssemblyHostBuilder
+            .CreateDefault(args)
+            .AddRootComponents()
+            .AddClientServices();
+        WebAssemblyHost host = builder.Build();
+        var storageService = host.Services.GetRequiredService<ClientPreferenceManager>();
+        if (storageService != null)
         {
-            var builder = WebAssemblyHostBuilder
-                          .CreateDefault(args)
-                          .AddRootComponents()
-                          .AddClientServices();
-            var host = builder.Build();
-            var storageService = host.Services.GetRequiredService<ClientPreferenceManager>();
-            if (storageService != null)
+            CultureInfo culture;
+            if (await storageService.GetPreference() is ClientPreference preference)
             {
-                CultureInfo culture;
-                var preference = await storageService.GetPreference() as ClientPreference;
-                if (preference != null)
-                    culture = new CultureInfo(preference.LanguageCode);
-                else
-                    culture = new CultureInfo(LocalizationConstants.SupportedLanguages.FirstOrDefault()?.Code ?? "en-US");
-                CultureInfo.DefaultThreadCurrentCulture = culture;
-                CultureInfo.DefaultThreadCurrentUICulture = culture;
+                culture = new CultureInfo(preference.LanguageCode);
             }
-            await builder.Build().RunAsync();
+            else
+            {
+                culture = new CultureInfo(LocalizationConstants.DefaultLanguage.Code);
+            }
+
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
         }
+
+        await builder.Build().RunAsync();
     }
 }

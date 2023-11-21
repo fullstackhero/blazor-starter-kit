@@ -1,15 +1,12 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
-using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+using CleanBlazor.Domain.Entities.Catalog;
+using CleanBlazor.Domain.Repositories;
+using CleanBlazor.Infrastructure.Data;
 
-namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
+namespace CleanBlazor.Infrastructure.Repositories;
+
+internal sealed class BrandRepository : GenericRepository<Brand, int>, IBrandRepository
 {
-    public class BrandRepository : IBrandRepository
+    public BrandRepository(ApplicationDbContext dbContext) : base(dbContext)
     {
-        private readonly IRepositoryAsync<Brand, int> _repository;
-
-        public BrandRepository(IRepositoryAsync<Brand, int> repository)
-        {
-            _repository = repository;
-        }
     }
 }

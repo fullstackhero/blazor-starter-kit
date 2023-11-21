@@ -1,0 +1,101 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.5" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0-rc.2.23480.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="7.0.5" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.0-rc.2.23480.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0-rc.2.23480.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0-rc.2.23480.2" PrivateAssets="all" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0-rc.2.23480.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Http.Features" Version="6.0.0-preview.4.21253.5" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0-rc.2.23480.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+    <PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.0-rc.2.23480.2" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.0-rc.2.23480.1" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0-rc.2.23480.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageVersion>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.12" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-rc.2.23480.1" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.12" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0-rc.2.23480.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageVersion>
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0-rc.2.23479.6" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0-rc.2.23479.6" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.0-rc.2.23479.6" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="8.0.0-rc.2.23480.2" />
+    <PackageVersion Include="Microsoft.Extensions.Identity.Core" Version="8.0.0-rc.2.23480.2" />
+    <PackageVersion Include="Microsoft.Extensions.Identity.Stores" Version="7.0.12" />
+    <PackageVersion Include="Microsoft.Extensions.Localization" Version="8.0.0-rc.2.23480.2" />
+    <PackageVersion Include="Microsoft.Extensions.Localization.Abstractions" Version="8.0.0-rc.2.23480.2" />
+    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0-rc.2.23479.6" />
+    <PackageVersion Include="Microsoft.NET.Build.Containers" Version="0.4.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
+    <PackageVersion Include="Microsoft.OpenApi" Version="1.6.4" />
+    <PackageVersion Include="Microsoft.Tye.Extensions.Configuration" Version="0.10.0-alpha.21420.1" />
+    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageVersion Include="AspNet.Security.OAuth.GitHub" Version="7.0.2" />
+    <PackageVersion Include="Auth0.AspNetCore.Authentication" Version="1.2.0" />
+    <PackageVersion Include="AutoMapper" Version="12.0.1" />
+    <PackageVersion Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageVersion Include="Blazored.FluentValidation" Version="2.1.0" />
+    <PackageVersion Include="Blazored.LocalStorage" Version="4.4.0" />
+    <PackageVersion Include="EPPlus" Version="6.2.10" />
+    <PackageVersion Include="FluentAssertions" Version="6.12.0" />
+    <PackageVersion Include="FluentValidation" Version="11.8.0" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0" />
+    <PackageVersion Include="Hangfire" Version="1.8.6" />
+    <PackageVersion Include="Hangfire.Core" Version="1.8.6" />
+    <PackageVersion Include="LazyCache" Version="2.4.0" />
+    <PackageVersion Include="LazyCache.AspNetCore" Version="2.4.0" />
+    <PackageVersion Include="MailKit" Version="3.1.0" />
+    <PackageVersion Include="MediatR" Version="12.1.1" />
+    <PackageVersion Include="MimeKit" Version="4.2.0" />
+    <PackageVersion Include="MiniValidation" Version="0.7.4" />
+    <PackageVersion Include="MudBlazor" Version="6.11.0" />
+    <PackageVersion Include="NetArchTest.Rules" Version="1.3.2" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageVersion Include="Serilog" Version="3.0.1" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageVersion Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+    <PackageVersion Include="Serilog.Enrichers.Environment" Version="2.3.0" />
+    <PackageVersion Include="Serilog.Enrichers.Process" Version="2.0.2" />
+    <PackageVersion Include="Serilog.Enrichers.Thread" Version="3.1.0" />
+    <PackageVersion Include="Serilog.Expressions" Version="3.4.1" />
+    <PackageVersion Include="Serilog.Extensions.Hosting" Version="7.0.0" />
+    <PackageVersion Include="Serilog.Formatting.Compact" Version="1.1.0" />
+    <PackageVersion Include="Serilog.Settings.Configuration" Version="7.0.1" />
+    <PackageVersion Include="Serilog.Sinks.Async" Version="1.5.0" />
+    <PackageVersion Include="Serilog.Sinks.Console" Version="4.1.0" />
+    <PackageVersion Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageVersion Include="SharpGrip.FluentValidation.AutoValidation.Mvc" Version="1.3.1" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageVersion Include="System.Linq.Dynamic.Core" Version="1.3.5" />
+    <PackageVersion Include="System.Net.Http.Json" Version="8.0.0-rc.2.23479.6" />
+    <PackageVersion Include="Toolbelt.Blazor.HttpClientInterceptor" Version="10.2.0" />
+    <PackageVersion Include="Yarp.ReverseProxy" Version="2.0.0" />
+    <PackageVersion Include="coverlet.collector" Version="3.2.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageVersion>
+    <PackageVersion Include="xunit" Version="2.4.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageVersion>
+  </ItemGroup>
+</Project>

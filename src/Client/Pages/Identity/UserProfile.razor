@@ -1,11 +1,12 @@
-﻿@page "/user-profile/{Id}"
-@using BlazorHero.CleanArchitecture.Shared.Constants.Role
-@inject Microsoft.Extensions.Localization.IStringLocalizer<UserProfile> _localizer
+@page "/user-profile/{Id}"
+@using Microsoft.Extensions.Localization
+@using CleanBlazor.Shared.Constants.Role
+@inject IStringLocalizer<UserProfile> Localizer
 
-<HeroTitle Title="@Title" Description="@Description" />
+<HeroTitle Title="@Title" Description="@Description"/>
 @if (!_loaded)
 {
-    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true"/>
 }
 else
 {
@@ -15,14 +16,14 @@ else
                 <MudCard Elevation="25">
                     <MudCardHeader>
                         <CardHeaderContent>
-                            <MudText Typo="Typo.body1">@_localizer["Administrator Settings."]</MudText>
-                            <MudText Typo="Typo.body2">@_localizer["This is an Administrator Only View."]</MudText>
+                            <MudText Typo="Typo.body1">@Localizer["Administrator Settings."]</MudText>
+                            <MudText Typo="Typo.body2">@Localizer["This is an Administrator Only View."]</MudText>
                         </CardHeaderContent>
                     </MudCardHeader>
                     <MudCardContent Class="pa-46" Style="padding:26px!important">
                         <MudGrid>
-                            <MudCheckBox @bind-Checked="@_active" Label="@_localizer["Active?"]" Color="Color.Primary"></MudCheckBox>
-                            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="ToggleUserStatus" ButtonType="ButtonType.Submit">@_localizer["Save Changes"]</MudButton>
+                            <MudCheckBox @bind-Checked="@_active" Label="@Localizer["Active?"]" Color="Color.Primary"></MudCheckBox>
+                            <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="ToggleUserStatus" ButtonType="ButtonType.Submit">@Localizer["Save Changes"]</MudButton>
                         </MudGrid>
                     </MudCardContent>
                 </MudCard>
@@ -32,12 +33,12 @@ else
             <MudCard Elevation="25">
                 <MudCardHeader>
                     <CardHeaderContent>
-                        <MudText>@_localizer["Profile"]</MudText>
+                        <MudText>@Localizer["Profile"]</MudText>
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
                     <div class="d-flex justify-center mb-4">
-                        @if (!string.IsNullOrEmpty(@ImageDataUrl))
+                        @if (!string.IsNullOrEmpty(ImageDataUrl))
                         {
                             <MudAvatar Image="@ImageDataUrl" Style="height:250px; width:250px;"> </MudAvatar>
                         }
@@ -55,22 +56,22 @@ else
             <MudCard Elevation="25">
                 <MudCardHeader>
                     <CardHeaderContent>
-                        <MudText>@_localizer["Public Profile"]</MudText>
+                        <MudText>@Localizer["Public Profile"]</MudText>
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
                     <MudGrid>
                         <MudItem xs="12" md="6">
-                            <MudField Label="@_localizer["First Name"]" Variant="Variant.Text">@_firstName</MudField>
+                            <MudField Label="@Localizer["First Name"]" Variant="Variant.Text">@_firstName</MudField>
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudField Label="@_localizer["Last Name"]" Variant="Variant.Text">@_lastName</MudField>
+                            <MudField Label="@Localizer["Last Name"]" Variant="Variant.Text">@_lastName</MudField>
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudField Label="@_localizer["Phone Number"]" Variant="Variant.Text">@_phoneNumber</MudField>
+                            <MudField Label="@Localizer["Phone Number"]" Variant="Variant.Text">@_phoneNumber</MudField>
                         </MudItem>
                         <MudItem xs="12" md="6">
-                            <MudField Label="@_localizer["Email"]" Variant="Variant.Text">@_email</MudField>
+                            <MudField Label="@Localizer["Email"]" Variant="Variant.Text">@_email</MudField>
                         </MudItem>
                     </MudGrid>
                 </MudCardContent>

@@ -1,31 +1,32 @@
-﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<RegisterUserModal> _localizer
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<RegisterUserModal> Localizer
 
 <EditForm Model="@_registerUserModel" OnValidSubmit="SubmitAsync">
-    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <FluentValidationValidator @ref="_fluentValidationValidator"/>
     <MudDialog>
         <TitleContent>
             @{
                 <MudText Typo="Typo.h6">
-                    <MudIcon Icon="@Icons.Material.Filled.VerifiedUser" Class="mr-3 mb-n1" />
-                    @_localizer["Register User"]
+                    <MudIcon Icon="@Icons.Material.Filled.VerifiedUser" Class="mr-3 mb-n1"/>
+                    @Localizer["Register User"]
                 </MudText>
             }
         </TitleContent>
         <DialogContent>
-            <MudTextField For="@(() => _registerUserModel.UserName)" @bind-Value="_registerUserModel.UserName" Label="@_localizer["User Name"]" />
-            <MudTextField For="@(() => _registerUserModel.FirstName)" @bind-Value="_registerUserModel.FirstName" Label="@_localizer["First Name"]" />
-            <MudTextField For="@(() => _registerUserModel.LastName)" @bind-Value="_registerUserModel.LastName" Label="@_localizer["Last Name"]" />
-            <MudTextField For="@(() => _registerUserModel.Email)" InputType="InputType.Email" @bind-Value="_registerUserModel.Email" Label="@_localizer["Email"]" />
-            <MudTextField For="@(() => _registerUserModel.PhoneNumber)" @bind-Value="_registerUserModel.PhoneNumber" Label="@_localizer["Phone Number"]" />
-            <MudTextField For="@(() => _registerUserModel.Password)" InputType="@_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" @bind-Value="_registerUserModel.Password" Label="@_localizer["Password"]" />
-            <MudTextField For="@(() => _registerUserModel.ConfirmPassword)" InputType="InputType.Password" @bind-Value="_registerUserModel.ConfirmPassword" Label="@_localizer["Confirm Password"]" />
-            <MudCheckBox @bind-Checked="@_registerUserModel.ActivateUser" Label="@_localizer["Activate User?"]" Color="Color.Primary"></MudCheckBox>
-            <MudCheckBox @bind-Checked="@_registerUserModel.AutoConfirmEmail" Label="@_localizer["Auto Confirm Email?"]" Color="Color.Primary"></MudCheckBox>
+            <MudTextField For="@(() => _registerUserModel.UserName)" @bind-Value="_registerUserModel.UserName" Label="@Localizer["User Name"]"/>
+            <MudTextField For="@(() => _registerUserModel.FirstName)" @bind-Value="_registerUserModel.FirstName" Label="@Localizer["First Name"]"/>
+            <MudTextField For="@(() => _registerUserModel.LastName)" @bind-Value="_registerUserModel.LastName" Label="@Localizer["Last Name"]"/>
+            <MudTextField For="@(() => _registerUserModel.Email)" InputType="InputType.Email" @bind-Value="_registerUserModel.Email" Label="@Localizer["Email"]"/>
+            <MudTextField For="@(() => _registerUserModel.PhoneNumber)" @bind-Value="_registerUserModel.PhoneNumber" Label="@Localizer["Phone Number"]"/>
+            <MudTextField For="@(() => _registerUserModel.Password)" InputType="@_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" @bind-Value="_registerUserModel.Password" Label="@Localizer["Password"]"/>
+            <MudTextField For="@(() => _registerUserModel.ConfirmPassword)" InputType="InputType.Password" @bind-Value="_registerUserModel.ConfirmPassword" Label="@Localizer["Confirm Password"]"/>
+            <MudCheckBox @bind-Checked="@_registerUserModel.ActivateUser" Label="@Localizer["Activate User?"]" Color="Color.Primary"></MudCheckBox>
+            <MudCheckBox @bind-Checked="@_registerUserModel.AutoConfirmEmail" Label="@Localizer["Auto Confirm Email?"]" Color="Color.Primary"></MudCheckBox>
         </DialogContent>
         <DialogActions>
-            <MudButton Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@Localizer["Cancel"]</MudButton>
             @{
-                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Register"]</MudButton>
+                <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@Localizer["Register"]</MudButton>
             }
         </DialogActions>
     </MudDialog>

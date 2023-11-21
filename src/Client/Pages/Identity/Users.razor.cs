@@ -1,122 +1,132 @@
-﻿using BlazorHero.CleanArchitecture.Application.Responses.Identity;
-using MudBlazor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using BlazorHero.CleanArchitecture.Shared.Constants.Application;
-using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Contracts.Identity;
+using CleanBlazor.Shared.Constants.Application;
+using CleanBlazor.Shared.Constants.Permission;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Wrapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.JSInterop;
+using MudBlazor;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
+namespace CleanBlazor.Client.Pages.Identity;
+
+public partial class Users
 {
-    public partial class Users
+    private bool _bordered;
+    private bool _canCreateUsers;
+    private bool _canExportUsers;
+    private bool _canSearchUsers;
+    private bool _canViewRoles;
+
+    private ClaimsPrincipal _currentUser;
+    private bool _dense;
+    private bool _loaded;
+    private string _searchString = "";
+    private bool _striped = true;
+    private UserResponse _user = new();
+    private List<UserResponse> _userList = new();
+
+    protected override async Task OnInitializedAsync()
     {
-        private List<UserResponse> _userList = new();
-        private UserResponse _user = new();
-        private string _searchString = "";
-        private bool _dense = false;
-        private bool _striped = true;
-        private bool _bordered = false;
+        _currentUser = await StateProvider.GetCurrentUserAsync();
+        _canCreateUsers = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Create))
+            .Succeeded;
+        _canSearchUsers = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Search))
+            .Succeeded;
+        _canExportUsers = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Export))
+            .Succeeded;
+        _canViewRoles = (await AuthorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.View)).Succeeded;
 
-        private ClaimsPrincipal _currentUser;
-        private bool _canCreateUsers;
-        private bool _canSearchUsers;
-        private bool _canExportUsers;
-        private bool _canViewRoles;
-        private bool _loaded;
+        await GetUsersAsync();
+        _loaded = true;
+    }
 
-        protected override async Task OnInitializedAsync()
+    private async Task GetUsersAsync() =>
+        await HttpClient.GetFromJsonAsync<Result<List<UserResponse>>>(UsersEndpoints.GetAll)
+            .Match((_, users) => _userList = users.ToList(),
+                errors => SnackBar.Error(errors));
+
+    private bool Search(UserResponse user)
+    {
+        if (string.IsNullOrWhiteSpace(_searchString))
         {
-            _currentUser = await _authenticationManager.CurrentUser();
-            _canCreateUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Create)).Succeeded;
-            _canSearchUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Search)).Succeeded;
-            _canExportUsers = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Users.Export)).Succeeded;
-            _canViewRoles = (await _authorizationService.AuthorizeAsync(_currentUser, Permissions.Roles.View)).Succeeded;
-
-            await GetUsersAsync();
-            _loaded = true;
+            return true;
         }
 
-        private async Task GetUsersAsync()
+        if (user.FirstName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
         {
-            var response = await _userManager.GetAllAsync();
-            if (response.Succeeded)
-            {
-                _userList = response.Data.ToList();
-            }
-            else
-            {
-                foreach (var message in response.Messages)
-                {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
+            return true;
         }
 
-        private bool Search(UserResponse user)
+        if (user.LastName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
         {
-            if (string.IsNullOrWhiteSpace(_searchString)) return true;
-            if (user.FirstName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-            {
-                return true;
-            }
-            if (user.LastName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-            {
-                return true;
-            }
-            if (user.Email?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-            {
-                return true;
-            }
-            if (user.PhoneNumber?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-            {
-                return true;
-            }
-            if (user.UserName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
 
-        private async Task ExportToExcel()
+        if (user.Email?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
         {
-            var base64 = await _userManager.ExportToExcelAsync(_searchString);
-            await _jsRuntime.InvokeVoidAsync("Download", new
+            return true;
+        }
+
+        if (user.PhoneNumber?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+        {
+            return true;
+        }
+
+        if (user.UserName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) == true)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private async Task ExportToExcel()
+    {
+        var endpoint = string.IsNullOrWhiteSpace(_searchString)
+            ? UsersEndpoints.Export
+            : UsersEndpoints.ExportFiltered(_searchString);
+        var base64 = await HttpClient.GetStringAsync(endpoint);
+        await JsRuntime.InvokeVoidAsync("Download",
+            new
             {
                 ByteArray = base64,
                 FileName = $"{nameof(Users).ToLower()}_{DateTime.Now:ddMMyyyyHHmmss}.xlsx",
                 MimeType = ApplicationConstants.MimeTypes.OpenXml
             });
-            _snackBar.Add(string.IsNullOrWhiteSpace(_searchString)
-                ? _localizer["Users exported"]
-                : _localizer["Filtered Users exported"], Severity.Success);
-        }
+        SnackBar.Success(string.IsNullOrWhiteSpace(_searchString)
+                ? Localizer["Users exported"]
+                : Localizer["Filtered Users exported"]);
+    }
 
-        private async Task InvokeModal()
+    private async Task InvokeModal()
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions
         {
-            var parameters = new DialogParameters();
-            var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<RegisterUserModal>(_localizer["Register New User"], parameters, options);
-            var result = await dialog.Result;
-            if (!result.Cancelled)
-            {
-                await GetUsersAsync();
-            }
+            CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true
+        };
+        IDialogReference dialog =
+            await DialogService.ShowAsync<RegisterUserModal>(Localizer["Register New User"], parameters, options);
+        DialogResult result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            await GetUsersAsync();
         }
+    }
 
-        private void ViewProfile(string userId)
+    private void ViewProfile(string userId) => NavigationManager.NavigateTo($"/user-profile/{userId}");
+
+    private void ManageRoles(string userId, string email)
+    {
+        if (email == "mukesh@blazorhero.com")
         {
-            _navigationManager.NavigateTo($"/user-profile/{userId}");
+            SnackBar.Error(Localizer["Not Allowed."]);
         }
-
-        private void ManageRoles(string userId, string email)
+        else
         {
-            if (email == "mukesh@blazorhero.com") _snackBar.Add(_localizer["Not Allowed."], Severity.Error);
-            else _navigationManager.NavigateTo($"/identity/user-roles/{userId}");
+            NavigationManager.NavigateTo($"/identity/user-roles/{userId}");
         }
     }
 }

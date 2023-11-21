@@ -1,31 +1,23 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
-using MudBlazor;
-using System.Threading.Tasks;
 using Blazored.FluentValidation;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Contracts.Identity;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Wrapper;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
+namespace CleanBlazor.Client.Pages.Identity;
+
+public partial class Forgot
 {
-    public partial class Forgot
-    {
-        private FluentValidationValidator _fluentValidationValidator;
-        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private readonly ForgotPasswordRequest _emailModel = new();
+    private readonly ForgotPasswordRequest _emailModel = new();
+    private FluentValidationValidator _fluentValidationValidator;
+    private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
 
-        private async Task SubmitAsync()
-        {
-            var result = await _userManager.ForgotPasswordAsync(_emailModel);
-            if (result.Succeeded)
-            {
-                _snackBar.Add(_localizer["Done!"], Severity.Success);
-                _navigationManager.NavigateTo("/");
-            }
-            else
-            {
-                foreach (var message in result.Messages)
+    private async Task SubmitAsync() =>
+        await HttpClient.PostAsJsonAsync<ForgotPasswordRequest, Result>(UsersEndpoints.ForgotPassword, _emailModel)
+            .Match(_ =>
                 {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
-        }
-    }
+                    SnackBar.Success(Localizer["Done!"]);
+                    NavigationManager.NavigateTo("/");
+                },
+                errors => SnackBar.Error(errors));
 }

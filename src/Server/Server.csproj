@@ -1,13 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>BlazorHero.CleanArchitecture.Server</RootNamespace>
-    <AssemblyName>BlazorHero.CleanArchitecture.Server</AssemblyName>
-    <LangVersion>latest</LangVersion>
+    <RootNamespace>CleanBlazor.Server</RootNamespace>
+    <AssemblyName>CleanBlazor.Server</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>
-    <DocumentationFile>BlazorHero.CleanArchitecture.Server.xml</DocumentationFile>
+    <DocumentationFile>CleanBlazor.Server.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
     <UserSecretsId>aa8b7360-671b-4ab2-99b0-7df28629ef3d</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -15,51 +13,57 @@
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Permission\**" />
-    <Content Remove="Permission\**" />
-    <EmbeddedResource Remove="Permission\**" />
-    <None Remove="Permission\**" />
+    <Compile Remove="Permission\**"/>
+    <Content Remove="Permission\**"/>
+    <EmbeddedResource Remove="Permission\**"/>
+    <None Remove="Permission\**"/>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
-    <PackageReference Include="Hangfire" Version="1.7.28" />
-    <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
-    <PackageReference Include="MediatR" Version="10.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Hangfire"/>
+    <PackageReference Include="LazyCache.AspNetCore"/>
+    <PackageReference Include="MediatR"/>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets"/>
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Enrichers.CorrelationId" />
+    <PackageReference Include="Serilog.Enrichers.Process" />
+    <PackageReference Include="Serilog.Enrichers.Thread" />
+    <PackageReference Include="Serilog.Expressions" />
+    <PackageReference Include="SharpGrip.FluentValidation.AutoValidation.Mvc" />
+    <PackageReference Include="Swashbuckle.AspNetCore"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer"/>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer"/>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
-    <PackageReference Include="Serilog.Extensions.Hosting" Version="4.2.0" />
-    <PackageReference Include="Serilog.Formatting.Compact" Version="1.1.0" />
-    <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
-    <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
-    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment"/>
+    <PackageReference Include="Serilog.Extensions.Hosting"/>
+    <PackageReference Include="Serilog.Formatting.Compact"/>
+    <PackageReference Include="Serilog.Settings.Configuration"/>
+    <PackageReference Include="Serilog.Sinks.Async"/>
+    <PackageReference Include="Serilog.Sinks.Console"/>
+    <PackageReference Include="Serilog.Sinks.File"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Infrastructure.Shared\Infrastructure.Shared.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\Shared\Shared.csproj" />
-    <ProjectReference Include="..\Client\Client.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj"/>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
+    <ProjectReference Include="..\Client\Client.csproj"/>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Files\Images\ProfilePictures\" />
+    <Folder Include="Files/Images/ProfilePictures/"/>
   </ItemGroup>
   <ItemGroup>
-    <None Update="Files\Images\Products\demo.jpg">
+    <None Update="Files/Images/Products/demo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

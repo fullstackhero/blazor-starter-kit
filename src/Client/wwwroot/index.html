@@ -1,73 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>BlazorHero - Clean Architecture</title>
-    <base href="/" />
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <title>BlazorHero.Architecture</title>
+    <base href="/"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <link href="_content/MudBlazor/MudBlazor.min.css?v=5.1.0" rel="stylesheet" />
-    <link href="css/loader.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="_content/MudBlazor/MudBlazor.min.css?v=5.1.0" rel="stylesheet"/>
+    <link href="css/loader.css" rel="stylesheet"/>
 </head>
 
 <body>
-    <div id="app">
-        <style>
-            @keyframes slide {
-                0% {
-                    transform: translateX(-25%);
-                }
-
-                100% {
-                    transform: translateX(25%);
-                }
+<div id="app">
+    <style>
+        @keyframes slide {
+            0% {
+                transform: translateX(-25%);
             }
 
-            .mud-wasm {
-                animation: slide 3s ease-in-out infinite alternate;
-                background-image: linear-gradient(-60deg,#1E88E5 50%,#0069c0 50%);
-                bottom: 0;
-                left: -50%;
-                opacity: .5;
-                position: fixed;
-                right: -50%;
-                top: 0;
-                z-index: -1
+            100% {
+                transform: translateX(25%);
             }
+        }
 
-            .mud-wasm-cont {
-                left: 50%;
-                padding: 10vmin;
-                position: fixed;
-                text-align: center;
-                top: 50%;
-                transform: translate(-50%,-50%)
-            }
-        </style>
+        .mud-wasm {
+            animation: slide 3s ease-in-out infinite alternate;
+            background-image: linear-gradient(-60deg, #1E88E5 50%, #0069c0 50%);
+            bottom: 0;
+            left: -50%;
+            opacity: .5;
+            position: fixed;
+            right: -50%;
+            top: 0;
+            z-index: -1
+        }
 
-        <div style="height:100%;width:100%;margin:0;position:fixed;">
-            <div class="mud-wasm"></div>
-            <div class="mud-wasm" style="animation-direction:alternate-reverse;animation-duration:4s;"></div>
-            <div class="mud-wasm" style="animation-duration:5s;"></div>
-            <div class="mud-wasm-cont ">
-                <svg width="100%" height="100%" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="white" d="M 37.00,90.00 C 37.00,90.00 328.90,90.00 328.90,90.00 328.90,90.00 328.90,410.00 328.90,410.00 328.90,410.00 37.00,410.00 37.00,410.00 37.00,410.00 37.00,90.00 37.00,90.00 Z M 381.49,90.75 C 381.49,90.75 464.00,90.75 464.00,90.75 464.00,90.75 464.00,410.00 464.00,410.00 464.00,410.00 381.49,410.00 381.49,410.00 381.49,410.00 381.49,280.80 381.49,280.80 381.49,280.80 337.37,280.80 337.37,280.80 337.37,280.80 337.37,220.44 337.37,220.44 337.37,220.44 381.49,220.44 381.49,220.44 381.49,220.44 381.49,90.75 381.49,90.75 Z M 119.51,150.36 C 119.51,150.36 119.51,220.44 119.51,220.44 119.51,220.44 236.91,220.44 236.91,220.44 236.91,220.44 236.91,280.80 236.91,280.80 236.91,280.80 119.51,280.80 119.51,280.80 119.51,280.80 119.51,349.64 119.51,349.64 119.51,349.64 246.39,349.64 246.39,349.64 246.39,349.64 246.39,150.36 246.39,150.36 246.39,150.36 119.51,150.36 119.51,150.36 Z" />
-                </svg>
-            </div>
+        .mud-wasm-cont {
+            left: 50%;
+            padding: 10vmin;
+            position: fixed;
+            text-align: center;
+            top: 50%;
+            transform: translate(-50%, -50%)
+        }
+    </style>
+
+    <div style="height:100%;width:100%;margin:0;position:fixed;">
+        <div class="mud-wasm"></div>
+        <div class="mud-wasm" style="animation-direction:alternate-reverse;animation-duration:4s;"></div>
+        <div class="mud-wasm" style="animation-duration:5s;"></div>
+        <div class="mud-wasm-cont ">
+            <svg height="100%" viewBox="0 0 500 500" width="100%" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M 37.00,90.00 C 37.00,90.00 328.90,90.00 328.90,90.00 328.90,90.00 328.90,410.00 328.90,410.00 328.90,410.00 37.00,410.00 37.00,410.00 37.00,410.00 37.00,90.00 37.00,90.00 Z M 381.49,90.75 C 381.49,90.75 464.00,90.75 464.00,90.75 464.00,90.75 464.00,410.00 464.00,410.00 464.00,410.00 381.49,410.00 381.49,410.00 381.49,410.00 381.49,280.80 381.49,280.80 381.49,280.80 337.37,280.80 337.37,280.80 337.37,280.80 337.37,220.44 337.37,220.44 337.37,220.44 381.49,220.44 381.49,220.44 381.49,220.44 381.49,90.75 381.49,90.75 Z M 119.51,150.36 C 119.51,150.36 119.51,220.44 119.51,220.44 119.51,220.44 236.91,220.44 236.91,220.44 236.91,220.44 236.91,280.80 236.91,280.80 236.91,280.80 119.51,280.80 119.51,280.80 119.51,280.80 119.51,349.64 119.51,349.64 119.51,349.64 246.39,349.64 246.39,349.64 246.39,349.64 246.39,150.36 246.39,150.36 246.39,150.36 119.51,150.36 119.51,150.36 Z"
+                    fill="white"/>
+            </svg>
         </div>
     </div>
+</div>
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-    <script src="js/scroll.js"></script>
-    <script src="js/sounds.js"></script>
-    <script src="js/file.js"></script>
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script src="_content/MudBlazor/MudBlazor.min.js?v=5.1.0"></script>
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a class="reload" href="">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+<script src="js/scroll.js"></script>
+<script src="js/sounds.js"></script>
+<script src="js/file.js"></script>
+<script src="_framework/blazor.webassembly.js"></script>
+<script src="_content/MudBlazor/MudBlazor.min.js?v=5.1.0"></script>
 </body>
 </html>

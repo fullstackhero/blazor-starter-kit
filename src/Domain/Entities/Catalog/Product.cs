@@ -1,19 +1,19 @@
-﻿using BlazorHero.CleanArchitecture.Domain.Contracts;
-using System.ComponentModel.DataAnnotations.Schema;
+using CleanBlazor.Domain.Abstractions;
+using CleanBlazor.Domain.Primitives;
 
-namespace BlazorHero.CleanArchitecture.Domain.Entities.Catalog
+namespace CleanBlazor.Domain.Entities.Catalog;
+
+public class Product : AggregateRoot<int>, IAuditableEntity
 {
-    public class Product : AuditableEntity<int>
-    {
-        public string Name { get; set; }
-        public string Barcode { get; set; }
-
-        [Column(TypeName = "text")]
-        public string ImageDataURL { get; set; }
-
-        public string Description { get; set; }
-        public decimal Rate { get; set; }
-        public int BrandId { get; set; }
-        public virtual Brand Brand { get; set; }
-    }
+    public string Name { get; set; }
+    public string Barcode { get; set; }
+    public string ImageDataUrl { get; set; }
+    public string Description { get; set; }
+    public decimal Rate { get; set; }
+    public int BrandId { get; set; }
+    public virtual Brand Brand { get; set; }
+    public string CreatedBy { get; }
+    public DateTimeOffset CreatedOn { get; }
+    public string LastModifiedBy { get; }
+    public DateTimeOffset? LastModifiedOn { get; }
 }

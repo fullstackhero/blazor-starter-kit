@@ -1,58 +1,49 @@
-﻿using BlazorHero.CleanArchitecture.Application.Requests.Identity;
+using System.Net.Http.Json;
+using Blazored.FluentValidation;
+using CleanBlazor.Client.Extensions;
+using CleanBlazor.Contracts.Identity;
+using CleanBlazor.Shared.Constants.Routes;
+using CleanBlazor.Shared.Wrapper;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using System.Threading.Tasks;
-using Blazored.FluentValidation;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Identity
+namespace CleanBlazor.Client.Pages.Identity;
+
+public partial class RegisterUserModal
 {
-    public partial class RegisterUserModal
-    {
-        private FluentValidationValidator _fluentValidationValidator;
-        private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
-        private readonly RegisterRequest _registerUserModel = new();
-        [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
+    private readonly RegisterRequest _registerUserModel = new();
+    private FluentValidationValidator _fluentValidationValidator;
+    private InputType _passwordInput = InputType.Password;
+    private string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
 
-        private void Cancel()
-        {
-            MudDialog.Cancel();
-        }
+    private bool _passwordVisibility;
+    private bool Validated => _fluentValidationValidator.Validate(options => { options.IncludeAllRuleSets(); });
+    [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
 
-        private async Task SubmitAsync()
-        {
-            var response = await _userManager.RegisterUserAsync(_registerUserModel);
-            if (response.Succeeded)
-            {
-                _snackBar.Add(response.Messages[0], Severity.Success);
-                MudDialog.Close();
-            }
-            else
-            {
-                foreach (var message in response.Messages)
+    private void Cancel() => MudDialog.Cancel();
+
+    private async Task SubmitAsync() =>
+        await HttpClient.PostAsJsonAsync<RegisterRequest, Result>(UsersEndpoints.Register, _registerUserModel)
+            .Match(message =>
                 {
-                    _snackBar.Add(message, Severity.Error);
-                }
-            }
-        }
+                    SnackBar.Success(message);
+                    MudDialog.Close();
+                },
+                errors => SnackBar.Error(errors));
 
-        private bool _passwordVisibility;
-        private InputType _passwordInput = InputType.Password;
-        private string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
-
-        private void TogglePasswordVisibility()
+    private void TogglePasswordVisibility()
+    {
+        if (_passwordVisibility)
         {
-            if (_passwordVisibility)
-            {
-                _passwordVisibility = false;
-                _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
-                _passwordInput = InputType.Password;
-            }
-            else
-            {
-                _passwordVisibility = true;
-                _passwordInputIcon = Icons.Material.Filled.Visibility;
-                _passwordInput = InputType.Text;
-            }
+            _passwordVisibility = false;
+            _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+            _passwordInput = InputType.Password;
+        }
+        else
+        {
+            _passwordVisibility = true;
+            _passwordInputIcon = Icons.Material.Filled.Visibility;
+            _passwordInput = InputType.Text;
         }
     }
 }

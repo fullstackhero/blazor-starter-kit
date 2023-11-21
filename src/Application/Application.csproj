@@ -1,34 +1,30 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>BlazorHero.CleanArchitecture.Application</RootNamespace>
-    <AssemblyName>BlazorHero.CleanArchitecture.Application</AssemblyName>
-    <LangVersion>latest</LangVersion>
+    <RootNamespace>CleanBlazor.Application</RootNamespace>
+    <AssemblyName>CleanBlazor.Application</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="11.0.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="FluentValidation" Version="10.3.6" />
-    <PackageReference Include="LazyCache" Version="2.4.0" />
-    <PackageReference Include="MediatR" Version="10.0.1" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.15" />
+    <PackageReference Include="AutoMapper"/>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection"/>
+    <PackageReference Include="LazyCache"/>
+    <PackageReference Include="MediatR"/>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features"/>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+    <PackageReference Include="Newtonsoft.Json"/>
+    <PackageReference Include="System.Linq.Dynamic.Core"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Application.Abstractions\Application.Abstractions.csproj" />
+    <ProjectReference Include="..\Contracts\Contracts.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj"/>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Features\Brands\Commands\AddEdit\AddEditBrandCommandHandler.ar.resx">
-      <Generator></Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Features\Brands\Commands\Delete\DeleteBrandCommandHandler.ar.resx">
-      <Generator></Generator>
-    </EmbeddedResource>
+    <Folder Include="Features\Catalog\" />
+    <Folder Include="Features\DocumentManagement\" />
   </ItemGroup>
-
 </Project>

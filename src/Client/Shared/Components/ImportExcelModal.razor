@@ -1,10 +1,11 @@
-﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<ImportExcelModal> _localizer
+﻿@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<ImportExcelModal> Localizer
 
 <EditForm Model="@UploadRequest" OnValidSubmit="SaveAsync">
-    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <FluentValidationValidator @ref="_fluentValidationValidator"/>
     <MudDialog>
         <TitleContent>
-            @_localizer["Import"] - @ModelName
+            @Localizer["Import"] - @ModelName
         </TitleContent>
         <DialogContent>
             <MudGrid>
@@ -13,32 +14,32 @@
                                Variant="Variant.Filled"
                                Color="Color.Primary"
                                Size="Size.Large"
-                               StartIcon="@Icons.Filled.CloudUpload"
+                               StartIcon="@Icons.Material.Filled.CloudUpload"
                                for="fileInput"
                                Class="mb-1">
-                        @_localizer["Upload"]
+                        @Localizer["Upload"]
                     </MudButton>
-                    <InputFile id="fileInput" hidden OnChange="UploadFiles" accept=".xlsx" />
-                    <br />
-                    <br />
+                    <InputFile id="fileInput" hidden OnChange="UploadFiles" accept=".xlsx"/>
+                    <br/>
+                    <br/>
                     @if (_file != null)
                     {
-                        <MudAlert ShowCloseIcon="true" CloseIconClicked="(() => _file = null)" OnClick="(() => _file = null)">@_file.Name</MudAlert>
+                        <MudAlert ShowCloseIcon="true" CloseIconClicked="() => _file = null" OnClick="() => _file = null">@_file.Name</MudAlert>
                     }
                     else
                     {
-                        <MudAlert Severity="Severity.Info">@_localizer["Please upload excel file!"]</MudAlert>
+                        <MudAlert Severity="Severity.Info">@Localizer["Please upload excel file!"]</MudAlert>
                     }
                 </MudItem>
             </MudGrid>
         </DialogContent>
         <DialogActions>
-            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
-            <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(_file == null)" Color="Color.Success">@_localizer["Import"]</MudButton>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@Localizer["Cancel"]</MudButton>
+            <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(_file == null)" Color="Color.Success">@Localizer["Import"]</MudButton>
         </DialogActions>
 
     </MudDialog>
     <MudOverlay Visible="_uploading" LightBackground="true" Absolute="true">
-        <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+        <MudProgressCircular Color="Color.Primary" Indeterminate="true"/>
     </MudOverlay>
 </EditForm>
