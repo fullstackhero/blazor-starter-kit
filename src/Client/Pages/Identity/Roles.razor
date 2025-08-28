@@ -58,7 +58,7 @@ else
             <MudTd DataLabel="@Localizer["Actions"]" Style="text-align: right">
                 @if (_canViewRoleClaims || _canEditRoles || _canDeleteRoles)
                 {
-                    <MudMenu Label="@Localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
+                    <MudMenu Label="@Localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" IconColor="Color.Secondary" AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.BottomRight">
                         @if (_canViewRoleClaims)
                         {
                             <MudMenuItem @onclick="@(() => ManagePermissions(context.Id))">@Localizer["Manage Permission"]</MudMenuItem>

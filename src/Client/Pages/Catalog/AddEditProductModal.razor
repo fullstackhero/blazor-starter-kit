@@ -1,4 +1,4 @@
-﻿@using Microsoft.Extensions.Localization
+@using Microsoft.Extensions.Localization
 @inject IStringLocalizer<AddEditProductModal> Localizer
 
 <EditForm Model="@AddEditProductModel" OnValidSubmit="SaveAsync">
@@ -37,7 +37,7 @@
                     <MudTextField For="@(() => AddEditProductModel.Description)" @bind-Value="AddEditProductModel.Description" Label="@Localizer["Description"]"/>
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudAutocomplete T="int" Label="@Localizer["Brand"]" For="@(() => AddEditProductModel.BrandId)" @bind-Value="AddEditProductModel.BrandId" ResetValueOnEmptyText="true" SearchFunc="@SearchBrands" Variant="Variant.Filled" ToStringFunc="@(i => _brands.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true"/>
+                    <MudAutocomplete T="int" Label="@Localizer["Brand"]" For="@(() => AddEditProductModel.BrandId)" @bind-Value="AddEditProductModel.BrandId" ResetValueOnEmptyText="true" SearchFunc="@SearchBrands" Variant="Variant.Filled" ToStringFunc="@(i => _brands.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter"/>
                 </MudItem>
                 <MudItem xs="12" md="6">
                     <MudTextField For="@(() => AddEditProductModel.Rate)" @bind-Value="AddEditProductModel.Rate" Label="@Localizer["Rate"]"/>

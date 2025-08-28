@@ -11,7 +11,7 @@
     <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
         <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Secondary" Link="https://www.buymeacoffee.com/codewithmukesh" Target="_blank" StartIcon="@Icons.Material.Filled.LocalDrink">@Localizer["Buy Me A Coffee"]</MudButton>
         <MudDivider Vertical="true" FlexItem="true" DividerType="DividerType.Middle" Class="mx-4 my-5"/>
-        <MudMenu EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Label="@Localizer["Support"]" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
+        <MudMenu EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Label="@Localizer["Support"]" Color="Color.Inherit" Dense="true" AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight">
             <MudText Typo="Typo.body2" Class="px-4 py-2">
                 <b>@Localizer["Community"]</b>
             </MudText>
@@ -36,7 +36,7 @@
     </MudHidden>
     <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
         <LanguageSelector/>
-        <MudMenu Icon="@Icons.Material.Filled.Settings" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
+        <MudMenu Icon="@Icons.Material.Filled.Settings" Color="Color.Inherit" Dense="true" AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.TopRight">
             <div class="px-2">
                 <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@(_ => ToggleDarkMode())"/>
                 <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/blazorhero/CleanArchitecture" Target="_blank"/>
@@ -53,7 +53,7 @@
             <MudMenuItem Link="https://codewithmukesh.com/blog/blazor-hero-quick-start-guide/" Target="_blank">@Localizer["Quick-Start Guide"]</MudMenuItem>
         </MudMenu>
     </MudHidden>
-    <MudMenu Direction="_rightToLeft ? Direction.Right : Direction.Left" OffsetX="true" Dense="true" Class="mt-1 ml-4">
+    <MudMenu AnchorOrigin="@(_rightToLeft ? Origin.BottomLeft : Origin.BottomRight)" TransformOrigin="@(_rightToLeft ? Origin.TopLeft : Origin.TopRight)" Dense="true" Class="mt-1 ml-4">
         <ActivatorContent>
             @if (string.IsNullOrEmpty(ImageDataUrl))
             {

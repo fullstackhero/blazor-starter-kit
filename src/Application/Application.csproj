@@ -9,7 +9,6 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection"/>
     <PackageReference Include="LazyCache"/>
     <PackageReference Include="MediatR"/>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features"/>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore"/>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />

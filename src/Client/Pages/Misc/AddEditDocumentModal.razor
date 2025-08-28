@@ -1,4 +1,4 @@
-﻿@using Microsoft.Extensions.Localization
+@using Microsoft.Extensions.Localization
 @inject IStringLocalizer<AddEditDocumentModal> Localizer
 
 <EditForm Model="@AddEditDocumentModel" OnValidSubmit="SaveAsync">
@@ -37,7 +37,7 @@
                     <MudTextField For="@(() => AddEditDocumentModel.Description)" @bind-Value="AddEditDocumentModel.Description" Label="@Localizer["Description"]"/>
                 </MudItem>
                 <MudItem xs="12" md="6">
-                    <MudAutocomplete T="int" Label="@Localizer["Document Type"]" For="@(() => AddEditDocumentModel.DocumentTypeId)" @bind-Value="AddEditDocumentModel.DocumentTypeId" ResetValueOnEmptyText="true" SearchFunc="@SearchDocumentTypes" Variant="Variant.Filled" ToStringFunc="@(i => _documentTypes.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" OffsetY="true"/>
+                    <MudAutocomplete T="int" Label="@Localizer["Document Type"]" For="@(() => AddEditDocumentModel.DocumentTypeId)" @bind-Value="AddEditDocumentModel.DocumentTypeId" ResetValueOnEmptyText="true" SearchFunc="@SearchDocumentTypes" Variant="Variant.Filled" ToStringFunc="@(i => _documentTypes.FirstOrDefault(b => b.Id == i)?.Name ?? string.Empty)" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter"/>
                 </MudItem>
                 <MudItem xs="12" md="6">
                     <MudCheckBox For="@(() => AddEditDocumentModel.IsPublic)" @bind-Checked="AddEditDocumentModel.IsPublic" Label="@Localizer["Is Public?"]"/>

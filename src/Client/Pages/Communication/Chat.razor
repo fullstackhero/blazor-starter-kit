@@ -66,7 +66,7 @@
                         <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
                             <div class="d-flex flex-row mt-n1 mb-n1">
                                 <div class="mr-4">
-                                    <MudBadge Class="my-2" Color="@(GetUserStatusBadgeColor(user.IsOnline))" Overlap="true" Bottom="true" Dot="true">
+                                    <MudBadge Class="my-2" Color="@(GetUserStatusBadgeColor(user.IsOnline))" Overlap="true" Origin="Origin.BottomRight" Dot="true">
                                         @if (string.IsNullOrEmpty(user.ProfilePictureDataUrl))
                                         {
                                             @if (user.Id == CId)
@@ -104,7 +104,7 @@
                 <MudListItem Class="pa-0 px-2" OnClick="@(() => LoadUserChat(user.Id))">
                     <div class="d-flex flex-row mt-n1 mb-n1">
                         <div class="mr-4">
-                            <MudBadge Class="my-2" Color="@(GetUserStatusBadgeColor(user.IsOnline))" Overlap="true" Bottom="true" Dot="true">
+                            <MudBadge Class="my-2" Color="@(GetUserStatusBadgeColor(user.IsOnline))" Overlap="true" Origin="Origin.BottomRight" Dot="true">
                                 @if (string.IsNullOrEmpty(user.ProfilePictureDataUrl))
                                 {
                                     @if (user.Id == CId)

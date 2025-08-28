@@ -67,7 +67,7 @@ else
             <MudTd DataLabel="Actions" Style="text-align: right">
                 @if (_canEditDocumentTypes || _canDeleteDocumentTypes)
                 {
-                    <MudMenu Label="@Localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
+                    <MudMenu Label="@Localizer["Actions"]" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" IconColor="Color.Secondary" AnchorOrigin="Origin.BottomLeft" TransformOrigin="Origin.BottomRight">
                         @if (_canEditDocumentTypes)
                         {
                             <MudMenuItem @onclick="@(() => InvokeModal(context.Id))">@Localizer["Edit"]</MudMenuItem>
